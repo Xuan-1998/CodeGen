@@ -1,0 +1,167 @@
+from .chatbot import ChatCompletionAPI, parse_response
+from .problems import *
+from tqdm import tqdm
+from typing import Callable
+
+CODING_SYSTEM = """
+You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout.
+You will now be provided with the problem statement:
+===
+{statement}
+===
+"""
+
+CODING_TRANSFORMATION = """
+I came up with an intuition on how to solve this problem. It might be the complete solution or additional steps might be needed:
+===
+{transformation}
+===
+Analyze my intuition, how is it applicable to this problem? Please build on my idea and do not start over or reject the approach. What is the problem really asking, and how can it be solved with the algorithms and data structures you know? Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
+"""
+
+
+def transformation_coder(statement: str, transformation: str) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": CODING_TRANSFORMATION.format(
+                        transformation=transformation
+                    ),
+                },
+            ]
+        )
+    )
+    return code, response
+
+
+CODING_ZEROSHOT = """
+How can we break down this problem and arrive at a solution? Let's think step by step. Please also implement the solution in Python.
+"""
+
+
+def zeroshot_coder(statement: str) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {"role": "user", "content": CODING_ZEROSHOT},
+            ]
+        )
+    )
+    return code, response
+
+
+CODING_EDITORIAL = """
+According to this problem's official editorial, what are some of the intermediate variables that must be calculated? How are these variables calculated and how do they lead to an answer? Let's think step by step. In Python, please also implement the solution that can pass the most testcases, as described by the editorial.
+You will now be provided with the editorial:
+{editorial}
+"""
+
+
+def editorial_coder(statement: str, editorial: str) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": CODING_EDITORIAL.format(editorial=editorial),
+                },
+            ]
+        )
+    )
+    return code, response
+
+
+CODING_ALGORITHM = """
+I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
+Analyze my intuition, how is it applicable to this problem? Please build on my idea and do not start over or reject the approach. What is the problem really asking, and how can it be solved with the algorithms and data structures you know? Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
+"""
+
+
+def algorithm_coder(statement: str, algorithm: str) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": CODING_ALGORITHM.format(algorithm=algorithm),
+                },
+            ]
+        )
+    )
+    return code, response
+
+
+CODING_TRANSFORMATION_ALGORITHM = """
+I came up with an intuition on how to solve this problem. I think {transformation}. Additionally, I think it's a problem about {algorithm}.
+Analyze my intuition, how is it applicable to this problem? Please build on my idea and do not start over or reject the approach. What is the problem really asking, and how can it be solved with the algorithms and data structures you know? Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
+"""
+
+
+def transformation_algorithm_coder(
+    statement: str, algorithm: str, transformation: str
+) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": CODING_TRANSFORMATION_ALGORITHM.format(
+                        statement=statement, algorithm=algorithm, transformation=transformation
+                    ),
+                },
+            ]
+        )
+    )
+    return code, response
+
+
+def attempt_usaco(
+    problem: Problem,
+    coder: Callable[[], tuple[str, str]],
+    coder_params: dict,
+    sampling_budget=5,
+) -> tuple[float, list[tuple[str, str, tuple[int, int, int, int]]]]:
+    code_samples = []
+    full_responses = []
+    results = []
+    for _ in tqdm(
+        range(sampling_budget), desc=f"{problem.name} ({problem.problem_id})"
+    ):
+        code, response = coder(**coder_params)
+        code_samples.append(code)
+        full_responses.append(response)
+        results.append(problem.submit(code))
+
+    score = 0
+    for ac_cnt, wa_cnt, tle_cnt, re_cnt in results:
+        if ac_cnt + wa_cnt + tle_cnt + re_cnt != 0:
+            score = max(score, ac_cnt / (ac_cnt + wa_cnt + tle_cnt + re_cnt))
+
+    return score, list(zip(code_samples, full_responses, results))
