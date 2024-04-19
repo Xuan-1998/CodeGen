@@ -4,11 +4,12 @@ import os
 from copy import deepcopy
 
 main_logger = codeGen_logger.setup_logging()
+working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
 
 def main():
     main_logger.info("codeGen starts")
     # initialize_problems(100, "Dynamic Programming")
-    data_path = r"../data"
+    data_path = f"{working_directory}/data"
     for source in os.listdir(data_path):
         probs_path = os.path.join(data_path, source, "problems.jsonl")
         with open(probs_path, 'r') as file:
