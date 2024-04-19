@@ -3,6 +3,7 @@ from utils import *
 import dataset
 import logging
 import os
+import time
 
 codeGen_logger = logging.getLogger("Tests")
 logging.basicConfig(level=logging.DEBUG)
@@ -14,21 +15,21 @@ TEST_CODE = r"""def add2(list:list[int]) -> list:
         list[i] += 2
     return list
 
-def solution(stdin_str: str) -> str:
-    stdin = list(map(int, stdin_str.split()))
-    stdout = add2(stdin)
-    stdout_str = ' '.join(map(str, stdout))
-    return stdout_str
+def solution(input_str: str) -> str:
+    input = list(map(int, input_str.split()))
+    output = add2(input)
+    output_str = ' '.join(map(str, output))
+    return output_str
 
 l = input()
 print(solution(l))"""
 
 TEST_CASES = [ 
-    {"stdin": "10 20 30 40 50\n", "stdout": "12 22 32 42 52\n"}, 
-    {"stdin": "5 10 15\n", "stdout": "7 12 17\n"}, 
-    {"stdin": "2 4 6 8 10 12 14\n", "stdout": "4 6 8 10 12 14 16\n"}, 
-    {"stdin": "100 100\n", "stdout": "102 102\n"}, 
-    {"stdin": "25 50 75 100 25 50\n", "stdout": "27 52 77 102 27 52\n"} 
+    {"input": "10 20 30 40 50\n", "output": "12 22 32 42 52\n"}, 
+    {"input": "5 10 15\n", "output": "7 12 17\n"}, 
+    {"input": "2 4 6 8 10 12 14\n", "output": "4 6 8 10 12 14 16\n"}, 
+    {"input": "100 100\n", "output": "102 102\n"}, 
+    {"input": "25 50 75 100 25 50\n", "output": "27 52 77 102 27 52\n"} 
 ]
 
 PROBLEM = problems.Problem(
@@ -44,16 +45,17 @@ PROBLEM = problems.Problem(
     ]
 )
 
-@unittest.skip("Skip since it's already tested")
+# @unittest.skip("Skip since it's already tested")
 class TestOJInteractions(unittest.TestCase):
     def test_submit_code(self):
-        token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["stdin"], TEST_CASES[0]["stdout"], 'local')
+        token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["input"], TEST_CASES[0]["output"], 'local')
         pattern = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
         self.assertIsNotNone(token)
         self.assertTrue(re.match(pattern, token))
     
     def test_get_submission_online(self):
-        token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["stdin"], TEST_CASES[0]["stdout"], 'online')
+        token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["input"], TEST_CASES[0]["output"], 'online')
+        time.sleep(5)
         submission = oj_interactions.get_submission(token, 'online')
         self.assertIn("Accepted", submission['status']["description"])
 
@@ -90,9 +92,9 @@ class TestChatbotAPI(unittest.TestCase):
 @unittest.skip("Skip since it's going to be deprecated")
 class TestCodeRunner(unittest.TestCase):
     def test_code_runner(self):
-        output = code_runner.code_runner(TEST_CODE, TEST_CASES[0]["stdin"])
+        output = code_runner.code_runner(TEST_CODE, TEST_CASES[0]["input"])
         codeGen_logger.info(output)
-        self.assertEqual(output, TEST_CASES[0]["stdout"])
+        self.assertEqual(output, TEST_CASES[0]["output"])
 
 @unittest.skip("Skip since it's already tested")
 class TestCoding(unittest.TestCase):
@@ -102,7 +104,7 @@ class TestCoding(unittest.TestCase):
         self.assertIsNotNone(code)
         self.assertIsNotNone(response)
 
-# @unittest.skip("Skip since it's already tested")
+@unittest.skip("Skip since it's already tested")
 class TestProblem(unittest.TestCase):
     @unittest.skip("Skip since it's not implemented yet")
     def test_get_editorial(self):
@@ -129,7 +131,7 @@ class TestProblem(unittest.TestCase):
         self.assertEqual(PROBLEM.url, problems_list[0].url)
         self.assertEqual(PROBLEM.sample_test_cases, problems_list[0].sample_test_cases)
 
-        # os.remove('problems.jsonl')
+        os.remove('problems.jsonl')
 
     def test_initialize_problems(self):
         dataset.initialize_problems(1, "Dynamic Programming")

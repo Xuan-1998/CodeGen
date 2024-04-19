@@ -4,7 +4,7 @@ from tqdm import tqdm
 from typing import Callable
 
 CODING_SYSTEM = """
-You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, always in the format of a python list.
+You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, wrap your response in a code block as well.
 You will now be provided with the problem statement:
 ===
 {statement}
@@ -143,14 +143,14 @@ def transformation_algorithm_coder(
 
 PROVIDE_ALGORITHM = """
 I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
-Please list the most concise steps of build Dynamic Programming algorithm program based on this problem. And return the steps in a python list format.
+Please list the most concise steps of build Dynamic Programming algorithm program based on this problem. And return the steps in a python list format. Use double quotes to wrap each step.
 """
 
 def provide_algorithm_coder(
     statement: str, algorithm: str
 ) -> tuple[str, str]:
     coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response(
+    code, response = parse_response_py_list(
         coder.create(
             [
                 {
@@ -161,6 +161,37 @@ def provide_algorithm_coder(
                     "role": "user",
                     "content": PROVIDE_ALGORITHM.format(
                         statement=statement, algorithm=algorithm
+                    ),
+                },
+            ]
+        )
+    )
+    return code, response
+
+FOLLOW_UP_ALGORITHM = """
+I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
+You will provide me with three possible choices for {step}. Each choice will be parallel and independent, allowing me to choose the most suitable option later.
+Return the choices in a python list format. Use double quotes to wrap each choice.
+===BEGIN STEPS===
+{steps}
+===END STEPS===
+"""
+
+def follow_up_coder(
+    statement: str, algorithm: str, step: str, steps: list[str]
+) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response_py_list(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": FOLLOW_UP_ALGORITHM.format(
+                        statement=statement, algorithm=algorithm, step=step, steps=steps
                     ),
                 },
             ]

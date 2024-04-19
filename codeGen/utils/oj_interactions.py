@@ -55,11 +55,18 @@ def submit_code_batch(code: str, test_cases: list[dict], method = 'local') -> li
     }
 
     for test_case in test_cases:
+        inputs = "\n".join(test_case['input']) if type(test_case['input']) is list else test_case['input']
+        if not inputs.endswith("\n"):
+            inputs += "\n"
+        outputs = "\n".join(test_case['output']) if type(test_case['output']) is list else test_case['output']
+        if not outputs.endswith("\n"):
+            outputs += "\n"
+
         payload['submissions'].append({
             "language_id": language_id[method],
             "source_code": code,
-            "stdin": test_case['stdin'],
-            "expected_output": test_case['stdout']
+            "stdin": inputs,
+            "expected_output": outputs
         })
 
     url = f"{BASE_URL[method]}/submissions/batch"

@@ -145,17 +145,32 @@ Identify the subproblems: Break down the problem into smaller subproblems that c
 
 ### Remarks
 
+=====Above deprecated====
 
 ## 
 ### Prompts
-
+provide_algorithm_coder
 ### Outputs
+
+[INFO | codeGen | L18] 2024-04-19T21:07:16+0800: Algorithm: [
+    "Define a function that calculates the maximum sum of contiguous subarray, which will be used to determine the minimum time for a given number of painters.",
+    "Create a DP table where dp[i][j] represents the minimum time to paint i boards using j painters.",
+    "Initialize the first row of the DP table with the prefix sums of the boards' lengths, as only one painter is painting all the boards up to that point.",
+    "Iterate over the number of boards and painters to fill in the DP table using the following logic:",
+    "  For each cell dp[i][j], find the minimum time by considering all possible partitions of the array into j parts.",
+    "  Use the function from the first step to calculate the maximum sum of boards that the last painter would paint for each partition.",
+    "  Take the minimum of these maximum sums to get the minimum time for dp[i][j].",
+    "Return the value of dp[n][k] as the final answer, which represents the minimum time to paint all n boards using k painters."
+]
 ### Remarks
 
 ## 
 ### Prompts
-
+follow up prompt
 ### Outputs
+
+"[\n    'Initialize the base case with dp[0][0] = 1 and the rest of the dp matrix with 0, since there is only one way to pass the ball 0 times and have it end up with Messi, who is considered the 0-th player.',\n    'Initialize the base case with dp[1][1] = 1 if K > 1, representing the first pass from Messi to the next player, and the rest of the dp matrix with 0.',\n    'Initialize the entire dp matrix with 0, then set dp[0][0] = 1 and dp[1][1] = K-1 if K > 1, to account for all possible first passes from Messi to any other player.'\n]"
+
 ### Remarks
 
 ## 
