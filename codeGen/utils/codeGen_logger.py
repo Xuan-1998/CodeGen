@@ -5,8 +5,10 @@ import logging.handlers
 import os
 import pathlib
 
+working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen/codeGen"
+
 def setup_logging():
-    config_file = pathlib.Path("utils/logger.json")
+    config_file = pathlib.Path(f"{working_directory}/utils/logger.json")
 
     if not os.path.exists("logs"):
         os.makedirs("logs")
