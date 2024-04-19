@@ -26,21 +26,27 @@ def main():
                 # iter until previous step is empty and then gen code
                 # iter until queue is empty
                 while steps_queue:
-                    step, prev_steps = steps_queue.pop(0)
-                    if not prev_steps:
-                        # TODO: Might change the statement+transformation gen code func here
-                        # Not tested
-                        code = coding.transformation_coder(prob.statement, " ".join(step))
-                        codes.append(code)
-                    # Tested but LLM gen not stable, sometimes works well sometimes not
-                    # TODO refine the prompts
-                    lis, response = coding.follow_up_coder(prob.statement, "Dynamic Programming", prev_steps[0], step)
-                    prev_steps.pop(0)
-                    for choice in lis:
-                        main_logger.info(f"Step: {step} Choices: {lis}")
-                        current_step = deepcopy(step)
-                        current_step.append(choice)
-                        steps_queue.append([current_step, prev_steps])
+                    try:
+                        step, prev_steps = steps_queue.pop(0)
+                        if not prev_steps:
+                            # TODO: Might change the statement+transformation gen code func here
+                            # Not tested
+                            code = coding.transformation_coder(prob.statement, " ".join(step))
+                            codes.append(code)
+                        # Tested but LLM gen not stable, sometimes works well sometimes not
+                        # TODO refine the prompts
+                        if prev_steps and len(prev_steps) > 0:
+                            lis, response = coding.follow_up_coder(prob.statement, "Dynamic Programming", prev_steps[0], step)
+                            prev_steps.pop(0)
+                        else:
+                            print("No previous steps available or the list is too short.")
+                        for choice in lis:
+                            main_logger.info(f"Step: {step} Choices: {lis}")
+                            current_step = deepcopy(step)
+                            current_step.append(choice)
+                            steps_queue.append([current_step, prev_steps])
+                    except Exception as e:
+                        print(f"An error occurred: {e}")
 
                 # codes = [""]
                 higest_acc = 0
