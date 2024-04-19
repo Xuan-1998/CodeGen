@@ -5,6 +5,48 @@ import logging.handlers
 import os
 import pathlib
 
+import logging
+
+# Dictionary to store handlers by name
+handlers = {}
+
+def setup_logging():
+    # Create logger
+    logger = logging.getLogger('my_logger')
+    logger.setLevel(logging.DEBUG)
+
+    # Create console handler and set level to debug
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+
+    # Create formatter
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # Add formatter to ch
+    ch.setFormatter(formatter)
+
+    # Add ch to logger
+    logger.addHandler(ch)
+
+    # Store the handler with a name
+    handlers['console_handler'] = ch
+
+    return logger
+
+def getHandlerByName(name):
+    return handlers.get(name, None)
+
+# Setup logging
+logger = setup_logging()
+
+# Retrieve a handler by name
+queue_handler = getHandlerByName('console_handler')
+if queue_handler:
+    logger.info('Handler retrieved successfully')
+else:
+    logger.error('Handler not found')
+
+
 working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen/codeGen"
 
 def setup_logging():
@@ -17,7 +59,7 @@ def setup_logging():
         config = json.load(f_in)
 
     logging.config.dictConfig(config)
-    queue_handler = logging.getHandlerByName("queue_handler")
+    queue_handler = getHandlerByName("queue_handler")
     if queue_handler is not None:
         queue_handler.listener.start()
         atexit.register(queue_handler.listener.stop)
