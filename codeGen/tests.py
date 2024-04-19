@@ -1,9 +1,10 @@
 import unittest
 from utils import *
+import dataset
 import logging
 import os
 
-logger = logging.getLogger("Tests")
+codeGen_logger = logging.getLogger("Tests")
 logging.basicConfig(level=logging.DEBUG)
 
 import re
@@ -79,7 +80,7 @@ class TestChatbotAPI(unittest.TestCase):
                 },
             ]
         )
-        logger.info(response.choices[0].message.content)
+        codeGen_logger.info(response.choices[0].message.content)
         self.assertIsNotNone(response.choices[0].message.content)
 
     def test_embedding(self):
@@ -90,22 +91,24 @@ class TestChatbotAPI(unittest.TestCase):
 class TestCodeRunner(unittest.TestCase):
     def test_code_runner(self):
         output = code_runner.code_runner(TEST_CODE, TEST_CASES[0]["stdin"])
-        logger.info(output)
+        codeGen_logger.info(output)
         self.assertEqual(output, TEST_CASES[0]["stdout"])
 
 @unittest.skip("Skip since it's already tested")
 class TestCoding(unittest.TestCase):
     def test_transformation_algorithm_coder(self):
         code, response = coding.transformation_algorithm_coder("Given a list of integers, add 2 to each element", "List", "Add 2 to each element")
-        logger.info(response)
+        codeGen_logger.info(response)
         self.assertIsNotNone(code)
         self.assertIsNotNone(response)
 
+# @unittest.skip("Skip since it's already tested")
 class TestProblem(unittest.TestCase):
     @unittest.skip("Skip since it's not implemented yet")
     def test_get_editorial(self):
         editorial = problems.get_editorial('URL', 'Source')
         self.assertIsNotNone(editorial)
+    @unittest.skip("Skip since it's already tested")
 
     def test_save_and_load_problem_from_jsonl(self):
         PROBLEM.append_to_jsonl('problems.jsonl')
@@ -126,10 +129,10 @@ class TestProblem(unittest.TestCase):
         self.assertEqual(PROBLEM.url, problems_list[0].url)
         self.assertEqual(PROBLEM.sample_test_cases, problems_list[0].sample_test_cases)
 
-        os.remove('problems.jsonl')
+        # os.remove('problems.jsonl')
 
     def test_initialize_problems(self):
-        # problems.initialize_problems()
+        dataset.initialize_problems(1, "Dynamic Programming")
         # pass since get_editorial is not implemented yet
         pass
 

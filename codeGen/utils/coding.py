@@ -1,10 +1,10 @@
-from .chatbot import ChatCompletionAPI, parse_response
+from .chatbot import ChatCompletionAPI, parse_response, parse_response_py_list
 from .problems import *
 from tqdm import tqdm
 from typing import Callable
 
 CODING_SYSTEM = """
-You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout.
+You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, always in the format of a python list.
 You will now be provided with the problem statement:
 ===
 {statement}
@@ -141,6 +141,32 @@ def transformation_algorithm_coder(
     )
     return code, response
 
+PROVIDE_ALGORITHM = """
+I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
+Please list the most concise steps of build Dynamic Programming algorithm program based on this problem. And return the steps in a python list format.
+"""
+
+def provide_algorithm_coder(
+    statement: str, algorithm: str
+) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": PROVIDE_ALGORITHM.format(
+                        statement=statement, algorithm=algorithm
+                    ),
+                },
+            ]
+        )
+    )
+    return code, response
 
 def attempt_usaco(
     problem: Problem,

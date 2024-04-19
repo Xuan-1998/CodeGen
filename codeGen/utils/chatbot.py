@@ -11,6 +11,13 @@ def parse_response(response) -> tuple[str, str]:
     code = "\n".join(code.split("\n")[1:-1])
     return code, response.choices[0].message.content
 
+def parse_response_py_list(response) -> tuple[str, str]:
+    answer_list = re.findall(r'\[\s*\n?\s*\'[^\']*\'(?:\s*,\s*\'[^\']*\')*\s*\n?\s*\]', response.choices[0].message.content)[
+        -1
+    ]
+    answer_list = "\n".join(answer_list.split("\n")[1:-1])
+    return answer_list, response.choices[0].message.content
+
 class ChatCompletionAPI:
     def __init__(self, model="gpt-3.5-turbo") -> None:
         client = openai.OpenAI(

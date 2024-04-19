@@ -1,5 +1,5 @@
 from utils.chatbot import ChatCompletionAPI
-from utils.logger import setup_logging
+from utils.codeGen_logger import setup_logging
 from utils.problems import Problem, get_editorial
 from prompts import *
 from concurrent import futures
@@ -140,34 +140,55 @@ Editorial:
 {editorial}"""
 
 
-def initialize_problems():
+def initialize_problems(
+        maxSize: int = 1000,
+        tag: str = None,
+        prefered_sources: list[str] = None
+        ):
+    cnt = 0
     for sample in iter(ds):
+        if cnt >= maxSize:
+            break
+
+        if (tag is not None and tag.lower() not in (sample['tags']).lower()) or \
+            (prefered_sources is not None and sample['source'] not in prefered_sources):
+            continue
+        
+        cnt += 1
+
+        logger.info(f"Processing problem {cnt} with source {sample['source']}")
         if not os.path.exists(f"../data/{sample['source']}"):
             os.makedirs(f"../data/{sample['source']}")
 
         test_cases = []
-        tc_json = json.loads(sample['input_output'])
-        for i in max(range(len(tc_json['input'])), MAX_SAMPLE_TC):
-            test_cases.append({
-                'input': tc_json['input'][i],
-                'output': tc_json['output'][i]
-            })
+        try:
+            tc_json = json.loads(sample['input_output'])
+            for i in range(min(len(tc_json['inputs']), MAX_SAMPLE_TC)):
+                test_cases.append({
+                    'input': tc_json['inputs'][i],
+                    'output': tc_json['outputs'][i]
+                })
 
-        prob = Problem(
-            statement = sample['question'],
-            editorial = get_editorial(sample['url'], sample['source']) if 'url' in sample else None,
-            tag = sample['tag'] if 'tag' in sample else None,
-            difficulties = sample['difficulty'],
-            source = sample['source'],
-            url = sample['url'] if 'url' in sample else None,
-            sample_test_cases = test_cases
-        )
+            prob = Problem(
+                statement = sample['question'],
+                editorial = get_editorial(sample['url'], sample['source']) if 'url' in sample else None,
+                tag = sample['tags'] if 'tags' in sample else None,
+                difficulties = sample['difficulty'],
+                source = sample['source'],
+                url = sample['url'] if 'url' in sample else None,
+                sample_test_cases = test_cases
+            )
 
-        # TODO: Improve with parallel processing like Task.WhenAll in .NET
-        regularized_statement = regularize_statement_3(prob)
-        regularized_editorial = regularize_editorial_3(prob, regularized_statement)
+            # TODO: Improve with parallel processing like Task.WhenAll in .NET
+            regularized_statement = regularize_statement_3(prob)
+            # regularized_editorial = regularize_editorial_3(prob, regularized_statement)
 
-        prob.statement = regularized_statement
-        prob.editorial = regularized_editorial
+            prob.statement = regularized_statement
+            # prob.editorial = regularized_editorial
 
-        prob.append_to_jsonl(f"../data/{sample['source']}/problems.jsonl")
+            # TODO: On second thought, store the problems in separate files is better
+            # Hash the prob URL as GUID
+            prob.append_to_jsonl(f"../data/{sample['source']}/problems.jsonl")
+        except Exception as e:
+            logger.error(f"Error processing problem {cnt} with source {sample['source']}, url: {sample['url']}: {e}")
+            continue
