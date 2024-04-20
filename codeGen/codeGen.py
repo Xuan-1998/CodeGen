@@ -41,7 +41,7 @@ def main():
                         else:
                             print("No previous steps available or the list is too short.")
                         for choice in lis:
-                            main_logger.info(f"Step: {step} Choices: {lis}")
+                            main_logger.info(f"Step: {step} Choices: {choice}")
                             current_step = deepcopy(step)
                             current_step.append(choice)
                             steps_queue.append([current_step, prev_steps])
