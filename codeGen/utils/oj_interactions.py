@@ -1,6 +1,7 @@
 import requests
 import logging
 import os
+import json
 
 logger = logging.getLogger("__name__") 
 
@@ -73,9 +74,23 @@ def submit_code_batch(code: str, test_cases: list[dict], method = 'local') -> li
     logger.debug(f"Payload: {payload}")
 
     response = requests.post(url, json=payload, headers=HEADERS, params=QUERY_PARAMS)
-    tokens = [item['token'] for item in response.json()]
+    try:
+        response_data = response.json()
+        if isinstance(response_data, list):
+            tokens = [item['token'] for item in response_data]
+        else:
+            if response.status_code != 200:
+                logger.error(f"HTTP Error: {response.status_code} with body {response.text}")
+                return []
+            logger.error(f"Unexpected JSON structure: {response_data}")
+            return []
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON decoding failed: {str(e)}")
+        return []
+
+
     logger.info(f"Tokens: {tokens}")
-    
+
     return tokens
 
 def get_submission(token: str, method = 'local'):
