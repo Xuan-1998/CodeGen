@@ -49,19 +49,25 @@ def main():
 
                 higest_acc = 0
                 best_code = ""
-                for code in codes:
-                    tokens = oj_interactions.submit_code_batch(code, prob.sample_test_cases, 'online')
-                    total = 0
-                    acc = 0
-                    for token in tokens:
-                        submission = oj_interactions.get_submission(token, 'online')
-                        res = submission['status']["description"]
-                        if "Accepted" in res:
-                            acc += 1
-                        total += 1
-                    if acc/total > higest_acc:
-                        higest_acc = acc/total
-                        best_code = code
+                # Improved error handling and division by zero check
+                try:
+                    for code in codes:
+                        tokens = oj_interactions.submit_code_batch(code, prob.sample_test_cases, 'online')
+                        total = 0
+                        acc = 0
+                        for token in tokens:
+                            submission = oj_interactions.get_submission(token, 'online')
+                            res = submission['status']["description"]
+                            if "Accepted" in res:
+                                acc += 1
+                            total += 1
+                        if total > 0 and acc/total > higest_acc:
+                            higest_acc = acc/total
+                            best_code = code
+                except Exception as e:
+                    main_logger.error(f"An unexpected error occurred during code submission or evaluation: {e}, {traceback.format_exc()}")
+
+
                 
                 main_logger.info(f"Best code: {best_code}, Accuracy: {higest_acc}")
                 # TODO Work on the best code there
