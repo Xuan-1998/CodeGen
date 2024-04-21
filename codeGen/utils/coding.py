@@ -143,7 +143,7 @@ def transformation_algorithm_coder(
 
 PROVIDE_ALGORITHM = """
 I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
-Please list concise and general steps, no more than five, for build {algorithm} program based on this problem. And return the steps in a python list format. Use double quotes to wrap each step.
+Please list concise and general steps, no more than five, for building {algorithm} program based on this problem. And return the steps in a python list format. Use double quotes to wrap each step.
 """
 
 def provide_algorithm_coder(
