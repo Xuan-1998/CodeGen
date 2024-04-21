@@ -22,7 +22,7 @@ main_logger = codeGen_logger.setup_logging()
 working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
 
 def main():
-    main_logger.info("codeGen starts")
+    main_logger.info("codeGen_zero starts")
     # initialize_problems(100, "Dynamic Programming")
     data_path = f"{working_directory}/../data"
     # for source in os.listdir(data_path):
@@ -47,7 +47,7 @@ def main():
                     if len(steps_to_generate) == 0:
                         # TODO: Might change the statement+transformation gen code func here
                         # Not tested
-                        code, response = coding.zeroshot_coder(prob.statement, "\n".join(step))
+                        code, response = coding.zeroshot_coder(prob.statement)
                         codes.append(code)
                         continue
                     # Tested but LLM gen not stable, sometimes works well sometimes not
