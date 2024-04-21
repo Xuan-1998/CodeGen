@@ -31,16 +31,15 @@ def main():
     with open(probs_path, 'r') as file:
         for line in file:
             prob = problems.Problem.from_jsonl(line)
+            if prob.url is None:
+                continue
             main_logger.info(f"Processing problem {prob.url}")
             lis, response = coding.provide_algorithm_coder(prob.statement, "Dynamic Programming")
             main_logger.info(f"Algorithm: {lis}")
             steps_queue = []
             steps_queue.append([[lis[0]], lis[1:]])
             codes = []
-            # [step, previous step] -> new [step, previous step], add to queue
-            # Eg. 5 choices ABCDE -> A1BCDE, A2BCDE, A3BCDE -> A1B1CDE, A1B2CDE, A1B3CDE, A2B1CDE, A2B2CDE, A2B3CDE, A3B1CDE, A3B2CDE, A3B3CDE
-            # iter until previous step is empty and then gen code
-            # iter until queue is empty
+
             while steps_queue:
                 try:
                     step, steps_to_generate = steps_queue.pop(0)
