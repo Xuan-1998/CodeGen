@@ -2,11 +2,8 @@ from utils.chatbot import ChatCompletionAPI
 from utils.codeGen_logger import setup_logging
 from utils.problems import Problem, get_editorial
 from prompts import *
-from concurrent import futures
 import os
-import requests
 import json
-import random
 from datasets import load_dataset
 
 ds = load_dataset("BAAI/TACO", split="train")
@@ -143,7 +140,9 @@ Editorial:
 def initialize_problems(
         maxSize: int = 1000,
         tag: str = None,
-        prefered_sources: list[str] = None
+        prefered_sources: list[str] = None,
+        difficulty: str = None,
+        root: str = "../data"
         ):
     cnt = 0
     for sample in iter(ds):
@@ -151,14 +150,15 @@ def initialize_problems(
             break
 
         if (tag is not None and tag.lower() not in (sample['tags']).lower()) or \
-            (prefered_sources is not None and sample['source'] not in prefered_sources):
+            (prefered_sources is not None and sample['source'] not in prefered_sources) or \
+            (difficulty is not None and difficulty.lower() not in (sample['difficulty']).lower()) or sample['url'] is None:
             continue
         
         cnt += 1
 
         logger.info(f"Processing problem {cnt} with source {sample['source']}")
-        if not os.path.exists(f"../data/{sample['source']}"):
-            os.makedirs(f"../data/{sample['source']}")
+        if not os.path.exists(f"{root}/{sample['source']}"):
+            os.makedirs(f"{root}/{sample['source']}")
 
         test_cases = []
         try:
@@ -188,7 +188,11 @@ def initialize_problems(
 
             # TODO: On second thought, store the problems in separate files is better
             # Hash the prob URL as GUID
-            prob.append_to_jsonl(f"../data/{sample['source']}/problems.jsonl")
+            prob.append_to_jsonl(f"{root}/{sample['source']}/problems.jsonl")
         except Exception as e:
             logger.error(f"Error processing problem {cnt} with source {sample['source']}, url: {sample['url']}: {e}")
             continue
+
+if __name__ == "__main__":
+    initialize_problems(50, "Dynamic Programming", difficulty="EASY", root="../data/easy-dp")
+    # initialize_problems(1000, "Dynamic Programming")
