@@ -3,6 +3,20 @@ from dataset import *
 import os
 from copy import deepcopy
 import traceback
+import hashlib
+import json
+
+def url_to_guid(url):
+    # Create a SHA-1 hash object
+    sha1 = hashlib.sha1()
+
+    # Convert the URL string to bytes and update the hash object
+    sha1.update(url.encode('utf-8'))
+
+    # Get the hexadecimal representation of the hash value
+    guid = sha1.hexdigest()
+
+    return guid
 
 main_logger = codeGen_logger.setup_logging()
 working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
@@ -46,32 +60,48 @@ def main():
                             steps_queue.append([current_step, steps_to_generate])
                     except Exception as e:
                         main_logger.error(f"An error occurred: {e}, {steps_to_generate}, {traceback.format_exc()}")
+                        
+                    folderName = url_to_guid(prob.url)[:8]
+                    filename_test = f'{folderName}'
+                    if not os.path.exists(filename_test):
+                        os.makedirs(filename_test)
+                    with open(f"{filename_test}/test.json", 'w') as json_file:
+                        json.dump(prob.sample_test_cases, json_file, indent=4)
 
-                higest_acc = 0
-                best_code = ""
-                # Improved error handling and division by zero check
-                try:
-                    for code in codes:
-                        tokens = oj_interactions.submit_code_batch(code, prob.sample_test_cases, 'online')
-                        total = 0
-                        acc = 0
-                        for token in tokens:
-                            submission = oj_interactions.get_submission(token, 'online')
-                            res = submission['status']["description"]
-                            if "Accepted" in res:
-                                acc += 1
-                            total += 1
-                        if total > 0 and acc/total > higest_acc:
-                            higest_acc = acc/total
-                            best_code = code
-                except Exception as e:
-                    main_logger.error(f"An unexpected error occurred during code submission or evaluation: {e}, {traceback.format_exc()}")
+                    # iterate
+                    for index, entry in enumerate(codes):
+                        # name       
+                        filename = f'{folderName}/code_{index}.py'            
+                        # open new file
+                        with open(filename, 'w') as file:
+                            # print entry
+                            file.write(f"{entry}")
+
+                # higest_acc = 0
+                # best_code = ""
+                # # Improved error handling and division by zero check
+                # try:
+                #     for code in codes:
+                #         tokens = oj_interactions.submit_code_batch(code, prob.sample_test_cases, 'online')
+                #         total = 0
+                #         acc = 0
+                #         for token in tokens:
+                #             submission = oj_interactions.get_submission(token, 'online')
+                #             res = submission['status']["description"]
+                #             if "Accepted" in res:
+                #                 acc += 1
+                #             total += 1
+                #         if total > 0 and acc/total > higest_acc:
+                #             higest_acc = acc/total
+                #             best_code = code
+                # except Exception as e:
+                #     main_logger.error(f"An unexpected error occurred during code submission or evaluation: {e}, {traceback.format_exc()}")
 
 
                 
-                main_logger.info(f"Best code: {best_code}, Accuracy: {higest_acc}")
-                # TODO Work on the best code there
-                break
+                # main_logger.info(f"Best code: {best_code}, Accuracy: {higest_acc}")
+                # # TODO Work on the best code there
+                # break
 
 
 if __name__ == "__main__":
