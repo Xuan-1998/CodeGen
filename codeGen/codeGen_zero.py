@@ -23,10 +23,9 @@ working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
 
 def main():
     main_logger.info("codeGen_zero starts")
-    # initialize_problems(100, "Dynamic Programming")
+
     data_path = f"{working_directory}/../data"
-    # for source in os.listdir(data_path):
-        # probs_path = os.path.join(data_path, source, "problems.jsonl")
+    
     probs_path = r'/Users/jiangxuan/Desktop/10_CodeGen_clean/CodeGen/data/easyDP.jsonl'
     with open(probs_path, 'r') as file:
         for line in file:
@@ -44,20 +43,10 @@ def main():
                 try:
                     step, steps_to_generate = steps_queue.pop(0)
                     if len(steps_to_generate) == 0:
-                        # TODO: Might change the statement+transformation gen code func here
-                        # Not tested
+
                         code, response = coding.zeroshot_coder(prob.statement)
                         codes.append(code)
                         continue
-                    # Tested but LLM gen not stable, sometimes works well sometimes not
-                    # TODO refine the prompts
-                    # lis, response = coding.follow_up_coder(prob.statement, "Dynamic Programming", steps_to_generate[0], step + steps_to_generate)
-                    # main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
-                    # steps_to_generate.pop(0)
-                    # for choice in lis:
-                    #     current_step = deepcopy(step)
-                    #     current_step.append(choice)
-                    #     steps_queue.append([current_step, steps_to_generate])
                 except Exception as e:
                     main_logger.error(f"An error occurred: {e}, {steps_to_generate}, {traceback.format_exc()}")
                     
@@ -75,8 +64,6 @@ def main():
                 if not inputs.endswith("\n"):
                     inputs += "\n"
                 outputs = "\n".join(map(str, test_case['output'])) if isinstance(test_case['output'], list) else str(test_case['output'])
-                # if not outputs.endswith("\n"):
-                #     outputs += "\n"
                 test_cases.append({
                     "input": inputs,
                     "output": outputs
