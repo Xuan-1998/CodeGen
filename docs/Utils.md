@@ -41,6 +41,6 @@ sleep 5s
 ### Use Rapid API
 - [Get the API Key](https://github.com/judge0/judge0?tab=readme-ov-file#get-started)
 - Set env var RAPIDAPI_KEY='your key'
-- Check if it's successsfully set: `echo $RAPIDAPI_KEY`
+- Check if it's successfully set: `echo $RAPIDAPI_KEY`
 
 ## Problems
