@@ -99,7 +99,7 @@ def get_submission(token: str, method = 'local'):
     if response.status_code != 200:
         logger.error(f"Error: {response.status_code}, {response.json()}")
     print(response.json())
-    logger.debug(f"Response: Token: {response.json()['token']}, Description: {response.json()['status']['description']}")
+    logger.info(f"Response: Token: {response.json()['token']}, Description: {response.json()['status']['description']}")
     return response.json()
 
 def submit_officially(code: str, stdin: str, stdout: str) -> dict:

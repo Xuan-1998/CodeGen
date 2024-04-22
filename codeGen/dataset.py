@@ -178,7 +178,9 @@ def initialize_problems(
                 url = sample['url'] if 'url' in sample else None,
                 sample_test_cases = test_cases
             )
+            logger.debug(f"Problem: {prob.to_jsonl()}")
 
+            logger.info(f"Regularizing problem {cnt} source {sample['source']}, url: {sample['url']}")
             # TODO: Improve with parallel processing like Task.WhenAll in .NET
             regularized_statement = regularize_statement_3(prob)
             # regularized_editorial = regularize_editorial_3(prob, regularized_statement)
