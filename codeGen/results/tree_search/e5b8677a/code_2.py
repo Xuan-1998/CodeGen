@@ -1,4 +1,4 @@
-print('def read_input():
+def read_input():
     T = int(input().strip())
     test_cases = []
     for _ in range(T):
@@ -43,4 +43,4 @@ def main():
         print(result)
 
 if __name__ == "__main__":
-    main()')
+    main()

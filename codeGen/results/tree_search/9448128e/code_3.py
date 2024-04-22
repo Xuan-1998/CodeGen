@@ -1,5 +1,3 @@
-print('MOD = 998244353
-
 def main():
     N = int(input().strip())
     dp = [[0, 0] for _ in range(N + 1)]
@@ -17,4 +15,4 @@ def main():
     print(answer)
 
 if __name__ == "__main__":
-    main()')
+    main()

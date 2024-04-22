@@ -1,4 +1,4 @@
-print('def read_input():
+def read_input():
     T = int(input())
     test_cases = []
     for _ in range(T):
@@ -39,4 +39,4 @@ def main():
         print(min_mice_scared(n, m, board))
 
 if __name__ == "__main__":
-    main()')
+    main()

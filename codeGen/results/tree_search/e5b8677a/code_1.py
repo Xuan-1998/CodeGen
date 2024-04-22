@@ -1,4 +1,4 @@
-print('def min_mice_scared(n, m, board):
+def min_mice_scared(n, m, board):
     dp = [[0] * m for _ in range(n)]
     
     # Check for mice in the first row and first column
@@ -35,4 +35,4 @@ for _ in range(T):
     # Get the result
     result = min_mice_scared(n, m, board)
     # Print the result
-    print(result)')
+    print(result)

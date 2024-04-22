@@ -1,4 +1,4 @@
-print('def read_ints():
+def read_ints():
     return list(map(int, input().split()))
 
 def min_mice_scare(mice_board, n, m):
@@ -39,4 +39,4 @@ for _ in range(T):
     n, m = read_ints()
     mice_board = [input().strip() for _ in range(n)]
     result = min_mice_scare(mice_board, n, m)
-    print(result)')
+    print(result)

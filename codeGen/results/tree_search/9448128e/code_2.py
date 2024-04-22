@@ -1,5 +1,3 @@
-print('MOD = 998244353
-
 # Read the number of sets
 N = int(input().strip())
 
@@ -15,4 +13,4 @@ for i in range(2, N + 1):
 
 # The answer is the sum of the two possibilities for the last set
 answer = (dp[N][0] + dp[N][1]) % MOD
-print(answer)')
+print(answer)

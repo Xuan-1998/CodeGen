@@ -1,5 +1,3 @@
-print('MOD = 998244353
-
 def count_sequences(sets):
     # Initialize dp table
     dp = [[0, 0] for _ in range(len(sets) + 1)]
@@ -21,4 +19,4 @@ N = int(input())
 sets = [list(map(int, input().split()))[1:] for _ in range(N)]
 
 # Calculate and print the result
-print(count_sequences(sets))')
+print(count_sequences(sets))

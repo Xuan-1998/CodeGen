@@ -1,4 +1,4 @@
-print('def min_mice_scared_by_path(board, n, m):
+def min_mice_scared_by_path(board, n, m):
     # Initialize the dp array with zeros
     dp = [[0] * m for _ in range(n)]
     
@@ -28,4 +28,4 @@ for _ in range(T):
     n, m = map(int, input().strip().split())
     board = [list(map(int, input().strip())) for _ in range(n)]
     result = min_mice_scared_by_path(board, n, m)
-    print(result)')
+    print(result)
