@@ -1,3 +1,5 @@
+MOD = 1000000007
+
 # Read the number of sets
 N = int(input().strip())
 

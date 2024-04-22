@@ -1,3 +1,5 @@
+MOD = 1000000007
+
 def main():
     N = int(input().strip())
     dp = [[0, 0] for _ in range(N + 1)]

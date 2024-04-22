@@ -13,11 +13,11 @@ def compare_outputs(py_file, json_file):
     accuracy_rates = []
     expected_outputs = []
     actual_outputs = []
+    
     for test_case in test_cases:
         input_data = test_case["input"]
         expected_output = test_case["output"]
-        if expected_output.endswith("\n"):
-            expected_output = expected_output[:-1]
+        expected_output = [line.strip() for line in expected_output] if isinstance(expected_output, list) else expected_output.strip()
 
         # Run the Python file and capture the output
         process = subprocess.Popen(["python", py_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -26,7 +26,7 @@ def compare_outputs(py_file, json_file):
             actual_output = actual_output.decode().strip()
         except Exception as e:
             print(f"An error occurred: {e}", py_file)
-            actual_output = ""
+            actual_output = "INTERNAL ERROR"
 
         # Calculate accuracy rate and add to the list
         expected_outputs.append(expected_output)
@@ -40,13 +40,20 @@ def compare_outputs(py_file, json_file):
 def main():
     root_dir = r"results"
     for method in os.listdir(root_dir):
+        highest_accuracy = []
         if not os.path.isdir(os.path.join(root_dir, method)):
             continue
+
         for prob in os.listdir(os.path.join(root_dir, method)):
             if not os.path.isdir(os.path.join(root_dir, method, prob)):
                 continue
+
             py_folder = os.path.join(root_dir, method, prob)
             py_files = [file for file in os.listdir(py_folder) if file.endswith(".py")]
+
+            if any(file.endswith(".csv") for file in os.listdir(py_folder)):
+                continue
+
             average_accuracies = []
             all_expected_outputs = []
             all_actual_outputs = []
@@ -55,7 +62,7 @@ def main():
             json_file = os.path.join(py_folder, "test.json")
             for py_file in py_files:
                 accuracy, expected_outputs, actual_outputs, accuracy_rates = compare_outputs(os.path.join(py_folder, py_file), json_file)
-                print(f"{py_file}: Accuracy = {accuracy}")
+                # print(f"{prob}{py_file}: Accuracy = {accuracy}")
                 average_accuracies.append(accuracy)
                 all_expected_outputs.append(expected_outputs)
                 all_actual_outputs.append(actual_outputs)
@@ -69,6 +76,10 @@ def main():
                 "Accuracy Rate": all_accuracy_rates
             })
             df.to_csv(f"{py_folder}/results.csv", index=False)
+            highest_accuracy.append(max(average_accuracies))
+        
+        if highest_accuracy:
+            print(f"{method}: Average Accuracy = {sum(highest_accuracy)/len(highest_accuracy)}")
 
 if __name__ == "__main__":
     main()

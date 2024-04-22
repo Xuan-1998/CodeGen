@@ -1,3 +1,5 @@
+MOD = 1000000007
+
 def count_sequences(sets):
     # Initialize the dp array with the number of elements in the first set
     dp = len(sets[0])

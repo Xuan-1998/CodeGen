@@ -1,3 +1,5 @@
+MOD = 1000000007
+
 def count_sequences(sets):
     # Initialize dp table
     dp = [[0, 0] for _ in range(len(sets) + 1)]
