@@ -8,14 +8,17 @@ import json
 
 main_logger = codeGen_logger.setup_logging()
 
-# tree search version 0
-def tree_search(prob: Problem)->list[str]:
-    lis, response = coding.provide_algorithm_coder(prob.statement, "Dynamic Programming")
-    main_logger.info(f"Algorithm: {lis}")
+# tree search version 1 - genreral steps
+def tree_search_1(prob: Problem)->list[str]:
+    algorithm = prob.tag.strip().split(', ')[0]
+    # lis, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
+    lis, _ = coding.provide_algorithm_coder2(algorithm)
+    main_logger.info(f"Algorithm: {algorithm}, General steps: {lis}")
 
     steps_queue = []
     steps_queue.append([[lis[0]], lis[1:]])
     codes = []
+    transformations = []
     # [step, previous step] -> new [step, previous step], add to queue
     # Eg. 5 choices ABCDE -> A1BCDE, A2BCDE, A3BCDE -> A1B1CDE, A1B2CDE, A1B3CDE, A2B1CDE, A2B2CDE, A2B3CDE, A3B1CDE, A3B2CDE, A3B3CDE
     # iter until previous step is empty and then gen code
@@ -24,11 +27,13 @@ def tree_search(prob: Problem)->list[str]:
         try:
             step, steps_to_generate = steps_queue.pop(0)
             if len(steps_to_generate) == 0:
-                code, response = coding.transformation_coder(prob.statement, "\n".join(step))
+                transformation = "\n".join(step)
+                code, _ = coding.transformation_coder(prob.statement, transformation)
                 codes.append(code)
+                transformations.append(transformation)
                 continue
 
-            lis, response = coding.follow_up_coder(prob.statement, "Dynamic Programming", steps_to_generate[0], step + steps_to_generate)
+            lis, _ = coding.follow_up_coder(prob.statement, algorithm, steps_to_generate[0], step + steps_to_generate)
             main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
 
             steps_to_generate.pop(0)
@@ -41,26 +46,40 @@ def tree_search(prob: Problem)->list[str]:
         except Exception as e:
             main_logger.error(f"An error occurred: {e}, {steps_to_generate}, {traceback.format_exc()}")
 
-    return codes
+    return codes, transformations
 
 def zero_shot(prob: Problem, sample_budget: int = 10)->list[str]:
     codes = []
     while len(codes) < sample_budget:
         try:
-            code, response = coding.zeroshot_coder(prob.statement)
+            code, _ = coding.zeroshot_coder(prob.statement)
+            codes.append(code)
             main_logger.info(f"Zero-shot length: {len(codes)}/{sample_budget}")
             main_logger.debug(f"Zero-shot code: {code}")
-            codes.append(code)
         except Exception as e:
             main_logger.error(f"An error occurred: {e}, {traceback.format_exc()}")
 
     return codes
 
-def save_results(prob: Problem, folderName: str, codes: list[str]):
-    # TODO Save generated instructions during code generation
+# Prevent repeatedly generating code with same baseline strategy
+def get_sample_budget(prob: Problem, baseline_name: str, total_budget: int)->int:
+    subFolderName = f'results/{baseline_name}/{prob.get_prob_guid()[:8]}'
+    if not os.path.exists(subFolderName):
+        return total_budget
+    else:
+        current_count = len([name for name in os.listdir(subFolderName) if name.startswith("code_")])
+        return total_budget - current_count
+
+def save_results(prob: Problem, folderName: str, codes: list[str], transformations: list[str] = None):    
     subFolderName = f'results/{folderName}/{prob.get_prob_guid()[:8]}'
     if not os.path.exists(subFolderName):
         os.makedirs(subFolderName)
+
+    if transformations is not None and len(codes) != len(transformations):
+        main_logger.error(f"Code count should equal to transformation count: Code count: {len(codes)}, Transformation count: {len(transformations)}")
+        with open(f"{subFolderName}/transformation.txt", 'w') as file:
+            print(transformations, file=file)
+        transformations = None
 
     test_cases = []
     for test_case in prob.sample_test_cases:
@@ -86,11 +105,14 @@ def save_results(prob: Problem, folderName: str, codes: list[str]):
         with open(filename, 'w') as file:
             print(entry, file=file)
         main_logger.debug(f"Code: {entry}")
-
+        if transformations is not None:
+            filename = f'{subFolderName}/transformation_{index}.txt'
+            with open(filename, 'w') as file:
+                print(transformations[index], file=file)
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], list[str]] = tree_search,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_1,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -107,12 +129,13 @@ def codeGen(
                 prob_guid = prob.get_prob_guid()[:8]
                 main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
 
-                codes = codeGen_strategy(prob)
+                codes, transformations = codeGen_strategy(prob)
                 main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
                 main_logger.debug(f"Codes: {codes}")
-                save_results(prob, codeGen_strategy.__name__, codes)
+                save_results(prob, codeGen_strategy.__name__, codes, transformations)
 
-                codes = baseline_strategy(prob, len(codes))
+                sample_budget = get_sample_budget(prob, baseline_strategy.__name__, len(codes))
+                codes = baseline_strategy(prob, sample_budget)
                 main_logger.info(f"Baseline:{baseline_strategy.__name__}, Generated code count: {len(codes)}")
                 main_logger.debug(f"Codes: {codes}")
                 save_results(prob, baseline_strategy.__name__, codes)
@@ -122,4 +145,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/easy-dp",codeGen_strategy=tree_search, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/mix-100",codeGen_strategy=tree_search_1, baseline_strategy=zero_shot)

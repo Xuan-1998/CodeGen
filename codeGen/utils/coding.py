@@ -11,6 +11,10 @@ You will now be provided with the problem statement:
 ===
 """
 
+ALGORITHM_SYSTEM = """
+You are an experienced AI assistant proficient in various programming algorithms and data structures. When provided with the name of an algorithm, you should provide accurate general steps for designing a solution. Steps should be limited to a maximum of five. Return the steps in a python list format. Use double quotes to wrap each step, and wrap the entire list in a code block.
+"""
+
 CODING_TRANSFORMATION = """
 I came up with an intuition on how to solve this problem. It might be the complete solution or additional steps might be needed:
 ===
@@ -168,6 +172,26 @@ def provide_algorithm_coder(
     )
     return code, response
 
+def provide_algorithm_coder2(
+    algorithm: str
+) -> tuple[str, str]:
+    coder = ChatCompletionAPI("gpt-4")
+    code, response = parse_response_py_list(
+        coder.create(
+            [
+                {
+                    "role": "system",
+                    "content": ALGORITHM_SYSTEM,
+                },
+                {
+                    "role": "user",
+                    "content": algorithm,
+                },
+            ], temperature=0.1
+        )
+    )
+    return code, response
+
 FOLLOW_UP_ALGORITHM = """
 I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
 You will provide me with three possible choices for {step}. Each choice will be parallel and independent, allowing me to choose the most suitable option later.
@@ -194,7 +218,7 @@ def follow_up_coder(
                         statement=statement, algorithm=algorithm, step=step, steps='\n'.join(steps)
                     ),
                 },
-            ]
+            ], temperature=0.8
         )
     )
     return code, response
