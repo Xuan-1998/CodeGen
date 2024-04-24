@@ -9,7 +9,7 @@ import json
 main_logger = codeGen_logger.setup_logging()
 
 # tree search version 0
-def tree_search(prob: Problem):
+def tree_search(prob: Problem)->list[str]:
     lis, response = coding.provide_algorithm_coder(prob.statement, "Dynamic Programming")
     main_logger.info(f"Algorithm: {lis}")
 
@@ -43,14 +43,18 @@ def tree_search(prob: Problem):
 
     return codes
 
-def zero_shot(prob: Problem, sample_budget: int = 10):
+def zero_shot(prob: Problem, sample_budget: int = 10)->list[str]:
     codes = []
-    for i in range(sample_budget):
+    while len(codes) < sample_budget:
         try:
             code, response = coding.zeroshot_coder(prob.statement)
+            main_logger.info(f"Zero-shot length: {len(codes)}/{sample_budget}")
+            main_logger.debug(f"Zero-shot code: {code}")
             codes.append(code)
         except Exception as e:
             main_logger.error(f"An error occurred: {e}, {traceback.format_exc()}")
+
+    return codes
 
 def save_results(prob: Problem, folderName: str, codes: list[str]):
     # TODO Save generated instructions during code generation
@@ -85,16 +89,21 @@ def save_results(prob: Problem, folderName: str, codes: list[str]):
 
 
 def codeGen(
-        data_path: str = "../data", 
+        data_path: str = "../data/mix-100", 
         codeGen_strategy: Callable[[Problem], list[str]] = tree_search,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
     for source in os.listdir(data_path):
-        probs_path = os.path.join(data_path, source, "problems.jsonl")
+        if os.path.isdir(os.path.join(data_path, source)) is False and source.endswith(".jsonl"):
+            probs_path = os.path.join(data_path, source)
+        else:
+            probs_path = os.path.join(data_path, source, "problems.jsonl")
         with open(probs_path, 'r') as file:
             for line in file:
                 prob = problems.Problem.from_jsonl(line)
+                if prob.url is None:
+                    continue
                 prob_guid = prob.get_prob_guid()[:8]
                 main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
 
@@ -113,4 +122,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen()
+    codeGen(data_path="../data/easy-dp",codeGen_strategy=tree_search, baseline_strategy=zero_shot)
