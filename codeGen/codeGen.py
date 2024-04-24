@@ -16,7 +16,7 @@ def tree_search_1(prob: Problem)->list[str]:
     main_logger.info(f"Algorithm: {algorithm}, General steps: {lis}")
 
     steps_queue = []
-    steps_queue.append([[lis[0]], lis[1:]])
+    steps_queue.append([], lis)
     codes = []
     transformations = []
     # [step, previous step] -> new [step, previous step], add to queue
