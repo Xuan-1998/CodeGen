@@ -1,2 +1,2 @@
-Consider each possible sum S that a row or a column can have, from 0 to min(N, M), and define the subproblem as finding the minimum sum of values for the matrix given that each row and column sums up to S.
-Use a top-down dynamic programming approach with memoization to solve for the minimum sum of values for each row and column sum S, starting from the largest subproblems and breaking them down recursively.
+Use two separate DP arrays, one to store the minimum sum of rows up to row i (rowDp[i]) and another to store the minimum sum of columns up to column j (colDp[j]). The overlapping subproblems are the scenarios where calculating the minimum sum for a row or column involves previous rows or columns that have already been computed.
+For every cell (i, j), make the binary decision of putting a 1 or 0 based on minimizing the difference between the sum of row i and the sum of column j. Use DP to remember the minimum sums for each row and column.

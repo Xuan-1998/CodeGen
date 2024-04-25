@@ -1,2 +1,2 @@
-Divide the matrix into smaller submatrices, and for each submatrix of size a x b, define the subproblem as finding the minimum sum of values such that the sums of rows are equal to the sums of columns within the submatrix.
-Define subproblems based on the number of filled rows and columns, and let dp[r][c] be the minimum sum of values for a r x c submatrix. Then, consider how filling the next row and column affects the sum.
+Create a DP table where each entry dp[i][j] represents the minimum sum for a submatrix with dimensions i x j. Overlapping subproblems occur when computing the minimum sum for different submatrices that share common sub-submatrices.
+The recursive relation considers the cases when the last row or column can be filled with all 1s or all 0s. For each cell (i, j), calculate dp[i][j] based on the minimum of dp[i-1][j] + j (assuming the ith row is filled with 1s) and dp[i][j-1] + i (assuming the jth column is filled with 1s).

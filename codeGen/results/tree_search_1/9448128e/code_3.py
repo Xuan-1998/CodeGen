@@ -1,30 +1,24 @@
 MOD = 998244353
 
 def main():
-    N = int(input().strip())  # Number of sets
-    dp = []  # dp[i][j] - number of valid sequences ending with j using first i sets
-    sum_dp = [1]  # sum_dp[i] - sum of all dp[i][j] for a given i
+    N = int(input().strip())
+    sets = [list(map(int, input().split()))[1:] for _ in range(N)]
 
-    for _ in range(N):
-        # Read the current set
-        _, *current_set = map(int, input().split())
-        new_dp = {}
-        new_sum = 0
+    # Initialize the dp array. Since we only need the previous set, we can use a 2D array with 2 rows.
+    dp = [{}, {}]
+    for x in sets[0]:
+        dp[0][x] = 1  # Base case: There's only one way to end with each element in the first set.
 
-        for element in current_set:
-            # Compute the number of sequences that can end with this element
-            if element in dp:
-                new_dp[element] = (sum_dp[-1] - dp[element]) % MOD
-            else:
-                new_dp[element] = sum_dp[-1] % MOD
-            new_sum = (new_sum + new_dp[element]) % MOD
+    for i in range(1, N):
+        sum_of_prev_dp = sum(dp[(i - 1) % 2].values()) % MOD
+        dp[i % 2] = {}
+        for x in sets[i]:
+            # Calculate the value for dp[i][x] using the formula from the intuition
+            dp[i % 2][x] = (sum_of_prev_dp - dp[(i - 1) % 2].get(x, 0)) % MOD
 
-        # Update the states
-        dp = new_dp
-        sum_dp.append(new_sum)
-
-    # The answer is the sum of dp values for the last set
-    print(sum_dp[-1])
+    # The answer is the sum of all possible sequences that can end with any element from the last set
+    answer = sum(dp[(N - 1) % 2].values()) % MOD
+    print(answer)
 
 if __name__ == "__main__":
     main()

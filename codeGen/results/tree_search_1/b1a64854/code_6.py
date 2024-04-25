@@ -1,13 +1,15 @@
-def min_sum_for_matrix(N, M):
-    # If N equals M, the minimum sum is N (or M, since N = M).
-    # Else, it is not possible to satisfy the condition, so the sum is 0.
-    return N if N == M else 0
+import sys
 
-def main():
-    T = int(input().strip())  # Read number of test cases
-    for _ in range(T):
-        N, M = map(int, input().strip().split())  # Read N and M for each test case
-        print(min_sum_for_matrix(N, M))  # Calculate and print the minimum sum
+def min_sum_binary_matrix(N, M):
+    # The minimum sum is achieved by filling a square submatrix of size min(N, M)
+    # with 1s because that's the largest square that fits into the N x M matrix.
+    return min(N, M)**2
 
-if __name__ == "__main__":
-    main()
+# Read the number of test cases
+T = int(sys.stdin.readline().strip())
+
+# Process each test case
+for _ in range(T):
+    N, M = map(int, sys.stdin.readline().strip().split())
+    result = min_sum_binary_matrix(N, M)
+    print(result)

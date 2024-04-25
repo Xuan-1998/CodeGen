@@ -1,2 +1,2 @@
-For each cell (i, j), define the subproblem as finding the minimum value for the cell such that the sum of values in row i is equal to the sum of values in column j.
-Implement a dictionary where the keys are tuples (i, j) representing the cell and the value is the minimum sum for that cell
+Create a DP table where each entry dp[i][j] represents the minimum sum for a submatrix with dimensions i x j. Overlapping subproblems occur when computing the minimum sum for different submatrices that share common sub-submatrices.
+For each cell (i, j), consider it as the bottom-right corner of the largest square submatrix. The state dp[i][j] could be obtained by checking the minimum sum for the submatrix excluding the current row or column, i.e., dp[i-1][j] and dp[i][j-1], and adding the necessary adjustments for the new row and column.

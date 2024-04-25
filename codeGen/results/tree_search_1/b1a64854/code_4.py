@@ -1,16 +1,19 @@
+import math
 import sys
 
-def min_matrix_sum(N, M):
-    # The minimum sum is achieved when we have a square submatrix of 1s
-    # with side length equal to the minimum of N and M.
-    return min(N, M)
+# Function to calculate the least common multiple
+def lcm(a, b):
+    return abs(a * b) // math.gcd(a, b)
 
-# Read number of test cases from stdin
+# Read the number of test cases
 T = int(input().strip())
 
 # Process each test case
 for _ in range(T):
     # Read N and M for the current test case
     N, M = map(int, input().strip().split())
-    # Output the minimum sum for the current test case
-    print(min_matrix_sum(N, M))
+    
+    # Calculate and print the minimum sum, which is the LCM of N and M
+    print(lcm(N, M))
+
+# Note: The lcm function uses the property that lcm(a, b) = abs(a * b) / gcd(a, b)

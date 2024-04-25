@@ -1,30 +1,17 @@
-from math import factorial
 from fractions import Fraction
-from sys import stdin, stdout
-
-# Precompute factorials to avoid redundant calculations
-factorials = [factorial(i) for i in range(151)]
 
 def expected_shuffles(n):
-    # Base case: If there are no misplaced elements, no shuffles are needed
-    if n == 0:
-        return Fraction(0, 1)
-    
-    # If there is one misplaced element, it's already in the correct position
-    if n == 1:
-        return Fraction(0, 1)
-    
-    # Calculate the expected number of shuffles for 'n' misplaced elements
-    # This is the sum of 1 + (probability of not being sorted) * (expected shuffles for 'n' elements)
-    exp_shuffles = Fraction(1, 1)
-    exp_shuffles += Fraction(n - 1, factorials[n]) * expected_shuffles(n)
-    return exp_shuffles
+    dp = [Fraction(0)] * (n + 1)  # Using Fraction to handle exact arithmetic
+    for i in range(2, n + 1):
+        dp[i] = (i * dp[i - 1] + 1) / (i - 1)
+    return dp[n]
 
-# Read the number of test cases from stdin
-t = int(stdin.readline().strip())
+# Reading the number of test cases
+t = int(input().strip())
 
-# Process each test case
+# Processing each test case
 for _ in range(t):
-    n = int(stdin.readline().strip())
-    # Output the expected number of shuffles as an irreducible fraction
-    stdout.write(f"{expected_shuffles(n).numerator}/{expected_shuffles(n).denominator}\n")
+    n = int(input().strip())
+    result = expected_shuffles(n)
+    # Printing the result as an irreducible fraction
+    print(f"{result.numerator}/{result.denominator}")

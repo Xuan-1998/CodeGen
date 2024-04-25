@@ -1,14 +1,15 @@
-def find_min_sum(N, M):
-    # If N equals M, the minimum sum is N (diagonal filled with 1's)
-    # Otherwise, it is impossible, so the minimum sum is 0
-    return N if N == M else 0
+# Read the number of test cases
+T = int(input())
 
-def main():
-    T = int(input())  # Read number of test cases
-    for _ in range(T):
-        N, M = map(int, input().split())  # Read N and M for each test case
-        result = find_min_sum(N, M)
-        print(result)
-
-if __name__ == "__main__":
-    main()
+# Iterate over each test case
+for _ in range(T):
+    # Read N and M for the current test case
+    N, M = map(int, input().split())
+    
+    # The minimum sum of values is the smaller of N and M
+    # because we can place that many 1s in the matrix, 
+    # with each row and each column having exactly one 1.
+    min_sum = min(N, M)
+    
+    # Output the minimum sum for the current test case
+    print(min_sum)

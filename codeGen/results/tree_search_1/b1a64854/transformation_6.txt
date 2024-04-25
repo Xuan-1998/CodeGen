@@ -1,2 +1,2 @@
-Consider each possible sum S that a row or a column can have, from 0 to min(N, M), and define the subproblem as finding the minimum sum of values for the matrix given that each row and column sums up to S.
-Construct a matrix of subproblems where each cell represents the minimum sum for a specific row and column sum S, and use a bottom-up approach to fill in this matrix starting from the simplest cases.
+Use two separate DP arrays, one to store the minimum sum of rows up to row i (rowDp[i]) and another to store the minimum sum of columns up to column j (colDp[j]). The overlapping subproblems are the scenarios where calculating the minimum sum for a row or column involves previous rows or columns that have already been computed.
+Start by initializing all cells to 0. Then, iteratively assign 1s to the cells (i, j) where the current sum of row i is less than the sum of column j, and update the DP state until row sums equal column sums.

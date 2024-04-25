@@ -1,28 +1,27 @@
 MOD = 998244353
 
+def read_ints():
+    return list(map(int, input().split()))
+
 # Read the number of sets
 N = int(input())
 
-# Initialize the dictionary for DP
-dp = {}
+# Initialize the DP table
+dp = [{} for _ in range(N)]
 
-# Read the first set and set the base case for the DP
-first_set = list(map(int, input().split()))[1:]
+# Read the first set and initialize the base case
+first_set = read_ints()[1:]
 for j in first_set:
-    dp[(1, j)] = 1
+    dp[0][j] = 1
 
 # Process the remaining sets
-for i in range(2, N + 1):
-    current_set = list(map(int, input().split()))[1:]
-    new_dp = {}
-    for j in current_set:
-        # Sum up the number of ways to reach the previous set without ending in j
-        total_ways = sum(dp.get((i - 1, prev), 0) for prev in set(current_set) - {j}) % MOD
-        new_dp[(i, j)] = total_ways
-    # Update the dp dictionary
-    dp = new_dp
+for i in range(1, N):
+    current_set = read_ints()[1:]
+    for element in current_set:
+        dp[i][element] = sum(dp[i-1].get(k, 0) for k in dp[i-1] if k != element) % MOD
 
-# Calculate the final answer by summing all the ways to end the sequence with any element from the last set
-answer = sum(dp.values()) % MOD
+# Calculate the final answer
+answer = sum(dp[N-1].values()) % MOD
 
+# Print the answer
 print(answer)

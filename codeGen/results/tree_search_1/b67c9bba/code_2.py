@@ -1,30 +1,23 @@
+from math import factorial
 from fractions import Fraction
-from sys import stdin, stdout
 
-# Recursive function to calculate the expected number of shuffles
-def expected_shuffles(i, n, memo):
-    if i == n:
-        return 0
-    if memo[i] != -1:
-        return memo[i]
+# Function to calculate the expected number of shuffles for n unsorted elements
+def expected_shuffles(n):
+    # The expected number of shuffles is n! for n unsorted elements
+    return factorial(n)
 
-    # Calculate the expected number of shuffles
-    exp_shuffles = Fraction(1, n - i)
-    for j in range(n):
-        if i != j:
-            exp_shuffles += Fraction(1, n - i) * expected_shuffles(j, n, memo)
-    
-    memo[i] = exp_shuffles
-    return exp_shuffles
+# Function to reduce a fraction to its simplest form
+def reduce_fraction(numerator, denominator):
+    frac = Fraction(numerator, denominator)
+    return frac.numerator, frac.denominator
 
-# Read the number of test cases
-t = int(stdin.readline().strip())
+# Main function to process the input and output the result
+def main():
+    t = int(input().strip())  # Number of test cases
+    for _ in range(t):
+        n = int(input().strip())  # Number of elements in the sequence
+        numerator, denominator = reduce_fraction(expected_shuffles(n), 1)
+        print(f"{numerator}/{denominator}")
 
-# Process each test case
-for _ in range(t):
-    n = int(stdin.readline().strip())
-    memo = [-1 for _ in range(n)]
-    result = expected_shuffles(0, n, memo)
-    
-    # Output the result in irreducible fraction form
-    stdout.write(f"{result.numerator}/{result.denominator}\n")
+if __name__ == "__main__":
+    main()

@@ -1,34 +1,27 @@
 MOD = 998244353
 
-def read_ints():
-    return list(map(int, input().split()))
+def main():
+    N = int(input())
+    dp = {}
+    total = 0
 
-# Read the number of sets
-N = int(input())
+    for _ in range(N):
+        A = list(map(int, input().split()))[1:]
+        new_dp = {}
+        new_total = 0
 
-# Initialize our dp array with two dictionaries
-dp = [{} for _ in range(2)]
+        for x in A:
+            # Calculate the number of sequences ending with x, which is the total
+            # from the previous set minus the number of sequences that ended with x
+            # in the previous set (if any), to ensure no two adjacent elements are equal.
+            new_dp[x] = (total - dp.get(x, 0)) % MOD
+            new_total = (new_total + new_dp[x]) % MOD
 
-# Read the first set and initialize the first dictionary
-first_set = read_ints()[1:]  # Skip the size
-for x in first_set:
-    dp[0][x] = 1
+        dp = new_dp
+        total = new_total
 
-# Process the rest of the sets
-for i in range(1, N):
-    current_set = read_ints()[1:]  # Skip the size
-    # Clear the dictionary for the current set
-    dp[i % 2].clear()
-    # Calculate the sum of all counts from the previous set
-    total_prev = sum(dp[(i - 1) % 2].values()) % MOD
-    for x in current_set:
-        # If x was used to end the previous sequence, we can't use it again
-        # Otherwise, we can use x, and the number of ways to do that is the total number of ways
-        # to form sequences from the previous sets minus the number of ways that ended with x
-        dp[i % 2][x] = (total_prev - dp[(i - 1) % 2].get(x, 0)) % MOD
+    # The answer is the sum of all dp values after processing the last set.
+    print(total)
 
-# Calculate the sum of all counts for the last set
-result = sum(dp[(N - 1) % 2].values()) % MOD
-
-# Output the result
-print(result)
+if __name__ == "__main__":
+    main()

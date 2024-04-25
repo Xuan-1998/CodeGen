@@ -1,3 +1,3 @@
-For each cell (i, j), define the subproblem as finding the minimum value for the cell such that the sum of values in row i is equal to the sum of values in column j.
-Use a 2D array where dp[i][j] holds the minimum sum for the sub-matrix of size i x j
-For each cell (i, j), if i != j, then the cell (i, j) contributes 0 to the sum. If i == j, then dp[i][j] = dp[i-1][j-1] + 1. The final answer for the original problem is dp[N][M].
+Create a DP table where each entry dp[i][j] represents the minimum sum for a submatrix with dimensions i x j. Overlapping subproblems occur when computing the minimum sum for different submatrices that share common sub-submatrices.
+Define a recursive function solve(i, j) that returns the minimum sum of a binary matrix of size i x j. Base cases are when i or j is 1, and the recursive case accounts for adding a row or a column and distributing 1s optimally.
+If the problem has properties that allow for further space optimization, such as only needing the last few states, reduce the DP array to only keep track of those necessary states. For example, if only the last computed row and column sums are needed, the space can be reduced to O(N + M).

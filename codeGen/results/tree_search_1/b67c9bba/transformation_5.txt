@@ -1,2 +1,3 @@
-Consider the scenario where the sequence has 'm' elements out of 'n' that are not in their correct position. The subproblem is to find the expected number of shuffles to sort these 'm' elements.
-\
+Let f(i) represent the expected number of shuffles needed to sort the first i elements. The subproblem is to find f(i) given that f(i-1) is known.
+Use a one-dimensional array 'dp' where dp[i] stores the expected number of shuffles needed to sort the first i numbers. Initialize the base case dp[1] = 0 since a single element is always sorted.
+dp[i] = (i * dp[i - 1] + 1) / (i - 1) because the i-th element will be out of place after shuffling with the probability of 1/(i-1)

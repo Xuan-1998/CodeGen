@@ -1,3 +1,2 @@
-For each cell (i, j), define the subproblem as finding the minimum value for the cell such that the sum of values in row i is equal to the sum of values in column j.
-Use a 2D array where dp[i][j] holds the minimum sum for the sub-matrix of size i x j
-For each cell (i, j), if i == j, then dp[i][j] = i since we need equal sum of row i and column j. Otherwise, set dp[i][j] to min(dp[i-1][j], dp[i][j-1]) + 1.
+Use two separate DP arrays, one to store the minimum sum of rows up to row i (rowDp[i]) and another to store the minimum sum of columns up to column j (colDp[j]). The overlapping subproblems are the scenarios where calculating the minimum sum for a row or column involves previous rows or columns that have already been computed.
+Use a greedy approach within the dynamic programming framework, always placing 1s in a cell (i, j) to balance the sum of row i with the sum of column j, and keep track of minimum sums using two DP arrays.

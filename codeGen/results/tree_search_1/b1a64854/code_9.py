@@ -1,15 +1,14 @@
+import sys
+
 def min_sum_binary_matrix(N, M):
-    # For a square matrix, the minimum sum is N (diagonal of 1s)
-    # For a non-square matrix, the minimum sum is 0
-    return N if N == M else 0
+    # The minimum sum is the square of the smaller dimension.
+    return min(N, M) ** 2
 
-# Read the number of test cases
-T = int(input())
+# Read the number of test cases.
+T = int(sys.stdin.readline().strip())
 
-# Process each test case
+# Process each test case.
 for _ in range(T):
-    # Read N and M for the current test case
-    N, M = map(int, input().split())
-    
-    # Calculate and print the minimum sum for the binary matrix
-    print(min_sum_binary_matrix(N, M))
+    N, M = map(int, sys.stdin.readline().split())
+    result = min_sum_binary_matrix(N, M)
+    print(result)

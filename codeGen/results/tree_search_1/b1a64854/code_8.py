@@ -1,15 +1,13 @@
-def min_sum_for_matrix(N, M):
-    if N != M:
-        return 0
-    else:
-        return N
+import sys
+from math import gcd
 
-def main():
-    T = int(input())
-    for _ in range(T):
-        N, M = map(int, input().split())
-        result = min_sum_for_matrix(N, M)
-        print(result)
+def min_matrix_sum(N, M):
+    return gcd(N, M)
 
-if __name__ == "__main__":
-    main()
+# Read number of test cases
+T = int(input().strip())
+
+# Process each test case
+for _ in range(T):
+    N, M = map(int, input().strip().split())
+    print(min_matrix_sum(N, M))

@@ -1,27 +1,28 @@
 from math import factorial
 from fractions import Fraction
 
-# Function to calculate the expected number of shuffles for a subsequence of length k
-def expected_shuffles(k):
-    # Base case: if k is 1, no shuffles are needed
-    if k == 1:
-        return 0
-    # Use the previously calculated expected value for subsequences of length k-1
-    # and add the current step, which is k factorial (the number of permutations of k elements)
-    return dp[k-1] + Fraction(1, factorial(k))
+def nCr(n, r):
+    return factorial(n) // (factorial(r) * factorial(n - r))
 
-# Read the number of test cases
-t = int(input())
+def solve(n):
+    dp_table = [[Fraction(0) for _ in range(n + 1)] for _ in range(n + 1)]
+    for i in range(2, n + 1):
+        for j in range(i):
+            sum_expected_shuffles = Fraction(0)
+            total_ways_to_shuffle = factorial(i - j)
+            for k in range(i - j + 1):
+                ways_to_place_k_correctly = nCr(i - j, k) * factorial(k)
+                if k != i - j:
+                    sum_expected_shuffles += ways_to_place_k_correctly * (dp_table[i][j + k] + 1)
+            dp_table[i][j] = sum_expected_shuffles / (total_ways_to_shuffle - ways_to_place_k_correctly)
+    return dp_table[n][0]
 
-# Precompute the expected shuffles for all possible subsequences up to 150
-dp = [0] * 151
-for i in range(2, 151):
-    dp[i] = expected_shuffles(i)
+def main():
+    t = int(input().strip())
+    for _ in range(t):
+        n = int(input().strip())
+        result = solve(n)
+        print(f"{result.numerator}/{result.denominator}")
 
-# Process each test case
-for _ in range(t):
-    n = int(input())
-    # Output the expected number of shuffles for a sequence of length n
-    # as an irreducible fraction
-    result = dp[n]
-    print(f"{result.numerator}/{result.denominator}")
+if __name__ == "__main__":
+    main()

@@ -1,20 +1,25 @@
 MOD = 1000000007
 
-def ways_to_pass_ball(N, K):
-    dp = [[0] * (K + 1) for _ in range(N + 1)]
-    dp[0][1] = 1  # Messi starts with the ball
+def solve(N, K):
+    # Initialize the dp array
+    dp = [[0] * (N+1) for _ in range(N+1)]
+    dp[1][1] = K-1  # Messi can receive the ball from any of the other K-1 players
     
-    for i in range(1, N + 1):
-        for j in range(1, K + 1):
+    # Fill the dp array
+    for i in range(2, N+1):
+        for j in range(1, min(i, K)+1):
             if j == 1:
-                dp[i][j] = sum(dp[i-1][k] for k in range(2, K + 1)) % MOD
+                # If Messi is to receive the ball for the first time
+                dp[i][j] = dp[i-1][j] * (K-1) % MOD
             else:
-                dp[i][j] = (dp[i-1][1] * (K - 1) + dp[i-1][j] * (K - 2)) % MOD
+                # Messi has already received the ball before
+                dp[i][j] = (dp[i-1][j] * (K-2) + dp[i-1][j-1] * (K-1)) % MOD
     
+    # The answer is the number of ways to pass the ball N times with Messi receiving it exactly once on the final pass
     return dp[N][1]
 
-# Read input from stdin and print output to stdout
-T = int(input())
+# Read the number of test cases
+T = int(input().strip())
 for _ in range(T):
-    N, K = map(int, input().split())
-    print(ways_to_pass_ball(N, K))
+    N, K = map(int, input().strip().split())
+    print(solve(N, K))
