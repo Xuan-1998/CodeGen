@@ -51,7 +51,7 @@ def main():
             py_folder = os.path.join(root_dir, method, prob)
             py_files = [file for file in os.listdir(py_folder) if file.endswith(".py")]
 
-            if any(file.endswith(".csv") for file in os.listdir(py_folder)):
+            if any(file.endswith(".csv") for file in os.listdir(py_folder)) or len(py_files) == 0:
                 continue
 
             average_accuracies = []
