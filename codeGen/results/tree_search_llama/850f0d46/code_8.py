@@ -1,3 +1,7 @@
-This code uses a list comprehension to initialize the chessboard with all white cells. Then, it iterates over every other row and column (starting from the second row and column) and sets those cells to black.
+def chessboard(rows, cols):
+    board = [['X' if (i+j)%2 == 0 else 'O' for j in range(cols)] for i in range(rows)]
+    return board
 
-Now, let's test this function:
+rows, cols = map(int, input().split())
+for row in chessboard(rows, cols):
+    print(' '.join(row))

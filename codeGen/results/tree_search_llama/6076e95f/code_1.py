@@ -1,13 +1,10 @@
 def generate_sequence():
-    start, end = map(int, input().split())
-    
-    # Initialize an empty list to store the sequence
-    sequence = []
-    
-    for num in range(start, end + 1):
-        sequence.append(num)
-    
-    return sequence
+    start = int(input("Enter the starting number: "))
+    end = int(input("Enter the ending number: "))
 
-print(*generate_sequence(), sep=" ")
+    sequence = list(range(start, end + 1))
+    
+    for num in sequence:
+        print(num)
 
+generate_sequence()

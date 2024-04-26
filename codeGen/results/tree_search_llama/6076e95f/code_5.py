@@ -1,5 +1,4 @@
-def generate_sequence():
-    start, end = map(int, input().split())
-    return [i for i in range(start, end+1)]
+start_value = int(input("Enter the start value: "))
+end_value = int(input("Enter the end value: "))
 
-print(generate_sequence())
+print(sequence_generator(start_value, end_value))

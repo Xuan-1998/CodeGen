@@ -1,17 +1,9 @@
-def generate_sequence():
-    first_integer = int(input("Enter the first integer: "))
-    second_integer = int(input("Enter the second integer: "))
+def generate_sequence(num1: int, num2: int) -> list[int]:
+    return list(range(num1, num2 + 1))
 
-    sequence = []
+if __name__ == "__main__":
+    start = int(input("Enter the starting integer: "))
+    end = int(input("Enter the ending integer: "))
 
-    current_integer = first_integer
-
-    while current_integer <= second_integer:
-        sequence.append(current_integer)
-        current_integer += 1
-
-    return sequence
-
-sequence = generate_sequence()
-
-print(sequence)
+    sequence = generate_sequence(start, end)
+    print(sequence)

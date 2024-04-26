@@ -1,17 +1,16 @@
-def sequence(start, end):
-    def recurse(current, cache={}):
-        if current > end:
-            return []
-        if current in cache:
-            return cache[current]
-        result = [current] + recurse(current + 1, cache)
-        cache[current] = result
-        return result
+def generate_sequence(start_value, end_value):
+    sequence = []
+    current_value = start_value
     
-    return recurse(start)
+    while current_value <= end_value:
+        sequence.append(current_value)
+        current_value += 1
+    
+    return sequence
 
-# Read input from stdin
-start, end = map(int, input().split())
+start_value = int(input())
+end_value = int(input())
 
-# Generate the sequence and print it to stdout
-print(" ".join(map(str, sequence(start, end))))
+sequence = generate_sequence(start_value, end_value)
+
+print(*sequence, sep=", ")

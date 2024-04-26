@@ -1,19 +1,12 @@
-import math
-
-def generate_sequence():
-    start, end = map(int, input().split())
-    
-    # Initialize the sequence
+def generate_sequence(num1, num2):
     sequence = []
-    
-    # Generate the sequence for each range of powers of 2
-    power = 0
-    while start <= end:
-        step = 2 ** power
-        sequence.extend(range(start, min(end + 1, start + step)))
-        start += step
-        power += 1
-        
+    for i in range(num1, num2 + 1):
+        sequence.append(i)
     return sequence
 
-print(*generate_sequence(), sep=' ')
+num1 = int(input("Enter the first integer: "))
+num2 = int(input("Enter the second integer: "))
+
+sequence = generate_sequence(num1, num2)
+
+print(sequence)

@@ -1,5 +1,9 @@
+def generate_chessboard(rows, cols):
+    chessboard = [['O' if i % 2 == 0 else 'X' for _ in range(cols)] for _ in range(rows)]
+    return chessboard
+
 rows, cols = map(int, input().split())
-chessboard = [['O' if (i+j)%2 == 0 else 'X' for j in range(cols)] for i in range(rows)]
+chessboard = generate_chessboard(rows, cols)
 
 for row in chessboard:
     print(' '.join(row))
