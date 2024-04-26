@@ -45,6 +45,8 @@ PROBLEM = problems.Problem(
     ]
 )
 
+TEST_STATEMENT = [{'role': 'system', 'content': '\nYou are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, you must wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, you must wrap your response in a code block, which starts and ends with \"```\".\nYou will now be provided with the problem statement:\n===\nTask: Given the number of passes N and the number of players K, find the number of ways the ball can be passed between the players such that Lionel Messi receives the ball after exactly N passes. The output should be the number of ways modulo 1000000007.\n\nInput: The input consists of T test cases. The first line of each test case contains two integers N and K. \n\nOutput: For each test case, output a single integer, the number of ways the winning play might happen modulo 1000000007.\n\nConstraints: 1 ≤ T ≤ 100, 2 ≤ N ≤ 1000, and 1 ≤ K ≤ 10.\n===\n'}, {'role': 'user', 'content': "\nI came up with an intuition on how to solve this problem. I think it's a problem about ['Dynamic programming'.\nYou will provide me with three possible choices for Define the problem and identify the recursive relation. Each choice will be parallel and independent, allowing me to choose the most suitable option later.\nYou must return the choices in a single python list format, which should start with \"[\" and ends with \"]\". Use double quotes(\") to wrap each choice. \n===BEGIN STEPS===\nDefine the problem and identify the recursive relation\nDetermine the base cases for the recursion\nFind the overlapping subproblems and optimize using memoization or tabulation\nImplement the dynamic programming algorithm to solve the problem\nOptimize and refine the solution as needed\n===END STEPS===\n"}]
+
 @unittest.skip("Skip since it's already tested")
 class TestOJInteractions(unittest.TestCase):
     def test_submit_code(self):
@@ -105,6 +107,7 @@ class TestCoding(unittest.TestCase):
         self.assertIsNotNone(response)
 
 class TestOllama(unittest.TestCase):
+    @unittest.skip("Skip since it's already tested")
     def test_chat(self):
         ollama = chatbot.OllamaAPI()
         response = ollama.chat(messages=
@@ -123,6 +126,13 @@ class TestOllama(unittest.TestCase):
         list_response = chatbot.string_to_list(chatbot.parse_code_block(response))
         codeGen_logger.info(list_response)
         self.assertIsNotNone(list_response)
+
+    def test_response_format(self):
+        coder = chatbot.OllamaAPI(model="llama3")
+        code = chatbot.string_to_list(chatbot.parse_code_block(coder.chat(TEST_STATEMENT)))
+        codeGen_logger.info(code)
+        self.assertGreaterEqual(len(code), 1)
+
 
 @unittest.skip("Skip since it's already tested")
 class TestProblem(unittest.TestCase):

@@ -1,10 +1,11 @@
-from .chatbot import ChatCompletionAPI, parse_response, parse_response_py_list
+from .chatbot import ChatCompletionAPI, parse_response, parse_response_py_list, OllamaAPI, parse_code_block, string_to_list
 from .problems import *
 from tqdm import tqdm
 from typing import Callable
+from tenacity import retry, stop_after_attempt, retry_if_result, retry_if_exception_type
 
 CODING_SYSTEM = """
-You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, always wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, wrap your response in a code block as well.
+You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block, which starts and ends with "```". Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
 You will now be provided with the problem statement:
 ===
 {statement}
@@ -23,12 +24,9 @@ I came up with an intuition on how to solve this problem. It might be the comple
 Analyze my intuition, how is it applicable to this problem? Please build on my idea and do not start over or reject the approach. What is the problem really asking, and how can it be solved with the algorithms and data structures you know? Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
 """
 
-
-def transformation_coder(statement: str, transformation: str) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response(
-        coder.create(
-            [
+@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
+def transformation_coder(statement: str, transformation: str, coder_mode: str) -> tuple[str, str]:
+    messages = [
                 {
                     "role": "system",
                     "content": CODING_SYSTEM.format(statement=statement),
@@ -40,8 +38,13 @@ def transformation_coder(statement: str, transformation: str) -> tuple[str, str]
                     ),
                 },
             ]
-        )
-    )
+
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response(coder.create(messages))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = parse_code_block(coder.chat(messages)), ''
     return code, response
 
 
@@ -50,19 +53,20 @@ How can we break down this problem and arrive at a solution? Let's think step by
 """
 
 
-def zeroshot_coder(statement: str) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response(
-        coder.create(
-            [
+def zeroshot_coder(statement: str, coder_mode: str = 'gpt-4') -> tuple[str, str]:
+    message = [
                 {
                     "role": "system",
                     "content": CODING_SYSTEM.format(statement=statement),
                 },
                 {"role": "user", "content": CODING_ZEROSHOT},
             ]
-        )
-    )
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response(coder.create(message))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = string_to_list(parse_code_block(coder.chat(message))), ''
     return code, response
 
 
@@ -98,11 +102,8 @@ Analyze my intuition, how is it applicable to this problem? Please build on my i
 """
 
 
-def algorithm_coder(statement: str, algorithm: str) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response(
-        coder.create(
-            [
+def algorithm_coder(statement: str, algorithm: str, coder_mode: str) -> tuple[str, str]:
+    messages = [
                 {
                     "role": "system",
                     "content": CODING_SYSTEM.format(statement=statement),
@@ -112,8 +113,12 @@ def algorithm_coder(statement: str, algorithm: str) -> tuple[str, str]:
                     "content": CODING_ALGORITHM.format(algorithm=algorithm),
                 },
             ]
-        )
-    )
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response(coder.create(messages))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = parse_code_block(coder.chat(messages)), ''
     return code, response
 
 
@@ -151,12 +156,9 @@ Please list concise and general steps, no more than five, for building {algorith
 """
 
 def provide_algorithm_coder(
-    statement: str, algorithm: str
+    statement: str, algorithm: str, coder_mode: str
 ) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response_py_list(
-        coder.create(
-            [
+    messages = [
                 {
                     "role": "system",
                     "content": CODING_SYSTEM.format(statement=statement),
@@ -168,17 +170,19 @@ def provide_algorithm_coder(
                     ),
                 },
             ]
-        )
-    )
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response_py_list(coder.create(messages))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = string_to_list(parse_code_block(coder.chat(messages))), ''
     return code, response
 
+@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
 def provide_algorithm_coder2(
-    algorithm: str
+    algorithm: str, coder_mode: str
 ) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response_py_list(
-        coder.create(
-            [
+    messages = [
                 {
                     "role": "system",
                     "content": ALGORITHM_SYSTEM,
@@ -187,27 +191,31 @@ def provide_algorithm_coder2(
                     "role": "user",
                     "content": algorithm,
                 },
-            ], temperature=0.1
-        )
-    )
+            ]
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response_py_list(coder.create(messages, temperature=0.1))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = string_to_list(parse_code_block(coder.chat(messages))), ''
     return code, response
 
 FOLLOW_UP_ALGORITHM = """
-I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
-You will provide me with three possible choices for {step}. Each choice will be parallel and independent, allowing me to choose the most suitable option later.
-Return the choices in a python list format. Use double quotes to wrap each choice.
+I came up with an intuition on how to solve this problem. I think it's a problem about "{algorithm}".
+You will provide me with three possible choices for "{step}". Each choice will be parallel and independent, allowing me to choose the most suitable option later.
+You must return the choices in a single python list format, which should start with \"[\" and ends with \"]\". Use double quotes(\") to wrap each choice.
+YOU MUST wrap your code in a code block, which starts and ends with "```".
 ===BEGIN STEPS===
 {steps}
 ===END STEPS===
 """
+# Return the choices in a python list format. Use double quotes to wrap each choice.
 
+@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
 def follow_up_coder(
-    statement: str, algorithm: str, step: str, steps: list[str]
+    statement: str, algorithm: str, step: str, steps: list[str], coder_mode: str
 ) -> tuple[str, str]:
-    coder = ChatCompletionAPI("gpt-4")
-    code, response = parse_response_py_list(
-        coder.create(
-            [
+    messages = [
                 {
                     "role": "system",
                     "content": CODING_SYSTEM.format(statement=statement),
@@ -218,9 +226,14 @@ def follow_up_coder(
                         statement=statement, algorithm=algorithm, step=step, steps='\n'.join(steps)
                     ),
                 },
-            ], temperature=0.8
-        )
-    )
+            ]
+    
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response_py_list(coder.create(messages, temperature=0.8))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = string_to_list(parse_code_block(coder.chat(messages))), ''
     return code, response
 
 def attempt_usaco(

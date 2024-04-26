@@ -7,12 +7,14 @@ import traceback
 import json
 
 main_logger = codeGen_logger.setup_logging()
+CHAT_MODE = "llama3"
 
 # tree search version 1 - genreral steps
-def tree_search_1(prob: Problem)->list[str]:
+# tree search version llama - use llama instead of gpt4
+def tree_search_llama(prob: Problem)->list[str]:
     algorithm = prob.tag.strip().split(', ')[0]
     # lis, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
-    lis, _ = coding.provide_algorithm_coder2(algorithm)
+    lis, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
     main_logger.info(f"Algorithm: {algorithm}, General steps: {lis}")
 
     steps_queue = []
@@ -28,12 +30,13 @@ def tree_search_1(prob: Problem)->list[str]:
             step, steps_to_generate = steps_queue.pop(0)
             if len(steps_to_generate) == 0:
                 transformation = "\n".join(step)
-                code, _ = coding.transformation_coder(prob.statement, transformation)
+                code, _ = coding.transformation_coder(prob.statement, transformation, CHAT_MODE)
                 codes.append(code)
                 transformations.append(transformation)
                 continue
 
-            lis, _ = coding.follow_up_coder(prob.statement, algorithm, steps_to_generate[0], step + steps_to_generate)
+            main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHAT_MODE}")
+            lis, _ = coding.follow_up_coder(prob.statement, algorithm, steps_to_generate[0], step + steps_to_generate, CHAT_MODE)
             main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
 
             steps_to_generate.pop(0)
@@ -52,7 +55,7 @@ def zero_shot(prob: Problem, sample_budget: int = 10)->list[str]:
     codes = []
     while len(codes) < sample_budget:
         try:
-            code, _ = coding.zeroshot_coder(prob.statement)
+            code, _ = coding.zeroshot_coder(prob.statement, CHAT_MODE)
             codes.append(code)
             main_logger.info(f"Zero-shot length: {len(codes)}/{sample_budget}")
             main_logger.debug(f"Zero-shot code: {code}")
@@ -112,7 +115,7 @@ def save_results(prob: Problem, folderName: str, codes: list[str], transformatio
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_1,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_llama,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -132,6 +135,9 @@ def codeGen(
                 codes, transformations = codeGen_strategy(prob)
                 main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
                 main_logger.debug(f"Codes: {codes}")
+                if len(codes) == 0:
+                    main_logger.error(f"Code generation failed for {prob.url}")
+                    continue
                 save_results(prob, codeGen_strategy.__name__, codes, transformations)
 
                 sample_budget = get_sample_budget(prob, baseline_strategy.__name__, len(codes))
@@ -145,4 +151,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/mix-100",codeGen_strategy=tree_search_1, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_llama, baseline_strategy=zero_shot)

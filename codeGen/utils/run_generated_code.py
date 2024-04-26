@@ -37,8 +37,11 @@ def compare_outputs(py_file, json_file):
     average_accuracy = sum(accuracy_rates) / len(accuracy_rates)
     return average_accuracy, expected_outputs, actual_outputs, accuracy_rates
 
-def main():
-    root_dir = r"results"
+def run_generated_code(
+        root_dir: str = "results",
+        model: str = "subprocess" # "online" or "local" or 'subprocess'
+):
+    # root_dir = r"results"
     for method in os.listdir(root_dir):
         highest_accuracy = []
         if not os.path.isdir(os.path.join(root_dir, method)):
@@ -82,4 +85,4 @@ def main():
             print(f"{method}: Average Accuracy = {sum(highest_accuracy)}/{len(highest_accuracy)} = {sum(highest_accuracy)/len(highest_accuracy)}")
 
 if __name__ == "__main__":
-    main()
+    run_generated_code()
