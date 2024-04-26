@@ -22,11 +22,11 @@ def compare_outputs(py_file, json_file):
         # Run the Python file and capture the output
         process = subprocess.Popen(["python", py_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
-            actual_output, _ = process.communicate(input=input_data.encode())
+            actual_output, _ = process.communicate(input=input_data.encode(), timeout=1)
             actual_output = actual_output.decode().strip()
         except Exception as e:
             print(f"An error occurred: {e}", py_file)
-            actual_output = "INTERNAL ERROR"
+            actual_output = "INTERNAL ERROR OR TIMEOUT"
 
         # Calculate accuracy rate and add to the list
         expected_outputs.append(expected_output)
@@ -79,7 +79,7 @@ def main():
             highest_accuracy.append(max(average_accuracies))
         
         if highest_accuracy:
-            print(f"{method}: Average Accuracy = {sum(highest_accuracy)/len(highest_accuracy)}")
+            print(f"{method}: Average Accuracy = {sum(highest_accuracy)}/{len(highest_accuracy)} = {sum(highest_accuracy)/len(highest_accuracy)}")
 
 if __name__ == "__main__":
     main()

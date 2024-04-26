@@ -4,6 +4,16 @@
 - Add env var OPENAI_API_KEY
 
 ## Coding
+[Run Llama3 locally](https://github.com/ollama/ollama?tab=readme-ov-file)
+- Install Ollama and run `ollama run llama3`
+- Test local endpoint:
+```bash
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3",
+  "prompt": "Why is the sky blue?",
+  "stream": false
+}'
+```
 
 ## Code Runner
 

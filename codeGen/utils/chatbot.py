@@ -1,14 +1,19 @@
 import openai
 import re
 import os
+import requests
+import json
 
 ENDPOINT = "https://azure-openai-api.shenmishajing.workers.dev/v1"
 
-def parse_response(response) -> tuple[str, str]:
-    code = re.findall("```\w*[^`]+```*", response.choices[0].message.content)[
+def parse_code_block(response) -> str:
+    code = re.findall("```\w*[^`]+```*", response)[
         -1
     ]
-    code = "\n".join(code.split("\n")[1:-1])
+    return "\n".join(code.split("\n")[1:-1])
+
+def parse_response(response) -> tuple[str, str]:
+    code = parse_code_block(response.choices[0].message.content)
     return code, response.choices[0].message.content
 
 def string_to_list(string):
@@ -49,3 +54,23 @@ class EmbeddingAPI:
 
     def create(self, text) -> list[float]:
         return self.embedding.create(model=self.model, input=text)
+
+class OllamaAPI:
+    def __init__(self, model="llama3") -> None:
+        self.model = model
+
+    def chat(self, messages) -> str:
+        response = requests.post('http://localhost:11434/api/chat', json={
+        'model': self.model,
+        'messages': messages,
+        'stream': False
+        })
+        return json.loads(response.content)['message']['content']
+    
+    def generate(self, prompt: str) -> str:
+        response = requests.post('http://localhost:11434/api/generate', json={
+            'model': self.model,
+            'prompt': prompt,
+            'stream': False
+        })
+        return json.loads(response.content)['message']['content']

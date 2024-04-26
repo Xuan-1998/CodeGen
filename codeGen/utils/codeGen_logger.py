@@ -47,7 +47,7 @@ else:
     logger.error('Handler not found')
 
 
-working_directory = "/Users/jiangxuan/Desktop/11_code/CodeGen/codeGen"
+working_directory = r"/Users/yibozhao/Documents/01 Johns Hopkins/02 LLM Code Generation/CodeGen/codeGen"
 
 def setup_logging():
     config_file = pathlib.Path(f"{working_directory}/utils/logger.json")

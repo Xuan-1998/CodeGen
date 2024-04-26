@@ -45,7 +45,7 @@ PROBLEM = problems.Problem(
     ]
 )
 
-# @unittest.skip("Skip since it's already tested")
+@unittest.skip("Skip since it's already tested")
 class TestOJInteractions(unittest.TestCase):
     def test_submit_code(self):
         token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["input"], TEST_CASES[0]["output"], 'local')
@@ -103,6 +103,26 @@ class TestCoding(unittest.TestCase):
         codeGen_logger.info(response)
         self.assertIsNotNone(code)
         self.assertIsNotNone(response)
+
+class TestOllama(unittest.TestCase):
+    def test_chat(self):
+        ollama = chatbot.OllamaAPI()
+        response = ollama.chat(messages=
+            [
+                {
+                    'role': 'system',
+                    'content': coding.ALGORITHM_SYSTEM,
+                },
+                {
+                    'role': 'user',
+                    'content': 'Dynamic Programming',
+                },
+            ]
+        )
+        codeGen_logger.info(response)
+        list_response = chatbot.string_to_list(chatbot.parse_code_block(response))
+        codeGen_logger.info(list_response)
+        self.assertIsNotNone(list_response)
 
 @unittest.skip("Skip since it's already tested")
 class TestProblem(unittest.TestCase):
