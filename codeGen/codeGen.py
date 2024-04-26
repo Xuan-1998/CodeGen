@@ -5,6 +5,7 @@ from copy import deepcopy
 from typing import Callable
 import traceback
 import json
+from tenacity import RetryError
 
 main_logger = codeGen_logger.setup_logging()
 CHAT_MODE = "llama3"
@@ -26,28 +27,35 @@ def tree_search_llama(prob: Problem)->list[str]:
     # iter until previous step is empty and then gen code
     # iter until queue is empty
     while steps_queue:
-        try:
-            step, steps_to_generate = steps_queue.pop(0)
-            if len(steps_to_generate) == 0:
-                transformation = "\n".join(step)
+        step, steps_to_generate = steps_queue.pop(0)
+        if len(steps_to_generate) == 0:
+            transformation = "\n".join(step)
+
+            try:
                 code, _ = coding.transformation_coder(prob.statement, transformation, CHAT_MODE)
-                codes.append(code)
-                transformations.append(transformation)
-                continue
+            except RetryError as e:
+                main_logger.error(f"An error occurred: {e}, {transformation}, {traceback.format_exc()}")
+                
+            codes.append(code)
+            transformations.append(transformation)
+            continue
 
-            main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHAT_MODE}")
+        main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHAT_MODE}")
+
+        try:
             lis, _ = coding.follow_up_coder(prob.statement, algorithm, steps_to_generate[0], step + steps_to_generate, CHAT_MODE)
-            main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
-
-            steps_to_generate.pop(0)
-
-            for choice in lis:
-                current_step = deepcopy(step)
-                current_step.append(choice)
-                steps_queue.append([current_step, steps_to_generate])
-
-        except Exception as e:
+        except RetryError as e:
+            lis = [steps_to_generate[0]]
             main_logger.error(f"An error occurred: {e}, {steps_to_generate}, {traceback.format_exc()}")
+
+        main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
+
+        steps_to_generate.pop(0)
+
+        for choice in lis:
+            current_step = deepcopy(step)
+            current_step.append(choice)
+            steps_queue.append([current_step, steps_to_generate])
 
     return codes, transformations
 

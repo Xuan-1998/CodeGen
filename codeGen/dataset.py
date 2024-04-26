@@ -151,7 +151,7 @@ def initialize_problems(
 
         if (tag is not None and tag.lower() not in (sample['tags']).lower()) or \
             (prefered_sources is not None and sample['source'] not in prefered_sources) or \
-            (difficulty is not None and difficulty.lower() not in (sample['difficulty']).lower()) or sample['url'] is None:
+            (difficulty is not None and difficulty.lower() not in (sample['difficulty']).lower()) or sample['url'] is None or len(sample['tags']) == 0:
             continue
         
         difficulty_tag = sample['difficulty'].lower()

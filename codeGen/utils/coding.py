@@ -4,6 +4,8 @@ from tqdm import tqdm
 from typing import Callable
 from tenacity import retry, stop_after_attempt, retry_if_result, retry_if_exception_type
 
+RETRY_COUNT = 15
+
 CODING_SYSTEM = """
 You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block, which starts and ends with "```". Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
 You will now be provided with the problem statement:
@@ -24,7 +26,7 @@ I came up with an intuition on how to solve this problem. It might be the comple
 Analyze my intuition, how is it applicable to this problem? Please build on my idea and do not start over or reject the approach. What is the problem really asking, and how can it be solved with the algorithms and data structures you know? Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
 """
 
-@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
+@retry(stop=stop_after_attempt(RETRY_COUNT), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
 def transformation_coder(statement: str, transformation: str, coder_mode: str) -> tuple[str, str]:
     messages = [
                 {
@@ -178,7 +180,7 @@ def provide_algorithm_coder(
         code, response = string_to_list(parse_code_block(coder.chat(messages))), ''
     return code, response
 
-@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
+@retry(stop=stop_after_attempt(RETRY_COUNT), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
 def provide_algorithm_coder2(
     algorithm: str, coder_mode: str
 ) -> tuple[str, str]:
@@ -211,7 +213,7 @@ YOU MUST wrap your code in a code block, which starts and ends with "```".
 """
 # Return the choices in a python list format. Use double quotes to wrap each choice.
 
-@retry(stop=stop_after_attempt(5), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
+@retry(stop=stop_after_attempt(RETRY_COUNT), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
 def follow_up_coder(
     statement: str, algorithm: str, step: str, steps: list[str], coder_mode: str
 ) -> tuple[str, str]:

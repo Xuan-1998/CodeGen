@@ -1,17 +1,7 @@
-def chessboard_pattern():
-    rows, columns = map(int, input().split())
-    pattern = {}
+def chessboard_pattern(rows, cols):
+    board = [['O' if (i+j)%2 == 0 else 'X' for j in range(cols)] for i in range(rows)]
+    for row in board:
+        print(' '.join(row))
 
-    for i in range(rows):
-        for j in range(columns):
-            if (i + j) % 2 == 0:
-                pattern[(i, j)] = "O"  # White
-            else:
-                pattern[(i, j)] = "X"   # Black
-
-    for row in range(rows):
-        for col in range(columns):
-            print(pattern.get((row, col), "."), end=" ")
-        print()
-
-chessboard_pattern()
+rows, cols = map(int, input().split())
+chessboard_pattern(rows, cols)
