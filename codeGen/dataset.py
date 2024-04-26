@@ -9,7 +9,7 @@ from datasets import load_dataset
 ds = load_dataset("BAAI/TACO", split="train")
 logger = setup_logging()
 
-MAX_SAMPLE_TC = 5
+MAX_SAMPLE_TC = 15
 
 STATEMENT_SYSTEM = """
 You are a competitive programming teacher. The user will provide you with the problem statement of a competitive programming problem. Your task is to summarize the problem in an abstract way. In the first paragraph of your response, summarize the task. In the second paragraph, summarize the input format and make sure to mention that input arrives from standard input. In the third paragraph, summarize the output format. In the fourth paragraph, include relevant input constraints.
@@ -154,6 +154,7 @@ def initialize_problems(
             (difficulty is not None and difficulty.lower() not in (sample['difficulty']).lower()) or sample['url'] is None:
             continue
         
+        difficulty_tag = sample['difficulty'].lower()
         cnt += 1
 
         logger.info(f"Processing problem {cnt} with source {sample['source']}")
@@ -178,7 +179,7 @@ def initialize_problems(
                 url = sample['url'] if 'url' in sample else None,
                 sample_test_cases = test_cases
             )
-            logger.debug(f"Problem: {prob.to_jsonl()}")
+            logger.debug(f"Problem: {prob.to_json()}")
 
             logger.info(f"Regularizing problem {cnt} source {sample['source']}, url: {sample['url']}")
             # TODO: Improve with parallel processing like Task.WhenAll in .NET
@@ -190,11 +191,11 @@ def initialize_problems(
 
             # TODO: On second thought, store the problems in separate files is better
             # Hash the prob URL as GUID
-            prob.append_to_jsonl(f"{root}/{sample['source']}/problems.jsonl")
+            prob.append_to_jsonl(f"{root}/{difficulty_tag}/problems.jsonl")
         except Exception as e:
             logger.error(f"Error processing problem {cnt} with source {sample['source']}, url: {sample['url']}: {e}")
             continue
 
 if __name__ == "__main__":
-    initialize_problems(50, "Dynamic Programming", difficulty="EASY", root="../data/easy-dp")
+    initialize_problems(100, root="../data/balanced-probs")
     # initialize_problems(1000, "Dynamic Programming")
