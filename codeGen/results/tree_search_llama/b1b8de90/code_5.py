@@ -1,20 +1,24 @@
-import random
+import sys
+import math
 
-def recursive_sort(n):
-    permutation = list(range(1, n+1))  # Initialize the permutation
-    x = len(permutation) // 2  # Select the middle element as the pivot
+def count_permutations(n):
+    # Initialize the count of valid permutations
+    count = 0
+    
+    # Iterate over all possible permutations of length n
+    for permutation in itertools.permutations(range(1, n+1)):
+        # Check if the first x elements of the permutation are sorted
+        is_sorted = True
+        for i in range(1, min(n, len(permutation))):
+            if permutation[i] < permutation[i-1]:
+                is_sorted = False
+                break
+        
+        # If the permutation satisfies the condition, increment the count
+        if is_sorted:
+            count += 1
+    
+    return count
 
-    while True:
-        if permutation[x-1] == x:  # If the permutation is already sorted, return it
-            return ' '.join(map(str, permutation))
-
-        # Swap the x-th and (x-1)-th elements
-        permutation[x-1], permutation[x] = permutation[x], permutation[x-1]
-
-def generate_permutation(n):
-    return ' '.join(map(str, random.sample(range(1, n+1), n)))
-
-# Example usage:
-n = int(input())  # Read input from standard input
-permutation = generate_permutation(n)
-print(recursive_sort(int(permutation.split()[0])))  # Print the sorted permutation to standard output
+n = int(sys.stdin.readline())
+print(count_permutations(n))

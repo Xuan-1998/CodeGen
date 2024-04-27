@@ -1,17 +1,24 @@
-def find_solution():
-    a_min = min(map(int, input().split()))
-    b_min = min(map(int, input().split()))
+# Read input arrays
+n = int(input())
+A = list(map(int, input().split()))
+m = int(input())
+B = list(map(int, input().split()))
 
-    A = sorted(map(int, input().split()))
-    B = sorted(map(int, input().split()))
+# Sort both arrays
+A.sort()
+B.sort()
 
-    merged_array = list(set(A + B))  # Use set to remove duplicates
+# Validation function: find a pair (a, b) that meets the requirements
+def validate(A, B):
+    for a in A:
+        for b in B:
+            if a + b not in A and a + b not in B:
+                return (a, b)
+    return None
 
-    for a in range(a_min, max(A) + 1):
-        for b in range(b_min, max(B) + 1):
-            if A.index(a) < len(A) and B.index(b) < len(B) and (a + b) not in A and (a + b) not in B:
-                return str(a) + ' ' + str(b)
+result = validate(A, B)
 
-    print("No solution found.")
-
-find_solution()
+if result is not None:
+    print(*result)  # Print the pair
+else:
+    print("No such pair found")  # Output when no valid pair exists

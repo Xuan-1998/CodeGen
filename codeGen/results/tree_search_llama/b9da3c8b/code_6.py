@@ -1,22 +1,15 @@
-import heapq
+available_officers = 0
+untreated_crimes = 0
 
-def number_of_untreated_crimes():
-    n = int(input())
-    crimes = list(map(int, input().split()))
-    
-    # Initialize priority queue with all 0s (representing available officers)
-    officers = []
-    for i in range(crimes[0], 0, -1):
-        heapq.heappush(officers, i)
-    
-    untreated_crimes = 0
-    for crime in crimes:
-        if crime == -1:  # Crime occurred
-            while officers and officers[0] <= crime:
-                heapq.heappop(officers)  # Assign officer to crime
-            if not officers:
-                untreated_crimes += 1  # No available officers, increment counter
+n = int(input())  # Read the number of events
+for _ in range(n):
+    event = int(input())
+    if event == -1:  # Crime occurred
+        available_officers += event
+        if available_officers <= 0:
+            untreated_crimes += 1
+            available_officers = 0
+    else:  # Officers recruited
+        available_officers += event
 
-    print(untreated_crimes)
-
-number_of_untreated_crimes()
+print(untreated_crimes)

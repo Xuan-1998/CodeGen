@@ -1,10 +1,6 @@
 def generate_sequence():
-    start = int(input("Enter the starting number: "))
-    end = int(input("Enter the ending number: "))
-
-    sequence = list(range(start, end + 1))
-    
-    for num in sequence:
-        print(num)
+    a, b = map(int, input().split())  # read the two integers from stdin
+    sequence = list(range(a, b + 1))  # generate the sequence
+    print(*sequence, sep='\n')  # print the sequence to stdout
 
 generate_sequence()

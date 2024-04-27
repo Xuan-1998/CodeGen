@@ -1,16 +1,11 @@
 def generate_sequence():
-    # Receive inputs from stdin
-    start, end = map(int, input().split())
-    
-    # Initialize an empty list
-    sequence = []
-    
-    # Populate the list with the integers in the desired range
-    for i in range(start, end + 1):
-        sequence.append(i)
-    
-    # Print the output to stdout
-    print(*sequence)
+    first_integer = int(input("Enter the first integer: "))
+    second_integer = int(input("Enter the second integer: "))
 
-# Call the function to execute it
-generate_sequence()
+    sequence = []
+    for i in range(first_integer, second_integer + 1):
+        sequence.append(i)
+
+    return sequence
+
+print(generate_sequence())

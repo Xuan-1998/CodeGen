@@ -1,9 +1,9 @@
-def generate_chessboard(rows, cols):
-    chessboard = [['O' if i % 2 == 0 else 'X' for _ in range(cols)] for _ in range(rows)]
-    return chessboard
-
+# Read input from stdin
 rows, cols = map(int, input().split())
-chessboard = generate_chessboard(rows, cols)
 
+# Initialize chessboard with alternating black and white cells
+chessboard = [['O' if i % 2 == 0 else 'X' for _ in range(cols)] for i in range(rows)]
+
+# Print the chessboard to stdout
 for row in chessboard:
-    print(' '.join(row))
+    print(''.join(row))

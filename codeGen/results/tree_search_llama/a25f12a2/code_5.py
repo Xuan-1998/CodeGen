@@ -1,17 +1,18 @@
 def solve():
-    heads, tails = map(int, input().split())
-    
-    dp = [[float('inf')] * (tails + 1) for _ in range(heads + 1)]
-    dp[0][0] = 0
-    
-    for i in range(1, heads + 1):
-        for j in range(1, tails + 1):
-            if i < j:
-                dp[i][j] = min(dp[i][j], dp[i-1][j-1] + 2)
-            else:
-                dp[i][j] = min(dp[i][j], dp[i-1][j] + 1)
-    
-    if all(x != float('inf') for x in dp[-1]):
-        return [dp[-1].index(float('inf')) - 1, heads - dp[-1].index(float('inf')) - 1]
+    total_heads, total_tails = map(int, input().split())
+    orthus_heads = 0
+    hydra_heads = 0
+
+    for i in range(total_heads // 2 + 1):
+        tails_left = total_tails - (total_heads - 2 * i)
+        if tails_left >= 0 and tails_left % 2 == 1:
+            hydra_heads = total_heads - 2 * i
+            orthus_heads = 2 * i
+            break
+
+    if orthus_heads > 0 and hydra_heads > 0:
+        return [orthus_heads, hydra_heads]
     else:
-        return "No solutions"
+        return ["No solutions"]
+
+print(solve())

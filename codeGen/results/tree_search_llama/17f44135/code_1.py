@@ -1,18 +1,17 @@
-import sys
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
 
-n, k = map(int, sys.stdin.readline().split())
-arr = list(map(int, sys.stdin.readline().split()))
+start, end = 0, n - 1
+max_problems = 0
 
-ans = 0
-i = j = 0
-while i < n and j < n:
-    if arr[i] <= k:
-        ans += 1
-        i += 1
-    elif arr[j] <= k:
-        ans += 1
-        j += 1
+while start <= end:
+    if a[start] <= k and (end == n - 1 or a[end] > k):
+        max_problems += 1
+        start += 1
+    elif a[end] <= k and (start == 0 or a[start] > k):
+        max_problems += 1
+        end -= 1
     else:
         break
 
-print(ans)
+print(max_problems)

@@ -1,19 +1,17 @@
 def merge_arrays(*args):
-    max_len = max(len(arr) for arr in args)
+    # Initialize an empty list to store the merged array
     result = []
     
-    for i in range(max_len):
-        for arr in args:
-            if i < len(arr):
-                result.append(arr[i])
-            else:
-                result.append(None)
-                
+    # Find the length of the longest input array
+    max_len = max(len(arr) for arr in args)
+    
+    # Iterate through each input array
+    for i, arr in enumerate(args):
+        # Append elements from the current array to the result array
+        result.extend([arr[i % len(arr)] for _ in range(max_len)])
+    
     return result
 
-# Example usage
-arr1 = [1, 2, 3]
-arr2 = ['a', 'b', 'c']
-arr3 = [True, False]
-
-print(merge_arrays(*[arr1, arr2, arr3]))
+# Test the function with example inputs
+input_arrays = [[1, 2], [3, 4, 5], [6]]
+print(merge_arrays(*input_arrays))  # Output: [1, 3, 6, 2, 4, 5]

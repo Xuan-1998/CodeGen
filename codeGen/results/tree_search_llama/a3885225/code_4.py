@@ -1,17 +1,13 @@
-def flip_to_palindrome():
-    n = int(input())
-    s = input()
-    
-    flips = 0
-    left, right = 0, n - 1
-    
-    while left < right:
-        if s[left] != s[right]:
-            flips += 1
-        left += 1
-        right -= 1
-    
-    print("YES" if flips <= n // 2 else "NO")
+from collections import Counter
 
-if __name__ == "__main__":
-    flip_to_palindrome()
+for _ in range(int(input())):
+    N = int(input())
+    S = input()
+    
+    count = Counter(S)
+    
+    if sum(count.values()) > N // 2:
+        print('NO')
+    else:
+        print('YES')
+

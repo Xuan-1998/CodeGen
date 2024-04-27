@@ -1,19 +1,21 @@
-def max_problems(n, k, difficulties):
-    left = 0
-    right = n - 1
-    count = 0
-    
+def max_solvable_problems():
+    n, k = map(int, input().split())
+    difficulties = list(map(int, input().split()))
+    left, right = 0, n-1
+    solvable_problems = 0
+
     while left <= right:
-        if difficulties[left] <= k:
+        if difficulties[left] <= k and difficulties[right] <= k:
+            solvable_problems += 2
             left += 1
-        elif difficulties[right] <= k:
             right -= 1
+        elif difficulties[left] <= k:
+            solvable_problems += 1
+            left += 1
         else:
-            break
-            
-    return min(left, right) + 1
+            solvable_problems += 1
+            right -= 1
 
-n, k = map(int, input().split())
-difficulties = list(map(int, input().split()))
+    print(solvable_problems)
 
-print(max_problems(n, k, difficulties))
+max_solvable_problems()

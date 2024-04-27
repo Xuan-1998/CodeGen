@@ -1,14 +1,33 @@
-def recursive_sort(permutation, x):
-    if x == 0 or permutation[x-1] <= permutation[x]:
-        return permutation
-    else:
-        permutation[x-1], permutation[x] = permutation[x], permutation[x-1]
-        return recursive_sort(permutation, x-1)
+import sys
 
-n = int(input())  # read input from stdin
+def solve(n):
+    # Create an adjacency list representation of the DAG
+    graph = [[] for _ in range(n + 1)]
 
-permutation = list(range(1, n+1))  # initialize the permutation with integers from 1 to n
-x = len(permutation) - 1  # start with the last element
+    for i in range(2, n + 1):
+        for j in range(i - 1, 0, -1):
+            graph[j].append(i)
+            if len(graph[i]) > 0:
+                break
 
-sorted_permutation = recursive_sort(permutation[:], x)
-print(' '.join(map(str, sorted_permutation)))  # print the sorted permutation as a single line of space-separated integers
+    # Perform topological sorting using DFS
+    visited = [False] * (n + 1)
+    order = []
+
+    def dfs(node):
+        if not visited[node]:
+            visited[node] = True
+            for neighbor in graph[node]:
+                dfs(neighbor)
+            order.append(str(node))
+
+    for node in range(1, n + 1):
+        if not visited[node]:
+            dfs(node)
+
+    # Print the result
+    print(' '.join(order))
+
+if __name__ == '__main__':
+    n = int(sys.stdin.readline())
+    solve(n)

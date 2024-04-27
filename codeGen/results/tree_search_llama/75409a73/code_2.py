@@ -1,15 +1,10 @@
-import sys
+import math
 
 def calculate_factorial():
-    t = int(sys.stdin.readline())
-    
+    t = int(input())  # Read number of test cases from input
     for _ in range(t):
-        n = int(sys.stdin.readline())
-        
-        factorial = 1
-        for i in range(1, n + 1):
-            factorial *= i
-        
-        print(factorial)
+        n = int(input())  # Read the integer 'n' from input
+        factorial = math.gamma(n + 1)  # Calculate the gamma function value
+        print(int(factorial))  # Print the result
 
 calculate_factorial()

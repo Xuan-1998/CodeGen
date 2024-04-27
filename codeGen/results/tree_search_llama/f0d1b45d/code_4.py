@@ -1,37 +1,31 @@
-def find_trees(relatives):
-    # Initialize a set to keep track of visited nodes
+from collections import defaultdict
+
+def count_trees(relatives):
+    # Create a graph from the relatives' data
+    graph = defaultdict(list)
+    for i, parent in enumerate(relatives, 1):
+        graph[parent].append(i)
+
+    # Initialize the visited set and the tree count
     visited = set()
-    
-    # Initialize a variable to store the number of trees
-    num_trees = 0
-    
-    # Iterate over each relative
-    for relative in relatives:
-        # If this node has not been visited before, it's the root of a new tree
-        if relative not in visited:
-            # Start a DFS traversal from this node
-            stack = [relative]
-            while stack:
-                node = stack.pop()
-                if node not in visited:
-                    visited.add(node)
-                    for neighbor in relatives[node]:
-                        if neighbor not in visited:
-                            stack.append(neighbor)
-            num_trees += 1
-    
-    return num_trees
+    trees = 0
 
-def main():
-    n = int(input())
-    relatives = {}
-    for i in range(n):
-        relative = int(input())
-        if i not in relatives:
-            relatives[i] = []
-        relatives[i].append(relative)
+    def dfs(node):
+        if node not in visited:
+            visited.add(node)
+            for neighbor in graph[node]:
+                dfs(neighbor)
 
-    print(find_trees(relatives))
+    for i in range(1, len(relatives) + 1):
+        if i not in visited:
+            dfs(i)
+            trees += 1
 
-if __name__ == "__main__":
-    main()
+    return trees
+
+# Read input from stdin
+n = int(input())
+relatives = list(map(int, input().split()))
+
+# Print the output to stdout
+print(count_trees(relatives))

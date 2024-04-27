@@ -1,12 +1,10 @@
-import set
+n = int(input())
+A = list(map(int, input().split()))
+m = int(input())
+B = list(map(int, input().split()))
 
-A_set = set(map(int, input().split()))
-B_set = set(map(int, input().split()))
-
-B_sorted = sorted(list(B_set), reverse=True)
-
-for a in A_set:
-    for b in B_sorted:
-        if (b - a) not in (A_set | B_set):
-            print(f"{a} {b}")
+for a in A:
+    for b in B:
+        if (a + b) not in A and (a + b) not in B:
+            print(a, b)
             break

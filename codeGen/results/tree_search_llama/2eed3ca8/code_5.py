@@ -1,20 +1,21 @@
-def check_circular_sequence():
-    moves = input().strip()
-
-    if len(moves) == 0:
-        return "Not Circular"
-
-    start_position = {'F': 1, 'L': -1, 'R': 1}.get(moves[0])
-
-    end_position = 0
+def calculate_circularity(moves):
+    # Initialize variables to keep track of the robot's position and direction
+    x, y, dx, dy = 0, 0, 1, 0
 
     for move in moves:
-        position_change = {'F': 1, 'L': -1, 'R': 1}.get(move)
-        end_position += position_change
+        if move == "F":
+            # Move forward
+            x += dx
+            y += dy
+        elif move == "L":
+            # Turn left
+            dx, dy = -dy, dx
+        elif move == "R":
+            # Turn right
+            dx, dy = dy, -dx
 
-        if end_position < 0:
-            return "Not Circular"
-
-    return "Circular" if start_position == end_position else "Not Circular"
-
-print(check_circular_sequence())
+    # Check if the robot ended up back at its starting position
+    if (x, y) == (0, 0):
+        return "Circular"
+    else:
+        return "Not Circular"

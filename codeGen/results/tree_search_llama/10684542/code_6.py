@@ -1,10 +1,8 @@
-def getExponent(n, p):
-    max_x = 0
-    for x in range(0, n//p + 1):
-        if n // x % p == 0:
-            max_x = x
-            break
-    return max_x
+import math
 
-n, p = map(int, input().split())
-print(getExponent(n, p))
+def getExponent(n, p):
+    if p <= 1:
+        print("ArgumentOutOfRange")
+        return None
+    exp = int(math.log(n, p))
+    return exp

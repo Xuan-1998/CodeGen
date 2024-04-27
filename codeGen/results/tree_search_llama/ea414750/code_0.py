@@ -1,23 +1,22 @@
 from collections import defaultdict
 
-def count_bear_pairs(s):
-    n = len(s)
-    bear = 'bear'
+def count_bear_pairs():
+    s = input()
+    bear_indices = defaultdict(list)
     
-    dp = [defaultdict(int) for _ in range(n + 1)]
-    for i, c in enumerate(s):
-        dp[i + 1][c] += 1
+    for i in range(len(s)):
+        if s[i:i+4] == 'bear':
+            bear_indices[i].append(i)
     
-    res = 0
-    for i, c in enumerate(s):
-        for j in range(i + len(bear)):
-            if s[j:j+len(bear)] == bear and all(dp[k][c] >= 1 for k in range(i, j+1)):
-                res += 1
+    pairs_count = 0
     
-    return res
+    for start in bear_indices:
+        for end in bear_indices[start:]:
+            if start < end:
+                pairs_count += 1
+            else:
+                break
+            
+    print(pairs_count)
 
-# Receive input from stdin
-s = input()
-
-# Print the result to stdout
-print(count_bear_pairs(s))
+count_bear_pairs()

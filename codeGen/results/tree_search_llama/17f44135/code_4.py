@@ -1,26 +1,18 @@
-import sys
-
-def solve():
+def max_problems_solved():
     n, k = map(int, input().split())
     difficulties = list(map(int, input().split()))
     
-    # Initialize variables
     left, right = 0, n - 1
-    max_solved = 0
+    solved_problems = 0
     
-    while left <= right:
-        if difficulties[left] <= k or difficulties[right] <= k:
-            max_solved += 1
+    while True:
+        if left <= right and difficulties[left] <= k:
             left += 1
-            right -= 1
-        elif difficulties[left] > k and difficulties[right] > k:
-            break
-        elif difficulties[left] > k:
+        elif left <= right and difficulties[right] <= k:
             right -= 1
         else:
-            left += 1
-    
-    print(max_solved)
+            break
+        
+    return n - (right - left + 1)
 
-if __name__ == "__main__":
-    solve()
+print(max_problems_solved())

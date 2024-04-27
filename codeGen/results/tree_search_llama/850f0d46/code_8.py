@@ -1,7 +1,9 @@
-def chessboard(rows, cols):
-    board = [['X' if (i+j)%2 == 0 else 'O' for j in range(cols)] for i in range(rows)]
-    return board
-
 rows, cols = map(int, input().split())
-for row in chessboard(rows, cols):
+board = [['O'] * cols for _ in range(rows)]
+
+for i in range(1, rows, 2):
+    for j in range(cols):
+        board[i][j] = 'X'
+
+for row in board:
     print(' '.join(row))

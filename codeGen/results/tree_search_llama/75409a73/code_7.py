@@ -1,12 +1,10 @@
-import sys
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
 
-def calculate_factorial():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n = int(sys.stdin.readline())
-        factorial = 1
-        for i in range(1, n + 1):
-            factorial *= i
-        print(factorial)
-
-calculate_factorial()
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    print(factorial(n))

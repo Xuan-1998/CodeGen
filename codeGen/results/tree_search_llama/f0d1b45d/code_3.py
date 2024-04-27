@@ -1,31 +1,30 @@
-class UnionFind:
-    def __init__(self, n):
-        self.parent = list(range(n))
-        self.rank = [0] * n
+from collections import deque
 
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
-        if root_x != root_y:
-            if self.rank[root_x] > self.rank[root_y]:
-                self.parent[root_y] = root_x
-            elif self.rank[root_x] < self.rank[root_y]:
-                self.parent[root_x] = root_y
-            else:
-                self.parent[root_y] = root_x
-                self.rank[root_x] += 1
-
-def count_trees(p):
-    uf = UnionFind(max(p) + 1)
-    for i, x in enumerate(p):
-        uf.union(x - 1, p[x] - 1)
-    return len(set(uf.find(i) for i in range(len(p))))
+def count_trees(relatives):
+    n = len(relatives)
+    visited = [False] * n
+    tree_count = 0
+    
+    for i in range(n):
+        if not visited[i]:
+            queue = deque([i])
+            visited[i] = True
+            
+            while queue:
+                node = queue.popleft()
+                
+                # Traverse the tree by visiting all unvisited nodes connected to the current node
+                while node < n and not visited[node]:
+                    next_node = relatives.index(node + 1)
+                    if next_node != -1 and not visited[next_node]:
+                        queue.append(next_node)
+                        visited[next_node] = True
+                    node += 1
+                
+            tree_count += 1
+    
+    return tree_count
 
 n = int(input())
-p = [int(x) for x in input().split()]
-print(count_trees(p))
+relatives = list(map(int, input().split()))
+print(count_trees(relatives))

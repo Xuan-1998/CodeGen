@@ -1,24 +1,30 @@
-def can_transform_to_palindrome(input_string):
-    # Count the number of characters to flip
-    flips = 0
-    for i in range(len(input_string) // 2):
-        if input_string[i] != input_string[-i - 1]:
-            flips += 1
+def can_make_palindrome(s):
+    n = len(s)
+    ones = s.count('1')
+    
+    # If there are more than (n+1)/2 1's, it's impossible to make a palindrome.
+    if ones > (n + 1) // 2:
+        return False
+    
+    # If there are exactly (n+1)/2 1's, you can always make a palindrome by flipping the middle character.
+    if ones == (n + 1) // 2:
+        return True
+    
+    # For all other cases, it's possible to make a palindrome as long as the number of '1's is not more than n/2.
+    return True
 
-    return flips % 2 == 0
 
 def main():
-    while True:
-        try:
-            N = int(input())
-            S = input().strip()
-            if can_transform_to_palindrome(S):
-                print("YES")
-            else:
-                print("NO")
-        except EOFError:
-            break
+    T = int(input())  # Number of test cases
+    for _ in range(T):
+        N = int(input())  # Length of the binary string S
+        s = input()  # Binary string S
+        
+        if can_make_palindrome(s):
+            print("YES")
+        else:
+            print("NO")
+
 
 if __name__ == "__main__":
     main()
-

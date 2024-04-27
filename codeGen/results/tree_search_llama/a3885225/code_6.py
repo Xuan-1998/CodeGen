@@ -1,22 +1,16 @@
-def can_flip_to_palindrome():
-    N = int(input())  # Read the length of the binary string
-    S = input()  # Read the binary string
-
-    flips = 0  # Initialize the count of flips needed
-    left = 0  # Left pointer for the palindrome substring
-    right = N - 1  # Right pointer for the palindrome substring
-
-    while left < right:
-        if S[left] == S[right]:  # If characters at both ends match
-            left += 1  # Move the left pointer forward
-            right -= 1  # Move the right pointer backward
-        else:  # If characters don't match, flip the left character
-            flips += 1
-            left += 1
-
-    if left == right:  # Check if the palindrome is complete (left == right)
-        print("YES" if flips % 2 == 0 else "NO")  # Print the result
+def can_be_palindrome():
+    n = int(input())
+    s = input()
+    
+    freq = {'0': 0, '1': 0}
+    for char in s:
+        if char in freq:
+            freq[char] += 1
+    
+    if abs(freq['0'] - freq['1']) > 1:
+        print('NO')
     else:
-        print("NO")
+        print('YES')
 
-can_flip_to_palindrome()
+if __name__ == '__main__':
+    can_be_palindrome()

@@ -1,12 +1,11 @@
 import math
 
-def count_odd_factors(n):
+def count_odd_divisor_numbers(n):
     count = 0
-    i = 1
-    while i * i <= n:
-        count += 1
-        i += 1
+    for i in range(1, int(math.sqrt(n)) + 1):
+        if n % (i ** 2) == 0:
+            count += 1
     return count
 
 n = int(input())
-print(count_odd_factors(n))
+print(count_odd_divisor_numbers(n))

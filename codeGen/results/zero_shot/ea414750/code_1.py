@@ -1,1 +1,1 @@
-['bearabcde', 'hello world bear again']
+['bear']

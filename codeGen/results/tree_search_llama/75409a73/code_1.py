@@ -1,10 +1,10 @@
-def calculate_factorial():
-    t = int(input())  # Read the number of test cases from stdin
-    for _ in range(t):
-        n = int(input())  # Read a single integer from stdin
-        factorial = 1
-        for i in range(1, n + 1):
-            factorial *= i
-        print(factorial)  # Print the calculated factorial to stdout
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
 
-calculate_factorial()
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    print(factorial(n))

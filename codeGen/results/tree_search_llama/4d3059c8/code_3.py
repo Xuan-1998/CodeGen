@@ -1,14 +1,15 @@
 def pivotIndex(nums):
+    n = len(nums)
     total_sum = sum(nums)
+    
     left_sum = 0
-    for i, num in enumerate(nums):
-        if left_sum == total_sum - num:
+    
+    for i in range(n):
+        right_sum = total_sum - left_sum - nums[i]
+        
+        if left_sum == right_sum:
             return i
-        left_sum += num
+        
+        left_sum += nums[i]
+
     return -1
-
-# Read input from stdin
-nums = [int(x) for x in input().split()]
-
-# Print the pivot index to stdout
-print(pivotIndex(nums))

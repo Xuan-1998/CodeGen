@@ -1,18 +1,22 @@
-import sys
-
-def round_to_multiple_of_5(numbers):
+def round_to_nearest_multiple(arr):
     result = []
-    for num in numbers.split(','):
-        num = float(num.strip())
-        diff = abs(int(num) - num)
-        if diff < 0.05:  # within 0.01 of the nearest multiple of 5
-            rounded_num = int(num)
-        elif num > 0:
-            rounded_num = round(num / 5) * 5 + 5
-        else:
-            rounded_num = round(num / 5) * 5 - 5
-        result.append(str(rounded_num))
-    return ','.join(result)
+    for num in arr:
+        closest_multiple = None
+        min_diff = float('inf')
+        
+        # Iterate over all possible multiples of 5
+        for i in range(int(num), int((num + 0.99) / 0.2) * 10, 5):
+            diff = abs(num - i)
+            
+            # Update the closest multiple if a smaller difference is found
+            if diff < min_diff:
+                min_diff = diff
+                closest_multiple = i
+            
+        result.append(closest_multiple)
+    
+    return result
 
-numbers = input().strip()
-print(round_to_multiple_of_5(numbers))
+# Example usage:
+numbers = list(map(float, input().split()))
+print(round_to_nearest_multiple(numbers))

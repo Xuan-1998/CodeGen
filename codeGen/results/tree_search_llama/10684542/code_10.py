@@ -1,11 +1,9 @@
-def getExponent(n,p):
+def get_exponent(n, p):
     exponent = 0
-    while True:
-        if pow(p,exponent) >= n:
-            return exponent - 1
+    while n >= p:
+        n //= p
         exponent += 1
+    return exponent
 
-n = int(input())
-p = int(input())
-
-print(getExponent(n,p))
+n, p = map(int, input().split())
+print(get_exponent(n, p))

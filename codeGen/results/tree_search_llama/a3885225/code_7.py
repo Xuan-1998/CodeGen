@@ -1,23 +1,37 @@
-def can_flip_to_palindrome():
-    N = int(input())
-    S = input()
+def can_convert_to_palindrome():
+    n = int(input())
+    s = input()
+    
+    zero_count = 0
+    one_count = 0
+    
+    for char in s:
+        if char == '0':
+            zero_count += 1
+        else:
+            one_count += 1
+        
+    left, right = 0, n - 1
+    
+    while left <= right:
+        if s[left] != s[right]:
+            if zero_count > one_count and s[left] == '1':
+                return "NO"
+            elif one_count > zero_count and s[right] == '1':
+                return "NO"
+            else:
+                break
+        left += 1
+        right -= 1
+        
+    if (zero_count - one_count) % 2 == 0 or (one_count - zero_count) % 2 == 0:
+        return "YES"
+    else:
+        return "NO"
 
-    # Reverse the string for easy comparison
-    T = S[::-1]
 
-    # Initialize a counter for mismatched pairs
-    mismatches = 0
-
-    # Iterate over the characters in the original and reversed strings
-    for i in range(N):
-        if S[i] != T[i]:
-            # If we find a mismatch, increment the counter
-            mismatches += 1
-        elif S[i] == '1' and T[i] == '0':
-            # If the pair is different but can be flipped to match, decrement the counter
-            mismatches -= 1
-
-    # Return YES if there are an even number of mismatches (can flip to palindrome), NO otherwise
-    return 'YES' if mismatches % 2 == 0 else 'NO'
-
-print(can_flip_to_palindrome())
+while True:
+    try:
+        print(can_convert_to_palindrome())
+    except:
+        break

@@ -1,14 +1,13 @@
-n = int(input())
-operations = input()
+import sys
 
-x = 0
-min_stones = float('inf')
+n = int(sys.stdin.readline())
+operations = list(sys.stdin.readline().strip())
 
-for op in operations:
-    if op == '+':
-        x += 1
-    else:
-        x -= 1
-    min_stones = min(min_stones, x)
+# Count additions (+) and removals (-)
+additions = operations.count('+')
+removals = operations.count('-')
+
+# The minimum possible number of stones is when additions equal removals
+min_stones = abs(additions - removals)
 
 print(min_stones)

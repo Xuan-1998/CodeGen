@@ -1,15 +1,10 @@
 def remove_duplicates(Str):
-    Str = Str.lower()  # Convert the string to lowercase for simplicity
-    unique_chars = {}
-    result = []
-    
-    for char in Str:
-        if char not in unique_chars:
-            unique_chars[char] = True
-            result.append(char)
-    
-    print(''.join(result))
+    seen = set()  # Initialize an empty set to store unique characters
+    result = ""  # Initialize an empty string to store the result
 
-if __name__ == "__main__":
-    Str = input()
-    remove_duplicates(Str)
+    for char in Str:
+        if char not in seen:  # Check if the character is already in the set
+            seen.add(char)  # Add the character to the set (removes duplicates)
+            result += char  # Append the unique character to the result string
+
+    return result

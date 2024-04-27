@@ -1,20 +1,15 @@
-import sys
+def count_untreated_crimes(events):
+    available_officers = 0
+    untreated_crimes = 0
+    for event in events:
+        if event == -1:  # recruitment
+            available_officers += 1
+        else:  # crime occurrence
+            available_officers -= 1
+            if available_officers < 0:
+                untreated_crimes += 1
+    return untreated_crimes
 
-n = int(sys.stdin.readline())
-officers_queue = []
-untreated_crimes = 0
-
-for _ in range(n):
-    event = int(sys.stdin.readline())
-    
-    if event == -1:  # Crime occurrence
-        while officers_queue and officers_queue[0] <= len(officers_queue):
-            officers_queue.pop(0)
-        
-        if not officers_queue:
-            untreated_crimes += 1
-    else:  # Officer recruitment
-        for _ in range(event):
-            officers_queue.append(len(officers_queue) + 1)
-
-print(untreated_crimes)
+n = int(input())
+events = list(map(int, input().split()))
+print(count_untreated_crimes(events))
