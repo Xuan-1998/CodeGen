@@ -1,0 +1,4 @@
+Think about using a disjoint set data structure to keep track of connected components in the graph and update the minimum and maximum number of recomputations accordingly.
+The state expression is the current vertex v, with dp[v] representing the minimum and maximum number of times the shortest path from v to t needs to be recomputed. The base case is when v equals t, where dp[t] = [0, 0].
+dp[v] = min(max(dp[u] + 1, max(dp[w] for w in parents[v])), min(dp[parents[v]])), where u is the parent of v, parents[v] contains all vertices that are connected to v, and t is the destination.
+Use a list to keep track of visited vertices and update the minimum and maximum number of recomputations accordingly.

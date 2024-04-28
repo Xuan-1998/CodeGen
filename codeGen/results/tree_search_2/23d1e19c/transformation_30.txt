@@ -1,0 +1,4 @@
+Think about using a disjoint set data structure to keep track of connected components in the graph and update the minimum and maximum number of recomputations accordingly.
+The state expression is the current vertex v, with dp[v] representing the minimum and maximum number of times the shortest path from v to t needs to be recomputed. The base case is when v equals t, where dp[t] = [0, 0].
+dp[v] = [min(min(dp[p] for p in path[v]), dp[path[v]][1]) + 1, max(max(dp[p] for p in path[v]), dp[path[v]][0])], where path[v] contains all vertices from s to v.
+A memoization approach can be used by maintaining a dictionary that maps each state to its computed value, then updating this dictionary as we explore different states.

@@ -1,0 +1,4 @@
+Consider using a 2D DP table to store the count of good sequences ending at each position, where the state expression would be dp[i][j] representing the number of good sequences ending at i with length j.
+dp[i-1][j-1] represents the count of good sequences ending at i-1 with length j-1, where a good sequence ends at i and has length j.
+dp[i][j] = dp[i-1][j-1] + (sum(1 for _ in range(2, min(i+1, n)+1) if i%k==0 and k<=j))
+Use a 2D DP table with separate arrays for rows and columns to store the count of good sequences.

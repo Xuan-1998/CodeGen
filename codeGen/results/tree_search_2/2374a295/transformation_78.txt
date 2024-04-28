@@ -1,0 +1,4 @@
+Determine whether the problem has an optimal substructure, such as finding the maximum or minimum value in a sequence, and decide if dynamic programming is the best approach.
+For each pair (i, j), consider whether i is a multiple of j. If not, then there are no good sequences ending with i and having j as its last multiple divisor. If so, then we can choose any good sequence ending with i/j and append j to the end, yielding s[i, j] = ∑_{k=1}^{i/j-1} s[k, j].
+The state transitions can be formulated by considering all multiples of j less than i, say 1 to i/j, and for each such multiple k, we have s[i, j] = ∑_{k=1}^{i/j-1} s[k, j].
+Create a table to store the values of dp[i][j] for all 1 ≤ i ≤ n and 1 ≤ j ≤ k.

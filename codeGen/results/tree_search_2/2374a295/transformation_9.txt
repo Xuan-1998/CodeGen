@@ -1,0 +1,4 @@
+Consider using a 2D DP table to store the count of good sequences ending at each position, where the state expression would be dp[i][j] representing the number of good sequences ending at i with length j.
+dp[i][k-j+1] represents the count of good sequences ending at i with length k-j+1, where a sequence is considered good if each number divides the next number in the sequence.
+A sequence is considered good if each number divides the next number in the sequence. Use this property to update dp[i][j] based on dp[i-1][k-j] and whether i is divisible by some previous number.
+dp[i][j] = sum(dp[i-p][k-j-1] for p in range(2, min(i, k-j)))

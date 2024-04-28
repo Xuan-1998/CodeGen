@@ -1,0 +1,4 @@
+Determine whether the problem has an optimal substructure, such as finding the maximum or minimum value in a sequence, and decide if dynamic programming is the best approach.
+For each pair (i, j), consider whether i is a multiple of j. If not, then there are no good sequences ending with i and having j as its last multiple divisor. If so, then we can choose any good sequence ending with i/j and append j to the end, yielding s[i, j] = ∑_{k=1}^{i/j-1} s[k, j].
+Consider the dynamic programming state as dp[i], where it represents the number of good sequences ending with i. The transition relation can be formulated by considering all previous numbers in the sequence less than i, and for each such number k, we have s[i] = ∑_{k=1}^{i-1} s[k].
+Consider using a bottom-up dynamic programming approach where you iterate over the range [1, n] and maintain a running count of good sequences ending with each number.

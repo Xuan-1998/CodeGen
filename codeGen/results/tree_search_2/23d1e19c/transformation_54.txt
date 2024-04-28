@@ -1,0 +1,4 @@
+Explore the idea of using a priority queue to maintain the shortest distance from each vertex to t and update the minimum and maximum number of recomputations based on the path recomputation.
+State: dp[u][v] = 1 if there exists a directed edge from u to v, and 0 otherwise
+The state is dp[i][j]: the minimum and maximum number of recomputations needed when we are at vertex i and the shortest path to t has been recomputed j times. The state transitions are: if there exists an edge from i to k, then update dp[k][j+1] = min(dp[k][j+1], dp[i][j] + 1) and max(dp[k][j+1], dp[i][j] + 1). The initial value of dp[i][0] is infinity.
+Implement memoization using a dictionary to store the results of subproblems and avoid redundant computations.
