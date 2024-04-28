@@ -1,4 +1,4 @@
-from oj_interactions import *
+# from oj_interactions import *
 from problems import *
 import json
 import os
@@ -30,7 +30,7 @@ def compare_outputs(py_file, json_file):
 
         # Run the Python file and capture the output
         process = subprocess.Popen(
-            ["python", py_file],
+            ["python3", py_file],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -186,7 +186,7 @@ def save_results_to_csv(
 def compare_with_baseline(
     method: str = "tree_search_llama",
     baseline: str = "zero_shot",
-    root_dir: str = "results",
+    root_dir: str = "/Users/jiangxuan/Desktop/12_codeGen/CodeGen/codeGen/results",
     model: str = "subprocess",  # "online" or "local" or 'subprocess'
 ):
     highest_accuracy = []
