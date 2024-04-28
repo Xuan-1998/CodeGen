@@ -1,4 +1,5 @@
 from oj_interactions import *
+from problems import *
 import json
 import os
 import pandas as pd
@@ -73,7 +74,9 @@ def get_acc_from_oj(py_file, json_file, method="online"):
         expected_outputs.append(result["expected_output"])
         actual_outputs.append(output)
 
-    average_accuracy = sum("Accepted" in item for item in accuracy_rates) / len(accuracy_rates)
+    average_accuracy = sum("Accepted" in item for item in accuracy_rates) / len(
+        accuracy_rates
+    )
     return average_accuracy, expected_outputs, actual_outputs, accuracy_rates
 
 
@@ -139,6 +142,118 @@ def run_generated_code(
             )
 
 
+def save_results_to_csv(
+    py_folder: str,
+    model: str = "subprocess",  # "online" or "local" or 'subprocess'
+):
+    py_files = [file for file in os.listdir(py_folder) if file.endswith(".py")]
+
+    average_accuracies = []
+    all_expected_outputs = []
+    all_actual_outputs = []
+    all_accuracy_rates = []
+
+    json_file = os.path.join(py_folder, "test.json")
+    for py_file in py_files:
+        if model == "subprocess":
+            accuracy, expected_outputs, actual_outputs, accuracy_rates = (
+                compare_outputs(os.path.join(py_folder, py_file), json_file)
+            )
+        else:
+            accuracy, expected_outputs, actual_outputs, accuracy_rates = (
+                get_acc_from_oj(
+                    os.path.join(py_folder, py_file), json_file, method=model
+                )
+            )
+        average_accuracies.append(accuracy)
+        all_expected_outputs.append(expected_outputs)
+        all_actual_outputs.append(actual_outputs)
+        all_accuracy_rates.append(accuracy_rates)
+
+    df = pd.DataFrame(
+        {
+            "File": py_files,
+            "Average Accuracy": average_accuracies,
+            "Expected Output": all_expected_outputs,
+            "Actual Output": all_actual_outputs,
+            "Accuracy Rate": all_accuracy_rates,
+        }
+    )
+    df.to_csv(f"{py_folder}/results.csv", index=False)
+    return average_accuracies
+
+
+def compare_with_baseline(
+    method: str = "tree_search_llama",
+    baseline: str = "zero_shot",
+    root_dir: str = "results",
+    model: str = "subprocess",  # "online" or "local" or 'subprocess'
+):
+    highest_accuracy = []
+    baseline_high_accuracy = []
+
+    for prob in os.listdir(os.path.join(root_dir, method)):
+        if not os.path.isdir(os.path.join(root_dir, method, prob)):
+            continue
+
+        py_folder = os.path.join(root_dir, method, prob)
+        py_files = [file for file in os.listdir(py_folder) if file.endswith(".py")]
+        average_accuracies = save_results_to_csv(py_folder, model)
+
+        baseline_py_folder = os.path.join(root_dir, baseline, prob)
+        baseline_py_files = [
+            file for file in os.listdir(baseline_py_folder) if file.endswith(".py")
+        ]
+        baseline_average_accuracies = save_results_to_csv(baseline_py_folder, model)
+
+        highest_accuracy.append(max(average_accuracies))
+        baseline_high_accuracy.append(max(baseline_average_accuracies))
+
+    if highest_accuracy:
+        print(
+            f"{method}: Average Accuracy = {sum(highest_accuracy)}/{len(highest_accuracy)} = {sum(highest_accuracy)/len(highest_accuracy)}"
+        )
+    if baseline_high_accuracy:
+        print(
+            f"{baseline}: Average Accuracy = {sum(baseline_high_accuracy)}/{len(baseline_high_accuracy)} = {sum(baseline_high_accuracy)/len(baseline_high_accuracy)}"
+        )
+
+
+def analyze_csv_with_difficulty(
+    method: str = "tree_search_llama",
+    baseline: str = "zero_shot",
+    root_dir: str = "results",
+):
+    for prob in os.listdir(os.path.join(root_dir, method)):
+        if not os.path.isdir(os.path.join(root_dir, method, prob)):
+            continue
+
+        py_folder = os.path.join(root_dir, method, prob)
+        csv_file = os.path.join(py_folder, "results.csv")
+        df = pd.read_csv(csv_file)
+        highest_accuracy = df["Average Accuracy"].max()
+        sample_budget = df["Average Accuracy"].idxmax()
+
+        baseline_py_folder = os.path.join(root_dir, baseline, prob)
+        baseline_csv_file = os.path.join(baseline_py_folder, "results.csv")
+        baseline_df = pd.read_csv(baseline_csv_file)
+        baseline_high_accuracy = baseline_df["Average Accuracy"].max()
+
+        prob_file = os.path.join(py_folder, "prob.json")
+        with open(prob_file) as f:
+            prob_str = f.read()
+            import codecs
+            unescaped_str = codecs.decode(prob_str, 'unicode_escape')
+
+        prob_json = Problem.from_json(unescaped_str[1:-1])
+
+        print(
+            f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy}"
+        )
+
+
 if __name__ == "__main__":
     # run_generated_code(model='online')
-    run_generated_code()
+    # run_generated_code()
+    compare_with_baseline()
+    analyze_csv_with_difficulty()

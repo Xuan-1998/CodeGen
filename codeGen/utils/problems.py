@@ -1,5 +1,5 @@
 import logging
-from .oj_interactions import *
+from oj_interactions import *
 import json
 import hashlib
 
