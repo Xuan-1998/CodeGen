@@ -1,0 +1,4 @@
+Consider the fact that the maximum number of points that can be earned by deleting elements from the sequence is equivalent to finding the minimum number of non-deleted elements. A bottom-up approach with tabulation might be more suitable for this problem as we can iterate through the sequence and calculate the minimum number of non-deleted elements.
+The state expression is dp[i] = 1 + min(dp[j] for j in [i-2,i+2]) if ai == ak+1 or ai == ak-1, otherwise dp[i] = n. Base case: dp[0] = n, since the maximum number of points that can be earned by deleting elements from the sequence is equivalent to finding the minimum number of non-deleted elements.
+dp[i] = 1 + min(dp[max(0, i-2)], dp[min(n, i+2)]) if a[i] == a[k+1] or a[i] == a[k-1], otherwise dp[i] = n
+Use bottom-up dynamic programming with a 1D table to keep track of the minimum number of non-deleted elements at each position.

@@ -1,0 +1,4 @@
+Since we can delete elements at most once, there might be an overlap in subproblems when choosing whether to delete a certain element or not. This suggests that top-down approach with memoization could be used.
+The state is whether an element is included in the optimal solution or not, i.e., {True, False}; The base case is when there's only one element left.
+Consider two states: (included, left_sum) and (excluded, left_sum), where included means the current element is included in the optimal solution and excluded means it's not. The transition relationship can be formulated as dp[i][1] = max(dp[i-1][0], a[i-1] + dp[i-2][1]), and dp[i][1] = dp[i-1][1].
+Use dynamic programming with top-down approach and memoization to store the maximum number of points that can be earned by deleting elements from the subsequence ending at each position.
