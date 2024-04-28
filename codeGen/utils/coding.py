@@ -7,7 +7,7 @@ from tenacity import retry, stop_after_attempt, retry_if_result, retry_if_except
 RETRY_COUNT = 15
 
 CODING_SYSTEM = """
-You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block, which starts and ends with "```". Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
+You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
 You will now be provided with the problem statement:
 ===
 {statement}
@@ -51,7 +51,8 @@ def transformation_coder(statement: str, transformation: str, coder_mode: str) -
 
 
 CODING_ZEROSHOT = """
-How can we break down this problem and arrive at a solution? Let's think step by step. Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
+How can we break down this problem and arrive at a solution? Let's think step by step. 
+!!!IMPORTANT!!!: Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
 """
 
 
@@ -68,7 +69,7 @@ def zeroshot_coder(statement: str, coder_mode: str = 'gpt-4') -> tuple[str, str]
         code, response = parse_response(coder.create(message))
     elif coder_mode.startswith('llama'):
         coder = OllamaAPI(model=coder_mode)
-        code, response = string_to_list(parse_code_block(coder.chat(message))), ''
+        code, response = parse_code_block(coder.chat(message)), ''
     return code, response
 
 
