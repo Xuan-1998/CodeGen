@@ -232,7 +232,7 @@ def analyze_csv_with_difficulty(
         csv_file = os.path.join(py_folder, "results.csv")
         df = pd.read_csv(csv_file)
         highest_accuracy = df["Average Accuracy"].max()
-        sample_budget = df["Average Accuracy"].idxmax()
+        sample_budget = len(df["Average Accuracy"])
 
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
         baseline_csv_file = os.path.join(baseline_py_folder, "results.csv")
@@ -255,5 +255,5 @@ def analyze_csv_with_difficulty(
 if __name__ == "__main__":
     # run_generated_code(model='online')
     # run_generated_code()
-    compare_with_baseline()
-    analyze_csv_with_difficulty()
+    compare_with_baseline('tree_search_2', 'zero_shot')
+    analyze_csv_with_difficulty('tree_search_2')

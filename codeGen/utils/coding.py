@@ -51,7 +51,7 @@ def transformation_coder(statement: str, transformation: str, coder_mode: str) -
 
 
 CODING_ZEROSHOT = """
-How can we break down this problem and arrive at a solution? Let's think step by step. Please also implement the solution in Python.
+How can we break down this problem and arrive at a solution? Let's think step by step. Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
 """
 
 
@@ -204,8 +204,8 @@ def provide_algorithm_coder2(
 
 FOLLOW_UP_ALGORITHM = """
 I came up with an intuition on how to solve this problem. I think it's a problem about "{algorithm}".
-You will provide me with three possible choices for "{step}". Each choice will be parallel and independent, allowing me to choose the most suitable option later.
-You must return the choices in a single python list format, which should start with \"[\" and ends with \"]\". Use double quotes(\") to wrap each choice.
+You will provide me with three possible choices for "{step}". Each choice will be non-overlapping and independent, allowing me to choose the most suitable option later.
+You must return the choices in a single python list format, which should start with \"[\" and ends with \"]\". Use double quotes(\") to wrap each choice. Your response should only contain possible choices, do not include any additional information.
 YOU MUST wrap your code in a code block, which starts and ends with "```".
 ===BEGIN STEPS===
 {steps}

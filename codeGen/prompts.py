@@ -46,6 +46,13 @@ You should then create an extra function `batch_gen_inputs` that takes one argum
 
 }
 
+DYNAMIC_PROGRAMMING = [
+    "Identify overlapping subproblems and optimal substructure. Decide whether to use the top-down approach with memoization or the bottom-up approach with tabulation.",
+    "Define the state expression and base case.",
+    "Formulate state and transition relationships.",
+    "Implement tabulation or memoization."
+]
+
 TAG = [
         "Array",
         "String",

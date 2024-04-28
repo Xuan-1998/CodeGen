@@ -1,0 +1,4 @@
+Determine if 'A' or 'B' appears more frequently in the string, then use this information to decide whether the string contains both substrings.
+The state expression and base case are related by dp[i] being True if either 'AB' or 'BA' appears in s[:i], and False otherwise.
+The state is a pair of integers representing the number of occurrences of 'A' and 'B' respectively, and the transition relation is that this state increments by 1 for each new occurrence of 'A' or 'B', with a base case when the first component equals the second, indicating that both substrings have appeared.
+dp[i] = dp[i-1] or ((s[:i].count('A') == s[:i].count('B')+1) and ('A' in s[:i]) and not ('B' in s[:i-1])) or (((s[:i].count('A') - 1) == (s[:i].count('B')) and 'B' in s[:i] and not 'A' in s[:i-1]))

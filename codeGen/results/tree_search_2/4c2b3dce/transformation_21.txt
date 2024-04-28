@@ -1,0 +1,4 @@
+Split the string into two parts at a random position, check if one part is 'AB' and the other part is 'BA', then recursively split the remaining parts.
+dp[i][j] = 1 if there exists a pair of indices k, l such that i <= k < l <= j and s[k...k+2] is 'AB' and s[l-2...l] is 'BA'. Otherwise, dp[i][j] = 0.
+Consider the prefix/suffix of the string as a state. Define a transition relation based on whether the current position is the first 'A', the second 'B', or the end of one of the substrings.
+Dynamically build a suffix tree for the string s, then traverse the tree to find all occurrences of 'AB' and 'BA'.
