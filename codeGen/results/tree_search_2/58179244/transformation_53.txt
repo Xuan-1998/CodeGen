@@ -1,0 +1,4 @@
+The problem can be solved using a combination of both memoization and tabulation techniques, where the top-down approach is used to determine the optimal recoloring strategy, and the bottom-up approach is used to efficiently compute the minimum number of recolors.
+DP states: The state can be defined as a tuple (i, c) where i is the current lamp index and c is the color of the previous lamp.
+state = dp[i][prev_color], transition: dp[i][c] = min(dp[i-1][color]) + (1 if color != prev_color else 0) for c in ['R', 'G', 'B']
+You can use memoization to store the computed values and avoid redundant calculations by defining a dictionary dp where dp[(i, c)] = minimum number of recolors needed up to index i with the previous lamp having color c.

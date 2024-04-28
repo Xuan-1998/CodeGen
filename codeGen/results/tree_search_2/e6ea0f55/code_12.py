@@ -1,15 +1,14 @@
-def maxSumSubsequence(nums, k):
+def maxSumOfSubsequence(nums, k):
     n = len(nums)
-    dp = { (0, -1): 0 }
+    dp = [[0] * (k + 1) for _ in range(n)]
 
-    for i in range(n):
-        for j in range(max(0, i-k), min(i+k+1, n)):
-            if abs(i-j) <= k:
-                dp[(i, j)] = max(dp.get((i, j), 0), nums[i] + (dp.get((j,), 0) or 0))
+    dp[0][0] = nums[0]
+    for i in range(1, n):
+        for j in range(min(i, k) + 1):
+            if j == 0:
+                dp[i][j] = max(dp[i-1][j], nums[i])
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i-j-1][k-j-1] - nums[i-1]) + nums[i]
 
-    return max(dp.values())
+    return max(dp[-1])
 
-# Example usage
-nums = [10, -20, 30, -5, -3]
-k = 2
-print(maxSumSubsequence(nums, k))  # Output: 35

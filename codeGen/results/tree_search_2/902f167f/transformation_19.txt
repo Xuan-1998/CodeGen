@@ -1,0 +1,4 @@
+The problem has overlapping subproblems because the same subproblem may be encountered multiple times during the computation, and it would be efficient to store the results of these subproblems in a memoization table.
+Let the state expression be dp[i][j] representing the minimum number of integer-sided squares required to tile a rectangle of size i x j. The base case would be when i = 0 or j = 0, where the minimum number is always 0.
+Let dp[i][j] represent the minimum number of integer-sided squares required to tile a rectangle of size i x j, where i > 0 and j > 0. Then, for each possible square side length k, if it's possible to place a square of side length k in the top-left corner of the remaining rectangle (i.e., i >= k and j >= k), then dp[i][j] = min(dp[i-k][j-k]) + 1; otherwise, dp[i][j] is unchanged.
+Create a separate function for the recursive part, where you compute the minimum number of squares needed for each subproblem.

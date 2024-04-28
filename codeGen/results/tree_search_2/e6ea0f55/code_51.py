@@ -1,16 +1,22 @@
-def maxSumSubsequence(nums, k):
-    n = len(nums)
-    memo = {}
+def maxSum(nums, k):
+    dp = {}
+    def dfs(i):
+        if i in dp:
+            return dp[i]
+        if i >= len(nums) or i - k < 0:
+            return (0, -1)
+        res = (nums[i], i)
+        for j in range(max(0, i-k), i+1):
+            s, last = dfs(j)
+            if last - j + k <= i - j:
+                s += nums[i]
+                res = max(res, (s, i))
+        dp[i] = res
+        return res
 
-    def dp(i, sum):
-        if (i, sum) in memo:
-            return memo[(i, sum)]
-        
-        if i > n or sum < 0:
-            return float('-inf')
+    _, ans = dfs(0)
+    return ans
 
-        max_sum = max(dp(i-1, nums[i] + sum), dp(max(0, i-k), sum))
-        memo[(i, sum)] = max_sum
-        return max_sum
-
-    return dp(n-1, 0)
+k = int(input())
+nums = list(map(int, input().split()))
+print(maxSum(nums, k))

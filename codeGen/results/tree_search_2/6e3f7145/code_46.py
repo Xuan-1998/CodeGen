@@ -1,27 +1,20 @@
-def longest_palindromic_substring(S):
-    n = len(S)
+def longest_palindromic_substring(s):
+    n = len(s)
     dp = [[False] * n for _ in range(n)]
-
-    # Initialize the diagonal elements to True (single-character palindromes)
-    for i in range(n):
-        dp[i][i] = True
-
+    
     max_length = 0
-    longest_palindrome = ""
+    start_index = 0
+    
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            if s[i] == s[j] and (j-i < 2 or dp[i+1][j-1]):
+                dp[i][j] = True
+                if j-i+1 > max_length:
+                    max_length = j-i+1
+                    start_index = i
+    
+    return s[start_index:start_index+max_length]
 
-    # Fill the dynamic programming table
-    for length in range(2, n + 1):
-        for i in range(n - length + 1):
-            j = i + length - 1
-            if S[i] == S[j]:  # Check if characters at indices i and j are equal
-                dp[i][j] = dp[i+1][j-1]  # Recursively check the substring without these two characters
-            else:
-                dp[i][j] = False
-
-            # Update the longest palindromic substring found so far
-            if dp[i][j]:
-                if length > max_length:
-                    max_length = length
-                    longest_palindrome = S[i:j+1]
-
-    return longest_palindrome
+if __name__ == "__main__":
+    s = input()
+    print(longest_palindromic_substring(s))

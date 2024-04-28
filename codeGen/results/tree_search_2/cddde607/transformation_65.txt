@@ -1,0 +1,4 @@
+Consider a 2D DP table where each cell dp[i][j] represents whether it's possible to reach cell (i, j) with exactly K coins. The base case would be when i == N-1 and j == N-1, in which case dp[N-1][N-1] = true if it's possible to collect exactly K coins from cells (0, 0) to (N-1, N-1).
+dp[i][j] is true if the current cell has K - arr[i][j] coins left to collect and either i == N-1 or j == N-1.
+dp[i][j] is true if the current cell has at least K - arr[i][j] coins left to collect and the minimum number of steps required to reach this cell from the top-left corner is dp[i-1][j] + dp[i][j-1].
+Tabulate the solution using a 2D array: Initialize a 2D array dp with size N x N, where dp[i][j] represents whether it's possible to reach cell (i, j) with exactly K coins. Fill in the table by considering all possible moves from each cell and update the DP values accordingly.

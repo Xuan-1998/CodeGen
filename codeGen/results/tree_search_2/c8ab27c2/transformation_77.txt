@@ -1,0 +1,4 @@
+Bottom-up approach with tabulation: You can also solve this problem using dynamic programming by filling up a 2D table where the entry at row i and column j represents the length of the shortest uncommon subsequence in S[i..] and T[j..].
+The state expression is dp[i][j] = 1 + (i > 0 and j > 0 and s[i-1] != t[j-1]) or max(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]), and the base case is all zeros.
+You can formulate state as: dp[i][j] = 1 + (i > 0 and j > 0 and s[i-1] != t[j-1]) or max(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]), where the base case is all zeros. Then, formulate transition as: for i in range(len(s)): for j in range(len(t)): if s[i] == t[j]: dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1]) else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+Use dynamic programming to fill up the table based on the state transition: if characters match, update the cell as the minimum of previous rows or columns; otherwise, update as the maximum of previous cells. The base case is all zeros.

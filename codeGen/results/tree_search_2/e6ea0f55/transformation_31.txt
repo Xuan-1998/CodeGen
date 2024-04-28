@@ -1,4 +1,4 @@
-The optimal solution can be found by using dynamic programming and tabulation to fill in a 2D table with the maximum sum of subsequences for each pair of consecutive elements and their difference.
-dp[i][j] represents the maximum sum of a subsequence ending at index i with the last element's difference from the previous one being j.
-Let dp[i][j] be the maximum sum of a subsequence ending at index i with the last element's difference from the previous one being j. The state transition relationship can be formulated as: dp[i][j] = max(dp[i-1][k] + nums[i], k in range(0, min(i, j+1))), where dp[-1][-1] is initialized to 0.
-Implement memoization by storing the intermediate results in a cache data structure.
+The top-down approach with memoization could be used to solve this problem by defining a function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index.
+Define the state expression: dp[i] = max_sum, where dp[i] represents the maximum sum of subsequences ending at index i.
+dp[i] = max_sum, dp[i][j] = max(dp[i-1][max(0,j-k)], nums[i] + dp[max(0,i-k)][min(k,j)]), where max_sum is the current maximum sum and k is the maximum difference allowed.
+Memoizing the maximum sum of subsequences ending at each index using a dictionary to store the computed values.

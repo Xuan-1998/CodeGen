@@ -1,4 +1,4 @@
-Memoization can be used to optimize the recursive function by storing previously computed values in a dictionary to avoid redundant calculations.
-The state is the maximum sum of the subsequence ending at each position, and the base case is when the array is empty or only contains one element.
-Define the state as a pair (i, sum) where i is the index of the current position in the array, and sum is the maximum sum of the subsequence ending at that position.
-Use dynamic programming to build up the solution from the base cases, where the state is the maximum sum of the subsequence ending at each position.
+The top-down approach with memoization could be used to solve this problem by defining a function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index.
+Define the state expression: dp[i] = {sum, last_index}, where dp[i] is a tuple containing the maximum sum and the last index of a subsequence ending at index i.
+dp[i] = {max(dp[j][0] + nums[i], dp[j][1]-j+k) for j in range(max(0, i-k), i+1)}
+Use both top-down and bottom-up approaches with dynamic programming, where you first fill up the dp array from the base case (k=0), then use memoization to optimize the computation of the maximum sum for each subsequence.

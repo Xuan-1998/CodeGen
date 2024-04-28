@@ -1,50 +1,16 @@
-def longest_palindrome(s):
-    def expand_around_center(left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return s[left + 1:right]
-
+def longest_palindromic_substring(s):
+    n = len(s)
+    dp = [[0] * n for _ in range(n)]
+    
     max_length = 0
-    max_palindrome = ""
-    memo = {}
-
-    def is_palindrome(start, end):
-        if (start, end) in memo:
-            return memo[(start, end)]
-        if start >= end:
-            return True
-
-        if s[start] != s[end]:
-            memo[(start, end)] = False
-            return False
-
-        memo[(start, end)] = is_palindrome(start + 1, end - 1)
-        return memo[(start, end)]
-
-    for i in range(len(s)):
-        # odd length palindrome
-        max_length_odd = 0
-        for j in range(i, len(s)):
-            if s[i] == s[j] and is_palindrome(i, j):
-                max_length_odd = j - i + 1
-                break
-
-        # even length palindrome
-        max_length_even = 0
-        for j in range(i + 1, len(s) + 1):
-            if is_palindrome(i, j - 1):
-                max_length_even = j - i
-                break
-
-        if max_length_odd > max_length:
-            max_length = max_length_odd
-            max_palindrome = expand_around_center(i, i + max_length_odd)
-        elif max_length_even > max_length:
-            max_length = max_length_even
-            max_palindrome = expand_around_center(i, i + max_length_even)
-
-    return max_palindrome
-
-s = input()
-print(longest_palindrome(s))
+    start_index = 0
+    
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1]):
+                dp[i][j] = 1
+                if j - i + 1 > max_length:
+                    max_length = j - i + 1
+                    start_index = i
+    
+    return s[start_index:start_index + max_length]

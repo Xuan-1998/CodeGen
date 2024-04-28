@@ -1,25 +1,23 @@
-def longest_palindrome(s):
+def longest_palindromic_substring(s):
     n = len(s)
     dp = [[False] * n for _ in range(n)]
     
-    # Base case: single characters are palindromes
+    max_length = 1
+    center = 0
+    
     for i in range(n):
         dp[i][i] = True
-    
-    # Extend to longer substrings
-    max_length = 1
-    result = s[0]
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            if s[i] == s[j]:
-                if j - i < 3:
-                    dp[i][j] = True
+        
+    for start in range(n-1, -1, -1):
+        for end in range(start, n):
+            if s[start] == s[end]:
+                if end-start < 2:
+                    dp[start][end] = True
+                    max_length = 1
+                    center = start
                 else:
-                    dp[i][j] = dp[i + 1][j - 1]
-                if dp[i][j]:
-                    max_length = max(max_length, j - i + 1)
-                    result = s[i:j+1]
-    return result
-
-s = input()
-print(longest_palindrome(s))
+                    dp[start][end] = dp[start+1][end-1]
+            else:
+                dp[start][end] = False
+    
+    return s[center-center//max_length: center + max_length]

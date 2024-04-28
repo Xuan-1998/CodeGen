@@ -1,12 +1,17 @@
 def maxSumSubsequence(nums, k):
     n = len(nums)
-    dp = [[-10**4] * (k + 1) for _ in range(n)]
+    dp = [0] * (n + 1)
+    
+    for i in range(1, n + 1):
+        if i <= k:
+            dp[i] = nums[i - 1]
+        else:
+            dp[i] = max(dp[i - 1], nums[i - 1] + dp[max(0, i - k)])
+    
+    return dp[n]
 
-    for i in range(1, n):
-        for j in range(min(i, k) + 1):
-            if i == 1:
-                dp[i][j] = max(dp[0][k], nums[i])
-            else:
-                dp[i][j] = max((dp[i-1][min(k, j)] or -10**4) + nums[i], j + 1)
+# Example usage
+nums = [10, 12, 7, 9, 2, 11, 5, 3]
+k = 2
 
-    return max(dp[-1])
+print(maxSumSubsequence(nums, k))

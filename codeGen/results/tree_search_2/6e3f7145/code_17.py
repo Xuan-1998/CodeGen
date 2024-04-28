@@ -1,32 +1,39 @@
-def is_palindrome(s):
-    n = len(s)
+def longest_palindromic_substring(s):
     memo = {}
 
     def helper(i, j):
         if (i, j) in memo:
             return memo[(i, j)]
-        if i >= j:
-            return True
+
+        if i == j:
+            return s[i]
+
         if s[i] != s[j]:
-            return False
-        memo[(i, j)] = helper(i+1, j-1)
-        return memo[(i, j)]
+            return ""
 
-    return helper(0, n-1)
+        length = j - i + 1
 
-def longest_palindromic_substring(s):
+        if length <= 3:
+            return s[i:j+1]
+
+        for k in range(i, j):
+            prefix = helper(i, k)
+            suffix = helper(k+1, j)
+
+            if len(prefix) == len(suffix) and prefix + suffix == (prefix + suffix)[::-1]:
+                return prefix + suffix
+
+        memo[(i, j)] = s[i:j+1]
+        return s[i:j+1]
+
     max_length = 0
-    result = ""
+    longest_substring = ""
+
     for i in range(len(s)):
-        for j in range(i+1, len(s)+1):
-            if is_palindrome(s[i:j]):
-                if j - i > max_length:
-                    max_length = j - i
-                    result = s[i:j]
-    return result
+        for j in range(i, len(s)):
+            substr = helper(i, j)
+            if len(substr) > max_length:
+                max_length = len(substr)
+                longest_substring = substr
 
-# Read input from stdin
-s = input()
-
-# Print the output to stdout
-print(longest_palindromic_substring(s))
+    return longest_substring

@@ -1,9 +1,17 @@
-def longest_palindrome(S):
-    n = len(S)
-    p = [0] * n
-    for i in range(1, n):
-        if S[i-1] == S[n-i]:
-            p[i] = 2 + (p[n-i-1] if i > 0 else 0)
-        else:
-            p[i] = max(p[i-1], 2) if i > 0 else 0
-    return S[:p.index(max(p))]
+def longest_palindrome(s):
+    n = len(s)
+    dp = [[False] * n for _ in range(n)]
+
+    max_len = 0
+    start_idx = 0
+
+    for i in range(n):
+        for j in range(i, -1, -1):
+            if s[i] == s[j]:
+                if j + 1 == i or not dp[j + 1][i - 1]:
+                    dp[j][i] = True
+                    if i - j > max_len:
+                        max_len = i - j
+                        start_idx = j
+
+    return s[start_idx:start_idx + max_len]

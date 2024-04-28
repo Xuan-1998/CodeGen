@@ -3,14 +3,18 @@ def maxSumSubsequence(nums, k):
     dp = [[0] * (k + 1) for _ in range(n)]
 
     for i in range(1, n):
-        for j in range(min(i, k) + 1):
-            if j == 0:
-                dp[i][j] = max(dp[i-1][j], nums[i])
+        for j in range(min(i, k), -1, -1):
+            if i - j - 1 >= 0:
+                dp[i][j] = max(dp[i-1][j-1], nums[i] + dp[i-j-1][k])
             else:
-                dp[i][j] = max(dp[i-1][j-1] + nums[i], dp[i-1][j])
+                dp[i][j] = nums[i]
 
-    return dp[-1][-1]
+    return max(dp[-1])
 
-k, n = map(int, input().split())
-nums = list(map(int, input().split()))
-print(maxSumSubsequence(nums, k))
+def main():
+    nums = [int(x) for x in input().split()]
+    k = int(input())
+    print(maxSumSubsequence(nums, k))
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,4 @@
+The problem has overlapping subproblems because the same subproblem may be encountered multiple times during the computation, and it would be efficient to store the results of these subproblems in a memoization table.
+Let the state expression be dp[i][j] representing the minimum number of integer-sided squares required to tile a rectangle of size i x j. The base case would be when i = 0 or j = 0, where the minimum number is always 0.
+Consider a rectangular tile with side lengths i and j. Let s be the maximum square side length that fits in this rectangle. Then, dp[i][j] can be computed as 1 plus the minimum number of squares required to tile the remaining sub-rectangles with side lengths (i-s) x (s), (s) x (j-s), and (i-s) x (j-s).
+Use a nested loop to fill up the dynamic programming table in bottom-up manner, where dp[i][j] is computed based on the values of dp[i-1][j], dp[i][j-1], and dp[i-1][j-1].

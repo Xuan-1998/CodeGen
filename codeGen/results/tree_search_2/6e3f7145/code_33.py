@@ -1,27 +1,20 @@
-def longest_palindrome(s):
-    n = len(s)
-    p = [0] * n  # Initialize the state expression array
-    max_length = 0
-    center_index = 0
+def longest_palindrome(S):
+    n = len(S)
+    dp = [[False] * n for _ in range(n)]
 
-    for i in range(n):  # Iterate through each character in the string
-        if i < n // 2:  # Check if we're at or before the midpoint
-            p[i] = min(p[2 * i - (i >= n // 2)], i + 1)  # Update p[i]
-        else:
-            p[n - i - 1] = min(p[2 * n - 2 * i - 1], i + 1)  # Update p[n-i-1]
+    max_len = 0
+    start = 0
 
-        while True:  # Expand around the center
-            if s[i - p[i]] != s[i + p[i]]:
-                break
-            p[i] += 1
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if S[i] == S[j]:
+                if j - i < 3:  # Single character or two characters are always palindromes
+                    dp[i][j] = True
+                elif not dp[i + 1][j - 1]:  # Check the substring in between
+                    dp[i][j] = True
 
-        if p[i] > max_length:
-            max_length = p[i]
-            center_index = i
+                if dp[i][j] and j - i + 1 > max_len:
+                    max_len = j - i + 1
+                    start = i
 
-    return s[center_index - max_length: center_index + max_length]
-
-# Test the function with a sample string
-s = "babad"
-print(longest_palindrome(s))  # Output: "bab"
-
+    return S[start:start + max_len]

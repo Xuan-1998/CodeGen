@@ -1,27 +1,27 @@
 def longest_palindromic_substring(S):
-    memo = {}
+    n = len(S)
+    dp = [False] * n
 
-    def is_palindrome(i, j):
-        if (i, j) in memo:
-            return memo[(i, j)]
+    for i in range(n):
+        if S[i] == S[i]:  # single-character palindrome
+            dp[i] = True
 
-        substring = S[i:j+1]
-        if substring == substring[::-1]:
-            return True
-        else:
-            return False
+    for i in range(n):
+        for k in range(1, (n - i) // 2 + 1):  # extend outward from the middle
+            if S[i:i+k] == S[i+k-1:i:-1]:  # check if substring is a palindrome
+                dp[i + k] = True
 
-    max_length = 0
-    longest_palindrome = ""
+    max_len = 0
+    max_palindrome = ""
 
-    for i in range(len(S)):
-        for j in range(i, len(S)):
-            if is_palindrome(i, j):
-                if j - i + 1 > max_length:
-                    max_length = j - i + 1
-                    longest_palindrome = S[i:j+1]
+    for i in range(n):
+        if dp[i]:
+            j = i - 1
+            while j >= 0 and dp[j]:
+                j -= 1
+            palindromic_substring = S[j + 1:i+1]
+            if len(palindromic_substring) > max_len:
+                max_len = len(palindromic_substring)
+                max_palindrome = palindromic_substring
 
-    return longest_palindrome
-
-S = input()
-print(longest_palindromic_substring(S))
+    return max_palindrome

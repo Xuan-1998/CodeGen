@@ -1,4 +1,4 @@
-The optimal solution can be found by using dynamic programming and tabulation to fill in a 2D table with the maximum sum of subsequences for each pair of consecutive elements and their difference.
-dp[i][j] represents the maximum sum of a subsequence with length i where the absolute difference between any two consecutive elements is not greater than j.
-State: dp[i][j] = max(sum(subsequence ending at i, with diff <= j)) for all 0 <= i < n and 0 <= j <= k
-Implement a bottom-up approach with nested loops for tabulation
+The top-down approach with memoization could be used to solve this problem by defining a function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index.
+Define the state expression: dp[i] = {sum, last_index}, where dp[i] is a tuple containing the maximum sum and the last index of a subsequence ending at index i.
+dp[i] = {max(dp[j][0] + nums[i], dp[j][1]-j+k) for j in range(max(0, i-k), i+1)}
+Use a bottom-up approach and implement dynamic programming with tabulation by initializing a 2D array dp of size (n+1) x (k+1) where n is the length of nums, setting dp[i][0] to nums[i-1], and then iteratively update dp[i][j] as max(dp[i-1][min(j-1,k)], nums[i-1]+dp[i-k-1][j]),

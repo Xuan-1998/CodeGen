@@ -1,28 +1,22 @@
 def longest_palindrome(s):
     n = len(s)
-    dp = [[False] * n for _ in range(n)]
-    
+    dp = [[0] * n for _ in range(n)]
+
+    for i in range(n):
+        dp[i][i] = 1  # single characters are palindromes
+
     max_length = 0
-    result = ""
-    
-    for i in range(n-1, -1, -1):
+    start = 0
+
+    for i in range(n):
         for j in range(i, n):
-            if s[i] == s[j]:
-                if j-i < 2:
-                    dp[i][j] = True
-                elif j-i > max_length:
-                    dp[i][j] = dp[i+1][j-1]
-                else:
-                    dp[i][j] = dp[i+1][j-1]
-                
-                if dp[i][j]:
-                    if j-i + 1 > max_length:
-                        max_length = j - i + 1
-                        result = s[i:j+1]
-    
-    return result
+            if s[i] == s[j]:  # check if the characters match
+                if j - i + 1 < 3:  # single or double characters are palindromes
+                    dp[i][j] = 1
+                elif dp[i+1][j-1]:  # check if the substring without these characters is a palindrome
+                    dp[i][j] = 1
+            if dp[i][j] and j - i + 1 > max_length:
+                max_length = j - i + 1
+                start = i
 
-# Receive input from stdin
-s = input()
-
-print(longest_palindrome(s))
+    return s[start:start+max_length]

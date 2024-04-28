@@ -1,0 +1,4 @@
+The optimal solution involves using both memoization and tabulation, by first filling up a memoized table and then performing a final tabulation step.
+Define the state as (i, j) representing the minimum sum of a falling path with non-zero shifts ending at cell (i, j). The base case is when i == n - 1 (n being the size of the grid), indicating the end of the falling path.
+Define state as dp[i][j] = min(sum(dp[k][j - 1]) for k in range(i)) + grid[i][j], where i is the current row index and j is the current column index.
+Use dynamic programming to fill up the dp table. Start from the last row and work backwards, updating each dp[i][j] value based on the minimum sums of falling paths ending at cells above it.

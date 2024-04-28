@@ -1,0 +1,4 @@
+Bottom-up approach with tabulation: You can also solve this problem using dynamic programming by filling up a 2D table where the entry at row i and column j represents the length of the shortest uncommon subsequence in S[i..] and T[j..].
+The state expression is dp[i][j] = i + (S[:i+1] not in T[:j+1]) or dp[i-1][j], where i is the current index of S and j is the current index of T, and the base case is False for all i.
+Let dp[i][j] be the length of the shortest uncommon subsequence in S[0..i] and T[0..j]. Then, dp[i][j] = 1 + dp[i-1][j-1] if S[i] is not in T[:j], or dp[i][j] = min(dp[i-1][j], dp[i][j-1]) otherwise.
+You can use a dictionary comprehension to precompute all possible subsequences in both strings and then find the minimum difference between them.

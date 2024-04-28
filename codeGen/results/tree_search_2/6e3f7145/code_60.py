@@ -1,24 +1,25 @@
-def longest_palindromic_substring():
-    s = input()  # Receive the input string from stdin
-
+def longest_palindrome(s):
     n = len(s)
-    dp = [[False] * n for _ in range(n)]
-
+    dp = [[0] * n for _ in range(n)]
+    
     max_length = 0
-    center = 0
-
+    start_index = 0
+    
     for i in range(n):
-        for j in range(i, n):
+        dp[i][i] = 1
+    
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            
             if s[i] == s[j]:
-                if j - i < 2:  # Single character or two adjacent characters
-                    dp[i][j] = True
-                    max_length = 1
-                    center = i
-                else:
-                    dp[i][j] = dp[i+1][j-1]
-            else:
-                dp[i][j] = False
-
-    longest_palindrome = s[center - max_length: center + max_length]
-
-    print(longest_palindrome)  # Print the answer to stdout
+                if length == 2:
+                    dp[i][j] = 1
+                elif dp[i + 1][j - 1]:
+                    dp[i][j] = 1
+                
+                if dp[i][j] and length > max_length:
+                    max_length = length
+                    start_index = i
+    
+    return s[start_index:start_index + max_length]

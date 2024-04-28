@@ -1,14 +1,13 @@
-def maxSumSubsequence(nums, k):
+def max_sum_subsequence(nums, k):
     n = len(nums)
-    dp = [[0] * (k + 1) for _ in range(n)]
-
-    # Initialize the base case: maximum sum of an empty subsequence is 0
-    dp[0][0] = 0
+    dp = {0: 0}
 
     for i in range(1, n):
-        for j in range(min(i, k), -1, -1):
-            # Transition relationship: max(dp[i-1][k] + nums[i], k in range(0, min(i, j+1)))
-            dp[i][j] = max(dp[i-1][min(j, k)] + nums[i], sum(nums[:i+1]))
+        dp[i] = max(dp.get(max(0, i-k), 0) + nums[i], dp[max(0, i-k)][min(k, i)])
 
-    return max(max(row) for row in dp)
+    return max(dp.values())
 
+if __name__ == "__main__":
+    nums = [int(x) for x in input().split()]
+    k = int(input())
+    print(max_sum_subsequence(nums, k))

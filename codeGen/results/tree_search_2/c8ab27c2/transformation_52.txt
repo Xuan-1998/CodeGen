@@ -1,0 +1,4 @@
+Top-down approach with memoization: You can start by calculating the lengths of common and uncommon subsequences for each pair of characters in S and T. Then, you can use memoization to store these values as you go along, so that you don't have to recalculate them later.
+dp[i][j] = min(1 + dp[i-1][j-1] if S[i-1] == T[j-1] else 0, dp[i-1][j], dp[i][j-1])
+dp[i][j] = 1 if S[i-1] != T[j-1] and min(dp[i-1][j-1], dp[i-1][k], dp[k][j]) for k in range(j)
+To implement bottom-up dynamic programming using tabulation, you can initialize a 2D array with zeros and fill it in row by row or column by column based on the recurrence relation.

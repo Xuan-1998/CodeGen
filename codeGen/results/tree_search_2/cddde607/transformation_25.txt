@@ -1,0 +1,4 @@
+Consider a 2D DP table where each cell dp[i][j] represents the number of ways to reach cell (i, j) with exactly K coins. The base case would be when i == N-1 and j == N-1, in which case dp[N-1][N-1] = count the number of ways to collect exactly K coins from cells (0, 0) to (N-1, N-1).
+state dp[i][j] is the total number of coins in cells (0, 0) to (i, j), base case dp[0][0] is 1 if arr[0][0] == K and 0 otherwise.
+dp[i][j] = 1 if arr[i][j] + dp[i-1][j-1] == k and dp[i-1][j] == 0 and dp[i][j-1] == 0, otherwise 0.
+Use a dictionary to store the intermediate results in memoization approach with dynamic programming.

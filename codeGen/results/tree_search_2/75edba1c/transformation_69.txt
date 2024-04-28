@@ -1,0 +1,4 @@
+To apply tabulation, we can create an array where each entry i represents the number of subarrays ending at index i where the maximum element is greater than K. We then fill this array by iterating over the input array and updating the entries accordingly.
+dp[i] = dp[i-1] + (1 if max(Arr[:i+1]) > K else 0)
+Let dp[i] be the number of subarrays ending at index i that satisfy the condition. Then, for each element Arr[i], we can either include it in a new subarray or not. If we don't include it, the maximum value remains the same as before, so we just copy from dp[i-1]. If we do include it, then the maximum value is at least Arr[i] and strictly greater than K if all previous elements were also greater than K.
+Create a memoization function that recursively computes the number of subarrays satisfying the condition, using previously computed values as needed.

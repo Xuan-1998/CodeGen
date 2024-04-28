@@ -1,0 +1,4 @@
+It's possible to use dynamic programming with tabulation by iterating over all possible values of n and m, and for each value, computing the minimum number of squares that tile the rectangle, and then storing this result in a 2D array.
+Let the state be dp[i][j], representing the minimum number of squares that tile a rectangle of size i x j.
+dp[i][j] represents the minimum number of squares that can cover an area of (i-1) x (j-1). For a given i and j, we need to find the minimum number of squares that can cover the area from 0 to i-1 in the horizontal direction and from 0 to j-1 in the vertical direction. The transition relationship is then dp[i][j] = min(dp[i/k][j/l] + 1) for k from 1 to sqrt(i) and l from 1 to sqrt(j).
+Use memoization in the form of a dictionary or hash map to store the results of subproblems as you solve them, and return the result for the given values of n and m.

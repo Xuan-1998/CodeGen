@@ -1,21 +1,31 @@
-def longest_palindrome(s):
-    n = len(s)
-    p = [0] * n
+from collections import defaultdict
 
-    for i in range(1, n):
-        if s[i] == s[i-1]:
-            p[i] = 2 + (if i > 0: p[i-1])
-        else:
-            p[i] = p[i-1] - 1
+def longest_palindromic_substring(S):
+    # Initialize the dictionary for memoization
+    dp = defaultdict(str)
 
-    max_len = 0
-    center_index = 0
-    for i in range(n):
-        if p[i] > max_len:
-            max_len = p[i]
-            center_index = i
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(S) and S[left] == S[right]:
+            dp[(left, right)] = S[left:right+1]
+            left -= 1
+            right += 1
 
-    return s[center_index - max_len: center_index + max_len]
+    for i in range(len(S)):
+        # Consider even-length palindromes
+        expand_around_center(i, i)
+        # Consider odd-length palindromes
+        expand_around_center(i, i + 1)
 
-s = input()
-print(longest_palindrome(s))
+    max_length = 0
+    longest_palindrome = ""
+    for (left, right), palindrome in dp.items():
+        if len(palindrome) > max_length:
+            max_length = len(palindrome)
+            longest_palindrome = palindrome
+
+    return longest_palindrome
+
+
+if __name__ == "__main__":
+    S = input().strip()
+    print(longest_palindromic_substring(S))

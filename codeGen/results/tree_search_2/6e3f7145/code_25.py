@@ -1,35 +1,25 @@
 def longest_palindrome(s):
-    dp = {}
-
-    def is_palindrome(i, j):
-        if (i, j) in dp:
-            return dp[(i, j)]
-
-        if i >= j:
-            return True
-
-        if s[i] == s[j]:
-            if i + 1 > j - 1 or is_palindrome(i + 1, j - 1):
-                dp[(i, j)] = True
-                return True
-        else:
-            dp[(i, j)] = False
-            return False
+    n = len(s)
+    memo = [[0] * n for _ in range(n)]
 
     max_len = 0
-    longest_pal = ""
+    center_idx = 0
 
-    for i in range(len(s)):
-        for j in range(i, len(s)):
-            if is_palindrome(i, j):
-                if j - i + 1 > max_len:
-                    max_len = j - i + 1
-                    longest_pal = s[i:j+1]
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            if s[i] == s[j]:
+                if j-i < 3: # single character or two characters that are the same
+                    memo[i][j] = 1
+                elif j-i == 3 and s[i] == s[j-1]: # three characters that form a palindrome
+                    memo[i][j] = 1
+                else:
+                    if i+1 <= j-1: # check for odd length palindromes
+                        memo[i][j] = memo[i+1][j-1] + 2
+                    max_len = max(max_len, memo[i][j])
+                    center_idx = (i+j) // 2
 
-    return longest_pal
+    return s[center_idx - max_len//2:center_idx + max_len//2]
 
-# Read input from stdin
+# Example usage:
 s = input()
-
-# Print the output to stdout
 print(longest_palindrome(s))

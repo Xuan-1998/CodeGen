@@ -1,4 +1,4 @@
-The problem can be broken down into smaller subproblems where the maximum sum of a non-empty subsequence is calculated for each possible difference between indices, up to k.
-Define the state as dp[i] which represents the maximum sum of a subsequence ending at index i, and the base case is when i = 0 or len(nums) - 1.
-dp[i] could represent the maximum sum of a subsequence ending at index i, considering only elements with indices within k distance from i.
-Use dynamic programming to fill up dp array in bottom-up manner.
+The problem can be solved using a two-dimensional DP table where the rows represent the current index in the array, and the columns represent the maximum sum of subsequences with the given constraint.
+dp[i][j] could represent the maximum sum of subsequences ending at index i with the last element being j indices apart from the previous one.
+Create dp[i][j] as the maximum sum of subsequences ending at index i with the last element being j indices apart from the previous one, considering all possible choices of the previous element.
+dp[i][j] = max(dp[i-1][min(j-1, k)+1] + nums[i], dp[i-1][j] + nums[i]) for i in range(1, len(nums)) for j in range(min(k+1, len(nums)-i))]

@@ -1,0 +1,4 @@
+The problem has overlapping subproblems because the same subproblem may be encountered multiple times during the computation, and it would be efficient to store the results of these subproblems in a memoization table.
+Let the state expression be dp[i][j] representing the minimum number of integer-sided squares required to tile a rectangle of size i x j. The base case would be when i = m and j = n, where the minimum number is the input itself.
+dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j. For dp[i][j], consider all possible squares that can be placed in the top-left 1x1 corner, and for each such square, compute min(dp[k][s] + dp[i - k][j - s]) where s is the side length of the square and k ranges from max(0, i - j) to min(i, j).
+Create a 2D table dp with dimensions n+1 by m+1 and initialize it with zeros. Then, iterate over the range from 0 to n and fill up the table based on the recurrence relation.

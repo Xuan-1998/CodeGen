@@ -1,4 +1,4 @@
-The optimal solution can be found by using dynamic programming and tabulation to fill in a 2D table with the maximum sum of subsequences for each pair of consecutive elements and their difference.
-dp[i][j] represents the maximum sum of a subsequence ending at index i with the last element's difference from the previous one being j.
-dp[i][j] should represent the maximum sum of subsequences for each pair of consecutive elements and their difference, where i is the current index and j is the difference between indices.
-Use a dictionary dp to store the maximum sum of subsequences for each pair of consecutive elements and their difference, with memoization.
+The top-down approach with memoization could be used to solve this problem by defining a function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index.
+Define the state expression: dp[i] = max_sum, where dp[i] represents the maximum sum of subsequences ending at index i.
+dp[i][j] = max(dp[i-1][j-k], nums[i] + dp[i-1][k]), where j is the current index, k is the maximum difference allowed, and dp[i][j] represents the maximum sum of subsequences ending at index i with a maximum difference of j.
+Define a recursive function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index. Then use memoization to store the results of subproblems and avoid redundant calculations.

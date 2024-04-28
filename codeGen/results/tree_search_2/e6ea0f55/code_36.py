@@ -1,5 +1,4 @@
 import sys
-from collections import defaultdict
 
 def maxSumSubsequence(nums, k):
     n = len(nums)
@@ -7,16 +6,15 @@ def maxSumSubsequence(nums, k):
 
     for i in range(n):
         for j in range(min(i + 1, k) + 1):
-            if i == 0:
-                dp[i][j] = nums[i]
-            elif j == 0:
-                dp[i][j] = max(dp[i - 1][j], nums[i])
+            if i < j:
+                dp[i][j] = 0
             else:
-                dp[i][j] = max(dp[i - 1][j], nums[i] + dp[i - 1][j - 1])
-
-    return dp[-1][-1]
+                dp[i][j] = max(dp[max(0, i - k)][j - 1], nums[i])
+    
+    return sum(dp[-1])
 
 if __name__ == "__main__":
+    input()
     nums = list(map(int, input().split()))
     k = int(input())
     print(maxSumSubsequence(nums, k))

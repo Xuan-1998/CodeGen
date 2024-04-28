@@ -1,30 +1,25 @@
-from collections import defaultdict
+import sys
 
-def maxSumSubsequence(nums, k):
-    memo = {}
-    dp = [0] * (k + 1)
+def max_sum_subsequence(nums, k):
+    n = len(nums)
+    dp = [[0] * (k + 1) for _ in range(n)]
     
     # Initialize the base cases
-    for i in range(1, len(nums)):
-        if i <= k:
-            dp[i] = nums[i]
-        else:
-            break
+    dp[0][0] = nums[0]
     
-    # Fill up the dynamic programming table
-    for i in range(k, -1, -1):
-        if i == 0:
-            for j in range(len(nums) - 1, -1, -1):
-                memo[(j, i)] = max(memo.get((j-1, i), dp[j-1]) + nums[j], nums[j])
-        else:
-            for j in range(max(0, i-k), len(nums)):
-                if (j, i) not in memo:
-                    memo[(j, i)] = max(memo.get((j-1, i-1), dp[j-1] - nums[j-1]) + nums[j], dp[j-1])
+    for i in range(1, n):
+        for j in range(min(i, k) + 1):
+            if j == 0:
+                dp[i][j] = max(dp[i-1][j], nums[i])
+            else:
+                # Consider including and excluding the current element
+                include = nums[i] + dp[i-1][j-1]
+                exclude = dp[i-1][j]
+                dp[i][j] = max(include, exclude)
     
-    # Return the maximum sum
-    return max(dp)
+    return max(dp[-1])
 
-# Test your solution
+# Example usage
 nums = list(map(int, input().split()))
 k = int(input())
-print(maxSumSubsequence(nums, k))
+print(max_sum_subsequence(nums, k))

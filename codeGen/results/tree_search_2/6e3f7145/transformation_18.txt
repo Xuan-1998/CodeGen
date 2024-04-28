@@ -1,4 +1,4 @@
-Think about a bottom-up dynamic programming approach where you build up the solution from smaller subproblems by considering each character's impact on the palindrome-ness of its surrounding characters
-Define the state expression as a 2D array dp where dp[i][j] represents whether the substring S[i...j] is palindromic.
-dp[i-1][j-1] == True if S[i-1] == S[j], dp[i-2][j-2] == True, (i, j) within the string's boundaries, and either i = 0 or j = len(S) - 1
-You can implement a bottom-up dynamic programming approach by initializing dp as a 2D array of boolean values with dimensions (len(S), len(S)), and then fill it up based on the recurrence relation: dp[i][j] = (S[i] == S[j]) and ((i == j + 1) or (dp[i - 1][j - 1])).
+Choosing a dynamic programming approach that involves building upon previously computed solutions for smaller subproblems.
+\
+Consider the current character in S as either part of the palindrome or not, depending on whether it's even or odd indexed.
+Use a 2D array to store the longest palindromic substrings for each substring ending at the current character

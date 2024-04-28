@@ -1,0 +1,4 @@
+Bottom-up approach with tabulation: You can also solve this problem using dynamic programming by filling up a 2D table where the entry at row i and column j represents the length of the shortest uncommon subsequence in S[i..] and T[j..].
+The state expression is dp[i][j] = min(dp[i-1][k]) for k in range(j+1), where i is the current index of S and j is the current index of T, and the base case is dp[i][0] = -1 for all i.
+State: dp[i][j] is 1 if S[:i] is not a subsequence of T[:j], otherwise it's the minimum length of the shortest uncommon subsequence. Transition: dp[i][j] = (S[i-1] != T[j-1]) ? dp[i-1][j-1] : min(dp[i-1][k]) for k in range(j+1).
+Use memoization by storing the results of subproblems in a dictionary as you solve them, so that you don't have to recompute the same values multiple times.

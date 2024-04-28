@@ -1,0 +1,4 @@
+The dynamic programming solution involves calculating the maximum sum for each subarray of length k, then for every other subarray that is a continuation of the previous one, we only need to recalculate the maximum sum considering the last element of the previous subarray and all elements in the current subarray. This means we can use memoization to store the results for subarrays of different lengths.
+State: dp[i] = max sum for arr[:i], k, considering the last element of previous subarray as a starting point.
+Let dp[i][j] be the maximum sum considering the subarray from index i to j (inclusive). The recurrence relation is: dp[i][j] = max(dp[i-1][j-1] + arr[j], dp[i-k][j-k] + dp[i-k-1][j-k])
+You can use a 2D array to store the dynamic programming state, where dp[i][j] represents the maximum sum for the subarray from index i to j.

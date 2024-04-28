@@ -1,21 +1,28 @@
 def longest_palindrome(s):
-    n = len(s)
-    dp = [[False] * n for _ in range(n)]
+    memo = {(i, i): True for i in range(len(s))}
+    
+    def expand_around_center(left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            if (left, right) not in memo:
+                memo[(left, right)] = True
+            left -= 1
+            right += 1
     
     max_length = 0
-    start_index = 0
+    max_palindrome = ""
     
-    for i in range(n - 1, -1, -1):
-        for j in range(i, n):
-            if s[i] == s[j] and (j - i < 3 or dp[i + 1][j - 1]):
-                dp[i][j] = True
-                if j - i + 1 > max_length:
-                    max_length = j - i + 1
-                    start_index = i
+    for i in range(len(s)):
+        for j in range(i, len(s)):
+            if s[i] == s[j]:
+                if (i, j) not in memo:
+                    expand_around_center(i, j)
+                else:
+                    length = j - i + 1
+                    if length > max_length:
+                        max_length = length
+                        max_palindrome = s[i:j+1]
     
-    return s[start_index:start_index + max_length]
+    return max_palindrome
 
-# Read input from standard input
 s = input()
-
 print(longest_palindrome(s))

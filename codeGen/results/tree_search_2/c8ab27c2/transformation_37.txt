@@ -1,0 +1,4 @@
+Optimal substructure: A solution to this problem is optimal because if you find a shorter uncommon subsequence, it will be a part of any longer uncommon subsequences. Therefore, the optimal subsequence will always be the shortest one found so far.
+State: dp[i][j] is 1 if S[:i] or T[:j] does not contain any of the previous characters in the other string. Otherwise, it's 1 plus the length of the longest common subsequence between S[:i-1] and T[:j-1].
+State: dp[i][j] represents whether the substring S[:i] is a subsequence in T[:j]. If true, then it's 0. Otherwise, it's 1 plus the minimum length of an uncommon subsequence in S[:i-1] or T[:j-1].
+Create a memoization dictionary to store the results of subproblems, and use it to avoid redundant computation.

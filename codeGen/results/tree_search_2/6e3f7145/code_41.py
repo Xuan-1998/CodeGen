@@ -1,21 +1,21 @@
-def longest_palindrome(s):
-    n = len(s)
-    p = [0] * n
-
-    for i in range(1, n):
-        if s[i] == s[i - 1]:
-            p[i] = p[i - 1] + 2
-        elif i > 1 and s[i] == s[i - 2]:
-            p[i] = p[i - 2] - 1
-
-    max_len = 0
-    for i in range(n):
-        if p[i] > max_len:
-            max_len = p[i]
-
-    return s[max_len // 2: max_len // 2 + max_len].lstrip()
-
-# Read input from standard input
-s = input().rstrip()
-
-print(longest_palindrome(s))
+def longest_palindromic_substring(S):
+    n = len(S)
+    table = [[0] * n for _ in range(n)]
+    
+    max_length = 0
+    center_index = 0
+    
+    for i in range(n - 1, -1, -1):
+        for j in range(i, n):
+            if S[i] == S[j]:
+                if i == j or j - i < 3:
+                    table[i][j] = True
+                elif table[i + 1][j - 1]:
+                    table[i][j] = True
+                
+                if table[i][j]:
+                    if j - i + 1 > max_length:
+                        max_length = j - i + 1
+                        center_index = i
+    
+    return S[center_index: center_index + max_length]

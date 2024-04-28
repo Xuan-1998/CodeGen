@@ -1,0 +1,4 @@
+
+Define the state expression as dp[i] = maximum partitioning for array indices 0 to i, where state is initially unknown and transitions are based on whether the sum of elements up to index i-1 is equal to the sum of elements from 0 to n-1. The base case would be when the array has only one element.
+dp[i] = max(0 if i == 0 else dp[i-1], i // 2 if i % 2 == 0 and sum(arr[:i//2+1]) == sum(arr[i//2+1:]))
+Utilize a top-down memoized approach by defining a recursive function that returns the maximum partitioning for array indices 0 to i, with base case when i equals 0, and store previously computed values in a dictionary for future lookups.

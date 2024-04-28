@@ -1,0 +1,4 @@
+The problem has overlapping subproblems because the same subproblem may be encountered multiple times during the computation, and it would be efficient to store the results of these subproblems in a memoization table.
+The state expression could be dp[i][j] representing the minimum number of integer-sided squares that can fit in an i x j rectangle with sides parallel to the original sides. The base case would be when i < 2 or j < 2, where the minimum number is either 1 (if the rectangle is too small) or the maximum possible value.
+dp[i][j] = min(dp[i-1][k] + dp[k][j-1]) for k in range(min(i, j))
+Implement memoization using a dictionary where the keys are tuples representing the state of the rectangle and the values are the minimum number of squares required to tile that rectangle.

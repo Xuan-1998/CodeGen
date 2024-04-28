@@ -1,18 +1,17 @@
 def max_sum_subsequence(nums, k):
     n = len(nums)
-    dp = [[0] * (k+1) for _ in range(n)]
+    dp = [[0] * (k + 1) for _ in range(n + 1)]
 
-    for i in range(n):
-        for j in range(min(i+1, k)+1):
-            if i == 0:
-                dp[i][j] = nums[i]
+    for i in range(1, n + 1):
+        for j in range(min(i, k) + 1):
+            if j == 0:
+                dp[i][j] = nums[i - 1]
             else:
-                max_sum = max(dp[i-1][max(0, j-1)] + nums[i], dp[i-1][j])
-                dp[i][j] = max_sum
+                dp[i][j] = max(dp[i - 1][j - 1] - nums[i - 1], dp[i - 1][j])
+    return max(max(row) for row in dp)
 
-    return max(dp[-1])
-
-# Example usage
-nums = [1, 3, -1, 2, -4]
-k = 2
-print(max_sum_subsequence(nums, k))  # Output: 5 (subsequence: [1, 3])
+# Test the function
+if __name__ == "__main__":
+    nums = [int(x) for x in input().split()]
+    k = int(input())
+    print(max_sum_subsequence(nums, k))

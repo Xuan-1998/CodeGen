@@ -1,27 +1,21 @@
-def longest_palindrome(s):
-    n = len(s)
-    memo = {}
-
-    def expand_around_center(left, right):
-        while left >= 0 and right < n and s[left] == s[right]:
-            if (left, right) not in memo:
-                memo[(left, right)] = True
-            left -= 1
-            right += 1
-
-    longest_palindrome_substring = ""
+def longest_palindrome(S):
+    n = len(S)
+    dp = [0] * (n * 2 - 1)
 
     for i in range(n):
-        # Odd length palindrome
-        expand_around_center(i, i)
-        # Even length palindrome
-        expand_around_center(i, i + 1)
+        for j in range(i, n + i):
+            mid = j // 2
+            if S[j % 2 == 0 and j > 0: S[j//2-1:j//2+1]] == [S[n-j%2:n] and len(S) < 2:
+                dp[j] = 2
+            else:
+                dp[j] = 1
 
-    for (left, right) in sorted(memo.keys()):
-        if len(s[left:right+1]) > len(longest_palindrome_substring):
-            longest_palindrome_substring = s[left:right+1]
+    max_len = 0
+    for i in range(n * 2 - 1):
+        if dp[i] > max_len:
+            max_len = dp[i]
 
-    return longest_palindrome_substring
+    return S[n-max_len:n+max_len].lstrip()
 
-s = input()
-print(longest_palindrome(s))
+S = input()
+print(longest_palindrome(S))

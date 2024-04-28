@@ -1,26 +1,26 @@
-def longest_palindrome(s):
+def longest_palindromic_substring(s):
     n = len(s)
     dp = [[0] * n for _ in range(n)]
 
-    # Initialize base case
     for i in range(n):
         dp[i][i] = 1
 
-    max_length = 0
-    max_palindrome = ""
-
-    # Fill up the table using bottom-up approach
-    for i in range(n - 1, -1, -1):
-        for j in range(i + 1, n):
+    for length in range(2, n+1):
+        for i in range(n-length):
+            j = i + length - 1
             if s[i] == s[j]:
-                dp[i][j] = (s[i] == s[j]) and dp[i + 1][j - 1]
-                if dp[i][j] and j - i + 1 > max_length:
-                    max_length = j - i + 1
-                    max_palindrome = s[i:j+1]
+                if length == 2:
+                    dp[i][j] = 1
+                else:
+                    dp[i][j] = 2 + dp[i+1][j-1]
+            else:
+                dp[i][j] = max(dp[i][j-1], dp[i+1][j])
 
-    return max_palindrome
+    max_length = 0
+    for i in range(n):
+        for j in range(i, n):
+            if dp[i][j] > max_length:
+                max_length = dp[i][j]
+                start_idx = i
 
-
-# Example usage
-s = input()
-print(longest_palindrome(s))
+    return s[start_idx:start_idx+max_length]

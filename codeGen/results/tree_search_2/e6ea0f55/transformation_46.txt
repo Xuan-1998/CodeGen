@@ -1,4 +1,4 @@
-The optimal solution can be found by using dynamic programming and tabulation to fill in a 2D table with the maximum sum of subsequences for each pair of consecutive elements and their difference.
-dp[i][j] represents the maximum sum of a subsequence with length i where the absolute difference between any two consecutive elements is not greater than j.
-Transition Relationship: dp[i][j] = max(dp[i-1][j-1] + nums[i], dp[i-1][k-j]) if i > 0; else dp[0][j] = nums[0]
-Use a hash map to store intermediate results for memoization, with keys as tuples (i, j) and values as the corresponding maximum sums.
+The top-down approach with memoization could be used to solve this problem by defining a function that takes the current index and the maximum sum as arguments, and returns the maximum sum of subsequences ending at the current index.
+Define the state expression: dp[i] = {sum, last_index}, where dp[i] is a tuple containing the maximum sum and the last index of a subsequence ending at index i.
+dp[i][0] = max(dp[j][0] + nums[i], dp[j][1] - j + k, 0) for j in range(max(0, i-k), i+1)
+Create a function memoize(f) that takes another function f and returns a new function g that memoizes the results of f.

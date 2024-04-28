@@ -1,28 +1,35 @@
 def longest_palindrome(s):
     n = len(s)
-    dp = [[False] * n for _ in range(n)]
+    dp = {}
+
+    def expand_around_center(start, end):
+        if (start, end) in dp:
+            return dp[(start, end)]
+
+        if start == end:
+            return s[start]
+
+        if s[start] != s[end]:
+            return ""
+
+        length = end - start
+        if length % 2 == 1:
+            middle = s[start + length // 2]
+            for i in range(length // 2):
+                if s[start + i] != middle or s[end - i] != middle:
+                    return s[start:(end - i) + 1]
+
+        dp[(start, end)] = s[start:end+1]
+        return s[start:end+1]
 
     max_length = 0
-    start = 0
+    longest_palindrome = ""
 
     for i in range(n):
-        for j in range(i, n):
-            if s[i] == s[j]:
-                if j - i < 2:
-                    dp[i][j] = True
-                elif j - i == 2:
-                    dp[i][j] = s[i] == s[j-1]
-                else:
-                    dp[i][j] = dp[i+1][j-1]
+        for j in range(i + 1, n + 1):
+            palin = expand_around_center(i, j - 1)
+            if len(palin) > max_length:
+                max_length = len(palin)
+                longest_palindrome = palin
 
-                if dp[i][j]:
-                    if j - i + 1 > max_length:
-                        max_length = j - i + 1
-                        start = i
-
-    return s[start:start+max_length]
-
-
-if __name__ == "__main__":
-    s = input()
-    print(longest_palindrome(s))
+    return longest_palindrome

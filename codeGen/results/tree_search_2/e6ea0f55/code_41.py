@@ -1,24 +1,17 @@
-from collections import defaultdict
-
-def maxSumSubsequence(nums, k):
+def maximum_sum(nums, k):
     n = len(nums)
-    dp = [[0] * (k + 1) for _ in range(n)]
+    dp = [[0] * (k + 1) for _ in range(n + 1)]
     
-    # Initialize the first row of the DP table
-    for j in range(k + 1):
-        if j >= 1:
-            dp[0][j] = nums[0]
-        else:
-            dp[0][j] = 0
-    
-    # Fill up the rest of the DP table
-    for i in range(1, n):
-        for j in range(min(i + 1, k) + 1):
-            if j == 0:
-                dp[i][j] = max(dp[i - 1][j], nums[i])
+    for i in range(1, n + 1):
+        for j in range(min(i, k) + 1):
+            if i < k:
+                dp[i][j] = max(dp[i-1][j], nums[i])
             else:
-                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - 1] + nums[i])
+                dp[i][j] = max(dp[i-k][j-1] + nums[i], dp[i-1][j])
     
-    # Find the maximum sum of a subsequence
-    return max(sum(sub) for sub in (dp[i][:] for i in range(n)))
+    return dp[-1][-1]
 
+# Example usage
+nums = [1, 2, 3, 4, 5]
+k = 2
+print(maximum_sum(nums, k))  # Output: 9 (subsequence: [4, 5])

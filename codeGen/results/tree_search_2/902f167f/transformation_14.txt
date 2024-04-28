@@ -1,0 +1,4 @@
+The problem can be broken down into smaller subproblems, such as finding the minimum number of squares that tile a rectangle of size n x m-1. The optimal substructure is that the solution to the larger problem can be constructed from the solutions of the smaller subproblems.
+The base case could be when i == 1 or j == 1, in which case the answer is simply the maximum of i and j.
+Let's define a function dp[i][j] that represents the minimum number of squares needed to tile a rectangle of size i x j. The state is dp[i][j], and the transition relationship could be dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + 1 if i > 1 and j > 1, otherwise it's simply the maximum of i and j.
+Use a 2D array to store the dynamic programming table and fill it in from top-down.

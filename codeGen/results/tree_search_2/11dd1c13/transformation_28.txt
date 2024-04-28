@@ -1,0 +1,4 @@
+Memoization can be used to solve this problem by recursively calling a function and storing the results of subproblems in a dictionary.
+dp[i][j] = min(min(grid[i][k] for k in range(len(grid[0]))), (i > 0) and min(dp[i-1][k] for k in range(len(grid[0]))))
+dp[i][j] = min(max(grid[i][k] for k in range(len(grid[0]))) for _ in range(i), dp[i-1][j], default=0)
+Define a table dp where each cell represents the minimum sum of a falling path with non-zero shifts up to that point, and use tabulation to fill the table.

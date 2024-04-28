@@ -1,0 +1,4 @@
+Think about using a bottom-up approach with tabulation, where you iterate over the array and maintain a running maximum length of consecutive ones. You can then modify this approach to find the longest subarray containing only 1's after removing one element from the input array.
+Define the state expression as dp[i]: the maximum length of consecutive ones up to index i. The base case is when i = 0, where dp[0] = 0 if the array starts with a 0 or dp[0] = n if it only contains 1's.
+Formulate state and transition relationships by defining dp[i] as the maximum length of consecutive ones up to index i minus one, considering whether the last seen 0 was before or after the current index.
+for i in range(1, n): dp[i] = max(dp[i-1], nums[i] == 1 and dp[i-2] + 1 if i >= 2 else nums[i] == 1)

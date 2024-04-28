@@ -1,0 +1,4 @@
+
+Define the state expression as dp[i] = maximum partitioning for array indices 0 to i, where state is initially unknown and transitions are based on whether the sum of elements up to index i-1 is equal to the sum of elements from i to n-1. The base case would be when the array has only one element.
+dp[i] = max({dp[j-1] for j in range(i)}) if sum(arr[:i]) == sum(arr[i:]), else dp[i-1];
+dp[i] = {max(dp[j-1]) for j in range(i)} initially, then update dp[i] by iterating through all previous partitions and taking the maximum

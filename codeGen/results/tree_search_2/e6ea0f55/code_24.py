@@ -1,20 +1,25 @@
+from collections import defaultdict
+
 def maxSum(nums, k):
     n = len(nums)
-    dp = [0] * n
+    dp = [[0] * (k + 1) for _ in range(n)]
+    
+    # Initialize the base case: when there are no elements or only one element left
+    for i in range(k + 1):
+        dp[0][i] = nums[0]
+        
+    for i in range(1, n):
+        for j in range(min(i + 1, k) + 1):
+            if j == 0:
+                dp[i][j] = max(dp[i-1][j], nums[i])
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + nums[i]) if i >= k else max(dp[i-1][j], nums[i])
 
-    # Base cases: Initialize the DP array for i = 0 and len(nums) - 1
-    dp[0] = nums[0]
-    dp[-1] = nums[-1]
+    return max(max(row) for row in dp)
 
-    for i in range(1, n - 1):
-        if i <= k:
-            dp[i] = max(dp[i-1], nums[i])
-        else:
-            dp[i] = max(dp[i-k], nums[i])
-
-    return max(dp)
-
-# Example usage
-nums = [5, 3, -1, 8, 10]
-k = 2
-print(maxSum(nums, k))  # Output: 15
+if __name__ == "__main__":
+    import sys
+    input = sys.stdin.readline
+    n, k = map(int, input().split())
+    nums = list(map(int, (input().split())))
+    print(maxSum(nums, k))

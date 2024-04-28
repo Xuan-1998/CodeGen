@@ -1,28 +1,21 @@
-from sys import stdin
-
-def solve(nums, k):
+def max_sum_subsequence(nums, k):
     n = len(nums)
-    dp = [[0 for _ in range(k+1)] for _ in range(n)]
+    dp = [[0] * (k + 1) for _ in range(n)]
 
-    for i in range(len(nums)):
-        for j in range(min(i+1, k)+1):
-            if j == 0:
-                dp[i][j] = nums[i]
+    for i in range(k + 1):
+        dp[0][i] = nums[0]
+
+    for i in range(1, n):
+        for diff in range(min(i + 1, k) + 1):
+            if diff == 0:
+                dp[i][diff] = max(dp[i - 1][diff], nums[i])
             else:
-                dp[i][j] = max(dp[i-1][j-1] + nums[i], dp[i-1][j])
+                dp[i][diff] = max(dp[i - 1][diff], dp[i - 1][diff - 1] - nums[i - 1] + nums[i])
 
-    max_sum = 0
-    for j in range(k+1):
-        max_sum = max(max_sum, dp[-1][j])
-    return max_sum
+    return max(dp[-1])
 
-def main():
-    num_lines = int(stdin.readline())
-    for _ in range(num_lines):
-        line = stdin.readline().strip()
-        if line:
-            nums, k = map(int, line.split())
-            print(solve(list(map(int, stdin.readline().split())), k))
+# Example usage
+nums = [10, 3, 2, 5, 7]
+k = 2
 
-if __name__ == "__main__":
-    main()
+print(max_sum_subsequence(nums, k))

@@ -1,28 +1,28 @@
 def longest_palindrome(s):
-    def expand_around_center(left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left -= 1
-            right += 1
-        return s[left + 1:right]
+    # Preprocess the string by inserting boundaries around each character,
+    # so that all characters are considered to be centered.
+    T = '#'.join('^{}$'.format(s))
+    n = len(T)
+    P = [0] * n
+    C, R = 0, 0
 
-    max_length = 0
-    max_palindrome = ""
-    for i in range(len(s)):
-        # Odd-length palindrome
-        palindrome = expand_around_center(i, i)
-        if len(palindrome) > max_length:
-            max_length = len(palindrome)
-            max_palindrome = palindrome
+    for i in range(1, n-1):
+        if R > C:
+            C = R
+            Q = 2*C-i
+            P[i] = min(P[Q], R-C)
+        else:
+            P[i] = 0
 
-        # Even-length palindrome
-        palindrome = expand_around_center(i, i + 1)
-        if len(palindrome) > max_length:
-            max_length = len(palindrome)
-            max_palindrome = palindrome
+        # Attempt to expand around the center.
+        while T[i + 1 + P[i]] == T[i - 1 - P[i]]:
+            P[i] += 1
 
-    return max_palindrome
+        if i + P[i] > R:
+            C, R = i, i + P[i]
 
-# Read input from standard input
+    maxLen, centerIndex = max((n, i) for i, n in enumerate(P))
+    return s[centerIndex - maxLen: centerIndex + maxLen].replace('#', '')
+
 s = input()
-
 print(longest_palindrome(s))

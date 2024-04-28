@@ -1,21 +1,26 @@
 def longest_palindrome(s):
     n = len(s)
-    dp = [[0] * n for _ in range(n)]
-
-    for i in range(n):
-        dp[i][i] = 1
+    dp = [[False] * n for _ in range(n)]
 
     max_len = 0
-    center_idx = 0
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            if s[i] == s[j]:
-                if i + 1 == j or dp[i + 1][j - 1]:
-                    dp[i][j] = 1
-                    if j - i > max_len:
-                        max_len = j - i
-                        center_idx = (i, j)
-    return s[center_idx[0]:center_idx[1]+1]
+    result = ""
 
-input_str = input()
-print(longest_palindrome(input_str))
+    for i in range(n):
+        for j in range(i, -1, -1):
+            if s[i] == s[j]:
+                if i - j < 2:  # Single character or two characters are always palindromes
+                    dp[i][j] = True
+                elif not dp[i-1][j+1]:  # Check the substring in between
+                    dp[i][j] = True
+                else:
+                    dp[i][j] = dp[i-1][j+1]
+                if dp[i][j]:
+                    if i - j + 1 > max_len:
+                        max_len = i - j + 1
+                        result = s[j:i+1]
+
+    return result
+
+# Example usage
+s = input()
+print(longest_palindrome(s))

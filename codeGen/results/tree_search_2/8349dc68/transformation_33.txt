@@ -1,0 +1,4 @@
+The problem requires calculating the maximum sum for each subarray of length k, then for every other subarray that is a continuation of the previous one, we only need to recalculate the maximum sum considering the last element of the previous subarray and all elements in the current subarray. This means we can use memoization to store the results for subarrays of different lengths.
+The state expression could be the maximum sum of subarrays starting from each position i, which is dp[i]. The base case would be when the current window size is 0, we assume it's an empty array and return 0.
+dp[i] = max(dp[i-k] + max(subarray of length k ending at index i), dp[i-1])
+Design a memoized function that takes an index i and returns the maximum sum of the subarray ending at that index, with the base case being when the current window size is 0.

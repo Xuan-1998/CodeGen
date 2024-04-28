@@ -1,0 +1,4 @@
+Optimal substructure: A solution to this problem is optimal because if you find a shorter uncommon subsequence, it will be a part of any longer uncommon subsequences. Therefore, the optimal subsequence will always be the shortest one found so far.
+State: dp[i][j] represents the length of the shortest uncommon subsequence in S[:i] and T[:j]. The state is true if there exists a common subsequence between S[:i] and T[:j], otherwise it's false.
+dp[i][j] = (S[i-1] != T[j-1]) and dp[i-1][j-1] if i > 0 and j > 0 else 1
+Use a dictionary to store the memoized values and update them recursively, considering the state transition rules.

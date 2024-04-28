@@ -1,25 +1,29 @@
 def longest_palindrome(s):
     n = len(s)
-    dp = [[False] * n for _ in range(n)]
-
-    max_length = 0
-    center_index = 0
+    dp = [[0] * n for _ in range(n)]
 
     for i in range(n):
-        dp[i][i] = True
+        dp[i][i] = 1
 
     for length in range(2, n + 1):
         for i in range(n - length + 1):
             j = i + length - 1
-
             if s[i] == s[j]:
-                if length == 2:
-                    dp[i][j] = True
-                else:
-                    dp[i][j] = dp[i + 1][j - 1]
+                dp[i][j] = 1 if (length == 2 or dp[i+1][j-1]) else 0
 
-                if dp[i][j]:
+    max_length = 0
+    max_palindrome = ""
+
+    for i in range(n):
+        for j in range(i, n):
+            if dp[i][j]:
+                length = j - i + 1
+                if length > max_length:
                     max_length = length
-                    center_index = i
+                    max_palindrome = s[i:j+1]
 
-    return s[center_index: center_index + max_length]
+    return max_palindrome
+
+# Test the function
+s = input()
+print(longest_palindrome(s))

@@ -1,4 +1,4 @@
-Memoization can be used to optimize the recursive function by storing previously computed values in a dictionary to avoid redundant calculations.
-The state is the maximum sum of the subsequence ending at each position, and the base case is when the array is empty or only contains one element.
-The transition relationship can be defined as dp(i, sum) = max(dp(j-1, sum-nums[j-1]) + nums[i] for j from i-k to i+1 if 0 <= j <= n).
-Implement a bottom-up approach using a one-dimensional array to store the state of maximum sum at each position
+A bottom-up approach with tabulation could be used to solve this problem by initializing a DP table with all zeros, then filling up the table using the given constraint.
+Let dp[i][j] represent the maximum sum of a subsequence ending at index i with at most j consecutive elements.
+dp[i][j] could represent the maximum sum of a subsequence ending at index i with at most j consecutive elements, and considering only subsequences that end at index i.
+Fill up the table by iterating over all indices i from 0 to n-1, where n is the length of the array, and for each index i, fill up the jth column (j ranging from 0 to k) using a sliding window approach. The maximum sum at each step would be the maximum sum of the subsequence ending at that step plus the current element's value.

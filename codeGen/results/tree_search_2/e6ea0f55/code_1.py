@@ -1,17 +1,20 @@
-def maxSumSubsequence(nums, k):
+def maxSumOfSubsequence(nums, k):
     n = len(nums)
-    dp = [[0] * (k + 1) for _ in range(n)]
+    dp = [[0]*(k+1) for _ in range(n)]
     
     for i in range(n):
-        for j in range(min(i, k) + 1):
-            if i == 0:
+        for j in range(k+1):
+            if i < j:
+                dp[i][j] = dp[0][j]
+            elif i == 0:
                 dp[i][j] = nums[i]
             else:
-                dp[i][j] = max(dp[i - 1][j], nums[i] + dp[max(0, i - j - 1)][j - 1] if j > 0 else nums[i])
-    
-    return max(max(row) for row in dp)
+                max_sum = max(dp[max(0, i-k)][max_sum-k] for max_sum in range(max(1, i-k+1)))
+                dp[i][j] = max_sum + nums[i]
+                
+    return max(dp[-1])
 
-import sys
-input = lambda: [int(i) for i in input().split()]
-nums, k = input()
-print(maxSumSubsequence(nums, k))
+# Example usage
+nums = list(map(int, input().split()))
+k = int(input())
+print(maxSumOfSubsequence(nums, k))

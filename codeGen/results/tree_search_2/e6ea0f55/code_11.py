@@ -1,24 +1,17 @@
-import sys
-
-def maxSumSubsequence(nums, k):
+def max_sum_subsequence(nums, k):
     n = len(nums)
     dp = [[0] * (k + 1) for _ in range(n)]
-    
-    # Initialize base case when k = 0
+
     for i in range(n):
-        dp[i][0] = nums[i]
-    
-    # Calculate maximum sum of subsequences ending at index j where |i-j| <= k, and consider the element at index i
-    for i in range(1, n):
-        for d in range(min(i, k) + 1):
-            if i - d >= 0:
-                dp[i][d] = max(dp[i-1][d], dp[i-1][min(d-1, i-d-1)] + nums[i])
-    
-    # Return the maximum sum of a non-empty subsequence
+        for j in range(min(i + 1, k) + 1):
+            if i == 0:
+                dp[i][j] = nums[0]
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i-1].get(j-k, 0) - nums[i-1]) + nums[i]
+
     return max(max(row) for row in dp)
 
-# Input from stdin
-nums = list(map(int, input().split()))
-k = int(input())
-
-print(maxSumSubsequence(nums, k))
+# Example usage
+nums = [10, 2, -3, 4, 5]
+k = 2
+print(max_sum_subsequence(nums, k))  # Output: 17

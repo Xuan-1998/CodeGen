@@ -1,24 +1,22 @@
-def longest_palindromic_substring(s):
-    n = len(s)
-    dp = [[False] * n for _ in range(n)]
-    max_length = 0
-    max_palindrome = ""
-
-    # Fill the diagonal as base case (single character is always a palindrome)
+def longest_palindromic_substring(S):
+    n = len(S)
+    dp = [[0] * n for _ in range(n)]
+    
+    # Initialize the diagonal (single-character palindromes)
     for i in range(n):
-        dp[i][i] = True
-
-    # Expand from the center outwards
-    for length in range(2, n + 1):
-        for i in range(n - length + 1):
-            j = i + length - 1
-            if s[i] == s[j]:
-                if length == 2:
-                    dp[i][j] = True
-                elif dp[i + 1][j - 1]:
-                    dp[i][j] = True
-                if dp[i][j] and length > max_length:
-                    max_length = length
-                    max_palindrome = s[i:j+1]
-
-    return max_palindrome
+        dp[i][i] = 1
+    
+    max_len = 0
+    start_idx = 0
+    
+    # Fill in the DP table
+    for i in range(n-1, -1, -1):
+        for j in range(i+1, n):
+            if S[i] == S[j]:
+                if i+1 == j or dp[i+1][j-1]:
+                    dp[i][j] = 1
+                    if j-i+1 > max_len:
+                        max_len = j-i+1
+                        start_idx = i
+    
+    return S[start_idx:start_idx+max_len]
