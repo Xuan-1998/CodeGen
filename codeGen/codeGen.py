@@ -6,20 +6,23 @@ from typing import Callable
 import traceback
 import json
 from tenacity import RetryError
+from prompts import DYNAMIC_PROGRAMMING
 
 main_logger = codeGen_logger.setup_logging()
 CHAT_MODE = "llama3"
 
 # tree search version 1 - genreral steps
 # tree search version llama - use llama instead of gpt4
-def tree_search_llama(prob: Problem)->list[str]:
-    algorithm = prob.tag.strip().split(', ')[0]
-    # lis, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
-    lis, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
-    main_logger.info(f"Algorithm: {algorithm}, General steps: {lis}")
+# tree search version 2 - with defined steps
+def tree_search_2(prob: Problem)->list[str]:
+    algorithm = "Dynamic Programming" #prob.tag.strip().split(', ')[0]
+    # general_steps, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
+    # general_steps, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
+    general_steps = DYNAMIC_PROGRAMMING
+    main_logger.info(f"Algorithm: {algorithm}, General steps: {general_steps}")
 
     steps_queue = []
-    steps_queue.append([[], lis])
+    steps_queue.append([[], general_steps])
     codes = []
     transformations = []
     # [step, previous step] -> new [step, previous step], add to queue
@@ -27,10 +30,11 @@ def tree_search_llama(prob: Problem)->list[str]:
     # iter until previous step is empty and then gen code
     # iter until queue is empty
     while steps_queue:
-        step, steps_to_generate = steps_queue.pop(0)
+        [step, steps_to_generate] = steps_queue.pop(0)
+        main_logger.info(f"POP0: Queue Length: {len(steps_queue)}, Current steps: {step}, Steps to generate: {steps_to_generate}")
         if len(steps_to_generate) == 0:
             transformation = "\n".join(step)
-
+            main_logger.info(f"Starting code generation: Transformation: {transformation}")
             try:
                 code, _ = coding.transformation_coder(prob.statement, transformation, CHAT_MODE)
             except RetryError as e:
@@ -50,12 +54,12 @@ def tree_search_llama(prob: Problem)->list[str]:
 
         main_logger.info(f"Step: {steps_to_generate[0]} Choices: {lis}")
 
-        steps_to_generate.pop(0)
-
         for choice in lis:
             current_step = deepcopy(step)
-            current_step.append(choice)
-            steps_queue.append([current_step, steps_to_generate])
+            current_step_to_generate = steps_to_generate[1:]
+            # current_step.append(choice)
+            current_step = current_step + [choice]
+            steps_queue.append([current_step, current_step_to_generate])
 
     return codes, transformations
 
@@ -123,7 +127,7 @@ def save_results(prob: Problem, folderName: str, codes: list[str], transformatio
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_llama,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_2,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -161,4 +165,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_llama, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_2, baseline_strategy=zero_shot)
