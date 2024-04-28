@@ -1,30 +1,33 @@
 import sys
 
-def dfs(graph, visited, node):
-    visited.add(node)
-    for neighbor in graph[node]:
-        if neighbor not in visited:
-            dfs(graph, visited, neighbor)
+def count_trees(relatives):
+    n = int(sys.stdin.readline())
+    rels = list(map(int, sys.stdin.readline().split()))
+    
+    # Create an adjacency list representation of the graph
+    graph = {}
+    for i in range(n):
+        graph[i] = []
+    for i in range(n-1):
+        a, b = rels[i], rels[i+1]
+        graph[a].append(b)
+        graph[b].append(a)
 
-n = int(sys.stdin.readline())
-graph = {}
-for i in range(n):
-    p = int(sys.stdin.readline()) - 1
-    if p not in graph:
-        graph[p] = []
-    while True:
-        parent = (i + 1) % n
-        if parent == 0:
-            break
-        graph[p].append(parent - 1)
-        p = parent
+    # Perform BFS to find connected components
+    trees = 0
+    visited = set()
+    for node in range(n):
+        if node not in visited:
+            queue = [node]
+            while queue:
+                current_node = queue.pop(0)
+                if current_node not in visited:
+                    visited.add(current_node)
+                    for neighbor in graph[current_node]:
+                        if neighbor not in visited:
+                            queue.append(neighbor)
+            trees += 1
 
-trees = 0
-visited = set()
-for node in graph:
-    if node not in visited:
-        dfs(graph, visited, node)
-        trees += 1
+    return trees
 
-print(trees)
-
+print(count_trees(sys.stdin.readline()))

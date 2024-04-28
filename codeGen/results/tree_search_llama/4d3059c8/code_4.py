@@ -1,12 +1,17 @@
 def pivotIndex(nums):
-    total_sum = sum(nums)
     left_sum = 0
+    right_sum = sum(nums)
+    
     for i in range(len(nums)):
-        if left_sum == (total_sum - left_sum):
+        right_sum -= nums[i]
+        
+        if left_sum == right_sum:
             return i
+        
         left_sum += nums[i]
+    
     return -1
 
-if __name__ == "__main__":
-    nums = list(map(int, input().split()))
-    print(pivotIndex(nums))
+# Read input from stdin
+nums = list(map(int, input().split()))
+print(pivotIndex(nums))

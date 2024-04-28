@@ -1,8 +1,10 @@
-A_set = set(map(int, input().split()))
-B_set = set(map(int, input().split()))
+# Read the input from stdin
+n = int(input())
+A = list(map(int, input().split()))
+m = int(input())
+B = list(map(int, input().split()))
 
-for a in A_set:
-    for b in B_set:
-        if (a + b) not in A_set and (a + b) not in B_set:
+for a in A:
+    for b in B:
+        if a + b not in A and a + b not in B:
             print(a, b)
-            break

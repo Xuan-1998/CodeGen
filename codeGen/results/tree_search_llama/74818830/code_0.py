@@ -1,11 +1,11 @@
 import math
 
-def count_odd_factors(N):
+def odd_divisors(N):
     count = 0
-    for i in range(1, int(math.sqrt(N)) + 1):
-        if i * i <= N:
+    for i in range(1, N + 1):
+        if math.isqrt(i) ** 2 == i:
             count += 1
     return count
 
 N = int(input())
-print(count_odd_factors(N))
+print(odd_divisors(N))

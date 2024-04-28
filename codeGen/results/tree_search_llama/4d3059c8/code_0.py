@@ -1,19 +1,18 @@
-def pivotIndex(nums):
-    n = len(nums)
-    total_sum = sum(nums)
-
+if __name__ == "__main__":
+    tree = AVLTree()
+    nums = [int(x) for x in sys.stdin.readline().split()]
+    tree.insert(nums[0])
+    pivot_idx = -1
     left_sum = 0
-    cumulative_sums = {0: -1}
+    right_sum = sum(nums)
 
     for i, num in enumerate(nums):
-        right_sum = total_sum - num - left_sum
         if left_sum == right_sum:
-            return i
-        left_sum += num
+            pivot_idx = i
+            break
+        elif left_sum < right_sum:
+            left_sum += num
+        else:
+            right_sum -= num
 
-    return -1
-
-
-if __name__ == "__main__":
-    nums = list(map(int, input().split()))
-    print(pivotIndex(nums))
+    print(pivot_idx)

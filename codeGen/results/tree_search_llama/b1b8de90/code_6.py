@@ -1,18 +1,20 @@
-def generate_palindrome(n):
-    palindrome = [i for i in range(1, n // 2 + 1)]
-    if n % 2 == 0:
-        return palindrome + list(reversed(palindrome))
-    else:
-        return palindrome + [n] + list(reversed(palindrome))
+import sys
 
-def recursive_sort(arr, x):
-    # Your original sorting function implementation goes here
-    pass
+def count_permutations(n):
+    def recursive_sorting_permutations(k):
+        if k == 0:
+            return 1
+        permutations = 0
+        for i in range(1, k+1):
+            permutations += recursive_sorting_permutations(k-1)
+        return permutations
 
-def main():
-    n = int(input())
-    permutation = generate_palindrome(n)
-    print(" ".join(map(str, permutation)))
+    total_permutations = 0
+    for x in range(1, n+1):
+        total_permutations += recursive_sorting_permutations(n-1)
 
-if __name__ == "__main__":
-    main()
+    return total_permutations
+
+
+n = int(sys.stdin.readline())
+print(count_permutations(n))

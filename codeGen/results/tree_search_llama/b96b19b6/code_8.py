@@ -1,13 +1,19 @@
-def remove_duplicates(Str):
-    unique_chars = set()
-    result_str = ""
-    
-    for char in Str:
-        if char not in unique_chars:
-            unique_chars.add(char)
-            result_str += char
-    
-    return result_str
+def remove_duplicates(input_string):
+    char_frequency = {}
 
-Str = input().strip()
-print(remove_duplicates(Str))
+    for char in input_string:
+        if char not in char_frequency:
+            char_frequency[char] = 0
+
+    result_string = ""
+
+    for char in input_string:
+        if char_frequency[char] == 0:
+            result_string += char
+            char_frequency[char] = 1
+
+    return result_string
+
+# Example usage
+input_string = input()
+print(remove_duplicates(input_string))

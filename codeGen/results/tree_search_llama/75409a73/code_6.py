@@ -1,10 +1,10 @@
-def calculate_factorial():
-    t = int(input())
-    for _ in range(t):
-        n = int(input())
-        factorial = 1
-        for i in range(1, n + 1):
-            factorial *= i
-        print(factorial)
+def calculate_factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * calculate_factorial(n - 1)
 
-calculate_factorial()
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    print(calculate_factorial(n))

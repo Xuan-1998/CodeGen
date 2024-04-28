@@ -1,15 +1,22 @@
 def can_be_palindrome():
-    N = int(input())
-    S = input()
+    n = int(input())
+    s = input()
+    
+    zeros = 0
+    ones = 0
+    
+    for char in s:
+        if char == '0':
+            zeros += 1
+        else:
+            ones += 1
+            
+    return (zeros == ones) or (zeros % 2 == 0)
 
-    left, right = 0, N-1
-    while left < right:
-        if S[left] != S[right]:
-            print('YES')
-            return
-        left += 1
-        right -= 1
-
-    print('NO')
-
-can_be_palindrome()
+while True:
+    n = int(input())
+    
+    if n == 0:
+        break
+        
+    print("YES" if can_be_palindrome() else "NO")

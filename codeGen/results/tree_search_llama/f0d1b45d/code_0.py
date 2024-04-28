@@ -1,24 +1,10 @@
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
-
-def insert(root, val):
-    if root is None:
-        return Node(val)
-    if val < root.val:
-        root.left = insert(root.left, val)
-    else:
-        root.right = insert(root.right, val)
-    return root
-
-def count_trees(p):
+def find_trees(p):
     n = int(input())
-    p = list(map(int, input().split()))
-    root = None
-    for i in range(n):
-        root = insert(root, p[i])
-    return 1 if root is None else 0
+    trees = {}
+    for i, p_i in enumerate(map(int, input().split()), 1):
+        tree_id = min(trees.get(p_i, set()), key=len)
+        trees[tree_id].add(i)
 
-print(count_trees(sys.stdin.read().strip().split('\n')[1:]))
+    return len(trees)
+
+print(find_trees(input()))

@@ -1,16 +1,24 @@
-def count_bear_substrings(s):
-    # Initialize counter variable
-    bear_count = 0
+import re
 
-    # Iterate over the input string with a sliding window of length 4 (since 'bear' has 4 characters)
-    for i in range(len(s) - 3):  # -3 because we need 4 characters to match 'bear'
-        # Check if the current substring matches 'bear'
-        if s[i:i+4] == 'bear':
-            bear_count += 1
+def count_bear_pairs(input_string):
+    # Find all occurrences of 'bear' in the input string using regular expression
+    bear_indices = {m.start(): m.end() for m in re.finditer('bear', input_string)}
 
-    return bear_count
+    # Initialize counter for overlapping pairs
+    overlapping_pairs = 0
 
+    # Iterate through the dictionary keys (start indices) to find overlapping pairs
+    for i, j in zip(bear_indices.keys(), bear_indices.keys()[1:]):
+        if j - i == 4:  # 'bear' has a length of 4 characters
+            overlapping_pairs += 1
 
-if __name__ == "__main__":
-    s = input()
-    print(count_bear_substrings(s))
+    return overlapping_pairs
+
+# Read the input string from stdin
+input_string = input().strip()
+
+# Call the function to count the number of overlapping pairs
+count = count_bear_pairs(input_string)
+
+# Print the result to stdout
+print(count)

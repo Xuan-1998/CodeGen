@@ -1,13 +1,14 @@
-def remove_duplicates(Str):
-    seen = set()
+def remove_duplicates(input_str):
+    seen_chars = set()
     result = []
-    
-    for char in Str:
-        if char not in seen:
-            seen.add(char)
+
+    for char in input_str:
+        if char not in seen_chars:
+            seen_chars.add(char)
             result.append(char)
-    
+
     return ''.join(result)
 
-Str = input()
-print(remove_duplicates(Str))
+input_str = input().strip()
+
+print(remove_duplicates(input_str))

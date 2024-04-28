@@ -1,9 +1,14 @@
-def min_pile_size(n, s):
-    x = 0  # initial pile size is 0
-    for i in range(n):
-        x += (-1) * int(s[i])  # apply the current operation
-    return abs(x)  # return the minimal possible pile size
+def min_stones(n, s):
+    min_stones = 1  # Initialize with a single stone
+    for op in s:
+        if op == '+':
+            min_stones += 1
+        else:  # op is '-'
+            min_stones -= 1
+            if min_stones < 0:
+                min_stones = 0  # Don't let the pile have negative stones
+    return min_stones
 
 n = int(input())
 s = input()
-print(min_pile_size(n, s))
+print(min_stones(n, s))

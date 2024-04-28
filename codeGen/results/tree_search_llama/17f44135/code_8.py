@@ -1,14 +1,20 @@
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
+def solve():
+    n, k = map(int, input().split())
+    difficulties = list(map(int, input().split()))
+    
+    left, right = 0, n - 1
+    solvable_count = 0
+    
+    while left <= right:
+        if difficulties[left] <= k and difficulties[right] <= k:
+            left += 1
+            right -= 1
+            solvable_count += 2
+        elif difficulties[left] <= k:
+            left += 1
+        else:
+            right -= 1
+    
+    print(solvable_count)
 
-left_solved, right_solved = 0, 0
-
-for i in range(n):
-    if a[i] <= k:
-        left_solved += 1
-    if i > 0 and a[n-i-1] <= k:
-        right_solved += 1
-
-max_solved = max(left_solved, right_solved)
-
-print(max_solved)
+solve()

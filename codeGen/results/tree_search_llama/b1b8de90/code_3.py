@@ -1,22 +1,26 @@
-def permute(n):
-    memo = {}
+import random
 
-    def recurse(x):
-        if x in memo:
-            return memo[x]
-        
-        # Base case: If x is 1, the permutation is already sorted
-        if x == 1:
-            return [i for i in range(1, n+1)]
+def recursive_sort(n):
+    # Generate a random permutation of integers from 1 to n
+    permutation = list(range(1, n+1))
+    random.shuffle(permutation)
 
-        # Recursive case: Sort the first x-1 elements and then swap the x-th and (x-1)-th elements
-        prev_perm = recurse(x-1)
-        permuted_perm = prev_perm[:x-2] + [prev_perm[x-2], prev_perm[x-1]] + prev_perm[x:]
-        memo[x] = permuted_perm
-        return permuted_perm
+    # Check if the permutation can be sorted by the recursive sorting function
+    for i in range(1, n):
+        if permutation[i-1] > permutation[i]:
+            return False
 
-    return ' '.join(map(str, recurse(n)))
+    return True
 
-# Example usage:
-n = int(input())  # Read the input from stdin
-print(permute(n))  # Print the resulting permutation to stdout
+def find_permutation(n):
+    while True:
+        permutation = list(range(1, n+1))
+        random.shuffle(permutation)
+
+        # Check if the permutation can be sorted by the recursive sorting function
+        if recursive_sort(len(permutation)):
+            return ' '.join(map(str, permutation))
+
+if __name__ == "__main__":
+    n = int(input())
+    print(find_permutation(n))

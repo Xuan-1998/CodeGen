@@ -1,22 +1,22 @@
-def is_circular(moves):
-    n = len(moves)
-    bad_char_table = [n] * 128  # ASCII characters + 1 (for non-alphabetic characters)
+def circular_sequence():
+    # Initialize an empty dictionary
+    positions = {}
 
-    for i in range(n - 1, -1, -1):
-        for j in range(i):
-            if moves[j] == moves[i]:
-                bad_char_table[ord(moves[i]) - ord('a')] = i
-                break
+    # Read the sequence of moves from standard input
+    sequence = input().strip()
 
-    rightmost_occurrence = n
-    for c in moves:
-        occurrence = bad_char_table[ord(c) - ord('a')]
-        if occurrence < rightmost_occurrence:
-            rightmost_occurrence = occurrence
-        else:
-            return "Circular"
+    # Iterate through the sequence, updating the position and storing it in the dictionary
+    for move in sequence:
+        if move == 'F':  # Forward movement
+            positions[positions.get('pos', 0) + 1] = 'F'
+        elif move == 'L' or move == 'R':
+            # For simplicity, assume left/right turns don't change the position
+            pass
 
-    return "Not Circular"
+    # Check if the initial position is present in the dictionary (assuming it's position 0)
+    if 0 in positions:
+        return "Circular"
+    else:
+        return "Not Circular"
 
-moves = input().strip()
-print(is_circular(moves))
+print(circular_sequence())

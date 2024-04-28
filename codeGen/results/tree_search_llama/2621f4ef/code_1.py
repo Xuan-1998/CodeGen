@@ -1,27 +1,35 @@
 import sys
 
-def find_min_area():
+def read_input():
     n = int(sys.stdin.readline())
-    
-    # Initialize variables for minimum area calculation
-    min_length, min_width = float('inf'), float('inf')
-    
-    # Read coordinates of all mines
-    mine_coords = []
+    mines = []
     for _ in range(n):
         x, y = map(int, sys.stdin.readline().split())
-        mine_coords.append((x, y))
-    
-    # Iterate through each possible city size (length and width)
-    for length in range(1, max(max(x, y) - min(min(x, y)) + 1 for x, y in mine_coords) + 1):
-        for width in range(1, max(max(y2-y1 for x1, y1 in mine_coords) + 1 for x2, y2 in mine_coords) + 1):
-            # Check if all mines are within the current city size
-            if all(min_x <= x <= max_x and min_y <= y <= max_y for (x, y), (min_x, min_y), (max_x, max_y) in zip(mine_coords, [(0, 0), (length-1, 0), (0, width-1), (length-1, width-1)])):
-                # Update minimum area if the current city size is smaller
-                if length * width < min_length * min_width:
-                    min_length, min_width = length, width
-    
-    # Print the minimum possible area of the city
-    print(min_length * min_width)
+        mines.append((x, y))
+    return mines
 
-find_min_area()
+def find_min_enclosing_rectangle(mines):
+    min_x = max_x = min_y = max_y = None
+    for x, y in mines:
+        if min_x is None or x < min_x:
+            min_x = x
+        if max_x is None or x > max_x:
+            max_x = x
+        if min_y is None or y < min_y:
+            min_y = y
+        if max_y is None or y > max_y:
+            max_y = y
+
+    width = max_x - min_x
+    height = max_y - min_y
+    return (min_x, min_y), (width, height)
+
+def calculate_area(min_enclosing_rectangle):
+    (x, y), (w, h) = min_enclosing_rectangle
+    return w * h
+
+if __name__ == "__main__":
+    mines = read_input()
+    min_enclosing_rectangle = find_min_enclosing_rectangle(mines)
+    area = calculate_area(min_enclosing_rectangle)
+    print(area)

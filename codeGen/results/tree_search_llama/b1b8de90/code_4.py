@@ -1,21 +1,8 @@
-def recursive_sort(arr, n):
-    if len(arr) <= 1:
-        return arr
+import sys
 
-    pivot = arr[n-1]
-    left = [x for x in arr[:n-2] if x < pivot]
-    middle = [x for x in arr[:n-2] if x == pivot]
-    right = [x for x in arr[:n-2] if x > pivot]
+n = int(sys.stdin.readline())
 
-    return recursive_sort(left + middle + right + [pivot], n-1)
+permutation = list(range(1, n+1))
+permutation.reverse()
 
-def main():
-    n = int(input())
-    permutation = list(range(1, n+1))
-    random.shuffle(permutation)
-    
-    sorted_permutation = recursive_sort(permutation, len(permutation))
-    print(' '.join(map(str, sorted_permutation)))
-
-if __name__ == "__main__":
-    main()
+print(' '.join(map(str, permutation)))

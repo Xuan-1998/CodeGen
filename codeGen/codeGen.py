@@ -139,7 +139,9 @@ def codeGen(
                     continue
                 prob_guid = prob.get_prob_guid()[:8]
                 main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
-
+                # skip if already generated.
+                if prob_guid in os.listdir(f'results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}'):
+                    continue
                 codes, transformations = codeGen_strategy(prob)
                 main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
                 main_logger.debug(f"Codes: {codes}")

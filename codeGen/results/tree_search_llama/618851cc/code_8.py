@@ -1,32 +1,17 @@
 import sys
 
-# Read input
 n = int(sys.stdin.readline())
-A = [int(x) for x in sys.stdin.readline().split()]
+A = list(map(int, sys.stdin.readline().split()))
 m = int(sys.stdin.readline())
-B = [int(x) for x in sys.stdin.readline().split()]
+B = list(map(int, sys.stdin.readline().split()))
 
-# Combine arrays and sort
-arr = A + B
-arr.sort()
+# Sort both arrays based on their absolute values
+A.sort(key=abs)
+B.sort(key=abs)
 
-# Initialize variables
-a, b = None, None
-
-# Iterate through the combined array
-for i in range(len(arr)):
-    if a is None:
-        # Check if current element belongs to set A
-        if arr[i] in A:
-            a = arr[i]
-        else:
-            # If not, start checking elements from B
-            b = arr[i - len(A) + 1]
-    elif b is not None:
-        # Add the current element (from B) to the noted-down value (a)
-        c = a + b
-        if c not in A and c not in B:
+# Iterate through the sorted lists to find the desired pair
+for a in A:
+    for b in B:
+        if abs(a + b) not in A and abs(a + b) not in B:
             print(f"{a} {b}")
             sys.exit(0)
-
-print("No solution found")

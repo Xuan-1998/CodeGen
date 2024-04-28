@@ -1,6 +1,7 @@
 def getExponent(n, p):
     x = 0
-    while n % (p ** (x + 1)) == 0:
+    while n % p == 0:
+        n //= p
         x += 1
     return x
 

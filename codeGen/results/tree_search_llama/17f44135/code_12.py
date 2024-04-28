@@ -1,21 +1,19 @@
 n, k = map(int, input().split())
-problems = list(map(int, input().split()))
-problems.sort()
+a = list(map(int, input().split()))
+
+left = 0
+right = n-1
 
 count = 0
-leftmost = rightmost = None
-
-for i in range(len(problems)):
-    if problems[i] <= k:
+while left <= right:
+    if a[left] <= k and a[right] <= k:
         count += 1
-        leftmost = min(leftmost, problems[i]) if leftmost is not None else problems[i]
-        rightmost = max(rightmost, problems[i])
-
-while leftmost and rightmost and (rightmost - leftmost) <= k:
-    count += 2
-    problems.pop(0)
-    problems.pop()
-    leftmost = min(problems) if problems else None
-    rightmost = max(problems) if problems else None
+        left += 1
+        right -= 1
+    elif a[left] <= k:
+        count += 1
+        left += 1
+    else:
+        right -= 1
 
 print(count)

@@ -1,19 +1,26 @@
-import sys
+from collections import deque
+
+def flip_to_palindrome(s):
+    n = len(s)
+    queue = deque([(s, False)])
+    visited = set()
+
+    while queue:
+        s, flipped = queue.popleft()
+        if s == s[::-1]:
+            return True
+        for i in range(n):
+            if not flipped and (i == 0 or s[i-1] != s[i]) and (i == n-1 or s[i+1] != s[i]):
+                new_s = s[:i] + '0' if s[i] == '1' else '1'
+                new_s += s[i+1:]
+                queue.append((new_s, True))
+        visited.add(s)
+    return False
 
 while True:
     try:
-        N = int(sys.stdin.readline().strip())
-        S = sys.stdin.readline().strip()
-        count_0, count_1 = 0, 0
-        for i in range(N):
-            if S[i] == '0':
-                count_0 += 1
-            else:
-                count_1 += 1
-
-        if abs(count_0 - count_1) <= 1:
-            print('YES')
-        else:
-            print('NO')
-    except:
+        n = int(input())
+        s = input().strip()
+        print('YES' if flip_to_palindrome(s) else 'NO')
+    except EOFError:
         break

@@ -1,12 +1,12 @@
-def generate_sequence(num1, num2):
-    sequence = []
-    for i in range(num1, num2 + 1):
-        sequence.append(i)
-    return sequence
+def generate_sequence():
+    # Read input from stdin
+    start, end = map(int, input().split())
 
-num1 = int(input("Enter the first integer: "))
-num2 = int(input("Enter the second integer: "))
+    # Use the range function to generate the sequence
+    sequence = list(range(start, end + 1))
 
-sequence = generate_sequence(num1, num2)
+    # Print the sequence to stdout
+    print(sequence)
 
-print(sequence)
+if __name__ == "__main__":
+    generate_sequence()

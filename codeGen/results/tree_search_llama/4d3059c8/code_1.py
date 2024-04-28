@@ -1,11 +1,13 @@
 def pivotIndex(nums):
+    n = len(nums)
     total_sum = sum(nums)
-    left_sum = 0
+    prefix_sum = 0
 
-    for i, num in enumerate(nums):
-        right_sum = total_sum - num - left_sum
-        if left_sum == right_sum:
+    # Calculate the prefix sum array
+    for i in range(n):
+        if prefix_sum == total_sum - prefix_sum:
             return i
-        left_sum += num
+        prefix_sum += nums[i]
 
     return -1
+

@@ -1,9 +1,10 @@
 def getExponent(n, p):
-    x = 0
-    while n // p ** x >= 1:
-        x += 1
-    return x - 1
+    exponent = 0
+    while n >= p ** (exponent + 1):
+        exponent += 1
+    return exponent - 1
 
-# Receive input from stdin and print the result to stdout.
-n, p = map(int, input().split())
+n = int(input())
+p = int(input())
+
 print(getExponent(n, p))

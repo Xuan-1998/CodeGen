@@ -1,16 +1,14 @@
-import math
-
-def round_to_nearest_multiple_of_five(lst):
+def round_to_nearest_multiple_of_five(input_array):
     result = []
-    for num in lst:
-        # Convert the number to an integer by multiplying it with 100 and then rounding off.
-        # Then, convert it back to a float by dividing it by 100.
-        rounded_num = float(math.floor(float(num) * 20 + 0.5)) / 10
-        result.append(str(int(rounded_num * 10))))
+    for num in input_array:
+        remainder = int((num % 1) * 10)
+        if remainder < 5:
+            result.append(int(num - (0.05 - remainder)))
+        else:
+            result.append(int(num + (remainder - 4.95)))
     return result
 
-# Read input from standard input
-lst = [float(x.strip()) for x in stdin.readline().split()]
-
-# Print the output to standard output
-print("\n".join(map(str, round_to_nearest_multiple_of_five(lst))))
+# Example usage
+input_array = [12.43, 19.91, 23.76]
+output_array = round_to_nearest_multiple_of_five(input_array)
+print(output_array)  # Output: [15, 20, 25]

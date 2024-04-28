@@ -1,20 +1,23 @@
 n, k = map(int, input().split())
 a = list(map(int, input().split()))
-left = 0
-right = n - 1
+left, right = 0, n - 1
 ans = 0
 
 while left <= right:
-    if a[left] <= k and (right == n - 1 or a[right] > k):
+    if a[left] > k and a[right] > k:
+        break
+    if a[left] <= k:
         ans += 1
         left += 1
-    elif a[right] <= k and (left == 0 or a[left - 1] > k):
+    elif a[right] <= k:
         ans += 1
         right -= 1
     else:
-        if a[left] <= k:
+        if a[left] < a[right]:
+            ans += 1
             left += 1
         else:
+            ans += 1
             right -= 1
 
 print(ans)

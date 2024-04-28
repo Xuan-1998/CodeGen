@@ -1,11 +1,7 @@
-def calculate_factorial():
-    t = int(input())  # read the number of test cases
-    for _ in range(t):
-        n = int(input())  # read the input integer
-        result = 1
-        for i in range(2, n+1):
-            result *= i
-        print(result)
+import math
 
-if __name__ == "__main__":
-    calculate_factorial()
+t = int(input())  # Read t from standard input
+
+for _ in range(t):
+    n = int(input())  # Read n from standard input
+    print(math.factorial(n))  # Calculate and print the factorial of n

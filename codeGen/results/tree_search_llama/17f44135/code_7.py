@@ -1,14 +1,17 @@
 n, k = map(int, input().split())
 a = list(map(int, input().split()))
 
-ans = 0
-l = r = 0
+left, right = 0, n-1
 
-while l <= r and r < n:
-    if a[l] <= k:
+ans = 0
+while left <= right:
+    if a[left] <= k:
         ans += 1
-        l += 1
+        left += 1
+    elif a[right] <= k:
+        ans += 1
+        right -= 1
     else:
-        r += 1
+        break
 
 print(ans)

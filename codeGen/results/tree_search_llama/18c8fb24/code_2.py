@@ -1,10 +1,7 @@
-import sys
-
-T = int(sys.stdin.readline())
+T = int(input())
 for _ in range(T):
-    N, x, k = map(int, sys.stdin.readline().split())
-    d = (k - 1) // k * k
-    if d == x or d + k == x:
+    N, x, k = map(int, input().split())
+    if (x % k) == 0 or ((N+1) % k) == 0:
         print("YES")
     else:
         print("NO")

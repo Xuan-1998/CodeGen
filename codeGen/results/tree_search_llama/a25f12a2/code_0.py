@@ -1,11 +1,19 @@
-import sys
+def count_creatures(heads, tails):
+    orthus_heads = 2
+    hydra_heads = 1
+    
+    # Calculate the maximum possible number of Orthus creatures
+    max_orthus = heads // orthus_heads
 
-def find_orthus_hydra():
-    heads, tails = map(int, input().split())
-    for hydra in range(min(heads, tails), max(heads, tails)):
-        orthus = heads - hydra
-        if abs(orthus - hydra) >= 2:
-            return [orthus, hydra]
-    return ["No solutions"]
+    # If there are not enough heads for all Orthus, we can't have any Hydra
+    if heads < max_orthus * orthus_heads:
+        return ["No solutions"]
 
-print(find_orthus_hydra())
+    # Calculate the remaining heads after accounting for all Orthus
+    remaining_heads = heads - max_orthus * orthus_heads
+
+    # Calculate the maximum possible number of Hydra creatures
+    max_hydra = remaining_heads // hydra_heads
+    
+    # Return the counts as a list
+    return [max_orthus, max_hydra]

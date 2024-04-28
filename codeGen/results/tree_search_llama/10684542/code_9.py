@@ -1,10 +1,10 @@
-def getExponent(n, p):
-    x = 0
-    while True:
-        if pow(p, x+1) > n:
-            return x
-        x += 1
+import math
 
-if __name__ == "__main__":
-    n, p = map(int, input().split())
-    print(getExponent(n, p))
+def getExponent(n, p):
+    return math.ceil(math.log10(n) / math.log10(p))
+
+n = int(input())
+p = int(input())
+
+exponent = getExponent(n, p)
+print(exponent)

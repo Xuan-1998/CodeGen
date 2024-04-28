@@ -1,25 +1,30 @@
 from collections import defaultdict
 
-n = int(input())
-parent_to_child = defaultdict(list)
-child_to_parent = {}
-visited = set()
+def forest_trees():
+    n = int(input())
+    ancestors = list(map(int, input().split()))
+    
+    graph = defaultdict(list)
+    for i in range(n):
+        for j in range(i+1, n):
+            if abs(ancestors[i] - ancestors[j]) == 2**j:
+                graph[ancestors[i]].append(ancestors[j])
+                graph[ancestors[j]].append(ancestors[i])
+    
+    visited = set()
+    trees = 0
+    
+    def dfs(vertex):
+        if vertex not in visited:
+            visited.add(vertex)
+            for neighbor in graph[vertex]:
+                dfs(neighbor)
+    
+    for vertex in graph:
+        if vertex not in visited:
+            dfs(vertex)
+            trees += 1
+    
+    print(trees)
 
-def dfs(node):
-    visited.add(node)
-    for child in parent_to_child[node]:
-        if child not in visited:
-            dfs(child)
-
-for _ in range(n):
-    i, p = map(int, input().split())
-    parent_to_child[p].append(i)
-    child_to_parent[i] = p
-
-trees = 0
-for i in range(1, n + 1):
-    if i not in visited:
-        trees += 1
-        dfs(i)
-
-print(trees)
+forest_trees()

@@ -1,21 +1,17 @@
-def count_bear_pairs(s):
-    n = len(s)
-    z_function = [0] * (n + 1)
+def count_bear_substrings():
+    s = input().strip()
+    bear_index_set = set()
 
-    for i in range(n):
-        if s[i] == 'b':
-            j = i + 1
-            while j <= n and s[j] == 'e' or s[j] == 'r':
-                j += 1
-            z_function[i + 1:j] = [j - i - 1] * (j - i)
-
-    count = 0
-    for i in range(n):
+    for i in range(len(s)):
         if s[i:i+4] == 'bear':
-            count += 1
+            bear_index_set.add(i)
 
-    return count
+    overlap_count = 0
+    for i in bear_index_set:
+        for j in bear_index_set:
+            if i <= j and (j - i) >= 4:  # Check if the pair overlaps
+                overlap_count += 1
 
-if __name__ == "__main__":
-    s = input()
-    print(count_bear_pairs(s))
+    return overlap_count
+
+print(count_bear_substrings())

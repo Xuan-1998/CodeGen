@@ -1,21 +1,10 @@
-from typing import Set
+n = int(input())
+A = list(map(int, input().split()))
+m = int(input())
+B = list(map(int, input().split()))
 
-def find_pair(a: Set[int], b: Set[int]) -> tuple:
-    for a_val in a:
-        for b_val in b:
-            if (a_val + b_val) not in a and (a_val + b_val) not in b:
-                return (a_val, b_val)
-    return None
-
-if __name__ == "__main__":
-    n = int(input())
-    A = set(map(int, input().split()))
-    m = int(input())
-    B = set(map(int, input().split()))
-
-    pair = find_pair(A, B)
-
-    if pair:
-        print(*pair)
-    else:
-        print("No such pair exists")
+for a in A:
+    for b in B:
+        if (a + b) not in A and (a + b) not in B:
+            print(a, b)
+            break

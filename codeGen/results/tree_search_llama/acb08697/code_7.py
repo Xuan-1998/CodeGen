@@ -1,10 +1,11 @@
-n = int(input())  # read the number of operations
+n = int(input())  # Read the number of operations from stdin
 
-pile = 0  # initialize the pile with 0 stones
-for op in input().strip():  # iterate over the sequence of operations
-    if op == "+":  # add one stone to the pile
-        pile += 1
-    else:  # remove one stone from the pile
-        pile -= 1
+stones = 0  # Initialize the number of stones to zero
 
-print(pile)  # print the minimum number of stones in the pile
+for op in input():  # Iterate over each operation
+    if op == "+":  # If we add a stone
+        stones += 1
+    else:  # If we remove a stone
+        stones -= 1
+
+print(stones)  # Print the minimum possible number of stones in the pile

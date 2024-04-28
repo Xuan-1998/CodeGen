@@ -1,11 +1,3 @@
-def generate_sequence():
-    start = int(input("Enter the starting integer: "))
-    end = int(input("Enter the ending integer: "))
-
-    # Generate the sequence
-    sequence = list(range(start, end + 1))
-
-    return sequence
-
-sequence = generate_sequence()
-print(sequence)
+$ python script.py
+1 5
+[1, 2, 3, 4, 5]

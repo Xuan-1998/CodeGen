@@ -1,16 +1,13 @@
-def generate_sequence(start_value, end_value):
-    sequence = []
-    current_value = start_value
-    
-    while current_value <= end_value:
-        sequence.append(current_value)
-        current_value += 1
-    
-    return sequence
+def generate_arithmetic_progression():
+    # Read input integers from stdin
+    first_integer = int(input())
+    last_integer = int(input())
 
-start_value = int(input())
-end_value = int(input())
+    # Generate the arithmetic progression using a list comprehension
+    sequence = [first_integer + i for i in range(last_integer - first_integer + 1)]
 
-sequence = generate_sequence(start_value, end_value)
+    # Print the generated sequence to stdout
+    print(sequence)
 
-print(*sequence, sep=", ")
+# Call the function to generate and print the sequence
+generate_arithmetic_progression()

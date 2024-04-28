@@ -1,57 +1,25 @@
-def build_failure_function(pattern):
-    n = len(pattern)
-    failure_function = [0] * n
+from collections import deque
 
-    j = 1
-    k = 0
+def is_circular_move_sequence(move_sequence):
+    move_map = {'F': 1, 'L': -1, 'R': 1}
+    position_queue = deque([(0, 0)])  # (position, direction)
+    last_position = None
 
-    while j < n:
-        if pattern[j] == pattern[k]:
-            failure_function[j] = k + 1
-            j += 1
-            k += 1
-        elif k > 0:
-            k = failure_function[k - 1]
-        else:
-            j += 1
+    for move in move_sequence:
+        if move == 'F':
+            new_position = position_queue[-1][0] + move_map[move]
+            position_queue.append((new_position, position_queue[-1][1]))
+        elif move == 'L' or move == 'R':
+            direction = -1 if move == 'L' else 1
+            position_queue.append((position_queue[-1][0], position_queue[-1][1] * direction))
 
-    return failure_function
+        last_position = new_position
 
+    return last_position == position_queue[0][0]
 
-def KMP_search(text, pattern):
-    n = len(text)
-    m = len(pattern)
+move_sequence = input()
 
-    failure_function = build_failure_function(pattern)
-
-    j = 0
-    k = 0
-
-    while j < n and k < m:
-        if text[j] == pattern[k]:
-            if k == m - 1:
-                return True
-            j += 1
-            k += 1
-        elif k > 0:
-            k = failure_function[k - 1]
-        else:
-            j += 1
-
-    return False
-
-
-def check_circular(seq):
-    n = len(seq)
-    if n == 0:
-        return "Not Circular"
-
-    pattern = seq[1:] + seq[0]  # circular pattern
-    if KMP_search(seq, pattern):
-        return "Circular"
-    else:
-        return "Not Circular"
-
-
-seq = input()
-print(check_circular(seq))
+if is_circular_move_sequence(move_sequence):
+    print("Circular")
+else:
+    print("Not Circular")

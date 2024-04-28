@@ -1,12 +1,13 @@
-def min_stones(n, operations):
-    stones = 1  # Initialize the pile with one stone
-    for op in operations:
-        if op == "+":
-            stones += 1
-        else:  # If the operation is "-",
-            stones = max(0, stones - 1)  # Remove a stone if possible
-    return stones
+import sys
 
 n = int(input())
-operations = input()
-print(min_stones(n, operations))
+s = input()
+
+dp = [0] * (n + 1)
+for i in range(1, n + 1):
+    if s[i - 1] == '+':
+        dp[i] = min(dp[i - 1], 1) + dp[i - 1]
+    else:
+        dp[i] = max(0, dp[i - 1] - 1)
+
+print(dp[-1])

@@ -1,12 +1,8 @@
-from collections import Counter
+A = set(map(int, input().split()))
+B = set(map(int, input().split()))
+sum_set = set(i + j for i in A for j in B)
 
-A = list(map(int, input().split()))
-B = list(map(int, input().split()))
-
-count_A = Counter(A)
-count_B = Counter(B)
-
-for a in sorted(count_A.keys()):
+for a in A:
     for b in B:
-        if (a + b) not in count_A and (a + b) not in count_B:
+        if (a + b) not in sum_set and a in A and b in B:
             print(a, b)

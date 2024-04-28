@@ -1,10 +1,12 @@
-def factorial(n):
-    if n == 0 or n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
+import sys
 
-t = int(input())  # read the number of test cases
+def calculate_factorial(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+t = int(sys.stdin.readline())
 for _ in range(t):
-    n = int(input())
-    print(factorial(n))
+    n = int(sys.stdin.readline())
+    print(calculate_factorial(n))
