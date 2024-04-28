@@ -1,0 +1,5 @@
+n = int(input())
+a = list(map(int, input().split()))
+dp = [0] * (max(a) + 1)
+ans = sum((v - dp[v-1]) for v in a if v != dp[v-1])
+print(ans)

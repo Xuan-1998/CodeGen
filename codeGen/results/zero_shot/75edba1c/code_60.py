@@ -1,0 +1,9 @@
+import sys
+n, k, arr = map(int, sys.stdin.readline().split())
+count = 0
+max_val = max(arr)
+for i in range(len(arr)):
+    for j in range(i+1, len(arr)+1):
+        if max(arr[i:j]) > k:
+            count += 1
+print(count)
