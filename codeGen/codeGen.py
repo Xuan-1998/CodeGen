@@ -134,34 +134,37 @@ def codeGen(
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
-    for source in os.listdir(data_path):
-        if os.path.isdir(os.path.join(data_path, source)) is False and source.endswith(".jsonl"):
-            probs_path = os.path.join(data_path, source)
-        else:
-            probs_path = os.path.join(data_path, source, "problems.jsonl")
-        with open(probs_path, 'r') as file:
-            for line in file:
-                prob = problems.Problem.from_jsonl(line)
-                if prob.url is None:
-                    continue
-                prob_guid = prob.get_prob_guid()[:8]
-                main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
-                # skip if already generated.
-                if prob_guid in os.listdir(f'results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}'):
-                    continue
-                codes, transformations = codeGen_strategy(prob)
-                main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
-                main_logger.debug(f"Codes: {codes}")
-                if len(codes) == 0:
-                    main_logger.error(f"Code generation failed for {prob.url}")
-                    continue
-                save_results(prob, codeGen_strategy.__name__, codes, transformations)
+    # for source in os.listdir(data_path):
+    #     if os.path.isdir(os.path.join(data_path, source)) is False and source.endswith(".jsonl"):
+    #         probs_path = os.path.join(data_path, source)
+    #     else:
+    probs_path = os.path.join(r"../data/easy-dp/medium-dp.jsonl")
+    with open(probs_path, 'r') as file:
+        for line in file:
+            prob = problems.Problem.from_jsonl(line)
+            if prob.url is None:
+                continue
+            prob_guid = prob.get_prob_guid()[:8]
+            main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
+            # skip if already generated.
+            prob_save_path = f'results/{codeGen_strategy.__name__}/{prob_guid}'
+            if os.path.exists(prob_save_path) and prob_guid in os.listdir(
+                f"results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}"
+            ):
+                continue
+            codes, transformations = codeGen_strategy(prob)
+            main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
+            main_logger.debug(f"Codes: {codes}")
+            if len(codes) == 0:
+                main_logger.error(f"Code generation failed for {prob.url}")
+                continue
+            save_results(prob, codeGen_strategy.__name__, codes, transformations)
 
-                sample_budget = get_sample_budget(prob, baseline_strategy.__name__, len(codes))
-                codes = baseline_strategy(prob, sample_budget)
-                main_logger.info(f"Baseline:{baseline_strategy.__name__}, Generated code count: {len(codes)}")
-                main_logger.debug(f"Codes: {codes}")
-                save_results(prob, baseline_strategy.__name__, codes)
+            sample_budget = get_sample_budget(prob, baseline_strategy.__name__, len(codes))
+            codes = baseline_strategy(prob, sample_budget)
+            main_logger.info(f"Baseline:{baseline_strategy.__name__}, Generated code count: {len(codes)}")
+            main_logger.debug(f"Codes: {codes}")
+            save_results(prob, baseline_strategy.__name__, codes)
 
 
 if __name__ == "__main__":
