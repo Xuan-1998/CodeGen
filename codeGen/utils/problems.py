@@ -1,5 +1,5 @@
 import logging
-# from .oj_interactions import *
+from .oj_interactions import *
 import json
 import hashlib
 
@@ -27,14 +27,15 @@ class Problem:
     def submit(self, code: str, stdin: str, stdout: str, method = 'local') -> str:
         token = submit_code(code, stdin, stdout, method)
         response = get_submission(token, method)
-        return response['status']['description']
+        return response['status']['description'] if response else 'Getting response failed'
         
     def submit_batch(self, code: str, test_cases: list[dict], method = 'local') -> list[str]:
         tokens = submit_code_batch(code, test_cases, method)
         responses = []
         for token in tokens:
             response = get_submission(token, method)
-            responses.append(response['status']['description'])
+            description = response['status']['description'] if response else 'Getting response failed'
+            responses.append(description)
         return responses
     
     def to_json(self):

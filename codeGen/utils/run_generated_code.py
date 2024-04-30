@@ -1,4 +1,4 @@
-# from oj_interactions import *
+from oj_interactions import *
 from problems import *
 import json
 import os
@@ -71,12 +71,13 @@ def get_acc_from_oj(py_file, json_file, method="online"):
         status, output = get_status_and_output(result)
 
         accuracy_rates.append(status)
-        expected_outputs.append(result["expected_output"])
+        expected_output = result["expected_output"] if result and "expected_output" in result else "NO OUTPUT"
+        expected_outputs.append(expected_output)
         actual_outputs.append(output)
 
     average_accuracy = sum("Accepted" in item for item in accuracy_rates) / len(
         accuracy_rates
-    )
+    ) if accuracy_rates else 0
     return average_accuracy, expected_outputs, actual_outputs, accuracy_rates
 
 
@@ -160,6 +161,7 @@ def save_results_to_csv(
                 compare_outputs(os.path.join(py_folder, py_file), json_file)
             )
         else:
+            print(f"Running {os.path.join(py_folder, py_file)}, {len(average_accuracies)}/{len(py_files)}")
             accuracy, expected_outputs, actual_outputs, accuracy_rates = (
                 get_acc_from_oj(
                     os.path.join(py_folder, py_file), json_file, method=model
@@ -186,7 +188,7 @@ def save_results_to_csv(
 def compare_with_baseline(
     method: str = "tree_search_llama",
     baseline: str = "zero_shot",
-    root_dir: str = "/Users/jiangxuan/Desktop/12_codeGen/CodeGen/codeGen/results",
+    root_dir: str = "results",
     model: str = "subprocess",  # "online" or "local" or 'subprocess'
 ):
     highest_accuracy = []
@@ -198,6 +200,12 @@ def compare_with_baseline(
 
         py_folder = os.path.join(root_dir, method, prob)
         py_files = [file for file in os.listdir(py_folder) if file.endswith(".py")]
+        if (
+            any(file.endswith(".csv") for file in os.listdir(py_folder))
+            or len(py_files) == 0
+        ):
+            print(f"Skipping {py_folder}")
+            continue
         average_accuracies = save_results_to_csv(py_folder, model)
 
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
@@ -237,7 +245,7 @@ def analyze_csv_with_difficulty(
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
         baseline_csv_file = os.path.join(baseline_py_folder, "results.csv")
         baseline_df = pd.read_csv(baseline_csv_file)
-        baseline_high_accuracy = baseline_df["Average Accuracy"].max()
+        baseline_high_accuracy = baseline_df["Average Accuracy"][:max(sample_budget, 75)].max()
 
         prob_file = os.path.join(py_folder, "prob.json")
         with open(prob_file) as f:

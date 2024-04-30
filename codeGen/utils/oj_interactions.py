@@ -75,8 +75,8 @@ def submit_code_batch(code: str, test_cases: list[dict], method="local") -> list
     url = f"{BASE_URL[method]}/submissions/batch"
     logger.debug(f"Payload: {payload}")
 
-    response = requests.post(url, json=payload, headers=HEADERS, params=QUERY_PARAMS)
     try:
+        response = requests.post(url, json=payload, headers=HEADERS, params=QUERY_PARAMS)
         response_data = response.json()
         if isinstance(response_data, list):
             tokens = [item["token"] for item in response_data]
@@ -91,7 +91,13 @@ def submit_code_batch(code: str, test_cases: list[dict], method="local") -> list
     except json.JSONDecodeError as e:
         logger.error(f"JSON decoding failed: {str(e)}")
         return []
-
+    except KeyError as e:
+        logger.error(f"KeyError: {str(e)}")
+        return []
+    except:
+        logger.error(f"Error: {str(e)}")
+        return []
+    
     logger.info(f"Tokens: {tokens}")
 
     return tokens
@@ -99,10 +105,16 @@ def submit_code_batch(code: str, test_cases: list[dict], method="local") -> list
 
 def get_submission(token: str, method="local"):
     url = f"{BASE_URL[method]}/submissions/{token}"
-    response = requests.get(url, params=QUERY_PARAMS, headers=HEADERS)
+    try:
+        response = requests.get(url, params=QUERY_PARAMS, headers=HEADERS)
+    except Exception as e:
+        logger.error(f"Error: {str(e)}")
+        return None
+    
     if response.status_code != 200:
         logger.error(f"Error: {response.status_code}, {response.json()}")
-    print(response.json())
+        return None
+    # print(response.json())
     logger.info(
         f"Response: Token: {response.json()['token']}, Description: {response.json()['status']['description']}"
     )
@@ -110,11 +122,13 @@ def get_submission(token: str, method="local"):
 
 
 def get_status_and_output(response: str):
+    if not response:
+        return "No response", "No response"
     try:
         decoded_bytes = base64.b64decode(response["stdout"])
         decoded_str = decoded_bytes.decode('latin-1')
     except:
-        decoded_str = ""
+        decoded_str = response["stdout"]
     return response["status"]["description"], decoded_str
 
 
