@@ -39,6 +39,7 @@ def compare_outputs(py_file, json_file):
             actual_output, _ = process.communicate(input=input_data.encode(), timeout=1)
             actual_output = actual_output.decode().strip()
         except Exception as e:
+            process.terminate()
             print(f"An error occurred: {e}", py_file)
             actual_output = "INTERNAL ERROR OR TIMEOUT"
 
@@ -256,7 +257,7 @@ def analyze_csv_with_difficulty(
         prob_json = Problem.from_json(unescaped_str[1:-1])
 
         print(
-            f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy}"
+            f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy:.2f}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy:.2f}"
         )
 
 
