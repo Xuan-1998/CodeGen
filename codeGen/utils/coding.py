@@ -7,7 +7,7 @@ from tenacity import retry, stop_after_attempt, retry_if_result, retry_if_except
 RETRY_COUNT = 15
 
 CODING_SYSTEM = """
-You are a helpful competitive programming assistant. The user is trying to solve a problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
+You are a helpful competitive programming assistant. The user is trying to solve a competitive programming problem with your help. The user might provide you with existing ideas they have; treat these ideas as the ground truth. When asked to code, YOU MUST wrap your code in a code block. Your code should receive inputs from stdin and print your answer to stdout. When asked for ideas, choices or steps, ALSO wrap your response in a code block as well.
 You will now be provided with the problem statement:
 ===
 {statement}
@@ -237,6 +237,39 @@ def follow_up_coder(
     elif coder_mode.startswith('llama'):
         coder = OllamaAPI(model=coder_mode)
         code, response = string_to_list(parse_code_block(coder.chat(messages))), ''
+    return code, response
+
+TRANSFORMATION_EVALUATION = """
+I came up with an intuition on how to solve this problem. I think it's a problem about {algorithm}.
+Below is the plan I came up with:
+===BEGIN PLAN===
+{transformation}
+===END PLAN===
+Please think step by step and analyze the plan and provide feedback. Is the plan correct? How can it be improved? What are the potential issues with the plan? Does it include edge cases? Please provide your feedback in a code block.
+"""
+
+@retry(stop=stop_after_attempt(RETRY_COUNT), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))
+def evaluation_coder(
+    statement: str, algorithm: str, transformation: str, coder_mode: str
+) -> tuple[str, str]:
+    messages = [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=statement),
+                },
+                {
+                    "role": "user",
+                    "content": TRANSFORMATION_EVALUATION.format(
+                        algorithm=algorithm, transformation=transformation
+                    ),
+                },
+            ]
+    if coder_mode == 'gpt-4':
+        coder = ChatCompletionAPI("gpt-4")
+        code, response = parse_response(coder.create(messages))
+    elif coder_mode.startswith('llama'):
+        coder = OllamaAPI(model=coder_mode)
+        code, response = parse_code_block(coder.chat(messages)), ''
     return code, response
 
 def attempt_usaco(

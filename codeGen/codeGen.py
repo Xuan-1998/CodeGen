@@ -14,7 +14,8 @@ CHAT_MODE = "llama3"
 # tree search version 1 - genreral steps
 # tree search version llama - use llama instead of gpt4
 # tree search version 2 - with defined steps
-def tree_search_2(prob: Problem)->list[str]:
+# tree search version 3 - with defined steps and evaluation steps
+def tree_search_3(prob: Problem)->list[str]:
     algorithm = "Dynamic Programming" #prob.tag.strip().split(', ')[0]
     # general_steps, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
     # general_steps, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
@@ -34,14 +35,16 @@ def tree_search_2(prob: Problem)->list[str]:
         main_logger.info(f"POP0: Queue Length: {len(steps_queue)}, Current steps: {step}, Steps to generate: {steps_to_generate}")
         if len(steps_to_generate) == 0:
             transformation = "\n".join(step)
-            main_logger.info(f"Starting code generation: Transformation: {transformation}")
+            main_logger.info(f"Starting transformation evaluation: Transformation: {transformation}")
+            evaluated_transformation, _ = coding.evaluation_coder(prob.statement, algorithm, transformation, CHAT_MODE)
+            main_logger.info(f"Starting code generation: Transformation: {evaluated_transformation}")
             try:
-                code, _ = coding.transformation_coder(prob.statement, transformation, CHAT_MODE)
+                code, _ = coding.transformation_coder(prob.statement, evaluated_transformation, CHAT_MODE)
             except RetryError as e:
                 main_logger.error(f"An error occurred: {e}, {transformation}, {traceback.format_exc()}")
                 
             codes.append(code)
-            transformations.append(transformation)
+            transformations.append(evaluated_transformation)
             continue
 
         main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHAT_MODE}")
@@ -127,7 +130,7 @@ def save_results(prob: Problem, folderName: str, codes: list[str], transformatio
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_2,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_3,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -165,4 +168,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_2, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_3, baseline_strategy=zero_shot)
