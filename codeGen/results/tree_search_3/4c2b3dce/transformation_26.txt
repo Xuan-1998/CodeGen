@@ -1,9 +1,25 @@
-===BEGIN FEEDBACK===
-Your plan is correct in terms of identifying the key elements to solve this problem, such as recognizing 'AB' and 'BA', splitting the problem into smaller instances, and employing memoization.
+Determine the longest common prefix between 'AB' and 'BA', and then check if it appears in the string as a substring.
 
-However, there are a few potential issues with the plan:
-- You mentioned using dynamic programming (DP), but it seems like you're actually planning to use memoization. While DP can be useful in certain situations, this problem doesn't seem to require it.
-- You didn't explicitly mention how you'll handle edge cases, such as when 'A' or 'B' appears alone at the end of the string. This could potentially lead to incorrect results if not handled correctly.
+dp[i][j] is a boolean indicating whether the substring s[0:i] contains the substring 'AB' (if j=0) or 'BA' (if j=1).
+dp[i][j] is a boolean indicating whether the substring s[0:i] has the same first character as 'AB' (if j=0) or 'BA' (if j=1).
 
-Here's an updated version of your plan that addresses these issues and adds some additional details:
+Initialize dp[0][0] and dp[0][1] to reflect the base case of checking for 'A' or 'B' in the first character.
 
+For i from 1 to len(s):
+    For j from 0 to 1:
+        If j==0 and s[i-1]=='A':
+            dp[i][j]=True
+        Else if j==1 and s[i-1]=='B':
+            dp[i][j]=True
+
+For i from 1 to len(s):
+    For j from 0 to 1:
+        If j==0 and not(dp[i-1][1]):
+            dp[i][j]=False
+        Else if j==1 and not(dp[i-1][0]):
+            dp[i][j]=False
+
+If dp[len(s)][0] or dp[len(s)][1]:
+    Print "YES"
+Else:
+    Print "NO"

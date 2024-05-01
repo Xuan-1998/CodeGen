@@ -1,20 +1,16 @@
-===BEGIN FEEDBACK AND ANALYSIS===
-Your plan has some good ideas, but there are some potential issues that need to be addressed. Here's a step-by-step analysis:
-
-1. **Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.**
-
-This is a great idea! You're recognizing that if you find the substrings "AB" and "BA" in sequence, you can recursively solve the problem for the remaining part of the string.
-
-2. **Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.**
-
-This step seems to be trying to determine if the string can be split into two parts that each contain one of the required substrings. However, this might not be necessary if you use the recursive approach from step 1.
-
-3. **If we encounter 'AB', check if the next two characters are 'BA'**
-
-This is a good idea! If you find "AB" in the string, you can quickly check if the next two characters are indeed "BA". If they are, you know you've found the required substrings and can stop searching.
-
-4. **Consider the number of times each character appears in the string, then use this information to determine whether the required substrings exist.**
-
-This step seems unnecessary. You don't need to count the occurrences of each character to solve this problem. Instead, you can just focus on finding the substrings "AB" and "BA" in sequence.
-
-===END FEEDBACK AND ANALYSIS===
+===BEGIN PLAN===
+dp = [[False] * 2 for _ in range(len(s) + 1)]
+for i in range(1, len(s) + 1):
+    if s[i - 1] == 'A':
+        dp[i][0] = dp[i - 1][0] or (i >= 2 and s[i - 2:i] == 'BA')
+        dp[i][1] = dp[i - 1][1] or (i >= 2 and s[i - 2:i] == 'AB')
+    elif s[i - 1] == 'B':
+        dp[i][0] = dp[i - 1][0] or (i >= 2 and s[i - 2:i] == 'BA')
+        dp[i][1] = dp[i - 1][1] or (i >= 2 and s[i - 2:i] == 'AB')
+    else:
+        dp[i][0] = dp[i - 1][0]
+        dp[i][1] = dp[i - 1][1]
+is_ab = any(dp[-1])
+is_ba = any(dp[-1])
+return 'YES' if is_ab and is_ba else 'NO'
+===END PLAN===

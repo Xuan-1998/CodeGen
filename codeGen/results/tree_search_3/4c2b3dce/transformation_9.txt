@@ -1,9 +1,17 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Determine if either 'AB' or 'BA' appears in the string s as a substring.
+The state expression is dp[i][j] where i is an index of s, j is 0 for 'AB' and 1 for 'BA', 
+and the value represents whether the substring s[0:i] contains the corresponding substring.
+Check if the string s contains 'A' followed by 'B', then check if it contains 'B' followed by 'A'.
+Create a 2D array dp of size (len(s) + 1) x 2, 
+where dp[i][0] represents whether the substring s[0:i] contains 'AB', and dp[i][1] represents whether it contains 'BA'. 
+Fill up the dp table based on the following rules: 
+dp[i][0] = dp[i-1][1] or (s[i-1] == 'A' and s[i] == 'B'), 
+and dp[i][1] = dp[i-1][0] or (s[i-1] == 'B' and s[i] == 'A'). 
+Finally, return 'YES' if both dp[-1][0] and dp[-1][1] are True, and 'NO' otherwise.
+The plan correctly identifies the problem as a substring matching problem. It uses dynamic programming to efficiently fill up the dp table.
+The potential issue with this plan is that it might be slow for large inputs due to its complexity (O(n^2)), where n is the length of the input string.
+To improve the plan, we can optimize the dynamic programming by only checking the last character of each substring and its corresponding match. 
+This optimization reduces the time complexity from O(n^2) to O(n), making it more efficient for large inputs.
 
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-
-If we encounter 'AB', check if the next two characters are 'BA'
-
-Check for occurrences of both 'AB' and 'BA' in the string, then use dynamic programming to optimize the search process.
 ===END PLAN===

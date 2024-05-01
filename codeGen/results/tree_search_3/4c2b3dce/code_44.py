@@ -1,26 +1,27 @@
 import sys
 
-def find_substr(s):
-    if len(s) < 2:
-        return "NO"
+state = [0, 0, False]  # A count, B count, flag indicating 'AB' found
 
-    i = 0
-    while i < len(s):
-        if s[i] == 'A':
-            j = i + 1
-            while j < len(s) and s[j] != 'B':
-                j += 1
-            if j < len(s) and s[j] == 'B':
-                k = j + 1
-                while k < len(s):
-                    if s[k] == 'A' and s[k+1] == 'B':
-                        return "YES"
-                    k += 1
-        i += 1
+for c in sys.stdin.readline().strip():
+    if c == 'A':
+        state[0] += 1
+    elif c == 'B':
+        state[1] += 1
+    if state[0] == 1 and state[1] == 1:
+        state[2] = True
 
+if not state[2]:
     return "NO"
 
-# Read input from stdin
-s = sys.stdin.readline().strip()
+window_state = [0, 0]
+for c in sys.stdin.readline().strip():
+    if c == 'A':
+        window_state[0] += 1
+    elif c == 'B':
+        window_state[1] += 1
+    if window_state[0] == 1 and window_state[1] == 1:
+        return "YES"
+    if window_state[0] == 0 and window_state[1] == 0 and state[2]:
+        return "NO"
 
-print(find_substr(s))
+print("YES")

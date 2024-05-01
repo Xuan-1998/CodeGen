@@ -1,13 +1,11 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Check if the string contains 'AB' or 'BA' as a substring by iterating through the string with a sliding window approach. 
+For each window of size 2, check if it is either 'AB' or 'BA'. If found, mark its presence and move the window forward.
+The base case is when the entire string has been processed. If we have not found any 'AB' or 'BA', return 'NO'.
+If we have found both substrings in different parts of the string, return 'YES'.
 
-Whether the string contains 'AB' at a certain position.
-Check if 'AB' is a prefix of the string, then check if 'BA' is a suffix.
-
-Use dynamic programming to solve this problem by considering the last two characters of the string and whether they are 'AB' or 'BA', then recursively explore the remaining substring. This can be done as follows:
-
-* Create a 2D table dp where dp[i][j] represents whether the substring from index i to j contains 'AB' followed by 'BA'.
-* Iterate through the string, for each position, check if the last two characters are 'AB' or 'BA'. If they are, then recursively call the function on the remaining substring.
-* Update the table accordingly based on the result of the recursive call.
+Let the state be a boolean indicating whether we have seen an 'A' in the current prefix, initially set to False.
+Transition from the current state to True when encountering 'A', and vice versa for 'B'. 
+This will help us detect overlapping occurrences.
 
 ===END PLAN===

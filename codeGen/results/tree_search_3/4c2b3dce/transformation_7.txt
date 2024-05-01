@@ -1,21 +1,11 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Check if the string contains 'AB' or 'BA' as a substring, then check for the remaining part of the string.
 
-This step is correct! We want to identify if the string contains "AB" and "BA" in that order. This would allow us to recursively solve the problem for each half of the string.
+The state expression is whether the last character in the current prefix is 'A' or 'B', and the base case is when the entire string has been processed.
+Define a state as a binary number where 0 represents 'A' not encountered yet, and 1 represents 'B' not encountered yet. Transition from this state to the next by flipping the corresponding bit for each character in the string.
 
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
+Define a state transition function that updates the current state based on the last character seen, and use this function to generate all possible states for each prefix of the input string.
 
-This step also seems correct! By dividing the string into two parts, we can apply the same logic to each part, which would be more efficient than checking every possible substring.
+Check if any state corresponds to 'AB' or 'BA', if found then print "YES", else print "NO".
 
-The current character position in the string is at an even index
-
-I'm not sure about this step. Why are we only considering even indices? This might limit our ability to find the substrings correctly. Instead, we should consider all possible positions in the string.
-
-Employ memoization to store intermediate results and avoid redundant calculations.
-
-This is a great idea! Memoization can help us significantly speed up our solution by avoiding repeated computations.
-
-Overall, your plan seems like a good starting point! However, I would suggest rethinking the even index step and considering how we can apply this approach to all possible positions in the string. Additionally, we should make sure to handle edge cases correctly.
-
-Here's an updated version of the plan:
-
+===END PLAN===

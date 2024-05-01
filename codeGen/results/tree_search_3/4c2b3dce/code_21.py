@@ -1,13 +1,20 @@
 import sys
 
-def check_string():
-    s = input().strip()
+s = input()
 
-    for i in range(len(s) - 1):
-        if (s[i:i+2] == 'AB' or s[i:i+2] == 'BA') and ((i == len(s) - 2 and s[i+2:] != s[:i].replace('A', 'B').replace('B', 'A')) or (i < len(s) - 2 and s[i+3:] != s[:i+2].replace('A', 'B').replace('B', 'A'))):
-            print("YES")
-            sys.exit()
+dp = [[False] * 2 for _ in range(len(s) + 1)]
 
-    print("NO")
+for i in range(1, len(s) + 1):
+    if s[i - 1] == 'A':
+        dp[i][0] = True
+        dp[i][1] = False
+    elif s[i - 1] == 'B':
+        dp[i][0] = False
+        dp[i][1] = True
 
-check_string()
+for i in range(2, len(s) + 1):
+    for j in range(2):
+        if (j == 0 and s[i - 1] == 'A' and dp[i - 1][1]) or (j == 1 and s[i - 1] == 'B' and dp[i - 1][0]):
+            dp[i][j] = True
+
+print("YES" if any(dp[-1][0] and dp[0][1] for _ in range(len(s) + 1)) else "NO")

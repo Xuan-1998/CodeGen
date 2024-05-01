@@ -1,16 +1,17 @@
-===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the remaining part of the string after removing 'AB' or 'BA' also contains both substrings.
-View the problem as finding all occurrences of 'AB' and 'BA' in the string, then checking if these occurrences are non-overlapping. Consider using dynamic programming to efficiently find these occurrences.
-Use a sliding window approach with two pointers, one at the start and another at the end, to find non-overlapping occurrences of 'AB' and 'BA'.
+Determine the longest common prefix between 'AB' and 'BA', and then check if it appears in the string as a substring.
 
-The plan seems correct in terms of its general direction, but it's missing some crucial details.
+dp[i][j] is a boolean indicating whether the substring s[0:i] contains the substring 'AB' (if j=0) or 'BA' (if j=1).
+dp[i][j] represents whether the last character of the prefix s[0:i-1] matches either the first or second character of 'AB' or 'BA'.
 
-Firstly, you need to clarify what you mean by "find all occurrences of 'AB' and 'BA' in the string". Are you looking for exact matches or allowing for partial matches? If it's the former, then you can simply iterate over the string with a sliding window approach. However, if it's the latter, then you'll need to modify your approach.
+dp[0][0] = dp[0][1] = False, because the empty string does not contain 'AB' or 'BA'.
+For i > 0, we have:
 
-Secondly, when you split the problem into two smaller instances, you need to ensure that you're not losing any information. For example, what if 'AB' and 'BA' overlap in the original string? You would need to handle this case carefully to avoid missing potential solutions.
+* If the current character in s[i-1] matches either the first or second character of 'AB', then
+    * If j == 0, update dp[i][j] to True if and only if dp[i-1][1-j] is False (to avoid overcounting).
+    * If j == 1, do nothing because we are not interested in updating dp[i][1].
+* If the current character in s[i-1] does not match either the first or second character of 'AB' or 'BA', then
+    * Update dp[i][0] to False and dp[i][1] to False.
 
-Lastly, your plan doesn't explicitly address edge cases. What happens when the input string is empty or contains only one character? These are important edge cases that you should consider in your final solution.
-
-Overall, your plan has a good starting point, but it needs more refinement and attention to detail.
-===END PLAN===
+Once the table is filled, we can check if there exists i such that dp[i][0] == True and dp[i][1] == False.
+If yes, it means the string contains 'AB' but not 'BA', or vice versa.
+If no, then it means the string does not contain either 'AB' or 'BA'. 

@@ -1,20 +1,21 @@
 import sys
 
-s = input().strip()
+# Read input from stdin
+s = input()
 
-ab_state = 0
-ba_state = 0
+dp = [[False, False] for _ in range(len(s) + 1)]
 
-for c in s:
-    if c == 'A':
-        ab_state += 1
-        ba_state = 0
-    elif c == 'B':
-        ba_state += 1
-        ab_state = 0
-    
-    if ab_state and ba_state:
-        print("YES")
-        sys.exit(0)
+for i in range(1, len(s) + 1):
+    if s[i - 1] == 'A':
+        dp[i][0] = True
+    elif s[i - 1] == 'B':
+        dp[i][1] = True
+
+found = False
+for i in range(len(s)):
+    for j in range(i, len(s)):
+        if (dp[j + 1][1] and dp[i][0]) or (dp[j + 1][0] and dp[i][1]):
+            print("YES")
+            sys.exit(0)
 
 print("NO")

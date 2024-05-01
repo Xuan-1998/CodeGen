@@ -1,8 +1,19 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Check if the string contains 'AB' or 'BA' as a substring by maintaining a memo dictionary where the key is the current prefix and the value is a tuple indicating whether 'A' or 'B' has been seen.
 
-Whether the string contains 'AB' at a certain position.
-Consider two states: one where we have seen an 'A' but not a 'B', and another where we have seen a 'B' but not an 'A'.
-Use a single variable to keep track of whether we have seen an 'A' but not a 'B', and another variable for the opposite scenario.
+Let dp[i][a] be true if the last character in the substring s[0...i] is 'A', and let dp[i][b] be true if it's 'B'.
 
+Base case: When i = len(s), dp[i][a] and dp[i][b] are both False, because we have processed the entire string.
+
+State transition:
+- If s[i-1] is 'A' and dp[i-1][b], then set dp[i][a] to True.
+- If s[i-1] is 'B' and dp[i-1][a], then set dp[i][b] to True.
+- If neither of the above conditions is true, then leave both dp[i][a] and dp[i][b] unchanged.
+
+For each prefix in the string:
+    - Check if either dp[i][a] and dp[i-1][b] or dp[i][b] and dp[i-1][a] are True.
+        + If so, return "YES", because we have found two non-overlapping substrings 'AB' and 'BA'.
+    - Move to the next prefix.
+
+Return "NO" if no such substrings are found.
 ===END PLAN===

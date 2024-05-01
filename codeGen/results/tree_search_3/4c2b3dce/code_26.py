@@ -1,31 +1,24 @@
-def has_ab_ba(s):
-    # Check for "AB" and store its index
-    ab_index = s.find("AB")
-    
-    if ab_index != -1:
-        # If "AB" is found, check for "BA" in the remaining string
-        remaining_string = s[ab_index+2:]
-        ba_index = remaining_string.find("BA")
-        
-        # Return "YES" if both substrings are found
-        return "YES" if ba_index != -1 else "NO"
-    
-    # If no "AB", check for "BA" and store its index
-    ba_index = s.find("BA")
-    
-    if ba_index != -1:
-        # If "BA" is found, check for "AB" in the remaining string
-        remaining_string = s[ba_index+2:]
-        ab_index = remaining_string.find("AB")
-        
-        # Return "YES" if both substrings are found
-        return "YES" if ab_index != -1 else "NO"
-    
-    # If neither "AB" nor "BA" is found, return "NO"
-    return "NO"
+def check_string(s):
+    n = len(s)
+    dp = [[False] * 2 for _ in range(n + 1)]
 
-# Read input from standard input
-s = input()
+    for i in range(1, n + 1):
+        if s[i - 1] == 'A':
+            dp[i][0] = True
+        elif s[i - 1] == 'B':
+            dp[i][1] = True
 
-# Print the answer to standard output
-print(has_ab_ba(s))
+    for i in range(n - 1, -1, -1):
+        if dp[i][0]:
+            if not dp[i + 1][1]:
+                break
+        elif dp[i][1]:
+            if not dp[i + 1][0]:
+                break
+
+    return "YES" if (dp[0][0] and dp[-1][1]) or (dp[0][1] and dp[-1][0]) else "NO"
+
+
+if __name__ == "__main__":
+    s = input()
+    print(check_string(s))

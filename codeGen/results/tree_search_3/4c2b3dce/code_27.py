@@ -1,23 +1,26 @@
-===CODE BLOCK===
-def find_substrings():
-    s = input()
-    found_ab = False
-    found_ba = False
+import sys
 
-    for i in range(len(s) - 1):
-        if s[i:i+2] == 'AB' and not found_ab:
-            found_ab = True
-        elif s[i:i+2] == 'BA' and not found_ab:
-            print('NO')
-            return
-        elif s[i:i+2] == 'AB' and found_ab and not found_ba:
-            found_ba = True
-        elif s[i:i+2] == 'BA' and found_ab and not found_ba:
-            print('YES')
-            return
+def solve():
+    s = input().strip()
+    n = len(s)
 
-    if not found_ab or not found_ba:
-        print('NO')
+    dp = [[False, False] for _ in range(n+1)]
+
+    dp[0][0] = True
+    dp[0][1] = True
+
+    for i in range(1, n+1):
+        if i >= 2 and s[i-2:i] == 'AB':
+            dp[i][0] = True
+        if i >= 2 and s[i-2:i] == 'BA':
+            dp[i][1] = True
+
+        if dp[i-1][0]:
+            dp[i][0] = (dp[i-1][0] or s[i-1] == 'B')
+        if dp[i-1][1]:
+            dp[i][1] = (dp[i-1][1] or s[i-1] == 'A')
+
+    print("YES" if dp[n][0] and dp[n][1] else "NO")
 
 if __name__ == "__main__":
-    find_substrings()
+    solve()

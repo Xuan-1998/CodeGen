@@ -1,17 +1,17 @@
-def has_ab_and_ba(s):
-    ab_exists = False
-    ba_exists = False
+def solve():
+    s = input()
+    n = len(s)
+    
+    dp = [[False] * (n + 1) for _ in range(n + 1)]
+    
+    for i in range(1, n + 1):
+        for j in range(i + 1):
+            if s[j:i].endswith("AB") or s[j:i].endswith("BA"):
+                dp[i][j] = True
+                if i > j:
+                    dp[i][j] &= dp[i-1][j+2]
+    
+    print("YES" if any(any(dp[i][j]) for i in range(n + 1)) else "NO")
 
-    for i in range(len(s) - 1):
-        if s[i:i+2] == 'AB':
-            ab_exists = True
-        elif s[i:i+2] == 'BA' and not ab_exists:
-            ba_exists = True
-        elif s[i:i+2] == 'AB' and ba_exists:
-            return "YES"
-    return "NO"
-
-# Read input from standard input
-s = input()
-
-print(has_ab_and_ba(s))
+if __name__ == "__main__":
+    solve()

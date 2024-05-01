@@ -1,21 +1,19 @@
-code
-def has_abba_ba(s):
-    n = len(s)
-    dp = [[False] * (n + 1) for _ in range(n + 1)]
+import sys
 
-    for i in range(n - 1):
-        if s[i:i+2] == 'AB' and s[i+2:i+4] == 'BA':
-            dp[i][i+3] = True
+# Read input from stdin
+s = sys.stdin.readline().strip()
 
-    for length in range(2, n + 1):
-        for i in range(n - length):
-            j = i + length
-            if s[i:j] == 'ABBA' or (s[i:i+2] == 'AB' and dp[i+2][j-1]):
-                dp[i][j] = True
+found_AB = False
+found_BA = False
 
-    return "YES" if any(dp[0][n-1]) else "NO"
-
-
-if __name__ == "__main__":
-    s = input()
-    print(has_abba_ba(s))
+for i in range(len(s) - 1):
+    if s[i:i+2] == 'AB' and not found_AB:
+        found_AB = True
+    elif s[i:i+2] == 'BA' and not found_BA:
+        found_BA = True
+        
+# Check if we have found both substrings
+if found_AB and found_BA:
+    print('YES')
+else:
+    print('NO')

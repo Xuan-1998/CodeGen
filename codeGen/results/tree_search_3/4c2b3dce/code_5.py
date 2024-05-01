@@ -1,22 +1,16 @@
-from collections import defaultdict
+import sys
 
-def solve():
-    s = input()
-    n = len(s)
-    
-    memo = defaultdict(bool)
-    for i in range(n):
-        if s[i:i+2] == 'AB':
-            if i + 2 >= n or s[i+2] != 'A':
-                memo[''.join([s[:i], s[i+2:]]).lstrip('A').rstrip('B')] = True
-        elif s[i:i+2] == 'BA':
-            if i + 2 >= n or s[i+2] != 'B':
-                memo[''.join([s[:i], s[i+2:]]).lstrip('B').rstrip('A')] = True
-    
-    for i in range(n):
-        if memo[s[:i]]:
-            return 'YES'
-    
-    return 'NO'
+dp = [[False] * 2 for _ in range(2 * (len(s) + 1))]
 
-print(solve())
+for i in range(len(s)):
+    if s[i] == 'A':
+        dp[0][1], dp[1][1] = dp[1][1], False
+    elif s[i] == 'B':
+        dp[0][1], dp[1][0] = False, dp[0][0]
+
+for j in range(2):
+    if (j > 0 and (dp[j][0] or dp[j][1])) and not (dp[(j+1)%2][0] or dp[(j+1)%2][1]):
+        print("YES")
+        sys.exit()
+
+print("NO")

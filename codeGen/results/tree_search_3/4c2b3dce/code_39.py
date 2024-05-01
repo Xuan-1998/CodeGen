@@ -1,18 +1,19 @@
-import sys
 from collections import defaultdict
 
-def main():
+def solve():
     s = input()
-    found_AB = defaultdict(bool)
-    found_BA = defaultdict(bool)
+    dp = defaultdict(bool)
+    a_count, b_count = 0, 0
+    
+    for c in s:
+        if c == 'A':
+            a_count += 1
+        else:
+            b_count += 1
+        
+        if (a_count > 0 and b_count > 0):
+            dp[(a_count, b_count)] = (a_count == 1) | dp.get((b_count-1, a_count), False)
+    
+    return "YES" if any(dp.values()) else "NO"
 
-    for i in range(len(s)):
-        if i >= 2 and s[i-2:i] == 'AB':
-            found_AB[i] = True
-        if i >= 1 and s[i-1:i+1] == 'BA' and not any(found_AB[j] for j in range(i)):
-            found_BA[i] = True
-
-    print("YES" if found_AB[len(s)-2] and found_BA[0] else "NO")
-
-if __name__ == "__main__":
-    main()
+print(solve())

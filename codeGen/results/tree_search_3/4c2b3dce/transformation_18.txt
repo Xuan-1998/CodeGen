@@ -1,7 +1,5 @@
-===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-Determine if either 'AB' or 'BA' appears in the current window of size 2, then move to the next window of size 2
-Check for consecutive occurrences of substrings
-
-===END PLAN===
+dp = {i: s[i:] for i in range(len('AB')) and all(s[i + j:] not in ('B' + 'A'[i:], 'A' + 'B'[i:]) for j in range(min(len('AB') - i, len('BA') - i)))}
+if any(dp.values()):
+    print("YES")
+else:
+    print("NO")

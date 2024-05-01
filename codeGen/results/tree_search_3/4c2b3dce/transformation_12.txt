@@ -1,6 +1,10 @@
-===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-Otherwise, move to the next even-indexed character
-Use a 2D table to store whether each substring ending at index i can be split into two substrings with 'AB' and 'BA'
-===END PLAN===
+Determine the longest common prefix between 'AB' and 'BA', denoted by lcp. 
+Initialize dp[0][0] = 1 if s[0] == lcp[0], and dp[0][1] = 1 if s[0] == lcp[1]. 
+Set dp[0][0] = 0 if s[0] != lcp[0], and dp[0][1] = 0 if s[0] != lcp[1]. 
+For each character c in s, from left to right:
+    If c == lcp[i]:
+        Update dp[i][j] accordingly for both 'AB' and 'BA'.
+    Else:
+        Set dp[i][j] = 0.
+If any substring of s contains both 'AB' and 'BA', return "YES". 
+Else, return "NO".

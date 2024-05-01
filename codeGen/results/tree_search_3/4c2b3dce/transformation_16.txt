@@ -1,10 +1,7 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-
-Whether the last encountered substring contains 'AB' and the remaining part of the string contains 'BA'
-
-Explore using a prefix tree data structure to quickly determine if 'AB' or 'BA' appears in the string as a whole, then check the remaining substring for the other pattern.
-
+Determine the longest common prefix between 'AB' and 'BA', say it's 'A'. Then check if it appears in the string as a substring.
+The state expression is dp[i] where this value is true if the remaining part of the string does not contain either 'AB' or 'BA', and false otherwise. Initialize dp[0] to False.
+The choice is to see if there are two non-overlapping occurrences of 'A' and one 'B', or vice versa. Check for these patterns in the current substring using a sliding window approach.
+Apply memoization by storing previously computed values of whether the remaining part of the string contains either 'AB' or 'BA'. 
+When checking for patterns, if we find that the remaining part of the string contains either 'AB' or 'BA', update dp[i] to True. If not, leave it as False.
 ===END PLAN===

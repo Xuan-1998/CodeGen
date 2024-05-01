@@ -1,35 +1,22 @@
-===BEGIN CODE===
-s = input()
-countA, countB = 0, 0
-foundAB, foundBA = False, False
+import sys
 
-for i in range(len(s)):
-    if s[i] == 'A':
-        countA += 1
-    elif s[i] == 'B':
-        countB += 1
-
-    if countA >= 1 and countB >= 1:
-        if not foundAB or not foundBA:
-            print("YES")
-            exit()
-        else:
-            break
-
-if not foundAB and not foundBA:
-    for i in range(len(s)):
-        if s[i] == 'A':
-            countA += 1
-        elif s[i] == 'B':
-            countB += 1
-
-        if countA >= 2 and countB >= 1:
-            print("YES")
-            exit()
-        elif countA >= 1 and countB >= 2:
-            print("YES")
-            exit()
-
+def solve():
+    s = input().strip()
+    a_count, b_count = 0, 0
+    
+    for char in s:
+        if char == 'A':
+            a_count += 1
+            if a_count == 1 and b_count == 1: 
+                print("YES")
+                return
+        elif char == 'B':
+            b_count += 1
+            if a_count == 1 and b_count == 1:
+                print("YES")
+                return
+        
     print("NO")
 
-===END CODE===
+if __name__ == "__main__":
+    solve()

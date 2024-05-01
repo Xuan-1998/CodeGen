@@ -1,21 +1,23 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-If we encounter 'AB', check if the next two characters are 'BA'
-Preprocess the string to identify all occurrences of 'AB', then check if there are sufficient 'B's and 'A's remaining for 'BA'.
+Determine the longest common prefix between 'AB' and 'BA', and then check if it appears in the string as a substring. 
+This step seems unnecessary, as we can directly check for 'AB' or 'BA' in the string.
 
-// My thoughts:
-The plan looks good, it's a recursive approach that can be used to solve this problem. It's correct in the sense that it tries to break down the problem into smaller instances.
+The state expression is dp[i][j] where i is an index of s, j is either 0 for 'AB' or 1 for 'BA', and the value represents whether the substring s[0:i] contains the corresponding substring. 
+This seems correct! We can use dynamic programming to solve this problem.
 
-However, I think there is room for improvement. Instead of preprocessing the string to identify all occurrences of 'AB', we could just keep track of whether we have found an 'AB' or not. This would save us a lot of unnecessary work.
+Check if the string s contains 'A' followed by 'B', then check if it contains 'B' followed by 'A'. 
+This step is unnecessary, as we are already checking for these substrings using dp table.
 
-Also, when checking if there are sufficient 'B's and 'A's remaining for 'BA', we should also check that we haven't already found a 'BA'. If we have, then we don't need to look further because the answer is 'YES'.
+Create a 2D array dp of size (len(s) + 1) x 2, where dp[i][0] represents whether the substring s[0:i] contains 'AB', and dp[i][1] represents whether it contains 'BA'. 
+This seems correct! We can use this dp table to solve the problem.
 
-One potential issue with this plan is that it doesn't handle edge cases. For example, what if the string is empty or only contains one character? In these cases, our plan would fail.
+Fill up the dp table based on the following rules: if i is even, then dp[i][0] = dp[(i-1)/2][1] or (s[i-1] == 'A' and s[i] == 'B'), and dp[i][1] = dp[(i-1)/2][0] or (s[i-1] == 'B' and s[i] == 'A'); 
+This seems correct! The even-indexed rows are used to propagate the information from the previous odd-indexed row.
 
-To fix this, we should add some base cases to our recursive function. These base cases would return 'NO' for an empty string and 'YES' for a string that only contains one character.
+if i is odd, then dp[i][0] = dp[(i-1)/2][0], and dp[i][1] = dp[(i-1)/2][1]. 
+This also seems correct! The odd-indexed rows are simply copying the values from the previous even-indexed row.
 
-Another potential issue is that our plan could get stuck in an infinite loop if the string keeps repeating 'ABBA'. To avoid this, we could keep track of how many times we have found an 'AB' or 'BA', and stop looking once we have found both enough times.
+Finally, return 'YES' if both dp[-1][0] and dp[-1][1] are True, and 'NO' otherwise. 
+This seems correct! We can check the final state of the dp table to determine whether the string contains both 'AB' and 'BA'.
 
-Overall, your plan looks good, but it needs some refinements to handle edge cases and potential issues.
 ===END PLAN===

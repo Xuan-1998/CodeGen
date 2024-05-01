@@ -1,22 +1,18 @@
-def can_split(s):
-    if not s:
-        return "NO"
+import sys
 
-    def helper(s):
-        if not s:
-            return True
-
-        for i in range(len(s) - 2):
-            if s[i:i+2] == "AB" and s[i+2:] == "BA":
-                return True
-            elif s[i:i+2] == "BA" and s[:i] == "AB":
-                return True
-
-        return False
-
-    return "YES" if helper(s) else "NO"
-
+def solve():
+    s = input().strip()
+    n = len(s)
+    
+    for i in range(n - 1):
+        if (s[i:i+2] == 'AB' and s[n-2:n] == 'BA'):
+            print("YES")
+            return
+        elif (s[i:i+2] == 'BA' and s[n-2:n] == 'AB'):
+            print("YES")
+            return
+    
+    print("NO")
 
 if __name__ == "__main__":
-    s = input()
-    print(can_split(s))
+    solve()

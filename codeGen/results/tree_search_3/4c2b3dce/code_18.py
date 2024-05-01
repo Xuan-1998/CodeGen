@@ -1,11 +1,8 @@
-import sys
+code = input()
+ab_count = code.count('AB')
+ba_count = code.count('BA')
 
-def has_ab_ba(s):
-    n = len(s)
-    for i in range(n-1):
-        if s[i:i+2] == 'AB' and s[i+n-3:i+n] == 'BA':
-            return "YES"
-    return "NO"
-
-s = input()
-print(has_ab_ba(s))
+if ab_count > 0 and ba_count > 0:
+    print("YES")
+else:
+    print("NO")

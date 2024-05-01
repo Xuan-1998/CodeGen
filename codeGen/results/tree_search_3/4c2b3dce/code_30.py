@@ -1,21 +1,18 @@
-import sys
+def solve():
+    n = int(input())
+    s = input().strip()
+    
+    dp = [False] * (n + 1)
+    for i in range(n - 1):
+        if s[i] == 'A' and s[i+1] == 'B':
+            dp[i+2] = True
+        elif s[i] == 'B' and s[i+1] == 'A':
+            dp[i+2] = True
+    
+    for i in range(n - 1, -1, -1):
+        if not dp[i]:
+            return "NO"
+    
+    return "YES"
 
-# Read the input string from stdin
-s = input().strip()
-
-# Initialize our state variables
-ab_seen = False
-ba_seen = False
-
-# Iterate over the string with a sliding window of size 2
-for i in range(len(s) - 1):
-    if s[i:i+2] == "AB" and not ab_seen:
-        ab_seen = True
-    elif s[i:i+2] == "BA" and not ba_seen:
-        ba_seen = True
-
-# Check if both 'AB' and 'BA' have been seen
-if ab_seen and ba_seen:
-    print("YES")
-else:
-    print("NO")
+print(solve())

@@ -1,9 +1,15 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Check if the string contains 'AB' or 'BA' as a substring.
 
-Whether the string contains 'AB' at a certain position.
-Check if 'AB' is a prefix of the string, then check if 'BA' is a suffix.
+state = {'A': False, 'B': False}
 
-Design a recursive function that checks if 'AB' appears at a certain position in the string, and if so, checks if 'BA' appears after that position.
+for char in s:
+    state[char] = not state[char]
+
+result = all(state['A'] and state['B'])
+if result:
+    print("YES")
+else:
+    print("NO")
 
 ===END PLAN===

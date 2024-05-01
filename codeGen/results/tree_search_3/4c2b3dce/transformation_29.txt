@@ -1,9 +1,13 @@
 ===BEGIN PLAN===
-1. Initialize two pointers, start and end, to the beginning of the string.
-2. Slide the window [start, end] to find all occurrences of 'AB'.
-3. For each occurrence, check if the remaining part of the string (end + 1 to n) contains 'BA'. If it does, return "YES".
-4. If no occurrences are found or none of them have a matching 'BA' in the remaining part, return "NO".
-5. Handle edge cases:
-	* If the string is empty, return "NO" immediately.
-	* If the string only contains one character, check if it's either 'A', 'B', or 'AB'. If not, return "NO". If so, return "YES" (or "NO" depending on whether you want to consider single-character strings as containing both substrings).
+Determine if either 'AB' or 'BA' appears in the string s. If it does, check if the other substring also appears in the remaining part of the string.
+
+dp[i][j] is a boolean indicating whether the substring s[0:i] contains the substring 'AB' (if j=0) or 'BA' (if j=1).
+dp[i][j] represents whether the last character of the prefix s[0:i-1] matches either the first or second character of 'AB' or 'BA'.
+
+For each i from 1 to len(s), for each j in {0, 1}, do the following:
+    - If the current character in s is the same as the first or second character of 'AB' or 'BA', update dp[i][j] accordingly.
+    - Check if the previous substring (s[0:i-1]) contains the required substring ('AB' for j=0, or 'BA' for j=1). If it does, then we can be sure that the current string also contains the required substrings.
+
+The final answer will be "YES" if either dp[len(s)][0] or dp[len(s)][1] is True, and "NO" otherwise.
+
 ===END PLAN===

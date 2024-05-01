@@ -1,17 +1,22 @@
-# Read input string
-s = input().strip()
+# Read input from stdin
+s = input()
 
-# Count occurrences of 'A' and 'B'
-a_count = s.count('A')
-b_count = s.count('B')
+# Initialize flags for 'AB' and 'BA'
+has_ab = False
+has_ba = False
 
-# Check if string contains both 'AB' and 'BA' substrings
-if a_count >= 1 and b_count >= 1:
-    # If 'A' appears at least once, we can find 'BA' by checking the remaining part of the string
-    if 'A' in s[s.index('A')+1:]:
-        print("YES")
-    else:
-        print("NO")
-else:
-    print("NO")
+# Check if 'AB' appears in the string
+for i in range(len(s) - 1):
+    if s[i] == 'A' and s[i + 1] == 'B':
+        has_ab = True
+        break
 
+# Check if 'BA' appears in the remaining part of the string
+if not has_ab:
+    for i in range(len(s) - 1, 0, -1):
+        if s[i] == 'B' and s[i - 1] == 'A':
+            has_ba = True
+            break
+
+# Print the result based on the flags
+print("YES" if has_ab and has_ba else "NO")

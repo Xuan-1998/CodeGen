@@ -1,14 +1,22 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances. 
-Whether the remaining part of the string after removing 'AB' or 'BA' also contains both substrings.
-Define states as tuples representing the number of 'A's and 'B's seen so far. For example, (0, 0) might represent the initial state where neither 'A' nor 'B' has been seen. 
-Transition to a new state when an 'A' or 'B' is encountered, incrementing the corresponding count in the tuple.
-Use a dictionary to store intermediate results and check for existence of substrings.
+Determine if either "AB" or "BA" appears in the string s.
+    Create two boolean variables: abAppears and baAppears, both initially set to False.
 
-The plan seems correct overall, but here are some suggestions for improvement:
-- You may want to consider edge cases where the string contains either "AB" or "BA", but not both. For instance, if the string is "ABA", it should return "YES". Similarly, if the string is "BAA", it should also return "YES".
-- To store intermediate results and check for existence of substrings, you could use a dictionary with tuple keys as states. The values in the dictionary could be booleans indicating whether the corresponding state has been seen before.
-- You may want to consider memoization techniques like dynamic programming or memoization to optimize your solution.
+dp[i][j] is a boolean indicating whether the substring s[0:i] contains the substring 'AB' (if j=0) or 'BA' (if j=1).
+Create a 2D array to store dynamic programming values with dimensions (len(s), 2)
+    Initialize all dp[i][j] values to False.
 
-Here's how I would refine the plan:
+for i from 0 to len(s):
+    for j in range(2):
+        if i < 2 and s[i:j+1] in ['AB', 'BA']:
+            dp[i][j] = True
+        elif i >= 2:
+            if j == 0:  # checking for 'AB'
+                if dp[i-1][0] and s[i-1] != 'A':  # last char was not 'A' and we didn't find 'AB' earlier
+                    dp[i][j] = True
+            elif j == 1:  # checking for 'BA'
+                if dp[i-1][1] and s[i-1] != 'B':  # last char was not 'B' and we didn't find 'BA' earlier
+                    dp[i][j] = True
 
+print("YES" if abAppears or baAppears else "NO")
+===END PLAN===

@@ -1,16 +1,11 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-Whether the last encountered substring contains 'AB' and the remaining part of the string contains 'BA'
-
-Edge cases:
-* Handle input strings containing only 'AB'
-* Handle input strings containing only 'BA'
-* Handle input strings containing neither 'AB' nor 'BA'
-
-Optimization:
-* Use a sliding window approach to efficiently scan the string for both 'AB' and 'BA' substrings
-* Implement a more efficient substring search algorithm, such as Knuth-Morris-Pratt or Boyer-Moore
-
-Consider implementing a recursive function to split the problem into smaller instances.
+Determine if the string contains two non-overlapping substrings "AB" and "BA". 
+First, check if "AB" appears in the string. If it does, then check the remaining part of the string for "BA". If both are present, return YES.
+If not, do the same but checking for "BA" first and then "AB".
+The state expression is dp[i] where this value is true if the first i characters do not contain both 'AB' and 'BA'. 
+The choice is to see if there are two non-overlapping occurrences of 'A' and one 'B', or vice versa.
+Initialize a variable f with True. Then iterate over the string, updating f as follows: 
+- If f and "AB" appears at position i, update f as False. 
+- If not f and "BA" appears at position i, update f as False. 
+Finally, return 'YES' if f is still True, and 'NO' otherwise.
 ===END PLAN===

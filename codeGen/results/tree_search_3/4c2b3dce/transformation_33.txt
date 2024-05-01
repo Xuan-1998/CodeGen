@@ -1,21 +1,29 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-\
-The next state depends on the current character: if it's 'A', transition to the state where the remaining substring contains 'B'; if it's 'B', transition to the state where the remaining substring contains 'A'; otherwise, stay in the same state.
+The state is a boolean indicating whether the current substring contains 'AB' or not.
+'State is the current substring, and transition is adding a new character to it.'
 
-1. Initialize a dynamic programming table with dimensions (n+1) x 2, where n is the length of the string.
-   - The first row represents the base case: when we haven't seen any characters yet.
-   - Each subsequent row represents the current character and the remaining substring.
+Tabulate the dynamic programming process by creating a 2D table where each cell represents whether the string up to that point contains 'AB' or not.
 
-2. Iterate through the string from left to right:
-   - For each character c in the string:
-     - If it's 'A', update the table for the next state (i.e., when we've seen an 'A' and need to look for a 'B').
-     - If it's 'B', update the table for the next state (i.e., when we've seen a 'B' and need to look for an 'A').
+The transition function can be defined as follows:
+- If the last added character is 'A', then there are two possibilities: 
+  - The substring ends with 'B', in which case it must contain 'AB'.
+  - The substring does not end with 'B', in which case we need to consider the next character.
+- If the last added character is 'B', then we can immediately conclude that the current substring contains 'AB'.
 
-3. Check if there are any valid states in the last row of the dynamic programming table.
-   - A valid state exists when we can find both 'AB' and 'BA' without overlap, i.e., there's at least one state where the first column is 1 (representing 'AB' found) and another state where the second column is 1 (representing 'BA' found).
+The base cases are:
+- An empty string does not contain 'AB'.
+- A single character string only contains one of 'A' or 'B', so it cannot contain 'AB'.
 
-4. Output "YES" if valid states exist; otherwise, output "NO".
+With these observations, the dynamic programming process can be implemented as follows:
+
+1. Initialize a 2D table with size (length of the input string + 1) x 2.
+2. Fill in the base cases: the empty string and single character strings do not contain 'AB'.
+3. For each substring from length 2 to the length of the input string:
+   - If the last added character is 'A', consider the two possibilities as described above.
+   - If the last added character is 'B', immediately conclude that the current substring contains 'AB'.
+
+The final answer can be obtained by checking the bottom-right cell of the table, which represents whether the entire input string contains 'AB' or not.
 
 ===END PLAN===

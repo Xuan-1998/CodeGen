@@ -1,20 +1,10 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
-\
-Consider the number of occurrences of each character in the string
-    * Count the occurrences of 'A' and 'B' separately
-    * This will help us determine when we can start looking for 'BA'
-Check for 'AB' substring using a sliding window approach and then check if the remaining part contains 'BA'
-    * Start with a window of size 2 (since 'AB' has length 2)
-    * Slide the window forward, checking each time if the current window is equal to 'AB'
-        + If it is, move on to the next character
-        + If not, increment the count for 'A' and check again
-    * Once we've checked all the string, check if there are enough remaining characters left for 'BA'
-        + Since 'BA' has length 2, we need at least 2 more characters remaining in the string
-        + If this condition is met, then we can start looking for 'BA'
-Check for 'BA' substring using a sliding window approach
-    * Start with a window of size 2 (since 'BA' has length 2)
-    * Slide the window forward, checking each time if the current window is equal to 'BA'
-        + If it is, print "YES" and stop
-        + If not, move on to the next character
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
+
+There are two states: one for the number of 'A's and 'B's seen so far that are either even or odd, respectively, and another state to track if the current position is an odd or even index. This can be represented as a 2D array where each cell represents whether the corresponding substring can be divided into two non-overlapping parts, each containing one of 'A' or 'B'.
+
+Think about a state that represents if the current position is at the start of either 'AB' or 'BA', and another state that tracks if the next character should be an 'A' or a 'B'. This can be represented as a 2D array where each cell represents whether the corresponding substring starts with 'AB' or 'BA'.
+
+Dynamically build a table where each cell represents whether the corresponding substring contains both 'AB' and 'BA', and then check if these parts contain the required substrings. The answer will be YES if there is at least one cell in the 2D array that has both 'AB' and 'BA', otherwise, it will be NO.
+
 ===END PLAN===

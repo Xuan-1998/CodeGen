@@ -1,16 +1,13 @@
-===BEGIN PLAN REVISION===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-
-Whether the string contains 'AB' at a certain position. 
-Consider two states: one where we have seen an 'A' but not a 'B', and another where we have seen a 'B' but not an 'A'. 
-Create a dictionary to store the memoized results, where each key is a substring of the input string and its value indicates whether it contains 'AB' followed by 'BA'.
-To further optimize the plan, we can consider the following:
-* We only need to check if the substring from position 1 to i contains 'AB' or not. 
-* If the current character is 'A', there are two possibilities: it's the first 'A' of an 'AB' pair or it's a subsequent 'A'. 
-* Similarly, if the current character is 'B', there are also two possibilities: it's the first 'B' of a 'BA' pair or it's a subsequent 'B'.
-This plan should cover all edge cases. For example, when the input string only contains one or zero characters, we can directly return 'NO' as it's impossible to find 'AB' and 'BA' in such strings.
-The plan doesn't consider the case where the input string is empty but it's easy to handle this case by returning 'NO' as there are no substrings in an empty string.
-
-The potential issues with the plan could be that we might end up checking the same substring multiple times which can lead to inefficiency. We can overcome this issue by using dynamic programming and storing the results of our subproblems in a dictionary.
-
-===END PLAN REVISION===
+===BEGIN PLAN===
+dp = [[False] * 2 for _ in range(2 * (len(s) + 1))]
+for i in range(len(s)):
+    if s[i] == 'A':
+        dp[0][1], dp[1][1] = dp[1][1], False
+    elif s[i] == 'B':
+        dp[0][1], dp[1][0] = False, dp[0][0]
+    for j in range(2):
+        if (i > 0 and (dp[j][0] or dp[j][1])) and not (dp[(j + 1) % 2][0] or dp[(j + 1) % 2][1]):
+            print("YES")
+            return
+print("NO")
+===END PLAN===

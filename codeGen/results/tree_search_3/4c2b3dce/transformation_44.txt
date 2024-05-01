@@ -1,23 +1,20 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-States can be transitions from a previous state, with transitions being:
-    - YES: If the current substring is either 'AB' or 'BA', indicating that we have found one of the substrings.
-    - NO: Otherwise, indicating that we haven't found the required substrings yet.
+State is a tuple containing the counts of 'A' and 'B' in the current substring, as well as a flag indicating whether 'AB' has been found yet.
+Initialize state to (0, 0, False).
 
-We can tabulate the states and transitions to find the optimal solution. The state would be the current window we are looking at, and the transition would depend on whether we find 'AB' or 'BA' in this window.
+For each character c in s:
+    If c is 'A', increment A count; if c is 'B', increment B count.
+    If counts are both 1 and AB has not been found yet, set flag to True.
 
-To improve the plan:
-    - We should also consider the edge cases where the string is empty or only contains one character. In these cases, we can immediately return 'NO', as it's impossible to find both substrings without overlap.
-    - To make the problem more efficient, we could use a two-pointer technique instead of the sliding window approach.
+Check for a sliding window of size 2 where you keep track of counts of A and B, updating these counts as you slide along the string:
+    Initialize window state to (0, 0).
+    For each character c in s:
+        If c is 'A', increment A count; if c is 'B', increment B count.
+        If counts are both 1, return "YES".
+        If counts are both 0 and AB has been found yet, return "NO".
 
-Potential issues with the plan:
-    - The plan doesn't account for edge cases where the string is empty or contains only one character. We should add checks for these cases at the beginning of the algorithm.
-    - The plan assumes that the substrings 'AB' and 'BA' do not overlap, which might not be true if we're looking at overlapping substrings.
+Return "YES" if the flag is True, or "NO" otherwise.
 
-Edge cases:
-    - If the input string is empty, return 'NO'.
-    - If the length of the string is less than 2 (i.e., only one character), return 'NO'.
-
-By considering these points and edge cases, we can refine our plan to create an efficient algorithm.
 ===END PLAN===

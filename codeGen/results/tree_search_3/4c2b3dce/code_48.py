@@ -1,22 +1,21 @@
 import sys
 
-def main():
-    s = sys.stdin.readline().strip()
-    
-    ab_count = 0
-    ba_count = 0
-    
-    for i in range(len(s) - 1):
-        if s[i:i+2] == 'AB' or s[i:i+2] == 'BA':
-            if s[i:i+2] == 'AB':
-                ab_count += 1
-            else:
-                ba_count += 1
-                
-    if ab_count == 1 and ba_count == 1:
-        print('YES')
-    else:
-        print('NO')
+def has_ab_ba(s):
+    seen_as = 0
+    seen_bs = 0
+    for c in s:
+        if c == 'A':
+            seen_as += 1
+        elif c == 'B':
+            seen_bs += 1
+        
+        # Check if we've seen both 'AB' and 'BA'
+        if (seen_as % 2 == 0) ^ (seen_bs % 2 == 0):
+            continue
+        if (seen_as >= 1 and seen_bs >= 1 and s[seen_as:seen_as+2] == "AB" and 
+            s[-3:-1] == "BA"):
+            return "YES"
+    return "NO"
 
-if __name__ == '__main__':
-    main()
+s = input()
+print(has_ab_ba(s))

@@ -1,8 +1,21 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
-\
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-Check if the string s contains the substring 'ABA'
-Use a hash set to store all occurrences of 'A' in the string, then iterate over the remaining characters to find occurrences of 'B'
+Let's create a dynamic programming function that takes the current substring as input. The function will return a boolean indicating whether the substring contains both "AB" and "BA".
+
+Create a dictionary to store the results of subproblems, with keys being tuples representing the number of 'A's and 'B's seen so far that are either even or odd, respectively, and values being booleans.
+
+The base case is when the length of the current substring is less than 2. In this case, return False since there can't be both "AB" and "BA".
+
+For each character in the string:
+
+* If the character is 'A', increment the count of 'A's.
+* If the character is 'B', increment the count of 'B's.
+
+Check if the current substring contains both "AB" and "BA". If it does, return True. Otherwise, recursively call the function with the remaining substring (i.e., the substring after the current character).
+
+If the recursive call returns True, then the current substring contains both "AB" and "BA", so return True.
+
+Finally, check if the total count of 'A's is equal to the total count of 'B's. If it is, return True since the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then these parts contain the required substrings.
 
 ===END PLAN===

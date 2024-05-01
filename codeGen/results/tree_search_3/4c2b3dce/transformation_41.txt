@@ -1,8 +1,14 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-Consider states as tuples (left, right) representing the number of characters left in the string after considering AB or BA.
+The state is a tuple containing the counts of 'A' and 'B' in the current substring, as well as a flag indicating whether 'AB' has been found yet.
+Transition relationship: 
+    - If s[0...i] contains 'AB' or 'BA', then state at i+1 is either (1, 0) or (0, 1), depending on whether 'A' or 'B' appears first;
+    - Otherwise, the state remains unchanged.
 
-Tabulate the problem by creating a 1D array where dp[i] represents whether the substring from 0 to i contains both 'AB' and 'BA'.
+Create a 2D DP table with dimensions (length of s + 1) x 2, where each cell dp[i][0] represents whether 'AB' can be found in the first i characters of s and 'A' appears before or at position i. 
+Similarly, dp[i][1] represents whether 'BA' can be found in the first i characters of s and 'B' appears before or at position i.
+
+Finally, check if either dp[n-1][0] or dp[n-1][1] is True; if so, return "YES"; otherwise, return "NO".
 
 ===END PLAN===

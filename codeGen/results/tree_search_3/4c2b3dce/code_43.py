@@ -1,23 +1,22 @@
-import sys
+code = []
+start = 0
+end = 0
+ab_count = [0, 0]
+found = False
 
-def solve():
-    s = input().strip()
-    ab_found = False
-    ba_found = False
-    
-    for i in range(len(s)):
-        if (i + 1 >= len(s) or s[i:i+2] != "AB") and (i + 2 >= len(s) or s[i+1:i+3] != "BA"):
-            continue
-        
-        if s[i:i+2] == "AB":
-            ab_found = True
-        else:
-            ba_found = True
-
-    if ab_found and ba_found:
-        print("YES")
+while end < len(s):
+    if s[end] == 'A':
+        ab_count[1] += 1
     else:
-        print("NO")
+        ab_count[0] += 1
+    if ab_count[0] > 0 and ab_count[1] > 0:
+        found = True
+    if found:
+        code.append("YES")
+        break
+    end += 1
 
-if __name__ == "__main__":
-    solve()
+if not found:
+    code.append("NO")
+
+print("\n".join(code))

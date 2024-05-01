@@ -1,26 +1,19 @@
 import sys
 
-def check_string():
-    s = input()
-    
-    seen = [False, False]
-    has_ab = False
-    
-    for c in s:
-        if c == 'A':
-            seen[0] = True
-            if seen[1]:
-                has_ab = True
-            else:
-                seen[1] = True
-        elif c == 'B':
-            seen[1] = True
-            if not seen[0]:
-                has_ab = True
-    
-    if has_ab and seen[0] and seen[1]:
-        print("YES")
-    else:
-        print("NO")
+n = int(input())
+s = input()
 
-check_string()
+dp = [[0, 0] for _ in range(n + 1)]
+
+for i in range(n):
+    if s[i] == 'A':
+        dp[i+1][0], dp[i+1][1] = dp[i][0], dp[i][1] + 1
+    elif s[i] == 'B':
+        dp[i+1][0], dp[i+1][1] = dp[i][0] + 1, dp[i][1]
+
+for i in range(n):
+    if dp[n][0] == 1 and dp[n][1] == 1:
+        print("YES")
+        sys.exit(0)
+
+print("NO")

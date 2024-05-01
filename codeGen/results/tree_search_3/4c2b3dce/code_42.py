@@ -1,17 +1,27 @@
-// BEGIN PLAN
-// Use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap.
-bool found_ab = false, found_ba = false;
-for (int i = 0; i < len(s); i++) {
-    // Check for 'AB'
-    if (i + 1 < len(s) && s.substr(i, 2) == "AB" && !found_ab) {
-        found_ab = true;
-        i++; // Skip the 'B' in 'AB' to avoid overlap
-    }
-    // Check for 'BA'
-    if (i < len(s) - 1 && s.substr(i, 2) == "BA" && !found_ba) {
-        found_ba = true;
-        i++; // Skip the 'A' in 'BA' to avoid overlap
-    }
-}
-// If both 'AB' and 'BA' are found, return 'YES'; otherwise, return 'NO'.
-cout << (found_ab && found_ba ? "YES" : "NO") << endl;
+def check_string():
+    s = input().strip()
+    
+    state_machine = {'A': 0, 'B': 0}
+    found_ab = False
+    
+    for i in range(len(s)):
+        if s[i] == 'A' and i + 1 < len(s) and s[i+1] == 'B':
+            state_machine['B'] += 1
+            found_ab = True
+        elif s[i] == 'B' and i + 1 < len(s) and s[i+1] == 'A':
+            state_machine['A'] += 1
+            found_ab = True
+        
+        if not found_ab:
+            continue
+        
+        if (state_machine['A'] > 0 and state_machine['B'] > 0) or (state_machine['A'] < 0 and state_machine['B'] < 0):
+            return "NO"
+        
+        if s[i+1:] == 'BA' or s[i+1:] == 'AB':
+            print("YES")
+            return
+        
+    print("NO")
+
+check_string()

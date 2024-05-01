@@ -1,19 +1,22 @@
 import sys
 
-n = int(input())
-s = input()
-
-dp = [[False, False] for _ in range(n + 1)]
-
-for i in range(n):
-    if s[i] == 'A':
-        dp[i + 1][0] = True
-        dp[i + 1][1] = dp[i][1]
-    elif s[i] == 'B' and not dp[i][1]:
-        dp[i + 1][0] = False
-        dp[i + 1][1] = True
+def find_substrings():
+    s = input().strip()
+    
+    has_ab, has_ba = False, False
+    
+    for i in range(len(s) - 1):
+        if s[i:i+2] == 'AB':
+            has_ab = True
+        elif s[i:i+2] == 'BA':
+            has_ba = True
+            
+        if has_ab and has_ba:
+            break
+            
+    if has_ab and has_ba:
+        print("YES")
     else:
-        dp[i + 1][0] = dp[i][0]
-        dp[i + 1][1] = dp[i][1]
+        print("NO")
 
-print("YES" if dp[n][1] else "NO")
+find_substrings()

@@ -1,14 +1,13 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
+The state is a boolean indicating whether the current substring contains 'AB' or not.
 
-YES, this is a good starting point. We can slide a window of size 2 over the string s to look for occurrences of 'AB' or 'BA'.
+Create a dynamic programming table dp of size n+1 where n is the length of the string s. Initialize all values in the dp table to False.
 
-Choose state as a pair of characters in the string s, where each state represents whether 'AB' or 'BA' appears at this point.
+For each character c from 0 to n-1, if the substring from index 0 to c contains 'A' and the substring from c+1 to n contains 'B', then check if the substring from 0 to c contains 'AB'. If it does, set dp[c+1] to True.
 
-This choice of state seems reasonable, but we need to be more specific about what the state should represent. For example, is it "AB" seen so far, or "AB" and "BA" seen so far? We'll come back to this later.
+Iterate through the dp table from right to left. As soon as you find a False value or reach the beginning of the table, return "NO" because the string cannot be divided into two non-overlapping parts that contain 'A' and 'B'.
 
-Use a hash table to store the frequency of characters in the string and then check if it's possible to form both 'AB' and 'BA'.
-
-This part seems unclear. What exactly do we mean by "frequency of characters"? Do we count the occurrences of each character, or something else? Also, how do we use this hash table to determine if the string contains both 'AB' and 'BA'? This step needs more clarification.
+If you reached the end of the dp table without finding any False values, then return "YES" because the string can be divided into two non-overlapping parts that contain 'A' and 'B'.
 
 ===END PLAN===

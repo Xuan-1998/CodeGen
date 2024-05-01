@@ -1,17 +1,14 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-Yes, that sounds like a good idea. A sliding window would allow us to efficiently scan the string for both substrings.
+State: (a, b) where a is the count of 'A', b is the count of 'B', and both are non-negative integers. Initialize a 2D array dp with size (n+1) x 3 where n is the length of the string. The three possible states in the last column represent:
+- (0, 0) - not found yet
+- (1, 0) - 'A' has been found but not 'B'
+- (0, 1) - 'B' has been found but not 'A'
 
-Formulate a set of states for each possible character and their corresponding transitions, considering the constraints of non-overlapping substrings.
+Then iterate over the string from left to right. For each character c:
+- If c is 'A', try to find 'AB' or 'BA' in the remaining part of the string and update dp accordingly.
+- If c is 'B', try to find 'AB' or 'BA' in the remaining part of the string and update dp accordingly.
 
-Hmm, let's think about this... We could have two states: one for when we see an 'A' and the other for when we see a 'B'. Then, we would have three possible transitions:
-- When we see an 'A', we move to the 'AB' state
-- When we see a 'B', we stay in the same state (since it could be part of either 'AB' or 'BA')
-- When we see a character that's not 'A' or 'B', we reset our state
-
-You can use a single array to store information about 'AB' or 'BA' substrings and update it as you move through the string.
-
-Yes, that makes sense. We could use a boolean array where each index represents a position in the string. Then, when we see an 'A', we mark the corresponding indices for both 'AB' and 'BA'. When we see a 'B', we unmark the indices for 'AB' and mark the indices for 'BA'.
-
+Finally, check if there's a state (1, 1) in the last row of the array. If so, return "YES", otherwise return "NO".
 ===END PLAN===

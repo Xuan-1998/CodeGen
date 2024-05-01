@@ -1,24 +1,21 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-Consider states as tuples (left, right) representing the number of characters left in the string after considering AB or BA.
-Use a 2D array to store the dynamic programming table, where dp[i][j] represents whether the substring from i to j contains both 'AB' and 'BA'.
+The state is a tuple containing the counts of 'A' and 'B' in the current substring, as well as a flag indicating whether 'AB' has been found yet.
 
-However, I think there's an issue with this approach. The plan is focused on finding both substrings in the same window, but it doesn't account for the possibility that one of the substrings ('AB' or 'BA') may not be present at all.
+State: (a, b) where a is the count of 'A', b is the count of 'B', and both are non-negative integers.
 
-A better approach would be to separate the problem into two sub-problems: check if the string contains 'AB', and then check if the remaining substring (if any) contains 'BA'.
+Use a dictionary to store the intermediate results and avoid redundant calculations. 
 
-Create a boolean array, say found['AB'], where found['AB'][i] is true if the first i characters of the input string contain the substring 'AB', and false otherwise.
+For each character in the string:
 
-Then, create another boolean array, say found['BA'], where found['BA'][i] is true if the remaining i characters (from position i onwards) in the input string contain the substring 'BA', and false otherwise.
+    If the character is 'A', increment the count of 'A' in the current state.
+    If the character is 'B', increment the count of 'B' in the current state.
+    
+    If the counts are both equal to 1, it means we have found 'AB'. 
+    If not, check if there's a previous state where 'BA' can be found. 
 
-You can then iterate over the input string to fill up these arrays. For each character in the string:
-
-* If you find 'AB', set found['AB'][i] to true.
-* If you find 'BA' (and it's not already contained in a previous iteration), set found['BA'][j] to true for some j that represents the position of the start of 'BA'.
-
-Finally, check if found['AB'][n-1] and found['BA'][0] are both true. If they are, then the input string contains both 'AB' and 'BA', so return "YES". Otherwise, return "NO".
-
-This approach ensures that you correctly handle the cases where one of the substrings is not present at all.
-
+Store each state in the dictionary along with its corresponding flag (whether 'AB' has been found).
+When checking for 'BA', start from the most recent state and move backwards until you find one where 'A' count is greater than 'B' count.
+Return "YES" if 'AB' or 'BA' is found, else return "NO".
 ===END PLAN===

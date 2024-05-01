@@ -1,7 +1,22 @@
-def has_abba(s):
-    for i in range(len(s) - 2):
-        if s[i:i+2] == 'AB' and s[i+2:] == 'BA':
-            return True
-    return False
+===BEGIN SOLUTION===
+import sys
 
-print('YES' if has_abba(input()) else 'NO')
+s = sys.stdin.readline().strip()
+
+state = {'A': False, 'B': False}
+found_A = found_B = False
+
+for char in s:
+    if char == 'A':
+        state['A'] = not state['A']
+        found_A = True
+    elif char == 'B' and found_A:
+        state['B'] = not state['B']
+        found_B = True
+
+result = (state['A'] and state['B'])
+if result:
+    print("YES")
+else:
+    print("NO")
+===END SOLUTION===

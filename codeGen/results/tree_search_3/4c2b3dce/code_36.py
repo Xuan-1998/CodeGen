@@ -1,23 +1,21 @@
 import sys
 
-def find_ab_sba(s):
-    found_a = False
-    found_b = False
+def check_string(s):
+    n = len(s)
+    dp = [False] * (n + 1)
 
-    for c in s:
-        if not found_a and c == 'A':
-            found_a = True
-        elif found_a and c == 'B':
-            found_b = True
-            break  # found both substrings, exit the loop
-        elif found_b and c == 'A':
-            found_b = False  # reset found_b since we've seen 'A' again
+    for i in range(n + 1):
+        if i < 3:
+            dp[i] = True
+        else:
+            if s[i - 3:i].endswith('AB') and dp[i - 3]:
+                dp[i] = True
+            elif s[i - 2:i].endswith('BA') and dp[i - 2]:
+                dp[i] = True
 
-    if found_a and found_b:
-        print("YES")
-    else:
-        print("NO")
+    return "YES" if dp[n] else "NO"
+
 
 if __name__ == "__main__":
-    s = sys.stdin.readline().strip()
-    find_ab_sba(s)
+    s = input().strip()
+    print(check_string(s))

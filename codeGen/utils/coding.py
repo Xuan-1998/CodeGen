@@ -246,7 +246,7 @@ Below is the plan I came up with:
 {transformation}
 ===END PLAN===
 Please think step by step and analyze the plan and provide feedback. Is the plan correct? How can it be improved? What are the potential issues with the plan? Does it include edge cases? 
-!!!Important!!!: Do not provide code. Please provide your updated version of the **WHOLE** detailed plan and wrap it in a code block.
+!!!Important!!!: Please provide the updated version of the entire detailed plan only!! Do not include any comments, previous versions, or code. Use a code block to wrap the updated version of the plan.
 """
 
 @retry(stop=stop_after_attempt(RETRY_COUNT), retry=(retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError)))

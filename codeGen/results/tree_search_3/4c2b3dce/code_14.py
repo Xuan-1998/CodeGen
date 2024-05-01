@@ -1,13 +1,9 @@
-def solution():
-    s = input()
-    for i in range(len(s)):
-        if s[i:i+2] == 'AB':
-            j = i + 2
-            while j < len(s):
-                if s[j:j+2] == 'BA':
-                    print('YES')
-                    return
-                j += 1
-    print('NO')
-
-solution()
+dp = [[False, False] for _ in range(2)]
+for c in s:
+    if c == 'A':
+        dp[0][0] = True
+        dp[1][1] = False
+    elif c == 'B':
+        dp[0][1] = False
+        dp[1][0] = True
+print('YES' if any(dp[0]) or any(dp[1]) else 'NO')

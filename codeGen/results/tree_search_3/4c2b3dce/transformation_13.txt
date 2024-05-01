@@ -1,7 +1,8 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-Otherwise, move to the next even-indexed character
-Use memoization to store whether the string contains 'AB' or 'BA', and then use this information to check for the other substring
-
+Create a 2D array dp where dp[i][0] represents whether the substring s[0:i] contains 'AB', and dp[i][1] represents whether it contains 'BA'. Fill in the array by iterating over the string from left to right. For each character, update the values of dp[i][0] and dp[i][1] based on the previous values.
+dp[i][0] = (dp[i-1][0] && s[i-1] != 'B' || contains('AB', s[0:i])) 
+dp[i][1] = (dp[i-1][1] && s[i-1] != 'A' || contains('BA', s[0:i]))
+where contains(sub, str) is a function that checks if the substring sub appears in the string str.
+Initialize dp[0][0] and dp[0][1] to False. The plan will finish once it reaches i = len(s), where len(s) is the length of the input string s.
+Check if either dp[-1][0] || dp[-1][1], then print "YES" otherwise, print "NO".
 ===END PLAN===

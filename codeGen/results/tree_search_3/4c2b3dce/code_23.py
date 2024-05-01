@@ -1,23 +1,23 @@
-def find_AB(s):
-    # Initialize state tuple as (AB, BA)
-    dp = [False, False]
-    
-    for char in s:
-        if char == 'A':
-            dp[0], dp[1] = dp[1], not dp[0]
-        elif char == 'B':
-            dp[0], dp[1] = not dp[0], dp[0]
-        
-        # If both conditions are met, print "YES" and break
-        if dp[0] and dp[1]:
-            print("YES")
-            return
-        
-    # If we reach the end of the string without finding 'AB' and 'BA', print "NO"
-    print("NO")
+def checkAB(s):
+    n = len(s)
+    prefix = min(len('AB'), len('BA')) - 1
+    dp = [[False] * 2 for _ in range(n + 1)]
 
-# Read input from stdin
-s = input().strip()
+    for i in range(1, n + 1):
+        if i <= prefix:
+            if s[i-1] in 'AB':
+                dp[i][0] = True
+            else:
+                dp[i][1] = True
+        else:
+            if s[i-1] == 'A' and (dp[i-1][0] or dp[i-1][1]):
+                dp[i][0] = True
+            elif s[i-1] == 'B' and (dp[i-1][0] or dp[i-1][1]):
+                dp[i][1] = True
 
-# Call the function to solve the problem
-find_AB(s)
+    return "YES" if any(dp[i][0] and dp[i][1] for i in range(n + 1)) else "NO"
+
+
+if __name__ == "__main__":
+    s = input()
+    print(checkAB(s))

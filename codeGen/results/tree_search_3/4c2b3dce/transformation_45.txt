@@ -1,20 +1,24 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-Viewing the dynamic programming problem as finding the maximum length subsequence that satisfies the condition.
+states = {(0, 0): None}
+for i in range(len(s)):
+    state = (s[i] == 'A', s[i] == 'B')
+    next_state = states.get(state)
+    if not next_state:
+        if state == ('AB', False) or state == (True, 'BA'):
+            print("YES")
+            exit()
+        states[state] = state
+    else:
+        if next_state == ('A', 0):
+            if i + 1 < len(s) and s[i + 1:i + 3] in ['AB', 'BA']:
+                print("YES")
+                exit()
+        elif next_state == (0, 'B'):
+            if i + 1 < len(s) and s[i + 1:i + 3] in ['AB', 'BA']:
+                print("YES")
+                exit()
 
-You can use a dictionary to store the characters you've seen so far, with their indices, and then check if there's a 'B' that comes after an 'A', which would mean we found both substrings. 
-
-However, this plan might not be correct because it doesn't account for cases where one substring appears but not the other.
-
-To improve this plan, we could iterate through the string twice - once to find 'AB' and once to find 'BA'.
-
-Potential issues with this plan include:
-
-* It doesn't handle the case where 'AB' appears multiple times in the string.
-* It also doesn't handle the case where 'AB' or 'BA' appears at the start or end of the string.
-
-To account for these edge cases, we could add additional checks to our code.
-
-Here's an updated version of the plan:
-
+print("NO")
+===END PLAN===

@@ -1,8 +1,7 @@
-# Read the input from stdin
-s = input()
+dp = [[False, False] for _ in range(len(s) + 1)]
 
-# Check if 'AB' appears before 'BA'
-if s.find('AB') != -1 and (s.find('BA', s.find('AB')+2) != -1 or s.find('BA', 0, s.find('AB')) != -1):
-    print("YES")
-else:
-    print("NO")
+for i in range(1, len(s) + 1):
+    dp[i][0] = (s[i-1] == 'A' and s[i-2] == 'B') or dp[i-1][1]
+    dp[i][1] = (s[i-1] == 'B' and s[i-2] == 'A') or dp[i-1][0]
+
+print('YES' if dp[-1][0] and dp[-1][1] else 'NO')

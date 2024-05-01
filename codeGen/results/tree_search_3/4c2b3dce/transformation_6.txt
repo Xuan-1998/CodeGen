@@ -1,18 +1,12 @@
 ===BEGIN PLAN===
-# Correct intuition on using dynamic programming to solve this problem
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-	+ Good approach! This is a classic example of divide-and-conquer strategy.
-
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-	+ Correct observation. We need to check if the string can be divided into two parts, each containing one of these substrings.
-
-The current character position in the string is at an even index
-	+ Hmm, not sure why this would be relevant. Are we trying to optimize something by processing only even indices? If so, it's not clear how that would help us solve the problem.
-
-Use dynamic programming to solve this problem by iterating through the string and checking for the presence of 'AB' and 'BA' substrings.
-	+ Correct approach! Dynamic programming is a good fit for solving problems involving overlapping subproblems.
-
-Overall, your plan has some great ideas, but it could be improved with more clarity on how you intend to implement each step. For example, what does "split the problem into two smaller instances" actually mean in code terms? How will you handle edge cases like an empty string or a string containing only 'AB' or 'BA'? 
-
-Here's my suggested updated plan:
-
+Check if the string contains 'AB' or 'BA' as a substring, then check for the remaining part of the string.
+The state expression is whether the last character in the current prefix is 'A' or 'B', and the base case is when the entire string has been processed.
+Define a state as a binary number where 0 represents 'A' not encountered yet, and 1 represents 'B' not encountered yet. 
+Transition from this state to the next by flipping the corresponding bit for each character in the string.
+Maintain two sets: one for 'AB' substrings and another for 'BA' substrings.
+For each prefix of the input string:
+    If the last character is 'A', add the current prefix to the set for 'AB' substrings if it's not already there, 
+      or add the reverse of the current prefix to the set for 'BA' substrings if it's not already there.
+    If the last character is 'B', do the same as above but swap the sets.
+Check if any substring in either set is equal to 'AB' or 'BA'. If found, print "YES", otherwise print "NO".
+===END PLAN===

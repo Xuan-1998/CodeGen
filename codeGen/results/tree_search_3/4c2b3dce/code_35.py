@@ -1,25 +1,29 @@
-===BEGIN CODE===
+import sys
+
+# Read input from standard input
 s = input()
-dp = [[False for _ in range(len(s) + 1)] for _ in range(2)]
 
-# Initialize base cases
-dp[0][0] = True
+dp = [[False for _ in range(2)] for _ in range(len(s) + 1)]
+
+for i in range(len(s) + 1):
+    dp[i][0] = True
+
 for i in range(len(s)):
-    dp[0][i] = False
     if s[i] == 'A':
-        dp[1][i + 1] = True
+        dp[i+1][0] = dp[i][0]
+        dp[i+1][1] = dp[i][1] or dp[i][0]
+    elif s[i] == 'B':
+        dp[i+1][0] = dp[i][0] and dp[i][1]
+        dp[i+1][1] = dp[i][1]
+    else:
+        dp[i+1][0] = dp[i][0]
+        dp[i+1][1] = dp[i][1]
 
-for i in range(1, len(s) + 1):
-    for j in range(i):
-        if (s[j] == 'A' and s[i - 1] == 'B') or (s[j] == 'B' and s[i - 1] == 'A'):
-            dp[0][i] = True
-        if (s[j] == 'B' and s[i - 1] == 'A') or (s[j] == 'A' and s[i - 1] == 'B'):
-            dp[1][i] = True
+found_ab_or_ba = False
+for i in range(len(s) - 2):
+    if (dp[i][1] and s[i:i+2] == 'AB') or (dp[i][0] and s[i:i+2] == 'BA'):
+        found_ab_or_ba = True
+        break
 
-# Check the last state
-if (dp[0][-1] and dp[1][-2]) or (dp[1][-1] and dp[0][-2]):
-    print("YES")
-else:
-    print("NO")
-
-===END CODE===
+# Print the answer to standard output
+print("YES" if found_ab_or_ba else "NO")

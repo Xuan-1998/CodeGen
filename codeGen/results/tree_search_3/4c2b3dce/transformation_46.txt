@@ -1,8 +1,16 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-View the dynamic programming problem as finding the maximum length subsequence that satisfies the condition.
+The state is a tuple containing the counts of 'A' and 'B' in the current substring, as well as a flag indicating whether 'AB' has been found yet.
 
-Consider using a variable to keep track of the number of times you've seen 'A' or 'B' separately, and only increment this count when you see a character that hasn't been seen before.
+State and transition relationships are defined as follows:
+    - If s[0...i] contains 'AB', then state at i+1 is (1, 0); 
+    - If it contains 'BA', then state at i+1 is (0, 1); 
+    - If neither 'AB' nor 'BA' appears in s[0...i], the state remains unchanged.
+
+Maintain two counters for the occurrences of A and B respectively, and update them accordingly as you iterate through the string.
+
+If the counts of 'A' and 'B' are both 1 when the end of the string is reached, then 'AB' and 'BA' must have been found in some order, so return "YES". 
+Otherwise, return "NO".
 
 ===END PLAN===

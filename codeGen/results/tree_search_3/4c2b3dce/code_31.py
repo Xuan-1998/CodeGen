@@ -1,21 +1,28 @@
-import sys
+def checkAB(s):
+    n = len(s)
+    dp = [[False] * (n + 1) for _ in range(n + 1)]
 
-def solution():
-    s = input().strip()
-    seen_A = False
-    for i, c in enumerate(s):
-        if c == 'A':
-            seen_A = True
-        elif c == 'B' and seen_A:
-            print("YES")
-            return
-    if not seen_A:
-        for i in range(len(s) - 1, -1, -1):
-            if s[i] == 'B':
-                seen_B = True
-            elif s[i] == 'A' and seen_B:
-                print("YES")
-                return
-    print("NO")
+    def is_valid(i, j):
+        if i > j:
+            return False
+        if s[i:j+1] == 'AB' or s[i:j+1] == 'BA':
+            return True
+        return False
 
-solution()
+    for i in range(n):
+        dp[i][i] = is_valid(i, i)
+        if i < n - 1 and is_valid(i + 1, i + 2):
+            dp[i][i + 2] = True
+
+    for length in range(3, n + 1):
+        for i in range(n - length + 1):
+            j = i + length
+            if s[i:j+1].startswith('A') and s[i+1:j].endswith('B'):
+                dp[i][j] = is_valid(i, j)
+            elif s[i:j+1].startswith('B') and s[i].endswith('A'):
+                dp[i][j] = is_valid(i, j)
+
+    return dp[0][n-1]
+
+s = input()
+print("YES" if checkAB(s) else "NO")

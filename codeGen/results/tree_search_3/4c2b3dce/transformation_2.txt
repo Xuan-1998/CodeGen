@@ -1,19 +1,13 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Check if the string contains 'AB' or 'BA' as a substring. This can be done by iterating over the string and checking every 2-character window (i.e., every pair of characters) for both 'AB' and 'BA'. If either 'AB' or 'BA' is found, we know that the rest of the string will not contain the other substring.
 
-Whether the string contains 'AB' at a certain position. 
-	* Check if 'AB' is a prefix of the string.
-	* If not, check if 'AB' appears anywhere in the string.
-	* If it does, then check if 'BA' is a suffix.
-	* If both conditions are met, return "YES" as we've found two non-overlapping substrings "AB" and "BA".
+Let's call this initial check "Phase 1".
 
-Apply memoization by storing the results of subproblems to avoid redundant computations. 
-	+ Create a 2D array dp where dp[i][j] represents whether the substring from index i to j contains 'AB' followed by 'BA'.
-	+ Initialize dp[0][s.length-1] to False as there's no way for 'AB' and 'BA' to be non-overlapping in an empty string.
-	+ For each i from 1 to s.length-2:
-		- Check if the substring from i to i+2 contains 'AB'.
-		- If it does, check if the remaining part of the string (from i+3 to s.length-1) contains 'BA'.
-		- If both conditions are met, set dp[i][s.length-1] to True and continue to the next iteration.
-	* Return "YES" if dp[0][s.length-1] is True; otherwise return "NO".
+In Phase 1, if we find 'AB', then we can stop and return "YES" because we've already found both substrings. If we don't find 'AB' but do find 'BA', then we can also stop and return "YES". If neither 'AB' nor 'BA' is found in the initial check, then we know that the string does not contain both substrings.
 
+So, Phase 1 consists of iterating over the string and checking every 2-character window for 'AB' or 'BA'.
+
+In Phase 2, if the string doesn't contain both substrings after the initial check, then we can just return "NO" because we've already checked the entire string. If it does contain both substrings, then we know that they are non-overlapping.
+
+Note: The plan does not include edge cases explicitly, but we will make sure to handle them correctly in the implementation.
 ===END PLAN===

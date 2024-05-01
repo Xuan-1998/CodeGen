@@ -1,11 +1,20 @@
 ===BEGIN PLAN===
-1. **Initialization**: Initialize a 2D table dp with dimensions (n+1) x 3, where n is the length of the string s. The extra dimension represents the states (0, 0), (1, 0), and (0, 1). Fill the base cases by setting dp[0][i] to False for i = 0, 1, 2.
+Determine the longest common prefix between 'AB' and 'BA', and then check if it appears in the string as a substring.
 
-2. **State Transition**: Iterate through the string s from left to right. For each character c in s:
-   * If c is 'A', update dp[i][0] and dp[i][1] accordingly (either increment or reset depending on the current state).
-   * If c is 'B', update dp[i][2] accordingly.
-3. **Table Filling**: Fill the table dp by considering all possible substrings of s:
-   * For each prefix of length i, check if it contains both 'A' and 'B'. If so, set dp[i][0] to True (since we've found an 'AB' or 'BA' pair).
-4. **Answer Extraction**: After filling the table, extract the answer from dp[n][i], where i is either 0 or 1. If both states are True, then s contains both substrings; otherwise, it doesn't.
+Create a dictionary dp with keys as tuples of (i, j) where i is the length of the current substring and j is 0 for 'AB' or 1 for 'BA'.
+
+dp[i][j] is a boolean indicating whether the substring s[0:i] contains the substring 'AB' (if j=0) or 'BA' (if j=1).
+
+Create another dictionary first_char with keys as tuples of (i, c) where i is the length of the current substring and c is the first character.
+
+first_char[i][c] is a boolean indicating whether the substring s[0:i] starts with the character c ('A' for 'AB', 'B' for 'BA').
+
+Initialize dp with all values as False and first_char with all values as False.
+
+Iterate over the string from left to right. For each character, update dp[i][j] based on the following conditions:
+- If the current substring s[0:i] contains 'AB' (j=0) or 'BA' (j=1), set dp[i][j] to True.
+- If the current substring does not contain 'AB' or 'BA', but its first character matches with 'A' ('AB' case, j=0), set dp[i][j] to False and update first_char[i]['A'] to True. Similarly for 'B' in the 'BA' case (j=1).
+
+Check if either 'AB' or 'BA' appears in the string by checking dp[0][0] or dp[0][1]. If both are True, return "YES". Otherwise, return "NO".
 
 ===END PLAN===

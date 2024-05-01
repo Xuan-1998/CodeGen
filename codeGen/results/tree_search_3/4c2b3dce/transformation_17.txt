@@ -1,6 +1,12 @@
 ===BEGIN PLAN===
-Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
-Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
-Whether the last encountered substring contains 'AB' and the remaining part of the string contains 'BA'
-Use dynamic programming to build up a table of whether 'AB' or 'BA' appears at each position in the string, and then use this information to solve the problem.
+Determine the longest common prefix between 'AB' and 'BA', but we don't need to do this as it's not necessary for solving the problem.
+
+The state expression should be dp[i][j] where dp[i][j] is true if the substrings "AB" and "BA" can be found in s up to index i with the remaining part of the string having length j. The value is false otherwise.
+
+The choice is to check if either "AB" or "BA" appears in the current prefix of the string, and then recursively check for the remaining part of the string.
+
+Implement a 2D tabulation approach to solve this problem using a table to store the results of subproblems.
+
+Check if there are two non-overlapping occurrences of 'A' and one 'B', or vice versa. If found, print "YES", otherwise print "NO".
+
 ===END PLAN===

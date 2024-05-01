@@ -1,13 +1,22 @@
 ===BEGIN PLAN===
-Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+Check if the string can be divided into two non-overlapping parts, each containing one of 'A' or 'B', and then check if these parts contain the required substrings.
 
-* Yes, this is a good direction. We can maintain two pointers i and j, one starting from the beginning of the string and the other from the end.
-* Initialize a flag to track whether we have found both substrings.
+Create a 2D DP array where dp[i][j] represents whether the substring from index i to j contains 'AB' or 'BA'.
 
-Maintain two pointers i and j, one starting from the beginning of the string and the other from the end. Try to form the substrings 'AB' and 'BA' without any overlap
-* Start by moving the pointer from the beginning (i) forward until we find the substring 'AB'. This will ensure that the remaining part of the string does not contain 'AB'.
-* Now, start moving the pointer from the end (j) backward until we find the substring 'BA'. This will ensure that the remaining part of the string does not contain 'BA'.
-* If we can form both substrings without any overlap, then return "YES".
-* If we cannot form either substring, then return "NO".
+There are three states:
+- Start: The current position is at the start of one substring.
+- End: The current position is at the end of the other substring.
+- Inside: The current position is somewhere in between.
 
+Determine states based on whether the current position is at the start of one substring, the end of the other, or somewhere in between.
+- Start:
+    + If the character at the current position is 'A' and the previous character was 'B', then update dp[i][j] to True for all i from 0 to j.
+    + If the character at the current position is 'B' and the previous character was 'A', then update dp[i][j] to True for all i from 0 to j.
+- End:
+    + If the character at the current position is 'A' and the next character would be 'B', then update dp[i][j] to True for all i from i to j.
+    + If the character at the current position is 'B' and the next character would be 'A', then update dp[i][j] to True for all i from i to j.
+- Inside:
+    + Check if the substring contains either 'AB' or 'BA'. If it does, return True.
+
+Finally, check the last state of the DP array. If it's True, then the string contains both 'AB' and 'BA'.
 ===END PLAN===

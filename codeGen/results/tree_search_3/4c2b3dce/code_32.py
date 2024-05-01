@@ -1,13 +1,18 @@
-code = input().strip()
-ab_seen = ba_seen = False
+code
+s = input().strip()
+dp = [False] * (len(s) + 1)
+for i in range(1, len(s) + 1):
+    if i > 1 and s[i-2:i] in ['AB', 'BA']:
+        dp[i] = True
 
-for i in range(len(code)):
-    if i + 2 <= len(code) and code[i:i+2] == 'AB':
-        ab_seen = True
-    elif i >= 1 and code[i-1:i+1] == 'BA':
-        ba_seen = True
+found = False
+for i in range(len(s)):
+    if dp[i]:
+        remainder = s[i+2:]
+        if 'AB' in remainder or 'BA' in remainder:
+            print('YES')
+            found = True
+            break
 
-if (ab_seen and not ba_seen) or (ba_seen and not ab_seen):
-    print("YES")
-else:
-    print("NO")
+if not found:
+    print('NO')
