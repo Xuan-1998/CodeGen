@@ -1,12 +1,28 @@
-str1 = input()
-str2 = input()
-n = len(str1)
+import sys
 
-dp = [[0] * (n + 1) for _ in range(n + 1)]
-ans = 0
-for i in range(1, n + 1):
-    for j in range(1, n + 1):
-        if str1[i - 1] == str2[j - 1]:
-            dp[i][j] = dp[i - 1][j - 1] + 1
-            ans = max(ans, dp[i][j])
-print(ans)
+# Read input from stdin
+N = int(sys.stdin.readline())
+str1 = sys.stdin.readline().strip()
+str2 = sys.stdin.readline().strip()
+
+# Initialize count of common substrings
+count = 0
+
+# Generate all substrings for str1 and str2
+for i in range(N):
+    for j in range(i, N):
+        substring1 = str1[i:j+1]
+        found = False
+        for k in range(len(str2)):
+            if str2[k:k+len(substring1)] == substring1:
+                count += 1
+                found = True
+                break
+        if not found:
+            for l in range(k + len(substring1), len(str2)):
+                if str2[k:l+1] == substring1:
+                    count += 1
+                    found = True
+                    break
+
+print(count)

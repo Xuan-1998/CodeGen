@@ -1,0 +1,12 @@
+for i in range(n):
+    for j in range(2**i):  # iterate over all possible matches
+        match_result = ...  # determine the winner of this match (e.g., based on skill levels)
+        if match_result == 1:  # team wins, so update dp[i+1]
+            dp[i+1] = dp[i][j] + [the winning team's index]
+        else:
+            dp[i+1] = dp[i][j:j+1]
+    winning_teams = []  # keep track of all winning teams
+    for i in range(n):
+        if len(dp[i]) > 0:  # there are still teams participating in round i
+            winning_teams.append(list(set([team[0] for team in dp[i]])))  # find unique winners and add to the list
+    return sorted(winning_teams)

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings. Implement a recursive function with memoization using a dictionary.
+
+Representing the state as a pair of integers (i, k) where i is the current index in S and k is the number of characters matched in T.
+This representation seems okay, but you might need to consider an additional parameter to track the length of the subsequence.
+
+Represent the state as a pair (i, j) where i is the current index in S and j is the current index in T. Then transition from state (i, j) to state (i+1, j+1) if the characters at indices i in S and j in T match, or stay in the same state if they don't.
+This approach might not work because you're considering both strings simultaneously, which could lead to incorrect results. Instead, consider one string at a time.
+
+Represent the state as (i, k) where i is the current index in S and k is the number of characters matched in T, then transition from state (i, k) to state (i+1, k+1) if the characters at indices i in S and k in T match, or stay in the same state if they don't.
+This representation is more promising. You can use this approach to build a dynamic programming solution.
+
+===END PLAN===

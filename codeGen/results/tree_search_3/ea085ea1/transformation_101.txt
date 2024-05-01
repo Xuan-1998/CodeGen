@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming (DP) with a sliding window approach: Create a 2D DP array, where each cell represents whether there is a common substring ending at that position in both strings. Then use this DP array to find the maximum number of such substrings.
+
+State:
+* Two pointers i and j, representing the current positions in str1 and str2, respectively.
+* A 2D DP array dp[][] of size (N+1) x (M+1), where N is the length of str1 and M is the length of str2. Each cell dp[i][j] represents whether there is a common substring ending at position i in str1 and j in str2.
+
+Base Case:
+* When one of the pointers reaches the end of its respective string, we can stop the process because any further substrings would not be common.
+
+Transition:
+* For each pair of characters (str1[i-1], str2[j-1]), check if they are equal.
+	+ If yes, then dp[i][j] = 1 + dp[i-1][j-1]. This means we found a new common substring.
+	+ If no, then dp[i][j] = 0. The current characters do not match.
+
+Memoize the function that checks if two given substrings are equal:
+* Create a separate DP array for this function to store the results of subproblems.
+
+To find the maximum number of common non-overlapping substrings, we can use another DP array to keep track of the maximum length of common substring ending at each position.
+===END PLAN===

@@ -1,16 +1,19 @@
-n = int(input())
-str1 = input()
-str2 = input()
+import sys
+import uffdsa as utf
 
-def common_substrings(s1, s2):
-    m, n = len(s1), len(s2)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    ans = 0
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if s1[i - 1] == s2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-                ans = max(ans, dp[i][j])
-    return ans
+N = int(input())
+str1 = input().strip()
+str2 = input().strip()
 
-print(common_substrings(str1, str2))
+utf1 = utf.SuffixTree(str1)
+utf2 = utf.SuffixTree(str2)
+
+common_substrings = []
+for node1 in utf1:
+    for node2 in utf2:
+        if node1 == node2:
+            common_substring = str1[node1.begin:node1.end]
+            common_substrings.append(common_substring)
+
+max_common_substrings = len(set(common_substrings))
+print(max_common_substrings)

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+Whether the string is a concatenation of two substrings, where one contains 'AB' and the other contains 'BA'.
+If we encounter 'AB', check if the next two characters are 'BA'
+Preprocess the string to identify all occurrences of 'AB', then check if there are sufficient 'B's and 'A's remaining for 'BA'.
+
+// My thoughts:
+The plan looks good, it's a recursive approach that can be used to solve this problem. It's correct in the sense that it tries to break down the problem into smaller instances.
+
+However, I think there is room for improvement. Instead of preprocessing the string to identify all occurrences of 'AB', we could just keep track of whether we have found an 'AB' or not. This would save us a lot of unnecessary work.
+
+Also, when checking if there are sufficient 'B's and 'A's remaining for 'BA', we should also check that we haven't already found a 'BA'. If we have, then we don't need to look further because the answer is 'YES'.
+
+One potential issue with this plan is that it doesn't handle edge cases. For example, what if the string is empty or only contains one character? In these cases, our plan would fail.
+
+To fix this, we should add some base cases to our recursive function. These base cases would return 'NO' for an empty string and 'YES' for a string that only contains one character.
+
+Another potential issue is that our plan could get stuck in an infinite loop if the string keeps repeating 'ABBA'. To avoid this, we could keep track of how many times we have found an 'AB' or 'BA', and stop looking once we have found both enough times.
+
+Overall, your plan looks good, but it needs some refinements to handle edge cases and potential issues.
+===END PLAN===

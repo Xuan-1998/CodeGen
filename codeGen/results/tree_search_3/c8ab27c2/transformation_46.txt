@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Determine the longest common suffix (LCS) of two strings. Then, find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of S and T.
+
+Define the state as a pair (length_S, length_T) that stores the lengths of strings S and T.
+Define the state as a pair (i, j) representing the current positions in strings S and T. The transition relationship is based on whether or not the current character in S matches the current character in T.
+
+Use a 2D array dp to store the lengths of the longest common suffixes for all possible prefixes of S and T. Initialize dp[0][0] as the length of LCS, then fill up the rest of the dp array based on whether or not the current characters match.
+
+Find the minimum value in the dp array that is not equal to the length of the LCS. This will represent the length of the shortest uncommon subsequence.
+
+Note: The plan assumes S and T are non-empty strings.
+Potential issues:
+- What if one string is a prefix of the other? In this case, the LCS will be the entire shorter string, so the plan should handle this edge case.
+- It might be more efficient to store the lengths of the longest common prefixes instead of suffixes, especially when S and T have different lengths.
+
+Edge cases:
+- If one or both strings are empty, return 0, since an empty subsequence is considered uncommon.
+- Handle the case where LCS is the entire length of either string. In this case, subtracting the LCS from the lengths will give the correct answer.
+
+===END PLAN===

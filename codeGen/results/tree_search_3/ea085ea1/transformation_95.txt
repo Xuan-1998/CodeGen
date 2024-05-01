@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using a combination of dynamic programming and sliding window approach: Create two arrays, dp1 and dp2, to store the maximum number of common substrings found for each position in str1 and str2 respectively. Initialize both arrays with zeros.
+
+* Start by initializing dp1[0] and dp2[0] to 1, since a substring of length 1 is always present.
+* Then, iterate through the strings from left to right, considering all possible substrings that start at each position. For each position i in str1 and j in str2:
+	+ If the characters at positions i and j are the same, then consider this as an extension of a common substring found so far. Update dp1[i] and dp2[j] accordingly.
+	+ If the characters at positions i and j are different, reset the current maximum length of common substring to 0.
+* The base case is when one of the arrays reaches its end (i.e., the end of str1 or str2). This means that all remaining substrings in this string cannot be matched with any substrings in the other string, so stop updating dp1 and dp2 at this point.
+* Finally, iterate through the arrays to find the maximum number of common substrings found between str1 and str2. This can be done by iterating through dp1 and dp2 simultaneously, considering all positions where the values are non-zero.
+
+This plan is correct in principle, but it may not be efficient since we need to consider all possible substrings at each position.
+===END PLAN===

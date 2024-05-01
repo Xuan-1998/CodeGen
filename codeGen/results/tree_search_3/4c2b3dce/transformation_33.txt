@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+\
+The next state depends on the current character: if it's 'A', transition to the state where the remaining substring contains 'B'; if it's 'B', transition to the state where the remaining substring contains 'A'; otherwise, stay in the same state.
+
+1. Initialize a dynamic programming table with dimensions (n+1) x 2, where n is the length of the string.
+   - The first row represents the base case: when we haven't seen any characters yet.
+   - Each subsequent row represents the current character and the remaining substring.
+
+2. Iterate through the string from left to right:
+   - For each character c in the string:
+     - If it's 'A', update the table for the next state (i.e., when we've seen an 'A' and need to look for a 'B').
+     - If it's 'B', update the table for the next state (i.e., when we've seen a 'B' and need to look for an 'A').
+
+3. Check if there are any valid states in the last row of the dynamic programming table.
+   - A valid state exists when we can find both 'AB' and 'BA' without overlap, i.e., there's at least one state where the first column is 1 (representing 'AB' found) and another state where the second column is 1 (representing 'BA' found).
+
+4. Output "YES" if valid states exist; otherwise, output "NO".
+
+===END PLAN===

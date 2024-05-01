@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach where you maintain an array dp[i] that stores the minimum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+dp[i] represents the minimum number of recomputations needed from vertex i to t, considering all shortest paths from i to t.
+If you don't follow the recommended path, you need to recompute the shortest path from the current vertex to t. This is done by considering all vertices v in next_vertices(i) and taking the minimum dp[v] + 1.
+On the other hand, if you follow the recommended path, then you just need to continue with the recomputation process from the next vertex.
+
+So, the recurrence relation can be written as:
+dp[i] = min(dp[v] + 1 for v in next_vertices(i)) if not follow_recommendation(i) else dp[next_vertex(i)]
+
+Use a 2D DP table to store the minimum and maximum number of recomputations needed from each vertex i to t, considering all shortest paths from i to t.
+
+===END PLAN===

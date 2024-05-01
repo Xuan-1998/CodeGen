@@ -1,27 +1,32 @@
-from collections import defaultdict
-n = int(input())
+import sufarray
+
 str1 = input()
 str2 = input()
 
-dp1 = defaultdict(int)
-dp2 = defaultdict(int)
+suffix_tree1 = sufarray.suffixtree(str1)
+suffix_tree2 = sufarray.suffixtree(str2)
 
-for i in range(n):
-    for j in range(i+1, n):
-        substr1 = str1[i:j]
-        dp1[substr1] += 1
+common_substrings = []
 
-for i in range(n):
-    for j in range(i+1, n):
-        substr2 = str2[i:j]
-        dp2[substr2] += 1
+def dfs(node, path):
+    if node.is_end():
+        common_substrings.append(path)
+    for char in ['*', '#', '@']:
+        child = node.get_child(char)
+        if child:
+            dfs(child, path + char)
 
-count = 0
-seen = set()
+for node in suffix_tree1:
+    dfs(node, '')
+for node in suffix_tree2:
+        dfs(node, '')
 
-for key, val in dp1.items():
-    if key in dp2:
-        count += min(val, dp2[key])
-        seen.add(key)
+common_substrings = list(set(common_substrings))  # remove duplicates
 
-print(count)
+non_overlapping_common_substrings = []
+
+for substring in sorted(common_substrings, key=len, reverse=True):
+    if all(substring != s or substring.startswith(s) for s in non_overlapping_common_substrings):
+        non_overlapping_common_substrings.append(substring)
+
+print(len(non_overlapping_common_substrings))  # output

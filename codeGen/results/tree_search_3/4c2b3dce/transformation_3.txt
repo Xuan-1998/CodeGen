@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+
+Whether the string contains 'AB' at a certain position. 
+
+Consider two states: one where we have seen an 'A' but not a 'B', and another where we have seen a 'B' but not an 'A'.
+
+Create a 2D table to store the dynamic programming state, with each cell representing whether the string up to that position contains 'AB' followed by 'BA'.
+
+===Step-by-Step Plan===
+
+1. Initialize a 2D table dp of size (n+1) x 2, where n is the length of the string s.
+
+   - dp[i][0] represents whether the substring from index 0 to i does not contain 'AB' followed by 'BA'.
+   - dp[i][1] represents whether the substring from index 0 to i contains 'AB' followed by 'BA'.
+
+2. Iterate over each character in the string s.
+
+3. For each character, update the dp table based on the following rules:
+    - If the current character is 'A', then dp[i+1][0] = dp[i][0] and dp[i+1][1] = dp[i][1]
+    - If the current character is 'B' and dp[i][0], then set dp[i+1][0] = False and dp[i+1][1] = True
+    - If the current character is 'B' and dp[i][1], then set dp[i+1][0] = True and dp[i+1][1] = False
+    - If the current character is neither 'A' nor 'B', then do nothing
+
+4. The answer to whether the string contains two non-overlapping substrings "AB" and "BA" is dp[n][1].
+
+===END PLAN===

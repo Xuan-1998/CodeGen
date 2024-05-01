@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming (DP) with a sliding window approach. 
+
+The idea is to create a sliding window that moves along the strings str1 and str2, and check for each substring within the window whether it is common between the two strings. Then keep track of the maximum number of such substrings found so far.
+
+The state could be the current position in both strings, with the base case being when one of the positions reaches the end of its respective string.
+state: (i, j) where i and j are the current positions in str1 and str2 respectively
+Use a 3D DP array to store the lengths of common substrings at each state. The array should be initialized with zeros.
+
+The transition function could be:
+dp[i][j][k] = max(dp[i-1][j-1][k], k) if str1[i] == str2[j] else dp[i-1][j-1][0]
+
+This is because, when we move to the next position in both strings and find a match, the length of the common substring increases by 1. If there's no match, we just keep track of the maximum length found so far.
+
+The base case could be:
+dp[0][0][k] = k for all values of k
+
+This is because when both positions are at the start of their respective strings, the maximum length of common substring is 0 (since there are no characters in common yet).
+
+To find the maximum number of non-overlapping substrings, we need to iterate over the DP array and keep track of the maximum length found so far.
+
+The time complexity could be O(N^3) where N is the length of each string. This is because we have a 3D array with dimensions N x N x 100 (the maximum number of common substrings).
+
+The space complexity could be also O(N^3) for storing the DP array.
+
+This plan seems to cover all edge cases and potential issues.
+===END PLAN===

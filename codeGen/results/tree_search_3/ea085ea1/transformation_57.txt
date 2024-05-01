@@ -1,0 +1,21 @@
+===BEGIN PLAN REVISION===
+The problem can be solved using dynamic programming with memoization: Create a 2D array dp where dp[i][j] represents the maximum number of common non-overlapping substrings ending at position i in str1 and j in str2.
+
+state:
+	- Initialize dp[0][0] to 0, since there are no common substrings when starting from the beginning of both strings.
+	- For each substring ending at position i in str1 and j in str2, check if the current characters match. If they do, consider the maximum number of common non-overlapping substrings ending at position i-1 in str1 and j-1 in str2, plus 1 (since this new substring is also a common one).
+
+base case:
+	- When i or j reaches the end of its respective string, stop considering further substrings.
+
+improvement suggestions:
+	- Use a more efficient data structure for memoization, such as a Trie or a suffix tree.
+	- Consider using a more advanced dynamic programming approach, such as using bitmasks to represent the current substring and reducing the number of states.
+
+edge cases:
+	- Handle the case where one string is shorter than the other. In this case, return 0 since there are no common substrings that span across both strings.
+	- Handle the case where both strings are empty. In this case, return 1 since there is a single common substring of length 0.
+
+issues:
+	- The plan does not handle the case where two adjacent characters in str1 and str2 match but their preceding characters do not match.
+	- The plan may have high time complexity if implemented naively.

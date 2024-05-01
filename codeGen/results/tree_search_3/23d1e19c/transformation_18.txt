@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach where you maintain an array dp[i] that stores the minimum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+Let's break it down step by step:
+
+1. Initialize dp[i] for each vertex i in the graph. This will store the minimum number of recomputations needed from vertex i to t.
+2. For each vertex i that is not in the fixed path, calculate the minimum number of recomputations needed as 1 + max(dp[v][0]) where v is the previous vertex in the path. If i is in the fixed path, dp[i] = 0.
+
+The idea is that if you are at vertex i and you decide to follow the recommended path, you will need to recompute the shortest path from i to t once. If you don't follow the recommended path, you will need to recompute the shortest path from i to t based on the recomputations needed for the previous vertices in the path.
+
+3. For each vertex i that is in the fixed path, calculate dp[i] = 0. This is because if you are at a vertex in the fixed path, you don't need to recompute the shortest path as it's already known.
+
+4. Finally, return the maximum and minimum values of dp[] which represent the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+This plan is correct and should give the expected output. It includes edge cases such as when a vertex is in the fixed path or not.
+===END PLAN===

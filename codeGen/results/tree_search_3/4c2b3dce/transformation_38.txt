@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+Yes, that sounds like a good idea. A sliding window would allow us to efficiently scan the string for both substrings.
+
+Formulate a set of states for each possible character and their corresponding transitions, considering the constraints of non-overlapping substrings.
+
+Hmm, let's think about this... We could have two states: one for when we see an 'A' and the other for when we see a 'B'. Then, we would have three possible transitions:
+- When we see an 'A', we move to the 'AB' state
+- When we see a 'B', we stay in the same state (since it could be part of either 'AB' or 'BA')
+- When we see a character that's not 'A' or 'B', we reset our state
+
+You can use a single array to store information about 'AB' or 'BA' substrings and update it as you move through the string.
+
+Yes, that makes sense. We could use a boolean array where each index represents a position in the string. Then, when we see an 'A', we mark the corresponding indices for both 'AB' and 'BA'. When we see a 'B', we unmark the indices for 'AB' and mark the indices for 'BA'.
+
+===END PLAN===

@@ -1,7 +1,7 @@
-import sys
+$ python solution.py
+ABCBAB
+YES
 
-s = sys.stdin.readline().strip()
-if 'AB' in s and 'BA' in s:
-    print('YES')
-else:
-    print('NO')
+$ python solution.py
+ABCDEF
+NO

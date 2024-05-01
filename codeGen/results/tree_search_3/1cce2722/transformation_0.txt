@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider a top-down approach where you recursively explore all possible sequences of deletions, keeping track of the maximum points earned at each step and storing this information in a memo dictionary.
+
+The state expression is dp[i][k] = max points earned by deleting up to i elements, considering k as the last element in the sequence.
+dp[i][k] = max { dp[j][a[j]] + 1 | j < i, a[j] == k-1 || a[j] == k+1 }
+
+However, there's an issue with this plan. The state expression is not well-defined because it doesn't take into account the fact that you can delete elements equal to both ak-1 and ak+1 in one step.
+
+A correct way to define the state would be:
+dp[i][k] = max { dp[j][a[j]] + 1 | j < i, a[j] == k } (delete all occurrences of k)
+             || dp[j][a[j]] | j < i (don't delete anything)
+
+This plan is correct in terms of considering the maximum points earned by deleting up to i elements. However, it might not be efficient because it involves recursive calls and memoization.
+
+To improve this plan, you could consider using a bottom-up approach instead of top-down. This would involve initializing the dp table with base cases (e.g., when i or k is 0) and then filling in the rest of the table based on these base cases.
+
+In terms of edge cases, make sure to handle them correctly. For example, what if n or some ai value is outside the range [1, 105]? 
+
+===END PLAN===

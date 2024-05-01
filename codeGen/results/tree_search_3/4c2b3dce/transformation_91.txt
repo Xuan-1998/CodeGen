@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Are there any specific characters or patterns in the input string that could help us solve the problem efficiently?
+
+* Yes, we can use the presence of 'A' and 'B' in the string to define our states.
+
+Considering the presence of 'A' and 'B' in the string, we could define a state as: 
+{bool['A' appears before 'B'], bool['AB' or 'BA' appear consecutively]}
+
+* This state captures whether we have seen both 'A' and 'B', and whether they appeared consecutively.
+
+States could represent the last character seen, with transitions updating this state based on whether the current character matches the expected next one in 'AB' or 'BA'
+
+* We can define states as follows:
+  - If the last character seen is 'A' and the current character is 'B', then we have found 'AB'
+  - If the last character seen is 'B' and the current character is 'A', then we have found 'BA'
+  - Otherwise, we haven't found any of the required substrings yet
+
+Implement memoization using a dictionary where the keys are tuples representing the last seen characters and values are booleans indicating whether the substrings have been found.
+
+* Initialize an empty dictionary to store our state transitions
+* Iterate through each character in the input string
+* For each character, update the state based on the current character and the last seen character
+* Check if we have found both 'AB' and 'BA' by checking the values in the state
+
+===END PLAN===

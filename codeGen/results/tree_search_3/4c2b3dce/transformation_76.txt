@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+Consider maintaining a set of seen characters, where each character is either 'A', 'B', or neither. Then, iterate through the string and update the set accordingly. When you see both 'A' and 'B', check if the current state matches the required pattern.
+
+**Issue:** This approach might not work because it doesn't account for the order of characters in "AB" and "BA". For example, if the input is "ABA", this approach would incorrectly say that "AB" and "BA" are present without any overlap.
+
+**Correction:** Instead of using a set to keep track of seen characters, we can use two variables to count the occurrences of 'A' and 'B'. When we see both 'A' and 'B', check if the counts match the required pattern. If they do, return "YES". If not, continue iterating through the string.
+
+Memoize the function that checks for 'AB' and 'BA'
+
+**Issue:** Memoization might not be necessary here because we're only checking for two specific substrings ("AB" and "BA"), and these are fixed. We don't need to memoize a function that's just doing a simple substring check.
+
+Overall, your plan has some good ideas, but it needs refinement to handle the order of characters in "AB" and "BA". With the corrected approach, you should be able to solve the problem correctly.
+===END PLAN===

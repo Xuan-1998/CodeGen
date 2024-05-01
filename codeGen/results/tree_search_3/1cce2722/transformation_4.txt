@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Consider a top-down approach where you recursively explore all possible sequences of deletions, keeping track of the maximum points earned at each step and storing this information in a memo dictionary.
+
+The state expression is dp[i][k] = max points earned by deleting up to i elements, considering k as the last element in the sequence.
+dp[i][k] = max { dp[j][a[j]] + 1 | j < i, (k - 1) <= a[j] && a[j] <= (k + 1) }
+
+You can implement memoization using a recursive function with a dictionary to store intermediate results, pruning branches of the recursion tree based on the last element in the sequence.
+===END PLAN===

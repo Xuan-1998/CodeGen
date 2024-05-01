@@ -1,16 +1,16 @@
 import sys
-from collections import defaultdict
 
-n = int(sys.stdin.readline())
+n = int(sys.stdin.readline().strip())
 s = sys.stdin.readline().strip()
-skill_levels = [i for i in range(2**n)]
 
-winning_teams = []
+all_skills = [0]
+for i in range(n):
+    new_skills = []
+    for skill in all_skills:
+        new_skills.append(skill + (1 << i) if s[i] == '1' else skill)
+    all_skills = new_skills
 
-for i in range(len(s)):
-    for j in range(i+1, len(s)):
-        if (s[i] == '0' and s[j] == '1') or (s[i] == '1' and s[j] == '0'):
-            skill_levels.remove(int('1' + s[:i] + '0' + s[i+1:j] + '1' + s[j+1:], 2))
+winning_teams = sorted([skill for skill in all_skills if bin(skill).count('1') >= n])
 
-for team in skill_levels:
+for team in winning_teams:
     print(team)

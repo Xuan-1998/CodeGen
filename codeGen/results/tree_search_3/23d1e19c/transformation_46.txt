@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Try a dynamic programming approach where you maintain an array minmax[i] that stores both the minimum and maximum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+minmax[i] = max(minmax[j] + 1 for j from s to t); ...  // This line seems a bit unclear. It's not entirely clear what this equation is supposed to do.
+
+Formulate state and transition relationships using the following: minmax[i][0] represents the minimum number of recomputations needed, minmax[i][1] represents the maximum number of recomputations needed, and minmax[j] is a 2-element array for vertex j. The relationship is defined as follows: if i is not on the recommended path, then minmax[i][0] = max(minmax[j][0] + 1 for j from s to t), and minmax[i][1] = min(minmax[j][1] + 1 for j from s to t); otherwise, it remains unchanged.
+
+// This part of the plan seems correct. It correctly captures the idea that if you choose not to follow the recommended path, then you would need to recompute the shortest path at each vertex along the way, but if you do follow the recommended path, then you wouldn't need to recompute anything.
+
+Memoization with Function Calls
+===END PLAN===

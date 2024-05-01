@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+\
+Consider a set of binary states {A, B, AB, BA} where A represents the absence of both 'A' and 'B', 
+    B represents the presence of only one of 'A' or 'B', 
+    AB represents the presence of both 'AB' and 'BA' without overlap, 
+    and BA represents the presence of 'BA' with 'A' not followed by 'B'.
+Create a 2D table to store the dynamic programming state where each cell [i][j] represents whether the substring from i to j contains both 'AB' and 'BA' without overlap.
+
+\*
+To determine the state at position [i][j], we can slide two pointers, left and right, starting from the beginning of the string. 
+    For each position k between i and j (inclusive), check if 'A' or 'B' is present by comparing with a substring from k to k+1.
+    If 'AB' is found at position k, update the state at [i][j] as AB; similarly for BA.
+
+\*
+To ensure that we don't miss any substrings, we can start sliding the pointers from both ends of the string and move them towards each other. 
+    This way, we'll cover all possible substrings without missing any.
+
+\*
+Finally, return "YES" if the state at [0][n-1] is AB or BA, where n is the length of the input string; otherwise, return "NO".
+
+===END PLAN===

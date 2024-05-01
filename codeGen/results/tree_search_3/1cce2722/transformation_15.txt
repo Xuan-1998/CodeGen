@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Instead, opt for a bottom-up approach where you tabulate the maximum points that can be earned by deleting elements from subsequences, filling in the table row by row or column by column.
+
+Let the state be dp[i][k] which represents the maximum number of points that can be earned by deleting elements from the subsequence a1, a2, ..., ai such that the last element in the subsequence is ak. The base case for this recurrence would be when i = 0, where dp[0][k] = k (since there are no elements to delete and all points can be earned).
+
+To fill in the table, consider the following:
+
+* If the last element of the subsequence is not equal to ak, then we don't need to worry about it. We can simply take the maximum number of points that can be earned from the previous subsequence (dp[i-1][k]).
+* If the last element of the subsequence is equal to ak, then we have two options:
+	+ Delete this element and move on to the previous subsequence. In this case, the maximum number of points that can be earned would be dp[i-1][k].
+	+ Don't delete this element. Since we want to earn as many points as possible, we should only do this if deleting this element would result in fewer points being earned than not deleting it.
+
+This means that when filling in dp[i][k], you would consider the maximum number of points that can be earned by deleting or not deleting the last element of the subsequence. This would involve a conditional statement to determine which option is better, based on the value of dp[i-1][k] and k.
+
+Note: The state transition function (how we fill in the table) should depend only on previous states (i.e., dp[i-1][k] and dp[i-1][k-1]). This means that once you've filled in dp[i][k], you won't need to go back and revisit any previously filled-in values.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN FEEDBACK===
+Your plan is generally correct, but there are some issues to consider:
+
+1. You're right that using a hashmap to store the frequency of prefixes can help optimize the dynamic programming process.
+
+2. The state definition as a tuple (prefix, i) where prefix is the common prefix of S[:i] and T[:j]  seems correct. This way, you only need to consider subsequences that have not been considered before.
+
+3. However, when transitioning from one state to another, you'll need to consider whether the characters at positions i and j are equal in both strings. If they're not equal, then it's not a common prefix anymore.
+
+4. You didn't mention anything about handling edge cases, such as if S or T is an empty string. In that case, you'd return -1 immediately.
+
+5. Another thing to consider is how you'll determine whether a subsequence is uncommon. One way to do this would be to compare the frequency of the subsequence in both strings. If it's not present in one of the strings, then it's an uncommon subsequence.
+
+6. You didn't mention anything about memoization or caching states that have already been considered. This could help reduce the time complexity by avoiding redundant calculations.
+
+7. Finally, you'll need to decide how you'll return the length of the shortest uncommon subsequence. One way would be to keep track of the minimum length seen so far and update it as you find shorter uncommon subsequences.
+
+===END FEEDBACK===

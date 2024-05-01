@@ -1,0 +1,40 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings.
+
+    // Initialize memoization dictionary
+    memo = {}
+
+    def longest_common_subsequence(s, t):
+        # Base case: If the length of either string is 0, return 0
+        if len(s) == 0 or len(t) == 0:
+            return 0
+
+        # Check if this subproblem has been solved before
+        if (s, t) in memo:
+            return memo[(s, t)]
+
+        # If the last characters of both strings match, decrement their lengths and recurse
+        if s[-1] == t[-1]:
+            s = s[:-1]
+            t = t[:-1]
+            result = 1 + longest_common_subsequence(s, t)
+        else:
+            result = max(longest_common_subsequence(s, t[:-1]), longest_common_subsequence(s[:-1], t))
+
+        # Store the computed value in memo
+        memo[(s, t)] = result
+
+        return result
+
+    def find_length_of_shortest_uncommon_subsequence(S, T):
+        # Find the length of the longest common subsequence between S and T
+        lcs_length = longest_common_subsequence(S, T)
+
+        # The shortest uncommon subsequence is the longest common subsequence plus 1 (the first character that doesn't match)
+        return len(S) - lcs_length
+
+    // Call this function with your test cases
+    print(find_length_of_shortest_uncommon_subsequence("abc", "def"))
+
+
+===END PLAN===

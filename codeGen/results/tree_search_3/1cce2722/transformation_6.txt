@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Consider a top-down approach where you recursively explore all possible sequences of deletions, keeping track of the maximum points earned at each step and storing this information in a memo dictionary.
+
+The state expression is dp[i][k] = max points earned by deleting up to i elements, considering k as the last element in the sequence.
+
+Initially, set dp[0][i] = 1 for all i, since deleting no elements gives you 1 point. This will serve as a base case for your recursive function.
+
+Now, consider dp[i][k]. You want to find the maximum points earned by deleting up to i elements and considering k as the last element in the sequence. You can do this by considering three cases:
+
+- Case 1: Delete the current element (i.e., k). In this case, you get a point for every deletion that follows k.
+- Case 2: Don't delete the current element (i.e., don't consider k).
+- Case 3: Consider deleting elements equal to k - 1 and k + 1.
+
+For each of these cases, recursively calculate the maximum points earned by deleting up to i - 1 elements. Add the corresponding number of points for each case, and take the maximum of these three values.
+
+This can be expressed as:
+
+dp[i][k] = max { dp[j][a[j]] + 1 | j < i, k-1 in range(a[j]) and k+1 in range(a[j]) } + 1 (if you decide to delete the current element)
+
+Use dynamic programming with a bottom-up approach to fill up the dp table row by row, where dp[i][k] is the maximum points earned by deleting up to i elements and considering k as the last element in the sequence.
+
+Finally, return dp[n-1][-1], which represents the maximum points earned by deleting all possible elements from the original sequence.
+===END PLAN===

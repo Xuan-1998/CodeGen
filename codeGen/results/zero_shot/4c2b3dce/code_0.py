@@ -1,21 +1,20 @@
-def check_AB_BA(s):
-    # Find "AB" and "BA" in the string s
-    ab_index = -1  # Initialize to -1 (not found)
-    ba_index = -1  # Initialize to -1 (not found)
-    
-    for i in range(len(s) - 1):
-        if s[i:i+2] == "AB" and (ab_index == -1 or i - ba_index > 1):
-            ab_index = i
-        elif s[i:i+2] == "BA" and (ba_index == -1 or i - ab_index > 1):
-            ba_index = i
-        
-        # If both are found and non-overlapping, return "YES"
-        if ab_index != -1 and ba_index != -1:
-            return "YES"
-    
-    return "NO"
+code
+import sys
 
-# Read input from stdin
-s = input().strip()
-# Print the output
-print(check_AB_BA(s))
+def contains_ab_and_ba(s):
+    ab_found = False
+    ba_found = False
+    
+    for i in range(len(s) - 1):  # iterate over the string, considering substrings of length 2
+        if s[i:i+2] == "AB":
+            ab_found = True
+        elif s[i:i+2] == "BA":
+            ba_found = True
+    
+    if ab_found and ba_found:
+        return "YES"
+    else:
+        return "NO"
+
+s = sys.stdin.readline().strip()
+print(contains_ab_and_ba(s))

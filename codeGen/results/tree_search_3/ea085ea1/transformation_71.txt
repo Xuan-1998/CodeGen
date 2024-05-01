@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming, but the sliding window approach is not necessary. Instead, we can create a 2D array dp[][] where dp[i][j] represents whether the substring str1[0..i] and str2[0..j] are common or not.
+
+state: The state of our dynamic programming table is the current position in both strings, with the base case being when one of the positions reaches the end of its respective string.
+
+transition:
+- dp[i][j] = 1 if str1[0..i] and str2[0..j] are common (i.e., they have same characters at the same positions)
+- dp[i][j] = 0 if str1[0..i] and str2[0..j] are not common
+- dp[i][j] is only dependent on previous states, i.e., dp[i-1][j-1], which means we can use this to fill up the table.
+
+This approach ensures that we consider all possible substrings of the given strings and find the maximum number of non-overlapping common substrings.
+===END PLAN===

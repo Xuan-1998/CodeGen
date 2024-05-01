@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming with a sliding window approach: 
+Create a 2D table dp where dp[i][j] represents whether the substring from index i to j is common between str1 and str2. Initialize all elements of the dp table as False.
+Then, for each character in str1 and str2, update the dp table accordingly:
+- If the current characters in both strings match, then mark this position in the dp table as True (i.e., set dp[i][j] = True)
+- If the current characters don't match or one of them has reached the end of its respective string, then stop updating the dp table at this point
+Now, traverse the dp table in a bottom-up manner to find the maximum number of common non-overlapping substrings between str1 and str2.
+For each cell in the dp table that is True (i.e., represents a common substring), check if it's not overlapped with any previously found common substrings. 
+If not, then increment the count of common substrings.
+
+Store the intermediate results in a list and use the index as the key for lookup and update.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Instead, opt for a bottom-up approach where you tabulate the maximum points that can be earned by deleting elements from subsequences, filling in the table row by row or column by column.
+
+The state can be represented by dp[i] which stores the maximum number of points that can be earned by deleting elements from the subsequence a1, a2, ..., ai for each possible value of ak in the range [0, 105].
+
+dp[i] can be defined as the maximum number of points that can be earned by deleting elements from the subsequence a1, a2, ..., ai for each possible value of ak in the range [0, 105], considering dp[i-1] and the previous element aj to decide whether to delete or not
+
+**Initialization**: Initialize all dp[i] values to -∞ (or some other value that indicates no points earned yet). This is because we don't know what the maximum number of points is for each subsequence yet.
+
+**Transition function**: For each i and 0 ≤ ak ≤ 105, calculate the maximum points that can be earned by deleting elements from the subsequence a1, a2, ..., ai considering dp[i-1] and aj. This involves deciding whether to delete or not based on the previous element.
+
+**Terminal condition**: The terminal condition is when i = n (the end of the sequence).
+
+**Tabulation**: Fill in the table row by row or column by column using the transition function and terminal condition.
+
+**Optimization**: After filling the entire table, return the maximum dp[i] value to get the maximum number of points that can be earned by deleting elements from the original sequence.
+
+===END PLAN===

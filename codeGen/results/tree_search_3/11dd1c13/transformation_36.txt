@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The bottom-up approach uses tabulation to fill up a 2D table dp where dp[i][j] is the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns. The base case can be considered as dp[0][j] = 0 for all j, since there are no paths to consider.
+
+The dynamic programming approach involves iterating over each cell dp[i][j], considering all possible choices of elements from previous row dp[i-1][k] (where k is the column index) and calculating the minimum sum. This can be done by iterating over all columns k such that j-k >= 0, then for each valid k:
+
+- Initialize a variable min_sum = INT_MAX
+- Iterate over all possible choices of elements from previous row dp[i-1][k] (where k is the column index)
+    - Calculate the sum including this element and the minimum sum considering the rest of the path
+    - Update min_sum if the calculated sum is less than it
+
+Then, assign dp[i][j] = min_sum. This ensures that for each cell dp[i][j], the minimum sum considering all possible choices from previous rows has been computed.
+
+The final result is the value at dp[n-1][0], where n is the number of rows in the grid.
+
+===END PLAN===

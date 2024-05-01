@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach where you maintain an array dp[i] that stores the minimum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+Initially, it seems like a good approach. However, there's a potential issue with the plan: what if we're currently at a vertex that's not in the fixed path? In this case, dp[i] would be 1 + dp[v], but how do we know which v to choose? We don't have any information about the edges incident on i other than being part of the shortest path from s to t. This could lead to incorrect results.
+
+To improve the plan, consider using a more robust data structure than just an array. A dictionary would be suitable for storing subproblems and their solutions. This way, when we encounter a subproblem that's already been solved, we can simply look it up in the dictionary instead of re-computing it.
+
+Another issue with the plan is edge cases. What if there are no recomputations needed? How do you handle this case?
+
+Here's an updated version of the plan:
+

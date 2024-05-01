@@ -1,29 +1,30 @@
 import sys
-from collections import defaultdict
 
-n = int(sys.stdin.readline())
-str1 = list(sys.stdin.readline().strip())
-str2 = list(sys.stdin.readline().strip())
+str1 = sys.stdin.readline().strip()
+str2 = sys.stdin.readline().strip()
 
-dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
+preprocessed_str1 = ''.join(c for c in str1 if c in '*#@')
+preprocessed_str2 = ''.join(c for c in str2 if c in '*#@')
 
-for i in range(1, len(str1) + 1):
-    for j in range(1, len(str2) + 1):
-        if str1[i - 1] == str2[j - 1]:
-            dp[i][j] = dp[i - 1][j - 1] + 1
-        else:
-            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+def find_substrings(s):
+    substrings = set()
+    for i in range(len(s)):
+        for j in range(i + 1, len(s) + 1):
+            substrings.add(s[i:j])
+    return substrings
 
-ans = 0
-i, j = len(str1), len(str2)
-while i > 0 and j > 0:
-    if str1[i - 1] == str2[j - 1]:
-        ans += 1
-        i -= 1
-        j -= 1
-    elif dp[i - 1][j] > dp[i][j - 1]:
-        i -= 1
-    else:
-        j -= 1
+substrings_str1 = find_substrings(preprocessed_str1)
+substrings_str2 = find_substrings(preprocessed_str2)
 
-print(ans)
+common_substrings = set()
+for substring in substrings_str1:
+    if substring in substrings_str2:
+        is_common = True
+        for common_substring in common_substrings:
+            if common_substring.startswith(substring) or common_substring.endswith(substring):
+                is_common = False
+                break
+        if is_common:
+            common_substrings.add(substring)
+
+print(len(common_substrings))

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming with memoization: Create a 2D array dp of size (N+1) x (N+1), where N is the length of each input string, to store the results of subproblems. The state could be the current position in both strings, with the base case being when one of the positions reaches the end of its respective string.
+
+Let's initialize a 2D array dp with -1 values: This means that initially, we haven't found any common substring yet.
+Create another 2D array visited to keep track of whether a particular position in both strings has been considered or not.
+
+left_str2_ pos
+
+The main function would be a nested loop over the positions of str1 and str2. For each pair of positions (i, j), check if the substring from index i to j is common between str1 and str2 by comparing characters at these positions.
+If it's common, update dp[i][j] with the value of 1, indicating that we have found a common substring ending at position (i, j).
+Update visited[i][j] with True.
+
+Once you have filled up the dp array, iterate over the values to find the maximum number of consecutive ones in any row. This would give us the maximum number of non-overlapping common substrings between str1 and str2.
+This plan handles edge cases by considering all possible positions in both strings.
+
+Some potential improvements could be:
+- Using a Trie data structure instead of the dp array, as it's more suitable for this problem due to its ability to store and retrieve substrings efficiently.
+- Implementing a binary search approach to find the maximum number of non-overlapping common substrings between str1 and str2.
+
+This plan seems correct and can be used as the basis for the solution. It includes edge cases, such as when one of the strings ends before the other, which is handled by checking if either i or j reaches N.
+===END PLAN===

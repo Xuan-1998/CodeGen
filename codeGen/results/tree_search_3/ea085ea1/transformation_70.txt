@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with a sliding window approach: Create a 2D array dp where dp[i][j] represents the maximum number of common non-overlapping substrings found up to the i-th character in str1 and the j-th character in str2. The base case is when one of the positions reaches the end of its respective string.
+
+transition
+Fill up the dp array using a nested loop: For each pair (i, j), check if the current characters at positions i in str1 and j in str2 are equal. If they are, increment the count of common substrings and move both windows forward by one character. If they are not, update the dp array with the maximum number of common non-overlapping substrings found up to the previous position.
+
+base case
+When one of the positions reaches the end of its respective string, return the value stored at that position in the dp array as the maximum number of common non-overlapping substrings.
+
+edge cases
+Check for edge cases where either str1 or str2 is empty. If either string is empty, there are no common substrings and we can immediately return 0.
+
+To avoid redundant computations, use a dictionary to store memoized values with keys being tuples representing the current positions in both strings and values being the maximum number of common non-overlapping substrings found up until those positions.
+
+This approach ensures that the same subproblems are not solved multiple times, reducing the time complexity. The space complexity is O(N) where N is the length of the input strings.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with a 2D table to store the maximum number of common substrings found so far for each position in both strings.
+
+1. Initialize two arrays dp1 and dp2 of size N+1, where N is the length of the input strings.
+   dp1[i] will store the maximum number of common substrings ending at position i in str1.
+   dp2[i] will store the maximum number of common substrings ending at position i in str2.
+
+2. Iterate over the positions in both strings using a sliding window approach, considering all possible substrings within each window.
+
+3. For each substring, check if it is present in the other string. If yes, update dp1[i] or dp2[i] accordingly based on whether the current position is at the end of its respective string.
+
+4. The state transition can be as follows: dp1[i+1] = max(dp1[i], dp1[i-1]) + 1 (if the current substring is common) and similarly for str2.
+
+5. Update the maximum number of common substrings found so far using memoization and update it accordingly as you slide along the strings. This will give us the final answer.
+
+6. The base case would be when one of the positions reaches the end of its respective string, at which point we can stop updating dp1[i] or dp2[i].
+
+===END PLAN===

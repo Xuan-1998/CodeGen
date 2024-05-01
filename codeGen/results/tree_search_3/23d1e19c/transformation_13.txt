@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach where you maintain two arrays dp_min[i] and dp_max[i] that store the minimum and maximum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+The state dp_min[i] is 0 if vertex i is in the fixed path, and 1 + min(dp_min[v], dp_max[v]) otherwise (where v is the previous vertex in the path), because we can either follow the recommended path (which takes 0 recomputations) or deviate from it and recompute the shortest path from v to t (which takes at most dp_max[v] recomputations).
+
+Similarly, the state dp_max[i] is 1 + max(dp_min[v], dp_max[v]) if vertex i is not in the fixed path, because we can either follow the recommended path (which takes at most dp_min[v] recomputations) or deviate from it and recompute the shortest path from v to t (which takes at most dp_max[v] recomputations).
+
+State: The state of dp_min[i] and dp_max[i] is updated based on whether the current vertex i follows the recommended path or not.
+
+Dynamic programming with two arrays: one for the minimum number of recomputations and one for the maximum number of recomputations.
+
+===END PLAN===

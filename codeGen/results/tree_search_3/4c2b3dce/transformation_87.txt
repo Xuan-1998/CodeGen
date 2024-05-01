@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Are there any specific characters or patterns in the input string that could help us solve the problem efficiently?
+Considering the presence of 'A' and 'B' in the string, we could define a state as:
+    {bool['A' appears before 'B'], bool['AB' or 'BA' appear consecutively]},
+This is because if we find both 'A' and 'B' consecutively, it means we've found either 'AB' or 'BA', and we can update our state accordingly.
+Use a 2D array to represent the state space, where each cell corresponds to whether 'A' has appeared before 'B' and if both 'AB' and 'BA' have been found so far.
+
+Here's how we could use this 2D array:
+    Initialize the top-left corner of the array as true (both 'A' appears after 'B', and neither 'AB' nor 'BA' has been found).
+    As we iterate through the string, for each character, update the corresponding cell in the array based on whether 'A' or 'B' is being read.
+    If we find both 'A' and 'B' consecutively, we can set the state to true (both 'AB' and 'BA' have been found).
+    Since we're using a 2D array, this approach allows us to efficiently check for both substrings in O(n) time complexity.
+
+===END PLAN===

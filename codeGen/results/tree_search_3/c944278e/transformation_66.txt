@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Decide on bottom-up approach with tabulation by understanding that the winning teams can be found by iteratively evaluating the results of each phase in the tournament, using arrays to store intermediate results.
+
+The state expression could be a list representing the current number of teams that can still win the tournament after considering the results from previous phases. The base case would be when only one team is left, which means it's the sole winner.
+
+State: dp[i][j] represents the list of teams that can still win the tournament after considering the results from the first i phases, given that j is the skill level.
+
+dp[i][j] = []  # Initialize the state with an empty list
+for team in range(2**n):  # Iterate over all possible teams
+    if s[i-1][team] == 'W' and not any(s[k][team] == 'L' for k in range(i)):  # Check if the team can still win after considering previous phases
+        dp[i][j].append(team)  # If yes, add the team to the current state
+
+Base case: When i = n, only one team is left (the sole winner). So, dp[n][j] will contain this single team.
+
+To find all winning teams, iterate over the final states and add them to a result list. Then, sort the result list in ascending order.
+
+===END PLAN===

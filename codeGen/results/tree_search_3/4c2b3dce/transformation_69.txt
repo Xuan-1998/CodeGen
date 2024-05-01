@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+YES, we can definitely use a sliding window approach. The idea is to maintain two pointers, one at the start of the string and one at the end. We slide the window by moving the start pointer forward or the end pointer backward based on whether we find 'A', 'B', or neither.
+
+Design a transition function that takes the current state as input and returns the next possible states based on the characters in the string.
+
+We can define two states: FOUND_AB (when we've found both 'AB' and 'BA'), NOT_FOUND (when we haven't found either). The transition function should return these states based on whether we find an 'A', a 'B', or neither. For example, if we're in state FOUND_AB and we find an 'A', we can move to the state FOUND_BA; if we're in state NOT_FOUND and we find an 'A', we can move to state FOUND_AB.
+
+Create a 2D table where each cell [i][j] represents whether the substring s[:i+1] contains both 'AB' and 'BA'.
+
+We can initialize the table with all values as FALSE (assuming neither 'AB' nor 'BA' is found initially). Then, we iterate over the string and update the table based on the transition function. The final state in the bottom-right corner of the table will indicate whether the string contains both substrings.
+
+===END PLAN===

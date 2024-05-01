@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings. Implement a recursive function with memoization using a dictionary.
+
+Considering the last character of each string separately, defining the state as (i, j) representing the indices of S and T. The state can be represented by a tuple (i, j), where i is the current index in string S and j is the current index in string T.
+
+The state can transition from:
+- State (i, j) to state (i+1, j) if the characters at indices i and j are equal
+- State (i, j) to state (i+1, j+1) if the characters at indices i and j are not
+
+Using a dictionary to store previously computed values for each unique prefix. This will help avoid redundant computations.
+
+To improve this plan:
+* Instead of using recursion with memoization, consider using dynamic programming directly. This can be done by initializing a 2D array dp where dp[i][j] represents the length of the shortest subsequence in S up to index i that is not a subsequence in T up to index j.
+* Consider sorting both strings and then comparing them character by character. This can help reduce the time complexity.
+
+Potential issues with this plan:
+* The current plan does not account for edge cases where one string is longer than the other or when the strings are equal.
+
+To handle these edge cases:
+* Initialize dp[0][j] to -1 for all j, because there is no shortest subsequence in an empty string.
+* Set dp[i][0] to i-1, where i is the length of S. This represents the case where the entire string S is not a subsequence in T.
+
+This plan does account for edge cases:
+* The initializations of dp[0][j] and dp[i][0] handle the edge cases where one string is longer than the other or when the strings are equal.
+===END PLAN===

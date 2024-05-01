@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Are there any specific characters or patterns in the input string that could help us solve the problem efficiently?
+
+YES, we can look for the presence of 'A' and 'B' characters. We know that "AB" and "BA" are the only valid substrings.
+
+Define a state as: {bool[previous character is 'A'], bool[previous character is 'B']} to keep track of the sequence of 'A's and 'B's, and the base case could be when the string has only one or two characters.
+
+YES, this approach can help us track the sequence. We'll use a 2D array dp to store our dynamic programming results.
+
+Think of states as strings: (prev_state, curr_char), where prev_state is the state before processing the current character, and curr_char is either 'A' or 'B'.
+
+YES, this way we can keep track of the sequence. We'll consider two types of transitions:
+- If the previous character was not 'A', then we're free to add any 'A' or 'B'. So, dp[i][state] = 1.
+- If the previous character was 'A', then we know that we need an 'B'. So, dp[i][state] = dp[i-1][(false, true)].
+
+Create a 2D array dp of size m*n (m is the number of characters in the string, n is the length of the state vector), where dp[i][state] represents whether it's possible to find 'AB' and 'BA' in the first i characters of the string given the previous sequence state.
+
+YES, this way we can store our results. We'll fill up the 2D array based on the transitions mentioned above.
+Finally, check if there exists at least one "AB" and one "BA" in the string by checking dp[m-1][(true, false)].
+
+===END PLAN===

@@ -1,0 +1,33 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach where you maintain an array dp[i] that stores the minimum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+To clarify, let's break down the problem into smaller subproblems:
+
+1. For each vertex i, find the minimum number of recomputations needed to reach vertex t from i.
+2. The minimum number of recomputations is the minimum number of times you need to recompute the shortest path from i to t.
+
+To solve this problem, we can use dynamic programming with memoization.
+
+Let's define dp[i] as the minimum number of recomputations needed to reach vertex t from vertex i.
+
+The base case is when i = t, in which case dp[i] = 0 (no need to recompute).
+
+For other vertices i, we consider two options:
+
+1. Follow the recommended path: In this case, we don't need to recompute.
+2. Don't follow the recommended path: In this case, we need to recompute.
+
+So, dp[i] = min(1 + dp[j] for j in vertices if is_reachable(i, j) and j not in recommended_path)
+
+Here's where memoization comes in:
+
+* We store the minimum number of recomputations needed from vertex i to t in a dictionary as we compute them.
+* Before computing dp[i], we check if it's already stored in the dictionary. If so, return the stored value.
+
+This way, we avoid redundant computations and only compute each subproblem once.
+
+The time complexity is O(n + m), where n is the number of vertices and m is the number of edges.
+
+The space complexity is O(n), as we need to store dp[i] for all vertices i.
+
+===END PLAN===

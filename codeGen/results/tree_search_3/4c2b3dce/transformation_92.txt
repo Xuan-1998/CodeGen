@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Are there any specific characters or patterns in the input string that could help us solve the problem efficiently?
+Yes, we can observe that 'A' and 'B' are the only characters of interest. We don't need to consider other uppercase Latin letters.
+
+Considering the presence of 'A' and 'B' in the string, we could define a state as: 
+{bool['A' appears before 'B'], bool['AB' or 'BA' appear consecutively]},
+This is a good starting point. The state captures whether 'A' has appeared before 'B', which will help us detect when 'AB' or 'BA' occur.
+
+States could represent the last character seen, with transitions updating this state based on whether the current character matches the expected next one in 'AB' or 'BA'
+This is a good approach. We can maintain a dynamic programming table where each cell (i, j) represents the state after processing the i-th character and considering whether the previous characters formed 'AB' or 'BA'.
+
+Dynamically build a suffix tree and use it to find occurrences of 'AB' and 'BA'.
+This might be overkill. Since we're only interested in detecting non-overlapping substrings, we don't need to construct a full suffix tree.
+
+Instead, we can maintain two variables: one for the count of 'A's before 'B', and another for the count of 'B's after 'A'. As we iterate through the string, we update these counts. If at any point the count of 'A's before 'B' is greater than or equal to 1, and the count of 'B's after 'A' is greater than or equal to 1, then we've found two non-overlapping substrings 'AB' and 'BA'.
+
+===END PLAN===

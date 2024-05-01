@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+YES, we can! The idea is to slide two pointers, one from the start of the string and another from the end, and try to find 'AB' or 'BA' in the string. We can use this approach because we only care about non-overlapping occurrences.
+
+Design a transition function that takes the current state as input and returns the next possible states based on the characters in the string.
+Let's define our state as a tuple (i, j) where i is the index of the first character of 'AB' or 'BA', and j is the index of the last character. We can have two types of transitions: either we found 'AB' or 'BA', or we didn't.
+
+If we found 'AB' or 'BA', then our next possible states are (i+2, j) (because we already checked this occurrence) or (0, len(s)-1) if we reached the end of the string. If we didn't find 'AB' or 'BA', then our next possible state is (i+1, j-1) (because we can move one step forward or backward).
+
+Use memoization to store the results of subproblems in a dictionary, where the keys are tuples representing the current state.
+We can use this approach because the problem has overlapping subproblems. For example, when we check if 'AB' is present at index i, we might also be checking if 'BA' is present at index len(s)-i-1. If we already computed these values, we can just look them up in the dictionary instead of recomputing them.
+
+===END PLAN===

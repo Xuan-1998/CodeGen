@@ -1,20 +1,28 @@
-import sys
-from collections import defaultdict
+import pytse
 
-N = int(sys.stdin.readline())
-str1 = list(sys.stdin.readline().strip())
-str2 = list(sys.stdin.readline().strip())
+# Read input strings from stdin
+str1 = input().strip()
+str2 = input().strip()
 
-dp1, dp2 = [0] * (N + 1), [0] * (N + 1)
-for i in range(N):
-    if str1[i] == str2[i]:
-        dp1[i + 1] = dp1[i] + 1
-        dp2[i + 1] = dp2[i] + 1
+# Create suffix trees for each string
+str1_tree = pytse.suffix_tree(str1)
+str2_tree = pytse.suffix_tree(str2)
 
-ans, res = 0, [0]
-for i in range(N):
-    for j in range(i + 1, N):
-        if str1[i:i + j + 1] == str2[:j + 1]:
-            if dp1[j] - dp2[j] > ans:
-                ans = dp1[j] - dp2[j]
-print(ans)
+def find_common_substrings(str1_tree, str2_tree):
+    common_substrings = []
+
+    # Iterate through nodes in both trees
+    for node1 in str1_tree.traverse():
+        for node2 in str2_tree.traverse():
+            # Check if nodes have a common ancestor
+            if node1.common_ancestor(node2):
+                # If yes, extract the common substring and add it to the list
+                substring = node1.suffix + node2.suffix
+                common_substrings.append(substring)
+
+    return common_substrings
+
+common_substrings = find_common_substrings(str1_tree, str2_tree)
+max_non_overlapping_substrings = len(set(common_substrings))
+
+print(max_non_overlapping_substrings)  # Print answer to stdout

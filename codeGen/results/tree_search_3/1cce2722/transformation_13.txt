@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider a top-down approach where you recursively explore all possible sequences of deletions, keeping track of the maximum points earned at each step and storing this information in a memo dictionary.
+
+Define the state expression as dp[i] = maximum points earned by deleting at most i elements from the sequence. The base case should be when i = 0, which means no elements left to delete.
+
+Define dp[i] as maximum points earned by deleting at most i elements from the sequence, considering all possible deletions until the current element. The transition relationship is dp[i] = max(dp[j] + (i-j) for j in range(i-2)) if i > 0 and ai != ak + 1 and ai != ak - 1.
+
+Implement memoization by storing previously computed values of dp[i] in a dictionary and checking if they are already present before computing them again.
+===END PLAN===

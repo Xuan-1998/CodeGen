@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Think about a dynamic programming approach where you maintain an array f[i] that stores the maximum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+dp[i] = max(dp[j] for j in range(i, t+1) if has_edge(j, i)) if i != t, 0, float('inf')
+dp[i] = dp[t-1] + (t-i+1) if i != t, 0, float('inf')
+
+Use memoization to store the maximum number of recomputations needed from each vertex to t, and update dp[i] as you traverse the graph.
+===END PLAN===

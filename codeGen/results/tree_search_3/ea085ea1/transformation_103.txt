@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming and sliding window approach: Create two 2D arrays, dp1[i][j] and dp2[i][j], where i is the length of the current substring in str1 and j is the length of the current substring in str2. The arrays represent whether the substrings are common.
+The state could be the set of all common substrings found so far, with the base case being an empty set.
+
+State: two 2D arrays dp1[i][j] and dp2[i][j], where i is the length of the current substring in str1 and j is the length of the current substring in str2.
+dp1[i][j] = 1 if the substrings of length i from str1 and j from str2 are common, and 0 otherwise.
+dp2[i][j] = 1 if the substrings of length i+1 from str1 and j+1 from str2 are common, and 0 otherwise.
+
+Initialization: dp1[0][0] = 1 (the empty string is always a common substring).
+
+Transition function:
+- If the current characters in both strings match, then we can extend the common substrings of length i and j to i+1 and j+1.
+dp1[i][j] = dp2[i-1][j-1]
+
+Base case: if the end of one string is reached (i.e., i or j equals N), then no more extensions are possible.
+
+Main loop:
+- Slide a window of length i and j over str1 and str2, respectively.
+- Check for each substring within the window whether it is common between the two strings using dp1[i][j] and dp2[i][j].
+- Keep track of the maximum number of such substrings found so far.
+
+Output: The output is the maximum number of common non-overlapping substrings between str1 and str2.
+===END PLAN===

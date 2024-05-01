@@ -1,17 +1,15 @@
-n = int(input())
-str1 = input()
-str2 = input()
+def find_max_common_substrings():
+    str1 = input()
+    str2 = input()
 
-def solve():
-    dp = [[[] for _ in range(n+1)] for _ in range(n+1)]
-    ans = 0
-    for i in range(1, n+1):
-        for j in range(1, n+1):
-            if str1[i-1] == str2[j-1]:
-                dp[i][j] = dp[i-1][j-1] + [str1[i-1]]
-                ans = max(ans, len(dp[i][j]))
-            else:
-                dp[i][j] = []
-    return ans
+    max_common_substrings = 0
 
-print(solve())
+    for i in range(len(str1)):
+        for j in range(i + 1, len(str1) + 1):
+            substring = str1[i:j]
+            if substring in str2:
+                max_common_substrings += 1
+
+    print(max_common_substrings)
+
+find_max_common_substrings()

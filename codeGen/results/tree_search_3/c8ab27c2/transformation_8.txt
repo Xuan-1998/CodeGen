@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings. 
+Implement a recursive function with memoization using a dictionary.
+
+Considering the last character of each string separately, defining the state as (i, j) representing the indices of S and T.
+Consider the state as a pair (i, j) representing the current index in strings S and T, respectively, and define transitions based on whether the characters at these indices are equal or not.
+
+Create a dictionary dp where dp[i][j] represents the length of the shortest common subsequence up to index i in S and j in T.
+Consider the base case for when the strings are empty (i.e., both S and T have no more characters left).
+For each character, if they match, consider the subproblem with indices i-1 and j-1, as the common subsequence has one more element. 
+If they don't match, consider the maximum length of the shortest common subsequences without considering this pair of characters.
+Finally, return -1 when there is no uncommon subsequence found.
+
+===END PLAN===

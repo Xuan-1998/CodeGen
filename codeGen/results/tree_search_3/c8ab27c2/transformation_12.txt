@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings.
+
+Implement a recursive function with memoization using a dictionary. The base case for the recursion will be when the current characters in S and T are different, or when one of them is exhausted.
+
+Considering the last character of each string separately, define the state as (i, j), representing the indices of S and T. The state can be represented by a tuple (i, j), where i is the current index in string S and j is the current index in string T.
+
+The transition from state (i, j) to state (i+1, j) if the characters at indices i and j are equal, or to state (i+1, j+1) if they are not. This can be achieved by recursively calling the function on the remaining characters if they are not equal.
+
+Modify the recursive function to only consider non-overlapping subproblems by checking if the current character in S is equal to the current character in T, and recursively calling the function on the remaining characters if they are not.
+
+To avoid redundant calculations, use memoization to store the results of subproblems. This can be done using a dictionary where the key is the state (i, j) and the value is the length of the shortest uncommon subsequence ending at that position.
+
+Handle edge cases by returning -1 when one of the strings is exhausted before finding an uncommon subsequence.
+
+===END PLAN===

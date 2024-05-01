@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine the longest common suffix (LCS) of two strings. Then, find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of S and T.
+
+Define the state as a tuple (i, j) where i is the current position in string S and j is the current position in string T.
+
+Consider two states: (i, k) representing the current position i in string S and the end of the common suffix at position k in string T; (j, 0) where j is the current position in string T and there's no common suffix.
+
+Use a dictionary memo to store the lengths of LCS for subproblems and look up the solutions when possible. This will help to avoid redundant computations and improve the efficiency of the algorithm.
+
+To determine the LCS, start from the end of both strings and work backwards. For each pair of characters, check if they are equal. If they are, move one step forward in both strings; otherwise, move one step back in one string (the shorter one).
+
+For each state (i, j), calculate the length of the LCS up to this point by looking at the memo dictionary. If there is no memo for this state, calculate it and store it.
+
+To find the shortest uncommon subsequence, iterate over the strings S and T from left to right. For each position i in string S and j in string T, check if the current character in S is equal to the current character in T. If they are not, add 1 to a counter that keeps track of the length of the shortest uncommon subsequence.
+
+Finally, subtract the LCS from the lengths of S and T to get the answer. If no such subsequence exists, return -1.
+
+===END PLAN===

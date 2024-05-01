@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming to find the longest common suffix (LCS) of two strings S and T.
+
+1. Initialize a 2D array dp with dimensions |S| + 1 x |T| + 1, where |S| and |T| are the lengths of strings S and T respectively.
+2. Set the base case for the dynamic programming: if i = 0 (i.e., we've reached the end of string S), then dp[i][j] is equal to the length of the LCS up to position j in string T.
+3. Fill up the dp table by considering all possible pairs of characters in strings S and T:
+	* If the current character in string S matches the last character of the LCS, then we move diagonally up in the dp table (i.e., dp[i][j] = dp[i-1][k+1]).
+	* If the current character in string S does not match the last character of the LCS, then we move left in the dp table (i.e., dp[i][j] = 0).
+4. Once the dp table is filled up, we can find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of strings S and T.
+
+===END PLAN===

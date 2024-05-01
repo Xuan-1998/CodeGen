@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Choose dynamic programming by identifying overlapping subproblems related to the number of teams, where each team's skill level is considered as a 'state'.
+
+The state expression could be dp[i][j] representing the maximum skill level that can be achieved by team j in the first i rounds.
+
+Using a 2D array (dp[][]), where:
+    - dp[i][j] represents the maximum skill level that can be achieved by team j after i matches.
+    - The base case could be when i is equal to n, meaning we've reached the end of the tournament and the winner(s) can be determined.
+
+To fill up the dp[][] array:
+    1. For each i from 0 to n-1 (inclusive):
+        2. For each j from 0 to 2^i - 1 (inclusive): 
+            a. If j is 0, then it means team j has not won any matches in the first i rounds.
+            b. Calculate dp[i][j] as the maximum skill level that can be achieved by team j after i matches, considering the results of all previous matches.
+
+    - To calculate dp[i][j], we'll need to iterate over all possible combinations of teams that have won in the first i-1 rounds.
+        + For each winning combination:
+            - Check if the current team's skill level is higher than or equal to the maximum skill level achieved by any other winning teams in the same round (i).
+            - If it is, then update dp[i][j] with this new maximum.
+
+    - Once we've filled up the entire dp[][] array, we can identify the winners as the teams whose maximum achievable skill level is higher than or equal to the highest achievable skill level for any winning team.
+
+===END PLAN===

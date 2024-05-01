@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic Programming: The problem can be solved by considering all possible substrings of str1 and checking if they are present in str2, then use a 2D array to keep track of the maximum number of common non-overlapping substrings found so far.
+
+The state expression is dp[i][j] = maximum number of common non-overlapping substrings ending at index i in str1 and j in str2.
+dp[i][j] = 1 if s1[i-k:i+1] == s2[j-l:j+m] for some k, l, m
+
+However, we can further optimize this plan by considering the overlapping nature of substrings. We don't need to consider all possible substrings; instead, we only need to consider those that are not yet counted as a common non-overlapping substring.
+
+So, the state expression is updated as follows:
+dp[i][j] = dp[i-1][j-1] + 1 if s1[i-1:i+1] == s2[j-1:j+1]
+Otherwise, dp[i][j] remains unchanged
+
+The base case would be when i or j reaches 0. In this case, the maximum number of common non-overlapping substrings is always 0.
+
+To implement memoization using Python's dictionary data structure, we store the maximum number of common non-overlapping substrings found so far as key-value pairs.
+This allows us to avoid redundant computations and improve the efficiency of our algorithm.
+
+===END PLAN===

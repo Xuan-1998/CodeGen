@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine the longest common suffix (LCS) of two strings. Then, find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of S and T.
+
+Define the state as a pair (length_S, length_T) that stores the lengths of strings S and T.
+Let the state be (i, j) where i is the current position in string S and j is the current position in string T. The goal is to find the longest common suffix of S[:i] and T[:j].
+
+**Issue:** What if we only consider the LCS of substrings up to length (i, j)? This might not give us the correct answer.
+
+Instead, we could use dynamic programming to fill up a 2D table dp where dp[i][j] stores the length of the LCS of S[:i] and T[:j].
+
+The base case is when i or j is 0, in which case the LCS is an empty string with length 0.
+For other cells, we consider two possibilities: either the last characters of S[:i] and T[:j] are the same (in which case we move diagonally up), or they are different (in which case we take the maximum length of the LCS from the cell above).
+
+Finally, return dp[m][n] where m and n are the lengths of strings S and T.
+
+**Edge cases:** What if either string is empty? In this case, the LCS is an empty string with length 0. We should handle this edge case when filling up the table.
+
+===END PLAN===

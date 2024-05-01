@@ -1,0 +1,16 @@
+===BEGIN PLAN REVISION===
+Memoization: The idea is correct, but we need to be more specific about what we're memoizing. We're going to keep track of the maximum number of common non-overlapping substrings for two given strings.
+
+Define the state expression as a dictionary dp where dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. The base case is when i == j = 0, then the answer is 0 or None. This makes sense because if both strings are empty, there's no common substring.
+
+dp[i][j] = max(dp[i-1][j-1] + (str1[:i] == str2[:j]), dp[i-1][j], dp[i][j-1]) for i in range(N+1) for j in range(N+1)
+
+However, we need to consider the problem statement more closely. We're asked to find the maximum number of common non-overlapping substrings, not the length of the longest common substring. This means our base case should be when i == 0 or j == 0, because an empty string has no common substrings with any other string.
+
+The recursive formula dp[i][j] = max(dp[i-1][j-1] + (str1[:i] == str2[:j]), dp[i-1][j], dp[i][j-1]) is correct. It checks if the current substrings are equal, and if they are, it adds 1 to the maximum number of common non-overlapping substrings found in the substrings without the last character.
+
+Create a 2D array to store the dynamic programming table and initialize all cells with 0. Then fill this table by iterating over all possible substrings and checking if they are present in both input strings. This is where the dynamic programming comes in, because we're breaking down the problem into smaller subproblems and solving each one only once.
+
+The plan does include edge cases, such as when i == 0 or j == 0, which we handle with our base case. We also consider all possible substrings, including empty strings, by iterating over all indices in the range [1, N+1].
+
+===END PLAN REVISION===

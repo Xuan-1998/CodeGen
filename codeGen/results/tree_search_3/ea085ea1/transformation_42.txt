@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Memoization: Create a memoization table where each cell represents the maximum number of common non-overlapping substrings for two given strings. Fill this table by iterating over all possible substrings and checking if they are present in both input strings, then use this table to find the solution at the end.
+
+Define the state expression as a dictionary dp where dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. The base case is when i == j = 0, then the answer is 0 or None.
+
+However, there seems to be an issue with your recursive formula. You are trying to fill dp[i][j] by iterating over all possible substrings of str1[:i+1], which might not always include substrings of str2[:k+1]. This could lead to incorrect results.
+
+Instead, you should iterate over the range of j and for each j, check if there is a matching substring in str1[:i] that has been seen before. If yes, then update dp[i][j] accordingly.
+
+Here's an improved plan:
+
+ Define a dictionary prefix_hash where prefix_hash[s] represents the last index at which s was seen in either of the input strings.
+
+Initialize dp[0][0] = 0 and fill up the first row and column of the memoization table according to your base case (i == j = 0).
+
+Fill up the rest of the memoization table using a recursive formula. For each cell dp[i][j], check if there is a matching substring str1[:i] that has been seen before in either of the input strings.
+
+If yes, then update dp[i][j] accordingly and also update prefix_hash with the current indices i and j.
+
+To improve the plan further, you could use a Trie data structure to store all the unique substrings present in both input strings. This would reduce the number of comparisons needed during the memoization process.
+
+Finally, make sure to handle edge cases properly, such as when either of the input strings is empty or when there are no common non-overlapping substrings.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN REVISED===
+Dynamic Programming: The problem can be solved by considering all possible substrings of str1 and checking if they are present in str2. We will use a 2D array to keep track of the maximum number of common non-overlapping substrings found so far.
+The state expression is dp[i][j] = maximum number of common non-overlapping substrings ending at index i in str1 and j in str2.
+
+To address the overlapping issue, we can preprocess str1 and str2 by creating a suffix array for each string. This will allow us to efficiently check if a substring appears within another substring.
+We then iterate over all possible substrings of str1 and check if they are present in str2 using the suffix arrays. If a substring is found, we update our 2D array accordingly.
+
+The base case for the recursion would be when i or j reaches N (the length of the strings). In this case, dp[i][j] = 0 as there are no more characters to consider.
+
+To implement memoization using recursion, we can use a dictionary to store the results of subproblems and check if they have been computed before. This will avoid redundant computation and improve the performance of our solution.
+
+Here's how we would update the dp array: for all possible substrings s1[:i] in str1 and s2[:j] in str2, we do:
+
+dp[i][j] = max(0 if s1[:i] != s2[:j], dp[i-1][j] + dp[i][j-1]) for all possible substrings
+
+The final answer would be the maximum value stored in the 2D array.
+
+===END PLAN REVISED===

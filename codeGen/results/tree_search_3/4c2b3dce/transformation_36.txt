@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+\
+
+Formulate a set of states for each possible character and their corresponding transitions, considering the constraints of non-overlapping substrings.
+
+**State 1:** At the current position in the string, the last character seen is not part of either 'AB' or 'BA'. (Initial state)
+
+* Transition: Move to the next position in the string. If the character is 'A', move to **State 2**.
+* No-op: If the character is neither 'A' nor 'B', stay in this state.
+
+**State 2:** At the current position, the last character seen is part of 'AB'. (We have seen an 'A')
+
+* Transition: Move to the next position. If the character is 'B', check if we have found both substrings ('AB' and 'BA'). If yes, return "YES". If not, move back one step and try again.
+* Fail: If the character is neither 'B' nor 'C', stay in this state.
+
+**State 3:** At the current position, the last character seen is part of 'BA'. (We have seen a 'B')
+
+* Transition: Move to the next position. If the character is 'A', check if we have found both substrings ('AB' and 'BA'). If yes, return "YES". If not, move back one step and try again.
+* Fail: If the character is neither 'A' nor 'C', stay in this state.
+
+===END PLAN===

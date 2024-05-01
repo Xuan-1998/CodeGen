@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Instead, opt for a bottom-up approach where you tabulate the maximum points that can be earned by deleting elements from subsequences, filling in the table row by row or column by column.
+
+The state can be represented by dp[i][k] which stores the maximum number of points that can be earned by deleting elements from the subsequence a1, a2, ..., ai for each possible value of ak in the range [0, 105].
+
+dp[i][k] can be defined as the maximum number of points that can be earned by deleting elements from the subsequence a1, a2, ..., ai for each possible value of ak in the range [0, 105], considering three cases: 
+- Either ai is not deleted, or it's deleted along with all elements equal to aj + 1 and aj - 1.
+- Or it's deleted alone.
+
+Initialize a table dp with size (n+1) x (105+1), where dp[i][k] is initially set to -float('inf') for all i and k. Then fill in the table row by row or column by column based on the given constraints.
+
+The base case should be handled when i = 0, as there are no elements to delete. In this case, dp[0][k] should be initialized to k for each k in [0, 105].
+
+For each subsequent row i, starting from i = 1:
+- Iterate over all possible values of ak in the range [0, 105].
+- For each value of ak, consider the three cases: either ai is not deleted, or it's deleted along with all elements equal to aj + 1 and aj - 1, or it's deleted alone.
+- Update dp[i][k] based on the maximum number of points earned by deleting elements from the subsequence a1, a2, ..., ai for each possible value of ak.
+
+The final answer will be the maximum value in the last row of the table, i.e., dp[n][k].
+
+===END PLAN===

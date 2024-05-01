@@ -1,20 +1,10 @@
-def contains_AB_and_BA(s):
-    # Find the first occurrence of "AB"
-    index_AB = s.find("AB")
-    # If found, check for "BA" after it
-    if index_AB != -1 and "BA" in s[index_AB + 2:]:
-        return True
-
-    # Find the first occurrence of "BA"
-    index_BA = s.find("BA")
-    # If found, check for "AB" after it
-    if index_BA != -1 and "AB" in s[index_BA + 2:]:
-        return True
-
-    return False
-
-# Read input from stdin
-s = input().strip()
-
-# Check for the non-overlapping substrings and print the result
-print("YES" if contains_AB_and_BA(s) else "NO")
+import sys
+s = sys.stdin.readline().strip()
+if "AB" in s or "BA" in s:
+    rem_s = s.replace("AB", "").replace("BA", "")
+    if len(rem_s) == 0 or ("AB" not in rem_s and "BA" not in rem_s):
+        print("YES")
+    else:
+        print("NO")
+else:
+    print("NO")

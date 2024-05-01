@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming: Create a 2D array dp[][] where dp[i][j] will store the maximum number of common non-overlapping substrings found so far for positions i in str1 and j in str2. The state could be the current position in both strings, with the base case being when one of the positions reaches the end of its respective string.
+
+We can initialize the dp[][] array such that dp[i][0] = 0 for all i, because we haven't considered any characters from str2 yet. Similarly, dp[0][j] = 0 for all j, because we haven't considered any characters from str1 yet.
+
+Then, we move the sliding window along both strings. For each position (i, j), if the current character in str1 and str2 are the same, it means we have found a common substring ending at this position. In this case, dp[i][j] will be equal to dp[i-1][j-1] + 1, because we add one more common non-overlapping substring to the previous maximum number of substrings.
+
+We also need to consider edge cases: when i or j reaches N, it means we have reached the end of one of the strings. In this case, we set dp[i][j] = 0, because there are no more characters left in that string to be considered as part of a common substring.
+
+The maximum number of common non-overlapping substrings is stored in dp[N-1][N-1].
+
+===END PLAN===

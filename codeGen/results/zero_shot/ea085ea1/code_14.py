@@ -1,26 +1,20 @@
-n = int(input())
-s1 = input().strip()
-s2 = input().strip()
+import sys
 
-dp = [[0] * (n+1) for _ in range(n+1)]
+def preprocess_string(s):
+    # Create a suffix tree for the string
+    pass  # Implement this part
 
-max_length = 0
-for i in range(1, n+1):
-    for j in range(1, n+1):
-        if s1[i-1] == s2[j-1]:
-            dp[i][j] = dp[i-1][j-1] + 1
-            max_length = max(max_length, dp[i][j])
+def find_common_substrings(t1, t2):
+    # Find common substrings using the suffix trees
+    pass  # Implement this part
 
-ans = 0
-i, j = 0, 0
-while i < n and j < n:
-    if s1[i] == s2[j]:
-        i += 1
-        j += 1
-    elif j > 0 and dp[i][j-1] > 0:
-        j -= 1
-    else:
-        i += 1
-    ans = max(ans, dp[i][j])
+def max_common_substrings(str1, str2):
+    t1 = preprocess_string(str1)
+    t2 = preprocess_string(str2)
+    return find_common_substrings(t1, t2)
 
-print(ans)
+N = int(sys.stdin.readline())
+str1 = sys.stdin.readline().strip()
+str2 = sys.stdin.readline().strip()
+
+print(max_common_substrings(str1, str2))

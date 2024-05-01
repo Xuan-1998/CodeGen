@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances.
+
+Whether the string contains 'AB' at a certain position. 
+	* Check if 'AB' is a prefix of the string.
+	* If not, check if 'AB' appears anywhere in the string.
+	* If it does, then check if 'BA' is a suffix.
+	* If both conditions are met, return "YES" as we've found two non-overlapping substrings "AB" and "BA".
+
+Apply memoization by storing the results of subproblems to avoid redundant computations. 
+	+ Create a 2D array dp where dp[i][j] represents whether the substring from index i to j contains 'AB' followed by 'BA'.
+	+ Initialize dp[0][s.length-1] to False as there's no way for 'AB' and 'BA' to be non-overlapping in an empty string.
+	+ For each i from 1 to s.length-2:
+		- Check if the substring from i to i+2 contains 'AB'.
+		- If it does, check if the remaining part of the string (from i+3 to s.length-1) contains 'BA'.
+		- If both conditions are met, set dp[i][s.length-1] to True and continue to the next iteration.
+	* Return "YES" if dp[0][s.length-1] is True; otherwise return "NO".
+
+===END PLAN===

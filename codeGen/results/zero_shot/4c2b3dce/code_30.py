@@ -1,8 +1,8 @@
 import sys
 
-s = sys.stdin.readline().strip()
+s = input()
 
-if 'AB' in s and 'BA' in s:
-    print('YES')
+if "AB" in s and "BA" in s[len("AB"):]:
+    print("YES")
 else:
-    print('NO')
+    print("NO")

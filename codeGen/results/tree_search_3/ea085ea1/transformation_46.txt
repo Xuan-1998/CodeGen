@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoization: Create a memoization table where each cell represents the maximum number of common non-overlapping substrings for two given strings. Fill this table by iterating over all possible substrings and checking if they are present in both input strings, then use this table to find the solution at the end.
+
+Define the state expression as a dictionary dp where dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. The base case is when i == j = 0, then the answer is 0 or None.
+
+dp[i][j] = max((str1[:i+1] == str2[:j+1]) and (dp[i-1][j-1] + 1) or dp[i-1][j], dp[i][j-1])
+
+for i, j in product(range(N+1), range(N+1))
+
+Implement memoization by creating a dictionary dp where each key is a tuple (i, j) and its corresponding value represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j].
+
+===END PLAN===

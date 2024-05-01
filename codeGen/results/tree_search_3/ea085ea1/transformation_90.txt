@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with a sliding window approach: 
+Create a 2D array dp[][] where dp[i][j] will store the maximum number of common non-overlapping substrings seen so far in the first i characters of str1 and the first j characters of str2.
+The state could be the current position in both strings, with the base case being when one of the positions reaches the end of its respective string.
+
+state:
+- Initialize dp[0][0] to 0
+- For each i from 1 to N (length of str1) and j from 1 to M (length of str2)
+    - If characters at positions i and j are same, then 
+        dp[i][j] = max(1 + dp[i-1][j-1], dp[i-1][j] + dp[i][j-1]) // recursive relation
+    - else
+        dp[i][j] = 0
+
+Tabulate the maximum number of common non-overlapping substrings seen so far using a dictionary.
+===END PLAN===

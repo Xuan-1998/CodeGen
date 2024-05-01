@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider a dynamic programming state as a pair (i, j) representing the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns.
+
+The state expression is dp[i][j] = min(sum(grid[k][min(j-1, n-1) for k in range(i)) + dp[i-1][min(j-1, n-1)]) for j in range(n)].
+
+Formulate the state expression as dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(min(j, n-1)).
+
+dp = [[0]*n for _ in range(n)];
+===END PLAN===

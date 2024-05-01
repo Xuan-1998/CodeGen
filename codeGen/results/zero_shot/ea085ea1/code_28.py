@@ -1,18 +1,25 @@
-n = int(input())
-str1 = input().strip()
-str2 = input().strip()
+import sys
 
-def solve():
-    max_count = 0
-    for i in range(n):
-        for j in range(i+1, n):
-            substr1 = str1[i:j+1]
-            count = 0
-            for k in range(n):
-                if str2[k:k+len(substr1)] == substr1:
-                    count += 1
-                    k += len(substr1) - 1
-            max_count = max(max_count, count)
-    print(max_count)
+def find_common_substrings():
+    # Read input from stdin
+    str1 = sys.stdin.readline().strip()
+    str2 = sys.stdin.readline().strip()
 
-solve()
+    max_common = 0
+
+    # Generate all substrings for each string
+    for i in range(len(str1)):
+        for j in range(i + 1, len(str1) + 1):
+            sub_str1 = str1[i:j]
+
+            for k in range(len(str2)):
+                for end in range(k + 1, len(str2) + 1):
+                    sub_str2 = str2[k:end]
+
+                    # Check if two substrings are equal
+                    if sub_str1 == sub_str2:
+                        max_common += 1
+
+    print(max_common)
+
+find_common_substrings()

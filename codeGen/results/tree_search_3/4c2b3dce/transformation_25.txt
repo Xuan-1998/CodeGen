@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+1. **Initialization**: Initialize a 2D table dp with dimensions (n+1) x 3, where n is the length of the string s. The extra dimension represents the states (0, 0), (1, 0), and (0, 1). Fill the base cases by setting dp[0][i] to False for i = 0, 1, 2.
+
+2. **State Transition**: Iterate through the string s from left to right. For each character c in s:
+   * If c is 'A', update dp[i][0] and dp[i][1] accordingly (either increment or reset depending on the current state).
+   * If c is 'B', update dp[i][2] accordingly.
+3. **Table Filling**: Fill the table dp by considering all possible substrings of s:
+   * For each prefix of length i, check if it contains both 'A' and 'B'. If so, set dp[i][0] to True (since we've found an 'AB' or 'BA' pair).
+4. **Answer Extraction**: After filling the table, extract the answer from dp[n][i], where i is either 0 or 1. If both states are True, then s contains both substrings; otherwise, it doesn't.
+
+===END PLAN===

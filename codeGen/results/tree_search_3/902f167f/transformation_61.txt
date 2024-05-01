@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved through tabulation by building the solution bottom-up from the base case, which would be a square with side length 1.
+
+State expression: dp[i][j] = min number of squares required to tile the rectangle of size i x j, where i is the row index (0-indexed) and j is the column index (0-iterated).
+
+Base case: dp[0][j] = 1 for all j because a single row can be tiled with one square.
+
+dp[i][j] is the minimum of dp[i-1][j] and min((i-k) * (j+1-k) + dp[k][j]) for 0 <= k <= i, where the inner minimization calculates the number of squares needed to tile a rectangle of size (i-k) x (j+1-k).
+
+Use bottom-up dynamic programming and create a 2D array dp where dp[i][j] represents the minimum number of squares required to tile a rectangle of size i x j.
+
+===END PLAN===

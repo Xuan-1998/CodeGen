@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap? 
+Yes, this is a good starting point. The idea is to keep track of the last occurrence of 'A' and 'B', and then slide a window from these positions to check for the presence of 'AB' or 'BA'.
+
+Formulate a set of states for each possible character and their corresponding transitions, considering the constraints of non-overlapping substrings.
+Let's define three states: 
+- A: The last occurrence of 'A' was just seen. 
+- B: The last occurrence of 'B' was just seen. 
+- AB: We have found both 'A' and 'B', but we don't know if they form a valid 'AB' or 'BA'.
+
+Create a dictionary where keys are characters and values are dictionaries containing information about 'AB' or 'BA' substrings, then iterate through the string using this dictionary.
+Here's what the dictionary could look like:
+- 'A': {'state': A}
+- 'B': {'state': B}
+
+Now we can iterate over the string. When we see an 'A', we update our state to A and keep track of its position. Similarly, when we see a 'B', we update our state to B and keep track of its position. 
+When we have both A and B, we check if they form a valid 'AB' or 'BA'. If so, we output "YES". If not, we continue checking the rest of the string.
+
+===END PLAN===

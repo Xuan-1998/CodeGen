@@ -1,15 +1,12 @@
-N = int(input())
-str1 = input()
-str2 = input()
+def solve(str1, str2):
+    trie1, trie2 = preprocess_strings(str1, str2)
+    common_substrings = find_common_substrings(trie1, trie2)
 
-dp1 = [0] * (N + 1)
-dp2 = [0] * (N + 1)
+    return len(common_substrings)
 
-max_len = 0
-for i in range(1, N + 1):
-    for j in range(i):
-        if str1[j:i] == str2[j:i]:
-            dp1[i] = max(dp1[i], dp1[j - 1] + 1)
-            max_len = max(max_len, dp1[i])
+# Read input from stdin
+input_stream = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+str1 = input_stream.readline().strip()
+str2 = input_stream.readline().strip()
 
-print(max_len)
+print(solve(str1, str2))

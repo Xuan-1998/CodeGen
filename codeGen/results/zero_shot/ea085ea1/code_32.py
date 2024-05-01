@@ -1,14 +1,27 @@
-s1 = input()
-s2 = input()
+import sys
 
-n = len(s1)
-m = len(s2)
+N = int(input())  # read N from stdin
+str1 = input().strip()  # read str1 from stdin
+str2 = input().strip()  # read str2 from stdin
 
-dp = [[0] * (m + 1) for _ in range(n + 1)]
+# generate all substrings for str1
+substrings_str1 = set()
+for i in range(N):
+    for j in range(i + 1, N + 1):  # end index is inclusive
+        substring = str1[i:j]
+        substrings_str1.add(substring)
 
-ans = 0
-for i in range(1, n + 1):
-    for j in range(1, m + 1):
-        if s1[i - 1] == s2[j - 1]:
-            dp[i][j] = dp[i - 1][j - 1] + 1
-            ans = max(ans, dp[i][j])
+# generate all substrings for str2
+substrings_str2 = set()
+for i in range(N):
+    for j in range(i + 1, N + 1):  # end index is inclusive
+        substring = str2[i:j]
+        substrings_str2.add(substring)
+
+# find common non-overlapping substrings
+common_substrings = set()
+for substring in substrings_str1:
+    if substring in substrings_str2:  # check if substring exists in str2
+        common_substrings.add(substring)  # add to the set of common substrings
+
+print(len(common_substrings))  # print the maximum number of common substrings

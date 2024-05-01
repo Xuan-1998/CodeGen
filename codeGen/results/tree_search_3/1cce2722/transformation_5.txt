@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider a top-down approach where you recursively explore all possible sequences of deletions, keeping track of the maximum points earned at each step and storing this information in a memo dictionary.
+
+The state expression is dp[i][k] = max points earned by deleting up to i elements, considering k as the last element in the sequence.
+Let's break down the plan:
+1. Initialize the memo dictionary dp with dimensions n+1 (where n is the length of the input sequence) and 106 (the maximum possible value for an element in the sequence). Set all values to negative infinity.
+
+2. Define a recursive function solve(i, k) that calculates dp[i][k]. It takes two parameters: i (the current index), and k (the last element considered).
+
+3. For each valid index j < i, check if a[j] is within one of k's possible neighbors. If it is, calculate the maximum points earned by deleting up to j elements, considering a[j] as the last element in the sequence. This is done recursively with solve(j, a[j]). Add 1 to this result because we're earning a point for deleting a[j].
+
+4. Return the maximum of these results.
+
+5. Initialize dp[0][k] = 0 for all k. These base cases represent the initial state where no elements have been deleted.
+
+6. Compute dp[i][k] for i = 1 to n and all k. For each pair (i, k), use the recursive function solve(i, k) to calculate dp[i][k].
+
+7. The maximum points earned is stored in dp[n][a[0]].
+
+===END PLAN===

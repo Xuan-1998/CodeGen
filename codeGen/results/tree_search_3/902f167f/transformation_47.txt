@@ -1,0 +1,14 @@
+===BEGIN FEEDBACK===
+Your plan is mostly correct, but there are some potential issues that need to be addressed.
+
+Firstly, the base case is not clearly defined. You mentioned when i or j is 0, but it's important to clarify what this means in terms of the problem constraints (n and m being between 1 and 13 inclusive). For example, if n=1, then there are only m squares that need to be tiled, so dp[1][j] would be equal to min(m, j) + 1. This needs to be included as a special case in the state transition function.
+
+Secondly, the state transition function dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + 1 seems correct if i > 0 and j > 0. However, there are some edge cases that need to be handled:
+
+* When i or j is 0, dp[i][j] should return the base case value.
+* If i=1 (or j=1), then there's only one row (or column) left to tile, and the minimum number of squares required would be m (or n).
+* If i=m (or j=n), then all rows (or columns) have been tiled, so dp[i][j] should return 0.
+
+Finally, you didn't mention how to initialize the dp table. Since it's a dynamic programming problem, the dp table needs to be initialized with some base values before filling it up.
+
+===END FEEDBACK===

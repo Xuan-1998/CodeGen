@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Think about a dynamic programming approach where you maintain an array dp[i] that stores the maximum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+
+1. Initialize dp array with a large value for all vertices (e.g., float('inf')) to represent unknown values.
+2. Fill up the dp array from vertex t to vertex s:
+   - For each vertex i in the range [s, t], calculate dp[i] as follows:
+
+    * If i is not equal to t: 
+      + dp[i] = max(dp[j] for j in range(i+1, t+1) if has_edge(j, i)) (consider all shortest paths from i to t)
+      + dp[i] = min(dp[j] + 1 for j in range(i+1, t+1) if has_edge(j, i)) (consider recomputing the shortest path from i to t)
+
+    * If i is equal to t: 
+      + dp[i] = 0 (no need to recomputed the shortest path)
+3. The minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed are stored in the dp array at vertex s.
+
+===END PLAN===

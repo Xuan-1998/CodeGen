@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming: Create a 2D table dp where dp[i][j] represents the maximum number of common non-overlapping substrings between str1[0..i-1] and str2[0..j-1]. 
+
+Initially, set dp[0][0] = 1 (since there is always one common substring for two empty strings).
+
+The state transition could be: 
+dp[i][j] = max(dp[i-1][j-1] + 1 if str1[i-1] == str2[j-1]) else dp[i-1][j] or dp[i][j-1]
+
+This is because we can either consider the current characters as part of a common substring (if they match), or not consider them and move forward in one of the strings.
+
+The base case could be when one of the positions reaches the end of its respective string, i.e., i == N or j == N. In this case, dp[i][j] = 0 since we can't find any more common substrings after reaching the end of either string.
+
+left_str2_pos
+
+You can implement memoization by precomputing all possible substrings for each string and then using these precomputed values to find the maximum number of common non-overlapping substrings.
+
+To prevent unnecessary computations, you could use a set data structure to store unique substrings found so far and check whether a substring is already present in this set before computing it. 
+
+This approach should work fine as long as the strings are not too large to fit into memory.
+
+===END PLAN===

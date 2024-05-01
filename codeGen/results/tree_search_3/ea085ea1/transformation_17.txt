@@ -1,0 +1,28 @@
+===BEGIN FEEDBACK AND UPDATE PLAN===
+Your initial plan is correct, but there are some potential issues that need to be addressed. Here's an updated plan with additional details:
+
+Dynamic Programming: The problem can be solved by considering all possible substrings of str1 and checking if they are present in str2.
+
+The state expression remains the same: dp[i][j] = maximum number of common non-overlapping substrings found so far when considering all substrings ending at index i in str1 and j in str2.
+
+To implement a bottom-up tabulation approach, we need to iterate through all possible substrings of str1. We can do this by initializing the dp array with zeros and then iterating from i = 0 to N-1 (where N is the length of str1). For each i, we iterate from j = 0 to M-1 (where M is the length of str2) and update the state expression:
+
+dp[i][j] = dp[i-1][j] + (str1[i] == str2[j])
+
+However, there's a potential issue with this plan: it doesn't handle overlapping substrings correctly. We need to ensure that we don't count the same substring multiple times.
+
+One way to address this is to use a sliding window approach. Instead of iterating through all possible substrings of str1 and checking if they are present in str2, we can iterate through str1 and str2 simultaneously using two pointers (i and j). For each iteration, we check if the current character in str1 matches the current character in str2. If it does, we increment a counter for common non-overlapping substrings.
+
+Here's an updated plan:
+
+Dynamic Programming: The problem can be solved by iterating through str1 and str2 simultaneously using two pointers (i and j) and keeping track of the maximum number of common non-overlapping substrings found so far.
+
+The state expression remains the same: dp[i][j] = maximum number of common non-overlapping substrings found so far when considering all substrings ending at index i in str1 and j in str2.
+
+To implement this approach, we can initialize a counter (max_common) to 0 and iterate through str1 and str2 simultaneously using two pointers (i and j). For each iteration, we check if the current character in str1 matches the current character in str2. If it does, we increment max_common by 1.
+
+The final answer is the maximum value of max_common found during the iteration.
+
+Edge cases: We should handle edge cases where one or both input strings are empty (i.e., N = 0).
+
+===END FEEDBACK AND UPDATE PLAN===

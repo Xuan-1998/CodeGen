@@ -1,0 +1,12 @@
+f[i] = min(f[j] + 1 for j in range(i, t+1) if has_edge(j, i)) if i != t
+f[0], f[t]
+
+dp[i] = min(dp[j] + 1 for j in range(i, p[k]+1) if has_edge(j, i))
+
+Create a 2D array dp[][] to store the maximum number of recomputations needed from each vertex to t.
+
+Iterate over the fixed path to compute the values:
+
+for k in range(k-1):
+    dp[p[k]] = min(dp[j] + 1 for j in range(p[k-1], p[k]+1) if has_edge(j, p[k]))
+return min(max(dp[i]) for i in range(0, t+1))

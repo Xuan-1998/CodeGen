@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Choose dynamic programming by identifying overlapping subproblems related to the number of teams, where each team's skill level is considered as a 'state'.
+Define the state expression as dp[i] = [the sum of skill levels of all teams that can still participate in round i, or the total score of a possible match-up]. This seems correct, but it might be more accurate to define the state expression as dp[mask] = [the number of teams with skill level represented by mask that can still participate].
+The winning teams are those with the highest skill level. A team wins if all its opponents lose. State: dp[i] = [the number of teams that can still participate in round i]. This seems correct, but it might be more accurate to define the state as dp[mask] = [whether any team represented by mask can still participate].
+The transition relationship is based on the elimination process where a team loses to another team, and thus is no longer eligible for further rounds. Implement tabulation or memoization.
+The dynamic programming approach involves initializing a 2D array dp with dimensions (n+1) x (1 << n), where each cell dp[i][mask] represents the number of teams that can still participate in round i, given their skill levels represented by mask.
+
+To avoid unnecessary computation, we should fill the dp table bottom-up. We start from the last round and work our way backwards to the first round.
+To make the state space smaller, we can use bitwise operations to represent the teams' skill levels.
+We need to handle edge cases such as when n is 0 or less.
+
+===END PLAN===

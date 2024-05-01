@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Dynamic Programming: The problem can be solved by considering all possible substrings of str1 and checking if they are present in str2, then use a 2D array to keep track of the maximum number of common non-overlapping substrings found so far.
+
+The state expression is dp[i][j] = maximum number of common non-overlapping substrings found so far when considering all substrings ending at index i in str1 and j in str2.
+dp[i][j] = dp[i-1][j] + (str1[i] == str2[j])
+
+Create a 2D array to store the dynamic programming state, where dp[i][j] represents the maximum number of common non-overlapping substrings found so far when considering all substrings ending at index i in str1 and j in str2.
+
+This plan is mostly correct. You are on the right track by using dynamic programming to solve this problem. The state expression you provided makes sense, as it calculates the maximum number of common non-overlapping substrings based on the previous states (i-1) and the current character match between str1[i] and str2[j].
+
+However, there is a potential issue with your plan. You didn't mention how to handle the edge cases. For example, what if one string is longer than the other? How would you initialize the 2D array in that case?
+
+Another improvement you could make is to add more details about how to fill up the dp[i][j] values. Right now, it seems like your plan only covers the base case (dp[i-1][j]), but you'll also need to handle the case where i and j are both 0.
+
+Finally, you should also consider how to find the maximum number of common non-overlapping substrings from the dp array at the end. You could use a variable to keep track of this value as you fill up the dp array.
+
+===END PLAN===

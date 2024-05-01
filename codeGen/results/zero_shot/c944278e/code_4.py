@@ -1,18 +1,21 @@
 import sys
+from itertools import product
 
+# Read input from stdin
 n = int(sys.stdin.readline())
 s = sys.stdin.readline().strip()
 
-winning_teams = []
-skill_levels = [0] * (1 << n)
+winning_teams = set()
+for team in product('01', repeat=n):
+    # Check if the team can win
+    team_can_win = True
+    for i, result in enumerate(s):
+        if (result == '1' and sum(int(b) for b in team[:i+1]) % 2 == 0) or \
+           (result == '0' and sum(int(b) for b in team[:i+1]) % 2 != 0):
+            team_can_win = False
+            break
+    if team_can_win:
+        winning_teams.add(''.join(team))
 
-for i in range(1 << n):
-    skill_level = 0
-    for j in range(n):
-        if ((i >> j) & 1):
-            skill_level += int(s[j])
-    winning_teams.append((skill_level, bin(i)[2:]))
-
-winning_teams.sort()
-
-print("\n".join(team[1] for team in winning_teams))
+# Print the winning teams to stdout
+print('\n'.join(sorted(winning_teams)))

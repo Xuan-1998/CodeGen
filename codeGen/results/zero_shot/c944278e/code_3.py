@@ -1,18 +1,25 @@
 import sys
-from collections import defaultdict
+
+def find_winning_teams(n, s):
+    # Generate all possible teams
+    teams = [i.toBinary() for i in range(2**n)]
+    
+    winning_teams = []
+    
+    for team in teams:
+        path = ''
+        for i in range(n):
+            if (int(s[i]) ^ int(team[i])) == 1:
+                path += '1'
+            else:
+                path += '0'
+        
+        # Check if the team's path ends with a win
+        if path == '1' * n:
+            winning_teams.append(team)
+    
+    return sorted(winning_teams)
 
 n = int(sys.stdin.readline())
 s = sys.stdin.readline().strip()
-
-teams = 2**n
-winning_teams = set()
-
-for i in range(1, teams+1):
-    bitmask = format(i, 'b').zfill(n)
-    skill_level = sum(int(b) for b in bitmask)
-    
-    if s == bitmask:
-        winning_teams.add(skill_level)
-
-winning_teams = sorted(list(winning_teams))
-print(*winning_teams, sep='\n')
+print(*find_winning_teams(n, s), sep='\n')

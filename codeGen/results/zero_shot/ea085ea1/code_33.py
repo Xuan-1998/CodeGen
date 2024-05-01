@@ -1,28 +1,19 @@
 import sys
-n = int(input())
-str1 = input()
-str2 = input()
+from collections import defaultdict
 
-dp1 = [[0]*(n+1) for _ in range(n+1)]
-dp2 = [[0]*(n+1) for _ in range(n+1)]
+N = int(sys.stdin.readline().strip())
+str1 = sys.stdin.readline().strip()
+str2 = sys.stdin.readline().strip()
 
-for i in range(1, n+1):
-    for j in range(1, n+1):
-        if str1[i-1] == str2[j-1]:
-            dp1[i][j] = dp1[i-1][j-1] + 1
-        else:
-            dp1[i][j] = max(dp1[i-1][j], dp1[i][j-1])
+# Generate all substrings
+substrings1 = [str1[i:j+1] for i in range(N+1) for j in range(i, N)]
+substrings2 = [str2[i:j+1] for i in range(N+1) for j in range(i, N)]
 
-ans = 0
-i, j = n, n
-while i > 0 and j > 0:
-    if str1[i-1] == str2[j-1]:
-        ans += 1
-        i -= 1
-        j -= 1
-    elif dp1[i-1][j] > dp1[i][j-1]:
-        i -= 1
-    else:
-        j -= 1
+# Find common non-overlapping substrings
+max_common = 0
+for sub1 in substrings1:
+    for sub2 in substrings2:
+        if sub1 == sub2 and not (str1.find(sub1) < str1.find(sub2)):
+            max_common += 1
 
-print(ans)
+print(max_common)

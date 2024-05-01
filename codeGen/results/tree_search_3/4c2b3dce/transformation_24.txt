@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Does the string contain a substring 'AB' followed by 'BA'? If so, we can use this as an opportunity to split the problem into two smaller instances. 
+Whether the remaining part of the string after removing 'AB' or 'BA' also contains both substrings.
+Define states as tuples representing the number of 'A's and 'B's seen so far. For example, (0, 0) might represent the initial state where neither 'A' nor 'B' has been seen. 
+Transition to a new state when an 'A' or 'B' is encountered, incrementing the corresponding count in the tuple.
+Use a dictionary to store intermediate results and check for existence of substrings.
+
+The plan seems correct overall, but here are some suggestions for improvement:
+- You may want to consider edge cases where the string contains either "AB" or "BA", but not both. For instance, if the string is "ABA", it should return "YES". Similarly, if the string is "BAA", it should also return "YES".
+- To store intermediate results and check for existence of substrings, you could use a dictionary with tuple keys as states. The values in the dictionary could be booleans indicating whether the corresponding state has been seen before.
+- You may want to consider memoization techniques like dynamic programming or memoization to optimize your solution.
+
+Here's how I would refine the plan:
+

@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+Select top-down approach with memoization by recognizing that the winning teams can be determined by checking all possible combinations of teams' skills, using recursion and memoization.
+
+State: the result of the current phase in the tournament
+Consider a state as a set of 'win' or 'lose' flags indicating how well a team is performing at each phase, and define transition relationships based on the skill levels of teams participating in each match.
+
+Key idea: A winning team is one that has won all its matches so far.
+To determine if a team wins, check if it has won every match up to this point. If yes, then it's a potential winner.
+
+Memoization:
+- Store intermediate results (states) as we explore the tournament tree
+- Use memoized values when exploring subsequent branches in the tree
+
+Potential issues with the plan:
+- The problem description does not specify whether there are any tie-breakers for matches that end in draws. If there are no tie-breakers, then a team cannot win if it has drawn some of its matches.
+- There might be edge cases where all teams have identical skill levels and the tournament is essentially a draw.
+
+To handle these issues:
+- Add an additional flag to indicate whether a team has drawn (or lost) a match. This will allow you to correctly determine winning teams even in case of draws.
+- Add checks for tie-breakers if specified
+- Use memoization to avoid redundant calculations and optimize the recursive function
+
+Edge cases: 
+1. All teams have identical skill levels, i.e., all matches end in draws.
+In this case, there are no winners.
+
+2. One team has significantly higher skill level than others.
+In this case, that team will likely emerge as a winner.
+
+===END PLAN===

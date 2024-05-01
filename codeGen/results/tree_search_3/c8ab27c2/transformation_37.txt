@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine the longest common suffix (LCS) of two strings. Then, find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of S and T.
+
+Define the state as a tuple (i, j) where i is the current position in string S and j is the current position in string T.
+
+The state transition relationships can be formulated as follows: define a dynamic programming table dp[i][j] where i ranges from 0 to |S| and j ranges from 0 to |T|. The value of dp[i][j] is 1 if the characters at positions i and j in S and T match, otherwise it's 0. Then, fill the table according to the following rules: for i=0 or j=0, set dp[i][j]=0; for i>0 and j>0, set dp[i][j] to the value of dp[i-1][j-1] if the characters at positions i and j in S and T match, otherwise set it to 0.
+
+Create a dynamic programming table dp where dp[i][j] represents whether the first i characters of S and the first j characters of T are common. Initialize dp[0][0] = 1, and then fill the table by checking if the current characters in S and T match.
+
+Find the longest common suffix (LCS) of S and T. This can be done by iterating from the end of the strings to the beginning, comparing characters at corresponding positions, and keeping track of the length of the LCS.
+
+Calculate the length of the shortest uncommon subsequence by subtracting the length of the LCS from the lengths of S and T. If no such subsequence is possible (i.e., the LCS has the same length as one of the strings), return -1.
+
+===END PLAN===

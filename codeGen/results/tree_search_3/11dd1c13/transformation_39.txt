@@ -1,0 +1,6 @@
+===BEGIN PLAN===
+The bottom-up approach uses tabulation to fill up a 2D table dp where dp[i][j] is the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns. The base case can be considered as dp[0][j] = 0 for all j, since there are no paths to consider.
+dp[i][j] is the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns, where dp[0][k] represents the base case for all k, meaning there's only one option (the topmost element) that doesn't depend on previous choices.
+Let dp[i][j] be the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns, and let dp[i-1][k] be the state from the previous row. Then, we can consider taking the current element as the topmost element in the path or skipping it and continue from the previous row.
+dp[i][j] = min(dp[i-1][k] + grid[i][j] for k in range(len(grid[0]))) if i > 0 else grid[0][j] for j in range(len(grid[0])))
+===END PLAN===

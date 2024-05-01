@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The bottom-up approach uses tabulation to fill up a 2D table dp where dp[i][j] is the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns. The base case can be considered as dp[0][j] = 0 for all j, since there are no paths to consider.
+
+The plan is to fill up the table dp[i][j] from top-down using dynamic programming. Here's how:
+
+dp[0][j] = 0 for all j, since there are no paths to consider.
+
+For i > 0, calculate dp[i][j] as the minimum sum of a falling path with non-zero shifts considering all elements in the first i rows and last j columns. This can be done by iterating over all possible column indices k from 0 to n-1 and taking the minimum of (dp[i-1][k] + arr[i][j]).
+
+This process is repeated for all cells in the table dp, where i ranges from 0 to n-1 (the number of rows) and j ranges from 0 to m-1 (the number of columns).
+
+Finally, return dp[n-1][m-1], which represents the minimum sum of a falling path with non-zero shifts considering all elements in the grid.
+
+===END PLAN===

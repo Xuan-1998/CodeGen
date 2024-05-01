@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Determine the longest common suffix (LCS) of two strings S and T. Then, find the length of the shortest uncommon subsequence by subtracting the LCS from the lengths of S and T.
+
+Define the state as a tuple (i, j) where i is the current position in string S and j is the current position in string T.
+The state transition relationships can be formulated as follows:
+    * (i, k+1) transitions to (i, k) if the character at position i in S matches the last character of the LCS in T;
+    * (i, 0) transitions to (i-1, 0) if the current character in S does not match the last character of the LCS in T.
+
+Use a dictionary to store the results of subproblems as keys and their corresponding values. This is necessary for Dynamic Programming as it helps us avoid redundant computations.
+    * Initialize an empty dictionary dp.
+
+Create base cases: 
+    * The state (0, 0) represents that we have processed all characters from both strings; the LCS is empty, so the length of the shortest uncommon subsequence is equal to the lengths of S and T minus the common suffix. Store this in dp[(0, 0)].
+
+The main loop: 
+    * For each state (i, j), check if we have processed all characters from both strings; if yes, calculate the length of the shortest uncommon subsequence as before.
+    * Otherwise, transition to the next states based on the character at position i in S and the last character of the LCS in T. 
+        + If they match, move diagonally to (i-1, j-1) and update dp[(i, j)] accordingly.
+        + If they do not match, move left horizontally to (i-1, 0) and update dp[(i, j)] accordingly.
+
+Finally, return dp[(len(S)-1, len(T)-1)]. This is because we want the length of the shortest uncommon subsequence in S considering all characters in T.
+===END PLAN===

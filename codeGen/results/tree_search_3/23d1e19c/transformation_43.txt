@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Think about a dynamic programming approach where you maintain an array f[i] that stores the maximum number of recomputations needed from vertex i to t, considering all shortest paths from i to t. The optimal substructure is when you reach vertex i, and then you need to decide whether to follow the recommended path or not.
+f[i] = min(f[j] + 1 for j in range(i, t+1) if has_edge(j, i)) if i != t, f[0], f[t]
+
+When considering recomputation at each vertex, we need to consider all possible predecessors in the fixed path. We can maintain an array dp[i] that stores the maximum number of recomputations needed from vertex i to t. The transition relationship is: dp[i] = min(dp[j] + 1 for j in range(min(p), i+1) if has_edge(j, i)), where p is the set of vertices in the fixed path.
+
+Use top-down dynamic programming with memoization by defining a recursive function that updates dp[i] for each vertex i.
+===END PLAN===

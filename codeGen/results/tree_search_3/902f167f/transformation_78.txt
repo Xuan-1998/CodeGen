@@ -1,0 +1,19 @@
+State expression: dp[i][j] = min number of squares required to tile the rectangle of size i x j
+Base case: dp[0][j] or dp[i][0] because a single row or column can be tiled with one square
+
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
+        if (i == j) { // i and j are both perfect squares
+            dp[i][j] = 1; // tile the rectangle with one large square of side length i
+        } else if (isPerfSquare(i)) { // i is a perfect square
+            dp[i][j] = dp[i-1][j]; // tile the top part with a square of side length i-1 and add 1 to the count
+        } else if (isPerfSquare(j)) { // j is a perfect square
+            dp[i][j] = dp[i][j-1]; // tile the left part with a square of side length j-1 and add 1 to the count
+        } else {
+            // i and j are not both perfect squares, find the minimum number of squares required to tile the sub-rectangle of size k x l
+            // where (k, l) is the largest possible integer-sided square that fits in the top-left part of the rectangle
+            int k = Math.min(i, j);
+            dp[i][j] = 1 + dp[i-k][j-k]; // add 1 to the count and recursively tile the sub-rectangle
+        }
+    }
+}

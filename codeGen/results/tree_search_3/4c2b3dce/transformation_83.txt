@@ -1,0 +1,48 @@
+===BEGIN PLAN===
+Can we use a sliding window approach to check if the string contains both 'AB' and 'BA' without any overlap?
+
+*Pros:*
+	+ We can efficiently iterate through the string, checking for substrings
+	+ No need to store the entire string, just keep track of the current "window"
+*Cons:*
+	+ Might be slow for long strings due to repeated checks
+
+Maintain a dictionary where keys are character combinations and values are boolean indicating whether the combination has been seen before.
+
+*Pros:*
+	+ Can quickly check if we've already seen a specific substring
+*Cons:*
+	+ Might need additional data structures to handle edge cases (e.g. first/last occurrence of 'AB' or 'BA')
+	+ Dictionary lookups might be slow for very large strings
+
+Then, iterate through the string and update the dictionary as you go.
+
+*Pros:*
+	+ Can efficiently keep track of seen substrings
+*Cons:*
+	+ Might still be slow for long strings due to repeated checks
+
+When you see both 'AB' and 'BA', check if the current state matches the required pattern.
+
+*Pros:*
+	+ If we've found both 'AB' and 'BA', we can quickly determine if they're non-overlapping
+*Cons:*
+	+ Might be slow for very large strings due to repeated checks
+
+Utilize a trie data structure to efficiently store and query the character combinations in the string.
+
+*Pros:*
+	+ Can efficiently store and query substrings using a trie
+	+ Might be faster than dictionary lookups or sliding window approach
+*Cons:*
+	+ Trie construction might be slow for very large strings
+	+ Additional memory usage
+
+===END PLAN===
+
+**Feedback:**
+
+* The plan is mostly correct, but it's not clear how you would efficiently check if the current state matches the required pattern.
+* You're right that a sliding window approach could be used to find 'AB' and 'BA', but this might still be slow for very large strings.
+* A trie data structure could be useful, but you need to consider how you would construct and query it efficiently.
+* Edge cases haven't been fully considered (e.g. what if the string starts or ends with 'A'?).

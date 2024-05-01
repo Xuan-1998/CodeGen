@@ -1,16 +1,10 @@
-from collections import defaultdict
+def max_common_substrings(str1, str2):
+    str1_suffix_tree, str2_suffix_tree = preprocess_strings(str1, str2)
+    common_substrings = find_common_substrings(str1_suffix_tree, str2_suffix_tree)
+    return count_non_overlapping_substrings(common_substrings)
 
-N = int(input())
-str1 = input()
-str2 = input()
+if __name__ == "__main__":
+    str1 = input().strip()
+    str2 = input().strip()
 
-dp = [[0] * (N + 1) for _ in range(N + 1)]
-ans = 0
-
-for i in range(1, N + 1):
-    for j in range(1, N + 1):
-        if str1[i - 1] == str2[j - 1]:
-            dp[i][j] = dp[i - 1][j - 1] + 1
-            ans = max(ans, dp[i][j])
-
-print(ans)
+    print(max_common_substrings(str1, str2))

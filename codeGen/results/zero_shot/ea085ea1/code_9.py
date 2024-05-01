@@ -1,16 +1,20 @@
-n = int(input())
-str1 = input().strip()
-str2 = input().strip()
+def find_common_substrings(preprocessed_str1, preprocessed_str2):
+    # Initialize variables to store the maximum number of common substrings
+    max_common_substrs = 0
 
-dp = [[0] * (len(str2) + 1) for _ in range(len(str1) + 1)]
-ans = 0
-for i in range(1, len(str1) + 1):
-    for j in range(1, len(str2) + 1):
-        if str1[i - 1] == str2[j - 1]:
-            dp[i][j] = dp[i - 1][j - 1] + 1
-        else:
-            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-        if i >= 2 and j >= 2 and str1[i - 2:i] == str2[j - 2:j]:
-            ans = max(ans, dp[i][j] - 2)
+    for suffix1 in preprocessed_str1:
+        for suffix2 in preprocessed_str2:
+            if is_common_substring(suffix1, suffix2):
+                # Update the maximum number of common substrings
+                max_common_substrs += 1
 
-print(ans)
+    return max_common_substrs
+
+def is_common_substring(suffix1, suffix2):
+    # Check if two suffixes are a common substring
+    pass
+
+# Call the function to find the maximum number of common substrings
+max_common_substrs = find_common_substrings(preprocessed_str1, preprocessed_str2)
+
+print(max_common_substrs)  # Print the result

@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+A top-down approach with memoization could be effective in solving this problem by recursively generating subsets and their corresponding sums, then storing the results to avoid redundant calculations.
+
+The state expression could be an integer (current_sum) representing the sum of all subsets seen so far.
+
+To optimize the solution, we can maintain a hash map (sums_map) to store the sums generated so far and their corresponding frequencies. This way, when calculating a new sum, we can check if it's already in the map before actually generating the subset and its sum.
+
+Maintaining a set of all seen sums so far (seen_sums_set) allows us to efficiently check if a new sum is already in it before calculating. If a sum is found to be duplicate, we simply skip the calculation for that sum.
+
+Here's a step-by-step breakdown:
+
+1. Initialize an empty hash map (sums_map) and a set (seen_sums_set).
+2. Define a recursive function (gen_sums) that takes as input the current_sum, the current subset of integers, and the maximum possible sum.
+3. In the gen_sums function:
+   - If the current_sum is greater than or equal to the maximum possible sum, return immediately as there's no need to continue calculating.
+   - Initialize a new set (new_sums_set) to store the sums that can be generated from the current subset.
+   - Iterate over each integer in the current subset. For each integer:
+      - Recursively call gen_sums with the updated current_sum, the remaining subset of integers, and the maximum possible sum.
+      - Add the new sum to the sums_map and update the seen_sums_set.
+   - Return the set of new sums (new_sums_set).
+4. Initialize an empty list (result_list) to store the final result.
+5. For each integer in the input set:
+   - Call gen_sums with the initial current_sum, the full subset of integers, and the maximum possible sum.
+   - Add the generated sums to the result_list.
+6. Sort the result_list in ascending order.
+
+===END PLAN===

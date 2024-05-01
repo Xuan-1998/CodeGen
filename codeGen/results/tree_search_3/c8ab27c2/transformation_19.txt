@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings. Implement a recursive function with memoization using a dictionary.
+
+Define an intermediate state as the length of the longest common subsequence found so far between two given prefixes of S and T. This can be calculated by comparing characters at each position in the prefixes. If characters match, increment the length of the common subsequence; if not, move to the next character in either string.
+
+Consider a dynamic programming table dp[][] where dp[i][j] represents the length of the longest common subsequence between the first i characters of S and the first j characters of T. 
+
+Define the state as the maximum length of uncommon subsequences found so far between prefixes of S and T. This can be calculated by finding the difference between the lengths of the given strings and the sum of the lengths of all common subsequences.
+
+Recursively calculate dp[i][j] for each pair (i, j) in a bottom-up manner. For each cell, consider two cases: 
+1. The last characters in S and T match.
+2. They do not match.
+
+In case 1, increment the length of the common subsequence by 1 and move to the next character in both strings.
+
+In case 2, move to the next character in either string (whichever is shorter).
+
+The final answer can be calculated as the maximum difference between the lengths of S and T minus the sum of all common subsequences found so far.
+
+===END PLAN===

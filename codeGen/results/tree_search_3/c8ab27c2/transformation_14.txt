@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Avoid overlapping subproblems by considering only unique prefixes in both strings. Implement a recursive function with memoization using a dictionary.
+
+Consider the last character of each string separately, defining the state as (i, j) representing the indices of S and T.
+
+The state can be a pair of lists (lis, lit), where lis is the length of the longest common subsequence ending at index i in string S and lit is the length of the longest common subsequence ending at index j in string T.
+
+Transition from state (lis, lit) to state (lis+1, lit) if the characters at indices i and j are equal, or to state (lis, lit+1) if they are not. This way, we avoid considering duplicate subsequences.
+
+Use a dictionary to store previously computed values and avoid redundant calculations. Initialize the dictionary with base cases, where the longest common subsequence is 0 when either string is empty.
+
+To find the length of the shortest uncommon subsequence, iterate over all possible pairs of indices (i, j) in S and T. For each pair, check if there exists a longest common subsequence ending at that index. If not, update the result as the minimum between the current result and the difference between i+1 and j+1.
+
+To handle edge cases:
+
+* If both strings are empty, return 0.
+* If one string is empty and the other is not, return the length of the non-empty string.
+* If the characters at indices i and j are equal, check if there exists a longest common subsequence ending at that index. If not, update the result as the minimum between the current result and the difference between i+1 and j+1.
+
+===END PLAN===
