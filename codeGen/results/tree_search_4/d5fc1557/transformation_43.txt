@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is just the index i, as we only care about the number of 1's after this point.
+Let dp[i] = True if the longest subarray ends at index i and False otherwise.
+
+dp[i] = (
+    (i == 0 or nums[i-1] == 0) 
+    and all(nums[j] == 1 for j in range(i, n))
+)
+
+The state can be represented as a boolean array (i <= n) where dp[i] is the answer if we delete at index i.
+We can then use memoization to store the maximum length of 1's found in previous subarrays and reuse these values when calculating the answer.
+
+To find the longest non-empty subarray containing only 1's, iterate through all possible deletion points. 
+At each point, check if the subarray after this point contains only 1's. If it does, update the maximum length found so far.
+Finally, return the maximum length found.
+
+===END PLAN===

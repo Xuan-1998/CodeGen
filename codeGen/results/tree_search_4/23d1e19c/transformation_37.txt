@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State:
+Let dp[i][j] represent the number of times recomputation is needed when we are at vertex p_i, having recomputed i times previously.
+For base case, consider vertices in the fixed path. 
+dp[i][j] represents the maximum number of times recomputation is needed when we are at vertex p_i, having recomputed j times previously.
+
+Use a dynamic programming table dp[][] to store the results of subproblems and avoid redundant computations.
+
+State Transition:
+- If the current vertex is not in the fixed path, then 
+  - The minimum number of recomputations will be the minimum of the number of recomputations at the previous vertices, plus one (for recomputation when reaching the current vertex).
+  - The maximum number of recomputations will be the maximum of the number of recomputations at the previous vertices, plus one (for recomputation when reaching the current vertex).
+- If the current vertex is in the fixed path, then 
+  - The minimum number of recomputations remains the same as the previous vertex.
+  - The maximum number of recomputations will be the minimum of the number of recomputations at the previous vertices, plus one (for recomputation when reaching the current vertex).
+
+Base Case:
+- For the last vertex in the fixed path, dp[i][j] = 0.
+
+Return Statement:
+- Return the values of dp[k-1][0] and dp[k-1][max_recomputation] as the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed.
+
+===END PLAN===

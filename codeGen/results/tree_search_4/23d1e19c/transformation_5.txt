@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+Consider the maximum number of times the shortest path from each vertex to t needs to be recomputed, given that the driver has chosen not to follow the recommended path at some vertices.
+Use dynamic programming with a bottom-up approach by defining a function that takes the current vertex, target vertex, and number of recomputations as inputs, and recursively computes the maximum number of times the shortest path needs to be recomputed.
+
+Define dp[i][j] = max(1 + dp[j+1][k], 0), where i is the current vertex, j is the previous vertex, and k is the target vertex. This function represents the maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+Initialize a 2D array dp with size n x (n + 1), where each cell dp[i][j] stores the maximum number of times the shortest path from the i-th vertex to t needs to be recomputed when we are at the j-th vertex along the fixed path.
+
+For each edge from u to v, update dp[v][k] = max(dp[v][k], 1 + dp[u][k-1]), where k is the number of vertices in the fixed path.
+Finally, return dp[s][k-1] as the maximum number of times the shortest path needs to be recomputed.
+
+To find the minimum number of times the shortest path from each vertex to t needs to be recomputed, simply take the opposite approach by initializing a 2D array with size n x (n + 1) and updating dp[v][k] = min(dp[v][k], 1 + dp[u][k-1]) for each edge.
+Return dp[s][k-1] as the minimum number of times the shortest path needs to be recomputed.
+
+===END PLAN===

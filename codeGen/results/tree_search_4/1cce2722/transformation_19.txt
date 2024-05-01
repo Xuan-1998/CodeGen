@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i] = max(dp[i - 1], dp[i - 2] + a[i]) if i > 0 else 0
+The dynamic programming problem can be viewed as a longest increasing subsequence problem, where the goal is to find the maximum number of elements that can be removed while maintaining the property that no two adjacent elements are equal.
+
+Use memoization to store the maximum number of points that can be earned by removing all elements up to the ith position and then recursively apply this approach for smaller subproblems.
+For each element a[i], we have two choices: either remove it, or keep it. If we remove it, we earn 1 point. If we keep it, we must ensure that the next elements are not equal to it (to maintain the property), so we earn points from the subproblem dp[i - 2].
+The base case is when i = 0, in which case we have no choice but to remove the element and earn 1 point.
+===END PLAN===

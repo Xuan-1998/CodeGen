@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+Let s[i] be a boolean indicating whether 'AB' or 'BA' is found in the first i characters of s.
+
+Imagine a 2D DP table where dp[i][j] is True if the substring from index i to j contains 'AB' or 'BA', and False otherwise. The transition relationship can be defined as:
+for all indices i, j such that 0 <= i <= j < len(s), 
+    dp[i][j] = (dp[i-1][j-1] and ('A' == s[i] && 'B' == s[j]) || ('B' == s[i] && 'A' == s[j]))
+
+However, since the problem is about finding non-overlapping substrings 'AB' and 'BA', we can't just split the string into two halves. Instead, we can solve this problem by iterating over the string and checking for each character whether it's part of a potential 'AB' or 'BA'.
+
+Let's define a 1D DP table where dp[i] is True if the first i characters of s contain a substring that ends at index i, and False otherwise. We'll update dp[i] as follows:
+for all indices i such that 0 <= i < len(s), 
+    dp[i] = (dp[i-1] or ('A' == s[i-1] && 'B' == s[i]) || ('B' == s[i-1] && 'A' ===i))
+
+Finally, we can check if the string contains a non-overlapping 'AB' and 'BA' by checking dp[-1].
+
+===END PLAN===

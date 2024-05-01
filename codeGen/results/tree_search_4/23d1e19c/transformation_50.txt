@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Define state as a 2D array dp where dp[u][v] represents the minimum and maximum number of recomputations needed from vertex u to v along the recommended path. Base case is when we are at vertex t, since there's no more recomputation needed.
+Transition relationship:
+    for p in range(k-1):
+        if graph[p][p+1] == 1: # edge exists
+            dp[p][t-1] = min(max(dp[p][p+1], 1) + dp[p+1][t-1], max(dp[p][p+1], 1) + dp[p+1][t-1])
+
+Utilize a list to keep track of the minimum and maximum number of recomputations needed from each vertex to the next one in the fixed path, then update dp[u][v] accordingly.
+
+Return: Return the values at dp[0][t-1] as the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+===END PLAN===

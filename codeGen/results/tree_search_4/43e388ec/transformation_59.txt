@@ -1,0 +1,8 @@
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+The state can be defined as DP[i] = (DP[i-1] ^ ((b >> i) % 31)) % (10**9 + 7), with base case being DP[0] = (a ^ b) % (10**9 + 7).
+
+Update DP[i] as the cumulative sum of OR(a, b << i) for all values of i from 0 to i, considering the modular addition and subtraction.
+
+Ensure that the values of a and b are within the range [0, 2^31 - 1].
+Handle edge cases where a or b is less than zero.

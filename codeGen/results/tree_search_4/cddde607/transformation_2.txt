@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[i][j][k] in bottom-up manner by considering subproblems and storing intermediate results. 
+dp[i][j][k] = total number of paths collecting exactly k coins ending at cell (i, j),
+Consider the state as dp[i][j][k]: number of ways to reach cell (i, j) with k coins collected so far.
+Different States for Memoization: Store the states (i, j, k) as tuples in a dictionary and use these as keys to memoize the solution.
+For each cell (i, j), we can consider two options:
+- Move up from top cell: dp[i-1][j][k] if arr[i][j] <= k
+- Move right from left cell: dp[i][j-1][k] if arr[i][j] <= k
+Combine the results of these two options and store it in dp[i][j][k].
+Return dp[0][N-1][K]: number of ways to reach bottom-right corner with exactly K coins collected.
+===END PLAN===

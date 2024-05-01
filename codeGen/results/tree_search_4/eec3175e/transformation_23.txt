@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+A subset sum that is divisible by m
+State: Given n and m, a subset sum that is divisible by m; Transition relationship: The problem can be broken down into smaller instances by considering all possible subsets of S with sums that are divisible by m. We can transition from the base case (n = 1) to larger instances by including or excluding elements from the set.
+
+DP table: Use a boolean array dp[n+1][m+1] where dp[i][j] is true if there exists a subset of the first i numbers with sum j, and false otherwise. The DP equation would be:
+dp[i][j] = (any number in S is divisible by m) or (there exists a subset of the first i-1 numbers with sum k, where k + S[i-1] is divisible by m)
+
+The base case would be when n = 0, then dp[0][j] is false for all j.
+
+To solve this problem using top-down memoization:
+1. Create an empty DP table initialized to false
+2. For each number in the set from left to right:
+    a. Calculate the remainder of the current number modulo m
+    b. If the remainder is 0, then there exists a subset with sum equal to the current number, so update dp[i][j] accordingly
+    c. Otherwise, check if there exists a subset of the first i-1 numbers with sum k where k + S[i-1] is divisible by m
+3. Return dp[n][m]
+
+This plan is correct and can be improved by adding edge cases for when n = 0 or m = 0.

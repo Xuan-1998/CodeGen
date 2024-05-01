@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Treat this as a counting problem and use dynamic programming where a 2D array dp is initialized with zeros.
+
+dp = [[0 for _ in range(N+1)] for _ in range(m+1)]
+
+For i from 1 to m:
+    For j from N down to 0:
+        if j == 0: 
+            dp[i][j] = 1
+        else:
+            dp[i][j] = sum(dp[k][j-nums[k]] for k in range(i)) % (10**9 + 7)
+
+Define a function f(i, j) that returns the number of ways to form j using the first i elements from the array.
+f(i, j) = sum(1 for _ in range(i+1)) if j == N else f(i-1, j),
+
+Then, iterate over the array and fill up the dp table accordingly.
+
+For nums in array:
+    For i from 0 to m-1:
+        f(i, j) = f(i, j-nums[i]) + sum(1 for _ in range(i+1)) if j == N else f(i-1, j)
+
+Finally, return dp[m][N]
+===END PLAN===

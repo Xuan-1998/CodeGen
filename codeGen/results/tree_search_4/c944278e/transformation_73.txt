@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Divide the tournament into smaller phases, and use dynamic programming to find all possible winning teams for each phase. Then combine the results from each phase to get the final list of winning teams.
+
+A state represents the skill levels of all teams that have not been eliminated yet, and the base case is when only one team remains.
+The state is the current phase, and the transition function decides which teams are eliminated or advance to the next phase.
+
+Let dp[i][j] be the number of winning teams at the end of phase i with skill levels j. Then:
+
+- For i = 0, dp[0][s] is equal to the number of winning teams at the end of the tournament with skill levels s.
+- For each phase i from 1 to n:
+	+ If the team with the highest skill level in the current phase advances to the next phase, then
+		* For every previous phase j < i:
+			+ If the team with the highest skill level in phase j advances to phase i, then dp[i][j] = dp[j-1][s^i-j] + 1 (where s^k denotes the k-th bit of string s starting from the right)
+	+ Otherwise, dp[i][j] is equal to dp[j][s^i-j]
+- Finally, return all indices j such that dp[n][j] > 0.
+
+This plan correctly captures the essence of the problem and can be implemented using dynamic programming.
+===END PLAN===

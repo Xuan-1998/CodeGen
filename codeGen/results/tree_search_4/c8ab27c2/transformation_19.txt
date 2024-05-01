@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Define dp[i][j] as the length of the shortest subsequence in S[:i] that is not a subsequence in T[:j]
+Maintain two arrays: one to track the length of the shortest subsequence in S[:i] that is not a subsequence in T[:j], and another to track the length of the shortest subsequence in T[:j] that is not a subsequence in S[:i]. For each character, update these arrays based on whether the current character appears in both strings or not.
+Implement memoization using a dictionary to store the intermediate results and avoid redundant calculations
+For the base case, initialize dp[0][0] as 0 (since an empty subsequence is always possible)
+When updating dp[i][j], consider three cases:
+    - If the current characters match in both strings (S[i-1] == T[j-1]), then the length of the shortest uncommon subsequence remains unchanged
+    - If the current character appears only in S[:i] (T[j-1] != S[i-1]), then the length of the shortest uncommon subsequence increases by 1
+    - If the current character appears only in T[:j] (S[i-1] != T[j-1]), then the length of the shortest uncommon subsequence also increases by 1
+Return dp[m][n] as the final answer, where m and n are the lengths of strings S and T respectively
+===END PLAN===

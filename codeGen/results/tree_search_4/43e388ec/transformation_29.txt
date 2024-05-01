@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: 
+dp[i][0] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a is 0.
+dp[i][1] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a is 1.
+
+dp[i][b] represents the sum modulo 10^9+7 for all values of i from 0 to min(a, b) - 1, considering the current bits of a and b are b.
+
+Implement tabulation using a dynamic programming table where each cell represents the sum modulo 10^9+7 for all values of i from 0 to min(a, b) - 1, considering the current bits of a and b.
+For each cell dp[i][b], calculate the result by adding the results of smaller subproblems: 
+dp[i][0] + (a - 2^i + 1) if b is 0
+dp[i-1][1] + (a - 2^(i-1)) if b is 1
+
+Finally, return dp[a][b] as the answer.
+===END PLAN===

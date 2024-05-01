@@ -1,0 +1,9 @@
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+Let's define the state as DP[i] = ((a >> i) ^ b) % mod, where mod is 10^9+7. This represents the result of performing the exclusive OR operation on a and the binary shift to the left operation on b for all values of i from 0 to k.
+
+The base case is DP[0] = (a ^ b) % mod, since there's no need to perform any shifts for i = 0.
+
+Memoize the dynamic programming state DP[i] by storing the intermediate results in a dictionary and reusing them when needed. This ensures that each subproblem is computed only once, reducing the time complexity.
+
+The final answer would be the cumulative sum of all these intermediate results from i = 0 to k.

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(n) and j != i % n
+where dp[i][j] represents the minimum sum of a falling path ending at cell (i, j). The state is updated as 
+dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(n), where n is the number of columns.
+Use a 2D array to store the DP table and another 1D array to store the cumulative sums of each row.
+
+Let's iterate through all cells (i, j) from bottom up. For each cell dp[i][j], 
+we only need to consider paths ending at previous non-diagonal cells dp[i-1][k] where k != j.
+The minimum sum of a falling path ending at dp[i][j] is the sum of this cell and the minimum sum of any previous non-diagonal cell.
+If i % n == j, then we don't need to consider this cell as it will be considered in next iteration.
+
+===END PLAN===

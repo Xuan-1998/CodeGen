@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization and dynamic programming to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State:
+    - Let f(v) be the function that returns the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed.
+    - The base case is when v = t, where we return (0, 0) as there are no more recomputations needed.
+    - For other vertices, f(v) is the function that returns the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed, given that:
+        * We are at vertex v
+        * We have not recomputed the shortest path from v to t yet
+
+Memoization: Use memoization with recursion, storing the minimum and maximum number of recomputations for each vertex in a dictionary.
+
+Initialization: Initialize the dictionary dp with {v: (0, 0) for all vertices v} and set dp[t] = (0, 0)
+
+Recursive function:
+    - For each edge (u, v), if we have not recomputed the shortest path from u to t yet:
+        * Compute f(u) and store it in dp[u]
+        * If the recommended path at vertex v is the same as the previous recommendation (i.e., we didn't recalculate), increment the minimum number of recomputations by 1
+        * Otherwise, reset the minimum number of recomputations to 0
+    - Return dp[v] as the result
+
+Main function:
+    - Initialize variables min_recomps and max_recomps to 0 and ∞ respectively
+    - For each vertex in the fixed path from s to t (in order):
+        * Compute f(v) and store it in dp[v]
+        * Update min_recomps and max_recomps based on the recomputations needed at that vertex
+    - Return (min_recomps, max_recomps)
+
+===END PLAN===

@@ -1,0 +1,20 @@
+def dp(u):
+    if u == p_k: # last vertex in the fixed path
+        return 0, 0
+    if u in memo:
+        return memo[u]
+    
+    min_recomputation = max_recomputation = float('inf')
+    for v in adjacent_vertices[u]:
+        if v > u: # only consider edges that point to a later vertex
+            min_recomputation, max_recomputation = dp(v)
+            break
+    
+    if u == s: # starting vertex
+        min_recomputation -= 1; max_recomputation += 1
+    else:
+        min_recomputation, max_recomputation = dp(p_(u)) # previous vertex in the fixed path
+        min_recomputation -= 1; max_recomputation += 1
+    
+    memo[u] = (min_recomputation, max_recomputation)
+    return memo[u]

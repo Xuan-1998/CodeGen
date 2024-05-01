@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+dp = [(0, 0) for _ in range(n+1)]
+left, right = 0, 0
+max_length = 0
+for i in range(1, n+1):
+    if nums[i-1] == 1:
+        right += 1
+    else:
+        left = max(left, right)
+        dp[i] = (i, max(0, dp[i-1][1]-1))
+        right = 0
+
+max_length = max(dp[i][1] for i in range(n+1))
+
+===END PLAN===

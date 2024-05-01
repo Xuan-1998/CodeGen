@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+To solve this problem, you can use a top-down approach with memoization and bottom-up dynamic programming.
+
+State: dp[i][j] is the minimum number of integer-sided squares required to tile the top-left i x j rectangle, for 0 <= i <= n and 0 <= j <= m. The base case is when i = 1 or j = 1, in which case the minimum number of squares is 1.
+
+Memoize the function call dp(i-1, j) if i > 1 to avoid redundant calculations.
+Memoize the function call dp(i, j-1) if j > 1 to avoid redundant calculations.
+
+For each cell dp[i][j], consider all possible ways to place a square in the remaining area. The minimum number of squares required is the one that uses the smallest number of additional squares to cover the entire area.
+The final answer will be stored in dp[n-1][m-1].
+
+===END PLAN===

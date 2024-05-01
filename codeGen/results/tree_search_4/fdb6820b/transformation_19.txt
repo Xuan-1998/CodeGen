@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Define a 2D table dp[m][N+1] such that dp[i][j] represents the total number of ways to form j using exactly i elements from the array.
+dp[0][j] = 0 for all j, as there are no elements left to use.
+For each i from 1 to m:
+    For each j from N down to max(A), where A is the set of distinct positive integers and max(A) is the maximum value in A:
+        If j is less than or equal to max(A):
+            dp[i][j] = dp[i-1][j-A[i]] + dp[i][j]
+        Else:
+            dp[i][j] = 0
+dp[m][N] represents the total number of ways to form N using exactly m elements from the array.
+Return dp[m][N] as the final result.
+===END PLAN===

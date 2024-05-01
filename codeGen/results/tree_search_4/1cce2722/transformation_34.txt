@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i] = max(dp[i-1], sum((k-i) + (n-k) - (a[i] - a[k])) for k in range(min(i, n)) if abs(a[i] - a[k]) <= 2))
+
+Using dynamic programming to fill up a table with the maximum number of points from indices [0..i]
+
+Fill dp[0] = 0
+
+For i = 1 to n:
+    For k = min(i, n) down to max(0, i-2):
+        If abs(a[i] - a[k]) <= 2:
+            dp[i] = max(dp[i], dp[k] + (k-i) + (n-k) - (a[i] - a[k]))
+    else:
+        dp[i] = dp[i-1]
+Return max(dp)
+===END PLAN===

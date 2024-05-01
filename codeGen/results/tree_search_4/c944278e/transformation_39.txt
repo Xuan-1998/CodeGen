@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Maintain a boolean array dp where dp[i][j] represents whether team j has won at least one game after i phases.
+
+Base case: When input has only one phase, all teams that have won at least one game are considered winning teams. Initialize dp[0] as an array of False values, and then set dp[0][i] to True if the ith bit in the string is 1.
+
+Transition from dp[i-1][k] to dp[i][j] based on k being equal to (s[i]^j). If s[i] = 1 and (s[i]^j) = 1, then the winner of this phase remains a winning team. Set dp[i][j] as follows:
+    - If s[i-1] = 0, update dp[i][j] based on dp[i-1][k]. 
+    - If s[i-1] = 1 and (s[i]^j) = 1, set dp[i][j] to True.
+
+Use a dictionary dp_winners to store the winning teams for each prefix of the string. The key is the prefix, and the value is a set of winning teams.
+
+Build dp_winners as follows:
+    - Initialize dp_winners as an empty dictionary.
+    - For i from 1 to n (inclusive), calculate all the winners after i phases using dp[i-1]. 
+    - Update dp_winners with the winners for each prefix.
+
+Finally, return the set of winning teams that appear in every prefix. This is done by finding the intersection of all sets in dp_winners.
+
+===END PLAN===

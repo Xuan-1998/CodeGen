@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = (arr[i][j] <= k) ? 
+    (dp[i+1][j][k-arr[i][j]] + dp[i][j+1][k-arr[i][j]]) : 0
+
+Choose the correct formulation of state and transition relationships as:
+If the current cell has coins, then we can either move down or right. If not, then there's no way to collect more coins.
+
+Tabulate the dynamic programming table in a bottom-up manner, filling up the table using base cases and recursive relationships:
+
+1. Base case: dp[0][0][k] = (arr[0][0] <= k) ? 1 : 0
+2. Recursive relation:
+   - If the current cell has coins, then we can either move down or right.
+   - If not, then there's no way to collect more coins.
+
+Edge cases: 
+- For K == 0, return 1 (only one path possible)
+- For N <= K, return 0 (no paths possible)
+
+===END PLAN===

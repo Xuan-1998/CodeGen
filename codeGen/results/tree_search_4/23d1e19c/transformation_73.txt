@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming to solve this problem by keeping track of the number of recomputations at each vertex in the fixed path and update it accordingly as you move along the path.
+
+Code:
+dp = [0] * (n + 1)
+for i from s to t:
+    for j from p_i to p_(i+1):
+        if dp[j] == 0:
+            recomputations = 1
+        else:
+            recomputations = dp[j]
+        dp[j] += recomputations
+min_recomputations = min(dp)
+max_recomputations = max(dp)
+
+===END PLAN===

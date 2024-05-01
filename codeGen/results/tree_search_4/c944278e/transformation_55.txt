@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss. 
+Use memoization to store the winning teams for each prefix of the string and then find the winning teams by checking if any team has won at least one game in each phase.
+
+State: The winning teams for the first j phases.
+Transition relationship: For each phase i from 1 to n, update the state by considering all combinations of winning and losing outcomes in the next phase. If a team wins in the current phase, add it to the set of winning teams; if it loses, remove it.
+
+Employ memoization to store and reuse previously computed sets of winning teams for subproblems.
+
+Base case: When i is equal to n, consider all teams that have won at least one game as the winning teams.
+
+Memoized state transition function:
+
+- For each phase i from 1 to n:
+    - Initialize a set of winning teams.
+    - Iterate over all teams in the current phase. 
+        - If team wins, add it to the set; if it loses, remove it.
+    - Store the set of winning teams for the current prefix.
+
+Function to find the winning teams:
+
+- Initialize an empty set of winning teams.
+- Iterate over each prefix of the input string from 1 to n:
+    - If the memoized state transition function returns a non-empty set for the current prefix, update the set of winning teams and store it.
+- Return the set of winning teams.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+Let dp[i][j] = True if team j can win from the i-th phase onwards. Initialize a dictionary memo where keys are tuples representing the current state (i, j) and values are boolean indicating if the team can win.
+
+For each phase i:
+    For each team j:
+        If s[i-1] is 0 (team j lost), dp[i][j] = False
+        Else: 
+            For each possible skill level k for team j:
+                If dp[i-1][k] is True and team j has a higher skill level than the winning team in phase i-1, then dp[i][j] = True
+
+Return all teams that have dp[n][j] = True
+===END PLAN===

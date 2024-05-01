@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+DP_state = (i, j), where i is the current subset and j is the current sum
+with base case being DP_state(0, 0) returning a list of sums for the empty subset
+DP_state = (sums, subset), where sums is the list of distinct sums and subset is the current subset
+Store the results in a 2D array where the first dimension represents the current subset and the second dimension represents the current sum
+
+Update DP_state(i, j) as follows:
+    - Initialize the set of sums to an empty set
+    - Iterate over each element k in the current subset i
+        - Calculate the new sum s = j + k
+        - If s is not already in the set of sums, add it
+    - Return the set of sums
+
+Base case: DP_state(0, 0) returns a list containing only 0 (the sum for the empty subset)
+Initialize the dynamic programming table as an array dp where dp[i][j] = DP_state(i, j)
+
+Edge cases:
+    - If N is 0, return an empty list
+    - If any ai > 100, handle it accordingly
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i] represent the maximum number of points that can be earned by the i-th element in the sequence.
+Let dp[i] = max(dp[j] + (i - j) for j such that 1 <= j < i and |a_i - a_j| == 1].
+
+The plan considers only elements to the left of the current position i. This is because deleting an element also deletes its adjacent elements, so considering elements to the right would not provide any new information.
+
+To improve the plan, consider adding edge cases for when i = 1 or i = n. In these cases, dp[i] should be set to 0 or the maximum number of points that can be earned by deleting all elements up to i, respectively.
+
+The plan does not include the case where a_i - a_j | = 2, which could also potentially earn points. This could be handled by adding another condition in the max function: dp[j] + (i - j) for j such that 1 <= j < i and |a_i - a_j| == 2.
+
+===END PLAN===

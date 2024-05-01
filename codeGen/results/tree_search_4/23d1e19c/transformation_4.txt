@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+Consider the maximum number of times the shortest path from each vertex to t needs to be recomputed, given that the driver has chosen not to follow the recommended path at some vertices.
+
+Identify the base case: The minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed is 0 if it's already on the fixed path.
+
+Use dynamic programming with memoization to store the results of subproblems:
+
+dp[i][j] = min(dp[i-1][j], dp[i-1][j+1]) + 1;
+if j < k, dp[i][k] = 1 + dp[i-1][k-1];
+else dp[i][k] = 0;
+
+This plan ensures that the same subproblems are not recomputed multiple times.
+
+===END PLAN===

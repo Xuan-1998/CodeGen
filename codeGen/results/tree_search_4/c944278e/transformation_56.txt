@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss. Use memoization to store the winning teams for each prefix of the string.
+
+State: The skill levels of the teams as a binary string where '1' represents a win.
+Transition relationship:
+	* Initialize dp[i][j] as 0 for all i, j
+	* For i from n-1 down to 0, update dp[i][j] as follows:
+		+ If s[j] is '1', then if dp[i+1][2*j+1] is 1 and dp[i+1][2*j] is 0 or dp[i+1][2*j+1] is 0 and dp[i+1][2*j] is 1, then set dp[i][j] to 1
+	* Find the winning teams by checking if any team has won at least one game in each phase
+
+Base case: When i is equal to n, where all teams that have won at least one game are considered winning teams.
+
+===END PLAN===

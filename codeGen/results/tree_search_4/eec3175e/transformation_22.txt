@@ -1,0 +1,15 @@
+Plan:
+===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+State: Given n and m, a set S of non-negative integers with sum S_sum;
+
+Transition relationship: The problem can be broken down into smaller instances by considering all possible subsets of S, where each subset sums up to S_sum % m. We can transition from the base case (n = 1) to larger instances by including or excluding elements from the set.
+
+A recursive function with memoization that caches results for subproblems to avoid redundant computation
+
+Base case: When n is 0, return 1 if S_sum % m is 0; otherwise, return 0.
+
+Recursive case: For each element in the set, consider two options: include it or exclude it. If we include it and its value is less than or equal to S_sum % m, recursively call the function with n-1, the updated set, and the updated sum. If we don't include it, recursively call the function with n-1 and the original set.
+
+Memoization: Cache results for subproblems to avoid redundant computation.

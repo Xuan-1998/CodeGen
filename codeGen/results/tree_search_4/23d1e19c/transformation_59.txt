@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+Create a 2D array dp[v][i] where v is the current vertex and i is the number of recomputations needed to reach the current vertex from s along the fixed path. Initialize all values in dp as negative infinity, except for dp[s][0] which is set to 0 (since we don't need to recompute anything when starting at s).
+
+Iterate through the graph, updating dp[v][i] for each vertex v and recomputation count i:
+    If v is on the fixed path from s to t:
+        For each previous vertex u in the fixed path:
+            Update dp[u][i+1] as min(dp[u][i+1], dp[v][i] + 1) if v is reachable from u, indicating that we need at least one recompute to reach v from u.
+    Else (v is not on the fixed path):
+        For each previous vertex u in the graph:
+            Update dp[u][i+1] as min(dp[u][i+1], dp[v][i] + 1) if v is reachable from u, indicating that we need at least one recompute to reach v from u.
+
+The minimum and maximum number of recomputations can be found by iterating through the last row of dp (corresponding to vertex t).
+
+===END PLAN===

@@ -1,0 +1,18 @@
+Begin Plan:
+Maintain a binary string where '1' represents a win and '0' represents a loss. 
+Use memoization to store the winning teams for each prefix of the string 
+and then find the winning teams by checking if any team has won at least one game in each phase.
+
+Let the state be a tuple (i, s) where i is the current phase and s is the binary string from the 0th to the ith phase. 
+
+Maintain a dynamic programming table dp[i][j] where 
+dp[i][j] represents the winning teams for the first i phases when the jth bit is 1.
+
+You can implement tabulation by initializing a dynamic programming table dp with size 2^n x n and filling it up using nested loops.
+For each phase, check if any team has won at least one game. If yes, add that team to the set of winning teams.
+
+Then, sort the set of winning teams in ascending order.
+
+Finally, print out all the winning teams in ascending order.
+
+End Plan:

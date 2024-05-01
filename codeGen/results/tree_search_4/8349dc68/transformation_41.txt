@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define dp[i][k] as the maximum sum that can be achieved by partitioning the array from index 0 to i+k.
+Initialize dp[0][k] = arr[0], since there is only one element in the subarray.
+For each cell dp[i][k], consider the state transition function:
+    - If k > i, then dp[i][k] = max(dp[i-1][k-1] + arr[i], dp[i-1][k])
+    - If k <= i, then dp[i][k] = dp[i-1][k]
+Return dp[n-1][k] as the maximum sum that can be achieved by partitioning the array from index 0 to n.
+Use memoization by defining a dictionary with keys as tuples of (i, k) and values as the calculated maximum sum. This approach can help reduce the time complexity by avoiding redundant calculations.
+
+===END PLAN===

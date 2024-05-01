@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] represents the maximum sum of array from index i to j, considering k-size subarrays.
+We fill up the table in bottom-up manner. Let's consider dp[i-1][j-1]. We have two choices: 
+1) The last partition ends at index j-1 and we don't use this number in our current partition. In this case, maximum sum is dp[i-1][j-k] + max(arr[j-k+1..j]).
+2) The last partition includes the number at index j-1. In this case, maximum sum is max(dp[i-1][j-k]) + arr[j].
+We choose the maximum of these two sums.
+The base cases are dp[0][i] = 0 for all i (no array to partition), and dp[i][0] = min(arr[:i+1]) for all i (only one partition).
+===END PLAN===

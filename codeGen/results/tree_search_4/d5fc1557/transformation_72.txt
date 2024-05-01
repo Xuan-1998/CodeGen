@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+Define dp[i] as the maximum length of a subarray ending at index i, considering all possible previous deletions. The longest subarray with only 1's up to that point is represented by dp[i].
+
+Design a recursive function that takes into account all possible previous deletions and returns the maximum length of a subarray ending at index i.
+
+For each cell in the dynamic programming table, consider the following options:
+* If the current element is 0, then the maximum length of the subarray ending at this point will be the same as the one ending at the previous point (i.e., dp[i-1]).
+* If the current element is 1, then there are two possibilities: either delete the current element and continue with the subarray ending at the previous point (i.e., dp[i-1]), or keep the current element and extend the subarray by one.
+* Calculate the maximum length of the subarray in both cases and take the maximum.
+
+For each row in the dynamic programming table, update dp[i] as the maximum of these two possibilities.
+
+Finally, return dp[n-1], which represents the longest non-empty subarray with only 1's after deleting at most one element from the original array.
+
+===END PLAN===

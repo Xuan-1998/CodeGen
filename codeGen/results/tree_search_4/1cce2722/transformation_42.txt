@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i] represent the maximum number of points that can be earned by deleting elements up to index i. Then, we have:
+
+dp[1] = 0
+dp[i] = max(dp[j] + (i - j) for j such that 1 <= j < i and a_j == a_k], where k is the index of the element to be deleted
+
+Let's consider two cases:
+- If ak == ai, then we can delete ai along with its left and right neighbors.
+- If ak != ai, then we cannot delete ai.
+
+In the first case, let's say j = i - 1. Then, we get dp[i] = dp[i - 1]
+
+For the second case, consider two subcases:
+- If ai is the maximum element in the sequence, then we can delete it along with its left and right neighbors.
+- Otherwise, there exists some j such that aj == ak, so we can delete aj along with its left and right neighbors.
+
+Finally, update dp[i] as follows:
+
+dp[i] = max(dp[j] + (i - j) for j such that 1 <= j < i and a_j == a_k] if ai is the maximum element
+else dp[i] = dp[i - 1]
+
+Use a 1D dynamic programming array dp where dp[i] represents the maximum number of points that can be earned by deleting elements up to index i.
+===END PLAN===

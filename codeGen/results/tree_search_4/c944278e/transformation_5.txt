@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+State expression: dp[i][j] = True if team j can win from the i-th phase onwards; otherwise False. This is because a team can only be eliminated if it loses in a previous phase, so we only need to consider the skill levels of the winning teams up to that point.
+
+dp[i][j] = (s[i-1] == '1' && dp[i-1][j]) || (!any_team_lost_in_phase(i) && dp[i-1][j])
+where any_team_lost_in_phase(i) is a function that returns True if at least one team lost in the i-th phase, and False otherwise.
+
+Tabulate the results by iterating over all teams (0 to 2^n - 1) and phases (0 to n-1).
+
+After filling up the dp table, iterate over all teams j such that dp[n-1][j] is True. For each such team j, add it to the list of winning teams.
+
+===END PLAN===

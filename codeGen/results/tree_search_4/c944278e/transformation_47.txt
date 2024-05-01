@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Create a 2D array dp where dp[i][j] represents the winning teams for the first i phases, with j being the skill level of the team.
+
+Initialize the 2D array dp with zeros. For each phase i from 0 to n-1:
+    Iterate over all possible skill levels j from 0 to 2^n - 1.
+    If the ith bit of binary representation of j is 1, update dp[i][j] as follows:
+        Find the winning teams for the previous phases (i.e., up to phase i-1) using memoization.
+        Update dp[i][j] with the intersection of the current winning teams and the losing teams from phase i.
+
+To find the final winning teams, iterate over all possible skill levels j from 0 to 2^n - 1.
+    If any team has won at least one game in each phase (i.e., for all phases k where k <= i), add j to the list of winning teams.
+
+Sort the list of winning teams in ascending order and return it as the output.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+DP_state = (i, j), where i is the current subset and j is the current sum
+Initialize DP_state with base case being DP_state(0, 0) returning a list containing 0 as there's no subsets to generate sums for
+Define function dp(i, j):
+    if i == N: return [j]
+    result = []
+    for k in range(a[i], j+1):
+        if not any(k in subset for subset in DP_state): # Check if k is not already included in previous subsets' sums
+            result.extend(dp(i+1, k) + dp(i+1, j-k))
+    return [j] + sorted(list(set(result)))
+DP_state = dp(0, sum(a))
+Return the list of distinct sums from DP_state
+===END PLAN===

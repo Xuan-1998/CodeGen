@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Divide the tournament into smaller phases, and use dynamic programming to find all possible winning teams for each phase.
+
+Let dp[i] be the number of winning teams found after considering the first i phases. Initialize dp[0] = 1 (since there's only one way to win in a single phase).
+
+For each phase from 1 to n:
+    For each team that wins this phase (let its skill level be w):
+        Update dp[i] by recursively calling the function with i-1, considering two cases:
+            - The current team wins: dp[i-1] * (2^(n-i) - 1)
+            - The current team loses: dp[i-1]
+    For each team that loses this phase (let its skill level be l):
+        Update dp[i] by recursively calling the function with i-1, considering two cases:
+            - The current team wins: dp[i-1] * (2^(n-i) - 1)
+            - The current team loses: dp[i-1]
+Return all teams that have a skill level greater than or equal to w and l.
+
+===END PLAN===

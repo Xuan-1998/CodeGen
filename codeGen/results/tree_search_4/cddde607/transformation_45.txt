@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[][][] = memoization dictionary where key-value pairs are (i, j, k) and values are num_paths_to_collect_k_coins_at_cell_i_j_with_k_left
+Initialize dp[0][0][k] = 1 for 0 <= k <= K 
+for N-1 rows:
+    for N-1 columns:
+        if i == N-1 and j == N-1: // bottom right corner, collect exactly K coins
+            dp[i][j][k] = 1 if k == 0 else 0
+        elif arr[i][j] > 0: // non-zero cell, don't move here 
+            dp[i][j][k] = 0
+        else:
+            dp[i][j][k] = dp[(i+1)[j]][(i)[j+1]][max(k-arr[i][j], 0)] if i+j < N*2 and k-arr[i][j] >= 0 
+        for each subproblem, update memoization dictionary
+    for j from N-1 to 0:
+        dp[i][j][k] = 0 // no path can be formed here
+for i from N-1 to 0: 
+    dp[i][N-1][k] = 0 // no path can be formed here
+Return dp[0][0][K]
+===END PLAN===

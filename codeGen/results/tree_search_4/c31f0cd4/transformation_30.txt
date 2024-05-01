@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: Think about the dynamic programming table dp[i][j] where i ranges from 1 to N and j ranges from 0 to sum all elements. The value at dp[i][j] represents whether there exists a subset that sums up to j using the first i elements.
+dp[i][j] = True if there exists a subset of the first i numbers that sums up to j, False otherwise.
+
+Initialize dp[0][0] to True, as an empty set can always sum up to 0. Then for each i from 1 to N and each j from 0 to sum all elements:
+    If the current number is less than or equal to j, update dp[i][j] based on whether there exists a subset that sums up to j-i using the first i-1 numbers.
+    Use a set called 'seen' to keep track of previously computed sums and avoid redundant calculations.
+
+Fill in the remaining cells from right to left. Start with the largest possible sum (i.e., the sum of all elements) and fill in dp[N][j] for each j.
+When you reach the cell dp[i][j], if there exists a subset that sums up to j using the first i numbers, update 'seen' with this new sum.
+
+Finally, iterate over 'seen' to generate the list of distinct sums. This should include all possible subsets and their corresponding sums.
+===END PLAN===

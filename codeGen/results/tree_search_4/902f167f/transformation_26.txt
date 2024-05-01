@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming. Define a function that takes the dimensions of the rectangle as input, and use dynamic programming to fill up a 2D array.
+
+State: dp[i][j] is the minimum number of squares needed to tile a rectangle of size i x j.
+Define dp[0][j] = 1 for all j, because an empty rectangle can be tiled with zero squares. Define dp[i][0] = 1 for all i, because a rectangle with no columns can be tiled with one square.
+
+Create a 2D array dp where dp[i][j] is the minimum number of squares needed to tile a rectangle of size i x j.
+For each cell dp[i][j], consider two possibilities: 
+- The last square used has side length j. In this case, you need at least one more square with side length 1 to fill up the remaining part (i-j). So, dp[i][j] = 1 + dp[j-1][k] where k varies from 0 to i-j.
+- The last square used has side length i. In this case, you don't need any more squares because the rectangle is fully tiled. So, dp[i][j] = 1.
+Fill up the bottom row and rightmost column of dp with ones, because these cells represent rectangles that can be tiled with one square.
+
+The minimum number of squares needed to tile a rectangle of size n x m is stored in cell dp[n][m].
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it. Let dp[i][j] represent the maximum number of points that can be earned by considering the first i elements and making j moves so far, where a move is defined as either deleting an element or not.
+
+Initialize the dp table with zeros: dp = [[0 for _ in range(n+1)] for _ in range(n+1)]
+
+Fill up the dp table row by row from bottom to top:
+
+For i from 2 to n:
+    For k from 1 to i:
+        If a[i] == a[k-1], then consider deleting the k-th element and all elements equal to it. Calculate the maximum number of points that can be earned in this case: dp[i][k] = dp[k-1][0] + (i-k+1)
+        Otherwise, do not delete the k-th element, so dp[i][k] = dp[i-1][k]
+    Update memo with dp[i][0]
+
+Finally, return the maximum number of points that can be earned by considering all elements: max(dp[n][j] for j in range(n+1))
+
+===END PLAN===

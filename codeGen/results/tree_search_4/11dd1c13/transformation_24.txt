@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] = min(dp[i-1][max(0, j-grid[i-1][k-1])] + grid[i][j] for k in range(grid.shape[1])) if i > 0 else 0
+dp[0][j] = grid[0][j]
+for i in range(len(grid)):
+    for j in range(len(grid[0])):
+        dp[i][j] = min(dp[i-1][max(0, j-grid[i-1][k-1])] + grid[i][j] for k in range(grid.shape[1])) if i > 0 else 0
+min_sum = min(dp[-1])
+===END PLAN===

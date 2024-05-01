@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming where you calculate the minimum number of squares for sub-rectangles and store them in a 2D array to avoid redundant calculations.
+
+The state expression could be defined as dp[i][j] representing the minimum number of squares required to tile a rectangle of size i x j.
+
+dp[i][j] represents the minimum number of squares required to tile a rectangle of size i x j, and the transition relationship could be: 
+dp[i][j] = min(dp[max(0, i-1)][j] + dp[i][max(0, j-1)]) + 1
+
+To avoid redundant calculations, initialize the dynamic programming table with base cases:
+
+dp[0][j] = 0
+dp[i][0] = 0
+
+Use a nested loop to fill in the rest of the dynamic programming table:
+for i from 1 to n:
+    for j from 1 to m:
+        dp[i][j] = min(dp[max(0, i-1)][j] + dp[i][max(0, j-1)]) + 1
+
+The final answer is stored in dp[n][m].
+
+===END PLAN===

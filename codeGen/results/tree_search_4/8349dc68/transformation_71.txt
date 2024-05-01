@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property, which is true since we can partition the array into k contiguous subarrays in many ways, and each partitioning decision affects only the maximum sum of that particular subarray. 
+
+Consider using dynamic programming to solve this problem by defining a state as follows: let dp[i][k] be the maximum sum of all possible partitions of arr[0...i] into k contiguous subarrays.
+
+Base case: when k is 1, we can simply calculate the maximum sum of the subarray arr[0...i]. 
+
+Recursively define the state as follows: for each i and k, consider two options:
+- Partition arr[0...i] into k-1 contiguous subarrays by considering the maximum value of the first (k-1) elements. 
+- If this option is better than the previous one, then recursively calculate dp[i-(k-1)][k-1] and add the maximum value of the current element to it.
+The state transition function is: dp[i][k] = max(dp[i-(k-1)][k-1] + arr[i], dp[i-(k-1)][k]).
+
+To avoid redundant calculations, store the results for each state in a 2D table and use memoization.
+Implement dynamic programming by creating a 2D table where each cell represents the maximum sum of a subarray of length k ending at index i. 
+
+Let's implement this plan step by step to get the final answer.
+
+Let the final answer be: dp[n][k]
+
+So, we need to calculate this value and return it as our final answer.
+===END PLAN===

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where:
+    - dp[i-1] is the previous longest subarray
+    - dp[i] is the maximum length of subarray containing only 1's ending at index i
+
+The base case is: dp[0] = 0, assuming no subarray exists initially.
+
+dp[i] is calculated as the maximum of:
+    - dp[i-1] + (nums[i] == 1) - This adds to the previous longest subarray if the current element is a '1'
+    - 0 - If the current element is a '0', reset the count
+
+Utilize both tabulation and memoization by combining the benefits of each.
+
+Initialize dp with size n + 1 (to include the base case) filled with zeros.
+
+Fill up the dp array iteratively:
+    For i from 1 to n:
+        Calculate dp[i] as described above
+        Update dp[i]
+
+The final result is dp[n] - This gives the length of the longest subarray containing only '1's in the resulting array
+
+If no such subarray exists, return 0.
+===END PLAN===

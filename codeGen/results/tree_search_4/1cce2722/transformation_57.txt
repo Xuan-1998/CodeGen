@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it.
+Let dp[i][j] represent the maximum number of points that can be earned by considering the first i elements and making j moves so far, where a move is defined as deleting an element along with all its left and right neighbors.
+
+DP states: Initialize dp[0][k] for 1 <= k <= n-1 to 0, since no points can be earned from an empty sequence.
+DP states: For i > 0, compute dp[i][k] by considering two cases:
+    1. Don't delete the k-th element and all elements equal to it. Then, consider the maximum number of points that can be earned by deleting elements up to the (i-1)-th element and making j moves so far.
+    2. Delete the k-th element and all elements equal to it. Then, consider the maximum number of points that can be earned by deleting elements up to the (i-1)-th element and making (j+1) moves.
+
+DP states: Let dp[i][k] be the maximum between these two cases.
+Finally, return dp[n-1][0], which represents the maximum number of points that can be earned by considering the entire sequence and making 0 moves.
+===END PLAN===

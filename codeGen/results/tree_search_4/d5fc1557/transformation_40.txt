@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is just the index i, as we only care about the number of 1's after this point.
+Consider the current index i as state, with transition being the maximum length of 1's seen at previous indices j such that nums[j] == 1
+Let dp be a list of size n+1 initialized to -1, then iterate through the array updating each index based on the previous one:
+    If nums[i] == 0, set dp[i] to max(0, dp[i-1])
+    If nums[i] == 1 and i > 0, set dp[i] to max(dp[i], dp[i-1]+1)
+Return dp[-2], which is the maximum length of 1's found in previous subarrays.
+===END PLAN===

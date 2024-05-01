@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+DP with a graph-based approach: View each vertex as a state, and the transition is to its adjacent vertices. The goal is to find the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+Create a dynamic programming table (dp) where dp[i][j] represents the minimum/maximum number of times the shortest path from vertex i to t needs to be recomputed after j recomputations.
+
+Initialize dp[0][0] as 1 and dp[0][j] as infinity for all j > 0, since the initial path does not need any recomputation. 
+
+Iterate over the fixed path p from s to t. For each vertex v in the path:
+
+* If v is a new vertex (not previously visited), initialize dp[v][0] as 1 and dp[v][j] as infinity for all j > 0.
+
+* Iterate from j = 1 to k:
+	+ If the shortest path from v to t needs to be recomputed after j-1 recomputations, update dp[v][j] as min(dp[v][j], max(dp[u][j-1], 1) + (dp[u][j-1] > 0)).
+	+ Update dp[u][j-1] for all adjacent vertices u of v.
+* Return the minimum and maximum values in dp[t][k].
+
+===END PLAN===

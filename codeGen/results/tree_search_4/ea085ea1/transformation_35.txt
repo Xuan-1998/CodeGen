@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure is characterized by finding the maximum number of common non-overlapping substrings between two strings. This problem can be solved using dynamic programming in a bottom-up approach.
+
+Let dp[i][j] represent the maximum number of common non-overlapping substrings between str1[:i] and str2[:j].
+The transition relationship can be formulated as:
+
+* If str1[:i] and str2[:j] have a common prefix, then dp[i][j] = 1 + dp[i-1][j-1]
+* Otherwise, dp[i][j] is the maximum of dp[i-1][j], dp[i][j-1], and 0
+
+Use a 2D array to store the maximum number of common non-overlapping substrings between two strings and fill it up using the transition relationship.
+
+Initialize dp[0][0] = 0.
+Iterate over i from 1 to N:
+    Iterate over j from 1 to N:
+        If str1[i-1] == str2[j-1], then update dp[i][j] = 1 + dp[i-1][j-1]
+        Otherwise, update dp[i][j] = max(dp[i-1][j], dp[i][j-1], 0)
+
+Return dp[N][N]
+
+===END PLAN===

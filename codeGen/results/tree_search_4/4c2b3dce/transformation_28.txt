@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+1. Initialize a 2D boolean table dp of size (len(s) + 1) x (2), where dp[i][0] represents whether 'AB' can be found in the first i characters, and dp[i][1] represents whether 'BA' can be found in the remaining m-i characters.
+2. Initialize a dictionary state_transitions to store the state transitions.
+3. Iterate over the string s from left to right:
+    * If we find 'AB', update dp[j][0] = True for j such that 1 <= j <= len(s) and mark all characters up to j as processed in state_transitions.
+    * If we find 'BA', update dp[m-j][1] = True for j such that 0 <= j < m and mark all characters from m-j to m-1 as processed in state_transitions.
+4. Iterate over the string s from right to left:
+    * If we find 'AB', update dp[j][0] = False for j such that len(s) - 1 >= j > 0 and mark all characters up to j as processed in state_transitions.
+    * If we find 'BA', update dp[m-j][1] = False for j such that m-1 >= j > 0 and mark all characters from m-j to m-1 as processed as processed in state_transitions.
+5. After processing the entire string, check if there's a valid transition from state dp[len(s)-1][1] to 'YES' or not. If yes, return 'YES'; otherwise, return 'NO'.
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+  * This approach is incorrect because it doesn't account for the overlap between 'AB' and 'BA'
+If 'AB' is found at some index j and s[j-1] is False, then we can safely return True because this 'AB' cannot overlap with any potential 'BA'.
+  * This condition is correct but it should be applied after checking for 'BA' in the remaining part of the string
+Use a dictionary to store the state transitions, where each key is a tuple representing the state and each value is a boolean indicating if there's a valid transition from that state
+  * This approach can be used to optimize the solution but it should be used after tabulation
+Implement tabulation by initializing a table with all False values, and then update the table based on certain conditions to mark whether 'AB' or 'BA' can be found in the first j characters and the remaining m-j characters, where j is from 0 to len(s)
+  * This approach is correct but it should be used to pre-compute the information needed for the state transitions
+===END PLAN===

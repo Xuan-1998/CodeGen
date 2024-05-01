@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is characterized by finding the maximum number of common non-overlapping substrings between two strings. This problem can be solved using memoization in a top-down approach, as it has overlapping subproblems.
+
+Let dp[i][j] represent the maximum number of common non-overlapping substrings ending at positions i in str1 and j in str2.
+The transition relationship is: dp[i][j] = max(dp[i-1][j-1] + 1 if str1[i..i+1] == str2[j..j+1], 
+                                      dp[i-1][j], 
+                                      dp[i][j-1])
+A base case occurs when i or j reaches 0, in which case there are no more substrings to consider.
+
+A recursive function can be defined to solve this problem. It will call itself with smaller problem instances until it reaches the base case, then combines the solutions to construct the solution for the original problem.
+The final answer is dp[N-1][M-1], where N and M are the lengths of str1 and str2 respectively.
+
+===END PLAN===

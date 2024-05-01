@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Let dp[i][j] be the minimum length of a subsequence that ends with character S[i-1] and T[j-1]
+Define base cases as: 
+    - dp[0][j] = j (since empty subsequence in S has length j)
+    - dp[i][0] = i (since empty subsequence in T has length i)
+Design a top-down approach by recursively exploring all possible subsequences in both strings, pruning branches based on whether they can be extended further
+Update the DP table as follows:
+    - If S[i-1] == T[j-1], then dp[i][j] = 1 + dp[i-1][j-1]
+    - Else if there exists k such that dp[k][j] is not a subsequence in T, then dp[i][j] = 1 + dp[k][j]
+    - Else return -1 (indicating no such subsequence is possible)
+Return the value of dp[m][n], where m and n are the lengths of S and T respectively
+===END PLAN===

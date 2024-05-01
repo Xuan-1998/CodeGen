@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+
+DP solution: Define the state expression as dp[i][k] representing whether there is a subset of the first i integers with sum k. Base case: dp[0][j] = 1 if j == 0, and 0 otherwise.
+
+dp[i][k] represents whether there is a subset of the first i integers with sum k. To use dynamic programming and create a 2D table where:
+
+- Initialize all values in dp to false.
+- For each integer from 1 to n:
+    - For each possible sum from 0 to m:
+        - If the current integer is less than or equal to the sum, update dp[i][k] if k == sum - value.
+        - Otherwise, set dp[i][k] = dp[i-1][k].
+
+Return 1 if there exists a subset whose sum is divisible by m, and 0 otherwise.
+
+===END PLAN===

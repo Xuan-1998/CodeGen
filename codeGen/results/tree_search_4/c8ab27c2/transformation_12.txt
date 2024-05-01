@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings S and T, updating the DP table accordingly.
+
+Let dp[i][j] be the minimum length of a subsequence that ends with character S[i-1] and T[j-1].
+Consider transition relationships:
+    - If characters match (S[i-1] == T[j-1]), then dp[i][j] is equal to min(dp[i-1][j-1] + 1, max(dp[i-1][j], dp[i][j-1]))
+    - Else, if characters do not match, then dp[i][j] is equal to max(dp[i-1][j], dp[i][j-1])
+
+Use dynamic programming by creating a table and updating it in a bottom-up manner using the relationship between the current character and previous characters.
+
+Initialize the DP table with zeros for all i and j.
+Iterate over the strings S and T simultaneously, starting from the first characters:
+    - If characters match, update dp[i][j] accordingly.
+    - Else, update dp[i][j] to be the maximum of its neighbors in the table.
+Finally, return the minimum value in the last row of the DP table as the length of the shortest uncommon subsequence.
+
+If no such subsequence is possible (i.e., all values in the last row are equal), return -1.
+
+===END PLAN===

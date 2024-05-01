@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+Calculate a table for each vertex:
+- Create a table where each cell represents the number of recomputations at that vertex.
+- Initialize all cells in the table to 0.
+- For each edge from u to v, update dp[v] = min(dp[v], dp[u]+1) if there's no direct path from u to t. If there is, set dp[v] to 1.
+- Update dp[v] for each vertex in the fixed path by counting recomputations at that vertex.
+
+Get the minimum and maximum number of times the shortest path needs to be recomputed:
+- The minimum number is just the value at vertex t (dp[t]).
+- The maximum number is the sum of all values in the table minus 1, since we start from the starting point s. This will give us the total number of recomputations and subtracting one because we're not counting the first recomputation.
+
+===END PLAN===

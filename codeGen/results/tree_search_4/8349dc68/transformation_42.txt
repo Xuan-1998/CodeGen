@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+View dp[i][k] as the maximum sum that can be achieved by partitioning the subarray from index i to i+k.
+
+Define dp[i][k] as the maximum value that can be achieved by partitioning the array from index 0 to i+k.
+Use a 1D dynamic programming table with length n+1, where dp[i] represents the maximum sum that can be achieved by partitioning the array from index 0 to i.
+
+The state transition would consider the maximum value among this subarray and its previous maximum values. 
+
+Transition function: 
+dp[i][k] = max(dp[i-1][j] + arr[i+j], dp[i-k][k])
+
+Base case:
+dp[0][k] = arr[0]
+
+Bottom-up approach:
+
+For i from 1 to n, 
+    For k from 1 to min(i, k), 
+        dp[i][k] = max(dp[i-1][j] + arr[i+j], dp[i-k][k])
+
+Final answer: return dp[n][k]
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Use dynamic programming with memoization: The problem can be broken down into overlapping subproblems, and optimal substructure exists. We can use dynamic programming to store the results of expensive function calls and reuse them when the same inputs occur again.
+
+Create a 2D DP table dp[n][2] where:
+- dp[i][0] stores the shortest distance from vertex i to t
+- dp[i][1] stores the number of recomputations needed to reach the shortest path from i to t
+
+Initialization: 
+- dp[0][0] = distance from s to t (given)
+- dp[0][1] = 0, since no recomputation is needed initially
+
+Transition:
+- for each vertex v along the fixed path from s to t
+    - update dp[v][0] with the minimum distance from the current vertex to t
+    - update dp[v][1] by considering two options: 
+        * if the previous vertex on the shortest path from s to t is not on the fixed path, we need to recompute once (dp[v-1][1]+1)
+        * otherwise, no recomputation is needed
+
+Final Answer:
+- minimum and maximum number of recomputations = dp[t][1] - dp[0][1]
+
+===END PLAN===

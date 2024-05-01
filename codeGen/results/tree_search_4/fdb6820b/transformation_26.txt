@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define the state expression as dp[i] = total number of combinations to form 'i' using elements from the array. Set base cases: 0 <= i < N when the base case value is 1 because there's only one way to form 0, namely by not adding any numbers.
+dp[0] = 1 (base case)
+For i in range(N+1):
+    if i < N:
+        dp[i] = sum(dp[max(0, i-nums[j])] for j in range(m))
+    else:
+        dp[i] = 0
+Return dp[N]
+===END PLAN===

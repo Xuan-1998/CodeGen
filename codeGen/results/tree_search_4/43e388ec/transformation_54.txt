@@ -1,0 +1,11 @@
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+The state can be defined as DP[i] = ((DP[i-1] ^ (b >> i%31)) % (10**9 + 7) if i > 0, else a ^ b. This is because the base case should be when i is 0.
+DP[i] represents the cumulative sum of OR(a, b << i) for all values of i from 0 to i.
+
+The state can be updated as follows:
+for i in range(1, 10**5 + 7):
+    DP[i] = ((DP[i-1] ^ (b >> i%31)) % (10**9 + 7)
+Maintaining a single array DP[i] where DP[i] represents the cumulative sum of OR(a, b << i) for all values of i from 0 to i
+
+The final answer is then given by ((DP[3*10^5]%((10**9)+7)) 

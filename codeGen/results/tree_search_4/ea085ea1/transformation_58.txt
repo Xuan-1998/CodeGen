@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[0][j] = 0 for all j
+dp[i][0] = 0 for all i
+
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if str1[i-1] == str2[j-1]
+dp[i][j] = 0 if str1[i-1] != str2[j-1]
+
+Dynamically create a table with the same dimensions as the input strings
+fill the table row by row, starting from the top and moving right
+for each cell, check if the current characters in both strings are equal. If they are, 
+update the cell's value to be one plus the maximum number of common non-overlapping substrings ending at the previous position.
+if the current characters are not equal, update the cell's value to be the maximum of the values for the cell above and to its left
+===END PLAN===

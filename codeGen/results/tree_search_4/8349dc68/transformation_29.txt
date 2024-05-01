@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use tabulation to fill up the table in bottom-up manner, where the transition function calculates the maximum sum for each subarray based on its previous maximum value and the current element.
+
+Consider dp[i][j] as the maximum sum of array from index i to j considering k-size subarrays
+
+Initially, set dp[0][k-1] = arr[0]
+
+For every 1 <= i <= n-k+1:
+    For every 1 <= j <= n-i+k-1:
+        Calculate the maximum value of the current k-size subarray [i:i+k-1]
+        Update dp[i][j] as the maximum value between:
+            - The sum of the current subarray and the maximum sum of the previous subarrays
+            - The maximum sum of the previous subarrays
+
+Return max(dp[n-k+1][n-1])
+===END PLAN===

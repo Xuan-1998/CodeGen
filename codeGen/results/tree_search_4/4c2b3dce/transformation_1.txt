@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Check if 'AB' appears in the string, then check if 'BA' appears in the remaining part of the string
+The state is an integer index i into the string s, with base case being when i >= len(s) - 2 (i.e., there are at most two characters left).
+Whether 'AB' or 'BA' appears up to index i.
+Use a dictionary to store the last occurrence of each character ('A' and 'B').
+
+Check if 'A' is in the string, update last_occurrence dictionary accordingly
+If 'A' is found, check if 'B' is at index i + 1 (i.e., 'AB' appears)
+    If 'B' is not at i + 1, continue checking the rest of the string
+    If 'B' is at i + 1, update last_occurrence dictionary and break loop
+
+Check if 'B' is in the string, update last_occurrence dictionary accordingly
+If 'B' is found, check if 'A' is at index i - 1 (i.e., 'BA' appears)
+    If 'A' is not at i - 1, continue checking the rest of the string
+    If 'A' is at i - 1, update last_occurrence dictionary and break loop
+
+If neither 'AB' nor 'BA' appears up to index i, continue checking the rest of the string
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss.
+
+// Initialize a memoization array dp[n][2^n] with False values
+
+for phase from 0 to n:
+    for i from 0 to 2^n - 1:
+        if s[phase] == '1':
+            // If the team wins, update dp[phase][i] with True
+            dp[phase][i] = True
+        else:
+            // If the team loses, update dp[phase][i] with False
+            dp[phase][i] = False
+
+    for i from 0 to 2^n - 1:
+        if dp[phase][i]:
+            // Check if any team has won at least one game in each phase
+            result.add(i)
+
+// Print the winning teams
+print(result)
+===END PLAN===

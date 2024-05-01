@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Define state as a 2D array dp where dp[u][v] represents the minimum and maximum number of recomputations needed from vertex u to v along the recommended path. Base case is when we are at vertex t, since there's no more recomputation needed.
+State dp[i][j] as a tuple (min_recom, max_recom) representing the minimum and maximum number of times the shortest path from vertex i to vertex j needs to be recomputed. Initially set dp[s][t] to (0, 0), since we are at the starting point.
+
+Function: Define a function f(u) that calculates the minimum and maximum number of recomputations needed from vertex u along the recommended path. This can be done by iterating over all vertices v in the fixed path such that u -> v, and updating dp[u][v] accordingly.
+For each edge (u, v), update dp[u][v] with min(dp[u][v], f(v)) and max(dp[u][v], f(v)).
+
+Memoization: Use a dictionary to store previous computed values of f(u) for vertices u in the fixed path. This can be done by initializing a dictionary memo = {(u, t): (0, 0)} and updating it accordingly as we calculate f(u).
+
+Main logic:
+1. Initialize dp and memo.
+2. For each vertex u in the fixed path from s to t,
+   a. Calculate f(u) using memoization.
+   b. Update dp[u][t] with min(dp[u][t], f(u)) and max(dp[u][t], f(u)).
+3. Return dp[s][t].
+
+===END PLAN===

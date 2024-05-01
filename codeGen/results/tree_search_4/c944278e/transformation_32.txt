@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Maintain a dictionary dp where dp[i][s] represents the winning teams for the prefix s from phase 0 to i.
+
+Let the state be a tuple (i, s) where i is the current phase and s is the binary string from the 0th to the ith phase. Initialize dp[0][''] = ['']
+
+Transition to the next state by appending one character from the input string:
+
+- If the appended character is '1', update dp[i+1][s+'1'] with all teams that have won at least once in each phase and are not yet included in dp[i][s].
+- If the appended character is '0', update dp[i+1][s+'0'] with all teams that have lost at least once in each phase and are not yet included in dp[i][s].
+
+Initialize a set winning_teams to store all winning teams.
+
+For each state (i, s) in dp:
+    - For each team t in dp[i][s]:
+        + If t has won at least one game in each phase, add t to the set winning_teams.
+    - Update the state by appending the next character from the input string and recursively update dp.
+
+Finally, return the set winning_teams as the output.
+
+===END PLAN===

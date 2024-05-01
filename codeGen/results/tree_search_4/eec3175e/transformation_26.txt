@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+A subset sum that is divisible by m
+State: Given n, a subset sum that is less than m; Transition relationship: The problem can be broken down into smaller instances by considering all possible subsets of S with sums that are less than m. We can transition from the base case (n = 1) to larger instances by including or excluding elements from the set.
+
+Using dynamic programming with a recursive function
+State: Given n, a subset sum that is divisible by m; Transition relationship: For each subset of size i, we can either include or exclude the current element. If we include it, the new sum will be s + arr[i], and if we exclude it, the new sum will be the previous sum. We keep track of the maximum possible sum that is less than m.
+
+State transition:
+- For each subset of size i, consider including or excluding the current element.
+- If we include it, check if s + arr[i] is divisible by m. If not, recursively call the function on the remaining elements (i.e., n - 1).
+- If we exclude it, recursively call the function on the remaining elements (i.e., n - 1).
+
+Base case: When n = 1, return True if arr[0] is less than m.
+
+Memoization:
+- Store the results of subproblems in a memo array.
+- Before solving each subproblem, check the memo array for its result. If it's already solved, return the stored result.
+
+Return value: Return True if there exists a subset whose sum is divisible by m; otherwise, return False.
+===END PLAN===

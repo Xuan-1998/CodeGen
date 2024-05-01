@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Define base cases as: dp[0][j] = j (since empty subsequence in S has length j), and dp[i][0] = i (since empty subsequence in T has length i)
+Initialize a 2D DP table with size (n+1) x (m+1) where n and m are the lengths of strings S and T respectively
+Iterate over characters in both strings:
+    For each character S[i-1] and T[j-1]:
+        If the characters match, update dp[i][j] = dp[i-1][j-1] + 1 (since we can extend the current subsequence)
+        Else if S[i-1] is not present in T or T[j-1] is not present in S:
+            Update dp[i][j] as min(dp[i-1][j], dp[i][j-1]) + 1 (since we need to explore both options: extend the subsequence in S or in T)
+        Else:
+            Update dp[i][j] = min(dp[i-1][j], dp[i][j-1]) (since the characters do not match, and we cannot extend the current subsequence)
+Return dp[n][m] - 1 as the minimum length of the shortest uncommon subsequence
+===END PLAN===

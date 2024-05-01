@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings "AB" and "BA".
+The state expression is the remaining part of the string after processing the current substring.
+The base case is when the input string is empty, in which case it's guaranteed that 'AB' and 'BA' are not present.
+
+Let dp[i] be a boolean indicating whether the first i characters can be divided into two non-overlapping substrings "AB" and "BA".
+We can update dp[i] as follows:
+- If the input string is empty, return True.
+- If the last two characters match 'AB', then set dp[i] to True if the remaining part of the string (i.e., i - 2) contains 'BA'.
+- Otherwise, set dp[i] to False.
+
+The final answer is determined by checking whether dp[n] is True, where n is the length of the input string.
+Use memoization by storing the results of subproblems in a dictionary and reusing them when needed to avoid redundant computations.
+
+Finally, print "YES" if dp[n] is True and "NO" otherwise.
+
+===END PLAN===

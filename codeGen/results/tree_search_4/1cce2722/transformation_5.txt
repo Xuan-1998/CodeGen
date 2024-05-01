@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: dp[i] = minimum index j such that a[j] is the first element in the sequence not equal to any previous element
+
+DP State: dp[i+1] = maximum number of points earned by deleting elements up to index i
+
+Initialization: dp[0] = 0, since no points can be earned for an empty sequence
+
+Recurrence relation:
+dp[i+1] = max(dp[j-1] + (i-j+2), j) if a[j] is the first element not equal to any previous element
+else dp[i+1] = dp[i]
+
+Memoization: use a dictionary memo to store and reuse previously calculated values
+
+To avoid redundant calculations, update dp[i+1] using memoization: dp[i+1] = max(memo.get(dp[j-1], 0) + (i-j+2), j)
+
+Tabulation: create a table dp of size n+1 filled with zeros, initialize dp[0] to 0
+
+Fill the table from left to right: for i in range(n): dp[i+1] = max(memo.get(dp[j-1], 0) + (i-j+2), j)
+
+Return dp[n]
+
+===END PLAN===

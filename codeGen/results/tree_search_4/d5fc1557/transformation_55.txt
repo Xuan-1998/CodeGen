@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+Let dp[i] represent the length of the longest subarray containing only 1's in the first i elements of nums.
+Let dp[i] = max(dp[j-1], j-j) + (nums[j] == 1), where j is the last 1 before deletion, and j-j is the length of the subarray starting from the next 1.
+Initialize dp with all zeros, then update accordingly: 
+dp[0] = 0
+for i in range(1, n):
+    if nums[i-1] == 1:
+        dp[i] = max(dp[i-2], i-i) + (nums[i] == 1)
+    else:
+        dp[i] = dp[i-1]
+Return the maximum value in the dp array.
+===END PLAN===

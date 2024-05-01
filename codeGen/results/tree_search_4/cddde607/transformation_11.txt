@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j] = sum of ways to reach cell (i-1, j) + sum of ways to reach cell (i, j-1), if arr[i][j] <= k
+else 0,
+
+Transition: From a given cell (i, j), there are two possible transitions: move down or right. dp[i][j] is updated based on the number of ways to reach the previous cells and the number of coins in the current cell.
+
+Use a dictionary to store intermediate results and avoid redundant computation using memoization.
+For each cell (i, j), check if it's the target cell (N-1, N-1) and if arr[i][j] == k. If so, return 1. Otherwise, recursively calculate dp[i-1][j] and dp[i][j-1] and sum them up.
+To avoid overcounting, add a condition to only consider cells where the number of coins is less than or equal to k.
+
+===END PLAN===

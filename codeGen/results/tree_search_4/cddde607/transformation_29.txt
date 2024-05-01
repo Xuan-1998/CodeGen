@@ -1,0 +1,17 @@
+Dynamic programming can be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = number of ways to reach cell (i, j) collecting exactly K coins.
+
+dp[i][j] = the number of ways to reach cell (i, j) such that the path taken collects at most k-coins so far
+
+Use a 2D array dp[][] where dp[i][j] represents the number of paths from top left corner to cell (i, j) collecting exactly K coins.
+
+Base case: If i or j is zero, return 0 because there's no way to reach the destination
+
+Fill up dp[][] table in top-down manner:
+- For cells at the first row (i=0), consider all possible paths from top left corner to each cell. For a given cell (0,j), if coins[j] <= K and j < N, then number of ways to reach that cell is equal to dp[0][j-1] plus number of ways to stay at the same cell.
+- For cells at the first column (j=0), consider all possible paths from top left corner to each cell. For a given cell (i,0), if coins[i] <= K and i < N, then number of ways to reach that cell is equal to dp[i-1][0] plus number of ways to stay at the same cell.
+- For cells at middle rows or columns, consider all possible paths from top left corner to each cell. For a given cell (i,j), if coins[i+j] <= K and i < N and j < N, then number of ways to reach that cell is equal to dp[i-1][j] plus dp[i][j-1].
+
+Finally, return dp[N-1][N-1] as the result.
+

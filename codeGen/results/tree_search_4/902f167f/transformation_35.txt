@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming. Define a function that takes the dimensions of the rectangle as input and calculates the minimum number of squares required to cover the top-left i x j rectangle.
+
+State: dp[i][j] is the minimum number of squares required to cover the top-left i x j rectangle.
+Let's iterate from n to 1 and m to 1:
+- If both i and j are less than or equal to the side length of a square (k), then dp[i][j] = min(dp[(i-k)][(j-k)]) + 1, where k is a side length that divides both i and j.
+- Otherwise, dp[i][j] = 0.
+
+Define a function that takes the dimensions of the rectangle as input, initializes a 2D array with the base case values (n x m), and iterates from n to 1 and m to 1:
+    for int i in range(n, -1, -1):
+        for int j in range(m, -1, -1):
+            if both i and j are less than or equal to k:
+                dp[i][j] = min(dp[(i-k)][(j-k)]) + 1
+            else:
+                dp[i][j] = 0
+
+Finally, return dp[0][0] as the result.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i][j] = max(dp[i-1][j], dp[i-1][k] + j - k for k in range(j)),
+where dp[i][j] represents the maximum number of points that can be earned with the first i integers and j remaining integers to choose from.
+
+dp[0][j] = 0, for all j
+dp[i][0] = min(i, n), for all i
+
+The state could be the current sum of elements being considered, dp[sum][i] = max(dp[sum-1][i], dp[sum-1][k] + n - k for k in range(i)), where dp[sum][i] represents the maximum number of points that can be earned with a sum of elements equal to i and j remaining integers to choose from.
+
+Tabulate a 2D array where each cell [i][j] represents the maximum number of points that can be earned with the first i integers and j remaining integers to choose from.
+===END PLAN===

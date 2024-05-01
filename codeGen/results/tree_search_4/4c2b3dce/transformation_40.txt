@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+The state is a tuple (last_A, last_B) where last_A is the index of the last character 'A' seen and last_B is the index of the last character 'B' seen. The base case is when "AB" and "BA" have been processed.
+Fill up a 2D array dp with dimensions [n + 1] x [n + 1], where n is the length of string s
+Initialize all values in dp to False except for dp[0][0] which is True
+Iterate over the string s and update dp[i][j] based on the following rules:
+- If s[i:i+2] is "AB", set last_A = i + 1, reset last_B if it's not -1, and set dp[i+1][j] to True
+- If s[j:j+2] is "BA", set last_B = j + 1, reset last_A if it's not -1, and set dp[i][j+1] to True
+Return "YES" if dp[n][n] is True, otherwise return "NO"
+===END PLAN===

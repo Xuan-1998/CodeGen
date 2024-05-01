@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: dp[i] will store the maximum number of points earned by deleting elements up to index i
+DP State: Let dp[i][j] be the minimum index k such that ak = j was the last element considered
+
+Initialize a dictionary d where each key k represents an index i in the sequence and its corresponding value is the first element in the sequence not equal to any previous element.
+
+For each index i from 0 to n-1:
+    Find the first element aj not equal to any previous element
+    dp[i] = max(dp[i], dp[i-1] + (aj - 1))
+    Update d with key-value pair (i, aj)
+
+Return dp[n-1]
+===END PLAN===

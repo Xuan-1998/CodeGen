@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming. Define a 2D array dp where dp[i][j] is the minimum number of squares needed to tile a rectangle of size i x j.
+
+State: dp[0][j] = 1 for all j, because a rectangle of width 0 can be tiled with a single square.
+dp[i][0] = 1 for all i, because a rectangle of height 0 can be tiled with a single square.
+dp[0][0] = 1, because a rectangle of size 0 x 0 can also be tiled with a single square.
+
+For each cell dp[i][j], calculate the minimum number of squares needed to tile a rectangle of size i x j by considering two cases:
+- If i >= j and j > 0, then dp[i][j] is 1 + min(dp[i-j][j]), because we can place a square of side length j at the bottom of the rectangle, and recursively solve the remaining rectangle of size i-j x j.
+- Otherwise, dp[i][j] is 1 + min(dp[i][j-1]), because we can place a square of side length 1 at the top-right corner of the rectangle, and recursively solve the remaining rectangle of size i x (j-1).
+
+Use this recursive formula to fill up the dp array in bottom-up manner.
+Finally, return dp[n][m] as the minimum number of squares needed to tile the given rectangle.
+
+===END PLAN===

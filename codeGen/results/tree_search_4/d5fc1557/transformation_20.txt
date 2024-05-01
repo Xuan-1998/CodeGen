@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i] = max(dp[i-1] + (nums[i] == 1), nums.count(1) - i + 1)
+
+and the base case as dp[0] = 0. This is because if we encounter a 0, there can't be any consecutive 1's after that.
+
+dp[i] = max(dp[i-1] + (nums[i] == 1), nums.count(1) - i + 1)
+    if nums[i] == 1 and dp[i-1] > nums.count(1) - i, 
+    else dp[i-1];
+
+Dynamically generate the state transitions in a bottom-up manner, using the base case as a starting point.
+
+If we encounter a 0, reset our maximum length to the current position minus the count of 1's seen so far.
+Otherwise, increment the maximum length if it's still possible.
+
+This plan handles edge cases correctly and captures the optimal substructure of the problem. The time complexity is O(n), where n is the size of the input array. This can be further optimized to O(1) by maintaining a variable for the current count of consecutive 1's.
+===END PLAN===

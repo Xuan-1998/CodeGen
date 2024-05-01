@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Maintain a 2D array dp where dp[i][j] represents the winning teams for the first i phases, with j being the skill level of the team.
+For each phase, update the DP state by considering the current phase's result and the previous phase's winning teams.
+Use memoization to store the DP states and avoid redundant calculations.
+
+Here are the step-by-step details:
+
+1. Initialize dp[0][j] for all 0 <= j < 2^n with an empty set, indicating that no team has won any games in the first phase.
+
+2. For each phase i = 1 to n:
+   - Iterate over all teams j = 0 to 2^n-1.
+   - If s[i-1] is '1', update dp[i][j] with the winning teams of the previous phase dp[i-1][j].
+   - If s[i-1] is '0', update dp[i][j] with the losing teams of the previous phase dp[i-1][~j], where ~ denotes the bitwise NOT operation.
+   - Use memoization to store the updated DP state.
+
+3. To find the winning teams, iterate over all teams j = 0 to 2^n-1 and check if any team has won at least one game in each phase by checking dp[n][j] is not empty.
+
+4. Sort the winning teams in ascending order and output them.
+===END PLAN===

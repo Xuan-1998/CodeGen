@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], sum(1 for j in range(i)) if a[j]%k==i%k else 0), where k = max(a)
+Tabulate the maximum number of points that can be earned by deleting elements from indices 0 to i.
+The dp state is the index of the current element, and the value at this state represents the maximum number of points that can be earned by deleting elements from indices 0 to this index.
+The base case would be when i = 0. In this case, the maximum number of points is 0 because no elements are deleted.
+To fill up the dp array, we iterate through all indices from 1 to n and for each index i, we calculate the maximum number of points that can be earned by deleting elements from indices 0 to i. We do this by considering two cases: either we delete an element at index j, where a[j]%k == i%k, or we don't delete any element.
+The final answer would be dp[n-1], which represents the maximum number of points that can be earned by deleting elements from the entire sequence.
+===END PLAN===

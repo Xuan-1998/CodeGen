@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = 
+    sum(
+        dp[i+1][j][k-arr[i][j]] if k >= arr[i][j]
+        + dp[i][j+1][k-arr[i][j]] if k >= arr[i][j],
+    ) for i, j, k: 0 <= i < N, 0 <= j < N, and 0 <= k < K
+base case:
+when i == N-1 or j == N-1, then return 
+    1 if k == 0 else 
+    0
+
+dp[i][j][k] = sum of 
+    dp[i+1][j][k-arr[i][j]] + 
+    dp[i][j+1][k-arr[i][j]]
+Using a recursive function with memoization to store intermediate results and optimize computation.
+
+===END PLAN===

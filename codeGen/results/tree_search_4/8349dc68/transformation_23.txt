@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the maximum value of each subarray as a state, and use memoization to store the maximum sum for each prefix.
+
+let state(i, j) be the maximum sum of arr[i-j:i], where i is the end index and j is the length of a subarray. base case: state(i, j) = max(arr[i-j:i]) if i - j <= k
+
+Consider state as (i, j, max_sum) where i is the end index of the current subarray, j is its length, and max_sum is the maximum sum for arr[:i]. Define a function f(i, j, max_sum) that returns the maximum sum for arr[i-j:i]. The transition relationship would be: f(i, j, max_sum) = max(arr[i-j:i]) + max_sum if i - j <= k, and use memoization to store previous calculations.
+
+Use a 2D table dp[][] where dp[i][j] is the maximum sum of subarrays ending at index i with length j. Initialize dp[0][j] for all 1 ≤ j ≤ k as 0 (since there's no subarray at this point).
+
+For each i from k to n-1, iterate over all 1 ≤ j ≤ min(i+1, k) and update dp[i][j] based on the maximum sum of subarrays ending at index i-j with length j-1. If i - j <= k, then f(i, j, max_sum) = max(arr[i-j:i]) + max_sum; otherwise, f(i, j, max_sum) = state(i, j).
+
+Return dp[n-1][k] as the maximum sum of subarrays ending at index n-1 with length k.
+
+===END PLAN===

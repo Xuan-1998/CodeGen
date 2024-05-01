@@ -1,0 +1,17 @@
+1. Determine if the problem has an optimal substructure that allows us to use dynamic programming to solve it: YES
+
+2. Choose a state that represents the maximum sum of all possible partitions of the array into k contiguous subarrays with a base case when k is 1:
+   Let dp[i][k] be the maximum sum of all possible partitions of arr[0...i-1] into k contiguous subarrays.
+
+3. Apply memoization by using a dictionary to store previously computed values and reuse them to avoid redundant calculations: YES
+
+4. Initialize the base case when k is 1:
+   For i from 1 to n, dp[i][1] = max(arr[0...i-1])
+
+5. Fill up the dynamic programming table recursively for each state (dp[i][k]):
+   For i from 1 to n and k from 2 to min(i, k)
+     Calculate dp[i][k] by considering all possible partitions of arr[0...i-1] into k contiguous subarrays
+     Store previously computed values in the dictionary to avoid redundant calculations
+
+6. Return dp[n][k], which represents the maximum sum of all possible partitions of the array into k contiguous subarrays.
+

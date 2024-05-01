@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Define dp[i][j] as 0 if S[:i-1] is not a subsequence of T[:j], and 1 otherwise (this represents the presence or absence of the shortest uncommon subsequence)
+Consider transition relationships:
+    - If characters at indices i-1 in S and j-1 in T match, update dp[i][j] as min(dp[i-1][j-1] + 1 if character matches, else max(dp[i-1][j], dp[i][j-1]))
+    - If characters don't match, update dp[i][j] as max(dp[i-1][j], dp[i][j-1])
+Consider using a hash map to store the frequency of each character in both strings, then iterate over the characters in S and update the DP table accordingly
+After filling the DP table, return -1 if dp[|S|-1][|T|-1] is still 0 (no uncommon subsequence found), else return the value at dp[|S|-1][|T|-1]
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where:
+    - dp[i-1] is the previous longest subarray
+    - dp[i] is the maximum length of subarray containing only 1's ending at index i
+    - The base case: dp[0] = 0
+
+dp[i] represents the maximum length of subarray containing only 1's ending at index i.
+
+for i in range(len(nums)-1, -1, -1):
+    if nums[i] == 1:
+        dp[i] = max(dp[i], dp[i+1]) + 1
+    else:
+        dp[i] = dp[i+1]
+        
+for i in range(len(nums)):
+    if dp[i-1] > 0 and nums[i] == 0:
+        return dp[i-1]
+
+return max(dp)
+===END PLAN===

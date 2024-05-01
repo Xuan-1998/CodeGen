@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems of finding all distinct sums that can be generated from the subsets of a subset of the given set, which is similar to the subset sum problem.
+
+state expression: dp[i] = the number of ways to generate sum i using all elements
+dp[j][t] = the number of ways to generate sum t using elements up to aj
+
+Tabulation-based dynamic programming approach:
+1. Initialize a 2D table, dp[][] of size (sum + 1) x N, where sum is the sum of all elements in the given set.
+2. Fill the base case: dp[0][j] = 1 for all j (base case: one way to generate sum 0 using element aj)
+3. Iterate from i = 1 to sum:
+    - For each i:
+        - Initialize a list, ways[], of size N+1
+        - Fill ways[] by iterating over the elements in reverse order and considering the previous state dp[i-aj][j] for each aj
+            - If dp[i-aj][j] is non-zero, then there are ways to generate sum i-aj using elements up to aj, so add it to ways[]
+        - Set dp[i][j] = the number of ways in ways[] that sum up to i (addition operation)
+4. Print all distinct sums by iterating over the last column of the table: for j from 0 to sum print j if dp[sum][j] is non-zero
+===END PLAN===

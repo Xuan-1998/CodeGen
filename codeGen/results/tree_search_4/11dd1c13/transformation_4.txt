@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+From a given grid, identify a subproblem that can be solved by finding the minimum sum of a falling path with non-zero shifts for each row. Use this subproblem to build a table in a bottom-up manner.
+
+The state expression could be dp[j][i] = min(sum of falling path starting from cell (i, j)) for all 0 <= i < n and 0 <= j < m.
+dp[i][j] = min(dp[j-1][k] + grid[i][k]) for all k in {0..n} such that k != j, then dp[j][i] = min(dp[j-1][k] + grid[i][k])
+
+Tabulate the minimum sum of a falling path with non-zero shifts by iterating over the grid rows first, then columns, using dynamic programming to build a table in a bottom-up manner.
+
+for m from 0 to n:
+    for j from 0 to m:
+        dp[j][i] = min(dp[j-1][k] + grid[i][k]) for all k in {0..n} such that k != j
+===END PLAN===

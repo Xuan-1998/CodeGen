@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+state = (i, ones) where i is the current index and ones is the maximum length of 1's found in previous subarrays.
+
+Maintain two pointers left and right, initially set to 0 and i respectively.
+Update state by incrementing right whenever a 1 is found at index i, and updating left whenever a 0 is found at index i.
+
+Use a dictionary to store memoized values.
+
+For each query, check if the subarray [left:right] contains only 1's. If it does, update result with max(result, right - left).
+
+Update left pointer when a 0 is encountered.
+Update right pointer when a 1 is encountered.
+
+Return result as the length of the longest non-empty subarray containing only 1's in the resulting array.
+===END PLAN===

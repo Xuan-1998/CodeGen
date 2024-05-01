@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = 
+    if (i == N-1 and j == N-1) then
+        if k == 0 then return 1 else return 0
+    elif i == N-1 or j == N-1 then
+        if k == 0 then return 1 else return 0
+    else 
+        if k < arr[i][j] then
+            return dp[i+1][j][k] + dp[i][j+1][k]
+        elif k >= arr[i][j] then
+            return dp[i+1][j][k-arr[i][j]] + dp[i][j+1][k-arr[i][j]]
+
+Use a 3D table dp[][][] to store the intermediate results of subproblems, where dp[i][j][k] represents the number of paths from the top left corner to cell (i, j) that collect exactly k coins.
+
+===END PLAN===

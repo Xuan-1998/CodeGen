@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Think about using memoization where a recursive function is used to find the number of ways to form N and the function calls itself with smaller values of N until it reaches base cases.
+
+Define the state expression as dp[i] = total number of combinations to form 'i' using elements from the array, and base case as 0 <= i < N when the base case value is 1 because there's only one way to form 0, namely by not adding any numbers.
+
+dp[i] = sum(dp[j] for j in range(i)) * (i == 0 or 1)
+
+Implement a recursive function memoized_dp that calculates dp[i] based on the values of dp[j] for j < i, and use a dictionary memo to store the intermediate results. Consider using bottom-up approach instead of top-down approach.
+
+For each element 'a' in the array:
+    Calculate all possible ways to form N - 'a' by adding elements from the array.
+    If (N-'a') is 0, then it means we have found a combination that adds up to N. So, return dp[N-'a'].
+    Otherwise, calculate dp[N-'a'] using memoized_dp.
+
+Memoize the results for 'i' in range(N+1), and finally return dp[N].
+
+===END PLAN===

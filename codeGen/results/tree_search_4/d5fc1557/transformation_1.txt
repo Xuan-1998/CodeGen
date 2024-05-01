@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i, and the base case as dp[0] = 1 if nums[0] == 1, otherwise dp[0] = 0.
+
+dp[i] could represent the maximum length of subarray containing only 1's ending at index i.
+if nums[i] == 0:
+    dp[i] = max(dp[i-1] - 1, 0) if i > 0 else 0
+else:
+    dp[i] = dp[i-1] + 1
+
+Let's say we have to find the maximum length of subarray containing only 1's from index j to k. Then it would be dp[k] - dp[j-1]
+
+We could start by initializing dp[0] and then for each i, calculate dp[i] based on whether nums[i] is 0 or 1.
+
+The time complexity would be O(n) where n is the length of the input array, because we're iterating over the array once.
+The space complexity would be O(1) because we're only using a constant amount of space to store the dynamic programming table.
+===END PLAN===

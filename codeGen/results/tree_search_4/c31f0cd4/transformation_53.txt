@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+
+DP_state = (i, s), where i is the current integer and s is the current sum, with base case being DP_state(N+1, s) returning an empty list for any sum beyond N integers
+
+DP_state = (i, s, sums), where i is the current integer, s is the current sum, and sums is a list of all distinct sums that can be generated from subsets of given set
+
+Implementing dynamic programming with 2D array for DP_state, initializing it with base case values
+    - Initialize DP_state with size (N+1) x (sum + 1), where sum is the sum of all elements in the given set
+    - Fill up the base case values for DP_state(N+1, s) by returning an empty list for any sum beyond N integers
+
+For each integer i from 1 to N:
+    - For each possible sum s from 0 to sum:
+        - If i is less than or equal to N and s is less than or equal to the current sum:
+            - Calculate the new sum by adding ai to s
+            - Check if DP_state(i, s) already exists in the memoization table
+                - If it does, add the result to sums
+                - If it doesn't, recursively compute DP_state(i, s) and add the result to sums
+        - Add the current sum to sums
+    - Return the list of distinct sums that can be generated from subsets of given set
+
+===END PLAN===

@@ -1,0 +1,20 @@
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: 
+dp[i][j] where i ranges from 1 to N and j ranges from 0 to sum all elements. The value at dp[i][j] represents whether there exists a subset that sums up to j using the first i elements.
+
+Transition Function:
+dp[i][j] = OR(dp[i-1][k], dp[k][j-k]) for all 0 <= k <= j
+
+Initialization: 
+dp[0][j] = FALSE for all j > 0, since there is no subset with 0 elements that sums up to any number.
+
+Base Case:
+dp[N][j] = OR(dp[i][j-ai], dp[i-1][j]) for i ranging from 1 to N and j ranging from 0 to sum all elements. This base case checks if the current element ai is in the subset, and if not, it moves to the subproblem of smaller size.
+
+Memoization:
+The function that recursively generates all subsets and checks their sums should be memoized to avoid redundant computation.
+
+Edge Cases:
+Handle edge cases like when N or sum all elements is 0. In such cases, there will be no subset that sums up to any number except for 0.
+

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it.
+
+Consider dp[i][k] to be the maximum number of points that can be earned when k elements are deleted from the sequence's first i elements.
+
+Using a 2D array where dp[i][k] represents the maximum number of points that can be earned by deleting the k-th element and all elements equal to it. For each element ai, consider two options:
+    1. Delete ai.
+    2. Don't delete ai.
+
+The dynamic programming approach will work as follows:
+
+Let dp[i][k] represent the maximum number of points that can be earned when k elements are deleted from the sequence's first i elements.
+For each element ai:
+    1. If ai is not equal to any previously seen element, then consider two options: delete ai or don't delete ai.
+    2. If ai is equal to some previously seen element, then it should be paired with that element and deleted.
+
+To fill the dp array, for each i from 0 to n-1:
+    For each k from 0 to i:
+        Calculate the maximum number of points earned by deleting the k-th element and all elements equal to it.
+        Update the dp[i][k] value accordingly.
+
+Finally, return the maximum value in the dp array as the answer.
+
+===END PLAN===

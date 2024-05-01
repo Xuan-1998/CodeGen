@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i, and the base case as dp[0] = 1 if nums[0] == 1, otherwise dp[0] = 0.
+
+We can initialize memo with a value of -1 for all indices, since we don't know the maximum length yet. Then, for each index i in the array:
+
+    If the current element is 0 and the previous element was also 0 (i.e., there's no 1's left), then dp[i] = dp[i-1].
+    If the current element is 0 but the previous element was 1, then we reset the maximum length to 1.
+    If the current element is 1 and it's part of a sequence of 1's (i.e., the previous elements were all 1's), then we update dp[i] with the maximum of its current value and i - memo[i-1].
+
+Finally, return max(dp) as the maximum length of subarray containing only 1's.
+
+===END PLAN===

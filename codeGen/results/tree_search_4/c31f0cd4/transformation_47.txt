@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+DP_state = (i, j), where i is the current subset and j is the current sum, with base case being DP_state(0, 0) returning a list of sums for the empty subset
+DP_state(s, i) = union(DP_state(s, i-1)) or DP_state(s-a_i, i-1) if a_i <= s
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+Create a 2D array memo with dimensions N+1 by sum+1 to store intermediate results
+memo[0][j] = {0} for all j, since there is only one way to generate a sum of 0 (i.e., an empty subset)
+DP_state(s, i) = union(DP_state(s, i-1)) or DP_state(s-a_i, i-1) if a_i <= s
+Return memo[N][sum] as the result
+===END PLAN===

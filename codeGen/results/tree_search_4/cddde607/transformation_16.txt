@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+Create a 2D table dp[][] of size N x N to store the number of paths that collect exactly K coins. Initialize all values in dp[][] to -1.
+
+For each cell (i, j) in the table:
+
+* If i == N-1 and j == N-1, set dp[i][j] = 1 if arr[i][j] == K, else set dp[i][j] = 0. This is because you have reached the bottom right corner and can only collect coins from this cell.
+* For all other cells:
+	+ If i < N-1 or j < N-1, and arr[i][j] <= k, set dp[i][j] = dp[i+1][j] + dp[i][j+1]. This is because you can move to either the bottom cell (i+1, j) or the right cell (i, j+1) if there are still coins to collect.
+	+ If i > 0 and j > 0, set dp[i][j] = dp[i-1][j] + dp[i][j-1]. This is because you can move from either the top cell (i-1, j) or the left cell (i, j-1).
+
+Apply memoization by storing the values in the dp[][] table as you fill it up.
+
+Finally, return dp[0][0], which represents the number of paths that collect exactly K coins from the top left corner.
+===END PLAN===

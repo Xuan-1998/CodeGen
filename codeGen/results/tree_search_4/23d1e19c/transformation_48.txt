@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Define state as a 2D array dp where dp[u][v] represents the minimum and maximum number of recomputations needed from vertex u to v along the recommended path. Base case is when we are at vertex t, since there's no more recomputation needed.
+Initialise dp with infinite values for all vertices except s, which is set to (0, 0), as we start at the beginning.
+
+Define a function dfs(u) that takes a vertex u and returns the minimum and maximum number of recomputations needed from vertex u to t along the recommended path. This can be done by iterating over the neighbors of u and recursively calling dfs(v) for each neighbor v, updating the state dp[u][v] with the result.
+
+To compute the minimum and maximum number of recomputations, keep track of the minimum and maximum number of recomputations seen so far, and update these values as you traverse the graph.
+
+Return the difference between max_recom and min_recom to get the final answer.
+
+===END PLAN===

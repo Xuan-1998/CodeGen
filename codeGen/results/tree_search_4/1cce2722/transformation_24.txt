@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], 0) + (a[i] - 1) * min(dp[i-2], 0)
+    if i == 0:
+        dp[0] = a[0]
+    else:
+        for j in range(i):
+            if abs(a[j] - a[i]) <= 1:
+                dp[i] = max(dp[i-1], 0) + (a[i] - 1) * min(dp[j-1], 0)
+    return dp[i]
+===END PLAN===

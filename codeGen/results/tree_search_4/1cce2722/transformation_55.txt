@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1. The base case would be when i is 0 or n-1, where we start or end the sequence respectively.
+
+Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1, considering all possible choices for deleting elements.
+
+Initialize the base cases: 
+dp[0][j] = 1 for all j, since the first element is always deleted.
+Similarly, dp[n][j] = 1 for all j, since the last element is always deleted.
+
+For i ranging from 1 to n-1:
+    For j ranging from 2 to n-2:
+        If a[i] equals a[j-1] or a[i] equals a[j+1], then dp[i][j] = max(dp[i-1][j-1], dp[i-1][j+1]) + 1.
+        Else, dp[i][j] = max(dp[i-1][j-1], dp[i-1][j+1]).
+
+The maximum number of points that can be earned is stored in the cell at position [n-1, j].
+===END PLAN===

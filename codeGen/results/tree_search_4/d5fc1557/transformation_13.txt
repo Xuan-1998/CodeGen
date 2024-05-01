@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where:
+  - dp[i-1] is the previous longest subarray
+  - dp[i] is the maximum length of subarray containing only 1's ending at index i
+  - The base case is dp[0] = 0
+
+dp[i] is the maximum of:
+  - dp[i-1] + (nums[i] == 1) // if current element is 1, extend previous subarray
+  - 0 // otherwise, start a new subarray
+
+Implement memoization using a dictionary to cache intermediate results.
+
+If the input array contains only 0's and 1's, consider edge cases:
+  - If the entire array consists of 1's, return n (the length of the array)
+  - If the entire array consists of 0's, return 0
+
+===END PLAN===

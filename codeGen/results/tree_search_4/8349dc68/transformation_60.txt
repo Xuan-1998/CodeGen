@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property. If so, consider using dynamic programming to solve the problem.
+
+Consider the maximum sum of all possible partitions of the array into k contiguous subarrays as the state. The base case would be when k is 1, since for k = 1, the maximum sum of a single-element subarray is simply the value of that element.
+
+Use dynamic programming to store intermediate results in an array dp, where dp[i] represents the maximum sum of all possible partitions of the array into i contiguous subarrays. The recurrence relation would be:
+
+dp[i] = max(dp[i-1], arr[j] + dp[i-2])
+
+where j is the last element of the i-th subarray.
+
+To fill in the dp array, start with dp[0] = 0 and for each i from 1 to k, calculate dp[i] based on the previous values of dp. Finally, return dp[k].
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(n)
+    dp[i][0] is initialized as 0, since there's no choice when reaching the first column
+    for each cell (i, j) where 0 < j < n:
+        update dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(n)
+        considering all possible paths that end at cell (i-1, k)
+
+Using a bottom-up dynamic programming approach by initializing the first row of the table and then iterating from the second row to the last row, filling up the table as you go.
+    initialize dp[0][j] = grid[0][j] for j in range(n)
+    iterate from i=1 to m-1:
+        for each cell (i, j):
+            update dp[i][j] based on the minimum sum of paths ending at the previous row
+        return dp[m-1][0]
+===END PLAN===

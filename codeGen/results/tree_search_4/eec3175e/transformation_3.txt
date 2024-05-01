@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+
+DP solution: Define the state expression as dp[i][j] representing whether there is a subset of the first i integers with sum j * m. Base case: dp[0][k] = 1 if k == 0, and 0 otherwise.
+Define dp[i][j] as 1 if there exists a subset of the first i elements whose sum is equal to j * m, and 0 otherwise.
+
+Memoize using dynamic programming by creating a 2D array dp where dp[i][j] represents whether there exists a subset of the first i integers with sum j*m.
+For each integer in the set, update the memoization table by considering two possibilities: either include or exclude this integer from the subset. If including it makes the sum divisible by m, then consider updating the memoization table accordingly.
+
+The updated memoization table will have the correct information for solving the problem. Then, to determine whether there is a subset whose sum is divisible by m, simply check if dp[n][m] equals 1.
+
+===END PLAN===

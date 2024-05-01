@@ -1,0 +1,14 @@
+DP_state = (i, s), where i is the current integer and s is the current sum
+base case: DP_state(N+1, s) returns an empty list for any sum beyond N integers
+
+memoization dictionary dp: store results of subproblems as they are computed
+check if result for a subproblem already exists before computing it
+
+iterate through all possible subsets of integers from 0 to i-1:
+    calculate current sum using subset and add it to memoization dictionary dp
+    recursively compute DP_state(i+1, s) for each integer in the subset and sum
+    return list of unique sums in dp
+
+base case: DP_state(N+1, s) returns an empty list for any sum beyond N integers
+
+return sorted list of unique sums in dp

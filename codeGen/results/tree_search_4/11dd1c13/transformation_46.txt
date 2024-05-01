@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] = min(min(dp[i-1][k]) + grid[i][j] for k in range((j+1)//2, (j-1)//2, -1)) for i in range(1, n), j in range(n)
+
+DP state: dp[i][j] represents the minimum sum of a falling path ending at cell (i, j).
+
+Memoization is not necessary as we're considering all possible paths and choosing the one with the minimum sum.
+
+Edge cases:
+- Base case: When i = 0 or j = 0, return infinity to represent an invalid state.
+- If n is 1, return the maximum value in the grid to ensure a valid path.

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Create a 2D array to store the minimum number of squares for each possible rectangle size, and fill it in iteratively.
+
+Let the state be dp[i][j] representing the minimum number of squares required to tile a rectangle of size i x j, with 1 <= i <= n and 1 <= j <= m.
+
+dp[0][j] = dp[i][0] = 0
+For each cell (i, j), calculate the value based on the values of the two cells above it and the two cells to its left:
+dp[i][j] = min(dp[i-1][j], dp[i][j-1])
+
+Use a bottom-up approach to fill in the table by iterating over the cells from top to bottom and left to right.
+
+For the base cases, handle the edge cases where i or j is 0:
+dp[0][j] = 0 (no squares needed for an empty rectangle)
+dp[i][0] = 0 (no squares needed for a rectangle with zero width)
+
+===END PLAN===

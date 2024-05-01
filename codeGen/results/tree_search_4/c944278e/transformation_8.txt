@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+Let dp[i][j] be True if team j can win from the i-th phase onwards; otherwise False. Initialize a set called winning_teams.
+
+State expression:
+dp[0][j] = s[0] == '1' for 0 ≤ j < 2^n
+dp[i][j] = (s[i] == '1') or (∃k < i such that s[k] == '1' and dp[k][j]) for 1 ≤ i < n and 0 ≤ j < 2^n
+
+Update the winning_teams set by iterating over all possible teams. If a team has won at least one game in each previous phase, it's guaranteed to have won the tournament; thus, add this team to the winning_teams set.
+
+Finally, sort the winning_teams set in ascending order and return the sorted list as the result.
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][j] represent the maximum number of points that can be earned by deleting elements from indices i to j. Initially, dp[0][-1] = 0.
+Create a 2D DP table dp[][] where dp[i][j] is the maximum number of points that can be earned by deleting elements from indices i to j.
+
+For each cell dp[i][j], consider all possible deletions of an element at index k, where k is in the range [i-1, j+1]. 
+If ai == ak + 1 or ai == ak - 1, then delete both ai and ak. Update dp[i][j] = max(dp[i][j], dp[k-1][k-2] + 1).
+
+After filling up the DP table, return dp[n-1][-1] as the maximum number of points that can be earned by deleting elements from the sequence.
+===END PLAN===

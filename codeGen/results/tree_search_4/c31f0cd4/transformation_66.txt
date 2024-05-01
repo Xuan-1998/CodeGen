@@ -1,0 +1,18 @@
+DP_state = (subsets, sums), where subsets is a set of all possible subsets and sums is a set of all possible sums, with base case being DP_state({set()}, {0})
+DP_state = (subset_index, subset_sum), where subset_index is the index of the current subset in the original set and subset_sum is the sum of elements in the subset.
+Memoize dynamic programming states by storing subsets and sums as (subsets, sums) tuples.
+
+Initialize a dictionary dp to store memoized DP_states.
+For each number ai in the input set:
+  For i = 0 to N-1:
+    Generate all possible subsets of {a0, a1, ..., ai} and calculate their sums.
+    Store these subsets and sums in dp as (subsets, sums) tuples.
+
+To generate the distinct sums that can be generated from the subsets of the given set:
+  Initialize an empty list result to store the unique sums.
+  For each DP_state (subset_index, subset_sum) in dp:
+    If subset_sum is not already in result:
+      Add subset_sum to result.
+  Sort result in ascending order.
+
+Return result as the output.

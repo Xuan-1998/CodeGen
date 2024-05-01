@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly.
+
+Define dp[i][j] as the length of the shortest subsequence in S[:i] that is not a subsequence in T[:j].
+Initialize dp[0][0] to 0. For each character in S and T respectively, check if they match or not.
+If the characters match, update dp[i][j] to dp[i-1][j-1] + 1.
+Else, consider two cases:
+    1) If dp[i-1][j] is greater than 0, it means we can extend the shortest subsequence in S[:i] that is not a subsequence in T[:j].
+       So, update dp[i][j] to dp[i-1][j].
+    2) Else, it means there's no such subsequence.
+       So, update dp[i][j] to dp[i][j-1].
+
+Finally, the length of the shortest uncommon subsequence is stored in dp[m][n], where m and n are the lengths of strings S and T respectively.
+
+===END PLAN===

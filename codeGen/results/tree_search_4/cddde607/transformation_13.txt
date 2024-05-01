@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j] = 0 for i < N-1 and j < N-1
+State: dp[i][j] represents the number of paths that collect exactly K coins from the top left corner to the position (i, j). The state is determined by the position (i, j) and the total number of coins collected so far.
+Initialization: dp[0][0] = 1 if arr[0][0] == k else 0
+Memoize the function by passing down the memoization dictionary and updating it after each recursive call.
+Recurrence relation:
+    if i > 0 or j > 0:
+        if arr[i][j] <= K and dp[i-1][j] + dp[i][j-1] != 0:
+            dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        else:
+            dp[i][j] = 0
+    else:
+        dp[i][j] = 0 if arr[i][j] > k else 1
+===END PLAN===

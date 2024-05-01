@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic programming can also be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = maximum number of coins that can be collected when reaching cell (i, j).
+Think about the state as the current position (i, j) and the total number of coins collected so far.
+The transition relationship can be formulated as:
+dp[i][j] = 
+    dp[i-1][j] if arr[i][j] <= k else 
+    dp[i][j-1] if k - arr[i][j] >= 0 else
+    0
+
+This represents the number of ways to reach cell (i, j) with exactly k coins.
+Use a 2D table dp[][] and fill it from top-down manner by initializing each cell as 0 and then filling up the cells based on previously computed values.
+
+For the base case, when i == N - 1, dp[N-1][j] will be 0 for all j, since we can't collect more coins than K.
+Finally, return dp[0][N-1], which represents the number of ways to reach the bottom right corner with exactly k coins.
+
+===END PLAN===

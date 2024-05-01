@@ -1,0 +1,11 @@
+===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is just the index i, as we only care about the number of 1's after this point.
+Maintain a set of states: dp[i], where i is the current index and dp[i] is the maximum length of 1's seen so far.
+Initialize dp[0] to be 0 for the base case (no elements deleted).
+For each index i from 1 to n:
+    If nums[i-1] == 1, update dp[i] = max(dp[i-1], 1) + 1.
+    If nums[i-1] == 0, update dp[i] = 0.
+Delete the element at index k (k is chosen later).
+Return max(0, dp[k-1]).
+===

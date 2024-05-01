@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Divide the tournament into smaller phases, and use dynamic programming to find all possible winning teams for each phase. Then combine the results from each phase to get the final list of winning teams.
+
+A state represents the skill levels of all teams that have not been eliminated yet, and the base case is when only one team remains.
+
+* States represent different scores, where a score represents the skill level of a team.
+* Transitions update these scores based on the results of matches:
+  - If a match is won by a team with a higher score, the winning team's score increases.
+  - If a match is won by a team with a lower score, the losing team's score decreases.
+  - A tie means both teams' scores remain the same.
+
+Use memoization to store and reuse the results of subproblems (i.e., matches) to avoid redundant calculations.
+
+* Start with an empty list of winning teams.
+* For each phase:
+	+ Iterate over all possible match outcomes (win/loss/tie).
+	+ For each outcome, update the scores accordingly and add the winning team to the list if it's not already there.
+	+ Memoize the updated scores for future use.
+
+Combine the results from each phase to get the final list of winning teams.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+Define dp[i] as the maximum length of a subarray ending at index i, considering all possible previous deletions.
+
+Consider all possible previous deletions, including the current element if it's 1, and update dp[i] accordingly. If the current element is 0, then we have to decide whether to include or exclude it from the subarray, which affects the length of the longest subarray ending at that point.
+
+Create a separate table for each element in the array and fill up the table row by row.
+
+For the first element (index 0), dp[0] is either 1 if it's 1, or 0 if it's 0. Then consider all possible previous deletions for the next element at index i, considering whether to include or exclude the current element from the subarray ending at that point.
+
+For each subsequent cell in the table, update dp[i] based on the maximum length of the subarray ending at the previous cell minus 1 (if the current element is different) and add 1 if the current element is the same as the one in the previous cell. If the current element is 0, then we have to decide whether to include or exclude it from the subarray.
+
+The final answer is dp[n-1], where n is the length of the array.
+===END PLAN===

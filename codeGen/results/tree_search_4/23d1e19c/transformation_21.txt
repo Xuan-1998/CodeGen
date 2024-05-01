@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i][j] = the minimum number of times the shortest path from vertex i to t needs to be recomputed when the current vertex is j
+
+dp[i][j] = min(dp[k][t] for k in range(1, n+1) if edge_exists(i, k)), where dp[k][t] is the minimum number of times the shortest path from vertex i to t needs to be recomputed
+
+Dynamically update a 2D array with n+1 rows and m+1 columns, where dp[i][j] represents the minimum number of times the shortest path from vertex i to t needs to be recomputed when the current vertex is j.
+
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        if edge_exists(i, j):
+            dp[i][j] = min(dp[k][t] for k in range(1, n+1) if edge_exists(i, k))
+
+minimum_recomputation_times = min([dp[i][j] for i in range(k-1, -1, -1) for j in range(p_k+1, n+1)])
+maximum_recomputation_times = max([dp[i][j] for i in range(1, n+1) for j in range(1, p_0)])
+
+print(minimum_recomputation_times, maximum_recomputation_times)
+===END PLAN===

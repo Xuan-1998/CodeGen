@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: 
+dp[i][j] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1 and j from 0 to b - 1, considering the current bit of a and the current bit of b. 
+
+Create a dictionary memo where memo[(i, j)] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1 and j from 0 to b - 1, considering the current bit of a and the current bit of b.
+
+Transition: 
+dp[i][j] = dp[i-1][j-1] + (a % 2 == 0 ? memo[(i-1, j-1)] : 0) + (b % 2 == 0 ? memo[(i-1, j-1)] : 0)
+
+Base case: 
+dp[0][0] = 0
+
+===END PLAN===

@@ -1,0 +1,12 @@
+Maintain a dictionary dp where dp[(i, s)] is the number of winning teams that have won at least one game in each phase from 0 to i. The base case is when i == n, and there is only one team left, which has won at least one game in each phase.
+
+For i < n:
+    Initialize a set winning_teams that contains all the teams with skill level greater than or equal to k.
+    For j in range(2^k):
+        If s[j] is 1:
+            Update dp[(i+1, s[:i+1]+bin(j)[2:])] to be the number of winning teams from dp[(i, s)] that have won at least one game against team j.
+        Else:
+            Update dp[(i+1, s[:i+1]+bin(j)[2:])] to be the number of losing teams from dp[(i, s)] that have lost to team j.
+    The value of dp[(n, s)] is the total number of winning teams.
+
+Find all the winning teams by iterating over the dictionary and adding a team to the result if its skill level is greater than or equal to k and it has won at least one game in each phase. Sort the result in ascending order.

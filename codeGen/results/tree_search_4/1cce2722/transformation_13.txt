@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i][j] = max(dp[i-1][k] + (n - k) - i for k in range(j)), where j is the previous element
+Storing the 2D array dp values as we iterate through the sequence
+
+Consider sorting the input array before starting the dynamic programming. This could help to reduce the complexity of the problem and improve the performance.
+
+Initialize the dp array with zeros, and dp[0][j] = 1 for all j (base case).
+
+dp[i][j] should include the current element in the optimal solution if it is not equal to ai + 1 or ai - 1.
+This can be done by checking if j + 1 and j - 1 are in the dp array, if they are, then we can consider them.
+
+Finally, return dp[n-1][j] for the maximum number of points that can be earned by deleting elements from the sequence.
+===END PLAN===

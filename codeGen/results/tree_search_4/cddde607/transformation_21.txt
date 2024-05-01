@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+Create a function dfs(i, j) that returns the number of possible paths that collect exactly K coins starting from cell (i, j).
+
+Let dp[i][j] be the result of dfs(i, j). Initialize dp[0][0] = 1 (base case: there's only one way to start at the top left corner).
+
+Fill up dp[][] in bottom-up manner:
+- If i < N-1 or j < N-1 and arr[i][j] <= k, then dp[i][j] = dp[i+1][j] + dp[i][j+1]. This is because you can move either down or right from cell (i, j) to collect more coins.
+- If i > 0 and j > 0, then dp[i][j] = dp[i-1][j-1] + dp[i+1][j-1] + dp[i-1][j+1]. This is because you can move up-left, up-right, or down-right from cell (i, j) to collect more coins.
+- If neither of the above conditions holds, then dp[i][j] = 0.
+
+Finally, return dp[N-1][N-1].
+
+===END PLAN===

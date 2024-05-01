@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+State: (i, max_len), where i is the current index and max_len is the maximum length of 1's seen so far.
+Maintain a set of states: {i: max_len} for memoization.
+
+Initialize the dictionary with all indices having a default value of 0.
+
+For each index i from left to right:
+    If the current element at nums[i] is 1, then consider two cases:
+        Case 1: The previous subarray ended at i - 1 and had max_len.
+        Case 2: The previous subarray did not end at i - 1 or had a different max_len.
+
+    Update max_len based on the maximum length of 1's seen so far in both cases.
+    Store the updated state (i, max_len) in the dictionary.
+
+Return the value stored in the dictionary for the last index n - 1, which represents the maximum length of 1's seen after deleting one element.
+===END PLAN===

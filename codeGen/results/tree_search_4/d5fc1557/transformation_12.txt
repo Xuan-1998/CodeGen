@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where dp[i-1] is the previous longest subarray and dp[i] is the maximum length of subarray containing only 1's ending at index i, and the base case as dp[0] = 0.
+
+dp[i] is the maximum of:
+
+* dp[i-1] + (nums[i] == 1) if nums[i] is 1
+* 0 otherwise
+
+This ensures that we consider the previous longest subarray and update it accordingly based on the current element.
+
+Use a dynamic programming table to store the state values, initialized with all values set to 0. This allows us to efficiently compute dp[i] for each i in O(n).
+
+To find the length of the longest non-empty subarray containing only 1's after deleting one element, we can iterate through the dp array and return the maximum value that is greater than 0.
+
+If no such subarray exists, return 0.
+
+This plan handles edge cases by considering all possible subarrays and updating the state values accordingly.
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it.
+Let dp[i][j] represent the maximum number of points that can be earned by considering the first i elements and making j moves so far, where a move is defined as either deleting an element or not.
+
+Create a 2D table dp of size (n+1) x (k+1), where n is the length of the sequence, and k is the number of moves allowed. Initialize the base cases:
+    - dp[0][j] = 0 for all j
+    - dp[i][0] = i for all i
+
+Fill up the rest of the table using the recurrence relation:
+    For each i from 1 to n and each j from 0 to k:
+        If a_i equals the current maximum point, then set dp[i][j+1] as the maximum between:
+            - The points earned by deleting the current element (dp[i-1][j])
+            - The points earned by not deleting the current element (dp[i-1][j+1])
+        Otherwise, set dp[i][j+1] to dp[i-1][j]
+
+The answer will be stored in dp[n][k].
+===END PLAN===

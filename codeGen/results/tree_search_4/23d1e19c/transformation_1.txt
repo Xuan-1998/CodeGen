@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+Use Dynamic Programming: Create a 2D array dp of size n x m, where dp[i][j] represents the minimum number of times the shortest path from vertex i to t needs to be recomputed when reaching vertex j in the fixed path. The base case is when j equals k, meaning we are at the end of the fixed path.
+
+dp[i][k] = 1
+
+For all vertices p in the fixed path:
+    dp[p-1][p] = min(dp[p-2][p], dp[p-2][k])
+
+Use a priority queue to store the vertices that need their shortest path recomputed, with a custom comparator based on the current vertex's index and the minimum number of times it needs its shortest path recomputed.
+
+To find the maximum number of times the shortest path from the current vertex to t needs to be recomputed, initialize max_count = 0. Then, for each vertex p in the fixed path:
+    if dp[p-1][p] > max_count:
+        max_count = dp[p-1][p]
+
+Return both minimum and maximum counts as the output.
+
+===END PLAN===

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+memo = [(0, 0)]  # initialize memoization with (0, 0)
+def max_ones(i):
+    if i < len(memo):
+        return memo[i][1]
+    else:
+        ones = 0
+        left, right = 0, i
+        while left <= right and nums[left] == 1:
+            ones += 1
+            left += 1
+        for j in range(left, i + 1):
+            if nums[j] == 1:
+                right = j
+                break
+        memo.append((i, max(ones, memo[-2][1])))
+        return memo[-1][1]
+max_length = 0
+for i in range(len(nums)):
+    max_length = max(max_length, max_ones(i))
+print(max_length)

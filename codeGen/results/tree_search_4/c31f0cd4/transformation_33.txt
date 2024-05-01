@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: We can maintain a 2D table dp[i][sum] where i ranges from 1 to N and sum ranges from 0 to sum all elements. The value at dp[i][sum] represents whether there exists a subset that sums up to sum using the first i elements.
+
+Base case: Initialize dp[0][0] = True, indicating that an empty subset can always sum up to 0.
+
+Transition rule: For each i from 1 to N and each sum from 0 to sum all elements,
+    - If there exists a subset that sums up to sum - ai using the first i-1 elements, then dp[i][sum] = True (because we can add ai to this subset)
+    - Else, dp[i][sum] = False
+
+Answer: Iterate through each sum from 0 to sum all elements and print out all indices j such that dp[N][j] is True.
+
+Edge cases:
+- If N is 0 or the sum of all elements is 0, return an empty string.
+===END PLAN===

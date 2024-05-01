@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a sliding window approach with two pointers (i, j) where i is the index of the last character seen from 'AB', and j is the index of the last character seen from 'BA'. 
+The base case is when both substrings have been processed.
+Keep track of two pointers for 'AB' and 'BA', updating the states as we move along the string. 
+We can use a 2D table dp[i][j] to store whether the current state matches 'AB' or 'BA'.
+Initially, set all dp[i][j] values to False.
+
+1. If both substrings have been processed (i >= len('AB') and j >= len('BA')), return True.
+2. Otherwise, check if the current character matches either substring:
+   a. If it's an 'A', update i and j accordingly for 'AB' and 'BA'.
+   b. If it's a 'B', swap i and j.
+3. Fill up the table dp[i][j] with intermediate results as we move along the string.
+4. Reuse previously computed values in the table to avoid redundant computations.
+
+===END PLAN===

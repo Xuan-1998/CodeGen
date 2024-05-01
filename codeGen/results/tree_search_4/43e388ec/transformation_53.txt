@@ -1,0 +1,13 @@
+// Updated Plan:
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+The state can be defined as DP[i] = (DP[i-1] ^ (b >> i%31)) % (10**9 + 7), with base case being DP[0] = a ^ b.
+DP[i] represents the cumulative sum of OR(a, b << i) for all values of i from 0 to i.
+
+The state can be updated as DP[i+1] = (DP[i] ^ (b >> i%31)) % (10**9 + 7).
+
+Using a 2D table with DP[i][j] representing the sum of OR(a, b << i) for all values of j from 0 to i.
+
+For the base case, we initialize the first row as [a ^ b], since this represents the cumulative sum of OR(a, b << 0) for all values of i from 0 to 314159.
+
+Then, for each row from the second row onwards, we can calculate DP[i+1] by updating the state using the previous row's values.

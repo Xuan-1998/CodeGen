@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider dp[i][j] as the maximum sum of array from index i to j considering k-size subarrays
+Let dp[i][j] be the maximum sum of array from index i to j, where we can only use partitions that end with a number less than or equal to the maximum of the last k numbers.
+Use tabulation to fill up the table in bottom-up manner, where the transition function calculates the maximum sum for each subarray based on its previous maximum value and the current element.
+Memoization by creating a dictionary where the key is the current state (i, j) and the value is the corresponding maximum sum, and then update this dictionary as you iterate through the array.
+
+Let max_val be the maximum of the last k numbers
+For i from 0 to n-1:
+    For j from i to min(i+k-1, n-1):
+        If j-i+1 <= k:
+            dp[i][j] = arr[i]
+        Else:
+            max_val = max(arr[j-k+2:j+1])
+            dp[i][j] = max(dp[i][j-1], dp[i][k-1]+max_val)
+Return dp[0][n-1]
+===END PLAN===

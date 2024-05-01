@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i, and the base case as dp[0] = 1 if nums[0] == 1, otherwise dp[0] = 0.
+
+Consider using a bottom-up dynamic programming approach by initializing an array dp with size n+1. Then, fill it with values from left to right according to the following rules:
+
+* If nums[i] == 1 and nums[i-1] == 1, then dp[i] = dp[i-1] + 1
+* If nums[i] == 1 and nums[i-1] != 1, then dp[i] = 2 (since we can start a new subarray from index i)
+* If nums[i] == 0, then dp[i] = 0
+
+The final answer would be the maximum value in the dp array.
+
+===END PLAN===

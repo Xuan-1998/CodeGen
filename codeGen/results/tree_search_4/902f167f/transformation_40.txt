@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Create a 2D array to store the minimum number of squares for each possible rectangle size, and fill it in iteratively.
+
+Let the state be dp[i][j] representing the minimum number of squares required to tile a rectangle of size i x j, with 1 <= i <= n and 1 <= j <= m.
+dp[0][j] = dp[i][0] = 0 for all i, j
+
+For 1 <= i <= n and 1 <= j <= m, use the following recurrence relation:
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + 1 (if i and j are both even or both odd)
+
+Create a 2D table with n+1 rows and m+1 columns, where the cell at row i and column j represents the minimum number of squares required to tile a rectangle of size i x j.
+
+Fill in the base cases: dp[0][j] = dp[i][0] = 0 for all i, j
+
+Iterate through the table from top-down or bottom-up (bottom-up is recommended for tabulation):
+For i = 1 to n and j = 1 to m:
+    If i and j are both even or both odd, update dp[i][j] using the recurrence relation
+    Otherwise, leave dp[i][j] unchanged
+
+The final answer will be stored in dp[n][m]
+
+===END PLAN===

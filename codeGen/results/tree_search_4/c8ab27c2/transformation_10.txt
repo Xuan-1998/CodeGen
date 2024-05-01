@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Think of dp[i][j] as the minimum length of a subsequence that ends with character S[i-1] and T[j-1].
+DP states can be defined as:
+  - If S[i-1] == T[j-1], then dp[i][j] = min(dp[i-1][j-1], 1) + 1 (extend the common subsequence)
+  - If S[i-1] != T[j-1], then dp[i][j] is the minimum of:
+    * dp[i-1][j] (the shortest uncommon subsequence ending at i-1 in S and j in T)
+    * dp[i][j-1] (the shortest uncommon subsequence ending at i in S and j-1 in T)
+    * 1 (extend the shortest uncommon subsequence by one character)
+Use a hash map to memoize intermediate results, mapping (i, j) indices to their corresponding shortest uncommon subsequence lengths
+Keep track of the minimum length of the shortest uncommon subsequence found so far, updating it whenever a shorter one is discovered
+Finally, return -1 if no such subsequence is possible (i.e., S and T are subsequences of each other), or else return the minimum length found

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Maintain two binary arrays dp and winTeam where dp[i][j] represents whether team j is still in the competition after i phases, and winTeam[i][j] represents whether team j has won at least one game in the first i phases.
+
+Initially, set all dp[0][i] to True since every team is initially in the competition. Set all winTeam[0][i] to False since no teams have won any games yet.
+
+Iterate through each phase i from 1 to n. For each phase, iterate through each team j from 0 to 2^i - 1.
+If s[i-1] is equal to '1', then the winner of this phase remains in the competition. So set dp[i][j] to True if dp[i-1][j] is True.
+Otherwise, set dp[i][j] to False.
+
+For each team j, check if it has won at least one game in the first i phases by checking winTeam[i-1][j]. If it has, then set winTeam[i][j] to True. Otherwise, set it to False.
+
+After processing all teams and phases, iterate through each team j again and print out the winning teams by iterating over the teams that have won at least one game in all phases.
+===END PLAN===

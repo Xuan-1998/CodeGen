@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider dynamic programming where each subproblem is defined as a tuple (N, i) representing the remaining value N and the index i in the array. The optimal substructure can be identified by realizing that the problem of finding ways to form N with the first i elements of the array is similar to the original problem but with reduced size.
+
+State: dp[N][i] represents the number of ways to form N using the first i elements.
+Base case: when i is 0 or N is less than 0, return 0. This base case ensures that we do not attempt to form a negative number or an empty set which would be invalid.
+
+dp[N][i] = 2*sum(dp[N-k][j] for j in range(i)) + (N in set(array[:i+1]))
+This recursive formula considers two cases: 
+    1. The remaining value N can be obtained by adding the current element to a subset formed using the previous elements (represented by sum(dp[N-k][j] for j in range(i))). This case is multiplied by 2 because we are considering all possible subsets that include or do not include the current element.
+    2. The current element itself contributes to forming the target number N, so we add 1 if N is present in the set of elements from index 0 to i.
+
+Use a memoization function with recursion and a dictionary to store intermediate results
+This approach ensures that subproblems are solved only once, reducing the overall time complexity.
+===END PLAN===

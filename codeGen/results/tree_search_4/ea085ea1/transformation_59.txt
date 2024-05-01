@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if i > 0 and j > 0, 0 if i == 0 or j == 0
+
+dp[i][j] = max(0, dp[i-1][j-1] + (str1[i] == str2[j]))
+
+Create a 2D array with size N x N and initialize it with zeros to store the dynamic programming table.
+
+For each cell in the table, if the characters at indices i and j match, then update the value of dp[i][j] by adding 1 to the maximum number of common non-overlapping substrings ending at the previous cells. Otherwise, just copy the maximum value from the top or left cell.
+
+The final answer is stored in the bottom-right cell of the table.
+===END PLAN===

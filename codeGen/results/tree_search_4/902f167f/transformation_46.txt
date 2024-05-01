@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Create a 2D array dp of size (n+1) x (m+1) and initialize it with zeros. The dp[i][j] represents the minimum number of integer-sided squares that tile the rectangle of size i x j.
+
+Iterate through the dp array from top-left to bottom-right, updating the values based on the previously computed ones.
+
+For each cell dp[i][j], calculate the minimum number of squares required to tile a rectangle of size i x j. This can be done by considering all possible squares that can fit in the rectangle:
+
+* If j is less than or equal to sqrt(i), consider a square of side length min(j, sqrt(i)) and recursively call dp[i-min(side_length)^2][j-side_length] (if i >= side_length^2) or dp[i][j] (otherwise).
+* Otherwise, don't need any squares.
+
+The base case is when i or j is 0, in which case we don't need any squares. Set dp[0][j] and dp[i][0] to 0 for all i, j.
+
+Fill in the rest of the dp array using the above logic.
+Return dp[n][m] as the minimum number of integer-sided squares required to tile the given rectangle.
+===END PLAN===

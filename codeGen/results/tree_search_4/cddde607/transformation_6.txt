@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization.
+
+Let's define dp[][] as follows:
+
+dp[i][j] = total number of paths collecting exactly k coins ending at cell (i, j),
+
+where 0 <= i < N and 0 <= j < N. The base case is dp[0][0] = 1.
+
+Fill up the table from top to bottom and left to right as follows:
+
+- If arr[i][j] + dp[i+1][j] + dp[i][j+1] == k, then set dp[i][j] = 1.
+- Otherwise, set dp[i][j] = 0.
+
+Finally, return dp[N-1][N-1].
+===END PLAN===

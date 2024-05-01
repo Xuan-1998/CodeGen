@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i][j] = max(dp[i-1][k] + (n - k) - i for k in range(j)), where dp[i][j] is the maximum number of points that can be earned by deleting elements up to index j and point i.
+Initialize a 2D array dp with size n x n, all values initially set to 0.
+
+Memoize the dp values as we calculate them.
+
+Start from the end of the sequence, iterating backwards. For each pair (i, j), consider two options:
+    1. Delete element aj: In this case, we get dp[i-1][j-2] + (n - j) - i, where the second term is the bonus for deleting a sequence of consecutive elements.
+    2. Don't delete element aj: In this case, we simply copy the value from the previous row dp[i-1][j].
+Choose the maximum between these two options.
+
+Return the maximum value in the bottom-right corner of the dp array, which represents the maximum number of points that can be earned by deleting elements from the sequence.
+===END PLAN===

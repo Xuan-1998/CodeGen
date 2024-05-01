@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+The state expression is dp[i], where dp[i] represents the sum modulo 10^9+7 of the result of performing the exclusive OR operation on the i-th bit of a and the binary shift to the left operation on the (i-1)-th bit of b for all values of i from 0 to a - 1, considering the current bit of a.
+
+dp[i] is the sum modulo 10^9+7 of dp[i-1] and the result of performing the exclusive OR operation on the i-th bit of a and the binary shift to the left operation on the (i-1)-th bit of b.
+
+memo = {};
+def solve(i):
+    if i < 0:
+        return 0;
+    if memo.get(i, None):
+        return memo[i];
+    result = ...;
+    memo[i] = result;
+    return result;
+
+for i in range(a.length):
+    dp[i] = solve(i);
+
+result = 0;
+for i in range(a.length):
+    result += dp[i];
+
+print(result % (10^9+7));
+===END PLAN===

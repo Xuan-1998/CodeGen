@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: Compare all possible substrings of str1 and str2, considering their lengths from 1 to N. Optimal substructure: Find the maximum number of common non-overlapping substrings by recursively combining smaller substrings.
+
+The state could be defined as dp[i][j] = maximum number of common non-overlapping substrings between str1[:i] and str2[:j].
+dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. If str1[i-1] == str2[j-1], then dp[i][j] = 1 + dp[i-1][j-1]; else, dp[i][j] is the maximum of the following: 0 (no common substring), or max(dp[i-1][j-1], dp[i-1][j]), or dp[i][j-1].
+
+Use a 2D array to store the dynamic programming table, with dimensions N x N.
+Store and compute dp[0][j] = 0 for j from 0 to N-1 (since there are no common substrings of length 0).
+Compute dp[i][0] = 0 for i from 0 to N-1 (since there are no common substrings of length 0).
+
+For each cell in the dp table, only consider previously computed cells and not re-compute them. This ensures that the dynamic programming process is efficient.
+
+===END PLAN===

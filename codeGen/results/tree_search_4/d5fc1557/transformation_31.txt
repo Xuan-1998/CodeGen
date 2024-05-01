@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+state = (i, ones) where i is the current index and ones is the maximum length of 1's found in previous subarrays.
+
+define a function max_ones(dp, n) that calculates the maximum length of 1's found in previous subarrays for each index i from 0 to n-1.
+    for each state (i, ones), update dp[i] with the maximum value if i > 0; Initialize dp[0] as 0.
+
+memoize the maximum length of 1's found in previous subarrays using a dictionary, where the key is the current index and the value is the maximum length.
+    for each i from 0 to n-1:
+        if nums[i] == 1:
+            ones += 1
+            dp[i] = max(dp.get(i-1, 0), ones)
+        else:
+            ones = 0
+    return max(dp.values())
+
+===END PLAN===

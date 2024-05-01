@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+State expression: dp[i][j] = True if team j can win from the i-th phase onwards; otherwise False.
+dp[i][j] = (s[i] == '1') or (i > 0 and any k < i such that s[k] == '1' and dp[k][j])
+
+Use a dictionary to store the memoized results, with keys as tuples (i, j) and values as boolean indicating whether team j can win from phase i onwards.
+
+State initialization: dp[0][j] = True for all j
+
+===END PLAN===

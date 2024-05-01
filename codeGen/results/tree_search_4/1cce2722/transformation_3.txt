@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: Minimum index i such that a[i] is the first element in the sequence not equal to any previous element
+DP State: Maximum number of points earned by deleting elements up to index i
+
+To implement tabulation, you can use a 2D DP table where the state is (i, j) and the value is the maximum number of points that can be earned by deleting elements up to index i considering element aj as not equal to any previous element.
+
+The base case would be when n = 1 or n = 2. In this case, there's only one or two elements in the sequence respectively, so the maximum number of points would be the number of elements (n for n = 1 and 2 for n = 2).
+
+For larger values of n, you can fill up the DP table by considering all possible subproblems. For each state (i, j), you can calculate the maximum number of points that can be earned by deleting elements up to index i considering element aj as not equal to any previous element.
+
+The recurrence relation would be: for a given state (i, j), if aj is equal to any previous element, then the maximum number of points would be the same as the maximum number of points for the subproblem without considering aj. Otherwise, you can either include aj in the sequence or not. If you include aj, then you'll get 1 point and the subproblem with i-1. If you don't include aj, then you'll get the maximum number of points for the subproblem with i-2.
+
+The final answer would be the maximum number of points that can be earned by deleting elements up to index n.
+===END PLAN===

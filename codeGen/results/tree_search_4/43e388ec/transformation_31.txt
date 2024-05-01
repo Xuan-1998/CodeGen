@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: dp[i] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a.
+dp[2i] and dp[2i + 1] are redundant since they would be computed in terms of each other. Therefore, we can reduce the size of the dynamic programming array by half.
+
+Use a 1D array dp of size (a+b)/2 where dp[i] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a and the current bit of b is determined by its parity (even or odd).
+
+Transition function: dp[i] = (dp[i-1] + ((b & 1) ? a : 0)) % (10^9+7)
+
+Base case: dp[0] = 0
+
+===END PLAN===

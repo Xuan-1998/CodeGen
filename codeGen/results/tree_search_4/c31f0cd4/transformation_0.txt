@@ -1,0 +1,13 @@
+===
+Task: Given a set of integers, find all distinct sums that can be generated from the subsets of the given set.
+
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems of finding all distinct sums that can be generated from the subsets of a subset of the given set.
+The state expression could be dp[i][s] = whether s can be generated from subsets of {a1, a2, ..., ai}
+dp[i][s] = whether there exists a subset of {a1, a2, ..., ai} whose sum is equal to s, with dp[j][t] being the base case for all j < i and t
+Dynamic Programming using a 2D DP table where dp[i][s] represents whether there exists a subset of {a1, a2, ..., ai} whose sum is equal to s.
+For each state, consider including or excluding the current element (ai) in the subset. This would lead to two recursive cases: 
+dp[i-1][s-ai] and dp[i-1][s]
+The base case for this DP problem would be when i = 0 or s = 0, as there are no more elements to include in the subset or no more sums to consider.
+Finally, iterate over the DP table from (0,0) to (N,sum) and print out the distinct sums that have been marked as true in the DP table.
+===END PLAN===

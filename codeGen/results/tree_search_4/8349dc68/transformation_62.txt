@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure and can be solved by breaking it down into smaller subproblems. The answer to this subproblem should depend only on previously solved subproblems, not on the solutions to other subproblems.
+
+Consider using dynamic programming with bottom-up tabulation to solve the problem. Initialize a 2D table dp where dp[i][j] represents the maximum sum of all possible partitions of arr[0..i-1] into j contiguous subarrays.
+
+For each i and j, consider two possibilities:
+1. The last subarray ends at index i - 1.
+   In this case, the maximum sum would be dp[i - 1][j - 1] + max(arr[i - k + 1..i]).
+2. The last subarray starts at index i - k + 1 and ends at index i - 1.
+   In this case, the maximum sum would be dp[i - k][j - 1] + max(arr[i - k + 1..i]).
+
+Choose the maximum of these two possibilities as the value of dp[i][j].
+
+For j = 1, dp[i][j] is simply the maximum value in arr[0..i-1], which can be calculated by iterating through the array and keeping track of the maximum value seen so far.
+
+Finally, return dp[n][k] as the answer, where n is the length of arr.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Approach: Use bottom-up approach with dynamic programming and memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Define state as a 2D array dp where dp[u][v] represents the minimum and maximum number of recomputations needed from vertex u to v along the recommended path. Initialize all dp values to infinity, except for the base case when we are at vertex t, since there's no more recomputation needed.
+
+State transition: For each edge (u, v) in the graph, update dp[u][v] as follows:
+
+* If there is no edge from u to v, set dp[u][v] = (1, 1)
+* Else, find all p in the fixed path from s to t such that there are edges from u to p and from p to v
+* For each such p, update dp[u][v] as min(dp[u][p], 1) + dp[p][v]
+
+This represents the minimum and maximum number of recomputations needed to get from vertex u to vertex v along the recommended path.
+
+Base case: When we are at vertex t, set dp[t][t] = (0, 0)
+
+Return: Return the minimum and maximum values in the dp array, which represent the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed
+
+===END PLAN===

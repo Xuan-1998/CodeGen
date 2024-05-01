@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Think of dp[i][j] as the minimum length of a subsequence that ends with character S[i-1] and T[j-1].
+DP states can be defined as:
+    - If S[i-1] == T[j-1], then dp[i][j] = 1 + dp[i-1][j-1]
+    - Else, dp[i][j] is the minimum of two cases: 
+        • The minimum length of a subsequence that ends with character S[i-1] and does not match with T[j-1]. This can be represented as dp[i-1][j].
+        • The minimum length of a subsequence that matches with character S[i-1] but does not end at the current position in S. This can be represented as dp[i][j-1]
+Create a 2D table to store dynamic programming states, where dp[i][j] represents the minimum length of a common subsequence ending at S[i-1] and T[j-1],
+===END PLAN===

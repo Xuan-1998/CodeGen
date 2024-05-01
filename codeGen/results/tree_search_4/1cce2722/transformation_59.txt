@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it.
+
+Let dp[i][j] represent the maximum number of points that can be earned by considering the first i elements and making j moves so far, where a move is defined as deleting an element along with all its left and right neighbors.
+
+DP states: Calculate dp[i][k] as the maximum of:
+    - dp[i-1][k] (do nothing)
+    - dp[i-1][k-1] + dp[i-1][k+1] + 2 (delete k-th element)
+
+Base case: dp[0][i] = 0 for all i, since there are no elements to delete.
+
+Initial state: dp[0][0] = 0.
+
+Recurrence: For i > 0 and k in [1, n], calculate:
+    - If a[i-1] == k:
+        dp[i][k] = dp[i-1][k]
+    - Otherwise:
+        dp[i][k] = max(dp[i-1][k], dp[i-1][k-1] + dp[i-1][k+1] + 2)
+
+Final answer: The maximum number of points that can be earned is stored in dp[n][0].
+===END PLAN===

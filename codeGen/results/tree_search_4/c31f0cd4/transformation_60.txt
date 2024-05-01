@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+DP_state = (dp_subsets, dp_sums)
+where dp_subsets is a dictionary mapping subsets to their corresponding sums and
+      dp_sums is a set of all possible distinct sums
+with base case being DP_state({set()}, {0})
+iterate over the given set of integers:
+    for each integer ai in the set:
+        for every subset subset in dp_subsets:
+            add ai to subset and update dp_subsets
+            calculate the sum of ai and all elements in subset
+            if this new sum is not in dp_sums, add it to dp_sums
+    calculate the total sum of the given set
+    return a sorted list of unique sums in dp_sums
+===END PLAN===

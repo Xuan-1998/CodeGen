@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using a top-down approach with memoization instead of bottom-up with tabulation. Create a 2D array to store the minimum number of squares for each possible rectangle size, and fill it in iteratively.
+
+The base case is when i or j is 0, in which case we don't need any squares.
+Use memoization by defining a function that takes the current dimensions as arguments and returns the minimum number of squares required to tile the given rectangle. This function can be recursively called with smaller dimensions until the base case is reached.
+
+For each cell (i, j) in the 2D array:
+- If i or j is 0, return 0 because no squares are needed
+- If i and j are both 1, return 1 because only one square is needed
+- For each possible square size k from 1 to min(i, j)
+	+ If (i-k) and (j-k) are both greater than or equal to 0, recursively call the function with dimensions (i-k) x (j-k) and add 1 to the result. This is because we can tile the current rectangle using one square of size k
+- Return the minimum value among all possible square sizes
+
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Maintain a boolean array where dp[i][j] represents whether team j is still in the competition after i phases.
+
+Transition from dp[i-1][j] to dp[i][j] based on s[i]. If s[i] = 1, then the winner of this phase remains in the competition.
+If s[i] = 0 and dp[i-1][j] is True, team j loses but can still participate if they won at least one game before.
+
+Maintain a set of winning teams. Iterate through each team i. If dp[n-1][i] is True, add team i to the set of winning teams.
+The time complexity would be O(n * 2^n) and space complexity would be O(2^n), as we need to store the dynamic programming table.
+
+The base case would be when n = 1, where all teams are considered winning teams.
+For larger values of n, maintain a recursive function with memoization. The function should take two parameters: the current phase i, and the current team j.
+If the result for the current subproblem is already in the memo dictionary, return the stored value. Otherwise, calculate the result based on s[i] and dp[i-1][j], then store it in the memo dictionary.
+
+The main function would iterate through each possible team, call the recursive function with n = 0 and j = 0 as parameters, and add the winning teams to a set.
+Finally, sort the set of winning teams in ascending order and print the result.
+
+===END PLAN===

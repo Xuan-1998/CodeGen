@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+The base case is when n == 1, as there's only one winning team in a single-game tournament.
+
+To consider each binary string of length n as the current state, where the state is 'winning' if all bits are 1 (i.e., the team has won in every game) and 'losing' otherwise. This can be done by iterating over the binary string and checking the number of winning games for each team.
+
+Implement memoization by storing the results of subproblems and reusing them instead of recomputing them. For example, if we've already computed the teams that win when n is 2, we don't need to recompute it again when n is 3.
+
+The key observation is that a team wins if all its opponents lose in every game. Therefore, we can use dynamic programming to keep track of the teams that have won at least one game up until each phase.
+
+We can start from the base case (n == 1) and iteratively build up the results for n = 2, n = 3, ..., n = 18. For each value of n, we iterate over all possible binary strings of length n, and use memoization to keep track of the teams that have won at least one game.
+
+Finally, we return all the winning teams in ascending order.
+
+===END PLAN===

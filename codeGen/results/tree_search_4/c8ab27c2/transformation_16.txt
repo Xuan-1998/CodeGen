@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Think of dp[i][j] as the minimum length of a subsequence that ends with character S[i-1] and T[j-1].
+Define base cases as: 
+  - dp[0][j] = j (since empty subsequence in S has length j)
+  - dp[i][0] = i (since empty subsequence in T has length i)
+Consider using memoization to store intermediate results and avoid redundant computations.
+Iterate over the characters in both strings, comparing character S[i-1] with T[j-1].
+If they are equal, update dp[i][j] as dp[i-1][j-1], since we can extend the current subsequence by one more character.
+If they are not equal, consider two cases:
+  - If this is the first occurrence of character S[i-1] in S and it's present in T, then our minimum length would be dp[i][j-1] + 1 (extend the subsequence in T)
+  - Otherwise, we can't extend the current subsequence, so update dp[i][j] as dp[i-1][j]
+Finally, return dp[m][n]-1 where m and n are the lengths of strings S and T respectively.
+This value represents the minimum length of a subsequence that ends with character S[m-1] and T[n-1].
+===END PLAN===

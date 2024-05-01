@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+The state could be defined as (v, p) where v is the current vertex and p is the path from s to t at that vertex.
+
+Implementing a 2D array dp where dp[i][j] represents the minimum and maximum number of recomputations for each state (i, j). i ranges from 1 to n and j ranges from 0 to k. The base case would be when p == t, then it's 0 because no recomputation is needed.
+
+For each vertex v in the path, if v is not equal to s or t, then we can update dp[i][j] as the minimum of the following three cases:
+
+* If the driver follows the recommended path from the current vertex to t, then we need dp[v-1][p] recomputations (because the shortest path remains the same).
+* If the driver doesn't follow the recommended path and needs to recompute the shortest path from the current vertex to t, then we need dp[v-1][p] + 1 recomputations.
+* We also need to consider the case where the driver chooses not to follow the recommended path but still stays on the original path. In this case, we don't need any recomputation.
+
+The maximum number of recomputations would be the same as the minimum number for each state, because the minimum and maximum number are updated simultaneously using dynamic programming.
+
+Finally, return dp[n][k] - 1 as the answer, because the base case is when p == t, and we don't need any recomputation at that point. The -1 is to exclude this special case.
+===END PLAN===

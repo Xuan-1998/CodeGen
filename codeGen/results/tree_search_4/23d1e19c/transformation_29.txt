@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp[i] = {
+    min_times: The minimum number of times the shortest path from vertex 1 to i needs to be recomputed
+    max_length: The maximum length of the recommended paths between vertices in the fixed path from s to vertex i
+}
+base case:
+min_times[0] = 0, max_length[0] = 0
+for each edge (u, v) in the graph:
+    for each vertex i in the fixed path from s to t:
+        if u <= i < v:
+            dp[i]['min_times'] += 1
+            dp[i]['max_length'] = max(dp[i]['max_length'], dp[v-1]['max_length'])
+base case:
+for each vertex i in the graph:
+    if i not in fixed_path:
+        dp[i] = {'min_times': 0, 'max_length': 0}
+dp[i]['min_times'] is the minimum number of times the shortest path from vertex 1 to i needs to be recomputed
+dp[i]['max_length'] is the maximum length of the recommended paths between vertices in the fixed path from s to vertex i
+===END PLAN===

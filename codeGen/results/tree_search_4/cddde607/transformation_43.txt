@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization by filling up a 3D table dp[][][] in a bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = num_paths_to_collect_k_coins_at_cell_i_j_with_k_left, where i is the row index, j is the column index, and k is the number of coins left to collect.
+
+To create this table, iterate over the cells in the matrix from top-left to bottom-right. For each cell (i, j), consider all possible paths that can be taken to reach this cell:
+
+- If there are no more coins to collect (k == 0), then dp[i][j][k] = 1 if the current cell is the bottom-right corner, and 0 otherwise.
+
+- Otherwise, consider two possibilities:
+    - Move down: dp[i+1][j][max(k-arr[i][j], 0)] + num_paths_to_collect_k-coins_at_cell_(i+1)_j_with_k_left
+    - Move right: dp[i][j+1][max(k-arr[i][j], 0)] + num_paths_to_collect_k-coins_at_cell_i_(j+1)_with_k_left
+
+The final result is the sum of these two possibilities. This ensures that we only consider paths that collect exactly k coins.
+
+Fill up the table using a bottom-up approach, where dp[i][j][k] = num_paths_to_collect_k_coins_at_cell_i_j_with_k_left.
+
+Finally, return dp[0][0][K], which represents the number of possible paths that collect exactly K coins.
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Consider dp[i][j] as the length of the shortest subsequence ending at index i in string S and j in string T.
+dp[i][j] = 0 if S[:i+1] is not a subsequence in T (this means we haven't found a common subsequence yet)
+Otherwise, consider two cases:
+- If there exists k such that dp[k-1][j-1] + 1 is equal to i, then the shortest subsequence ending at index i must have length k+1
+- Otherwise, it's impossible to find a shorter uncommon subsequence and we can set dp[i][j] = -1
+Consider using a set data structure to efficiently check if a subsequence is present in string T
+Use a set to keep track of all subsequences found so far in string S
+At each step, check if the current subsequence in S is in the set; if not, add it and update dp[i][j]
+===END PLAN===

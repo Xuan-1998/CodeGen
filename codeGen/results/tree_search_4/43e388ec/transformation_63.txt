@@ -1,0 +1,9 @@
+1. Initialize a 2D array DP where DP[i][j] represents the XOR of a and left-shifted b for all values of i from 0 to 314159, and j = 0 to bits in a.
+
+Base case: DP[0][i] = (a & (1 << i)) ? (a - (1 << i) + b) : a
+
+Transition relationship: DP[i][j] = (a & (1 << i)) ? (DP[i-1][j] ^ (b >> i)) : DP[i-1][j]
+
+2. Calculate the cumulative sum by iterating over all values of i from 0 to 314159 and j = 0 to bits in a.
+
+3. Return the modulo 10^9+7 result of the cumulative sum as the final answer.

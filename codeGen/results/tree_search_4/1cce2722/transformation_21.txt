@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i] = max(sum(a[:i]), sum(a[i:])) if i == 0 else 
+    max(dp[i-1], dp[i-2] + a[i] - a[i-1]) 
+
+The state represents the current position i in the sequence, and the maximum number of points earned up to this point. The transition relationship captures the idea of deleting an element and all its neighbors, updating the maximum number of points accordingly.
+
+Create a bottom-up dynamic programming approach by initializing a table dp of size n+1 with zeros, filling it up iteratively from left to right, and returning the value at position n as the answer. 
+
+For i from 0 to n:
+    if i == 0 or i == 1: 
+        dp[i] = sum(a[:i+1])
+    else:
+        dp[i] = max(dp[i-1], dp[i-2] + a[i] - a[i-1])
+
+return dp[n]
+===END PLAN===

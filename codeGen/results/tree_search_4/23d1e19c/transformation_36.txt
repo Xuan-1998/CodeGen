@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i][j] = (min_length, max_length) represents the minimum and maximum number of times the shortest path from vertex 1 to t needs to be recomputed when the current vertex is i
+
+dp[0][i] = (0, 0) for all vertices i
+dp[n+1][i] = (infty, infty) for all vertices i
+
+for i from 2 to n:
+    dp[i][s-1] = (0, 0)
+    for j from s to t:
+        if p[j-1] == i:
+            dp[i][j] = (min(dp[i-1][j-1][0]+1, dp[p[j-1]][j-1][0]), max(dp[i-1][j-1][1], dp[p[j-1]][j-1][1]))
+        else
+            dp[i][j] = (dp[i-1][j-1][0], dp[i-1][j-1][1])
+
+return dp[n][t]
+===END PLAN===

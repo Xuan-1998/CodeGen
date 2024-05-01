@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming. We will calculate the minimum number of squares for sub-rectangles and store them in a 2D array to avoid redundant calculations.
+
+Let's define dp[i][j] as the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+The base case could be dp[0][j] and dp[i][0] being 1 for all i, j because an empty rectangle or a rectangle with one side can be tiled by a single square (of size 1).
+
+For the general case, consider a possible transition: if we place a square of size k x k in the top-left corner of the sub-rectangle, it will leave a smaller rectangle of size i-k and j-k. We can then apply the same logic recursively for this smaller rectangle.
+
+To fill up the 2D array with the minimum number of squares required for each sub-rectangle, we can use tabulation with a loop that iterates over the dimensions of the rectangle:
+
+1. Initialize dp[0][j] and dp[i][0] to 1 for all i, j.
+2. Iterate over the values of i from 1 to n (inclusive).
+    For each value of i:
+        Iterate over the values of j from 1 to m (inclusive).
+            If i < k or j < k, then dp[i][j] is 0 because no square can be placed in this sub-rectangle.
+            Otherwise, calculate dp[i][j] as the minimum number of squares required to tile a rectangle of size i-k x j-k plus 1 for the square of size k x k.
+
+Return dp[n][m] as the result.
+
+===END PLAN===

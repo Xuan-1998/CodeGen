@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use tabulation to fill up the table in bottom-up manner, where the transition function calculates the maximum sum for each subarray based on its previous maximum value and the current element.
+
+View dp[i][k] as the maximum value that can be achieved by partitioning the subarray from index i to i+k, considering the state transition as the maximum value among this subarray and its previous maximum values.
+
+The transition function should consider the maximum value of the current subarray (max_val = max(arr[i:i+k])) and its previous maximum values (dp[i-1][k-1]) and calculate the maximum sum for each subarray based on these values: dp[i][k] = max(max_val, dp[i-1][k-1])
+
+Use a 2D dynamic programming table to store dp[i][k] as the maximum value that can be achieved by partitioning the subarray from index i to i+k.
+
+Calculate the final answer as the sum of the maximum values in each subarray, considering only the valid subarrays (i.e., k <= n-i) and the remaining elements after partitioning (dp[n-1][k] + arr[n-k+1:])
+
+===END PLAN===

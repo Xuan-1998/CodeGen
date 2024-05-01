@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+Initialize dynamic programming arrays: dp[i][j] will represent the minimum and maximum number of times the shortest path from vertex p[j-1] to t needs to be recomputed when at vertex p[i].
+
+Base cases: Initialize dp[0][k] to 0 because the driver starts by following the recommended path. Then, fill in base cases for vertices with no choices (follow or not follow) along the fixed path.
+
+Transition relationships: For each vertex i and j, if p[j-1] == p[k], then there is no choice; just copy the value from the previous vertex. Otherwise, consider recomputing the shortest path when choosing not to follow the recommended path.
+
+Memoization with recursion: Implement a recursive function that takes current vertex i and the last vertex in the fixed path k as inputs. This function will return the minimum and maximum number of times the shortest path needs to be recomputed.
+
+Return values: The final result is the difference between the maximum and minimum values obtained from dp[n-1][k].
+
+===END PLAN===

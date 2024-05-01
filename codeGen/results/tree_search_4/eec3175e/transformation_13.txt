@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+
+DP solution:
+Define the state expression as dp[i][k] representing whether there is a subset of the first i integers with sum k.
+Base case: dp[0][j] = 1 if j == 0, and 0 otherwise.
+
+For the recursive case:
+dp[i][k] = 1 if there exists a subset of the first i-1 integers with sum (k - arr[i-1]) or arr[i-1], and 0 otherwise.
+Update the dp array accordingly by iterating over all possible subsets and sums.
+
+Edge cases: Handle the base case where i == 0, j in [0, m] separately, returning 1 for j == 0 and 0 otherwise.
+
+===END PLAN===

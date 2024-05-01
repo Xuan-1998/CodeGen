@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider the maximum value of each subarray as a state, and use memoization to store the maximum sum for each prefix. Then, dynamically calculate the maximum sum for each subarray by considering the maximum value of the previous subarray.
+
+let state(i, j) be the maximum sum of arr[i-j:i], where i is the end index and j is the length of a subarray. base case: state(i, j) = max(arr[i-j:i]) if i - j <= k
+
+Consider state as (i, j, max_sum) where i is the end index of the current subarray, j is its length, and max_sum is the maximum sum for arr[:i]. Define a function f(i, j, max_sum) that returns the maximum sum for arr[i-j:i]. The transition relationship would be: f(i, j, max_sum) = max(arr[i-j:i]) + max_sum if i - j <= k
+
+Define a dictionary d where d[(i, j)] is the maximum sum for subarray arr[i-j:i] of length j.
+
+Initialize d as an empty dictionary.
+
+For each (i, j) in range(1, n+1) * range(1, min(i, k)+1), calculate f(i, j, max_sum) and store it in d. Use memoization to avoid redundant calculations.
+
+The maximum sum for the entire array would be the maximum value of f(i, j, max_sum) over all (i, j).
+
+===END PLAN===

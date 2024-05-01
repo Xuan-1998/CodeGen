@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+State: (i, j) represents the start and end indices of the current subarray.
+
+Transition:
+    - If nums[i] == nums[j], then dp[i+1][j+1] = max(dp[i+1][j], dp[i][j]) + 2
+    - Else, dp[i+1][j+1] = 0
+
+Use a dictionary to store the maximum length of 1's found in previous subarrays. Initialize dp with zeros.
+
+Iterate through the array from left to right, and for each index i:
+    - For j from i to n-1:
+        - Update dp[i][j] based on the transition rule
+        - If dp[i][j] > 0, then update the maximum length of 1's found so far
+
+Return the maximum length of 1's found as the answer.
+
+===END PLAN===

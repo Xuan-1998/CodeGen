@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+1. Initialize a 2D table dp with dimensions n+1 x (n+1) and fill up the first row and column with zeros, where n is the length of the input array.
+2. Iterate over each subarray from index i to i+k:
+    - For the first element in the subarray, consider it as the maximum value for that subarray.
+    - Iterate over the remaining elements in the subarray: 
+        - Update dp[i][k] with the maximum value between its current value and the sum of the current element plus the maximum value of the previous k-1 elements (dp[i-k+1][k-1]).
+3. Calculate the maximum sum that can be achieved by partitioning the entire array:
+    - Initialize a variable max_sum to 0.
+    - Iterate over each subarray from index i to n:
+        - Update max_sum with the maximum value between its current value and dp[i][n-i+1].
+4. Return the maximum sum as the final answer.
+
+===END PLAN===

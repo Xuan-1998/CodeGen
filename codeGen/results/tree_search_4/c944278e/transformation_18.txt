@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament. 
+Use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+A state expression could be dp[i][j] = True if team j can win from the i-th phase onwards;
+
+Create a 2D array, dp, of size n+1 x (2^n + 1), where dp[i][j] represents whether team j can win from the i-th phase onwards.
+
+For each i and j:
+    If s[i-1] is '1', then set dp[i][j] to True if and only if there exists a k such that:
+        - dp[i-1][k] is True
+        - team k loses to team j in the current phase
+
+The final result would be all teams j such that dp[n][j] is True.
+
+This plan correctly captures the essence of the problem. However, it can be improved by reducing the state space and eliminating unnecessary computations. For example:
+    Initialize dp[0][j] = False for all j
+    For each i from 1 to n:
+        For each k from 0 to (2^i - 1):
+            Set dp[i][k | (1 << i)] to True if there exists a team l such that:
+                dp[i-1][l] is True and team l loses to team k in the current phase
+    Return all j such that dp[n][j] is True
+
+This improved plan reduces the state space from 2^n x (2^n + 1) to (2^n - 1) x 1, making it more efficient.

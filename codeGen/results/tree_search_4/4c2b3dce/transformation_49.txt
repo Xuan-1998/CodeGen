@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Use a sliding window approach with Dynamic Programming to check for the presence of both substrings "AB" and "BA".
+The state expression is the remaining part of the string after processing the current substring, considering whether we found 'A' or 'B'. The base case is when the input string is empty.
+The next state can be either the same as the current state if no 'AB' or 'BA' is found at the current position, or it's a new state where the remaining part of the string after processing the current 'A' and 'B' is considered.
+Use a dictionary to store previously computed values for memoization. This will help us avoid redundant computations when checking for substrings.
+When checking for "AB", consider two cases: 1) the current position is at 'A', and we need to check if there's a 'B' after it, or 2) the current position is at 'B', and we need to check if there was an 'A' before it. Similarly, when checking for "BA", consider two cases: 1) the current position is at 'B', and we need to check if there's an 'A' after it, or 2) the current position is at 'A', and we need to check if there was a 'B' before it.
+Store the result of checking for "AB" or "BA" in the dictionary and return whether we found both substrings. If not, return "NO". Otherwise, return "YES".
+===END PLAN===

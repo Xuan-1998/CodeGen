@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing bottom-up dynamic programming to work effectively.
+
+Let dp[i][j] be the boolean value indicating whether there exists a subset summing up to i modulo m such that j is the remainder when this sum is divided by m.
+
+State represents the current sum modulo m, and transition is made based on whether the current number can be included in the subset without exceeding the remainder. The base cases are dp[0][k] for all k (there is a subset with sum 0 for any remainder).
+
+Dynamically create a set of possible cumulative sums modulo m, using previous ones as references.
+
+For each number i from 1 to n:
+    For each remainder j from 0 to m-1:
+        If the current number can be included in the subset without exceeding the remainder, then consider two cases: 
+            - The current number is not included in the subset.
+            - The current number is included in the subset.
+        Update dp[i][j] based on these two cases.
+
+Return dp[n][0].
+===END PLAN===

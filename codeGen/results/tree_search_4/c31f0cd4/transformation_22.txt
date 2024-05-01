@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: Consider the subset sums for each subset size from 0 to N, where N is the total number of elements in the set. The state would be a tuple (subset_size, current_sum).
+dp = [[set() for _ in range(N+1)] for _ in range(N+1)];
+
+Function: dp[i][j] represents the distinct sums that can be generated from subsets of size i and sum j.
+1. Initialize dp[0][0] to {0} (base case)
+2. For each subset_size i from 1 to N:
+   a. For each current_sum j in range(subset_size, subset_size + 100):
+      i. If j is not already in dp[i-1][j], add it
+3. Flatten the dp array into a single list and sort it.
+
+===END PLAN===

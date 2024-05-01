@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+To solve this problem, you can use a top-down approach with memoization. Define a function that takes the dimensions of the rectangle as input, and use memoization to store the results of subproblems so they can be reused.
+
+State: dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+Function: 
+dp[i][j] = min(min(k) + dp[i-k][j-1], dp[i-1][j-k]) for k in range(1, min(i, j)+1)
+
+Base cases:
+- For 1x1 and 2x2 rectangles, return 1 because a single square can tile these shapes.
+- For larger input sizes, you need to check if the current rectangle can be fully tiled with a single square of side length equal to the input size. If yes, then dp[i][j] = 1; otherwise, try tiling it with smaller squares.
+
+Edge cases:
+- If i or j is less than 0, return -1 (or any other default value) because these inputs are invalid.
+- For i or j equal to 0, return 0 because a rectangle of size 0x0 can be tiled by not placing any squares.
+
+Memoization:
+- Use a dictionary dp = {} as the memo table. 
+- Before calculating dp[i][j], check if it already exists in dp and return its value if it does.
+- When you have calculated a value for dp[i][j], store it in dp before returning the result.
+
+===END PLAN===

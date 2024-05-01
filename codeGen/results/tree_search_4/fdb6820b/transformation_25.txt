@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Dynamic Programming Approach:
+
+1. Initialize a 2D table dp[m][N+1] where dp[i][j] represents the number of ways to form a sum of i using exactly j elements from the array.
+
+2. Fill the base cases: dp[0][i] = 1 for all i (base case: there's only one way to form a sum of 0, which is by not using any elements).
+
+3. For each element x in the array:
+    - Iterate over the table rows from top to bottom and update dp[i][j] as follows:
+        * If j >= m, set dp[i][j] = dp[i-x][j-m] (base case: when we've used up all the elements, there's only one way to form the remaining sum).
+        * Otherwise, set dp[i][j] = dp[i][j-1] + dp[i-x][j-1] (recursive case: consider including x in our current sum and recursively counting the number of ways to form the remaining sum).
+
+4. Finally, return dp[N][m] as the total number of ways to form N using all available elements.
+
+===END PLAN===

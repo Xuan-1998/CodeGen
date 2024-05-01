@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Tabulation is still an option since we need to calculate a cumulative sum and memoization might be efficient here.
+Let's define the state as DP[i] = (a & (1 << i)) ? (b - (1 << i) + a) : a, where we're shifting bits of b to the right until they match with a. The base case is DP[0] = a.
+State DP[i] represents the cumulative sum of previous bits, where DP[0] = a and for i > 0, DP[i] = (DP[i-1] + ((b >> i) & 1) - (1 << i)) % mod.
+Memoized function: Define a function that takes i and returns the result of calculating DP[i], but only calculate it if it's not already computed. This will avoid redundant calculations.
+The final answer is the sum of all DP[i] modulo 10^9+7, which can be calculated using prefix sums.
+
+===END PLAN===

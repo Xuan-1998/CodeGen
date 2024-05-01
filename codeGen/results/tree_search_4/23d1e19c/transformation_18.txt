@@ -1,0 +1,15 @@
+dynamic_programming = {i: {j: {} for j in range(1, n+1)} for i in range(k+1)};
+dp[i][j] = min(dp[i-1][k] + 1 for k in range(1, n+1) if edge_exists(i, k) and k != j);
+max_dp[i][j] = max(dp[i-1][k] + 1 for k in range(1, n+1) if edge_exists(i, k) and k != j);
+dp[0][s] = 0;
+max_dp[0][s] = 0;
+for i in range(1, k+1):
+    for j in range(1, n+1):
+        if j == p[i]:
+            dp[i][j] = 0;
+            max_dp[i][j] = 0;
+        else:
+            dp[i][j] = min(dp[i-1][k] + 1 for k in range(1, n+1) if edge_exists(i, k) and k != j);
+            max_dp[i][j] = max(dp[i-1][k] + 1 for k in range(1, n+1) if edge_exists(i, k) and k != j);
+min_recomputations = min(dp[k][t]);
+max_recomputations = max(max_dp[k][t]);

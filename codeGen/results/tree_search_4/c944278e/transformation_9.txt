@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+Memoize the results for faster computation.
+
+The base case is when n == 1, as there's only one winning team in a single-game tournament.
+
+To consider each binary string of length n as the current state, where the state is 'winning' if all bits are 1 (i.e., the team has won in every game) and 'losing' otherwise.
+
+Use a 2D array dp[n][1<<n] to store the results of subproblems, where each subproblem represents a binary string of length n. Let dp[i][mask] be true if there's at least one winning team for the first i phases with the given mask (i.e., which teams have won in each phase).
+
+The recurrence relation is:
+
+- If the current bit is 1, then all winning teams must also win in this phase.
+- If the current bit is 0, then some winning teams might lose in this phase.
+
+So, dp[i][mask] = or (dp[i-1][mask & ~(1<<j)] and j-th bit of mask is 0) for each j from 0 to i-1.
+
+To get all the winning teams, iterate through the last row of dp (i.e., when n phases are done), and for each mask that has at least one '1', add the teams corresponding to the 1's in mask to the result.
+
+===END PLAN===

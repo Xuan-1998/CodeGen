@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp = []
+for i in range(len(nums)):
+    if nums[i] == 1:
+        dp.append((i, i))
+    else:
+        for j, (start, end) in enumerate(dp):
+            if start < i <= end:
+                dp[j] = (start, i - 1)
+                break
+        else:
+            dp.append((i, i))
+dp.sort(key=lambda x: x[1] - x[0])
+max_len = 0
+for start, end in dp:
+    max_len = max(max_len, end - start + 1)
+return max_len
+===END PLAN===

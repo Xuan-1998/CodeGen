@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = if i == N-1 && j == N-1 then return 1 if k == 0 else return 0
+
+dp[i][j][k] = sum of 
+    (dp[i+1][j][k-arr[i][j]] || dp[i][j+1][k-arr[i][j]])
+    for base case: when i == N-1 && j == N-1, then return 1 if k == 0 else return 0
+
+DP with Memoization:
+Initialize a 3D table to store intermediate results, where each cell represents the number of paths that collect exactly k coins.
+Fill up the dp[][][] table in bottom-up manner by considering subproblems and storing intermediate results.
+
+For example, when i = N-1, for all j, dp[N-1][j][k] is calculated and stored in dp[][][]
+
+Then, fill up the rest of dp[][][] table similarly.
+
+Finally, return dp[0][0][K]
+
+===END PLAN===

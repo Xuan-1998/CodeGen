@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i][j] = the minimum number of times the shortest path from vertex i to t needs to be recomputed when the current vertex is j
+
+dp[i][j] = min(dp[i-1][k] + 1, dp[i][k]) for k in range(1, n+1) if edge_exists(i, k) and k != j), where i is the current vertex, j is the previous vertex, and dp[i-1][j] is the minimum number of times the shortest path from vertex i-1 to t needs to be recomputed when the current vertex is j
+
+Use a priority queue to keep track of vertices that need to have their shortest paths recomputed, with the vertex at the top being the one that should be recomputed next.
+
+===END PLAN===

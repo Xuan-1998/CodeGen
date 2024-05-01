@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider dynamic programming where each subproblem is defined as a tuple (N, i) representing the remaining value N and the index i in the array. The optimal substructure can be identified by realizing that the problem of finding ways to form N with the first i elements of the array is similar to the original problem but with reduced size.
+
+State: dp[(N, i)] = (num_ways_to_form_N_minus_i, num_elements_included), represents the remaining value and the number of elements included in forming N. Base case: when N is 0, there's only one way to form it (by not including any elements).
+
+dp[N][i] = (
+    dp[(N-i, i)] if i > 0 else 1,
+    i
+), represents the remaining value after subtracting the i-th element from N, and i is the index of the last element used.
+
+Memoize function calls by storing the results in a dictionary and checking if the result for a given input is already computed before computing it anew.
+===END PLAN===

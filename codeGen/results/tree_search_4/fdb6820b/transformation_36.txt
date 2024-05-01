@@ -1,0 +1,5 @@
+Treat this as a counting problem and use tabulation where a 2D array dp is initialized with zeros, and then iterate over the elements of the array to fill up the dp table.
+dp[i][j] = sum(dp[k][i-1] for k in range(m)) + (1 if j == 0 else dp[j-1][i-1]),
+dp[i][0] = sum(1 for _ in range(i))
+For each possible sum from 0 to N, use the dynamic programming table to count the number of ways it can be formed.
+Total number of ways = sum(dp[k][N] for k in range(m))

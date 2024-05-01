@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp = {}
+def dp(N, i):
+    if (N, i) in dp:
+        return dp[(N, i)]
+    if N < 0:
+        return 0
+    if i == 0:
+        return 1 if N == 0 else 0
+    
+    ways = 0
+    for k in array[:i+1]:
+        ways += dp(N-k, j)
+    dp[(N, i)] = ways % (10**9 + 7)
+    return dp[(N, i)]

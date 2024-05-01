@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+Let memo[i][j] be a boolean value indicating whether there exists a common non-overlapping substring ending at indices i and j in str1 and str2, respectively.
+For each pair of matching characters (str1[0..i-1] == str2[0..j-1]), let max_length be the maximum length of common non-overlapping substrings.
+Let max_count be the number of occurrences of the above pattern. Update dp[i][j] = dp[i-1][j-1] + (str1[i] == str2[j]) if str1[i] == str2[j], 0 if i > 0 and j > 0
+
+dp[i][j] = dp[i-1][j-1] + (str1[i] == str2[j]) if str1[i] == str2[j]
+Let memo[i][j] be a boolean value indicating whether there exists a common non-overlapping substring ending at indices i and j in str1 and str2, respectively.
+For each pair of matching characters (str1[0..i-1] == str2[0..j-1]), let max_length be the maximum length of common non-overlapping substrings.
+Let max_count be the number of occurrences of the above pattern. Update dp[i][j] = 1 + dp[i-1][j-1] if str1[i] == str2[j]
+
+Use a dictionary to store the maximum number of common non-overlapping substrings ending at each pair of indices in str1 and str2, respectively.
+
+Initialize dp[0][0] = 1
+Iterate through str1 and str2 simultaneously using two nested loops.
+Update memo[i][j] based on dp[i-1][j-1]
+Update max_length based on dp[i-1][j-1]
+Update max_count based on dp[i-1][j-1]
+
+Print the maximum number of common non-overlapping substrings.
+===END PLAN===

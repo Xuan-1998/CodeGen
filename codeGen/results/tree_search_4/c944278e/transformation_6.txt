@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+State expression: dp[i][j] = True if team j can win from the i-th phase onwards; otherwise False.
+dp[i][j] = (s[i] == '1' && isWinningTeam(j, i)) or (i > 0 && any k < i such that s[k] == '1' && dp[k][j])
+Consider a table where the rows represent phases of the tournament, the columns represent teams, and cell [i][j] is True if team j can win from phase i onwards.
+
+Initialize dp[0][j] = (s[0] == '1') for all j.
+For each phase i > 0:
+    For each team j:
+        dp[i][j] = (s[i] == '1' && isWinningTeam(j, i)) or (i > 0 && any k < i such that s[k] == '1' && dp[k][j])
+
+Find all teams j for which dp[n-1][j] is True. These are the winning teams.
+
+===END PLAN===

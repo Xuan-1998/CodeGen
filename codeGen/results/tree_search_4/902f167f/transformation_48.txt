@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Create a 2D array to store the minimum number of squares for each possible rectangle size, and fill it in iteratively.
+
+The base case is when i or j is 0, in which case we don't need any squares.
+Fill the first row (i=1) by iterating over all columns j from 1 to m. The minimum number of squares required is 1 for each column, as the smallest possible square that can cover the entire rectangle has side length equal to the larger dimension.
+
+Next, fill the first column (j=1) by iterating over all rows i from 1 to n. The minimum number of squares required is also 1 in this case, as a single square with side length equal to the smaller dimension can cover the entire column.
+
+Then, iteratively fill up the rest of the array by considering two cases for each cell: either a square with side length equal to the larger dimension (i or j) covers part of the rectangle and we need to count how many squares are left over to tile the remaining portion, or a square with side length equal to the smaller dimension (n-i or m-j) covers part of the rectangle.
+
+To avoid counting overlapping squares, we can keep track of the maximum size of square that can be placed in each cell, which is the minimum of i and j. This way, we ensure that each square is only counted once.
+
+Finally, return the value stored at the bottom-right corner (i=n, j=m) as the minimum number of squares required to tile the entire rectangle.
+===END PLAN===

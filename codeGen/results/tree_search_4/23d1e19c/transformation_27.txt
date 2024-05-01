@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i] = the maximum length of the recommended paths between vertices in the fixed path from s to vertex i
+dp[i] = the maximum number of times the shortest path from 1 to i can be recomputed before the driver decides to follow the recommended path
+
+We will use a combination of arrays and dictionaries for memoization. We will also consider edge cases.
+
+1. Initialize dp array with n+1 elements set to negative infinity.
+2. Iterate through vertices in the fixed path (from s to t).
+   - For each vertex, update dp[i] with the maximum length of the recommended paths between vertices in the fixed path from s to i.
+3. Calculate max_recomputations and min_recomputations using dp array values.
+
+===END PLAN===

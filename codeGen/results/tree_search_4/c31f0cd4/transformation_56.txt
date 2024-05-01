@@ -1,0 +1,13 @@
+DP_state = ({}, {}) // base case
+for i in range(N):
+    for s in DP_state:
+        new_s = s + a[i]
+        if not(new_s in DP_state[0]):
+            DP_state[0].add(new_s)
+            DP_state[1][new_s] = DP_state[1].get(new_s, []) + [a[i]]
+for i in range(N):
+    for s in DP_state[0]:
+        if not(s in DP_state[0]):
+            DP_state[0].remove(s)
+            DP_state[1].pop(s)
+DP_state = DP_state[1]

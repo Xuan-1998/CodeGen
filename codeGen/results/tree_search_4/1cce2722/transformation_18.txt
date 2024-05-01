@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], dp[n-i]) if i > 0 else 0
+The key insight is that at each position i, we have two options: 
+1. We can remove the element at i and all elements equal to it from both sides (i.e., a[k+1] for k >= i-1 and a[k-1] for k <= i+1), in which case our maximum score would be dp[i-1].
+2. We can leave the element at i as is, in which case our maximum score would be dp[n-i], since we are essentially removing the elements from the other side.
+Memoize the maximum sum of points earned by deleting elements up to the ith position and the maximum sum of points earned by deleting elements from the (n-1)th position onwards.
+===END PLAN===

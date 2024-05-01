@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+Initialize dp as an empty dictionary, and initialize max_length as 0. The base case is when i == 0, then dp[i] should be 0 because there are no 1's to consider.
+dp[i] represents the length of the longest subarray with only 1's up to index i.
+
+Use a bottom-up dynamic programming approach, where you fill in the dp table row by row. For each cell dp[i], check if the current number is 1 and the previous number is 1 (if i > 0). If so, then the length of the longest subarray with only 1's up to that point is one more than the length of the longest subarray ending at index i-1. Otherwise, dp[i] will be the same as dp[i-1].
+
+After filling in the dp table, iterate through the dp table and find the maximum value. This will give you the length of the longest non-empty subarray containing only 1's.
+
+Store the results of subproblems in a dictionary and re-use them when needed to avoid redundant computation.
+
+===END PLAN===

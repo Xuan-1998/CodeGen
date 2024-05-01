@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+State expression: dp[i][j] = True if team j can win from the i-th phase onwards; otherwise False.
+dp[i][j] = (s[i] == '1' and (exists k such that 0 <= k < 2^i, s[k] == '1' and dp[i-1][k])) for all j such that 0 <= j < 2^i
+Use a 2D array to store the dynamic programming table, where dp[i][j] represents whether team j can win from phase i onwards.
+
+Initialize dp[0][j] = (s[0] == '1') for all j such that 0 <= j < 2^0
+
+For each phase i from 1 to n-1:
+    For each team j such that 0 <= j < 2^i
+        Set dp[i][j] = True if and only if there exists a team k such that s[k] == '1' and k < 2^(i-1) and dp[i-1][k]
+    If no such team k exists, set dp[i][j] = False
+
+To find all winning teams:
+    For each phase i from 0 to n-1
+        For each team j such that 0 <= j < 2^i
+            If dp[i][j], print the team
+
+===END PLAN===

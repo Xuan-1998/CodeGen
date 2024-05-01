@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal substructure is characterized by finding the maximum number of common non-overlapping substrings between two strings. This problem can be solved using memoization in a top-down approach, as it has overlapping subproblems.
+
+We can create a 2D array dp where dp[i][j] represents the length of the longest common prefix of str1[:i+1] and str2[:j+1]. The transition relationship can be formulated as:
+dp[i][j] = max(dp[i-1][j-1] + 1 if str1[i-1] == str2[j-1] else 0, dp[i-1][j], dp[i][j-1])
+
+We can use a dictionary to store the memoized values. For each pair of characters at positions i and j, check if they are equal. If yes, update dp[(i, j)] as max(dp[(i-1, j-1)] + 1, dp[(i-1, j)], dp[(i, j-1)]), otherwise set it to max(0, dp[(i-1, j)], dp[(i, j-1)]).
+
+To count the maximum number of common non-overlapping substrings, we can iterate through the dp array and increment a counter for each pair (i, j) where dp[i][j] > 0. The final answer will be the sum of all such counters.
+
+===END PLAN===

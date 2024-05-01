@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss. Use memoization to store the winning teams for each prefix of the string.
+
+For each phase, initialize a boolean array dp[i][j] where dp[i][j] represents whether team j has won at least one game after i phases. Then, update dp[i][j] based on s[i]^j:
+	* If s[i] = 1 and (s[i]^j) = 1, then the winner of this phase remains a winning team.
+	* If s[i] = 0 and (s[i]^j) = 0, then the loser of this phase becomes a losing team.
+
+Use this dp table to memoize the results of subproblems. The base case would be when the input has only one phase, in which case all teams that have won at least one game are considered winning teams.
+
+To find the winning teams, iterate through the dp table and for each team j, check if it has won at least one game after any number of phases (i.e., dp[i][j] is True for some i). If so, add it to the list of winning teams.
+===END PLAN===

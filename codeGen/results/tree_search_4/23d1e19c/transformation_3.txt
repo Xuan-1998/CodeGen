@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+dp[i][j] = min(dp[i][j-1], 1 + dp[j+1][k]);
+Consider the minimum number of times the shortest path from each vertex to t needs to be recomputed, given that the driver has chosen not to follow the recommended path at some vertices.
+
+Use a 2D array to store the minimum number of times the shortest path from each vertex to t needs to be recomputed, with dp[i][j] representing the minimum number of times the shortest path from vertex i to t needs to be recomputed given that the driver has chosen not to follow the recommended path at vertex j.
+
+dp[0][k] = 0;
+for i from s-1 to t:
+    for j from 0 to k-1:
+        if (the current vertex is in the fixed path):
+            dp[i][j] = min(dp[i][j], dp[s-1][j-1]);
+        else:
+            dp[i][j] = min(dp[i][j-1], 1 + dp[t][k-j-1]);
+
+return dp[t][k-1];
+===END PLAN===

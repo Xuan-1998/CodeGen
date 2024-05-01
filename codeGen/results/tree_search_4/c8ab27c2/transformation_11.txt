@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Think of dp[i][j] as the minimum length of a subsequence that ends with character S[i-1] and T[j-1].
+DP states can be defined as:
+    if S[i-1] == T[j-1]:
+        dp[i][j] = 1 + dp[i-1][j-1]
+    else:
+        dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1])
+Initialize DP table with zeros, as there is no subsequence of length 0
+Start from the end of both strings, comparing characters and updating DP table accordingly
+Traverse DP table to find minimum length uncommon subsequence
+===END PLAN===

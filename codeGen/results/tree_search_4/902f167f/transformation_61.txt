@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Create a 2D array dp with dimensions n+1 by m+1, where dp[i][j] represents the minimum number of squares required to tile a rectangle of size i x j. The base case is when i = 1 or j = 1, in which case we only need one square.
+For all rectangles of size i x j, consider all possible square sizes k such that 1 <= k <= min(i, j). Then, dp[i][j] = min(dp[k-1][j-k+1] + (i-k+1)*(j-k+1) / k^2 for k).
+To avoid calculating the same subproblem multiple times, use memoization to store the results of subproblems as they are solved and look up their solutions when needed in subsequent calculations.
+For edge cases, handle rectangles with dimensions 0 x j or i x 0 separately, as these do not need any squares. Set dp[0][j] = 1 for all j and dp[i][0] = 1 for all i.
+
+===END PLAN===

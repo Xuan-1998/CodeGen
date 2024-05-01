@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+
+DP_state = (subset_index, subset_sum), where:
+  - subset_index is the index of the current subset in the original set
+  - subset_sum is the sum of elements in the subset
+
+Use a dictionary to store computed DP_state values where keys are (subset_index, subset_sum) tuples. This allows for efficient lookups and avoids redundant computations.
+
+Base case: DP_state(0, 0), where:
+  - subset_index = 0 (the empty subset)
+  - subset_sum = 0 (the sum of the empty subset)
+
+For each element in the original set:
+  - Iterate through all possible subsets that include this element
+  - For each such subset, calculate its sum and check if it's already in the dictionary
+    + If not, compute the new subset sums by adding this element to existing sums (recursively)
+    + Store the new DP_state values in the dictionary
+
+Base case: For the initial state, where there are no more elements left, return all unique sums.
+
+Return all distinct sums found throughout the computation.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming and memoization. Define a function that takes the dimensions of the rectangle as input, and store the results of subproblems in a 2D array dp so they can be reused.
+
+State: dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+dp[i][j] is the minimum number of integer-sided squares required to tile a rectangle of size i x j, considering all possible placements of a square of side length k (where 1 <= k <= min(i, j)), and choosing the one that minimizes dp[i-k][j-k].
+
+Create a 2D array dp of size n+1 x m+1 to store the minimum number of integer-sided squares required to tile a rectangle of size i x j, and fill it up in a bottom-up manner.
+
+For the base cases, initialize dp[0][j] and dp[i][0] to 0 for all i, j. This represents that a rectangle with zero width or height can be tiled with no integer-sided squares.
+
+For the recursive case, consider all possible placements of a square of side length k (where 1 <= k <= min(i, j)) in the top-right corner of the rectangle, and choose the one that minimizes dp[i-k][j-k]. This represents the minimum number of integer-sided squares required to tile the remaining part of the rectangle.
+
+Finally, return dp[n][m] as the result.
+
+===END PLAN===

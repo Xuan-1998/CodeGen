@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine if the problem has a greedy property. If so, consider using a greedy algorithm with dynamic programming to solve the problem. For example, partition the array into subarrays based on their maximum values, and recursively calculate the maximum sum of each subarray.
+
+To consider the maximum sum of all possible partitions of the array into k contiguous subarrays as the state, with base case being when k is 1.
+
+The base case is when k is 1, where the maximum sum is simply the maximum value in the current subarray.
+
+Use a bottom-up approach by initializing a table with size n * (k + 1), where n is the length of the array, and fill it up based on smaller subproblems. Consider using two pointers to track the start and end indices of the current subarray, as well as the maximum sum found so far.
+
+Begin by filling the first row of the table, which represents the base case when k is 1. Then, for each row i from 2 to n, fill the column j from 0 to k-1 as follows:
+- If j is 0, set the value at position (i, 0) to be the maximum sum of the subarray ending at index i.
+- For each j from 1 to k-1, consider the maximum sum of the subarrays ending at indices i-j and i-1. Calculate the maximum sum for the current subarray as the maximum value in this range plus the maximum sum of the remaining subarray. Update the table accordingly.
+
+Finally, return the value at position (n, k) as the maximum sum of all possible partitions of the array into k contiguous subarrays.
+
+===END PLAN===

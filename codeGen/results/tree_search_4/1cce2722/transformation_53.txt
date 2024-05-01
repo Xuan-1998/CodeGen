@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1. The base case would be when i is 0 or n-1, where we start or end the sequence respectively.
+
+Consider a subset of elements in the sequence where all elements except for the current i-th one are either deleted or equal to ak + 1 or ak - 1, then define dp[i][j] as the maximum number of points that can be earned from this subset, considering only the elements before the i-th one.
+
+Use a two-dimensional list with nested lists to represent the dynamic programming table with dimensions n x (2*n-1), where each cell dp[i][j] represents the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1.
+
+Initialize the base case for the first row by setting dp[0][j] = 1 for all j in range(2*n-1), because when we're at the start of the sequence, we can only earn 1 point by not deleting any elements.
+
+Then, fill up the dynamic programming table by iterating over each cell and using the definition: 
+dp[i][j] = max(dp[i-1][k] + (1 if ai is equal to ak+1 or ak-1 else 0)) for k in range(2*n-1)
+
+Finally, return dp[n-1][*] as the maximum number of points that can be earned.
+
+===END PLAN===

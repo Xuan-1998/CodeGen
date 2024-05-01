@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+Let's define the state as DP[i] = (b >> i & 1) ? ((a ^ (a << i)) + b) % mod : a, where DP[0] = a.
+State transition: For i > 0, calculate DP[i] based on DP[i-1].
+
+Iterative approach: Use a loop to fill up the DP array from left to right.
+
+For each bit in b, perform the following operations:
+    1. If the current bit is set, XOR a with itself shifted left by i bits and add b.
+    2. Otherwise, just assign a to DP[i].
+
+Finally, calculate the cumulative sum modulo mod: ans = (ans + sum(DP)) % mod.
+
+===END PLAN===

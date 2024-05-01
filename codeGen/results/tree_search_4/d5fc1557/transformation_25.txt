@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+Define the state expression as dp[i] = max(dp[i-1] + (nums[i] == 1), 0) and the base case as dp[0] = 0.
+
+However, there's a better way to solve this problem. We can maintain two variables: one for the length of the longest sequence ending at the current position, and another for the length of the longest sequence starting from the current position.
+Let's define the state expression as:
+    left[i] = max(left[i-1], nums[i] == 1)
+    right[i] = max(right[i-1], (nums[i] == 1) ? left[i-1]+1 : 0)
+
+The final answer will be the maximum of right[n-1] and max(0, left[i] for i in range(n)).
+===END PLAN===

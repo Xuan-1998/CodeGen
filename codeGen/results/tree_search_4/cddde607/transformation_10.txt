@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if i == N-1 and j == N-1, else 0,
+State: dp[i][j] represents the number of ways to reach cell (i, j) with exactly K coins. The state is determined by the current position (i, j).
+memo[i][j][k] = 
+    if i < N-1 and j < N-1:
+        memo[i+1][j][k-arr[i][j]] + memo[i][j+1][k-arr[i][j]]
+    else:
+        0
+dp[0][0] = 1, // base case: one way to reach the top left corner
+for i from 1 to N-1:
+    for j from 1 to N-1:
+        dp[i][j] = memo[i-1][j][k-arr[i-1][j]] + memo[i][j-1][k-arr[i][j]]
+return dp[N-1][N-1]
+===END PLAN===

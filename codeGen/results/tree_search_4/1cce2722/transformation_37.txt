@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i] = max(dp[i-1], sum(k-i) + (n-k) - (a[i]-a[k]) for k in range(i))
+
+Define a recursive function that takes an index i as input, and use memoization to store the values of subproblems and avoid redundant computation. This way, we can reduce the time complexity.
+
+For each element ai in the sequence, calculate its maximum score by deleting elements with equal values to ai+1 and ai-1.
+
+The base case would be when i is equal to n, it means all elements have been processed, so return 0.
+
+To avoid redundant computation, use memoization to store the calculated values of dp[i] for different i.
+
+Calculate dp[0] as a special case because there are no previous elements to delete.

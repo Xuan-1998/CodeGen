@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To determine if the problem has a greedy property, we can consider that the maximum sum is not necessarily achieved by partitioning the array into subarrays with maximum values. This suggests that a non-greedy approach might be more suitable.
+
+We can still use dynamic programming to solve this problem. Consider a state dp[i][j] representing the maximum sum up to index i and j subarrays. The base case is when k is 1, in which case the maximum sum is simply the sum of all elements up to that point.
+
+To fill in the dp array, we can iterate over the array and for each element at index i:
+
+* Calculate the maximum sum up to this point by considering the maximum sum of the previous j-1 subarrays (dp[i-1][j-1]) and adding the current element.
+* If the new sum is greater than the current dp[i][j], update dp[i][j] with the new sum.
+
+To consider all possible partitions, we can iterate over the array and for each index i:
+
+* For j from 1 to min(i+1, k), calculate the maximum sum up to this point by considering the maximum sum of the previous j-1 subarrays (dp[i-j][j-1]) and adding the current element.
+* If the new sum is greater than the current dp[i][j], update dp[i][j] with the new sum.
+
+Finally, return the maximum value in the last column of the dp array, which represents the maximum sum for k subarrays.
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Check if 'AB' appears in the string, then check if 'BA' appears in the remaining part of the string
+
+The state is an integer index i into the string s, with base case being when i >= len(s) - 2 (i.e., there are at most two characters left).
+
+Whether 'BA' appears in the remaining part of the string (i.e., s[i+2:]) as a function of whether 'AB' appears in this part
+
+Create a 1D table dp where dp[i] is True if the first i characters of the string contain both 'AB' and 'BA', and False otherwise.
+
+Check each character from left to right, updating dp[i] based on whether 'AB' or 'BA' appears at this position. If 'AB' appears, set dp[i-1] to True; if 'BA' appears, set dp[i-2] to True.
+
+Use this table to determine whether 'BA' appears in the remaining part of the string as required.
+
+Check for edge cases: If s is empty or has less than 2 characters, return "NO".
+
+===END PLAN===

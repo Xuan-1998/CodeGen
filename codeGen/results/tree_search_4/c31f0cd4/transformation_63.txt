@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+DP_state = (current_subset, subsets_sum), where current_subset is the set of all possible subsets and subsets_sum is the set of all possible sums, with base case being DP_state({set()}, {0})
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+Create a dictionary dp to store previously computed results.
+dp[(subset, 0)] = {sum} for all sum in subset
+For each number in the input set:
+    For each possible subset ending with this number:
+        Calculate the sum of this subset
+        If the sum is not already in subsets_sum, add it and recursively call dp on the remaining subset.
+===END PLAN===

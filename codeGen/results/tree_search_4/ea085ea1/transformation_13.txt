@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: Compare all possible substrings of str1 and str2, considering their lengths from 1 to N. Optimal substructure: Find the maximum number of common non-overlapping substrings by recursively combining smaller substrings.
+
+The state could be defined as dp[i][k] = maximum number of common non-overlapping substrings ending at position i in str1 and length k.
+
+dp[i][k] = max(dp[j-1][k-1] + 1 for j in range(min(i,k)) if str1[i-j:i+1] == str2[i-j:i+1])
+
+Dynamically create a 2D array dp of size (N+1) x (max_length) and fill it with zeros, where max_length is the maximum possible substring length in str1 and str2.
+
+Calculate the maximum number of common non-overlapping substrings as dp[N][max_length].
+
+===END PLAN===

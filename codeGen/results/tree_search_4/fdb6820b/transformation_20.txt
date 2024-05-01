@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp = {}  # initialize dictionary for memoization
+def count_ways(N, j):
+    if N < 0:
+        return 0
+    elif N == 0:
+        return 1
+    elif (N, j) in dp:  # base case: already computed
+        return dp[(N, j)]
+    else:
+        total = 0
+        for i in range(m):
+            if j > 0 and arr[i] <= N:  # only consider elements from array that can contribute to sum
+                total += count_ways(N - arr[i], j - 1)  # recursive call with smaller N and one less element
+        dp[(N, j)] = total
+        return total
+
+m, N = map(int, input().split())
+arr = list(map(int, input().split()))
+print(count_ways(N, m) % (10**9 + 7))
+===END PLAN===

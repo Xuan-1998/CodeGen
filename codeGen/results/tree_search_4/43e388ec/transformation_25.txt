@@ -1,0 +1,8 @@
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: dp[i] represents the sum modulo 10^9+7 for all values of i from 0 to min(a, b) - 1.
+dp[i] is updated based on whether we are considering the current bit of a or b. If the current bit of a is set, then dp[i] += (1 << i) % (10^9 + 7), otherwise if the current bit of b is set, then dp[i] += (b >> i) % (10^9 + 7).
+Maintain two rolling hashes for both a and b, using bitwise operations to compute the exclusive OR operation and binary shift to the left operation at each step.
+
+Edge cases:
+* If min(a, b) == 0, then return 0.

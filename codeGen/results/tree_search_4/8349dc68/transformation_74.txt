@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property. Yes, it does: we can solve this problem by partitioning the array into k contiguous subarrays and recursively calculating the maximum sum for each subarray.
+
+To consider the maximum sum of all possible partitions of the array into k contiguous subarrays as the state, with base case being when k is 1 (i.e., we have a single subarray). The state transition equation would be to add the maximum value in each subarray and update the running maximum sum accordingly.
+
+Instead of using recursion, consider using a loop and maintaining a running maximum sum. Initialize dp[i] as the maximum sum for the first i elements. Then, iterate from k to 1 (as we need the maximum sum for all partitions) and calculate the maximum sum for each partition by updating dp[k] as follows: 
+
+dp[k] = max(dp[j-1] + max(arr[j:j+k]), j=1..k)
+
+This loop can be further optimized by using a prefix sum array to reduce time complexity.
+
+The running maximum sum would be stored in a variable and updated accordingly. Finally, return the running maximum sum as the result.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i][j] as the maximum sum of array from index i to j considering k-size subarrays
+dp[i][j] is the maximum sum of all partitions ending at index j, using at most k elements.
+
+dp[i][j] = max(dp[i-1][k-1] + arr[k] - arr[j], dp[i-1][j-k+1])
+
+Let's consider a few edge cases:
+- For i or j less than 0: return 0
+- For i greater than the array length: return 0
+- For j greater than the array length: return the maximum sum of all k-size subarrays from the beginning to the end
+
+To fill up the table, we iterate over each element in the array and for each element, calculate dp[i][j] using the above formula.
+Finally, the maximum sum is the value at dp[n-1][m-1], where n is the array length and m is the minimum of j and n.
+
+This plan is correct and will give us the correct result. The only potential issue with this plan is that it might not be efficient for large arrays because it needs to calculate all subarrays ending at each index, which has a time complexity of O(n*k). However, since k <= 500 in the problem constraints, this plan should be sufficient.

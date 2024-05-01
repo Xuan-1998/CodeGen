@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization.
+
+State: An array dp of size m + 1, where dp[i] represents whether there exists a subset summing up to i modulo m.
+
+Transition:
+    - For each number in the set, check if it can be included in the subset without exceeding the remainder.
+    - If the current number is less than or equal to the remainder, update dp[remainder + num % m] = True; else continue to the next number.
+    - Use memoization to store previously computed values and look up results for smaller instances of the problem.
+
+Initialization: dp[0] = True
+
+Goal: Find whether there exists a subset summing up to m modulo m. This is equivalent to checking if dp[m] = True.
+
+Edge cases:
+    - If the set is empty, return 1 (True) as an empty set sums up to 0.
+    - If m is 0 or all numbers in the set are 0, return 1 (True) as any subset sum will be divisible by m.
+===END PLAN===

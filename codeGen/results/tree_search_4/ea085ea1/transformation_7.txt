@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: Compare all possible substrings of str1 and str2, considering their lengths from 1 to N. Optimal substructure: Find the maximum number of common non-overlapping substrings by recursively combining smaller substrings.
+
+The state could be defined as dp[i][j] = maximum number of common non-overlapping substrings between str1[:i] and str2[:j].
+dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. If str1[:i] is a prefix of str2[:j], then dp[i][j] = dp[i-1][j]; else, dp[i][j] is the minimum of the following:
+    0 (no common substring)
+    N (all strings are common)
+    min(dp[i-1][j], dp[i][j-1]) (combine smaller substrings)
+
+Use memoization by storing the results of subproblems in a dictionary, with keys being tuples (i, j) representing the state.
+
+Pre-compute and store all possible substrings for both str1 and str2 in a hash set or dictionary to speed up substring checks.
+When checking for common substrings, consider only unique substrings to avoid duplicate counts.
+
+===END PLAN===

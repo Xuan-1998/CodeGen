@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively.
+
+The base case is when i or j is 0, set dp[0][j] = dp[i][0] = 0 for all i and j
+
+For i > 0 and j > 0:
+    If str1[i-1] != str2[j-1], update dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+Else, update dp[i][j] = dp[i-1][j-1] + 1
+
+Use a 2D array to store the maximum number of common non-overlapping substrings ending at each position in str1 and str2
+
+Let max_count be 0
+For i from 1 to N:
+    For j from 1 to N:
+        Update max_count = max(max_count, dp[i][j])
+
+Return max_count
+===END PLAN===

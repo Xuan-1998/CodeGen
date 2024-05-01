@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: dp[i] represents the sum modulo 10^9+7 for all values of i from 0 to min(a, b) - 1, considering the current bit of a and b.
+dp_a[i] and dp_b[i] represent the cumulative sum modulo 10^9+7 for all values of i from 0 to max(a, b) - 1.
+
+Algorithm:
+- Initialize dp_a and dp_b arrays with size max(a, b).
+- For each bit position in a and b, calculate the new state as (new_state + (dp_a[i] ^ (a >> i)) % (10^9+7)).
+- Return dp_a[max(a, b) - 1].
+===END PLAN===

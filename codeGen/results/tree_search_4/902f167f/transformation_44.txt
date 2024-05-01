@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Create a 2D array dp with size n+1*m+1 to store the minimum number of squares for each possible rectangle size.
+
+For i from 1 to n and j from 1 to m:
+    Initialize dp[i][j] = i*j as the initial state.
+    For k in range(min(i, j)**0.5+1):
+        Update dp[i][j] = min(dp[i-k*k][j-k*k] + (i-k*k)*(j-k*k), dp[i][j]).
+
+For each cell [i][j], consider all possible squares that can be placed at the bottom-right corner of the rectangle of size i x j.
+    For k in range(min(i, j)**0.5+1):
+        Update dp[i][j] = min(dp[i-k*k][j-k*k] + (i-k*k)*(j-k*k), dp[i][j]).
+
+Return dp[n][m].
+===END PLAN===

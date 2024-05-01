@@ -1,0 +1,5 @@
+m = int(input())
+N = int(input())
+arr = list(map(int, input().split()))
+result = solve(m, N, arr)
+print(result)

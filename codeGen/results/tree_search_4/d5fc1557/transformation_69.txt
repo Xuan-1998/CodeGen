@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table column by column, where each cell represents the length of the longest subarray with only 1's ending at that index.
+The base case is when i == 0, then dp[i] should be 0 because there are no 1's to consider. If the current element is 0, reset the dynamic programming value to 0.
+State relationship: dp[i] is a function of dp[i-1], and whether the current element is 1 or 0. 
+If the current element is 1, then the length of the longest subarray with only 1's ending at i is the maximum of the previous dynamic programming value and 2 (because we can always extend the existing subarray by one more 1).
+Dynamically create a table of size n+1 using a list and initialize all cells to 0, then fill in the table column by column.
+Return the last cell in the dynamic programming table as the result.
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+dp[i] = max(dp[i-1], sum(a[:i]) - dp[i-1]) if i > 0 else 
+        sum(a[:1])
+
+The dynamic programming problem can be viewed as a longest increasing subsequence problem, where the goal is to find the maximum number of elements that can be removed while maintaining the property that no two adjacent elements are equal.
+
+Implement a top-down dynamic programming approach where you recursively compute the maximum sum of points earned by deleting elements from the sequence, and memoize the results to avoid redundant computation. 
+
+At each step, consider including or excluding the current element ak in the optimal subsequence.
+If the current element is excluded, then the maximum number of points earned is the same as the maximum number of points earned for the remaining sequence a[i+1:].
+
+If the current element is included, then it should be different from its neighbors. So, consider including or excluding the next two elements ak-1 and ak+1.
+The base case is when i == 0, in which case dp[0] = sum(a[:1]) because we can't delete any elements.
+
+===END PLAN===

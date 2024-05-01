@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+DP state: subset of numbers from 0 to i, where i is the current number in the array.
+Transition relationship:
+    - If the sum of the current subset modulo m is less than or equal to m, then add the current number to the subset
+    Initialize a memoization table with size n+1, and fill it recursively by considering the following cases for each element in the array:
+        1. If the current sum modulo m is 0 (i.e., the sum is divisible by m), return 1 (there exists a subset whose sum is divisible by m)
+        2. If the current number exceeds m, skip it and consider the next number
+        3. Otherwise, recursively calculate the memoization value for the remaining numbers and add the current number to the subset if its addition results in a new sum modulo m that is less than or equal to m
+
+The base case would be when i is equal to 0, in which case return 1 if the total sum modulo m is 0; otherwise, return 0.
+
+The final answer would be the value at memoization table[n], which represents whether there exists a subset with sum divisible by m.
+
+===END PLAN===

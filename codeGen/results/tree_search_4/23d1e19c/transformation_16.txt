@@ -1,0 +1,10 @@
+dp_tabulation = [[0 for _ in range(n+1)] for _ in range(k+1)];
+
+for i in range(1, k+1):
+    for j in range(1, n+1):
+        dp_tabulation[i][j] = max(dp_tabulation[i-1][k] + 1 for k in range(1, n+1) if edge_exists(i, k) and k != j)
+
+min_recomputation = min([dp_tabulation[k-1][t] for k in range(2, k+1)])
+max_recomputation = max([dp_tabulation[k-1][t] for k in range(2, k+1)])
+
+print(min_recomputation, max_recomputation)

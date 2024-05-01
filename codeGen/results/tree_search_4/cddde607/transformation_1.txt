@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] = total number of paths collecting exactly k coins ending at cell (i, j),
+Consider the state as dp[i][j][k]: number of ways to reach cell (i, j) with k coins collected so far,
+Memoization using Dictionary: Use dictionary to store the solutions of subproblems and look them up when needed.
+For each cell (i, j), calculate the total number of paths that collect exactly k coins by considering all possible paths from top-left to this cell:
+    1. If i == N - 1 and j == N - 1, then there is only one path ending at the bottom-right corner which collects k coins.
+    2. Else if i < N - 1 or j < N - 1, consider two possibilities: either come from top cell (i+1, j) or from left cell (i, j+1).
+        a. If coming from top cell, then subtract the number of coins in that cell and add the current count.
+        b. If coming from left cell, then subtract the number of coins in that cell and add the current count.
+    3. Store the intermediate result in dp[i][j] for memoization.
+===END PLAN===

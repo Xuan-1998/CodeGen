@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+The state is a tuple (i, j) where i is the index of the last character seen from 'AB', and j is the index of the last character seen from 'BA'. The base case is when both substrings have been processed.
+Maintain two separate dynamic programming arrays dp_ab and dp_ba with size n+1, where n is the length of string s. 
+dp_ab[i] represents whether the substring "AB" can be formed up to index i in string s
+dp_ba[j] represents whether the substring "BA" can be formed up to index j in string s
+Define a function find_substrings(s) that uses dp_ab and dp_ba to check for the presence of both substrings.
+If dp_ab[i-2] is True (i.e., "AB" can be formed up to index i-2) and dp_ba[j-2] is True (i.e., "BA" can be formed up to index j-2), then it means we have found the required two non-overlapping substrings.
+===END PLAN===

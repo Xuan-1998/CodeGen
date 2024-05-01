@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[0][j] = dp[0][j-1] + (str2[j-1] == str1[0]) for all j > 0
+dp[i][0] = dp[i-1][0] + (str1[i-1] == str2[0]) for all i > 0
+
+For i, j > 0:
+    If str1[i] == str2[j], then there are two possibilities: 
+        1. The current substrings are the same and we can extend them.
+            dp[i][j] = dp[i-1][j-1] + (str1[i] == str2[j])
+        2. The current substrings are different, so we start a new substring.
+            dp[i][j] = 1
+    Else, the current characters don't match and we can't extend the previous substrings.
+        dp[i][j] = 0
+
+Use a dictionary memo to store the results of subproblems, where memo[(i, j)] = dp[i][j].
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a 2D table (dp) where dp[i][j] represents whether the string from index i to j contains both "AB" and "BA"
+The base case is when i > j, in which case we return false because there are not enough characters left to form both substrings
+The recursive case is as follows:
+    - If the current character at position j is 'A', then consider two possibilities:
+        1. The remaining string from index i to j-1 contains "AB" and "BA"
+        2. The remaining string from index i+1 to j contains "AB" and "BA"
+    - Similarly, if the current character at position j is 'B', then consider two possibilities:
+        1. The remaining string from index i to j-1 contains "AB" and "BA"
+        2. The remaining string from index i+1 to j contains "AB" and "BA"
+    - If the current character at position j is not 'A' or 'B', then the state remains the same as dp[i][j-1]
+The final result will be stored in dp[0][n-1], where n is the length of the string
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i] = the total number of times the shortest path from 1 to i needs to be recomputed
+dp[i] = the maximum length of the recommended paths between vertices in the fixed path from s to vertex i
+
+Memoize the dp array with a function that calculates the total number of times the shortest path needs to be recomputed and the maximum length of the recommended paths.
+
+For each vertex i, calculate the total number of times the shortest path from 1 to i needs to be recomputed by considering the shortest path from s to i (which we know) and the shortest path from i to t (which we don't know yet). This is because when we recompute the shortest path from s to i, we also need to recompute the shortest path from i to t.
+
+For each vertex i, calculate the maximum length of the recommended paths between vertices in the fixed path from s to vertex i by considering the longest path from s to i and the longest path from i to t (which we don't know yet). This is because when we follow a recommended path from s to i, we may need to recompute the shortest path from i to t.
+
+After calculating dp[i], update dp[i] with the maximum of dp[i-1] + 1 and the total number of times the shortest path needs to be recomputed for the current vertex i.
+
+The final answer is the difference between the maximum and minimum values in the dp array, which represents the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+===END PLAN===

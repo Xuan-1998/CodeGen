@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Create a 2D DP table where dp[i][j] indicates whether 'AB' or 'BA' is found in the first i characters of s and j characters processed so far.
+
+Let's define the base cases:
+- For i = 0, dp[0][j] is always False
+- For j = 0, dp[i][0] is True if s[0..i] contains 'AB' or 'BA', and False otherwise
+
+The transition relationship can be defined as:
+dp[i][j] = (dp[i-1][j-1] and ((s[i] == 'A' && s[j-1] == 'B') || (s[i] == 'B' && s[j-1] == 'A'))) or
+             (dp[i-2][j-2] and ((s[i-1] == 'A' && s[j-2] == 'B') || (s[i-1] == 'B' && s[j-2] == 'A')))
+
+The answer is dp[n][m], where n is the length of s, and m is the total number of characters processed so far
+
+===END PLAN===

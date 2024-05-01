@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+A subset sum that is divisible by m
+State: Given n and m, a subset sum that is divisible by m;
+Transition relationship: The problem can be broken down into smaller instances by considering all possible subsets of S with sums that are divisible by m. We can transition from the base case (n = 1) to larger instances by including or excluding elements from the set.
+
+Memoize function calls by storing results in a dictionary. For each recursive call, check if the result is already computed and return it if so.
+
+Base case: When n = 0, there are no more elements to consider; thus, we can directly determine whether there exists a subset whose sum is divisible by m (True for all sets with n = 0).
+
+For the recursive case, consider two subsets:
+- A subset S' that includes the current element;
+- A subset S'' that excludes the current element.
+
+Transition: If the current element is divisible by m or if the subset S'' also has a sum divisible by m, then we can transition to smaller instances and continue the recursion.
+Memoization: Store results in a dictionary for memoized function calls. This way, when we encounter the same problem again during the recursion, we return the precomputed result instead of redoing the computation.
+
+Return 1 if there is a subset with sum divisible by m; otherwise, return 0.
+===END PLAN===

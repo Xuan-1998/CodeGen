@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss. Use memoization to store the winning teams for each prefix of the string.
+
+State: For each prefix of the string from 0 to i, keep track of the winning teams in a set or list.
+Transition relationship: If the current bit is '1', add the team that wins this game to the set if it's not already there. The number of ways for a team to win is equal to the sum of the ways they can win if they lose this game and the ways they can win if they win this game.
+
+Use dynamic programming by initializing a 2D array dp[i][j] where dp[i][j] represents the number of ways the j-th team can win up to i phases, then update the array based on whether the current bit is '1' or '0'.
+
+Base case: For each team j and phase i = n, the winning teams are all the teams that have won at least one game.
+
+Transition relationship: dp[i][j] = dp[i-1][k] for all k such that s[i-1][k] == '1' if i > 0
+
+Find the winning teams by iterating through the array and checking which team has won at least one game in each phase.
+
+===END PLAN===

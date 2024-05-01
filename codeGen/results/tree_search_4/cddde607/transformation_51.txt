@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j][k] = num_paths_to_collect_k_coins_at_cell_i_j_with_k_left
+
+Initialize dp[0][0][K] = 1 (base case: one path from top left to collect exactly K coins)
+Fill up the table by considering subproblems:
+for i in range(N):
+    for j in range(N):
+        if k >= arr[i][j]:
+            dp[i][j][k-arr[i][j]] += dp[i+1][j][k-arr[i][j]] + dp[i][j+1][k-arr[i][j]]
+Memoize the function by storing previously computed values in a dictionary memo
+Return dp[N-1][N-1][K]
+===END PLAN===

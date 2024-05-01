@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+We can solve this problem using dynamic programming with memoization.
+
+Let dp[i][k] be true if there is a subset summing up to k modulo m for the first i numbers in the set. The base case would be when i is 0, then dp[i][k] would be false for all values of k.
+
+The recursive relationship would be:
+
+dp[i][k] = (dp[i-1][(k+x)%m] or dp[i-1][k]) where x is the current number in the set
+
+We can implement memoization by creating a dictionary memo where memo[i][j] stores the result for the subproblem with i numbers and sum j mod m.
+
+The transition would be deciding whether to include or exclude the current number based on its value and the current sum.
+
+The final answer would be dp[n-1][0], which is true if there exists a subset whose sum is divisible by m, and false otherwise.
+===END PLAN===

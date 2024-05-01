@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+dp[i] = max(
+    memoized_value_for_sum(a[:i]),
+    memoized_value_for_sum(a[i:])
+) if i == 0 else ...
+Use binary search to solve the problem by maintaining a sliding window of elements that are equal or one more/less than the current element, and updating the maximum number of points earned.
+dp[i] = max(dp[i-1], dp[i-2]) + 1
+    if a[i] in [a[i-1]-1, a[i-1]+1]
+else:
+    dp[i] = dp[i-1]
+Store values of dp[i] and avoid redundant computation using memoization.
+Update the maximum number of points earned using the binary search approach.
+===END PLAN===

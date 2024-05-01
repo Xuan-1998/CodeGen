@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider dynamic programming where each subproblem is defined as a tuple (N, i) representing the remaining value N and the index i in the array. The optimal substructure can be identified by realizing that the problem of finding ways to form N with the first i elements of the array is similar to the original problem but with reduced size.
+
+State: dp[N][i] represents the number of ways to form N using the first i elements. Base case: when i is 0 or N is less than 0, return 0.
+dp[N][i] = sum(1 for k in array[:i+1] if N-k >= 0) * dp[N-k][j]
+where j is the index of the last element used to form N-k.
+
+Utilizing a recursive function with memoization using a dictionary
+for k in range(len(array)):
+    for i in range(k, len(array)):
+        dp[k][i] = (sum(1 for n in array[i+1:] if k-n >= 0)) * dp[k-array[i]][i-1]
+
+Base case: when i is 0 or N is less than 0, return 0
+dp[N][m-1]
+Return the value at dp[N][m-1] modulo 10^9 + 7
+
+===END PLAN===

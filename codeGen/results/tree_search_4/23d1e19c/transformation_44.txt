@@ -1,0 +1,10 @@
+State:
+Let dp[i][j] represent the number of times recomputation is needed when we are at vertex p_i, having recomputed j times previously.
+
+Approach: 
+Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+1. Define a function that takes a vertex as input and returns the maximum and minimum lengths of recommended paths between vertices in the fixed path.
+2. For base case, consider vertices in the fixed path.
+
+Transition relationship:
+dp[i][j] = 1 + min(dp[u][k-1]) for all edges (u,p_i) in the graph, and 0 if there's no edge from u to p_i.

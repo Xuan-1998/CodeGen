@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: dp[i] = max number of points that can be earned from the first i elements
+Initialize dp[0] = 0
+
+For each element a[i]:
+    If a[i] is not equal to any previous element:
+        dp[i] = dp[i-1] + 1 (since we can delete all previous elements)
+    Else:
+        dp[i] = max(dp[i-1], dp[i-k]) where k is the minimum index such that a[k] != a[i]
+        (since we can't delete any elements equal to a[i])
+
+Create a memoization function to store the intermediate results of subproblems and use it to optimize the computation.
+
+For edge cases:
+    n = 0: return 0
+    n = 1: return 1
+
+===END PLAN===

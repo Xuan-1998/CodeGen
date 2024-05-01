@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+Let dp[i][j] be the minimum sum of a path ending at cell (i, j).
+dp[0][j] = grid[0][j] for all j
+Because there's no previous row to consider in the first row.
+
+For i > 0 and j in range(n), formulate dp[i][j] as:
+dp[i][j] = min([grid[i-1][k] + dp[i-1][k]] for k in range(n) if k != j)
+This represents the minimum sum of a path ending at cell (i, j) by considering all possible paths from above rows that do not use the same column as the current cell.
+
+The minimum sum is chosen by taking the smallest value from the list comprehension.
+
+Finally, return dp[-1][-1] as it will hold the minimum sum of a falling path with non-zero shifts.
+===END PLAN===

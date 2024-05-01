@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP_state = (subsets, sums), where subsets is a set of all possible subsets and sums is a set of all possible sums, with base case being DP_state({set()}, {0})
+
+DP_state = (subset_sum, current_sum), where subset_sum is the sum of all elements in the subset and current_sum is the current sum being calculated.
+
+Store intermediate results in a list of lists, where each sublist contains the results for a particular subset.
+
+For each element ai in the input set:
+  If subset_sum + ai < any existing sum in sums, then add subset_sum + ai to sums
+  For each existing subset subset in subsets:
+    Add ai to subset and add the new subset to subsets
+    Update subset_sum to be the sum of elements in the new subset
+
+Return the sorted list of distinct sums in sums
+
+===END PLAN===

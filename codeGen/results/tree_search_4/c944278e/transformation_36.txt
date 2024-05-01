@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Maintain two arrays:
+dp[i][j] represents whether team j is still in the competition after i phases.
+winning_teams[i][j] represents the winning teams for each prefix of length i.
+
+The base case would be when the input has only one phase, in which case all teams that have won at least one game are considered winning teams. So, dp[0][j] = True for all j, and winning_teams[0][j] is just {j} if s[0] = 1.
+
+For each subsequent phase i:
+    Transition from dp[i-1][j] to dp[i][j] based on s[i]. If s[i] = 1, then the winner of this phase remains in the competition. So, dp[i][j] = dp[i-1][j] if s[i] = 1.
+    Update winning_teams[i][j] as follows: if s[i] = 1 and j is a winning team for the previous phase (dp[i-1][j]), then it's also a winning team for this phase. If s[i] = 0, then all teams that were winning teams for the previous phase are eliminated.
+
+The final answer would be the set of teams that are still in the competition and have won at least one game in each phase.
+===END PLAN===

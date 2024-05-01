@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Check if 'AB' appears in the string, then check if 'BA' appears in the remaining part of the string
+The state is an integer index i into the string s, with base case being when i >= len(s) - 2 (i.e., there are at most two characters left).
+Whether 'BA' appears in the remaining part of the string (i.e., s[i+2:]) as a function of whether 'AB' appears in this part
+Use a dictionary memo to store whether the substring s[:i+2] contains 'AB' or not, and then check if 'BA' appears in the remaining part of the string based on this information.
+Store in memo whether 'AB' is found at index i
+For each i, check if 'AB' is found at index i by checking if s[i:i+2] == 'AB'
+If 'AB' is not found, return "NO"
+Check if 'BA' appears in the remaining part of the string (i.e., s[i+2:]) based on whether 'AB' appears in this part
+If 'AB' does not appear and i >= len(s) - 2, then return "NO"
+If 'AB' appears at index i, check if 'BA' is found at index i + 2 by checking if s[i+2:i+4] == 'BA'
+Return "YES" if both substrings are found
+===END PLAN===

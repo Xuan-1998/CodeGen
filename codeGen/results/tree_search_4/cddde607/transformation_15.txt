@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j] = 1 if i == N-1 and j == N-1 and arr[i][j] == k
+dp[i][j] = dp[i+1][j] + dp[i][j+1] if i < N-1 or j < N-1 and arr[i][j] <= k
+dp[i][j] = 0 if i > 0 and (i == N-1 or j == N-1) and arr[i][j] > k
+
+Use a 2D table to store the intermediate results for each subproblem.
+
+Initialize dp[0][0] = 1 if arr[0][0] <= K, otherwise 0
+dp[i][0] = dp[i-1][0] for i from 1 to N-1 if arr[i][0] > k
+dp[0][j] = dp[0][j-1] for j from 1 to N-1 if arr[0][j] > k
+
+Fill up the table in bottom-up manner, considering subproblems and storing intermediate results.
+
+Finally, return dp[N-1][N-1]
+
+===END PLAN===

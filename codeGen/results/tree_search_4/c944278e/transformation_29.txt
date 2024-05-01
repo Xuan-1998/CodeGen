@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp = [[[] for _ in range(2**n)] for _ in range(n+1)]
+for i in range(n+1):
+    for j in (0, 2**i-1):
+        if all(int(s[i-k-1]) == int('1' if k < n-i else s[k]) for k in range(i)):
+            dp[i][j] = [(k,) for k in range(2**n) if bin(j)[2:].zfill(n-i).count('1') == 1]
+for i in range(n, -1, -1):
+    for j in (0, 2**i-1):
+        if dp[i][j]:
+            for team in dp[i][j]:
+                dp[i-1][j ^ (1 << team[n-i:])] = [(team,) if not dp[i-1][k] else dp[i-1][k] + [team] for k in range(2**i-1)]
+for i in range(n):
+    for j in range(2**n):
+        if dp[i][j]:
+            for team in dp[i][j]:
+                print(team)
+===END PLAN===

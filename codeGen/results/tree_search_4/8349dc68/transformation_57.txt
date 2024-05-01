@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Determine if the problem has a greedy property. If so, consider using a greedy algorithm with dynamic programming to solve the problem.
+
+Consider partitioning the array into subarrays based on their maximum values, and recursively calculate the maximum sum of each subarray.
+
+Let dp[i][max_val] be the maximum sum that can be obtained by considering the first i elements in the array, where max_val is the maximum value in this subarray. Initialize a 2D table with dimensions n x 10^9 (since the array elements are between 0 and 10^9), filled with negative infinity for all states.
+
+The state is the maximum value of the current subarray, and the transition relationship is that it updates to the maximum value of the current element if it is greater than the previous maximum value. For each i from 1 to n:
+
+* For each max_val from 0 to 10^9:
+    + If the current element is less than or equal to max_val, update dp[i][max_val] with the maximum of its current value and the sum of the current element plus the maximum sum that can be obtained by considering the first i-1 elements in the array.
+    + If the current element is greater than max_val, set dp[i][max_val] to negative infinity.
+
+Finally, return the maximum sum that can be obtained, which is the maximum value in the last row of the table (dp[n][-1]).
+
+Initialize a variable max_sum with 0 and update it with the maximum sum if it's less than the current maximum sum. For each max_val from 0 to 10^9:
+
+* If dp[n][max_val] is greater than max_sum, update max_sum with dp[n][max_val].
+
+Return max_sum.
+
+===END PLAN===

@@ -1,0 +1,9 @@
+Maintain a binary string where '1' represents a win and '0' represents a loss. Initialize an empty set S.
+
+Use dynamic programming with memoization to store the winning teams for each prefix of the string. For each phase, iterate through all elements in S, checking if they are still valid winners after considering the current phase. If a team wins at least one game in the current phase, add their corresponding binary string to S.
+
+The base case would be when the input has only one phase, in which case all teams that have won at least one game are considered winning teams. For this case, initialize S with all possible binary strings of length 1 (either '0' or '1').
+
+Transition from S to the next step by iterating through all elements in S, checking if they are still valid winners after considering the current phase. A team's binary string is considered a valid winner if it has at least one '1'.
+
+Finally, find the winning teams by returning the elements in S that have at least one '1'. Sort these elements in ascending order to get the desired output.

@@ -1,0 +1,5 @@
+for i in range(n):
+    dp[i].extend([0] + [max(0, dp[j][i]) for j in range(i+1)] + [-99 for _ in range(n-i-1)])
+    for j in range(n):
+        if i > 0:
+            dp[i][j] = min(dp[i-1][k] for k in range(n) if k != j) + grid[i][j]

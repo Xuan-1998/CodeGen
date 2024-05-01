@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+Let dp[i][j] = True if team j has won i games from the 0-th phase onwards.
+The base case is when i == n, where n is the number of phases; in this case, dp[n][j] represents whether team j can win the tournament.
+
+To fill up the dp table, iterate over each phase i and consider all teams j that have won at least one game from the 0-th phase onwards. If a team j has won i games in the current phase, then it has won at most n - i games in previous phases (since there are only n phases total).
+
+For each such team j, check if dp[i-1][j] is True and also s_i[j] == 1 (where s_i[j] denotes the result of team j in the i-th phase). If both conditions hold, then team j can win at least one game in this phase, so set dp[n-i][j] = True.
+
+Finally, to find all winning teams, iterate over each row dp[i][j] where i >= n/2 (since a team must have won at least half the phases to have a chance of winning). For each such row, print out all j for which dp[i][j] is True.
+===END PLAN===

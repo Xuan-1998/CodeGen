@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j] = total number of paths collecting exactly k coins ending at cell (i, j),
+
+Create a base case: Initialize dp[0][j] = arr[0][j-1] for all j, and dp[i][0] = arr[i-1][0] for all i. This represents the cases where you can only move right or down from the top-left corner.
+
+Fill up the rest of the dp table by considering two possibilities: moving down (i+1, j) or moving right (i, j+1). For each cell, update dp[i][j] as the sum of:
+
+* dp[i-1][j] if you move down
+* dp[i][j-1] if you move right
+
+Add a condition to check if the number of coins collected at cell (i, j) equals k. If yes, increment the count by 1.
+
+Return dp[N-1][N-1], which represents the total number of paths collecting exactly K coins ending at the bottom-right corner.
+===END PLAN===

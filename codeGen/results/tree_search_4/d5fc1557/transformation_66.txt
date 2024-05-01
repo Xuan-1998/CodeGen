@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+dp[i] should store the length of the longest subarray with only 1's ending at index i.
+
+Base case: dp[0] = 0, because there are no 1's to consider in an empty array.
+
+Transition relationship:
+    * If nums[i-1] == 1 and nums[i] == 1, then we can extend the previous subarray with only 1's by one element.
+      dp[i+1] = dp[i] + 1
+    * If nums[i-1] != nums[i], then we have to start a new subarray from this point.
+      dp[i+1] = max(dp[i-1], 0) if nums[i] == 0 else 1
+
+Create a dictionary to store the memoized values and update them accordingly.
+
+For edge cases, consider what happens when the input array is empty or has only one element. In both cases, the function should return 0.
+===END PLAN===

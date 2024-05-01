@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly.
+
+Define dp[i][0] as the length of the shortest subsequence in S[:i] that is not a subsequence in T, and similarly for dp[0][j].
+
+Use a combination of dynamic programming and sliding window approach. Initialize two pointers i and j at the start of both strings. Then, for each character in S and T respectively, check if they match or not, and update the DP table accordingly.
+
+Define a 2D array dp where dp[i][j] represents the length of the shortest subsequence in S[:i] that is not a subsequence in T[:j].
+
+Initialize dp[0][0] to be -1 (since we are looking for the shortest uncommon subsequence).
+
+Iterate over each character c in S and d in T:
+
+    If c != d:
+        For each previous state where the characters matched:
+            Update dp[i][j] based on this mismatch.
+
+    If c == d:
+        Copy the value from the top-left cell (dp[i-1][j-1]) to dp[i][j].
+
+For the final answer, return dp[m][n], where m and n are the lengths of S and T respectively.
+
+===END PLAN===

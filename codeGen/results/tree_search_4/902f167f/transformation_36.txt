@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To solve this problem, you can use a top-down approach with memoization and dynamic programming. Define a function that takes the dimensions of the rectangle as input, and use memoization to store the results of subproblems so they can be reused.
+
+State: dp[i][j] is the minimum value among all possible ways to place a square in the remaining area.
+Let f[i][j] be the minimum number of squares required to cover the top-left i x j rectangle. Then, 
+f[i][j] = min(f[(i-k) // sqrt(k)][(j-k) // sqrt(k)]) + 1, where k is a side length that divides both i and j.
+
+Create a recursive function that fills up a 2D array in a bottom-up manner, using previously computed results. Start from the base cases: f[0][0] = 0 (no squares needed to cover an empty rectangle).
+
+Use memoization to store the results of subproblems as you compute them. This will prevent redundant computations and speed up the solution.
+
+Finally, return f[n][m], which represents the minimum number of integer-sided squares required to tile the given rectangle.
+===END PLAN===

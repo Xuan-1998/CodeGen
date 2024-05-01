@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+Check if 'AB' appears in the first half and 'BA' appears in the second half
+If 'AB' is found at some index j and s[j-1] is 'B', then we can safely return True because this 'AB' cannot overlap with any potential 'BA'
+Consider the state where the last character processed was either 'A' or 'B', and determine if there's a valid transition to the next character
+Use a bottom-up approach by initializing a 2D table with dimensions (n+1) x 2, where n is the length of the string
+Fill the table in a bottom-up manner, considering the last two characters processed: 
+- If both are 'A', fill the cell with True if 'AB' can be appended to the end; otherwise, False
+- If one is 'A' and the other is 'B', fill the cell with True if 'BA' can be appended to the start; otherwise, False
+- If both are 'B', fill the cell with True if 'BA' can be prepended to the start; otherwise, False
+Use this table to determine if 'AB' or 'BA' appears in the string
+Check the last row of the table to see if there's a valid transition from either 'A' or 'B' to the end of the string
+If so, return True; otherwise, return False
+===END PLAN===

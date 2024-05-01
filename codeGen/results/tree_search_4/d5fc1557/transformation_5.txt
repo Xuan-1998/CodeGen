@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i. The base case is dp[0] = 1 if nums[0] == 1, otherwise dp[0] = 0.
+
+dp[i] can be calculated based on dp[i-1] and the value of nums[i]. If nums[i] == 1, then we have two options: include the current element in our subarray or not. In the first case, the maximum length is dp[i-1] + 1; in the second case, it's just dp[i-1]. We choose the maximum.
+
+On the other hand, if nums[i] == 0, then we can only consider the case where we don't include the current element. So dp[i] = dp[i-1].
+
+To find the maximum length of subarray containing only 1's in the resulting array after deletion, we iterate over all possible deletions and for each deletion, calculate the maximum length using the dynamic programming approach.
+
+Finally, return the maximum length found as the result.
+
+===END PLAN===

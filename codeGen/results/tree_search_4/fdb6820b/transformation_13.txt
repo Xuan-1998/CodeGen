@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider dynamic programming where each subproblem is defined as a tuple (N, i) representing the remaining value N and the index i in the array.
+
+State: (N, i) = (num_ways_to_form_N_minus_i, num_elements_included), represents the remaining value and the number of elements included in forming N. Base case: when N is 0, there's only one way to form it (by not including any elements).
+
+Transitions:
+- If N > 0, then for each i from 1 to m:
+    * if we include the i-th element in forming N, recursively call the function with N-i and i+1
+    * otherwise, just pass down the problem with N unchanged
+- When N is 0, return 1 (since there's only one way to form it: by not including any elements)
+
+Memoization:
+- For each subproblem (N, i), store its solution in a memo array
+- Before solving a new subproblem, check if it has been solved before and return the stored result if so
+
+===END PLAN===

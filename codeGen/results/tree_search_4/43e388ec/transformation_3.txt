@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Let dp[i] denote the sum of OR operations up to index i. Define dp[0] as 0 (base case).
+The idea is to keep track of the results for each index and add the new result based on whether the corresponding bits in a and b are 0 or 1.
+This approach can be improved by using a rolling hash technique to avoid calculating subproblems multiple times.
+
+To do this, maintain two variables: prefix_or and suffix_or. Initialize them as 0.
+Iterate over i from 0 to 314159:
+    Calculate the OR of a[i] and b[i-1] (if i > 0) or a[0] and b[0] (if i == 0). Add this result to prefix_or.
+    Update dp[i] as (dp[i-1] + prefix_or) % (10^9+7).
+    If i > 0, update suffix_or as (suffix_or << 1 | b[i-1]) % (10^9+7).
+    Update dp[i] as (dp[i-1] + suffix_or) % (10^9+7).
+
+Finally, return dp[314159].
+===END PLAN===

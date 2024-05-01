@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+
+DP_state = (i, s), where i is the current integer and s is the current sum, with base case being DP_state(N+1, s) returning an empty list for any sum beyond N integers
+
+The idea of using memoization to store previously computed sums is correct. However, the plan can be improved by explicitly defining the transitions between subproblems.
+
+DP_state = (i, s), where i is the current integer and s is the current sum, with base case being DP_state(N+1, s) returning an empty list for any sum beyond N integers
+
+Transitions:
+- If the current sum is greater than the maximum possible sum, return an empty list
+- For each integer from 0 to max_sum (the maximum possible sum), compute the sum of all subsets that include the current integer and recursively call DP_state(i+1, s + ai) for each subset
+
+To handle edge cases:
+- If N is 0 or less, return an empty list
+- Initialize an empty dictionary memo as a place to store previously computed sums
+- For each possible subset size from 1 to N, compute the sum of all subsets that include the current integer and recursively call DP_state(i+1, s + ai) for each subset
+
+This plan ensures that all distinct sums are generated from the subsets of the given set.
+===END PLAN===

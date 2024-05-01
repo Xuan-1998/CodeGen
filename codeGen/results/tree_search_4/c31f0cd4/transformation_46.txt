@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+DP_state = (subset, sum), where subset is the current subset and sum is the current sum, with base case being DP_state({}, 0) returning a list of sums for the empty subset
+Memoize using a dictionary with DP_state as key and sets of distinct sums as value
+Initialize memoization dictionary dp = {}
+For each integer i in the input set:
+    For each possible subset s of integers less than or equal to i:
+        Calculate sum = sum of all integers in subset s
+        If sum not in dp, add it with an empty set as its value
+        For each possible sum j greater than sum:
+            Add j to the set of sums for sum if it is not already there
+    Return a list of distinct sums from memoization dictionary dp
+===END PLAN===

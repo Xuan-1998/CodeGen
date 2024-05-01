@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+Let dp[i][j] denote the sum modulo 10^9+7 of the result of performing the exclusive OR operation on the i-th bit of a and the (i+j)-th bit of b for all values of i from 0 to a - 1.
+
+Consider the dynamic programming approach where:
+
+dp[0][j] = 0, since there are no bits in a to consider
+
+For i > 0:
+dp[i][j] = dp[i-1][j] + a[i]^b[(i+j)%b]
+This is because the sum modulo 10^9+7 of the result of performing the exclusive OR operation on the i-th bit of a and the (i+j)-th bit of b can be computed by adding the results of smaller subproblems.
+
+Memoize using dictionary with key as tuple of (i, j) and value as the computed sum modulo 10^9+7
+
+Finally, compute the answer by summing dp[a-1][0] to dp[0][b-1]
+
+===END PLAN===

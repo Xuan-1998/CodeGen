@@ -1,0 +1,17 @@
+Dynamic programming can also be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = number of ways to reach cell (i, j) collecting exactly K coins.
+dp[i][j] = 
+    if arr[i][j] <= k:
+        dp[i-1][j] + dp[i][j-1]
+    else:
+        0
+
+Create a dynamic programming function that takes current row i, column j, and remaining coins k as input, and returns the number of ways to collect exactly K coins.
+
+The base case for the top-left corner is when i == 0 and j == 0. In this case, the only way to reach the cell with zero coins is by not taking any coins.
+dp[0][0] = 1
+
+For other cells, the number of ways to collect exactly K coins is the sum of the number of ways to collect exactly K-coins from the top cell and the right cell, if the current cell's coin count is less than or equal to k.
+
+The function should return the value at the bottom-right cell (i.e., dp[N-1][N-1]).

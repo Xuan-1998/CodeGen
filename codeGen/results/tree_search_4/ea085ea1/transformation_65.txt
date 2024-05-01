@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+Let prefix_dp[i] be the maximum number of common non-overlapping substrings ending at index i in str1, considering only the first i characters.
+dp[i][j] = dp[i-1][j-1] + 1 if str1[i] == str2[j],
+prefix_dp[i] = max(prefix_dp[i-1], prefix_dp[i-1]) if str1[i] != str2[j],
+
+Use a 2D array to store the dynamic programming table.
+Let suffix_dp[j] be the maximum number of common non-overlapping substrings ending at index j in str2, considering only the last j characters.
+
+Initialize dp[0][j] = prefix_dp[0] and dp[i][0] = suffix_dp[0] for all i, j.
+For each pair (i, j), compute dp[i][j] as the maximum of two cases: 
+1. str1[i] == str2[j]: dp[i][j] = dp[i-1][j-1] + 1
+2. str1[i] != str2[j]: dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+Finally, return the maximum value in the dp table.
+
+===END PLAN===

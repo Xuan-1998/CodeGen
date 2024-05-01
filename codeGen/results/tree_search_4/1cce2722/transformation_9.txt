@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], dp[j] + (n - j) - i for j in range(i)) if i > 0 else 0,
+The state could be the index of the current element, 
+dp[i] represents the maximum number of points that can be earned by deleting elements up to index i.
+Memoize previously computed values and avoid redundant computation.
+Initialize dp with n-1 zeros because there are n elements in total. For each i from 1 to n:
+    If it's the first element (i=1), then the maximum number of points is 0.
+    For each j from 1 to i:
+        Calculate the maximum number of points by deleting all elements equal to a_j+1 and a_j-1, which is dp[j] + (n - j) - i.
+        Update dp[i] with the maximum value between dp[i-1] and this calculated value.
+Return dp[n-1] as the maximum number of points that can be earned by deleting elements from the sequence.
+===END PLAN===

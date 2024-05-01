@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Create a 2D array dp with dimensions n+1 x m+1 to store the minimum number of squares for each possible rectangle size.
+Fill in base cases: dp[0][j] = 0 and dp[i][0] = 0 for all i.
+For each cell dp[i][j], calculate the minimum number of squares required to tile a rectangle of size i x j:
+    For k in range(min(i, j)**0.5+1):
+        Calculate the area of the square with side length k: k*k
+        If the rectangle can be divided into a square of size k x k and a remaining rectangle of size (i-k)*k x (j-k)*k:
+            Update dp[i][j] = min(dp[i][j], 1 + dp[i-k*k][j-k*k])
+Fill in the remaining cells using dynamic programming.
+Return dp[n][m]
+===END PLAN===

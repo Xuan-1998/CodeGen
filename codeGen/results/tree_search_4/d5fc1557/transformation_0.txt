@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i, and the base case as dp[0] = 1 if nums[0] == 1, otherwise dp[0] = 0.
+
+dp[i] could represent the maximum length of subarray containing only 1's ending at index i.
+dp[i] = max(dp[i-1] + (nums[i] == 1 and nums[i-1] == 1), 1 if nums[i] == 1 else 0)
+
+If nums[i-1] is not equal to 1, then the maximum length of subarray containing only 1's ending at index i should be reset to 1.
+
+dp[i] = max(dp[i-1] + (nums[i] == 1 and nums[i-1] == 1), 1 if nums[i] == 1 else dp[0])
+
+To handle the case when we need to delete an element from the array, let's consider deleting elements up to index i. Then, the maximum length of subarray containing only 1's ending at index i should be reset to max(dp[i-1], 1).
+
+dp[i] = max(dp[i-1], 1)
+
+The final answer would be dp[n-1]
+
+===END PLAN===

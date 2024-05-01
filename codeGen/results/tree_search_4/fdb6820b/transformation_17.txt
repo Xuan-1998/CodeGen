@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use memoization where a recursive function is used to find the number of ways to form N and the function calls itself with smaller values of N until it reaches base cases.
+
+State: dp[i][j] = number of ways to form i using j elements from the array, where j is a variable that increments with each recursive call.
+dp[i][j] could represent the total number of ways to form i using exactly j elements from the array.
+
+Use bottom-up dynamic programming by defining dp[i] as the total number of ways to form i and iterating from N down to 1, updating dp[i] based on the values of dp[i-1] and dp[j], where j is a variable that increments with each iteration.
+For each element in the array, consider adding it to the sum to form N or not. This can be done by recursively calling the function for all elements less than the current one, adding 1 if the current element is added (since we can add it once) and then considering the remaining numbers.
+
+Base cases:
+- If N becomes 0, return 1 (since there's only 1 way to form 0, which is not forming anything)
+- If i is less than or equal to 0, return 0 (since we cannot form a negative sum)
+
+Edge cases: 
+- If m is 0 and N is greater than 0, return 0 (since we have no elements to form the sum)
+
+===END PLAN===

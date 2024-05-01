@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+dp[i][j] = min(dp[i-1][k]) + grid[i][j] for k in range(n) if k != j
+    # base case: dp[0][j] = grid[0][j]
+    # memoization using dictionary to store intermediate results
+
+    memo = {}
+
+    def dp(i, j):
+        if i == 0:
+            return grid[i][j]
+        elif (i, j) in memo:
+            return memo[(i, j)]
+        else:
+            min_sum = float('inf')
+            for k in range(n):
+                if k != j:
+                    min_sum = min(min_sum, dp(i-1, k)) + grid[i][j]
+            memo[(i, j)] = min_sum
+            return min_sum
+
+    n = len(grid)
+    min_sum = 0
+    for i in range(n):
+        min_sum += dp(i, 0)
+
+    return min_sum
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider the maximum value of each subarray as a state, and use memoization to store the maximum sum for each prefix. Then, dynamically calculate the maximum sum for each subarray by considering the maximum value of the previous subarray.
+
+dp[i] represents the maximum sum of arr[:i], where i is the length of a subarray.
+DP state: dp[i-k] = max_sum(arr[i-k:i]), where dp[i-1] represents the maximum sum of the previous subarray. Update dp[i] based on this state.
+
+For each prefix, calculate the maximum sum by considering the maximum value of the current subarray and the maximum sum of the previous subarray.
+
+dp[0] = arr[0], since there's only one element in the first subarray.
+Then for i > 0:
+
+1. Calculate max_val = max(arr[i-k+1:i+1]), the maximum value of the current subarray.
+2. Update dp[i] to be the maximum of two cases:
+   - Case 1: If max_val is greater than dp[i-1], update dp[i] to be max_val + dp[i-k].
+   - Case 2: Otherwise, update dp[i] to be dp[i-1].
+
+Finally, return dp[n-1], the maximum sum of the entire array after partitioning.
+
+===END PLAN===

@@ -1,0 +1,17 @@
+Dynamic programming can also be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = total number of ways to reach cell (i, j) regardless of the number of coins collected.
+dp[i][j] represents the total number of ways to reach cell (i, j) by either coming from top or left, considering all possible paths that have collected at most K coins.
+
+To implement tabulation:
+    Initialize a 2D table dp[][] of size N*N with values initialized to 0
+    Fill it from top-down manner based on the state expression
+        For each cell (i, j):
+            If i == 0 and j == 0, set dp[i][j] = 1 (base case: only one way to reach top-left corner)
+            Else:
+                Consider two cases: coming from top or left
+                    If arr[i][j] <= K, consider all possible ways to come from top or left that collect at most K coins and add them up to dp[i][j]
+                    Else, set dp[i][j] = 0 (because we can't collect more than K coins)
+        Return dp[N-1][N-1]
+
+This plan considers the edge case where i == 0 and j == 0 by setting dp[0][0] = 1.

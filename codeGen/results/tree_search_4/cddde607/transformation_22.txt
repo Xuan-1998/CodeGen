@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+Create a memoization dictionary dp that maps each cell to its corresponding value. Initialize all values as 0.
+Iterate over the matrix from top to bottom (i = 0 to N-1) and left to right (j = 0 to N-1). For each cell, check if you can reach it without exceeding K coins.
+
+dp[i][j] = 1 if arr[i][j] <= k (base case)
+dp[i][j] = dp[i+1][j] + dp[i][j+1] if i < N-1 and j < N-1 and arr[i][j] <= k
+dp[i][j] = dp[i+1][j-1] + dp[i-1][j-1] if 0 < i < N-1 and 0 < j < N-1
+
+The final answer is stored in dp[0][0].
+===END PLAN===

@@ -1,0 +1,11 @@
+dp[i][0] = min(dp[j-1][0], 1) + abs(p[j]-p[j-1])
+dp[i][1] = max(dp[j-1][1], 1)
+
+dp[0][0] = dp[0][1] = 0
+
+for i from 1 to n:
+    for j from k-1 downto 1:
+        if p[j] == p[k-1]:
+            break
+        dp[i][0] = min(dp[j-1][0], 1) + abs(p[j]-p[j-1])
+        dp[i][1] = max(dp[j-1][1], 1)

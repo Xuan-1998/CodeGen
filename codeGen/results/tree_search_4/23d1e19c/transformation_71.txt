@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming with a graph-based approach:
+View each vertex as a state, and the transition is to its adjacent vertices.
+The goal is to find the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+Maintain two arrays, dp_min and dp_max, where dp_min[i] stores the minimum number of times the shortest path from the current vertex i to t needs to be recomputed, and dp_max[i] stores the maximum number of times.
+
+For each vertex v:
+    If v is in the fixed path, calculate the minimum and maximum number of recomputations based on the vertices before v.
+    Otherwise, for each adjacent vertex u:
+        Calculate the minimum and maximum number of recomputations based on the vertices after u.
+        Update dp_min[v] and dp_max[v] accordingly.
+
+Finally, return dp_min[t] as the minimum and dp_max[t] as the maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+===END PLAN===

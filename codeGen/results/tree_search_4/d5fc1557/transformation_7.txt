@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], representing the maximum length of subarray containing only 1's ending at index i, and the base case as 
+dp[0] = nums[0] if nums[0] == 1, otherwise dp[0] = 0. This is because a single '1' can be considered as a subarray.
+
+For each state dp[i], calculate it based on previous states dp[j] where j < i.
+This could be done by considering the maximum length of non-empty subarray ending at index j and then appending one more '1' to it if nums[i] is 1. 
+The maximum length will be updated accordingly.
+
+Implement memoization using a dictionary memo to store the results of expensive function calls and avoid redundant computation.
+This can significantly reduce the time complexity by avoiding repeated calculations for the same subproblems.
+
+===END PLAN===

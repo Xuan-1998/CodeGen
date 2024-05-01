@@ -1,0 +1,13 @@
+Tabulation could be an option since we need to calculate a cumulative sum and memoization might not be efficient here.
+
+Let's define the state as DP[i] = (a & (1 << i)) ? (a - (1 << i) + b) : a, and base case is DP[0] = a.
+Formulate state and transition relationships using bitwise operations: 
+DP[i] = (a & (1 << i)) ? (DP[i-1] ^ (b >> i)) : DP[i-1].
+
+To avoid calculating the same value multiple times, we can iterate from i to 314159:
+for(int i = 0; i <= 314159; i++) {
+    if(i == 0)
+        DP[i] = a;
+    else 
+        DP[i] = (a & (1 << i)) ? (DP[i-1] ^ (b >> i)) : DP[i-1];
+}

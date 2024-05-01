@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][j] = number of ways to form i using j elements from the array
+base case: dp[0][j] = 1 (there's only one way to form 0 with any number of elements)
+recursive rule: dp[i][j] = sum(dp[k][j-1] for k in range(min(i, j*m//i), i+1))
+    - this is because we can form i by adding some element from the array and then forming the remaining value
+    - we iterate over all possible values of k that are within min(i, j*m//i) to avoid considering elements larger than i or smaller than 0
+    - for each k, we consider the number of ways to form the remaining value (i-k) using j-1 elements from the array
+dp[i][j] is memoized so that it doesn't recompute the same subproblem multiple times
+the final answer is dp[N][m]
+===END PLAN===

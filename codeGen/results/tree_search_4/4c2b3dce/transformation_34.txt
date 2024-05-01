@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a 2D array dp where dp[i][j] represents whether the substring from index i to j contains both substrings 'AB' and 'BA'.
+Let state1 be 1 if the current position is at the end of 'AB', and let state0 be 0 otherwise.
+Let dp[0][j] be state1 for all j, since we can always find 'AB' at the beginning of the string.
+For i > 0, transition relationship: 
+dp[i][j] = (s[i-1] == 'A') ? dp[i-1][j-2] : dp[i-1][j]
+This is because if s[i-1] == 'A', then we have found 'AB' and we need to check for the presence of 'BA' in the remaining substring.
+If s[i-1] == 'B', then we can skip 'AB' and directly check for the presence of 'BA'.
+For j > 0, transition relationship: 
+dp[i][j] = (s[j-1] == 'B') ? dp[i][j-2] : dp[i][j]
+This is because if s[j-1] == 'B', then we have found 'BA' and we need to check for the presence of 'AB' in the remaining substring.
+If s[j-1] == 'A', then we can skip 'BA' and directly check for the presence of 'AB'.
+Let result be 1 if dp[0][len(s)-1] is 1, and let result be 0 otherwise.
+Print "YES" if result is 1, and print "NO" if result is 0.
+===END PLAN===

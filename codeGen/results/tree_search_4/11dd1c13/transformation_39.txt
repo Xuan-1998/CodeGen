@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] depends on the minimum sum of a falling path that ends at cell (i-1, j) and the value of cell (i, j).
+
+The transition relationship is:
+for k in range(n):
+    dp[i][j] = min(dp[i-1][k] + grid[i][j], dp[i][j])
+
+This ensures that for each cell (i, j), we consider all possible paths ending at this cell and choose the one with the minimum sum.
+
+Use a 2D array to store the dynamic programming table, where dp[i][j] represents the minimum sum of a falling path that ends at cell (i, j).
+
+Finally, return dp[n-1][0], which is the minimum sum of a falling path ending at the bottom-left corner of the grid.
+
+===END PLAN===

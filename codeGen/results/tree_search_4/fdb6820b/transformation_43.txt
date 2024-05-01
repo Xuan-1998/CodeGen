@@ -1,0 +1,9 @@
+Treat this as a counting problem and use dynamic programming where a 2D array dp is initialized with zeros, and then iterate over the elements of the array to fill up the dp table.
+dp[i][j] = sum(1 for _ in range(i+1)) if j == N else dp[i-1][j],
+Use a 1D array dp of size N+1 and iterate over the array to fill up the dp table. Let dp[j] be the number of ways to form j. For each element in the array, update dp[j] based on whether it is possible to form j by adding this element to other elements.
+Use a 2D array to store the number of ways to form N with given sum and number of elements
+dp[0][j] = 1 if j == 0 else 0,
+for i in range(1, m+1):
+    for j in range(N+1):
+        dp[i][j] = sum(dp[k][j-k] for k in range(i)) % (10**9 + 7)
+print(sum(dp[m][i] for i in range(N+1)) % (10**9 + 7))

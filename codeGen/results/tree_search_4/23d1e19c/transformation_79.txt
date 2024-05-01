@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Use dynamic programming with top-down memoization and recursion:
+The state could be defined as (v, d) where v is the current vertex and d is the distance from v to t along the fixed path.
+
+1. Create a 2D array dp[n][n] initialized with infinity for all pairs of vertices (i.e., set all values in dp[][] to infinity).
+2. Initialize dp[s][0] = 0, as the shortest path from s to t along the fixed path is always recomputed once.
+3. Define a recursive function f(v, d) that calculates the minimum and maximum number of times the shortest path needs to be recomputed for vertex v if the current distance from v to t is d:
+   - If v == t, return (0, 0), as no more recalculation is needed.
+   - Else, check all vertices p in the fixed path with distance d < dp[p][d]:
+     - Calculate the minimum and maximum number of times the shortest path needs to be recomputed for vertex p if the current distance from p to t is d:
+       - If p == v, return (1, 1), as the shortest path from p to t along the fixed path is always recomputed once.
+       - Else, call f(p, dp[p][d]) and add 1 to the results for minimum and maximum recalculation counts.
+     - Return the minimum and maximum values calculated in step 3.2.
+
+4. Iterate over all vertices v from s to t along the fixed path:
+   - Calculate the minimum and maximum number of times the shortest path needs to be recomputed for vertex v using f(v, dp[v][d]):
+     - If v is not the last vertex in the fixed path, add 1 to the results for minimum and maximum recalculation counts.
+   - Store the calculated values in dp[][].
+
+5. Return the minimum and maximum values calculated in step 4:
+   - These are the number of times the shortest path needs to be recomputed when following the recommended path and when not following it, respectively.
+
+===END PLAN===

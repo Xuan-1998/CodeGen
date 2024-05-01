@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: Define a dynamic programming table dp[i][j] where i ranges from 1 to N and j ranges from 0 to sum(all elements). The value at dp[i][j] represents whether there exists a subset that sums up to j using the first i elements.
+
+dp[i][j] = True if there exists a subset of the first i numbers that sums up to j, False otherwise.
+
+Memoization: Use a dictionary memo to store the results of subproblems and update the values in the dp table accordingly. Initialize all entries in dp as False.
+
+Base case: Set dp[0][0] = True since an empty set has a sum of 0.
+
+Recurrence: For each i from 1 to N and each j from 0 to sum(all elements), check if there exists a subset that sums up to j using the first i-1 numbers. If such a subset exists, then dp[i][j] = True. Otherwise, dp[i][j] = False.
+
+===END PLAN===

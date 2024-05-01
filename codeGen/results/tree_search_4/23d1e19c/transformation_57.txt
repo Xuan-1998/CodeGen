@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Approach: Use dynamic programming with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Let f(v) be the function that returns the minimum and maximum number of times the shortest path from a vertex v to t needs to be recomputed. The base case is when v = t, where the answer is 0.
+State: For each vertex u that can be reached from v, we consider two cases:
+    - We follow the recommended path from v to u and then continue with f(u).
+    - We don't follow the recommended path from v to u and instead recompute the shortest path from u to t. This will require us to recompute the shortest path from at most one previous vertex, so we add 1 to f(u).
+
+Memoization: We store the results of subproblems in a memo array and only compute each subproblem once.
+Return statement: The function returns (min+1, max+1) where min is the minimum number of recomputations required to reach t from v, and max is the maximum number of recomputations.
+
+===END PLAN===

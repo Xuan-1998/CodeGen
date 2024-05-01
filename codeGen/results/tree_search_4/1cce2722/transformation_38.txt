@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Memoization can be used to store previously computed values and avoid redundant computation.
+
+Let dp[i] represent the maximum number of points earned by deleting elements up to index i.
+Create a 1D table dp[] where each cell dp[i] represents the maximum points earned by deleting elements up to index i.
+
+For every element at index i, calculate the maximum points earned by considering all possible deletion scenarios:
+- Delete this element (dp[i-1])
+- Don't delete this element and consider previous elements
+
+Let k be the smallest index such that a[k] is smaller than or equal to a[i]. Then we have two possibilities:
+
+- If we don't delete this element, then the maximum points earned would be dp[k] + (k-i) + (n-k)
+- If we do delete this element, then the maximum points earned would be dp[k-1] - (a[i]-a[k])
+
+We choose the scenario that gives us the maximum number of points.
+dp[i] = max(dp[i-1], dp[k-1] + (k-i) + (n-k) - (a[i]-a[k]))
+
+After computing all values in dp[], we can find the maximum value which represents the maximum number of points earned by deleting elements from the sequence.
+
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] = number of ways to form sum i using exactly j positive integers
+Define base cases:
+- dp[0][0] = 1 (only one way to form sum 0 with 0 elements)
+- dp[0][k] = 0 for k > 0 (no way to form sum 0 with more than 0 elements)
+
+Use a bottom-up approach by initializing a 2D table and filling it up using nested loops:
+- Initialize the table with zeros: dp[1..N][0..m]
+- For each i from N down to 1, for each j from m down to 1
+    - If j > 0 and array[j-1] <= i, update dp[i][j] = (dp[i-array[j-1]][j-1] + dp[i][j]) mod 10^9+7
+
+Return the value of dp[N][m]
+
+This plan correctly solves the problem using dynamic programming.
+It includes edge cases and handles all possible scenarios.
+
+===END PLAN===

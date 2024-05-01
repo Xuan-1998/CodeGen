@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i] = the maximum length of the recommended paths between vertices in the fixed path from s to vertex i
+dp[i] = the minimum number of times the shortest path from 1 to i can be recomputed before the driver decides to follow the recommended path
+
+Create a dynamic programming table (array) to store the maximum lengths of the recommended paths between vertices in the fixed path.
+
+For each vertex i, calculate dp[i] as follows:
+- Initialize dp[0] = 0
+- For each edge from j to i (j < i):
+    - If there is no edge from j to i or if i is not in the fixed path, dp[i] = min(dp[i], dp[j] + 1)
+    - Else (i is in the fixed path), dp[i] = max(dp[i], dp[j] + 1)
+
+To find the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed, iterate through the dynamic programming table from right to left, starting from dp[k-1]. If dp[i] is less than or equal to dp[i+1], it means that the driver decided to follow the recommended path at vertex i. Calculate the minimum and maximum number of times the shortest path needs to be recomputed as follows:
+- For each vertex i (from k-1 to 0):
+    - If dp[i] is less than or equal to dp[i+1], min_count += 1; max_count = max(max_count, dp[i])
+- Return min_count and max_count
+
+===END PLAN===

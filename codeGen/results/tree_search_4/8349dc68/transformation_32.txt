@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+1. Initialize a 2D table dp where dp[i][j] represents the maximum sum of array from index i to j.
+   The state space is O(n * k) where n is the length of the input array and k is the size of subarray.
+
+2. Fill up the table in bottom-up manner, where the transition function calculates the maximum sum for each subarray based on its previous maximum value and the current element.
+
+3. For dp[i][j], calculate the maximum sum of array from index i to j considering k-size subarrays.
+   Let max_val be the maximum of the last k numbers in the array from i to j.
+   The maximum sum is either:
+   - The maximum sum of array from index i-1 to j-1 (if we don't include the current partition) or
+   - The maximum sum of array from index i-k to j-k plus max_val (if we do include the current partition).
+
+4. Update dp[i][j] with the maximum of these two options.
+
+5. Finally, return the last element in the table which represents the maximum sum of the given array after partitioning.
+===END PLAN===

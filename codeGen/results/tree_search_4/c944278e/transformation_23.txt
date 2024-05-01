@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+Create a two-dimensional array dp[i][j] = True if team j has won i games. This array keeps track of which teams have won up to i games.
+Initialize dp[0][j] = False for all j, since no team can win 0 games (base case).
+
+For each phase i from 1 to n:
+    For each team j and its corresponding skill level k:
+        If the result of the current phase is 'W' (win), then set dp[i][k] = True if it was previously won by some team.
+        Else, set dp[i][k] = False.
+
+Create a boolean array dp[k] = True if team k can win the tournament. For each team k:
+    Initialize dp[k] = False.
+    Iterate from i = n to 1 (in reverse order):
+        If dp[i][k] is True and there's at least one 'W' in s[0..i-1], then set dp[k] = True.
+
+Return all teams for which dp[k] is True.
+===END PLAN===

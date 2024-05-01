@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Let s[i] be a boolean indicating whether 'AB' or 'BA' is found in the first i characters of s.
+Think of a 1D DP table where dp[i] indicates whether 'AB' or 'BA' is found in the first i characters of s. 
+Then, the transition relationship can be defined as: 
+dp[i] = (dp[i-2] and ((s[i-1] == 'A' && s[i-2] == 'B') || (s[i-1] == 'B' && s[i-2] == 'A'))) or 
+    (i >= 3 && dp[i-3] && ((s[i-1] == 'A' && s[i-2] == 'B') || (s[i-1] === 'B' && s[i-2] === 'A')))
+
+Initialize a variable result to false.
+For i from 0 to length of s:
+    If dp[i] is true, then set result to true and break the loop.
+
+If result is true, then print "YES", otherwise print "NO".
+
+===END PLAN===

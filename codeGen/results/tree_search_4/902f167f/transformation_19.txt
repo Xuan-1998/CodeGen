@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming and memoization.
+
+State: dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+Base case: dp[0][j] = dp[i][0] = 1 for any i or j (since the empty rectangle can be tiled with one square)
+
+Induction step:
+- If i <= k and j <= k, then dp[i][j] is 1 if i == k and j == k, otherwise it's the minimum of:
+    - The minimum number of squares required to tile the top-right subrectangle of size (i-k) x (j-k), plus one
+    - The minimum number of squares required to tile the bottom-left subrectangle of size (i) x (j-k), plus one
+
+Memoization: Use a dictionary to store the results of subproblems so they can be reused.
+
+Edge cases:
+- If n or m is less than 1, return an error message
+- If n == 0 and m == 0, return 1
+
+===END PLAN===

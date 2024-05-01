@@ -1,0 +1,10 @@
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+Let dp[i] represent the length of the longest subarray containing only 1's in the first i elements of nums.
+
+Initialize a dictionary dp to store previously computed values, and update dp[i] as needed. The initial value for dp[0] is 0 if nums[0] == 0 or 1 otherwise.
+
+Iterate through each element nums[i], from left to right:
+    - If the current element is 0, then the longest subarray with only 1's ending at this point is the same as the longest subarray ending at the previous point (dp[i-1]), since a 0 breaks any ongoing sequence of 1's.
+    - If the current element is 1, and it marks the beginning of a new sequence of 1's (i.e., there was no 1 in the previous elements), then the longest subarray with only 1's ending at this point has length i.
+
+After processing each element, find the maximum value in dp that corresponds to an index before deletion. This is because we are interested in the longest subarray containing only 1's that can be obtained by deleting one element from nums.

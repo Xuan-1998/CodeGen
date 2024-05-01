@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+A subset sum that is divisible by m
+State: Given n, a subset sum that is less than m; Transition relationship: The problem can be broken down into smaller instances by considering all possible subsets of S with sums that are less than m. We can transition from the base case (n = 1) to larger instances by including or excluding elements from the set.
+
+Applying dynamic programming with bottom-up tabulation
+dp[i] represents whether there is a subset sum divisible by m for the first i elements in the set.
+
+Base case: dp[0] = 1, as an empty set has a sum of 0 which is always divisible by any number.
+Transition relationship: For each element x in the set, we have two options - include or exclude it. If we include it and its sum is less than m, then there exists a subset with sum divisible by m; otherwise, there isn't. We also consider the case where we don't include it, which leads to dp[i-1]. 
+We update dp[i] based on these two cases.
+
+Applying this dynamic programming approach with memoization
+
+Top-down or bottom-up approach
+Using memoization to store and reuse previously computed results
+For each element x in the set
+    If sum(x) is less than m, we have two options: include it (dp[i+1]) or exclude it (dp[i])
+    If dp[i] = 0, then there isn't a subset with sum divisible by m; otherwise, there is
+===END PLAN===

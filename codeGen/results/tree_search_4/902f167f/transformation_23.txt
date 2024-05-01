@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, you can use a bottom-up approach with dynamic programming. Define a 2D array dp where dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+1. Initialize the base cases: 
+   - For all i and j, if i or j is less than 1, set dp[i][j] to 0, because you can't fit any squares into a rectangle with zero area.
+   
+2. Fill in the dp array using a bottom-up approach:
+   - Iterate through each possible square side length k from 1 to min(i, j).
+   - For each k, calculate the remaining width and height of the rectangle: w = i - k and h = j - k.
+   - If the remaining rectangle has an area greater than 0, recursively call dp[w][h] to get the minimum number of squares needed for that rectangle, and add 1 to account for the current square.
+   
+3. Return the value in the bottom-right corner of the dp array as the final answer.
+
+===END PLAN===

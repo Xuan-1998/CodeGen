@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Dynamic programming can also be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be:
+dp[i][j] = total number of ways to reach cell (i, j) regardless of the number of coins collected.
+This state is updated recursively based on the states of neighboring cells. For example, dp[i][j] can be calculated as the sum of the number of ways to reach cell (i-1)[j] and the number of ways to reach cell [i][j-1], as these are the only possible moves from cell (i, j).
+
+Create a table dp[][] of size N x N where each cell dp[i][j] represents the total number of ways to reach cell (i, j), and then fill this table from top-down manner.
+
+To calculate the number of paths that collect exactly K coins, sum up all cells in the last row or column based on whether you came from above or left. This is because there are only two possible moves: either down or right. If you came from above, it means you collected one coin in each cell along the way and this will contribute to your total count. Similarly, if you came from left, it also contributes to your total count.
+
+Finally, return the sum of all cells in the last row or column as the number of paths that collect exactly K coins.
+===END PLAN===

@@ -1,0 +1,29 @@
+    if n == 1:
+        return [binary_string]
+
+    dp = {}
+
+    def memoized_function(state):
+        if state not in dp:
+            if state == 'winning':
+                result = [1]
+            else:
+                result = []
+            for i, bit in enumerate(binary_string):
+                if bit == '1':
+                    if i < n-1:
+                        new_state = 'winning' if state == 'losing' else 'losing'
+                        result.extend(memoized_function(new_state))
+                    else:
+                        result.append(1)
+                elif bit == '0':
+                    continue
+            dp[state] = result
+        return dp[state]
+
+    winning_teams = []
+    for binary_string in all_binary_strings(n):
+        if 1 in memoized_function('winning'):
+            winning_teams.append(binary_string)
+
+    return sorted(winning_teams)

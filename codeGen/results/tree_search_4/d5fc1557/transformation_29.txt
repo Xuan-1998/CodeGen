@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+The state is a tuple (i, ones) where i is the current index and ones is the maximum length of 1's found in previous subarrays.
+If the current element is 0, update the state to (i-1, 0) if i > 0, otherwise return 0;
+If the current element is 1, update the state to (i, ones + 1) and memoize the maximum length found so far.
+Update the transition relationship accordingly.
+
+Develop a recursive function with memoization, storing the results in a dictionary to avoid redundant computation.
+
+Memoize the base case: if the array is empty or only contains 0's, return 0;
+Memoize the recursive case:
+    - If the current element is 0, update the state and recursively call the function.
+    - If the current element is 1 and the maximum length of 1's found in previous subarrays is greater than 0, update the state and memoize the result.
+
+Memoize the edge cases: if the array only contains 1's, return its length;
+
+===END PLAN===

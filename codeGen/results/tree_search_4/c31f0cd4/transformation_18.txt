@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems of finding all distinct sums that can be generated from the subsets of a subset of the given set.
+
+Let dp[i][j] represent whether it is possible to obtain sum j using the first i elements. Then,
+
+dp[0][0] = True // base case
+for each element in the array:
+    for every sum we have seen so far:
+        if the current sum + this element's value equals a sum we haven't seen before, mark it as achievable
+
+The final result will be all sums that are achievable.
+
+A hash map with sums as keys and lists of subsets as values, where each list contains the subsets that can generate the corresponding sum, can be used to efficiently check if a sum has been achieved or not.
+
+Create a dynamic programming table to store the subsets and their corresponding sums. Then iterate over all possible sums and print them out.
+
+The state expression could be memoization dictionary where keys are sums and values are boolean indicating if the sum is achievable
+===END PLAN===

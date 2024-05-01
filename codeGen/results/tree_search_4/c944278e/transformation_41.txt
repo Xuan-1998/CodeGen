@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Maintain two arrays dp and res where dp[i][j] represents whether team j has won at least one game after i phases and res[i] is an array of winning teams for i-th phase. Transition from dp[i-1][k] to dp[i][j] based on s[i]^j.
+Base case: If n=1, return all indices where the corresponding value in s is 1 as these are the winning teams.
+
+For n > 1:
+    Initialize res[n].
+    For i from 0 to n:
+        Initialize dp[i-1] and a set of winning teams for this phase.
+        For j from 0 to 2^n - 1:
+            If (s[i]^j) == 1, then team j has won at least one game in this phase. 
+                Add j to the set of winning teams for this phase if it is not already there.
+            Update dp[i-1][k] = True where k in the set of winning teams for this phase.
+        res[i] = the set of winning teams for this phase.
+    Return the set of all winning teams for all phases, i.e., res[n].
+
+===END PLAN===

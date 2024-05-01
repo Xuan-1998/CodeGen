@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved using a dynamic programming approach, where you calculate the minimum number of squares for sub-rectangles and store them in a 2D array to avoid redundant calculations.
+
+Let's define dp[i][j] as the minimum number of integer-sided squares required to tile a rectangle of size i x j. The base case could be dp[0][j] and dp[i][0] being 0 for all i, j because an empty rectangle or a rectangle with one side can't be tiled by any squares.
+
+The recursive formula could be: 
+- If the current rectangle is small enough to be tiled by a single square, dp[i][j] = 1. Otherwise, 
+- Try placing squares along the top (i >= j), left (i <= j), or diagonals (i == j). For each possible placement, calculate the size of the remaining sub-rectangle and check if it's been solved before using memoization. If it has, use the stored result; otherwise, recursively solve the subproblem and store the result.
+- Add 1 to the number of squares used for this placement.
+
+Use a recursive function with memoization to store the results of subproblems and avoid recalculating them.
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Create a 2D array dp of size (m+1) x (N+1), where dp[i][j] represents the number of ways to form j using the first i elements from the array. Initialize the base case as follows: dp[0][j] = 1 for j in range(N+1), because there is only one way to form N when there are no numbers (i.e., by not adding any numbers). 
+dp[i][0] = 1 for all i in range(m+1) because we can always form 0 with the given set of numbers.
+Iterate over the array and fill up the dp table accordingly. For each number x, update dp[i][j] as follows:
+    - If j is greater than or equal to x, then we can include x in our sum; so add the value of dp[i-1][j-x] (which represents the number of ways to form j-x) to dp[i][j].
+    - Otherwise, we cannot include x in our sum; so just copy the value from dp[i-1][j] to dp[i][j]. 
+Use memoization with a dictionary or hashmap where memo[j] stores the total number of ways to form j. Initialize the memo dictionary as follows: for each j in range(N+1), set memo[j] = 0. Then, iterate over the array and update the memo values accordingly:
+    - For each number x, update memo[j+x] by adding dp[i-1][j] (which represents the number of ways to form j) to memo[j+x]. This is because we can include x in our sum when forming j+x. 
+Finally, return memo[N] as the total number of ways to form N.
+===END PLAN===

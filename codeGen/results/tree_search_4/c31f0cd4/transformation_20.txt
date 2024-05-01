@@ -1,0 +1,13 @@
+===
+The problem can be broken down into smaller subproblems of finding all distinct sums that can be generated from the subsets of a subset of the given set, which is similar to the subset sum problem.
+
+The state expression could be a memoization dictionary where keys are sums and values are boolean indicating if the sum is achievable. This way we avoid calculating the same subset multiple times.
+
+A hash map with sums as keys and lists of subsets as values, where each list contains the subsets that can generate the corresponding sum. We'll use this to generate all distinct sums.
+
+Maintain a set of all possible subsets and use it to generate all distinct sums. To do this, we iterate over all possible subsets of the given set, calculate their sum, and add it to our hash map if it's not already present.
+
+To make sure we're considering all possible subsets, we can use bit manipulation to generate all possible subsets. This way we'll avoid generating duplicate subsets or out-of-order subsets.
+
+We also need to handle edge cases where the given set is empty, which would return an empty string.
+===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Maintain a 2D array dp where dp[i][j] represents the winning teams for the first i phases, with j being the skill level of the team.
+For each phase k from 0 to n-1:
+    For each possible skill level j from 0 to 2^k - 1:
+        If s[k] is '1' and dp[k-1][j>>k] exists and contains winning teams for the first k-1 phases with a team having a skill level of j>>k:
+            Update dp[k][j] with the union of dp[k-1][j>>k] and the winning teams that won against the team with a skill level of j>>k
+        Else:
+            If s[k] is '0' and dp[k-1][j>>k] exists and contains winning teams for the first k-1 phases with a team having a skill level of j>>k:
+                Update dp[k][j] with the set difference between dp[k-1][j>>k] and the losing teams that lost against the team with a skill level of j>>k
+            Else:
+                Set dp[k][j] to an empty set
+
+At the end, return all winning teams in ascending order by iterating over the values in dp[n-1]
+===END PLAN===

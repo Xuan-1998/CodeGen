@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss.
+
+dp[i]: For each prefix of the string from 0 to i, keep track of the winning teams in a set or list. 
+State: The state is the prefix of the string from 0 to i.
+Transition relationship: If the current bit is '1', add the team that wins this game to the set if it's not already there. 
+Memoize a dictionary where keys are prefixes of the binary string and values are sets of winning teams.
+
+base case: dp[n] represents all winning teams in the tournament.
+
+Initialize dp[0] with an empty set since no games have been played yet.
+For i from 1 to n:
+    if s[i-1] == '1':
+        Add the team that wins this game to dp[i-1] if it's not already there.
+    else:
+        Update dp[i] as a copy of dp[i-1].
+Memoize dp for future reference.
+
+Find all winning teams by checking if any team has won at least one game in each phase. 
+Check each team and see if it has won at least once. If yes, add the team to the set of winning teams.
+Sort the set of winning teams in ascending order.
+
+===END PLAN===

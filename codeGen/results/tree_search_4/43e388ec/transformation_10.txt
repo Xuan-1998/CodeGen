@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp = [[0] * (10**5 + 1) for _ in range(32)]
+for i in range(32):
+    dp[i][0] = int('1' * i, 2)
+for i in range(10**5 + 1):
+    dp[31][i] = i
+for j in range(2, 10**5 + 1):
+    dp[0][j] = j - (j >> 1)
+for p in range(1, 32):
+    for i in range(j := 2**(p-1), 10**5 + 1):
+        dp[p][i] = min(dp[p-1][i-1], dp[p-1][i]) | int('1' * p, 2)
+for i in range(314159):
+    a, b = map(int, input().split())
+    print((dp[30][b] ^ (a << b)) % (10**9 + 7))
+===END PLAN===

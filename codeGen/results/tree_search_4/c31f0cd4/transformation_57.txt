@@ -1,0 +1,12 @@
+DP_state = (i, s), where i is the current integer and s is the current sum, 
+  with base case being DP_state(N+1, s) returning an empty list for any sum beyond N integers
+  AND a base case being DP_state(0, S) returning [S] if S == 0, else an empty list
+
+DP_state = (s,), where s is the current sum, 
+  with base case being DP_state(s+1) returning [] for any sum beyond N integers
+
+Memoization by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it
+
+Main idea: For each integer i in [0, N], compute all sums that can be generated from subsets of [0, i] and memoize them. The final answer will be the set of unique sums computed.
+
+To avoid redundant computation, we sort the integers first and then generate the sums.

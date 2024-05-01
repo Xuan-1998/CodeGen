@@ -1,0 +1,11 @@
+DP_state = (i, s), where i is the current integer and s is the current sum
+	* Base case: DP_state(N+1, s) returns an empty list for any sum beyond N integers
+DP_state = (i, s, sums), where i is the current integer, s is the current sum, and sums is a list of all distinct sums that can be generated from subsets of given set
+	* Utilize a hash map to store computed sums as keys and their corresponding subsets as values
+	* If DP_state(i-1, 0) exists in the hash map, add it to the result and continue with the next integer
+	* Otherwise, iterate through all possible subsets of the remaining integers (i.e., from i+1 to N)
+		- For each subset, calculate its sum and check if it's already in the hash map
+			+ If not, add it to the hash map with an empty list as its value
+			+ Recursively call DP_state(i, s) for this new subset and add the result to the sums list
+	* Return the updated sums list
+

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Maintain a dictionary dp where dp[(i, s)] is a list of winning teams for the prefix s up to phase i.
+
+Let the state be a tuple (i, s) where i is the current phase and s is the binary string from the 0th to the ith phase.
+The base case is when i = n. In this case, dp[(n, s)] will store all winning teams for the given tournament result s.
+
+For each phase i, iterate over all possible values of k such that k is a skill level that can win in the ith phase.
+If s[i] is 1 (win), then the next state would be (i+1, k+s[i]).
+Update dp[(i, s)] with all teams that have won at least one game in each phase up to i.
+
+To find the winning teams for the given tournament result, iterate over all possible values of s and check if any team has won at least one game in each phase. If yes, add it to the list of winning teams.
+Return the list of winning teams in ascending order.
+
+===END PLAN===

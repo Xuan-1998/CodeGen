@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i] represents the maximum sum of arr[:i], where i is the length of a subarray.
+
+DP state: 
+for i in range(1, len(arr)):
+    max_sum = 0
+    for j in range(i):
+        if j + k <= i:
+            max_sum = max(max_sum, dp[j] + max(arr[j:j+k]))
+    dp[i] = max_sum
+
+base case: 
+dp[0] = 0
+
+Store the memoized values in a dictionary: 
+dp[i] = max_sum(arr[:i])
+
+===END PLAN===

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: View the problem as generating all subsets of the given set and compute their sums. For each possible sum, we can determine if it is distinct by checking its presence in a set or array.
+State: dp[i][j] represents the number of subsets with sum j using numbers from 1 to i.
+
+dp = [[0] * (sum + 1)] for _ in range(n + 1); dp[i][j] will store the number of subsets with sum j using numbers from 1 to i.
+Transition relationship: dp[i][j] is the sum of all possible subsets from 1 to i that have a sum equal to j.
+
+Initialization: Initialize dp[0][j] = 0 for all j, as there are no subsets without elements that can sum up to j.
+Base case: dp[i][0] = 1 for all i, as the empty subset has a sum of 0.
+Recursion: For each number ai from 1 to i:
+    If the current number ai is less than or equal to j, then consider two cases:
+        - The number ai is included in the subset: This contributes dp[i-1][j-ai] subsets that have a sum equal to j-ai.
+        - The number ai is not included in the subset: This contributes dp[i-1][j] subsets that have a sum equal to j.
+    Add these two cases together to get the total number of subsets with sum j using numbers from 1 to i, which is stored in dp[i][j].
+
+Final answer: For each distinct sum k, print k if and only if dp[n][k] > 0.
+
+===END PLAN===

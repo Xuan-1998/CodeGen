@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+
+DP solution: Define the state expression as dp[i][k] representing whether there is a subset of the first i integers with sum k.
+Base case: dp[0][j] = 1 if j == 0, and 0 otherwise.
+
+Let dp[i][k] be True if there exists a subset of the first i numbers with sum equal to k % m, and False otherwise.
+Memoize the dp function, where each call to dp(i, k) returns whether the ith number is included in a subset with sum k % m or not.
+
+Recursive case: If the current number (i-1 th) can be added to the subset without exceeding k, then consider two cases:
+	* Include the number and recursively check if there exists a subset of the remaining i-1 numbers with sum (k - ith number) % m.
+	* Exclude the number and recursively check if there exists a subset of the first i-1 numbers with sum k % m.
+
+If neither case results in True, then dp[i][k] should be False. Otherwise, it should be True.
+
+The final answer is simply dp[n][m].
+===END PLAN===

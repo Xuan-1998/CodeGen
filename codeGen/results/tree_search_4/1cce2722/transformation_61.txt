@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Let dp[i][k] represent the maximum number of points that can be earned by deleting the k-th element and all elements equal to it.
+
+Consider dp[i][k] to be the maximum number of points that can be earned when k elements are deleted from the sequence's first i elements.
+
+Creating a hashmap where keys are the sequence values and values are lists of indices where these values appear in the sequence, then using this hashmap to efficiently look up the indices of equal values for memoization.
+
+Iterate through the sequence from left to right. For each element, calculate dp[i][k] based on the maximum points earned by deleting elements at previous positions that have values different from the current one. Update dp[i][k] accordingly.
+
+The DP table can be initialized with all ones because initially, we are not allowed to delete any elements, so we get 1 point for each element in the sequence.
+
+When updating dp[i][k], consider the maximum points earned by deleting elements at previous positions that have values equal to the current one (i.e., ak - 1 and ak + 1).
+
+The updated DP table can be used to find the maximum number of points that can be earned by deleting elements from the sequence. The answer is stored in dp[n][0], where n is the length of the sequence.
+
+===END PLAN===

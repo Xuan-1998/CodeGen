@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Maintain a binary string where '1' represents a win and '0' represents a loss. 
+Use memoization to store the winning teams for each prefix of the string.
+
+Let the state be a tuple (i, s) where i is the current phase and s is the binary string from the 0th to the ith phase.
+Represent each state as (i, s) and transition to the next state by appending one character from the input string,
+checking if any team has won at least one game in each phase.
+
+Memoize the states as a dictionary where the key is the tuple (i, s) 
+and the value is a set of winning teams for that state.
+
+For each state (i, s), find all the teams that have won at least one game in each phase by iterating over the binary string.
+A team wins if it has '1' in each position where its corresponding skill level is greater than or equal to the opponent's skill level.
+
+To find the winning teams, iterate over the states from the initial state (0, '') to the final state (n-1, s).
+For each state, check if any team has won at least one game in each phase.
+If yes, add these winning teams to the result set.
+
+Finally, return the set of winning teams in ascending order.
+
+===END PLAN===

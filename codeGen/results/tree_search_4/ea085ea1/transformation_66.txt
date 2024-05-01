@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[0][j] = 0 for all j
+dp[i][0] = 0 for all i
+
+state transition: dp[i][j] = 1 + dp[i-1][j-1] if str1[i] == str2[j]
+else, dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+Apply memoization by storing the results of subproblems in a dictionary.
+
+Initialize result to 0
+
+For i from 1 to N:
+    For j from 1 to N:
+        if str1[i] == str2[j]:
+            dp[i][j] = 1 + dp[i-1][j-1]
+        else:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+Return the maximum value in dp
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic programming can be used with a tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = number of ways to reach cell (i, j) collecting exactly K coins.
+dp[i][j] = 
+    if arr[i][j] is included in the path and k >= arr[i][j]:
+        dp[i-1][j] + dp[i][j-1]
+    else:
+        0
+
+Memoization by storing intermediate results in a dictionary and checking if the result is already computed before computing it.
+Fill up the table row by row from top to bottom.
+For each cell, check if the current coin is included in the path or not.
+If included, calculate the number of ways to include this coin by adding dp[i-1][j] + dp[i][j-1].
+If not included, set it to 0.
+
+Return dp[N-1][N-1], which represents the number of possible paths that collect exactly K coins.
+===END PLAN===

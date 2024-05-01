@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Approach: Combine bottom-up and top-down approaches with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State:
+- Let dp[i][j] represent the maximum number of times recomputation is needed when we are at vertex p_i, having recomputed j times previously.
+- Let min_dp[i][j] represent the minimum number of times recomputation is needed when we are at vertex p_i, having recomputed j times previously.
+
+Transition relationship:
+- For all vertices u in the fixed path such that an edge exists from u to p_i,
+  - dp[i][j] = 1 + min(dp[u][k-1]) for all k < j
+  - min_dp[i][j] = 1 + min(min_dp[u][k-1]) for all k < j
+- If there's no edge from u to p_i, then dp[i][j] and min_dp[i][j] are both 0
+
+Base case:
+- For vertices in the fixed path (p_1, p_2, ..., p_k), set dp[i][0] = 0 for all i
+- Set min_dp[i][0] = 0 for all i
+
+Edge cases:
+- Handle edge cases where the shortest path is not recomputed at all.
+- Handle edge cases where the shortest path is always recomputed.
+
+Hybrid approach:
+- Use memoization to store the results of subproblems.
+- Use tabulation to precompute and store the values in dp and min_dp arrays.
+- Combine the two approaches to optimize computation time.
+
+===END PLAN===

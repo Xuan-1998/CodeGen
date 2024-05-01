@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: memo[n] = max_points_affecting_index(n) represents the maximum number of points that can be earned by deleting elements from the sequence up to index n.
+
+Function: max_points_affecting_index(n)
+    - Base case: If n is 0 or 1, return 0 because no points can be earned.
+    - Recursive case:
+        1. Calculate the minimum index i such that a[i] is the first element in the sequence not equal to any previous element (DP State).
+        2. Calculate the maximum number of points that can be earned by deleting elements from the subsequence a[0...i-1] and a[i+1...n].
+        3. Return the sum of these two values plus i.
+    - Memoization: Store the results in a dictionary memo to avoid redundant calculations.
+
+Function: min_index_not_equal_to_previous_elements(a, n)
+    - Iterate through the sequence from left to right.
+    - For each element a[i], check if it is not equal to any previous element. If found, return i.
+    - If no such element is found, return n+1.
+
+Function: max_points_affecting_index(n, memo)
+    - Base case: If n is 0 or 1, return 0.
+    - Recursive case:
+        1. Calculate the minimum index i using min_index_not_equal_to_previous_elements(a, n).
+        2. Calculate the maximum number of points that can be earned by deleting elements from the subsequence a[0...i-1] and a[i+1...n].
+        3. Return the sum of these two values plus i.
+    - Memoization: Store the results in memo.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively.
+dp[0][j] = 0
+dp[i][0] = 0
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if i > 0 and j > 0, 0 if i == 0 or j == 0
+dp[i][j] = dp[i-1][j-1] + 1 if str1[i-1] == str2[j-1], dp[i-1][j] or dp[i][j-1]; else, 0
+Create a 2D array to store the maximum number of common non-overlapping substrings ending at each pair of indices in str1 and str2.
+for i from N-1 down to 0:
+    for j from N-1 down to 0:
+        dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if i > 0 and j > 0, 0 if i == 0 or j == 0
+        dp[i][j] = dp[i-1][j-1] + 1 if str1[i-1] == str2[j-1], dp[i-1][j] or dp[i][j-1]; else, 0
+Return the value at position [N-1][N-1]
+===END PLAN===

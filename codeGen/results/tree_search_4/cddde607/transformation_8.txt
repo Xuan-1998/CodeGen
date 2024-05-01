@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+State: dp[i][j] represents the number of ways to reach cell (i, j) with exactly K coins. The state is determined by the current position (i, j) and the total number of coins collected so far.
+
+dp[i][j] = 0 if arr[i][j] < k or i > N-1 or j > N-1,
+dp[i][j] = dp[i+1][j] + dp[i][j+1] if arr[i][j] <= k and i < N-1 and j < N-1,
+
+dp[N-1][N-1] = 1 if arr[N-1][N-1] == K,
+dp[i][N-1] = 0 for all i < N-1,
+dp[N-1][j] = 0 for all j < N-1,
+
+The base case is when we reach the bottom right corner, and the total number of coins collected so far is equal to K. In this case, there is one way to reach this cell.
+
+If we are not at the bottom right corner, then we have two options: move down or move right. The total number of coins collected so far can increase by 1 in either case. We add the number of ways to reach the cell below and the cell to the right, respectively.
+
+We can improve this plan by initializing the base cases for i = N-1 or j = N-1 separately.
+The plan includes edge cases such as reaching the bottom right corner with exactly K coins, not collecting any coins at all, and going out of the grid boundaries.
+===END PLAN===

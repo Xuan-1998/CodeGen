@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+Let dp[i] represent the length of the longest subarray containing only 1's in the first i elements of nums.
+
+dp[i] represents the maximum number of consecutive 1s ending at index i, considering both previous deletions and current array.
+
+Create an n-sized list of lists, where each inner list represents a subproblem solution.
+
+Let prev_dp be dp[i-1] if i > 0 else -∞. 
+
+For each element in nums:
+    If the element is 1:
+        Update dp[i] as max(prev_dp + 1, 1) 
+    Else:
+        Update dp[i] as 0
+
+Return dp[n-1]
+===END PLAN===

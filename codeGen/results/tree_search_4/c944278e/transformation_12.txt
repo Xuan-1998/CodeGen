@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams.
+
+The base case is when n == 1, as there's only one winning team in a single-game tournament. For n > 1, define dp[i][j] as the number of winning teams after i rounds, given that the current team wins j games in this round.
+
+Define a bottom-up dynamic programming approach where:
+
+- Initialize dp[0][0] to the total number of possible teams (2^n) for the base case.
+- For each phase i from 1 to n:
+    - Iterate over all possible results j (from 0 to 2^i) in the current phase.
+    - If team wins j games, update dp[i][j] as the sum of:
+        - The number of winning teams that win j games in this round and lose the remaining i-1 rounds (dp[i-1][j]).
+        - The number of winning teams that lose j games in this round but have already won enough matches to be considered winning teams in previous phases.
+    - For each team, update its status based on whether it wins or loses the current match.
+
+The final answer is all indices i such that dp[n-1][i] > 0, which represent the winning teams.
+
+===END PLAN===

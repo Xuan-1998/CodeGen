@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = total number of paths collecting exactly k coins ending at cell (i, j),
+
+Consider the state as dp[i][j][k]: number of ways to reach cell (i, j) with k coins collected so far. 
+
+Dynamic Programming with Tabulation: Fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+Let's iterate over each cell (i, j) from the top left corner to the bottom right corner.
+For each cell, we consider all possible ways of reaching that cell with exactly k coins collected so far. 
+We do this by looking at the cells above it (if i > 0), the cells to its left (if j > 0), and then add the number of paths collecting exactly k-coins ending at those cells.
+If we reach a cell where i == N - 1 or j == N - 1, it means we have reached the bottom right corner. 
+We update dp[i][j][k] with the total number of ways to collect exactly k coins.
+
+Finally, return dp[0][0][K], which represents the total number of paths collecting exactly K coins starting from the top left corner.
+
+===END PLAN===

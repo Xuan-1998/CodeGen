@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+The pair (v, k), where k is the number of vertices in the fixed path from s to t that come after v.
+Use a 1D DP table with dimension n, where dp[i] represents the minimum recomputation times for vertex i. For each vertex i, consider all possible positions v' along the fixed path such that v' comes before i and k is the number of vertices in the fixed path from s to t that come after v'. Then, calculate the minimum recomputation times by considering two scenarios: 
+
+- If we follow the recommended path up to v', the minimum recomputation times for vertex i will be dp[v'] + 1. 
+- If we don't follow the recommended path up to v', we need to recompute the shortest path from s to t, which takes dp[0] steps (since there's no recomputation needed). Then, add k more recomputations since k vertices come after i in the fixed path.
+
+Update the DP table with the minimum value between these two scenarios.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+DP states: Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1. The base case would be when i is 0 or n-1, where we start or end the sequence respectively.
+
+Consider a subset of elements in the sequence where all elements except for the current i-th one are either deleted or equal to ak + 1 or ak - 1, then define dp[i][j] as the maximum number of points that can be earned from this subset, considering only the elements before the i-th one.
+
+Use a dictionary or hash map to store the memoized values with keys as tuples (i, j) and values as the computed dp[i][j] values. For each state (i, j), we can calculate dp[i][j] by considering all possible moves: either delete the current element or not.
+
+To improve the plan, consider sorting the sequence before starting the dynamic programming process to make it easier to handle the "equal to ak + 1 or ak - 1" case.
+
+The plan does include edge cases like when i is 0 or n-1. It also correctly identifies the recursive dependencies and uses memoization to avoid redundant calculations.

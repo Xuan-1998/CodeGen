@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], dp[k] + (k-i) for k in range(i+1, i+105))
+Tabulation:
+Create 2D array dp with size n x 105
+Fill up dynamically: 
+    dp[0][j] = j for 0 <= j <= 104
+    dp[i][j] = max(dp[i-1][k] + (k-i) for k in range(i+1, i+105)) 
+    if a[i] == j+1:
+        dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+Return dp[n-1][-1]
+===END PLAN===

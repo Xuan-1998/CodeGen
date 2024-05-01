@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: Minimum index i such that a[i] is the first element in the sequence not equal to any previous element
+DP State: Let dp[i][j] be the maximum number of points earned by deleting elements up to index i, considering that ak = j was the last element considered
+
+Create a 2D array dp with dimensions n x 105 where n is the length of the sequence and m is the range of possible values (1 to 105). Each cell dp[i][j] will store the maximum points earned by deleting elements up to index i, considering that ak = j was the last element considered.
+
+Initialize dp[0][j] for all j in [1, 105] as 0
+
+For each i from 1 to n-1:
+    For each j from 1 to 105:
+        If a[i] != j:
+            dp[i][j] = max(dp[i-1][j], dp[i-1][a[i]-1] + 1)
+        else:
+            dp[i][j] = dp[i-1][j]
+
+Return the maximum value in any column of the dp array
+===END PLAN===

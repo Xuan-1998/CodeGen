@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+
+Let s[i] be a boolean indicating whether 'AB' or 'BA' is found in the first i characters of s.
+
+Imagine a 2D DP table where dp[i][j] is True if the substring from index i to j contains 'AB' or 'BA', and False otherwise. The transition relationship can be defined as: for all indices i, j such that 0 <= i <= j < len(s), 
+dp[i][j] = (s[i-1:i+1] == 'AB' || s[i-1:i+1] == 'BA') 
+
+Use a boolean array to keep track of whether 'A' and 'B' appear in the string, then use this information to determine if 'AB' or 'BA' appears.
+
+Let count_A and count_B be the counts of 'A' and 'B' respectively. Initialize them both to 0
+
+For each character c in s:
+    If c == 'A', increment count_A
+    If c == 'B', increment count_B
+
+Check if (count_A > 0 && count_B > 0) || (count_A > 1 && count_B == 0) || (count_A == 0 && count_B > 1)
+If the condition is met, print "YES", otherwise print "NO"
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] = min(dp[i-1][k]) + grid[i][j] for k in range(n) if k != j
+Formulate dp[i][j] as the minimum sum of a path ending at cell (i, j), considering all possible paths from above rows that do not use the same column as the current cell.
+
+dp[i][j] = min(dp[i-1][k] + grid[i][j]) for k in range(n) if k != j
+Initialize dp[0][j] to grid[0][j] for each j, since there's no previous row to consider.
+
+dp[0][j] = grid[0][j]
+The plan is mostly correct, but it doesn't account for the edge case where i == 1. In this case, we need to initialize dp[1][j] as well, using a similar formula.
+Add an additional line: dp[1][j] = min(dp[0][k] + grid[1][j]) for k in range(n) if k != j
+
+===END PLAN===

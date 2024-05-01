@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[0][j] = dp[i][0] = 0 for all i, j
+
+For i > 0 and j > 0, the maximum number of common non-overlapping substrings ending at indices i and j is 1 plus the maximum number of common non-overlapping substrings ending at indices i-1 and j-1 if str1[i] == str2[j], or it's 0 if str1[i] != str2[j].
+
+dp[i][j] = (str1[i] == str2[j]) * (dp[i-1][j-1] + 1) + (1 - (str1[i] == str2[j])) * dp[i-1][j-1]
+
+The final answer is dp[N-1][M-1], where N and M are the lengths of str1 and str2 respectively.
+
+Implementing dynamic programming with a bottom-up approach:
+Fill up the dp table row by row, starting from the base case.
+===END PLAN===

@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Maintain a dictionary memo where memo[i] represents the set of winning teams for the prefix s[:i+1]. Initialize the base case when i is equal to n by setting memo[n] = {(n,)}. This means all teams that have won at least one game are considered winning teams.
+
+State: For each prefix of the string from 0 to i, keep track of the winning teams in a set or list.
+Transition relationship: If the current bit is '1', add the team that wins this game to the set if it's not already there. If the current bit is '0', remove all teams that lost this game from the set.
+
+Implement memoization using a recursive function get_winning_teams(i) that returns the set of winning teams for a given prefix of the binary string, and cache the results in dictionary memo:
+
+Function: 
+def get_winning_teams(i):
+    if i not in memo:
+        if s[i] == '1':
+            winning_teams = {(i,)}.union({*get_winning_teams(i-1)} if i>0 else set())
+        else:
+            losing_teams = {tuple(range(2**n))} - {*(get_winning_teams(i-1) if i>0 else set())}
+            winning_teams = {(i,)}.intersection({team for team in losing_teams})
+        memo[i] = winning_teams
+    return memo[i]
+
+Main function:
+def main():
+    n = int(input())
+    s = input()
+    print(*get_winning_teams(n-1), sep='\n')
+
+if __name__ == '__main__':
+    main()
+
+===END PLAN===

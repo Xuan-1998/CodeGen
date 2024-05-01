@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+Create a 2D table dp[][] where dp[i][j] represents the minimum number of times the shortest path from vertex i to t needs to be recomputed when the last node in the recomputed path is j. The goal is to find the minimum and maximum values in this table for all vertices i, which corresponds to finding the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed.
+
+Initially, dp[i][j] = 0 for all i, j because there are no recomputations initially. For each edge (u, v), if u is in the fixed path, then we need to update dp[v][p] where p is the index of v in the fixed path. If v is not in the fixed path, then we don't need any recomputation.
+
+To find the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed, iterate through all vertices i and for each vertex i, find the minimum and maximum values in dp[i][j] where j varies over all vertices in the fixed path.
+
+===END PLAN===

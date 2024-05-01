@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property. If so, consider using dynamic programming to solve the problem. The optimal substructure can be broken down into smaller subproblems and solved recursively.
+
+Let dp[i][j] represent the maximum sum of the array partitioned into j contiguous subarrays ending at index i. The base case is when j is 1, where the maximum sum is simply the maximum value in the remaining elements.
+
+The recursive formula can be written as:
+dp[i][j] = max(dp[i-1][j-1] + arr[i], dp[i-1][j])
+
+This represents the maximum sum of partitioning the array into j contiguous subarrays ending at index i, considering two possibilities: either include the current element in the last subarray or exclude it.
+
+Use a bottom-up dynamic programming approach to fill up a 2D table with dimensions (n, k+1), where n is the length of the input array. Initialize all values to -∞ and set dp[0][j] = arr[0] for j = 1 to k+1. Then, iterate through the array from left to right, updating each value in the table based on the recursive formula.
+
+Finally, return dp[n-1][k] as the maximum sum of all possible partitions of the array into k contiguous subarrays.
+===END PLAN===

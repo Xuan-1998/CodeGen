@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+DP_state = (i, s), where i is the current integer and s is the current sum
+Base case: DP_state(i+1, 0) returns an empty list, since there's no way to generate sums beyond the given set of integers
+Recursive step:
+    * If s > N, return an empty list, as this sum cannot be generated from the subsets of the given set
+    * Else if i = 1, return a list containing only s, as single-element sets can generate any sum up to their own value
+    * Else, consider two possibilities: including and excluding the current integer ai in the subset
+        + Include ai: recursively call DP_state(i-1, s+ai) and add its results to the set of possible sums
+        + Exclude ai: recursively call DP_state(i-1, s) and add its results to the set of possible sums
+    * Return the union of these two sets as the result for this subproblem
+Memoization can be implemented by storing the results of subproblems in a table (list) and checking if the result for a subproblem already exists in the table before computing it.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+The base case is when i == n - 1 (not i == 0), then dp[i] should be max(dp[i-1], 1) if nums[i] == 1; otherwise, it should be dp[i-1].
+
+Transition relationship: dp[i+1] = max(dp[i], dp[i-1]) + (nums[i] == 1).
+
+Define a function that takes an index i as input, calculates dp[i+1], and returns the value.
+
+For edge cases, consider when the array contains only zeros or ones. If it contains only zeros, return 0; if it contains only ones, return n - 1.
+
+===END PLAN===

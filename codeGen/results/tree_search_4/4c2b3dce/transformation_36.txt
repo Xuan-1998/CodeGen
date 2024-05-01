@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+Let the state be whether the current position in the string is at the end of 'AB' or not, and the base case is when we've processed the entire string.
+
+We can improve the plan by using a boolean array dp[] to keep track of whether each substring ends with 'A' or 'B'. This will allow us to efficiently check for the presence of both substrings in O(n) time complexity.
+
+Define a function findAB(s, n) that returns 1 if the string s contains both substrings "AB" and "BA", and 0 otherwise. The function takes two parameters: the string s and its length n.
+
+The base case is when we've processed the entire string. In this case, return 1 if 'BA' is at the end of the string, and 0 otherwise.
+Transition relationship can be determined by checking if the next character matches either 'A' or 'B', and updating the state accordingly. If the current character matches the last character in 'AB' (either 'A' or 'B'), update dp[i-1] with the new information.
+
+The function findAB(s, n) will recursively call itself to check for the presence of both substrings.
+
+The main function will call findAB(s, n) and print "YES" if it returns 1, and "NO" otherwise.
+===END PLAN===

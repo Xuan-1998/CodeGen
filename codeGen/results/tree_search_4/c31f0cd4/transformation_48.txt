@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+DP_state = (s, i), where s is the current sum and i is the current integer from 1 to N
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it
+Initialize an empty dictionary memo with default value None
+DP_state = (s, i) returns the list of sums for subset {a1, a2, ..., ai} and sum s
+Base case: DP_state(0, 0) returns [0] since there is only one possible sum, which is 0, when considering the empty set
+Recurrence relation:
+- If i = N, return [s] if s is already in memo else memo[s] = [s]
+- For each j from 1 to i, calculate DP_state(j, s - a_i) and add its result to memo if not existing yet
+    - If the sum s - a_i is already in memo, append it to the result list
+    - Recursively call DP_state with (j, s - a_i) and add its result to the list if not existing yet
+Return all values in memo as the final answer
+===END PLAN===

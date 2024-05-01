@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is just the index i, as we only care about the number of 1's after this point.
+The state can be represented as a boolean array (i <= n) where dp[i] = True if the longest subarray ends at index i and False otherwise.
+
+Memoize the maximum length of 1's found in previous subarrays using a dynamic programming table, where dp[i] is the maximum length of 1's ending at index i.
+If nums[i] == 0, reset the current maximum length to 0, as the longest subarray of 1's cannot extend beyond this point.
+Update the state by setting dp[i] = True if nums[i] == 1 and the maximum length is greater than 0, indicating that the longest subarray of 1's ends at index i.
+
+Return max(i | dp[i]) - 1 as the size of the longest non-empty subarray containing only 1's in the resulting array.
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is a pair (i, j) representing the start and end indices of the current subarray.
+State: dp[i][j] represents the maximum length of 1's ending at index j
+Transition: 
+    if nums[j] == 1:
+        dp[i][j] = max(dp[i][j-1], 1 + (dp[i][j-2] if i > 0 else 0))
+    else:
+        dp[i][j] = dp[i][j-1]
+Memoize the state and transition functions to avoid redundant computation by storing the results of expensive function calls and reusing them when the same inputs occur again.
+When deleting an element, update the maximum length accordingly
+Return max(dp[-1][-1]) as the result
+===END PLAN===

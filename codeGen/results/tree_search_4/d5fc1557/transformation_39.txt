@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+# Initialize memo dictionary with default value as 0 (for index 0)
+memo = {0: 0}
+
+# Define state transition function
+def transition(i, memo):
+    # If this is the first 1 encountered after a sequence of 0's, reset the count
+    if i > 0 and nums[i] == 1:
+        return 1
+    # Otherwise, consider the maximum length of 1's seen at previous indices j such that nums[j] == 1
+    else:
+        for j in range(i):
+            if memo.get(j, 0) == 1:  # Check if memoized value is 1
+                return memo[j] + 1
+
+# Initialize maximum length of 1's to 0
+max_length = 0
+
+# Iterate over the array and update maximum length
+for i in range(len(nums)):
+    max_length = max(max_length, transition(i, memo))
+    # Update memo dictionary with new state value
+    memo[i] = max_length
+
+# Return the maximum length of 1's found in the entire array (or 0 if no 1's were found)
+return max_length
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Check if 'AB' appears in the string, then check if 'BA' appears in the remaining part of the string
+The state is an integer index i into the string s, with base case being when i >= len(s) - 2 (i.e., there are at most two characters left).
+Whether 'BA' appears in the remaining part of the string (i.e., s[i+2:]) as a function of whether 'AB' appears in this part
+Create a 1D array dp where dp[i] is True if the substring s[:i] contains both 'AB', and False otherwise.
+Initialize dp to be all False
+For each i from 0 to len(s) - 3:
+    If s[i:i+2] == 'AB' or s[i:i+2] == 'BA':
+        dp[i + 1] = True
+    For j from i + 2 to len(s):
+        if s[j-1:j+1] == 'BA' and dp[j - 2]:
+            dp[j] = True
+Check if dp[len(s) - 3]
+If True, return "YES", otherwise return "NO"
+===END PLAN===

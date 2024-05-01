@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: Compare all possible substrings of str1 and str2, considering their lengths from 1 to N.
+
+Optimal substructure: Find the maximum number of common non-overlapping substrings by recursively combining smaller substrings.
+
+The state could be defined as dp[i][j] = maximum number of common non-overlapping substrings between str1[:i] and str2[:j].
+
+dp[i][j] represents the maximum number of common non-overlapping substrings between str1[:i] and str2[:j]. If str1[:i] is a prefix of str2[:j], then dp[i][j] = dp[i-1][j]; else, dp[i][j] is the minimum of the following:
+    - N (all strings are common)
+    - min(dp[i-1][j], dp[i][j-1])
+    - 0 (no common substring)
+
+Implement tabulation by initializing a 2D table dp with N+1 rows and N+1 columns, filling it up row by row or column by column based on your algorithm.
+
+The base case for the recurrence should be when either str1[:i] or str2[:j] is empty. In this case, there are no common substrings.
+
+To improve performance, consider using a hashmap to store the substrings of str1 and their corresponding indices in O(1) time. This would allow you to efficiently check if a substring exists in str1 and find its first occurrence in constant time.
+
+The plan does not explicitly handle edge cases. For example, what if N is 0? What if both strings are empty?
+
+However, the recurrence relation seems correct, and the tabulation approach should work as long as the base case is handled correctly.
+===END PLAN===

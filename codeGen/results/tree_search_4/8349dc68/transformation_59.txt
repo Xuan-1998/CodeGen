@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property. If so, consider using dynamic programming with memoization to solve the problem.
+
+Let's define the state as dp[i][j] representing the maximum sum that can be achieved by considering the first i elements and the current window of size j.
+
+The base case is when i = 0 or j = 0, in which case the maximum sum is 0.
+
+For non-base cases, consider the following transitions:
+
+1. If the maximum value in the current window (max_val) is greater than the previous maximum value (dp[i-1][j-1]), update dp[i][j] to be the sum of max_val and the maximum sum of the remaining elements (dp[i-1][j-1]).
+2. Otherwise, update dp[i][j] to be the maximum sum of the remaining elements (dp[i-1][j-1]).
+
+Memoize the maximum sums by storing them in a dictionary dp[i][j]. This way, we avoid recalculating the same subproblems multiple times.
+
+Finally, return the maximum value stored in dp[n][k], which represents the maximum sum that can be achieved by considering all elements and a window of size k.
+
+===END PLAN===

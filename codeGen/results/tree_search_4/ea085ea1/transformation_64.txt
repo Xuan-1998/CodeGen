@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+Let preStr1[i] be the maximum number of common non-overlapping substrings ending at index i in str1, and let preStr2[j] be the maximum number of common non-overlapping substrings ending at index j in str2.
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if str1[i] != str2[j]
+dp[i][j] = 1 + dp[i-1][j-1] if str1[i] == str2[j]
+
+Pre-compute all possible substrings of str1 and str2. For each substring, find the maximum number of common non-overlapping substrings ending at that index.
+Initialize dp[0][0] to be 0.
+
+For i from 1 to N-1:
+    For j from 1 to M-1:
+        If str1[i] != str2[j]:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+        Else:
+            dp[i][j] = 1 + dp[i-1][j-1]
+Return dp[N-1][M-1]
+
+===END PLAN===

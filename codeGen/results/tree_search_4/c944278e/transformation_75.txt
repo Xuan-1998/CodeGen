@@ -1,0 +1,52 @@
+===BEGIN PLAN===
+# Initialize memoization dictionary
+memo = {}
+
+def find_winning_teams(score):
+    # Base case: when only one team remains
+    if score == 1:
+        return [[i] for i in range(2**n)]
+
+    # If the result is already calculated, return it
+    if score in memo:
+        return memo[score]
+
+    # Initialize list of winning teams
+    winning_teams = []
+
+    # Iterate over all possible teams that can win this phase
+    for i in range(2**n):
+        # Calculate the score of team i after this phase
+        new_score = calculate_new_score(i, s)
+
+        # Recursively find winning teams with the updated score
+        teams = find_winning_teams(new_score)
+        for team in teams:
+            # Add team to the list of winning teams
+            winning_teams.append([i] + team)
+
+    # Store result in memoization dictionary
+    memo[score] = winning_teams
+
+    return winning_teams
+
+# Main function: divide tournament into phases and find winning teams
+def main():
+    # Initialize list of winning teams for each phase
+    winning_teams_per_phase = []
+
+    # Iterate over all possible scores (phases)
+    for i in range(2**n):
+        # Find winning teams for this phase
+        teams = find_winning_teams(i)
+
+        # Add teams to the list of winning teams per phase
+        winning_teams_per_phase.append([team for team in teams])
+
+    # Combine results from each phase to get final list of winning teams
+    all_winning_teams = [item for sublist in winning_teams_per_phase for item in sublist]
+
+    return all_winning_teams
+
+# Main execution
+print(main())

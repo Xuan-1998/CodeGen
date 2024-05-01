@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+Let the state be whether the current position in the string is at the end of 'AB' or not, and the base case is when we've processed the entire string.
+State can be a boolean indicating whether we have seen both 'A' and 'B' in the current window
+
+Check if the length of the string is less than 2
+    - If true, return "NO" as there are no non-overlapping substrings to check for
+Check if the length of the string is greater than or equal to 2
+    - Initialize a flag indicating whether 'A' and 'B' have been seen in the current window
+    - Iterate through the string from left to right
+        - If the current character is 'A', set the flag to True
+        - If the flag is True and the current character is 'B'
+            - Set another flag indicating whether we've processed the entire string
+            - Initialize a counter for the number of 'B's seen in the window
+            - Iterate through the remaining part of the string from left to right
+                - If the current character is 'B', increment the counter
+                - If the counter equals 1, set the flag to False and break the loop
+            - If the flag is True, return "YES" as we've found both substrings
+    - Return "NO" if we haven't processed the entire string or if the flags are False
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Consider dp[i][j] as the length of the shortest subsequence ending at index i in string S and j in string T.
+Initialize dp[0][0] to 1 (base case: empty subsequences)
+For each i from 1 to len(S), iterate over each j from 0 to min(i, len(T)):
+    If S[i-1] != T[j], then dp[i][j] = 1 + dp[i-1][j]
+    Else dp[i][j] = dp[i-1][j-1]
+Memoize previously computed values of dp[i][j] using a dictionary
+Return max(max(dp[i][j]) for i, j) as the length of the shortest uncommon subsequence
+
+===END PLAN===

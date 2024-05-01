@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+DP_state = (subsets, sums), where subsets is a set of all possible subsets and sums is a set of all possible sums, with base case being DP_state({set()}, {0})
+DP_state = (subset_sum, current_sum), where subset_sum is the sum of all elements in the subset and current_sum is the current sum being calculated.
+Create a 2D table dp where rows represent the subsets and columns represent the sums. Initialize all values to -1, except for dp({set()}, {0}) which is set to 0.
+For each subset s in subsets:
+    For each sum i in sums:
+        If i == 0, then dp_state = (s, i) means that no elements have been added yet, so we can add any element from the original set and calculate its sum with current_sum. 
+        Otherwise, if i > 0, then we need to find the subset s' where the maximum possible element is subtracted from i to get a sum that is also in dp.
+        For each element e in s:
+            If e <= i, add e to s' and calculate its sum with current_sum. 
+            Add dp_state(s', i-e) to dp_state(s, i)
+    Return the sums in increasing order
+===END PLAN===

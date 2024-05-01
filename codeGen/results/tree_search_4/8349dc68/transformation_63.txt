@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure property. It does, as we can break down the problem into smaller subproblems by considering each partition separately.
+
+To consider the maximum sum of all possible partitions of the array into k contiguous subarrays as the state, with base case being when k is 1.
+The state can be represented as a dictionary where the key is the current subarray index and the value is the maximum sum up to that index after partitioning into k-1 subarrays.
+
+Create a 2D array dp of size n x (k+1) where dp[i][j] represents the maximum sum up to index i after partitioning into j subarrays.
+Fill in the base case values for dp when j is 1, as it's easy to calculate the maximum sum for a single subarray.
+
+For each state dp[i][j], consider all possible partitions of the array up to index i into j subarrays. For each partition, calculate the maximum sum by considering the maximum value of the current subarray and recursively calculating the maximum sum for the remaining part of the array after partitioning.
+Update the state dp[i][j] with the maximum sum calculated from all possible partitions.
+
+The final answer is the maximum sum calculated for the last row of the 2D array, i.e., dp[n][k].
+
+===END PLAN===

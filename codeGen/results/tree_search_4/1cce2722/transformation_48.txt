@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The bottom-up approach with tabulation can be used to build up solutions to the problem from smaller problems.
+
+Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1. The base case would be when i is 0 or n-1, where we start or end the sequence respectively.
+
+Define dp[i][j] as the maximum number of points that can be earned if we are currently at the i-th element and the last deleted elements were at indices j-1, j+1, considering only the elements before the i-th one.
+
+Use a 2D array to store the dynamic programming states.
+
+Let's consider the possible cases for dp[i][j]:
+
+* If ai is equal to ak + 1 or ak - 1 for some k < i, then we can delete ai and get the maximum number of points by deleting all elements equal to ai + 1 and ai - 1. This would be dp[i-2][i+2].
+* Otherwise, we consider two options: delete ai, or don't delete it. In the first case, we'd get dp[i-1][j] as the maximum number of points earned. In the second case, we'd get dp[i-1][j-1] + 1 (because we're not deleting ai).
+
+So, the recurrence relation would be:
+
+dp[i][j] = max(dp[i-2][i+2], dp[i-1][j], dp[i-1][j-1] + 1)
+
+The base case would be when i is 0 or n-1. In this case, we'd return 0.
+
+We fill up the 2D array in a bottom-up manner, starting from the base cases and moving towards the top-right corner.
+
+Finally, the maximum number of points that can be earned would be dp[n-1][n-1].
+
+===END PLAN===

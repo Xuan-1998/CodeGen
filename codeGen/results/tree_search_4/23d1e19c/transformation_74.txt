@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+DP by counting recomputations:
+    * Initialize a DP array dp[] of size n, where dp[i] represents the minimum number of times the shortest path from i to t needs to be recomputed.
+    * Initialize another DP array max_dp[] of size n, where max_dp[i] represents the maximum number of times the shortest path from i to t needs to be recomputed.
+    * For each vertex in the fixed path (from s to t), update dp[] and max_dp[] accordingly based on whether the driver chooses to follow the recommended path or not.
+
+Implement a recursive function that utilizes memoization to avoid redundant computations:
+    * Define a recursive function f(i, visited) that takes an integer i representing the current vertex in the fixed path and a set of visited vertices.
+    * If i is the last vertex (t), return 0 for both dp[i] and max_dp[i].
+    * Otherwise, compute the minimum and maximum number of recomputations by considering two options: 
+        + Follow the recommended path from i to t and add 1 to the result of f(neighbor, visited union {i}).
+        + Recompute the shortest path from i to t and add 1 to the result of f(t, visited union {i}).
+    * Return the minimum and maximum number of recomputations for dp[i] and max_dp[i], respectively.
+
+===END PLAN===

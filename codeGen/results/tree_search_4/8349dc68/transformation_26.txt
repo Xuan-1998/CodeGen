@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider dp[i][j] as the maximum sum of array from index i to j considering k-size subarrays
+dp[i][j] is the maximum sum of all partitions ending at index j, using at most k elements.
+
+We will fill up the table in bottom-up manner. For each cell dp[i][j], we consider two cases:
+- The last k elements are included in the partition: dp[i][j] = max(dp[i-1][j-k]) + arr[j]
+- The last element is not included in the partition (or it's the first subarray): dp[i][j] = dp[i-1][j]
+
+So, the transition function can be written as:
+
+dp[i][j] = max(dp[i-1][j-k] + arr[j], dp[i-1][j])
+
+The base case is when i > j: in this case, the maximum sum is 0.
+
+Finally, we return the maximum value in the last row of the table: max(dp[n-1][i]) for all i
+
+===END PLAN===

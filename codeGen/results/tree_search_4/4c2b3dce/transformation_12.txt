@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+Let s[i] be a boolean indicating whether 'AB' or 'BA' is found in the first i characters of s.
+
+Define a 2D DP table dp where dp[i][j] represents whether the substring from index i to j contains 'AB' or 'BA'.
+
+For all indices i, j such that 0 <= i <= j < len(s), define the transition relationship as:
+dp[i][j] = (dp[i-1][j-1] and ('A' == s[i] && 'B' == s[j]) || ('B' == s[i] && 'A' == s[j]))
+
+Use the following base cases to initialize the DP table:
+dp[0][j] = False for all j, since an empty substring cannot contain 'AB' or 'BA'
+dp[i][0] = False for all i, since a one-character substring cannot contain 'AB' or 'BA'
+
+The recurrence relation is:
+For 1 <= i <= len(s) and 1 <= j <= len(s), dp[i][j] = (dp[i-1][j-1] and ('A' == s[i] && 'B' == s[j]) || ('B' == s[i] && 'A' == s[j])) || (dp[i-1][j] || dp[i][j-1])
+
+Finally, the solution is: 
+return "YES" if dp[-1][-1], and "NO" otherwise
+===END PLAN===

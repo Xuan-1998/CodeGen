@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use a dynamic programming approach with a 2D table to keep track of whether 'AB' and 'BA' substrings are present in the string up to each position.
+Let dp[i][j] be true if the substring from position i to j contains both 'AB' and 'BA', and false otherwise.
+
+Base case: dp[0][len(s)-1] is true because we start by checking for both substrings at the end of the string.
+Consider the current position p in the string. There are two cases:
+- If s[p-1:p+1] == 'AB' (or 'BA'), then check if the remaining substring from p to len(s)-1 contains the other substring ('BA' or 'AB'). This is represented by dp[p][len(s)-1].
+- If not, then we just need to check if the remaining substring from p to len(s)-1 contains both substrings. This is represented by dp[p][len(s)-1].
+
+The final answer would be: If there exists i such that dp[0][i] is true, then return 'YES'; else return 'NO'.
+
+===END PLAN===

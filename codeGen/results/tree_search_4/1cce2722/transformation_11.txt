@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], dp[j] + (n - j) - i for j in range(i))
+The state could be the index of the current element, 
+dp[i] = max(dp[i-1], dp[j] + (n - j) - i for j in range(min(i, n)))
+Memoize the dynamic programming state 
+dp[i] = max(dp[i-1], dp[j] + (n - j) - i for j in range(min(i, n)))
+Since we don't know which element to delete, try deleting all possible elements and keep track of the maximum points earned.
+To avoid redundant computation, initialize dp[0] to 0 because there are no elements to delete initially. 
+dp[i] = max(dp[i-1], (n - i) if a[i] not in sequence else 0 for i in range(n))
+The final answer is dp[n]
+===END PLAN===

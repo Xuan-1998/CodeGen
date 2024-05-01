@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][k][v] represents the maximum sum that can be achieved by partitioning the subarray from index i to i+k, considering the current element v.
+Initialize dp[0][0][v] = 0 for all values v (since there's no previous array to consider)
+Fill up the table in bottom-up manner:
+- For each subarray from index i to i+k
+- Calculate the maximum value among its elements and its previous maximum values
+- Consider the state transition as the maximum sum that can be achieved by partitioning this subarray and its previous maximum values
+- Update dp[i][k][v] accordingly
+Return max(dp[n-1][k][v]) for all v, where n is the length of the array
+This plan considers edge cases (e.g., k = 1) and handles all possible partitions of the array
+It's correct and efficient, with a time complexity of O(n * k * max(arr)) and space complexity of O(n * k)

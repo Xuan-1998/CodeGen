@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it.
+DP_state = (i, j), where i is the current subset and j is the current sum, with base case being DP_state(0, 0) returning an empty list
+DP_state = (i, s), where i is the current integer and s is the current sum, with base case being DP_state(i, s) returning a list containing only s if i equals N and s equals the sum of all integers in the set
+
+Update DP_state(i, j):
+    1. If j equals 0, return an empty list
+    2. If j is less than 0 or greater than the sum of all integers in the set, return an empty list
+    3. If i equals N and s equals the sum of all integers in the set, add s to a result list for each subset that sums up to j
+    4. Initialize an empty list for subsets
+    5. For each possible integer x from 1 to 100 (inclusive):
+        * Calculate the new sum d = j - x
+        * If dp_state(i-1, d) is not None, add all elements in dp_state(i-1, d) to the list for subsets and update dp_state(i, j)
+    6. Return the result list for subsets
+===END PLAN===

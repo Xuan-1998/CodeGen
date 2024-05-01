@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Identify state variables: Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. The base case is when i or j is 0.
+
+dp[0][j] = dp[i][0] = 0
+
+For i > 0 and j > 0:
+    If str1[i] == str2[j], then we can add one more common substring
+        dp[i][j] = 1 + dp[i-1][j-1]
+    Else, the maximum number of substrings remains the same as before
+        dp[i][j] = min(1, dp[i-1][j-1])
+Using a 2D table to store the maximum number of common non-overlapping substrings
+===END PLAN===

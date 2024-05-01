@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+dp[i] = total number of combinations to form 'i' using elements from the array
+state transition: dp[i] = 1 + sum(dp[j] for j in range(i)) where j is the element being used to form 'i'
+base case: i == N, return 1 (only one way to form N)
+base case: 0 <= i < N, return 1 (one way to form 0 by not adding any numbers)
+
+Memoization: store intermediate results in a dictionary dp and update it recursively
+Return the final answer once all possible combinations have been considered
+
+Example:
+    if i == N: 
+        return 1
+    elif 0 <= i < N:
+        return 1
+    else:
+        total = 0
+        for j in range(m):
+            if elements[j] <= i:
+                total += dp[i - elements[j]]
+        return total
+
+Note: The base case should be when 'i' is less than or equal to the maximum possible sum of array elements, which is N * m. This is because there can't be more ways to form a number greater than this.
+===END PLAN===

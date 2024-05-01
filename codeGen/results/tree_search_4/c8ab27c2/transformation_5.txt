@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings
+Consider dp[i][j] as the length of the shortest subsequence ending at index i in string S and j in string T
+Initialize a 2D table with dimensions (len(S) + 1) x (len(T) + 1)
+dp[0][j] = 0 for all j, because an empty subsequence is always not a subsequence in any string
+dp[i][0] = i+1 if S[:i+1] is not a subsequence in T, otherwise dp[i-1][0]
+Fill the rest of the table by iterating over the characters in both strings:
+  - If the current characters in S and T match (S[i] == T[j]), update dp[i][j] = dp[i-1][j-1]
+  - If they don't match, consider two cases:
+    * If S[:i+1] is not a subsequence in T, set dp[i][j] = i+1
+    * Otherwise, keep the current value of dp[i][j]
+Return dp[len(S)][len(T)] as the length of the shortest uncommon subsequence
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j] = sum(dp[i+1][j]) + sum(dp[i][j+1]) if i < N-1 or j < N-1 and arr[i][j] <= k
+dp[i][j] = dp[i-1][j] + dp[i][j-1] if i > 0 and j > 0 and arr[i][j] <= k
+
+Use a 2D table to store intermediate results, where each cell dp[i][j] represents the number of paths that collect exactly i coins up to row j.
+
+Initialize dp[0][0] = 1 (base case: one path from top left to itself)
+
+Fill up the table by considering subproblems and storing intermediate results
+
+Return dp[N-1][N-1] as the final result
+
+===END PLAN===

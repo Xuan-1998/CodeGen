@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Let dp[i][j] be the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively.
+
+Initialize memo with zeros: Create a 2D array memo of size N*N, where memo[i][j] represents the maximum number of common non-overlapping substrings ending at indices i and j in str1 and str2 respectively. Initialize all elements to 0.
+
+Base case: When i or j is 0, there are no substrings.
+dp[0][j] = dp[i][0] = 0
+
+Transition rule: 
+- If str1[0..i] matches with str2[0..j], then consider the substring ending at indices i and j. Add this to the maximum number of common non-overlapping substrings ending at indices i-1 and j-1.
+dp[i][j] = dp[i-1][j-1] + (str1[0..i] == str2[0..j])
+
+Iterate over all pairs of indices: Fill up memo array using the transition rule. The maximum number of common non-overlapping substrings ending at indices i and j is stored in memo[i][j].
+
+Return the value at the last cell: Return dp[N-1][N-1], which represents the maximum number of common non-overlapping substrings between str1 and str2.
+
+===END PLAN===

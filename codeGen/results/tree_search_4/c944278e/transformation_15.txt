@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament, and use dynamic programming to find all such teams. Memoize the results for faster computation.
+
+The base case is when n == 1, as there's only one winning team in a single-game tournament.
+
+To view each phase of the tournament as a recursive decision: either the winning team advances to the next round or the losing team is eliminated.
+
+Use a 2D table to store the results of subproblems and fill it in bottom-up manner. Specifically:
+- Initialize the table with base cases (n == 1).
+- For each possible number of wins (0 to n), iterate over all teams that have won that many games.
+- For each team, calculate the probability of them winning the next round based on their skill level and the result of the current phase.
+- Update the table with the maximum probability for each possible number of wins.
+
+The final answer will be all teams that have a winning chance greater than or equal to 0.5 (or any desired threshold).
+===END PLAN===

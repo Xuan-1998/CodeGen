@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is characterized by finding the maximum number of common non-overlapping substrings between two strings. This problem can be solved using memoization in a top-down approach, as it has overlapping subproblems.
+
+To avoid recomputing values for overlapping subproblems, initialize a 2D DP table dp[i][j] to represent the maximum number of common non-overlapping substrings ending at positions i and j in str1 and str2, respectively. The value dp[i][j] represents the maximum number of common non-overlapping substrings between str1[0..i-1] and str2[0..j-1].
+
+For each pair (i, j), consider all possible substrings ending at positions i and j in str1 and str2, respectively. For each such substring, check if it is a valid common non-overlapping substring by ensuring that the characters match between str1 and str2.
+
+If the substring is valid, increment the count of maximum number of common non-overlapping substrings. Update dp[i][j] with the maximum count found so far.
+
+To handle edge cases, consider the case when i or j is 0 (i.e., the end of a string). In this case, set dp[i][j] to 1, as there can be at most one common non-overlapping substring of length 0.
+
+Finally, return the maximum value in the DP table, which represents the maximum number of common non-overlapping substrings between str1 and str2.
+===END PLAN===

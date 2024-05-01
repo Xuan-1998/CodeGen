@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+Let the state be whether the current position in the string is at the end of 'AB' or not, and the base case is when we've processed the entire string.
+State can be a boolean indicating whether we have seen both 'A' and 'B' in the current window
+
+Create a dynamic programming table with size (len(s), 2) where dp[i][0] means we are at the end of 'AB' at position i, and dp[i][1] means we haven't seen 'B' yet
+Fill the table by checking if 'A' or 'B' appears in the current window
+
+Base case: when i == len(s), set both dp[i][0] and dp[i][1] to True because there's no more string left
+
+When moving the window, check if we have seen 'AB' or 'BA' based on dp[i-1] values
+Return "YES" if either of these conditions is met, else return "NO"
+
+===END PLAN===

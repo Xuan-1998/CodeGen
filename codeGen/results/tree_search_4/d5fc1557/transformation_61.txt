@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Tabulate the dynamic programming table row by row, where each cell represents the longest subarray with only 1's up to that point.
+
+The base case is when i == n - 1 (not i == 0), then dp[i] should be 0 or 1, depending on whether the last element in the array is a 1. This ensures we handle edge cases correctly.
+
+dp[i] represents the length of the longest subarray with only 1's up to index i.
+
+Use a bottom-up dynamic programming approach, where you fill the dp table from the end to the beginning. Start by initializing dp[n - 1], then fill in dp[n - 2], ..., dp[0].
+
+When calculating dp[i], consider two cases: 
+- If nums[i] is a 1 and nums[i - 1] is also a 1, then dp[i] should be dp[i - 1] + 1.
+- If nums[i] is a 1 but nums[i - 1] is not a 1, then dp[i] should be 1 (reset the subarray).
+
+When i == n - 2, reset the longest subarray if nums[n - 1] is not a 1.
+
+Finally, return dp[0], which represents the length of the longest non-empty subarray containing only 1's in the resulting array.
+
+===END PLAN===

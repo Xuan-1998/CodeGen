@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation and memoization.
+
+Create a 3D array dp[n+1][m+1][max_size] where max_size is the maximum possible side length of squares. Initialize all values to infinity, except for base cases:
+- When i or j is 0, set dp[i][j][0] = 0 (no squares needed)
+- For smaller square sizes, calculate the minimum number of squares needed by considering all possible larger square sizes and their positions within the rectangle.
+
+Fill in the dp array iteratively, using memoization to store and reuse previously computed values. This is done to avoid redundant calculations.
+
+For each cell dp[i][j][k], consider all possible positions of a k*k square within the rectangle:
+- If there's no room for a k*k square, set dp[i][j][k] = dp[i][j][k-1] (no change)
+- Otherwise, calculate the minimum number of squares needed by considering two options: 
+  - Place the k*k square at the top-left corner
+  - Place the k*k square elsewhere
+
+Return dp[n][m][max_size] as the minimum number of integer-sided squares required to tile the given rectangle.
+
+===END PLAN===

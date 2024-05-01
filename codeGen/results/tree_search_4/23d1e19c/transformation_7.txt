@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+Let dp[i][j] be the minimum number of times the system recomputes the shortest path from vertex i to t when the driver is at vertex j. We can use dynamic programming to solve this problem. The base case is when j = k, which means we have reached the end of the fixed path.
+
+dp[i][j] = 
+    min(dp[i-1][j-1], 1 + dp[j+1][k]);
+This equation calculates the minimum number of times the system recomputes the shortest path from vertex i to t when the driver is at vertex j. If the driver follows the recommended path, it will be the same as the previous step (dp[i-1][j-1]). If not, the system needs to recompute the shortest path once (1 + dp[j+1][k]).
+
+To find the maximum number of times the system recomputes the shortest path, we can use a similar approach. Let max_dp[i][j] be the maximum number of times the system recomputes the shortest path from vertex i to t when the driver is at vertex j.
+
+max_dp[i][j] = 
+    max(max_dp[i-1][j-1], 1 + max_dp[j+1][k]);
+This equation calculates the maximum number of times the system recomputes the shortest path from vertex i to t when the driver is at vertex j. If the driver follows the recommended path, it will be the same as the previous step (max_dp[i-1][j-1]). If not, the system needs to recompute the shortest path once (1 + max_dp[j+1][k]).
+
+The final answer is the difference between these two values: dp[k][n] - max_dp[0][n].
+
+===END PLAN===

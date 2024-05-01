@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+Define transition relationship:
+Consider each vertex as a state.
+For each vertex, calculate the minimum and maximum number of recomputations needed based on the shortest path from that vertex to t.
+The transition relationship could be defined as follows:
+
+- If the current vertex is in the fixed path, the minimum and maximum number of recomputations are both 0 because the shortest path has already been computed.
+- If the current vertex is not in the fixed path, consider its neighbors. 
+  - For each neighbor, calculate the minimum and maximum number of recomputations needed for that neighbor.
+  - The minimum number of recomputations for the current vertex is the minimum of these values plus 1 (because we need to recompute the shortest path from the current vertex to t).
+  - The maximum number of recomputations for the current vertex is the maximum of these values plus 1.
+
+DP with 2D array: Initialize a 2D array dp[][] of size n+1 x n+1 where n is the total number of vertices in the graph.
+Fill up this array by considering the minimum and maximum number of recomputations needed for each vertex. 
+The base case could be when the current vertex is in the fixed path.
+
+- For each vertex, calculate the minimum and maximum number of recomputations needed based on its neighbors.
+- Store these values in the dp[][] array.
+
+Finally, return the minimum and maximum number of recomputations stored at the target vertex t as the result. 
+===END PLAN===

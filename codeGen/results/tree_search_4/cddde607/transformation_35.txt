@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Dynamic programming can be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+The state expression could be dp[i][j] = total number of ways to reach cell (i, j) regardless of the number of coins collected.
+dp[i][j] is 1 if and only if there are exactly K coins in cell (i, j), and the path has visited cells (0, 0) to (i, j-1) or (0, 0) to (i-1, j).
+Implement memoization by creating a dictionary memo where key is the pair (i, j) and value is the total number of ways to reach cell (i, j).
+
+dp[i][j] = dp[i-1][j] + dp[i][j-1] if i > 0 and j > 0
+
+memo = {}
+def get_ways(i, j):
+    key = (i, j)
+    if key in memo:
+        return memo[key]
+    ways = 0
+    if i == 0 and j == 0:
+        if arr[i][j] == K:
+            ways = 1
+    elif i > 0:
+        ways += get_ways(i-1, j)
+    elif j > 0:
+        ways += get_ways(i, j-1)
+    memo[key] = ways
+    return ways
+
+return get_ways(N-1, N-1)
+===END PLAN===

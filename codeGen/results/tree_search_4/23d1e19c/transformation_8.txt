@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The shortest path from a vertex to t can be recomputed when the driver chooses not to follow the recommended path, i.e., at each vertex, there are two choices (follow the recommended path or not), and this choice affects the next vertex's shortest path. Hence, there are overlapping subproblems.
+
+dp[i][j] = min(dp[i][j-1], 1 + dp[j+1][k]);
+The minimum and maximum counts are related to how many times the system recomputes the shortest path. You can model this by considering when a recomputation is needed.
+memo = {k: k for k in range(n+1)}; def f(k): return memo.get(k, k) if k < n else 0;
+
+Identify base cases:
+- Initialize dp[0][j] to the shortest path from vertex j to t (for j=0 to k).
+- dp[i][0] is always 0 because there's no recomputation needed.
+
+Build up a dynamic programming table using bottom-up approach:
+- For each i and j, calculate the minimum number of times the shortest path needs to be recomputed.
+- If the driver follows the recommended path, there's no need for recomputation (dp[i][j] = dp[i-1][j-1]).
+- If the driver doesn't follow the recommended path, we need to consider when a recomputation is needed and update the minimum count accordingly.
+- For each i, calculate the maximum number of times the shortest path needs to be recomputed.
+
+Return the minimum and maximum counts as the final answer.
+===END PLAN===

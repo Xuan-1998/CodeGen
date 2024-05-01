@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+Let dp be a dictionary where dp[(i, ones)] represents the maximum length of 1's found in the subarray ending at index i with ones ones consecutive 1's.
+
+The state is a tuple (i, ones) where i is the current index and ones is the maximum length of 1's found in previous subarrays.
+If the current element is 0:
+    If i > 0, update dp[(i-1, 0)] to dp[(i-1, 0)]. This means we reset the count of consecutive 1's when encountering a 0. Then, return dp[(i-1, 0)].
+    Otherwise (i.e., the array starts with a 0), return 0 because there are no more elements to consider.
+
+If the current element is 1:
+    Update dp[(i, ones + 1)] to max(dp.get((i, ones + 1), 0), ones + 1). This means we either start a new streak of consecutive 1's or extend an existing one.
+    Update dp[(i-1, ones)] to min(dp.get((i-1, ones), float('inf')), ones). This ensures that we correctly handle the case where the current element is part of a longer streak of consecutive 1's.
+
+Employ memoization using a dictionary where the key is the state (i, ones) and the value is the corresponding maximum length.
+Return dp.get((n-1, 0), 0).
+===END PLAN===

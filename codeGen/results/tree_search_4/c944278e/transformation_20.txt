@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider teams that have won at least one game in each phase of the tournament.
+
+dp[i][j] = True if team j can win from the i-th phase onwards;
+
+Memoize dp[i][j] for faster computation. The base case is when i == n, where n is the total number of phases; all teams that are still active at this point have won at least one game in each phase.
+
+The recursive function would be:
+dp[i][j] = (s[i-1][j-1] && dp[i-1][j-1]) || (not s[i-1][j-1] && dp[i-1][j+1]);
+
+Here, s[i-1][j-1] is the result of the i-th phase for team j. If team j wins in this phase, then we consider all possible winning combinations for team j-1 that came before it and for team j+1 that comes after it.
+
+The base case would be when i == n, where n is the total number of phases; all teams that are still active at this point have won at least one game in each phase. The answer would be the set of all indices j such that dp[n][j] is True.

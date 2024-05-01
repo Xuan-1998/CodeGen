@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if the problem has an optimal substructure that can be broken down into smaller problems. It does: we need to find the maximum sum for each possible partition of the array into k contiguous subarrays.
+
+Consider using dynamic programming with memoization to solve this problem. We can define a recursive function dp[i][j] that represents the maximum sum for the first i elements and j partitions (i.e., j subarrays).
+
+Base case: when i is 1, there's only one partition, so the maximum sum is simply the maximum value in the array.
+
+Recursive case: for i > 1, we can consider two options:
+- Take the maximum value of the current subarray as the base for the next partition (i.e., i - 1 elements and j - 1 partitions).
+- Skip the current element and continue with the same number of partitions (i - 1 elements and j partitions).
+
+We choose the option that gives us a higher maximum sum. We use memoization to store the results for each state to avoid redundant calculations.
+
+To solve this problem, we need to find the maximum value of dp[n][k], where n is the length of the array and k is the number of partitions.

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP solution: Define the state expression as dp[i][j] representing whether there is a subset of the first i integers with sum j * m. Base case: dp[0][k] = 1 if k == 0, and 0 otherwise.
+
+dp[i][j] represents whether there is a subset of the first i integers with sum j * m.
+To use memoization by defining a function that takes two parameters (i, j) and returns dp[i][j]. This function can be used to initialize the table with base cases and then fill up the table.
+
+For each i from 1 to n:
+    Initialize dp[i][0] = 1 because an empty subset is always valid.
+    For each j from 0 to m - 1:
+        If (dp[i-1][j] == 1) and (nums[i-1] % m == j % m):
+            dp[i][j+m] = 1
+        else:
+            dp[i][j+m] = dp[i-1][j]
+
+The final answer is the value of dp[n][m-1].
+===END PLAN===

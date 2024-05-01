@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: Think about the dynamic programming table dp[i][j] where i ranges from 1 to N and j ranges from 0 to sum all elements. The value at dp[i][j] represents whether there exists a subset that sums up to j using the first i elements.
+
+Transition function: dp[i][j] depends on dp[i-1][k] and dp[k][j-k], for all 0 <= k <= j. This is because a subset that sums up to j can be formed by adding an element from the previous subsets or subtracting an element from the previous subsets.
+
+Base case: Initialize dp[0][0] to True, since there exists a subset (the empty set) that sums up to 0 using no elements.
+
+Initialization: Initialize all values in the first column of the table to True, since a subset with no elements always sums up to 0. Similarly, initialize all values in the first row of the table to False, since it's impossible to form a sum greater than the maximum element.
+
+Filling-up-the-table: Fill up the dynamic programming table dp[i][j] for i ranging from 1 to N and j ranging from 0 to sum all elements. Use the transition function to determine whether there exists a subset that sums up to j using the first i elements.
+
+Answer: The distinct sums that can be generated from the subsets of the given set are represented by the rows in the dynamic programming table where dp[i][j] is True. Output these sums in increasing order.
+
+===END PLAN===

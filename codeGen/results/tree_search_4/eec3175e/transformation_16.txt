@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+
+DP solution:
+Define the state expression as dp[i][k] representing whether there is a subset of the first i integers with sum k mod m equals 0.
+Base case: dp[0][j] = 1 if j == 0, and 0 otherwise.
+Define dp[i][j] as 1 if there exists a subset of the first i elements with sum j mod m equals 0, and 0 otherwise.
+
+Memoization using dictionary to store results of subproblems:
+For each element in the array, update the dp state accordingly. For example, for an integer x in the array, update dp[i][j] as follows: if j+x mod m equals 0, then dp[i][j] = 1; otherwise, dp[i][j] = dp[i-1][j]. If no subset exists with sum k mod m equals 0, return 0.
+
+Edge cases:
+Check for empty array, which is represented by n=0. In this case, if m==0, then return 1 (since an empty subset sums to 0). Otherwise, return 0.
+===END PLAN===

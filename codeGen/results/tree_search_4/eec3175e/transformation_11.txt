@@ -1,0 +1,13 @@
+1. The problem can be broken down into smaller instances of the same problem, with some overlap in the computation between instances. Memoization would be effective.
+DP solution: Define the state expression as dp[i][k] representing whether there is a subset of the first i integers with sum k.
+   - Base case: dp[0][j] = 1 if j == 0, and 0 otherwise (since an empty set has a sum of 0).
+   - Recursive case: If the current number is less than or equal to m, consider including it in the subset. This can be done by adding the number to the sum k and checking if there exists a subset with sum k-m in the previous numbers.
+   - Memoization: Use a dictionary to store previously computed values of dp[i][k]. This way, when we need to compute dp[i][k], we can simply look it up instead of recomputing it from scratch.
+
+2. Edge cases:
+   - n == 0 and m != 0: return 1 if m == 0, otherwise return 0 (since there is no subset in an empty set).
+   - m == 0: return 1 (since any number is divisible by 0).
+
+3. The plan does not consider the constraint that elements in the set are non-negative integers. It might be necessary to handle this case by either modifying the base case or adding a new condition to check if the current number is negative.
+
+4. To implement memoization, we can use a dictionary dp where keys are (i,k) and values are 1/0 indicating whether there exists a subset with sum k in the first i numbers.

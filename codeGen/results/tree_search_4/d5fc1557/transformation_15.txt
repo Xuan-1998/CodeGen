@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where dp[i-1] is the previous longest subarray and dp[i] is the maximum length of subarray containing only 1's ending at index i. The base case should be adjusted to handle the edge case when i = 0, set dp[0] = 0.
+
+Let dp[i][j] be the maximum length of subarray containing only 1's with an extra '1' at position j; then dp[i] = max(dp[i-1][k], k+1 for k in range(n)) if any such '1' exists. This is because the longest subarray ending at index i can either be extended from the previous subarray or start a new sequence of 1's.
+
+dp[i] = [max(dp[i-1][k] + 1, k) for k in range(i)]
+
+The plan correctly identifies the dynamic programming state and the recurrence relation. However, it should also handle the edge case when i = 0 by initializing dp[0] to 0.
+
+===END PLAN===

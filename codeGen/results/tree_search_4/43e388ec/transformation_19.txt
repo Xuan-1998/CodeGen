@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i] represents the sum of OR operations for all j from 0 to i-1.
+For each i, calculate dp[i] as the sum of OR operations between a and b shifted left by j for all j from 0 to i-1.
+
+Base case: dp[0] = 0
+Since there are no previous values to consider when i is 0.
+
+dp[i] = OR(a, (b << i)) + OR(a, (b << (i - 1))) + ... + OR(a, b)
+This sum calculates the total result of performing XOR operation on a and left shift operations on b for all j from 0 to i-1.
+Memoization can be used to avoid redundant calculations.
+
+dp[i] = dp[i-1] + OR(a, (b << i))
+This formula avoids calculating the same subproblems multiple times by reusing previous results.
+
+Since we are considering a and b as positive integers in binary representation, we need to handle edge cases where a or b has leading zeros.
+To do this, convert both numbers into decimal first and then perform operations.
+
+===END PLAN===

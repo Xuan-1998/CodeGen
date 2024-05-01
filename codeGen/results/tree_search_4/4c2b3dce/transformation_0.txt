@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Check if 'AB' appears in the string, then check if 'BA' appears in the remaining part of the string
+The state is an integer index i into the string s, with base case being when i >= len(s) - 2 (i.e., there are at most two characters left).
+Whether 'AB' appears in the string s up to index i
+Use a boolean array dp where dp[i] = True if 'AB' or 'BA' has been seen so far
+dp[0] = False
+for i from 1 to len(s) - 2:
+    dp[i] = (s[i-1:i+1] == 'AB' or s[i-1:i+1] == 'BA') and not dp[i-1]
+return "YES" if dp[len(s)-2] else "NO"
+===END PLAN===

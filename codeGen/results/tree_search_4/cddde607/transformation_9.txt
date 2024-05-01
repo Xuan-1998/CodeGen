@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+State: dp[i][j] represents the number of ways to reach cell (i, j) with exactly K coins. The state is determined by the current position (i, j) and the total number of coins collected so far.
+
+dp[0][0] = 1 if arr[0][0] == k else 0 // base case
+
+For i > 0:
+    For j in {0..N-1}:
+        dp[i][j] = sum(dp[i-1][j]) + sum(dp[i][j-1]) if arr[i][j] <= K else 0
+    End for
+End for
+
+dp[N-1][N-1] represents the number of ways to collect exactly K coins and reach the bottom-right corner. The final result is dp[N-1][N-1]
+
+===END PLAN===

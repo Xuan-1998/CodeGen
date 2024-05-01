@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 3D table dp[][][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j][k] = num_paths_to_collect_k_coins_at_cell_i_j_with_k_left, where i is the row index, j is the column index, and k is the number of coins left to collect.
+
+Create a 3D table dp[][][] of size N x N x (K+1) initialized with zeros.
+Fill up the table by considering subproblems:
+
+dp[0][0][k] = 1 if k == arr[0][0], otherwise 0
+
+For cells at row i and column j, where i > 0 or j > 0:
+dp[i][j][k] = dp[(i-1)][j][max(k-arr[i-1][j], 0)] + dp[i][(j-1)][max(k-arr[i][j-1], 0)]
+
+Return dp[N-1][N-1][K]
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization and dynamic programming to compute the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State:
+    - Let dp[i][j] represent the minimum number of times recomputation is needed when we are at vertex p_i, having recomputed j times previously.
+    - For base case, consider vertices in the fixed path.
+    - Let dp[u][k-1] be the maximum and minimum lengths of recommended paths between vertices in the fixed path.
+
+Transition relationship:
+    - dp[i][j] = 1 + min(dp[u][k-1]) for all edges (u,p_i) in the graph, and 0 if there's no edge from u to p_i.
+    - For maximum number of recomputations: dp[i][j] = 1 + max(dp[u][k-1]) for all edges (u,p_i) in the graph, and 0 if there's no edge from u to p_i.
+
+Use dynamic programming with two dimensions: dp[i][j] to store the minimum and maximum number of recomputations needed when we are at vertex p_i and having recomputed j times previously.
+===END PLAN===

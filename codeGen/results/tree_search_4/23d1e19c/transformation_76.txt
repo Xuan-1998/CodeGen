@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+The state could be defined as (v, p) where v is the current vertex and p is the path from s to t at that vertex.
+Memoize a function to compute the minimum and maximum number of recomputations based on the current vertex and path. This function should return an array of two integers: the minimum and maximum number of recomputations needed when the shortest path from the current vertex to t is recomputed.
+
+To avoid redundant computations, use a hash map to store the memoized results. The key would be (v, p), and the value would be the result of the function for that state.
+
+When computing the minimum and maximum number of recomputations, iterate through the fixed path from s to t. For each vertex in the path, compute the minimum and maximum number of recomputations needed when the shortest path from that vertex to t is recomputed. The final result would be the sum of these values for all vertices in the path.
+
+===END PLAN===

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be divided into subproblems of smaller size, such as finding the maximum points for a sequence of length n-1 and n-2.
+
+DP State: Minimum index i such that a[i] is the first element in the sequence not equal to any previous element
+DP State: Let dp[i][j] be the maximum number of points earned by deleting elements up to index i, considering that ak = j was the last element considered
+
+Implement dynamic programming using two arrays dp and first_occurrence where:
+- dp[i] will store the maximum number of points earned by deleting elements up to index i
+- first_occurrence[i] will store the minimum index j such that a[j] is not equal to any previous element, considering all elements up to index i
+
+Initialize the dynamic programming arrays with base cases:
+- dp[0] = 1 (since we can earn 1 point by deleting nothing)
+- first_occurrence[0] = -1 (since there are no previous elements)
+
+Iterate from i = 1 to n-1:
+- Update dp[i] and first_occurrence[i] based on the maximum number of points earned by deleting elements up to index i-1, considering that ak = a[i] was the last element considered
+
+Return dp[n-1]
+
+===END PLAN===

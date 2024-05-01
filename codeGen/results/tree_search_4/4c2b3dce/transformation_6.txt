@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+Let s[i] be a boolean indicating whether 'AB' or 'BA' is found in the first i characters of s.
+
+Consider a 2D DP table where dp[i][j] represents whether 'AB' or 'BA' appears in the substring from index i to j. The base case is when i == j, in which case we only need to check if 'AB' or 'BA' is present at this position.
+
+Initialize dp[0][0] = False
+
+For each 2-character substring of s, starting from indices [0,1], [1,2], ..., [len(s)-2, len(s)-1]:
+
+    - If the current 2-character substring matches 'AB' or 'BA', set dp[i-1][i] to True and break the loop.
+    - Otherwise, recursively check if either 'AB' or 'BA' appears in the first i characters of s and store it in s[i].
+
+Combine the results by checking if there exists some i such that s[i] is True
+
+===END PLAN===

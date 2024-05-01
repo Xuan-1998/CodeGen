@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+Use dynamic programming with memoization: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming with memoization to solve this problem.
+
+Let dp[i][j] represent the minimum and maximum number of recomputations needed for vertex i considering j edges in the path from s to t.
+1. Initialize a 2D array dp of size n x k where n is the number of vertices, and k is the number of edges in the fixed path from s to t.
+
+dp[i][j] = [min_rec_i, max_rec_i]
+- min_rec_i: The minimum number of times the shortest path needs to be recomputed for vertex i considering j edges in the path.
+- max_rec_i: The maximum number of times the shortest path needs to be recomputed for vertex i considering j edges in the path.
+
+2. Iterate over all vertices i from 1 to n and all edges j from 0 to k:
+   - For each edge j, consider the previous edge j - 1 (if it exists) or the starting point s if j is 0.
+   - If vertex i is equal to the last vertex in the path (i.e., t), then set min_rec_i and max_rec_i as follows:
+
+     if j is the last edge in the path:
+       min_rec_i = 0, max_rec_i = 0
+     else:
+       min_rec_i = dp[i - 1][j - 1][1], max_rec_i = dp[i - 1][j - 1][0]
+
+   - If vertex i is not equal to the last vertex in the path (i.e., t), then consider the minimum and maximum number of recomputations needed for the previous vertex.
+     min_rec_i = min(min_rec_i, dp[i - 1][j - 1][1] + 1)
+     max_rec_i = max(max_rec_i, dp[i - 1][j - 1][0] + 1)
+
+3. The minimum and maximum number of recomputations needed for the last vertex t are stored in min_rec_n and max_rec_n respectively.
+
+4. Finally, print the result as [min_rec_n, max_rec_n]
+
+===END PLAN===

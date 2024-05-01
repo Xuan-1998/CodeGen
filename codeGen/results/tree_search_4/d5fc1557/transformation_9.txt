@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, where each subproblem has a distinct optimal solution.
+
+Define the state expression as dp[i], where:
+    - dp[i-1] is the previous longest subarray
+    - dp[i] is the maximum length of subarray containing only 1's ending at index i
+    - Base case: dp[0] = 0
+
+dp[i] represents the maximum length of subarray containing only 1's ending at index i.
+If nums[i] == 1:
+    - Consider two cases:
+        + The current number is part of the previous longest subarray (dp[i-1])
+        + The current number starts a new subarray
+    dp[i] = max(dp[i-1], nums[i] + dp[i-nums[i]-1])
+else:
+    - If nums[i] == 0, the subarray ending at index i is not containing only 1's
+    dp[i] = 0
+
+After calculating all dp[i] values, find and return the maximum value that represents the length of the longest non-empty subarray containing only 1's.
+===END PLAN===

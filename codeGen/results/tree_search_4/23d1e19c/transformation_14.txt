@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Optimal substructure: The optimal solution to this problem is to find the minimum and maximum number of times the shortest path needs to be recomputed. This can be achieved by finding the maximum and minimum lengths of the recommended paths between vertices in the fixed path, as these will determine when the shortest path needs to be recomputed.
+
+dp[i][j] = {
+    base case: if i == t, return 0
+    recursive case:
+        dp[i][j] = min(dp[k-1][p] + 1 for k in range(2, n+1) for p in fixed_path[k-1])
+}
+where dp[i][j] is the minimum number of times the shortest path from vertex i to t needs to be recomputed when the current vertex is j
+Implement memoization using a dictionary to store the results of subproblems and avoid redundant computation.
+
+Note: The plan should consider edge cases, such as when the fixed path contains vertices that are not in the original graph or when there are no edges between vertices.
+===END PLAN===

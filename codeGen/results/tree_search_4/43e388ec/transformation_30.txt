@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+The optimal substructure arises because the sum modulo 10^9+7 can be computed by adding the results of smaller subproblems.
+
+State: 
+dp[i][0] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a is 0.
+dp[i][1] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1, considering the current bit of a is 1.
+
+Create a 2D array dp where 
+dp[i][j] represents the sum modulo 10^9+7 for all values of i from 0 to a - 1 and j from 0 to b - 1, considering the current bit of a is j.
+dp[i][j] can be computed as follows:
+- If the current bit of a is the same as j, then dp[i][j] = (a^(i+1)) + dp[i-1][j]
+- Otherwise, dp[i][j] = (b^(i+1)) + dp[i-1][j]
+
+For each i from 0 to a - 1 and j from 0 to b - 1:
+  If the current bit of a is the same as j, then 
+    if i == 0: 
+      return (a^((b+1)))
+    else: 
+      return ((dp[i-1][j] + (a^(i+1))) % (10^9 + 7))
+  Else:
+    if i == 0:
+      return (b^((a+1)))
+    else:
+      return ((dp[i-1][j] + (b^(i+1))) % (10^9 + 7))
+
+Return dp[a-1][b-1]
+
+===END PLAN===

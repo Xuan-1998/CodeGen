@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up the table in a bottom-up manner by considering all possible paths and choosing the one with the minimum sum.
+
+dp[i][j] = min(dp[i-1][k]) + grid[i][j], where k is any column in the previous row that does not have a matching column in the current row.
+Initialize dp with infinity, then gradually update it as you consider all possible paths. This way, we ensure that we only consider valid paths.
+
+For each cell in the dp table, we iterate over all columns j in the previous row and find the one that doesn't have a matching column in the current row. We then add the value of the current cell to the minimum sum of the path ending at the previous cell and update dp[i][j].
+
+Finally, return the minimum sum of the last row as the result.
+
+===END PLAN===

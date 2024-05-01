@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Split the string into two halves and recursively solve for each half, combining the results
+If 'AB' is found at some index j and s[j-1] is 'B', then we can safely return True because this 'AB' cannot overlap with any potential 'BA'
+The state can be represented as a tuple of (last_char, remaining_string), with transitions based on whether the current character matches the expected pattern ('AB' or 'BA')
+Create a 2D table to store the state for each character and substring length
+For each cell in the table, if we find an 'A', check if the next two characters are 'B'; if not, move to the next character; if yes, return True
+If we find a 'B', check if the previous two characters were 'A'; if not, move to the next character; if yes, return True
+If we reach the end of the string without finding both substrings, return False
+Combine the results from each half and return it
+===END PLAN===

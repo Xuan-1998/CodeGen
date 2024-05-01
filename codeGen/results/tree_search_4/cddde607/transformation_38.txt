@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Dynamic programming with a 2D table dp[][] can be used to solve this problem.
+The state expression is dp[i][j] = total number of ways to reach cell (i, j) regardless of the number of coins collected.
+dp[i][j] represents the total number of ways to reach cell (i, j) by either coming from top or left, considering all possible paths that have collected at most K coins.
+
+Initially, dp[0][0] = 1 because there is only one way to reach the top-left corner (from the source).
+For each cell (i, j), calculate the total number of ways to reach it by summing up the number of ways to reach the top and left cells if the current cell's coin count does not exceed K.
+
+Memoization can be used to store the intermediate results in a dictionary dp={} for efficient calculation.
+Use dp[][] to keep track of the intermediate results, which are the total number of ways to reach each cell (i, j) with at most K coins collected.
+
+Finally, return dp[N-1][N-1] as the result, representing the total number of paths that collect exactly K coins and end at the bottom-right corner.
+===END PLAN===

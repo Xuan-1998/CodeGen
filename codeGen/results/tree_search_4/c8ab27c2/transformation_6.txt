@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+
+Consider dp[i][j] as the length of the shortest subsequence ending at index i in string S and j in string T.
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + 1 if S[i] != T[j]
+      else dp[i-1][j-1]
+
+Use a dictionary to store the indices of characters in string T as keys and their corresponding values in the form of lists of indices where they appear in S.
+
+For each character in S, iterate over the dictionary to find its last occurrence in S. If it's found before reaching the end of S, update dp[i][j] accordingly.
+
+Store the minimum value of dp[i][j] for all i and j as the result.
+
+===END PLAN===

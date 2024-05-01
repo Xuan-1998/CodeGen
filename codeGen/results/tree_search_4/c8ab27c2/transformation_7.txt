@@ -1,0 +1,14 @@
+Use dynamic programming for a bottom-up approach by iterating over the characters in both strings, updating the DP table accordingly
+Consider dp[i][j] as the length of the shortest subsequence ending at index i in string S and j in string T.
+
+Initialize a 2D array dp with dimensions (len(S) + 1) x (len(T) + 1), filling it with -1's initially. This represents the length of the shortest uncommon subsequence ending at each position in both strings.
+Set up two pointers i and j, one for each string, starting from 0.
+
+For each pair of characters S[i] and T[j], check if they are equal. If not:
+    Update dp[i][j] to be the minimum length of the shortest uncommon subsequences ending at previous positions in either string, plus 1 (to account for the current character). This represents the shortest uncommon subsequence ending at this position.
+Else:
+    Move the pointer that points to the smaller character forward. If both characters are equal, move both pointers forward.
+
+After filling up the DP table, iterate over the last row or column of dp to find the maximum value (which would be the length of the shortest uncommon subsequence).
+
+If no such subsequence is possible, return -1.

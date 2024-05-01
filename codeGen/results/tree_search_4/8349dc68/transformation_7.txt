@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i] represents the maximum sum of arr[:i], where i is the length of a subarray.
+
+DP state: dp[i] = max_sum(arr[:i]), where dp[i-k] represents the maximum sum of the previous subarray.
+If arr[i-k:i].max() <= dp[i-k], update dp[i] with dp[i-1]
+
+dp[0] = 0
+for i in range(k, n):
+    if arr[i-k:i].max() <= dp[i-k]:
+        dp[i] = max(dp[i-1], dp[i-k]+arr[i].max())
+    else:
+        dp[i] = dp[i-1]
+return dp[n-1]
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider dynamic programming where each subproblem is defined as a tuple (N, i) representing the remaining value N and the index i in the array. The optimal substructure can be identified by realizing that the problem of finding ways to form N with the first i elements of the array is similar to the original problem but with reduced size.
+State: dp[N][i] represents the number of ways to form N using the first i elements. Base case: when i is 0 or N is less than 0, return 0.
+
+dp[N][i] = 2*sum(dp[N-k][j] for j in range(i)) + (N in set(array[:i+1]))
+Use a bottom-up approach to initialize and update the dynamic programming table, initializing dp[0][i] to 1 (since there's only one way to form 0) and dp[n][i] to 0 for n > N.
+For each i from 0 to m-1:
+    Initialize dp[N][i] = 0
+    For each k in array[:i+1]:
+        Update dp[N-k][j] for j in range(i)
+    Return dp[N][m-1]
+===END PLAN===

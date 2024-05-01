@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use dynamic programming: Since there are overlapping subproblems and optimal substructure, it's suitable to use dynamic programming to solve this problem. Dynamic programming can help avoid redundant computations by storing the results of expensive function calls and reusing them when the same inputs occur again.
+
+Create a 2D DP table dp[i][j] where i represents the current vertex and j represents whether the recomputation is needed (0 or 1). Initialize all values to -1. This is because we don't know if a recomputation is needed yet.
+
+For each edge in the graph, update the DP table by considering two cases: 
+- If the recomputation is not needed, then dp[u][0] = min(dp[u][0], dp[v][0])
+- If the recomputation is needed, then dp[u][1] = min(dp[u][1], dp[v][0] + 1)
+
+To find the minimum and maximum number of times the shortest path from the current vertex to t needs to be recomputed, iterate through all vertices and return min(dp[i][1]), max(dp[i][1]).
+
+This plan considers edge cases by initializing the DP table with -1. It also handles the case where no recomputation is needed.
+===END PLAN===

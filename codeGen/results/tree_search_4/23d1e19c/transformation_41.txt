@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State:
+    dp[i][j] represents the number of times recomputation is needed when we are at vertex p_i, having recomputed i times previously.
+Let dp[i][0] = 1 for all vertices in the fixed path (i.e., p_1, p_2, ..., p_k), since recomputation is necessary only once for each vertex in the fixed path.
+
+Transition relationship:
+    dp[i][j] depends on dp[u][k-1] for all u such that an edge exists from u to p_i.
+If there's no edge from u to p_i, dp[i][j] remains 0.
+
+Base case: For vertices not in the fixed path (i.e., p_1, p_2, ..., p_k), consider only recomputation needed for the shortest path from each vertex to t. If an edge exists from u to v and there's no edge from v to t, then dp[v][0] = 1 + min(dp[u][0]).
+
+Function: Define a recursive function f(i) that takes a vertex p_i as input and returns the maximum and minimum lengths of recommended paths between vertices in the fixed path. If i is not in the fixed path, use the base case to update dp[i][j] accordingly.
+Use memoization to store the results of subproblems and update the dp[i][j] values accordingly.
+
+Return: The return value for f(i) is updated based on the transition relationship, considering all vertices u such that an edge exists from u to p_i. If i is in the fixed path, return 1.
+Maintain a recursive function with memoization to store the results of subproblems and update the dp[i][j] values accordingly.
+
+===END PLAN===

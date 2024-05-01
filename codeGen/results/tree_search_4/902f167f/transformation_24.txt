@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To solve this problem, you can use a dynamic programming approach with memoization. Define a function that takes the dimensions of the rectangle as input, and use memoization to store the results of subproblems so they can be reused.
+
+State: dp[i][j] represents the minimum number of integer-sided squares required to tile a rectangle of size i x j.
+
+Base case: When i or j is 0, it's not possible to tile the rectangle with integer-sided squares, so return infinity or -1.
+
+Recursive case: For 1 <= k <= min(i, j), consider tiling the top-left corner with a square of side length k. Then recursively call dp[i-k][j] and add 1 (for the current square) to the result. This is because we've already handled the top-left corner, so we don't need to count it again.
+
+To implement tabulation with an iterative approach, initialize a 2D array with n+1 rows and m+1 columns filled with zeros. Then iteratively fill the array using a loop that runs from k=1 to min(n, m). For each cell dp[i][j], calculate its value by considering all possible values of k and taking the minimum.
+
+Edge cases: Handle the case where i or j is 0 separately, as there's no way to tile an empty rectangle. Also, handle the case where n or m is 1, since a single square can't be tiled with integer-sided squares.
+===END PLAN===

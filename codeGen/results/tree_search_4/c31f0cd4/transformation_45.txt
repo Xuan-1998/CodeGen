@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+DP_state = (i, s), where i is the current integer and s is the current sum
+Memoization can be used by storing the results of subproblems as they are computed and checking if the result for a subproblem already exists before computing it
+Base case: DP_state(N, 0) returns a list of sums for the full subset
+Initialize a dictionary dp to store the memoized results
+For each integer i in the set:
+    For each possible sum s:
+        If s is equal to the current integer i, add i to the result
+        Otherwise, update dp[(i, s)] to be the union of dp[(i-1, s-i)] and dp[(i-1, s)]
+Return the values of dp for sums from 0 to the sum of all integers in the set
+===END PLAN===

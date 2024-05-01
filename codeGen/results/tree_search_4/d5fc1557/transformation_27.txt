@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+The state is a tuple (i, ones) where i is the current index and ones is the maximum length of 1's found in previous subarrays.
+If the current element is 0, update the state to (i-1, 0) if i > 0, otherwise return 0; 
+If the current element is 1, update the state to (i, ones + 1) and memoize the maximum length found so far. 
+Update the transition relationship accordingly.
+Use dynamic programming with a bottom-up approach, initializing a table dp of size n+1 to store the maximum length of 1's for each subarray ending at index i.
+For each index i from 0 to n-1:
+  For each previous index j < i:
+    If nums[j] == 1 and ones > 0:
+      Update dp[i] as max(dp[i], ones + 1)
+    Else:
+      Update dp[i] as 0
+Return dp[n-1]
+===END PLAN===

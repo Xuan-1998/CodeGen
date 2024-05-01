@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Approach: Use top-down approach with memoization to compute the maximum and minimum number of times the shortest path from a vertex to t needs to be recomputed.
+
+State: Let f(v) be the function that returns the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed. The base case is when v = t, where the shortest path has already been computed and does not need to be recomputed.
+
+State: f(v) is the function that returns the minimum and maximum number of times the shortest path from a vertex to t needs to be recomputed, given that we are at vertex v, and have not recomputed the shortest path from v to t yet.
+
+Define a bottom-up dynamic programming approach by iterating over vertices in topological order. For each vertex, maintain the minimum and maximum number of recomputations as you go.
+
+For each vertex u, compute f(u) by considering all its outgoing edges and recursively calling f(v) for each vertex v reachable from u. Update the minimum and maximum counts based on the results of these recursive calls.
+
+If the driver chooses to follow the recommended path, increment the minimum count by 1 (since we didn't need to recomputed), and update the maximum count by the result of the recursive call.
+
+If the driver doesn't follow the recommended path, increment both the minimum and maximum counts by the result of the recursive call.
+
+Return f(s) as the final answer.
+
+===END PLAN===

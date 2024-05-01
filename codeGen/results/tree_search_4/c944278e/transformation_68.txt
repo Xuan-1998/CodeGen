@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Create a 2D table dp[n][1<<n] where dp[i][mask] represents the number of winning teams for the first i phases with all teams up to the (i-1)th phase having skill levels denoted by mask.
+
+Base case: When i is n, we have only one team left and so there's only one way it can win, which is if its skill level is 1. So, dp[n][mask] = 1 if mask has exactly one '1' bit at the nth position, otherwise it's 0.
+
+For i from n-1 down to 1:
+    For each possible mask of length 2^i and for each bit position j in the mask:
+        Calculate the number of winning teams that can still win the tournament if the team at this bit position loses.
+        Add the result from above two steps. This is because we're considering all possible combinations of skill levels for the remaining teams.
+
+Finally, iterate over dp[1][mask] to find all the winning teams and print them in ascending order.
+===END PLAN===

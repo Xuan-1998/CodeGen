@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Dynamic programming can be used with tabulation approach where a 2D table dp[][] is filled from top-down manner with memoization to avoid overlapping sub-problems.
+
+The state expression could be dp[i][j] = maximum number of coins that can be collected when reaching cell (i, j).
+
+Think about the state as the current position (i, j) and the total number of coins collected so far. The transition relationship can be formulated as:
+
+dp[i][j] = sum(dp[i-1][j], dp[i][j-1]) if arr[i][j] <= k else 0
+
+This represents the number of ways to reach cell (i, j) with exactly k coins.
+
+Develop a recursive function with memoization to avoid redundant calculations and store the results in a dictionary or cache. The base cases could be when i == N - 1 and j == N - 1, which means we have reached the bottom right corner, so return 1 if arr[i][j] <= k else 0.
+
+The recursive function should be called with memoization to avoid redundant calculations. If dp[i][j] is already calculated, just return its value; otherwise, calculate it and store the result in the dictionary or cache.
+
+===END PLAN===

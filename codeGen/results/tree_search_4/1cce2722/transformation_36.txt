@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i] = max(dp[i-1], dp[k] + (k-i) + (n-k) - (a[i]-a[k]) for k in range(i+1, min(i+2, n)))
+Use a bottom-up approach where you initialize the dp array with zeros and then fill it up incrementally, starting from the end of the sequence.
+
+dp[0] = 0
+
+for i in range(1, n):
+    if a[i-1] == a[i]:
+        dp[i] = max(dp[i-1], dp[k]+(k-i)+(n-k)-(a[i]-a[k]) for k in range(i+1, min(i+2, n)))
+    else:
+        dp[i] = dp[i-1]
+    
+return dp[n-1]
+
+===END PLAN===

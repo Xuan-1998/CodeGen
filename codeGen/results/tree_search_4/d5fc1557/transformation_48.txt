@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoize the maximum length of 1's found in previous subarrays to avoid redundant computation.
+
+State: dp[i] = maximum length of 1's found in nums[:i+1]
+
+Transition: 
+    - If current element is 0, reset the count to 0 (dp[i+1] = 0)
+    - If current element is 1 and previous elements are all 1s, increment the count by 1 (dp[i+1] = dp[i] + 1)
+
+Use a bottom-up dynamic programming approach by:
+    - Initializing an array dp with n+1 elements, where dp[i] represents the maximum length of 1's found in nums[:i]
+    - Filling up the dp array accordingly
+
+State transitions are applied to all elements except the last one (since we don't know what comes next)
+
+===END PLAN===

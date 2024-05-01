@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is characterized by finding the maximum number of common non-overlapping substrings between two strings. This problem can be solved using memoization in a top-down approach, as it has overlapping subproblems.
+
+To correctly solve this problem, we need to consider not only the longest common prefix but also whether there are any common substrings that do not share their last characters.
+Formulate the state and transition relationships using a 3D DP table where dp[i][j][k] represents the maximum number of common non-overlapping substrings ending at positions i in str1, j in str2, and k (the length of the current substring) is bounded by [0, min(i+1, j+1)].
+Use memoization by storing the intermediate results of dynamic programming in a dictionary where the key is the current state and the value is the computed result.
+
+For each position i in str1 and j in str2, we need to consider all possible lengths of substrings ending at these positions. For each length k, check if there are common non-overlapping substrings that end at positions i and j with the same substring length k.
+If so, update dp[i][j][k] accordingly.
+Finally, return dp[0][0][-1], which represents the maximum number of common non-overlapping substrings between str1 and str2.
+
+===END PLAN===

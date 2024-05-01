@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a sliding window approach to check for the presence of both substrings
+The state is a tuple (i, j) where i is the index of the last character seen from 'AB', and j is the index of the last character seen from 'BA'. The base case is when both substrings have been processed.
+Keep track of two pointers, one for 'AB' and one for 'BA', updating the states as we move along the string. Start with i = -1 (indicating no 'A' seen yet) and j = 0 (indicating no 'B' seen yet).
+As we iterate over the string:
+    - If the current character is 'A' and i == -1, set i to the current index.
+    - If the current character is 'B' and j == 0, set j to the current index.
+    - If the current character is 'A' and i > -1, increment i by 1 if the substring 'AB' matches at indices [i, j].
+    - If the current character is 'B' and j > 0, increment j by 1 if the substring 'BA' matches at indices [i, j].
+    - If both substrings have been processed (i.e., i == len(s) - 2 and j == len(s) - 1), return "YES".
+If we finish iterating over the string without finding both substrings, return "NO".
+
+===END PLAN===

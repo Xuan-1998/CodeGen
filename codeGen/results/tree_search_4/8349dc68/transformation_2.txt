@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider the maximum value of each subarray as a state, and use memoization to store the maximum sum for each prefix. Then, dynamically calculate the maximum sum for each subarray by considering the maximum value of the previous subarray.
+
+dp[i] represents the maximum sum of arr[:i], where i is the length of a subarray.
+DP state: dp[i] = max_sum(arr[:i]), where dp[i-1] represents the maximum sum of the previous subarray, and dp[0] is a base case for an empty array.
+
+Use memoization to avoid redundant calculations. Initialize a dictionary memo with default value 0.
+
+Define a recursive function dfs(i) that returns the maximum sum of arr[:i]. If i > k, return dp[i-k], where dp[i-k] is the maximum sum of the subarray ending at index i-k. Otherwise, update dp[i] as the maximum of:
+    * The current element plus the maximum sum of the previous subarray (dp[i-1])
+    * The current element
+
+Memoize the result in memo.
+
+Return memo[0], which represents the maximum sum of the entire array.
+
+===END PLAN===

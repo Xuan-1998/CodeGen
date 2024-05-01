@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Maintain a dictionary dp where dp[(i, s)] represents the winning teams for the prefix s of length i.
+
+1. Initialize dp as an empty dictionary.
+
+2. Iterate through each phase i from 0 to n-1:
+    * For each team j (where 0 <= j < 2^i), calculate its skill level by summing up the bits at positions i, i-1, ..., 0 in s.
+    * If the calculated skill level is greater than or equal to the total number of teams that have won in the first i phases, consider team j as a potential winner.
+    * Add all potential winners to dp[(i, s)].
+
+3. Initialize an empty set winning_teams to store the final result.
+4. Iterate through each phase i from 0 to n-1:
+    * For each state (i, s) in dp:
+        + If dp[(i, s)] is not empty, add all teams in dp[(i, s)] to winning_teams.
+
+5. Return winning_teams as the final result.
+===END PLAN===

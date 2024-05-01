@@ -15,7 +15,8 @@ CHAT_MODE = "llama3"
 # tree search version llama - use llama instead of gpt4
 # tree search version 2 - with defined steps
 # tree search version 3 - with defined steps and evaluation steps
-def tree_search_3(prob: Problem)->list[str]:
+# tree search version 4 - refine prompts
+def tree_search_4(prob: Problem)->list[str]:
     algorithm = "Dynamic Programming" #prob.tag.strip().split(', ')[0]
     # general_steps, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
     # general_steps, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
@@ -130,7 +131,7 @@ def save_results(prob: Problem, folderName: str, codes: list[str], transformatio
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_3,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_4,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -171,4 +172,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_3, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_4, baseline_strategy=zero_shot)

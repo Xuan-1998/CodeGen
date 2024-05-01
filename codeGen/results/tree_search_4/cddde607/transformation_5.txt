@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with memoization, where you fill up a 2D table dp[][] in bottom-up manner by considering subproblems and storing intermediate results.
+
+dp[i][j] = total number of paths collecting exactly k coins ending at cell (i, j),
+Use a dictionary memo to store intermediate results, where each key is a tuple representing the current state (i, j, k) and the value is the total number of paths collecting exactly k coins ending at that state.
+
+Fill up the table dp[][] by considering subproblems:
+
+1. For i = 0 and j = 0, set dp[0][0] = 1 if arr[0][0] == k, otherwise set it to 0.
+2. For i > 0 or j > 0, calculate dp[i][j] based on the values in dp[][] above:
+    * If arr[i][j] + dp[i-1][j] + dp[i][j-1] == k, then dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    * Otherwise, set dp[i][j] to 0.
+
+Use memoization by storing intermediate results in the dictionary memo:
+
+1. Before calculating dp[i][j], check if memo[(i, j)] is already calculated and stored.
+2. If it is, return the value from memo[(i, j)] directly.
+3. If not, calculate dp[i][j] based on the values above and store the result in memo[(i, j)].
+
+Return dp[N-1][N-1] as the total number of paths collecting exactly k coins ending at the bottom right corner.
+
+===END PLAN===

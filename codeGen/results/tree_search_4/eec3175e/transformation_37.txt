@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+There is a recursive relationship between smaller instances of the problem, allowing top-down memoization to work effectively.
+
+The current total sum modulo m
+The subsets considered are those that do not exceed m, so the state would be the current sum modulo m and the previous numbers in the subset.
+The transition would be deciding whether to include or exclude the current number based on its value and the current sum.
+
+The tabulation solution would use a 2D array dp where dp[i][j] represents whether there is a subset of {1, ..., n} with sum i mod m, considering numbers up to i.
+For each number j in the range [0, n], we would check if including or excluding it makes the total sum modulo m smaller. If yes, then update the result accordingly.
+
+To solve this problem, you need a function that takes three parameters: n, m and nums. This function should return 1 if there is a subset with sum divisible by m, otherwise 0.
+The function would iterate over all numbers from 0 to m-1 and for each number j, it would check if there is a subset of the given set with sum j mod m.
+
+For each number j in the range [0, n], we would check if including or excluding it makes the total sum modulo m smaller. If yes, then update the result accordingly.
+
+Finally, return 1 if dp[m-1][j] is true for any j, otherwise 0.
+===END PLAN===

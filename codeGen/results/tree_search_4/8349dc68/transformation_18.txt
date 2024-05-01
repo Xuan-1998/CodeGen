@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider the maximum value of each subarray as a state, and use memoization to store the maximum sum for each prefix. Then, dynamically calculate the maximum sum for each subarray by considering the maximum value of the previous subarray.
+
+Let state(i, j) be the maximum sum of arr[i-j:i], where i is the end index and j is the length of a subarray. Base case: state(i, j) = max(arr[i-j:i]) if i - j <= k
+
+Consider state as (i, j) where i is the end index of the current subarray and j is its length. Define a function f(i, j) that returns the maximum sum for arr[i-j:i]. The transition relationship would be: f(i, j) = max(arr[i-j:i]) + dp[i-1][j-1] if i - j <= k
+
+Use dynamic programming to build up a 2D table dp[i][j] where dp[i][j] represents the maximum sum of subarrays with length j ending at index i.
+
+For each cell dp[i][j], calculate it as: dp[i][j] = max(dp[i-1][k-1] + arr[i-k+1:i+1]) for k in range(1, min(j+1, i-k+2)), where the maximum is taken over all possible choices of k.
+
+Finally, return dp[n-1][k-1] as the maximum sum.
+===END PLAN===

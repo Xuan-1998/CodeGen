@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the solution to the current problem depends on the solutions to the subproblems of smaller sizes.
+
+State: Consider the subset sums for each subset size from 0 to N, where N is the total number of elements in the set. The state would be a tuple (subset_size, current_sum).
+
+Transition function: dp[j] represents the subset sums for each subset size j, where 0 <= j <= N and N is the total number of elements in the set. The transition function would be:
+
+- Initialize dp[0] with {0} (the sum for an empty set is 0)
+- For each element i in the set:
+    - Iterate over all possible subset sizes k from 1 to N
+    - Calculate the new sum by adding the current element i to the sums in dp[k-1]
+    - Add this new sum to the corresponding entry in dp[k] if it's not already there
+- Return the union of all entries in dp from 0 to N
+
+Memoization: Use a dictionary memo = {i: set() for i in range(N+1)} to store the subset sums for each subset size, and update it accordingly during the transition function.
+
+===END PLAN===
