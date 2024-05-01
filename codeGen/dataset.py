@@ -5,6 +5,7 @@ from prompts import *
 import os
 import json
 from datasets import load_dataset
+import traceback
 
 ds = load_dataset("BAAI/TACO", split="train")
 logger = setup_logging()
@@ -158,8 +159,8 @@ def initialize_problems(
         cnt += 1
 
         logger.info(f"Processing problem {cnt} with source {sample['source']}")
-        if not os.path.exists(f"{root}/{sample['source']}"):
-            os.makedirs(f"{root}/{sample['source']}")
+        if not os.path.exists(f"{root}/{difficulty_tag}"):
+            os.makedirs(f"{root}/{difficulty_tag}")
 
         test_cases = []
         try:
@@ -181,7 +182,7 @@ def initialize_problems(
             )
             logger.debug(f"Problem: {prob.to_json()}")
 
-            logger.info(f"Regularizing problem {cnt} source {sample['source']}, url: {sample['url']}")
+            logger.info(f"Cnt: {cnt}, Regularizing problem {cnt} source {sample['source']}, url: {sample['url']}")
             # TODO: Improve with parallel processing like Task.WhenAll in .NET
             regularized_statement = regularize_statement_3(prob)
             # regularized_editorial = regularize_editorial_3(prob, regularized_statement)
@@ -193,9 +194,9 @@ def initialize_problems(
             # Hash the prob URL as GUID
             prob.append_to_jsonl(f"{root}/{difficulty_tag}/problems.jsonl")
         except Exception as e:
-            logger.error(f"Error processing problem {cnt} with source {sample['source']}, url: {sample['url']}: {e}")
+            logger.error(f"Error processing problem {cnt} with source {sample['source']}, url: {sample['url']}: {e}, {traceback.format_exc()}")
             continue
 
 if __name__ == "__main__":
-    initialize_problems(100, root="../data/balanced-probs")
+    initialize_problems(200, root="../data/balanced-probs-dp", tag="Dynamic Programming", difficulty="MEDIUM")
     # initialize_problems(1000, "Dynamic Programming")
