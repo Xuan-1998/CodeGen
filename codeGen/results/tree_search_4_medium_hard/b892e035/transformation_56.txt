@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Top-down approach with memoization is suitable because it involves recursive calls to calculate the probability of correct numbering, and memoization can help avoid redundant calculations.
+
+Let dp[i][j] represent the probability that there are i distinct numbers and j tickets remaining. The state transition relationship would be:
+
+* If the current ticket's number is new (i.e., not seen before), update dp[i+1][j-1] as the sum of:
+	+ The probability that the current ticket's first number is correct, times the updated probability
+	+ The probability that the current ticket's second number is correct, times the updated probability
+
+* If the current ticket's number is not new (i.e., already seen before), update dp[i][j-1] as the sum of:
+	+ The probability that the current ticket's first number is correct, times the updated probability
+	+ The probability that the current ticket's second number is correct, times the updated probability
+
+Base case: dp[0][n] represents the initial state with no distinct numbers and n tickets remaining. This should be initialized to 1.
+
+===END PLAN===

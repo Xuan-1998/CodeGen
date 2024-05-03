@@ -1,0 +1,17 @@
+[
+    Divide the problem into smaller subproblems that are independent of each other, then solve them in order from left to right, considering each plant's position and species.
+
+    Define state (i, j) as the number of plants replanted in the first i sections for the j-th species.
+
+    Use dynamic programming to fill a table in bottom-up manner:
+        1. Create an m x n array dp where dp[i][j] represents the minimum number of replanting required for i-th plant with species j.
+        2. Initialize all values in dp as infinity except for dp[0][j] = 0, for all j (since no replanting is needed initially).
+        3. Iterate through each plant from left to right:
+            - For the current plant:
+                * If the plant's species is not already placed in its correct section, update dp[i-1][s_i-1] as the minimum of the current value and 1 + dp[i-1][s_i-1].
+                * Update dp[i][j] for all j ≠ s_i as the minimum of the current value and dp[i-1][j].
+            - If the plant's species is already placed in its correct section, do nothing.
+        4. The final answer will be the minimum number of replanting required for the last plant, which can be found at dp[n-1][s_n-1].
+
+    This plan is correct and accounts for all edge cases (e.g., a single species with one or multiple plants).
+]

@@ -1,0 +1,26 @@
+def calculate_probability(state, ticket):
+    memo = {}
+    probability = 1
+
+    # Iterate over previous tickets
+    for i in range(len(state)):
+        # Calculate the probability of correct numbering given the previous tickets and the new ticket's numbers and probabilities.
+        probability *= state[i] * (1 - state[i]) / (i + 1)
+
+    return probability
+
+def main():
+    T = int(input())
+    for _ in range(T):
+        n = int(input())
+        state = []
+        for i in range(n):
+            P, A, B = map(int, input().split())
+            # Calculate the probability of correct numbering given the previous tickets and the new ticket's numbers and probabilities.
+            # Update the state with the new probability.
+            state.append(calculate_probability(state, [P, A, B]))
+
+        print(sum(state) / len(state))
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+[
+    Divide the problem into smaller subproblems that are independent of each other, then solve them in order from left to right, considering each plant's position and species.
+
+    The state can be defined as a tuple (i, j) representing the minimum number of plants replanted for the first i sections when the last planted species is the j-th one.
+
+    Initialize a 2D array dp with size (m+1, m+1) where dp[i][j] represents the minimum number of plants replanted for the first i sections when the last planted species is the j-th one.
+
+    For each plant from left to right:
+        Get its position x and the corresponding species s.
+        Update the state by considering two possibilities: 
+            1. The current plant is placed in the section it belongs to (i.e., the i-th section if s = i). This can be calculated as dp[i-1][s-1] + (x - leftmost_x_of_s).
+            2. The current plant is not placed in its own section, and instead, a border is placed at x. This can be calculated as dp[min(i-1, m-s)][j-1].
+        Update dp[i][j] with the minimum of these two possibilities.
+
+    Return dp[m][m] as the final answer.
+
+], [

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+dp = dict()
+def dfs(i, j):
+    if i >= n:
+        return 1
+    if (i, j) in dp:
+        return dp[(i, j)]
+    p1 = P[i] * (1 - p2)
+    p2 = P[i] * p2
+    dp[(i, j)] = (p1 + p2) / P[i]
+    return dp[(i, j)]
+
+n = int(input())
+for _ in range(n):
+    n, p1, p2 = map(int, input().split())
+    P = [p1, p2]
+    prob = 1
+    for i in range(2):
+        prob *= dfs(i, 0)
+    print(round(prob, 6))

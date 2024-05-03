@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+dp = {}
+def dpfn(i, j):
+    if (i, j) in dp: return dp[(i, j)]
+    if i == 0:
+        return 0
+    if j < 1:
+        if commands[i-1] == 'T':
+            return -1 * dpfn(i-1, j)
+        else:
+            return dpfn(i-1, j) + 1
+    max_dist = 0
+    for k in range(j+1):
+        if k > 0:
+            dist = dpfn(i-k, k-1)
+            if commands[i-1] == 'T':
+                dist -= 1
+            else:
+                dist += 1
+            max_dist = max(max_dist, dist)
+    dp[(i, j)] = max_dist
+    return dp[(i, j)]
+commands_length = len(commands)
+max_distance = dpfn(commands_length, n)
+===END PLAN===

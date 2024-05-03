@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider using a 2D DP table where dp[i][j] represents whether it's possible to make all elements in the first i positions of the array equal to zero if we can decrement up to j elements from the end.
+
+Let dp[i][0] be true for all i, because we can always make all elements in the first i positions equal to zero by not decrementing any elements (i.e., leaving them as is).
+
+For 1 <= k <= n, consider the following recursive relationship:
+
+dp[i][k] = (min(dp[i-1][k-1], dp[i][0]) or min(dp[0][k-1], dp[i-1][0]))
+
+This means that we can either decrement elements from the beginning of the array, or decrement elements from the end, or do both.
+
+Use dynamic programming to fill up the DP table. For each cell dp[i][j], calculate its value based on the values in the cells above it and to the left of it.
+
+Finally, return "YES" if dp[n][0] is true, and "NO" otherwise.
+===END PLAN===

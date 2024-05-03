@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Define dp[n] = False for all n > 0 because an empty array cannot be made equal to zero.
+
+Define the recursive relationship: dp[i] = (dp[0] and (a_i <= target)) or (dp[i-1] and (target - a_i) >= 0)
+
+Base case: dp[0] = True as there are no more operations needed to make an empty array equal to zero
+
+Standard DP table where each cell represents the minimum number of operations needed to make all elements equal to zero from the current position onwards
+
+Initialize dp[n-1] = False for n > 0 because we cannot decrement a negative array, then loop through the array in reverse order
+Update dp[i] based on the recursive relationship and previous values
+
+Final answer: Return "YES" if dp[0] is True, else return "NO"
+
+===END PLAN===

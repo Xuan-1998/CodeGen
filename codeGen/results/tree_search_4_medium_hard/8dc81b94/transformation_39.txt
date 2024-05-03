@@ -1,0 +1,23 @@
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Consider dp[i][0] as a base case, where we need to find if it's possible to make all elements in the first i elements of the array equal to 0.
+dp[0][0] = (True if 0 == 0 else False) // Since an empty array is considered to have all elements equal to zero
+
+Consider a state where we have made all elements from index 0 to i-1 equal to zero. We can either make the current element (at index i) equal to zero by decrementing it, or leave it as it is and consider the remaining elements. This leads to two possible states: dp[i][0] and dp[i][1].
+
+Implement memoization by using a dictionary dp to store previously computed values and avoid redundant computations.
+
+For each test case:
+- Read n and arr from standard input
+- Initialize dp with dimensions (n+1, 2) and fill dp[0][0] = True
+- For i from 1 to n:
+    - For j in [0, 1]:
+        - If j == 0:
+            - dp[i][j] = dp[i-1][0] and arr[i-1] > 0 or (arr[i-1] == 0 and dp[i-1][1])
+        - Else:
+            - dp[i][j] = dp[i-1][0]
+- If dp[n][0]: 
+    Print "YES"
+Else: Print "NO"
+
+This plan should work correctly. It considers the optimal substructure of making one part of the array equal to zero and uses memoization to avoid redundant computations.

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Initialize a 2D DP array where each cell (i, j) represents the maximum distance after executing i commands and j T's.
+
+dp[i][j] = max distance after executing i commands with j T's.
+dp[i][0] represents the maximum distance after executing i commands without any T's (all F's).
+
+Consider using dynamic programming to solve this problem by creating a 2D table where dp[i][j] is the maximum distance after executing i commands and j F's, then use a bottom-up approach with iteration to fill in the table.
+
+The base case could be dp[0][j] = 0 for all j because there are no commands to execute, so the distance is 0.
+
+The recurrence relation could be:
+dp[i][j] = max(dp[i-1][j-1] + 2, dp[i-1][j] - 1) if i > 0 and 0 <= j <= n
+
+This is because we can either execute one command (T or F), which moves the turtle forward by 1 unit, or modify one of the previous commands to move it backward by 1 unit.
+
+The optimization could be to only consider modifications that increase the distance, i.e., dp[i][j] = max(dp[i-1][j-1] + 2, dp[i-1][j]) - 1 if i > 0 and j < n
+
+This is because we can only modify F's to T's, not the other way around.
+
+The final answer would be dp[n][n]
+
+===END PLAN===

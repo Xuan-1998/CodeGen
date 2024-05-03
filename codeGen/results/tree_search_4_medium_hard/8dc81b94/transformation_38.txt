@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider initializing a 2D table with dimensions n+1 x 2, where each cell dp[i][j] represents whether it's possible to make all elements in the first i elements of the array equal to zero by j decrements.
+
+dp[0][0] is set as TRUE because we can always make all elements in an empty array equal to zero. For all other cells, consider two cases:
+- If the current element is 1, then we need to decrement it to 0 and make the remaining elements (if any) equal to zero.
+- If the current element is greater than 1, then we can leave it as it is and make all remaining elements equal to zero.
+
+Fill in the table by iterating from i = 1 to n:
+For each i, calculate dp[i][0] and dp[i][1]:
+	* dp[i][0]: If a_i <= 1, set dp[i][0] = TRUE; otherwise, set dp[i][0] = dp[i-1][0].
+	* dp[i][1]: If a_i > 1, set dp[i][1] = dp[i-1][0]; otherwise, set dp[i][1] = dp[i-1][1].
+
+The answer is YES if and only if dp[n][0] or dp[n][1] is TRUE. Otherwise, it's NO.
+
+===END PLAN===

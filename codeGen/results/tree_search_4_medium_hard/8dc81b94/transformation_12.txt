@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider a bottom-up dynamic programming approach using tabulation with a 2D table, where you fill up the table by considering all possible ways to make the array elements equal to zero.
+
+State: The remaining number of elements to process
+Transition: Process one element from either end of the array or apply no operation
+
+The state will be represented as (n, sum), where n is the remaining number of elements to process and sum is the current sum of elements in the array.
+
+Initial condition: For any initial state (n, sum), the value at this state is 1 if it's possible to make all elements equal to zero by applying a certain number of operations, and 0 otherwise.
+
+Then fill up the table row by row. When filling up each row, consider all possible operations that can be applied to make the array equal to zero.
+
+For each operation:
+- If you process one element from either end of the array, update the state as (n-1, sum-a[n]) or (n-1, sum-a[1]) accordingly.
+- If you apply no operation, update the state as (n, sum) because nothing changed.
+
+The value at each state is 1 if it's possible to make all elements equal to zero by applying a certain number of operations, and 0 otherwise. When filling up each row, check if the current sum becomes zero or not. If it does, then update the state as (n, 0) because all elements are equal to zero.
+
+Finally, for the initial state (n, sum), return the value at this state. If it's 1, output "YES", otherwise output "NO".
+
+===END PLAN===

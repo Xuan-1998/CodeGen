@@ -1,0 +1,16 @@
+===
+Plan:
+===BEGIN PLAN
+The optimal substructure is that the problem can be solved by solving smaller instances of itself, and the overlapping subproblems are the cases where the number of tickets changes but not the probabilities.
+
+The state is a set of distinct numbers assigned to the first n-1 tickets, and the probability of assigning a new number to the nth ticket. The transition relationship is that the next state is a subset of the current state plus a new unique number assigned to the nth ticket.
+
+Implement tabulation with iteration and loop to iterate over all possible combinations of assignments and calculate the corresponding probabilities.
+For each subproblem, iterate through all possible numbers for the nth ticket and update the probability based on the transition relationship.
+
+To improve the plan:
+1. Define the base case: What is the probability of correct numbering when there is only one ticket? This will help in calculating the initial state and transition relationships.
+2. Consider memoization to store and reuse the probabilities calculated for smaller subproblems to avoid redundant calculations.
+3. Edge cases: Ensure that the plan handles edge cases such as n=0 or n=1 correctly.
+
+Plan:

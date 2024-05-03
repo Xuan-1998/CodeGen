@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i] = (dp[i-1] and (a[i-1]-1) % 2 == 0) or dp[n-1]
+
+Consider the state expression: we can only decrement elements that are odd, because if an element is even, we cannot make it zero by decrementing. This leads to a bottom-up dynamic programming solution.
+
+Let dp[i] = True if it's possible to make all elements in a[0..i-1] equal to zero, and False otherwise.
+
+We start from the end of the array and work our way backwards: 
+dp[n-1] is always True because we can decrement all even numbers to make them zero.
+Then for each element i, consider two options:
+    1. Decrement a[i] if it's odd. This makes it even, so dp[i+1] will be True only if there are no more odd numbers after this point (i.e., dp[n-1]).
+    2. Don't decrement a[i]. In this case, dp[i] is True only if the remaining array (a[i+1..n-1]) can make all elements equal to zero.
+The recurrence relation becomes: 
+dp[i] = (dp[i-1] and (a[i-1]-1) % 2 == 0) or dp[n-1]
+
+Finally, check the initial state dp[0]. If it's True, then we can make all elements in the array equal to zero.
+
+===END PLAN===

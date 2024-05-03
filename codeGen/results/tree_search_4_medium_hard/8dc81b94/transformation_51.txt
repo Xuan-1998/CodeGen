@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+dp[i] = True if it's possible to make all elements in a[i..n-1] equal to zero, and False otherwise.
+
+Let dp[i][j] be the state expression for whether it is possible to make all elements in array slice a[i..j] equal to zero. Then consider implementing memoization recursively by passing the current start index i, end index j as arguments, storing the results in a dictionary for later reference:
+
+dp[i][j] = True if any of the following conditions hold:
+    - The difference between j and i is 1, meaning there's only one element left. In this case, we just need to check if that element is zero.
+    - It is possible to make all elements in array slice a[i+1..j-1] equal to zero (dp[i+1][j-1]), and the last element in a[i..j] can be reduced to zero by removing either the first or last element from this subarray. This means that if j-i is even, we need to make sure the middle element is zero; otherwise, the end element needs to be zero.
+
+Consider implementing memoization recursively as follows:
+
+dp[i][j] = dp[i+1][j-1] and (a[j]%2 == 0 or a[i]%2 == 0) if j-i > 1
+    elif j - i == 1
+        return a[0] == 0
+    else
+        return False
+
+Initialize dp with zeros and fill in the values for all possible subarrays from left to right. The final answer is whether it's possible to make all elements in array a equal to zero, which is the value of dp[0][n-1].
+
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Let dp[i][k] represent whether it's possible to make all elements in the first i elements of the array equal to k.
+
+dp[0][k] = True for any k (base case)
+dp[i][k] = 
+    (dp[i-1][max(0, min(a_i, k))] && a_i > 0) || 
+    (dp[i-1][min(max(0, k-a_i), 10^6)] && a_i < k);
+Create a table dp of size (n+1) x (max(a)+1) and fill it according to the given recurrence relation.
+
+Fill the base case: for i from 0 to n, for k from 0 to max(a), set dp[i][k] = True
+
+For i from 1 to n, for k from 0 to max(a),
+    if a_i > k, then dp[i][k] = (dp[i-1][max(0, min(a_i, k))] && a_i > 0)
+    else dp[i][k] = (dp[i-1][min(max(0, k-a_i), 10^6)] && a_i < k)
+
+Output YES if dp[n][0], NO otherwise
+===END PLAN===

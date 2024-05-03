@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Let dp[i][k] represent whether it's possible to make all elements in the first i elements of the array equal to k.
+dp[i][k] = (dp[i-1][max(0, min(a_i, k))] && (dp[i-1][min(max(0, k-a_i), 10^6)) || dp[i-1][max(0, min(a_i, k-1))])).
+Determine if you can make all elements equal by decrementing elements from either end, then use this property to memoize the process.
+
+Check edge cases: If the array is empty or has only one element, it's always possible to make all elements equal to zero.
+Initialize dp[0][k] for k in range(10^6 + 1): dp[0][k] = True
+
+Fill in dp[i][k]: if a_i == k, then dp[i][k] = dp[i-1][max(0, min(a_i-1, k))]; else if a_i <= k, then dp[i][k] = dp[i-1][min(max(0, k-a_i), 10^6)]; else, it's not possible to make all elements equal.
+
+Print "YES" if dp[n][0], otherwise print "NO".
+===END PLAN===

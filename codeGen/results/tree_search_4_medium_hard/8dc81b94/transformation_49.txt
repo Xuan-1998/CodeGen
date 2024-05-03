@@ -1,0 +1,10 @@
+Define dp[i][k] as true if and only if for every j <= k, it is possible to make all elements in the first i-1 elements of the array equal to 0.
+
+For k = 0, dp[i][k] should be True for any i. This is because making all elements equal to 0 is always possible by not performing any operations.
+
+For k > 0, dp[i][k] should be True if and only if there exists an element in the first i-1 elements of the array that can be decremented to reach a value less than or equal to k. This can happen if:
+
+1. The smallest element in the first i-1 elements is greater than k, then decrement it to 0.
+2. If not, check all elements in the range [k+1, min(i-1,k)]. If any of them are present in the array and less than or equal to k, decrement one of them to 0.
+
+Use a 2D table dp where dp[i][k] is True if for every j <= k, it is possible to make all elements in the first i-1 elements of the array equal to 0.

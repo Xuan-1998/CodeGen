@@ -1,0 +1,15 @@
+dp = [[0] * (1 << n) for _ in range(n + 1)]
+
+def solve(i, s):
+    if i == n:
+        return 1 if len(s) == n else 0
+    res = 0
+    for p1, n1, n2 in tickets[i]:
+        sub = set()
+        if p1 > 0 and n1 not in s:
+            sub.add(n1)
+        if p2 > 0 and n2 not in s:
+            sub.add(n2)
+        for j in range(i + 1):
+            res += dp[j][s | sub] * (p1 if i == j else 0) * (p2 if i != j else 0)
+    return res

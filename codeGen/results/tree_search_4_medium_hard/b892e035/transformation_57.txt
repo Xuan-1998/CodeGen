@@ -1,0 +1,15 @@
+Top-down approach with memoization is suitable because it involves recursive calls to calculate the probability of correct numbering, and memoization can help avoid redundant calculations.
+
+The base case is when we have processed all tickets (i.e., i = n), in which case the probability of correct numbering is 1 if all numbers are distinct, and 0 otherwise.
+
+Let the state be a tuple (i, seen) where i is the current ticket index and seen is a set of unique numbers seen so far. The probability at this state is then calculated based on the probabilities of the two possible numbers for the current ticket.
+
+If both numbers are unseen, add them to seen and recursively calculate the probability for the next ticket. If one or both numbers are seen before, directly return 1 if they are distinct and 0 otherwise.
+
+The updated dynamic programming table would be initialized with zeros, where each cell (i, seen) represents the calculated probability at that state.
+
+The time complexity of this plan is O(n * 2^n), where n is the number of tickets. This is because there are 2^(n-1) possible subsets of unique numbers seen so far, and for each subset, we recursively calculate the probability in O(n) time.
+
+The space complexity is also O(n * 2^n) due to the memoization table.
+
+This plan covers all edge cases, including when n = 0 (base case), when the number of tickets increases (dynamic programming), and when the probabilities of the two numbers for each ticket increase (memoization).

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem involves calculating the probability of a correct numbering, which can be broken down into subproblems of calculating the probability of distinct numbers given the previous tickets.
+
+Let dp[i][a][b] be the probability that the first i tickets are numbered correctly with A_i as the first number and B_i as the second number. Then, the base case would be when all tickets have been processed (i.e., len(state) == n), in which case the probability is the product of the probabilities of the distinct numbers.
+
+The state is the set of possible correct numberings, The transition is the update when a new ticket is processed
+
+For each new ticket, there are two possibilities: the first number or the second number. The probability that the current ticket is numbered correctly with the first number and the previous tickets are numbered correctly with A_i as the first number is dp[i-1][a][b]*(A_i/100) * (1-(A_i/100))
+
+Similarly, the probability that the current ticket is numbered correctly with the second number and the previous tickets are numbered correctly with B_i as the second number is dp[i-1][a][b]*(B_i/100) * (1-(B_i/100))
+
+The final answer would be the sum of these two possibilities. To avoid redundant calculations, we use memoization by storing the intermediate results in a dictionary.
+
+===END PLAN===

@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Initialize a 2D DP array dp where each cell [i][j] represents the maximum distance after executing i commands and j T's, considering all possible modifications at each step.
+
+State expression: dp[i][j] = max distance after executing i commands with j T's and (n - j) F's.
+dp[i][j] = 
+    max(
+        if j > 0:
+            dp[i-1][j-1] + 1
+        else:
+            dp[i-1][j] - 1,
+        dp[i-1][j]
+    )
+
+Create a 2D DP table where each cell [i][j] represents the maximum distance after executing i commands with j T's and (n - j) F's.
+dp[0][0] = 0 // initial state
+
+Filling the DP table:
+for i from 1 to m: 
+    for j from 0 to n:
+        if command[i-1] == 'T':
+            dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + 1)
+        else:
+            dp[i][j] = dp[i-1][j] - 1
+===END PLAN===

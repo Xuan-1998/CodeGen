@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Define dp[i][k] as true if and only if for every j <= k, it is possible to make all elements in the first i-1 elements of the array equal to j. This subproblem captures whether we can make all elements from index 0 to i-1 equal to k, where k is a number from 0 to n.
+
+dp[i][k] should be true if and only if for every j <= k, it is possible to make all elements in the first i-1 elements of the array equal to j, and k is reachable from any element in the array. This ensures that we can always decrease the maximum value in the remaining part of the array.
+
+Implement a memoization dictionary where the keys are tuples (i, k) and the values are boolean indicating whether it's possible to make all elements in the first i-1 elements of the array equal to k.
+
+To solve this problem, iterate over each element in the array. For each element, check if it is possible to make all elements in the first i-1 elements equal to 0. This can be done by checking if dp[i-1][a_i] is true and a_i is greater than or equal to k.
+
+Update dp[i][k] based on whether we found an optimal solution for making all elements in the array equal to k. If it's possible, set dp[i][k] to True; otherwise, set it to False.
+
+Finally, iterate over each element in the array and check if there exists some k such that dp[n][k] is True. If there is, return "YES"; otherwise, return "NO".
+===END PLAN===

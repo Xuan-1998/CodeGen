@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Initialize a 1D DP array where each cell i represents the maximum distance after executing i commands and use a loop to fill in the table, considering all possible modifications at each step.
+
+The state expression could be dp[i] = max distance after executing i commands. The recurrence relation is:
+
+dp[i] = max(dp[i-1] + 1 if last command was F else - 1), dp[i-1])
+
+Memoize by using a dictionary to store the results of subproblems and avoid redundant computations.
+
+For each prefix of length j, calculate the maximum distance after executing j commands. Use a loop to fill in the table:
+
+dp[0] = 0
+for i from 1 to len(commands):
+    dp[i] = max(dp[i-1] + 1 if commands[i-1] is 'F' else - 1), dp[i-1])
+
+Finally, return dp[n], which represents the maximum distance after executing n commands.
+
+===END PLAN===

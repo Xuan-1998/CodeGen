@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider using a 1D DP table where dp[i] represents whether it's possible to make all elements in the first i positions of the array equal to zero by applying a certain number of operations.
+
+Initially, set dp[0] = true since we can always make the empty array have all elements equal to zero.
+
+For each position i from 1 to n-1:
+    Calculate dp[i] as (dp[i-1] and (a[i] == 0 or a[i] >= sum(a[j]) for j in range(i-1, -1, -1))) 
+    where sum(a[j]) represents the sum of elements from index j to i. If the sum is greater than or equal to a[i], it means we can decrement some elements to make all elements in the first i positions equal to zero.
+
+For position n:
+    Set dp[n] = (dp[n-1] and (a[n] == 0 or a[n] >= sum(a[j]) for j in range(n-1, -1, -1))) 
+    where sum(a[j]) represents the sum of elements from index 0 to n. If the sum is greater than or equal to a[n], it means we can decrement some elements to make all elements equal to zero.
+
+Finally, return "YES" if dp[n] = true and "NO" otherwise.
+===END PLAN===

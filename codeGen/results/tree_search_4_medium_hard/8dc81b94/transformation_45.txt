@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Define dp[i][k] as true if and only if it is possible to make all elements in the first i elements of the array equal to k. This means that at most i-1 elements need to be decremented from k to reach the final state where all elements are zero.
+
+Use a single array dp, with size (n+1) * 10^6, and index it with (i, k) pairs.
+
+For each i from 1 to n:
+    For each k from 0 to max(a[1:i]):
+        If all elements in the first i-1 elements are equal to zero or k, then dp[i][k] is true. Otherwise, find the maximum element in the first i-1 elements that is less than or equal to k. Make this element zero by decrements from k, and update dp[i][k].
+
+For each test case:
+    Print "YES" if dp[n][0] is true, otherwise print "NO".
+
+===END PLAN===

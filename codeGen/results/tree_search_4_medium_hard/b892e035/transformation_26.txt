@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem involves calculating the probability of a correct numbering, which can be broken down into subproblems of calculating the probability of distinct numbers given the previous tickets.
+
+Let dp[i][j] be the probability that the first i tickets have distinct numbers and the last ticket has the j-th number (1-indexed). Then we have:
+
+dp[0][0] = 1, // base case: one empty set
+for i from 1 to n:
+    for j from 1 to 2:
+        p = probability of the j-th number // get the probability from input
+        dp[i][j] = (1 - p) * sum(dp[k][x] for k from 0 to i-1, x from 1 to 2)
+        // update the bitmask by setting the bits corresponding to the new numbers
+        bitmask = 
+    return max(dp[n][1], dp[n][2]) // choose the highest probability
+
+Implement memoization using a dictionary to store the intermediate results.
+
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with memoization instead of top-down. Initialize a 2D DP table where each cell (i, j) represents the maximum distance after executing i commands and modifying at most j of them.
+
+DP[i][j] represents the maximum distance after executing i commands, considering all possible ways to modify at most j commands. The state can be represented as a tuple (i, k), where i is the current number of commands executed and k is the remaining number of modifications allowed.
+
+The transition relationship can be formulated as: 
+DP[i][k] = max(
+    DP[i-1][k-1] + distance if the i-th command is 'F',
+    DP[i-1][k] if the i-th command is 'T' and modification allowed,
+    0 if the i-th command is 'T' and no more modifications are left
+)
+
+DP table can be initialized as a 2D list with dimensions (n+1, k+1), where n is the length of commands string and k is the number of modifications allowed. Initialize all DP cells to 0.
+
+The final answer will be DP[n][k].
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Since we need to maximize the distance, consider using a bottom-up approach with dynamic programming. Initialize a 2D DP table where each cell (i, j) represents the maximum distance after executing i commands and modifying at most j of them.
+
+DP[i][j] = max(DP[i-1][j-1] + 1 if command[i] is F else -1, 
+               DP[i-1][j] + 0 if command[i] is T else -1) for j from n to 1
+
+For each cell in the DP table as (i, k), where i represents the number of commands executed and k is the maximum number of modifications allowed so far. The value of this cell would be the maximum distance achieved after executing i commands and allowing at most k modifications.
+
+Use a bottom-up approach with dynamic programming to fill up the DP table, where each cell represents the maximum distance achievable after executing i commands and modifying at most j of them.
+===END PLAN===

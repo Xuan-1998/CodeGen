@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Since we need to maximize the distance, consider using a top-down approach with memoization and bottom-up dynamic programming. Initialize a 2D DP table where each cell (i, k) represents the maximum distance after executing i commands and modifying at most k of them.
+DP[i][k] represents the maximum distance after executing i commands, considering all possible ways to modify at most k commands.
+
+The state is represented by the pair (i, j), which captures the information about how many commands have been executed and how many modifications are left to make. The transition relationship can be formulated as:
+DP[i][k] = max(DP[i-1][k-1] + 1 if the i-th command is 'F', 
+                DP[i-1][k] if the i-th command is 'T' and modification allowed, 
+                DP[i-1][k-1] if the i-th command is 'T' and no more modifications are left)
+for k = 0 to n.
+
+Implement a bottom-up dynamic programming approach with memoization by defining a function dp(i, k) that calculates the maximum distance after executing i commands and modifying at most k commands. The base cases should be handled recursively.
+Initialize a separate table for storing intermediate results to avoid redundant calculations.
+
+===END PLAN===

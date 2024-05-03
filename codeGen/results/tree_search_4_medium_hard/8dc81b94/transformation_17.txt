@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a bottom-up dynamic programming approach, where you iteratively build up the solution by processing each array element from left to right.
+
+Define the state as an integer representing the maximum number of operations required to make all elements equal to zero, with base cases being arrays that are already equal to zero or have only one element.
+
+Memoize the function dp(i) that takes the current index i and returns the minimum number of operations required to make all elements in the array from index 0 to i equal to zero.
+
+dp(i) = min(dp(i-1) + (arr[i] - arr[0]) if i > 0, 
+            dp(i+1) + (arr[i] - arr[-1]) if i < n-1,
+            0)
+
+Return dp(n-1) as the final result.
+
+For each test case, output "YES" if it's possible to make all elements of the array equal to zero by applying a certain number of operations, and "NO" otherwise.
+
+===END PLAN===

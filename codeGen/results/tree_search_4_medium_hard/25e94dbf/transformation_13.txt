@@ -1,0 +1,32 @@
+===BEGIN PLAN===
+DP[i][j] represents the maximum distance after executing i commands and modifying at most j commands.
+
+The transition relationship can be formulated as:
+DP[i][k] = max(
+    DP[i-1][k-1] + 1 if the i-th command is 'F',
+    DP[i-1][k] if the i-th command is 'T' and modification allowed,
+    DP[i-1][k-1] if the i-th command is 'T' and no more modifications are left
+) for k = 0 to n.
+
+Design a bottom-up tabulation-based solution using a 2D array dp[i][j] where each cell represents the maximum distance after executing i commands and modifying at most j commands. Initialize the DP table with zeros, and fill it in by iterating through the commands and considering all possible modifications.
+
+Initialize the DP table as follows:
+dp[0][j] = 0 for j = 0 to n
+dp[i][0] = 0 for i = 1 to m
+
+Fill in the DP table using the transition relationship. The base case is when i = 0 or k = 0, where dp[i][k] = 0.
+
+The recursive formula can be implemented as follows:
+for i from 1 to m
+    for j from 1 to n
+        if commands[i-1] == 'F'
+            dp[i][j] = max(dp[i-1][j-1] + 1, dp[i-1][j])
+        elif commands[i-1] == 'T' and j > 0
+            dp[i][j] = max(dp[i-1][j-1], dp[i-1][j])
+        else
+            dp[i][j] = dp[i-1][j]
+
+The maximum distance is stored in the bottom-right corner of the DP table, i.e., dp[m][n].
+
+Return dp[m][n].
+===END PLAN===

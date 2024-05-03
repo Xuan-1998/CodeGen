@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Initialize a 2D DP array dp[i][n] where each cell dp[i][j] represents the maximum distance after executing i commands with j T's and (n - j) F's.
+
+Let's fill in the table row by row. For i = 0, it is obvious that dp[0][j] = 0 for all j because we haven't executed any command yet. So, the base case is established.
+
+For i > 0, consider the last command as 'F', then update the state based on whether it's the first 'T' or not. If it's the first 'T', then dp[i][j] = 1 + max(dp[i-1][k] for k in range(j)) because we are trying to maximize the distance. If it's not the first 'T', then dp[i][j] = dp[i-1][j] because we can't turn around any more.
+
+So, the state transition equation is:
+
+dp[i][j] = 1 + max(dp[i-1][k] for k in range(j)) if i == 0 or (i > 0 and dp[i-1][j] < 1)
+dp[i][j] = dp[i-1][j] if i > 0 and dp[i-1][j] >= 1
+
+Finally, we can find the maximum distance by returning dp[m][n] where m is the total number of commands.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+1. Initialize a 2D DP array dp where each cell dp[i][j] represents the maximum distance after executing i commands with j T's and (n - j) F's.
+
+2. Set base cases: dp[0][0] = 0, since no command has been executed yet.
+
+3. Define a function f(i, j) that returns the maximum distance after executing i commands with j T's and (n - j) F's. The state expression could be:
+    f(i, j) = max(f(i-1, j-1) + 1 if j > 0 else f(i-1, j) + 1, 
+                f(i-1, j) + 1 if i > 0 else 0)
+
+4. Fill in the table using a loop:
+    for i from 1 to n and for j from 0 to min(i, n):
+        dp[i][j] = f(i, j)
+
+5. Return the maximum distance after executing all n commands: max(dp[n][j] for j from 0 to n)

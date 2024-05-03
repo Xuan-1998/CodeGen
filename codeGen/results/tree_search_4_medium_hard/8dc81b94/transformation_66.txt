@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Define dp[i] as True if it's possible to make all elements in array[0..i] equal to zero by applying some number of operations, and False otherwise.
+
+dp[0] = True, because an empty array is already equal to zero.
+
+For i > 0, define dp[i] as True if there exists j <= i such that:
+
+- the first i-j elements are all equal to a (i.e., we've reached a plateau)
+- and it's possible to make all remaining i-j elements equal to zero
+
+This condition is equivalent to saying that the last j elements can be made equal to 0, because if they're not equal to a, then the array will never reach zero.
+
+The base case is dp[0] = True, because there are no more operations needed to make an empty array equal to zero.

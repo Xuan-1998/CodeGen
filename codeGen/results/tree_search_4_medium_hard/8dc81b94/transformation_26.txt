@@ -1,0 +1,12 @@
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Let dp[i][k] represent whether it's possible to make all elements in the first i elements of the array equal to k.
+dp[i][k] = (dp[i-1][k-(a_i-k)%2] && a_i >= 0) || dp[i-1][k+(a_i-k)%2];
+
+Create a 2D DP table with dimensions (n+1, max(a)+1) to store the minimum number of operations required to make all elements in the first i elements of the array equal to k.
+dp[n][0] = YES if it's possible to make all elements in the array equal to zero; otherwise, dp[n][0] = NO.
+
+For each subproblem, check if it's possible to make all elements in the first i elements of the array equal to zero. If it is, then it's also possible for the entire array.
+For the base case, when i=1 and k=a_1, return YES if a_1=0; otherwise, return NO.
+
+The optimal substructure property holds because making one part of the array equal to zero does not affect the possibility of making another part equal to zero. The problem can be broken down into smaller subproblems by considering each element separately.

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem involves calculating the probability of a correct numbering, which can be broken down into subproblems of calculating the probability of distinct numbers given the previous tickets.
+
+State: The state could be the number of possible unique number combinations that are correct so far. The transition relationship would involve calculating the new possible combinations given the current ticket's options.
+
+State: Consider a bitmask representing the tickets that have been correctly numbered so far, with 1s for correct numbers and 0s for incorrect numbers. The state transitions involve updating this bitmask based on the current ticket's options.
+
+Using memoization to store and reuse the results of subproblems as you recursively explore the possibilities.
+
+Initialization: Start by initializing a memo dictionary to store the results of subproblems, with keys being the current state (bitmask) and values being the corresponding probabilities.
+
+Transition Function: Define a transition function that takes the current state and the options for the next ticket, returns the new probability based on the correct/incorrect numbers in the bitmask.
+
+Base Case: The base case is when all tickets have been processed. Return 1 if the final state has all 1s (all numbers correctly numbered), or 0 otherwise.
+
+Recursive Function: Write a recursive function that takes the current state and processes one ticket at a time, updating the memo dictionary as it goes.
+
+Main Loop: In the main loop, iterate over each test case. For each test case, calculate the initial probability and then use the recursive function to find the final probability.
+
+Edge Cases: Check for edge cases like when all tickets have the same number or there's only one possible combination.
+
+===END PLAN===

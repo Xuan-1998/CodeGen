@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Determine if there's an optimal substructure for this problem, where making one part of the array equal to zero is sufficient to solve the entire problem, allowing you to apply dynamic programming using tabulation.
+
+Consider dp[i][0] as a base case, where we need to find if it's possible to make all elements in the first i elements of the array equal to 0.
+dp[i][1] represents whether it is possible to make all elements from index 1 to i-1 (or i+1) equal to zero, given that the element at index i in the array is not changed.
+
+Use a bottom-up approach with two arrays dp and dp_inv where:
+dp[i][0] = true if it's possible to make all elements from index 1 to i equal to 0.
+dp[i][1] = true if it's possible to make all elements from index 2 to i-1 (or i+1) equal to 0, given that the element at index 1 in the array is not changed.
+
+Similarly, dp_inv[i][0] would represent whether it's possible to make all elements from index i+1 to n-1 (or i-1) equal to zero given that the element at index i in the array is not changed.
+dp_inv[i][1] = true if it's possible to make all elements from index 2 to i-1 (or i+1) equal to 0, given that the element at index 1 in the array is not changed.
+
+The final answer would be dp[n][0].
+===END PLAN===

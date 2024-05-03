@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Top-down approach with memoization is suitable because it involves recursive calls to calculate the probability of correct numbering, and memoization can help avoid redundant calculations.
+
+Let the state be (n-1) pairs, where each pair contains a ticket index and a previously drawn number. Then, dp[i][j] represents the probability that the i-th ticket has the j-th number assigned to it.
+
+The transition relationship would involve calculating the probability of assigning the next possible number correctly given the current assignment. This can be done by considering all possible assignments for the next ticket, and then multiplying their probabilities together.
+
+Use a 2D array (table) to store the probabilities of correct numbering up to each ticket given the last drawn number, with dp[i][j] representing the probability that the i-th ticket has the j-th number assigned to it. Initialize all values to 0.
+
+Fill in the base cases: for tickets with only one possible number or no more tickets left, the probability is either 1 (for correct numbering) or 0 (for incorrect numbering).
+
+For each ticket, iterate over the last drawn numbers and update dp[i][j] using the transition relationship. Calculate the total probability as the sum of probabilities for each possible last drawn number.
+
+Finally, return the calculated total probability.
+
+===END PLAN===

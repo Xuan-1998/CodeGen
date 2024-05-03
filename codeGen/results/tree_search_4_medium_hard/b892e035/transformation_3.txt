@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp_state = [(0, set())]
+for i in range(n):
+    dp_state.append((i + 1, set()))
+dp_table = {}
+for (i, used) in dp_state:
+    for j in range(2): # probability and number
+        if j == 0: 
+            new_used = used.union({j})
+        else: 
+            new_used = used.copy()
+        if i < n and not any(num in used or num in {k for k, v in dp_table.items() if v[0] <= i} for num in range(16)):
+            if (i + 1, new_used) in dp_state:
+                dp_state.remove((i + 1, new_used))
+        dp_table[(i + 1, new_used)] = [(i, j), sum(x[2] * x[3] / 100 for x in [[x for x in zip([P_], [A_], [B_]) if x[0]]][i]) / sum(x[2] * x[3] / 100 for x in [[x for x in zip([P_], [A_], [B_]) if x[0]]][i])]
+for (i, used) in dp_state:
+    print(dp_table[(i + 1, used)])
+===END PLAN===

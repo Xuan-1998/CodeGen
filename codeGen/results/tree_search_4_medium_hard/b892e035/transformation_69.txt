@@ -1,0 +1,14 @@
+Top-down approach with memoization is suitable because it involves recursive calls to calculate the probability of correct numbering, and memoization can help avoid redundant calculations.
+
+Consider the state as a tuple containing the current ticket index and the total count of each possible number, dp[(i, k)] represents the probability of correct numbering up to i-th ticket with k instances of each possible number.
+
+Formulate dp[(i, (count1, count2))] as the maximum probability obtained by correctly or incorrectly numbering the i-th ticket given the counts of each possible number. This can be calculated using the following recurrence relation: 
+dp[i][count1][count2] = max(P1 * p_correct + P0 * p_incorrect for 0 ≤ j ≤ min(count1, count2))
+
+where P1 is the probability of correctly numbering the i-th ticket with the first number, P0 is the probability of incorrectly numbering the i-th ticket with the first number, and p_correct and p_incorrect are the probabilities of correct and incorrect numbering respectively.
+
+Create a 3D array dp of size n x (max_count1 + 1) x (max_count2 + 1) to store the probabilities, where dp[i][count1][count2] represents the probability of correct numbering up to i-th ticket with count1 instances of each possible number.
+
+The base case is when there are no more tickets left, in which case the probability of correct numbering is simply 1 if all numbers are distinct and 0 otherwise.
+
+Use memoization to avoid redundant calculations by storing the calculated probabilities in the dp array.

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by identifying the subproblems as:
+dp[i][j] = max_distance_reachable(i, j) for i in range(len(commands)), 
+j in range(1, 51), where dp[i][j] represents the maximum distance reachable after executing the first i commands with exactly j modifications
+
+The state expression could be dp[i][j][direction] = max_distance_reachable(i, j, direction) for i in range(len(commands)), 
+j in range(1, 51), and direction in {'T', 'F'}, where direction represents the current direction of the turtle.
+
+Implement memoization using a dictionary to store the results of subproblems
+
+dp[0][j] = 0 if j > 0
+dp[i][0] = dp[i-1][0] + 1 if i > 0 and commands[i-1] == 'F'
+dp[i][j] = max(dp[i-1][k] for k in range(min(j, len(commands)-i))) if i > 0 and j > 0
+dp[i][j] = dp[i][j-1] - 1 if i > 0 and j > 0 and commands[i-1] == 'T'
+
+Return dp[-1][50]
+
+===END PLAN===

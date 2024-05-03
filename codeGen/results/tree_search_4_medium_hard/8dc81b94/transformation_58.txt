@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Let dp[i] be True if it's possible to make all elements in a[0..n-i-1] equal to zero, and False otherwise.
+We can update this state based on whether or not it is possible to make all elements in the subarray a[n-i..n-1] equal to zero.
+
+Let's define a recursive function without memoization:
+
+dp[i] = (dp[i-1] && (sum(a[0..i]) == i)) || (!dp[i-1] && sum(a[n-i..n-1]) == 0)
+
+This is because if we can make all elements in the subarray a[0..n-i-1] equal to zero, then it's possible to make all elements in the array a[0..n-1] equal to zero by setting the remaining i elements to i. If we cannot make all elements in the subarray a[0..n-i-1] equal to zero but can set all elements in the subarray a[n-i..n-1] to 0, then it's also possible to make all elements in the array a[0..n-1] equal to zero.
+
+To avoid redundant computation, we can use memoization by storing the results of dp[i] for each i in an array.
+
+The base case is when i = n, in which case dp[n] = True if and only if sum(a) = 0.
+
+Let's initialize a boolean array with size n+1, where dp[0] = True since it's possible to make all elements in the empty array equal to zero.
+
+We can then fill up this array by computing each dp[i] based on its recursive definition.
+
+Finally, we return dp[n].
+
+===END PLAN===

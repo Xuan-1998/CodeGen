@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with dynamic programming instead of top-down. Initialize a 2D DP table where each cell (i, j) represents the maximum distance after executing i commands and modifying at most j of them.
+
+DP[i][j] represents the maximum distance after executing i commands and modifying at most j of them.
+The initial state is DP[0][0] = 0 representing the starting point.
+
+For each command from 1 to n:
+    - If the command is 'F', update DP[i][j] = max(DP[i-1][j], DP[i-1][j-1] + 1) as described in the problem.
+    - If the command is 'T', update DP[i][j] = max(DP[i-1][j], DP[i-1][j-1] - 1).
+
+The transition relationship depends on whether we modify or not.
+
+Implement memoization using a dictionary to store the results of subproblems, reducing the time complexity by avoiding redundant calculations.
+Return DP[n][0] as the maximum distance after executing n commands and modifying at most 0 of them.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation. Initialize a 2D DP array where each cell dp[i][j] represents the maximum distance after executing i commands and exactly j of them are 'T' commands.
+
+Define the state as dp[i][0] = maximum distance after executing i 'F' commands, and define the transition relation as follows:
+
+- If the (i-1)th command is 'F', then dp[i][j] = dp[i-1][j] + 1
+- If the (i-1)th command is 'T', then dp[i][j] = dp[i-1][j-1] + 1
+
+Fill in the table using a loop to consider all possible modifications at each step, and update the state accordingly.
+
+Determine the maximum distance after executing all commands as the maximum value in the last row of the DP array.
+===END PLAN===

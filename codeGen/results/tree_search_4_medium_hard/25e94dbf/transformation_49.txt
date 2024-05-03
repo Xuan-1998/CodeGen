@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j] = max distance after executing i commands with j T's and (n - j) F's
+Initialize a 2D DP array dp with dimensions (n+1) x (n+1), where dp[i][j] represents the maximum distance after executing i commands with j T's.
+Fill in the table using a loop:
+dp[0][0] = 0, // base case for the starting point
+for i from 1 to n:
+    for j from 0 to min(i, n):
+        if i % 2 == 0: // even number of commands
+            dp[i][j] = max(dp[i-1][j], dp[i-1][n-j])
+        else: // odd number of commands
+            dp[i][j] = max(dp[i-1][j], dp[i-1][n-j]) + 1 if j > 0 else - 1
+dp[n][n//2] // the maximum distance is stored in this cell
+Return dp[n][n//2]
+===END PLAN===

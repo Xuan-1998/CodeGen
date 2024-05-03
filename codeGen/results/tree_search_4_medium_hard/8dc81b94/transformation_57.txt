@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Let dp[i] = True if it's possible to make all elements in a[0..i-1] equal to zero, and False otherwise.
+
+Create an array of size n+1, filled with False, then iterate from i=n to 0 and update dp[i] based on the following:
+
+- If a[n-i] is 0, then it's possible to make all elements in a[0..i-1] equal to zero if it's possible to make all elements in a[0..n-i-1] equal to zero (dp[n-i])
+- Otherwise, it's possible to make all elements in a[0..i-1] equal to zero if it's possible to make all elements in a[1..i] and a[0] equal to zero or it's possible to make all elements in a[0..n-i-2] and a[n-i-1] equal to zero (dp[i-1] or dp[n-i-1])
+
+Implement dynamic programming using bottom-up approach: Create an array of size n+1, filled with False, then iterate from i=n to 0 and update dp[i] based on the above conditions.
+
+===END PLAN===

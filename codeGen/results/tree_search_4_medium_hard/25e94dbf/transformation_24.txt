@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+DP[i][j] is the maximum possible distance from the starting point to the ending point after executing i commands and modifying at most j of them.
+
+The base case for DP[i][j] is when i = 0, in which case the maximum distance is 0.
+
+For i > 0, consider two options: either modify the last command or not. If we do not modify the last command, then the maximum distance would be DP[i-1][j]. If we do modify the last command, then the maximum distance would be DP[i-1][min(j-1, i)]. The reason for taking the minimum of j-1 and i is that modifying a command can only decrease the distance, so at most min(j-1, i) commands can be modified.
+
+The transition relationship could be defined as:
+DP[i][j] = max(DP[i-1][min(j-1, i)] + 1, DP[i-1][j])
+
+We also need to consider the case where j > 0 and we don't modify any command. In this case, the maximum distance would be DP[i-1][j].
+
+The complete dynamic programming plan is:
+DP[0][j] = 0 for all j
+For i from 1 to n:
+    For j from 0 to min(n, i):
+        if j == 0: // don't modify any command
+            DP[i][j] = DP[i-1][j]
+        else: // modify the last command
+            DP[i][j] = max(DP[i-1][min(j-1, i)] + 1, DP[i-1][j])
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a 2D array dp where dp[i][0] represents whether it's possible to make all elements in the first i elements equal to zero, and dp[i][1] represents the minimum number of operations needed.
+
+Let dp[i][0] be true if it's possible to make all elements in the first i elements equal to zero. Then:
+
+- If a_1 = 0, dp[1][0] is always true.
+- For i > 1, consider two cases:
+    1. Make a_i = 0: dp[i][0] is true if and only if a_{i-1} = 0 (since we've already made a_{i-1} equal to zero).
+    2. Leave a_i as it is: dp[i][0] is true if and only if dp[i-1][0] is true.
+
+Now, consider the minimum number of operations needed (dp[i][1]):
+- If a_1 = 0, we need 0 operations.
+- For i > 1:
+    - Make a_i = 0: We've already made all elements from 0 to i-1 equal to zero. So dp[i][1] is simply the minimum number of operations needed for the subarray from 0 to i-1, which is dp[i-1][1].
+    - Leave a_i as it is: If we leave a_i as it is, then the minimum number of operations needed is just the minimum number of operations needed for the subarray from 0 to i-2 (dp[i-1][1]) plus one operation.
+
+Finally, dp[n][0] will be true if and only if it's possible to make all elements in the array equal to zero. And dp[n][1] will give us the minimum number of operations needed to do so.
+===END PLAN===

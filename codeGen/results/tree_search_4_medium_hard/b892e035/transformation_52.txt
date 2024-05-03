@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+Let dp[i][j] be the probability that the i-th ticket has the j-th number assigned to it.
+
+For n tickets, define a function f(i, j) as follows:
+
+f(i, 0) = p[i][0], where p[i][0] is the probability of assigning the first possible number correctly given the current assignment
+
+f(i, 1) = p[i][1], where p[i][1] is the probability of assigning the second possible number correctly given the current assignment
+
+For i > 1 and j > 1,
+
+f(i, j) = (p[i][0] * f(i-1, 0) + p[i][1] * f(i-1, 1)) / (p[i][0] + p[i][1])
+
+This function calculates the probability that the i-th ticket has the j-th number assigned to it given the current assignment.
+
+Let memo be a dictionary for memoization.
+
+Define a recursive function solve(n) as follows:
+
+solve(0) = 1, since there is only one possible way to assign numbers to the first ticket
+
+For n > 0,
+
+solve(n) = sum(f(n, j) * (1 - p[n][j-1]) for j in range(2))
+
+This function calculates the probability of correct numbering up to the i-th ticket with memoization.
+
+Finally, return solve(n) as the answer.
+
+===END PLAN===

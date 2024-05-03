@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Initialize a 2D DP table where each cell (i, j) represents the maximum distance after executing i commands and modifying at most j of them.
+
+Let's define the transition relationship: 
+DP[i][j] = max(DP[i-1][j], 
+                DP[i-1][j-1] + (command_i == 'F'? 1 : -DP[i-1][j])
+               )
+
+This represents the maximum distance after executing i commands and modifying at most j of them. If command i is 'F', increment the distance by 1; if not, decrement the distance by DP[i-1][j].
+
+Use a bottom-up approach with tabulation to fill in the DP table.
+
+Base cases: 
+DP[0][j] = 0 (no commands executed)
+DP[i][0] = 0 (no modifications allowed)
+
+===END PLAN===

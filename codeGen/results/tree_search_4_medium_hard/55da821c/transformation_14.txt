@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state could be an integer representing the current species being processed, and the transition relationship being the number of plants that need to be replanted for this species.
+
+Initialize the DP table with base cases: dp[0] = 0 (no plants replanted), where dp[i] represents the minimum number of plants that need to be replanted to achieve the desired arrangement for the first i plants.
+
+Fill up the DP table iteratively:
+    For each plant from left to right:
+        If the current species is different from the previous one, update dp[i] = min(dp[i], dp[i-1] + 1) (replant all plants of this new species).
+        Else if the current plant's species matches the previous one, update dp[i] = dp[i-1] (no replanting needed for the same species).
+
+The final answer is dp[n-1] (the minimum number of plants that need to be replanted for all n plants).
+
+===END PLAN===

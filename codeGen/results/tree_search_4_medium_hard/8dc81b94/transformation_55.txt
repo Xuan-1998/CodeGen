@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Let dp[i][j] be True if it's possible to make all elements in the subarray a[i..j] equal to zero, and False otherwise.
+The base case is when i = j. In this case, it's always possible to make all elements equal to zero if all elements are already zero.
+For larger values of i and j, consider the following two cases:
+Case 1: Subtracting one from a[i] does not change the answer. This means that we can still make all elements in a[i..j] equal to zero by considering the subarray a[0..i-1]. In this case, dp[i][j] is True if and only if dp[i-1][j] is True.
+Case 2: Subtracting one from a[j] does not change the answer. This means that we can still make all elements in a[i..j] equal to zero by considering the subarray a[i+1..n-1]. In this case, dp[i][j] is True if and only if dp[i][j-1] is True.
+The final answer is True if and only if there exists an i such that dp[0][i] is True. This means that we can make all elements in the array equal to zero by performing a certain number of operations.
+===END PLAN===
