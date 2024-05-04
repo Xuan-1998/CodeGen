@@ -1,0 +1,13 @@
+1. Initialize dp with zeros, where dp[i][l] will represent the number of blocks ending at position i with exactly l digits.
+
+2. Iterate through each length l from 1 to n:
+   - For each position i in range(n), calculate the number of blocks that end at position i and have exactly l digits.
+     - This can be done by considering two cases: either the block is extended to the right, or it's not.
+     - If the block is extended to the right, then we need to count the number of blocks ending at position i-1 with exactly (l-1) digits and that last digit matches the current digit.
+     - If the block is not extended to the right, then we only need to consider the previous block at position i-1.
+
+3. Finally, return dp[n][l] for each l in range(n), as this will give us the total number of blocks with exactly l digits.
+
+4. To avoid redundant computations and improve efficiency, use memoization by storing previously computed values in a cache dictionary.
+
+5. Handle edge cases: since we're considering blocks ending at position i, we need to ensure that i is within the valid range [0, 10^n - 1]. Also, initialize dp with zeros.

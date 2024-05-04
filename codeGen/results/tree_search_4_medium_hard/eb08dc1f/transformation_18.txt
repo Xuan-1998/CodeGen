@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Let dp[i][k] represent the count of blocks with exactly k consecutive equal digits in them that end at the i-th digit position (0-indexed).
+
+The state is updated as follows:
+- For i = 0, dp[0][k] = 1 if all previous digits are equal to 0 and have k consecutive equal digits, otherwise 0.
+- For i > 0, dp[i][k] = sum(dp[j][l]) over j from 0 to i-1, l from 1 to min(k-1, i-j), where the sum is taken modulo 998244353.
+
+The final answer is the sum of dp[i][k] over all k from 1 to n, taken modulo 998244353.
+
+This plan correctly identifies the overlapping subproblems and updates the state accordingly.
+It also includes edge cases, such as when i = 0 or k = 1.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them. Let's define the transition relationship as follows:
+- If the current digit matches with the last digit of the previous block (i.e., i == prev_i), then we can extend the existing block by 1, so the new state would be (i, k+1).
+- If the current digit doesn't match with the last digit of the previous block (i.e., i != prev_i), then we start a new block of length 1, so the new state would be (i, 1).
+
+Implement memoization by using a dictionary where keys are tuples (i, k) and values are the counts of blocks.
+
+To avoid duplicate computation and reduce time complexity, consider initializing the dp dictionary with base cases:
+- For k = 0, there's only one block ending at each digit position i.
+- For k > 0, initialize dp[(i, k)] as 0 for all digits i from 0 to n (exclusive).
+
+The main loop would iterate over each digit i and compute the counts of blocks with length k using the transition relationship. Finally, output the counts modulo 998244353.
+
+===END PLAN===

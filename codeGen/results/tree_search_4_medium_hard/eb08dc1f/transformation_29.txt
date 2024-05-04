@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Let dp[i][j] represent the number of blocks ending at position i with j digits.
+dp[i][j] = sum(dp[i-1][k] for k in range(j, min(j+1, n)))
+
+To use bottom-up dynamic programming by building up the solution from smaller subproblems.
+
+For each digit, calculate the blocks that end at this digit. The number of blocks ending at position i with j digits is the sum of the number of blocks ending at position i-1 with k digits for all k in range(j, min(j+1, n)).
+
+Finally, return dp[n][j] for all j from 1 to n.
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To solve this problem using dynamic programming with memoization, we will define a function that recursively counts blocks for smaller inputs. The state expression is a tuple (i, j) where i is the current digit and j is the number of consecutive equal digits found so far.
+
+The state will be represented as (l, k, pos): l is the length of the block, k is the count of blocks with this length, and pos is the current position in the number.
+
+We will define a function dp(l, k) that takes the state as input, performs some computation, and returns the result. This function will be used to fill up our memoization table.
+
+The base case for our recursion will be when the length of the block (l) is 0, meaning we have found all the blocks of a certain length.
+
+In each recursive step, we will iterate over all possible next digits that can be added to the current block. For each digit, we will recursively call dp(l+1, k+1) and add it to our count if the new block is valid (i.e., the same as the previous one).
+
+The function will return k + 1, which represents the total count of blocks with length l.
+
+Finally, we will fill up our memoization table by calling dp(0, 0) for each number from 0 to 10^n - 1 and then summing up all the counts modulo 998244353.
+
+===END PLAN===

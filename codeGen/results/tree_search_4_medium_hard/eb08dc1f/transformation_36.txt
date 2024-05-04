@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+The base case would be that for any i, there is only one block ending at position i with 1 digit (which is just the digit itself).
+
+Consider a state where you store the count of blocks that end at each position, considering all possible blocks of lengths 1 to n.
+
+Use memoization with a recursive function to store the results of subproblems.
+
+Let dp[i][k] be the number of blocks ending at position i with k digits. Then,
+
+dp[i][1] = 1 (base case)
+
+for any j < i, if the digit at position j is equal to the digit at position i-k+1, then dp[i][k] += dp[j][k-1]
+
+This plan considers all possible blocks of lengths 1 to n and uses memoization with a recursive function to store the results of subproblems.
+
+===END PLAN===

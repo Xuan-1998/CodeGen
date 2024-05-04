@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them. Let the state be a list dp of length 10^k+1 representing the number of blocks with exactly k consecutive equal digits in them, where dp[i] represents the number of blocks ending with digit i (from 0 to 9).
+
+The base case is when k is 0, which corresponds to counting the total number of blocks. This can be done by calculating the sum of the frequencies of each digit from 0 to 9.
+
+To update the state dp[k] for a given k, consider all possible lengths of blocks ending with a block of length k-1 (i.e., 1 to k). For each such length j, calculate the number of new blocks that can be formed by appending a digit at the end. This is done by multiplying the count of blocks of length j-1 (dp[j-1]) by the number of possible digits (10) and adding it to dp[k].
+
+The updated state dp[k] will then represent the total number of blocks with exactly k consecutive equal digits in them.
+
+Finally, calculate the result as the sum of the counts for all lengths from 0 to n, modulo 998244353.
+===END PLAN===

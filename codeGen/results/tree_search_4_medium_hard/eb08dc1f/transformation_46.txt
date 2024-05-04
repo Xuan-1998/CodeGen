@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To use top-down approach with memoization, define a function that recursively counts blocks for smaller inputs.
+
+Let dp[i][k] be the number of blocks of length k that end at digit i.
+The state expression is a pair (i, k) where i is the current digit and k is the number of consecutive equal digits found so far.
+
+The transition function should increment pos for each digit, and update l if a new sequence of equal digits starts. The recurrence relation can be written as:
+
+dp[i][k] = dp[i-1][0] + dp[i-1][k-1] (if the current digit is the same as the previous k-1 digits) + 1 (if it's not)
+
+Use a dictionary to memoize the results of subproblems and combine them to solve larger problems.
+
+Finally, iterate from i = n-1 down to 0, for each digit update dp[i][k] with the correct value based on the recurrence relation. Then, return dp[0][0], which is the count of blocks of length 1 that end at digit 0, and so on, up to dp[0][n].
+This way, you can get the total number of blocks for each length.
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Let dp[i][j] represent the number of blocks ending at position i with j digits.
+
+dp[0][j] = 1 for all j (base case)
+
+dp[i][j] = sum(dp[i-1][k] for k in range(j, min(j+1, n)))
+
+For each position i from 0 to n:
+    For each number of digits j from 1 to min(j, n):
+        Calculate dp[i][j] = sum(dp[i-1][k] for k in range(j, min(j+1, n)))
+Return the sum of all dp[i][n] values.

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The top-down approach with memoization can be used by defining a recursive function that takes the current book and the remaining shelf width as input, and returns the minimum height of the bookcase for the given subproblem. The base case would be when there are no more books to place.
+
+Let dp[i][w] be the minimum height of the bookcase after placing the first i books, given a remaining shelf width w. The state expression could be defined as dp[i][j], where dp[i][j] represents the minimum height of the bookcase after placing the first i books, given a remaining shelf width j.
+
+The recursive function would calculate the minimum height for each subproblem by considering two possibilities:
+
+* Place the current book on an existing shelf with sufficient remaining shelf width.
+* Start a new shelf and place the current book as the first book on it.
+
+Memoization is used to store the results of subproblems to avoid redundant calculations. The dynamic programming table memoized_dp would be initialized as follows:
+memoized_dp = [[-1 for _ in range(maxWidth+1)] for _ in range(n+1)]
+
+The base case would be dp[0][w] = 0, representing the minimum height of an empty bookcase.
+
+The recursive function would then calculate the minimum height for each subproblem and store it in memoized_dp. Finally, the minimum height of the bookcase after placing all n books would be stored in memoized_dp[n][maxWidth].
+
+===END PLAN===

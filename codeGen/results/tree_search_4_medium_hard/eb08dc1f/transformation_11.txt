@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+Let dp[k][i] be the count of blocks ending at digit position i and having length k.
+The state represents the count of blocks ending at each digit position up to length k.
+Using an array to store the count of blocks ending at each digit position, then calculate the number of blocks of each length.
+
+For a given block, it must have its rightmost digit as the last digit of a multiple of 10^(k-1) (since blocks cannot be extended to the left).
+Count all integers from 0 to 10^n - 1 and for each integer:
+    - For k from 1 to n:
+        - Count the number of times the last k digits are a multiple of 10^(k-1)
+        - Update dp[k][i] accordingly, where i is the digit at position k
+    - Return the count of blocks of each length modulo 998244353
+
+The plan does not include edge cases but it should work for all valid inputs.
+===END PLAN===

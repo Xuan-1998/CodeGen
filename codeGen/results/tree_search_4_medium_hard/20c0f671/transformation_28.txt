@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using a bottom-up dynamic programming approach by initializing a 2D table to store the minimum height of the bookcase for each subproblem, where the rows represent the books and the columns represent the maximum shelf width.
+
+State expression is dp[i][j] = the minimum possible height of the bookcase after placing the first i books, where each shelf has a maximum width j.
+dp[i][j] could be the minimum possible height of the bookcase if we place the first i-1 books and then consider the last book. The shelf width is j.
+
+To implement memoization, use a dictionary where memo[i][j] is updated recursively as:
+dp[i][j] = min(dp[i-1][k]+height_of_last_book) for all k such that 0 <= k <= j and book_thickness <= k
+and then store the result in memo[i][j]
+
+The base case would be when i == 0, meaning we have placed no books yet. In this case, dp[0][j] = 0 for any j.
+
+To find the minimum height of the entire bookcase, consider the last book and update dp[n][m], where n is the number of books and m is the maximum shelf width.
+dp[n][m] = min(dp[i-1][k]+height_of_last_book) for all i from 1 to n, and k such that 0 <= k <= m and book_thickness <= k
+===END PLAN===

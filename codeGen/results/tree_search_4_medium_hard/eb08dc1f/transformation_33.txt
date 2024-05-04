@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Let dp[i][j] represent the number of blocks ending at position i with j digits.
+dp[i][j] = sum(dp[k][min(j, 10**(i-1)-1)] for k in range(max(0, i-j), i+1))
+    - The base case is when there's only one block left (i.e., j=1) where it can be extended from the start of the number to any position.
+    - For each possible length of block ending at position i, iterate over all previous positions k that could have ended a block of that same length.
+        * Calculate the number of blocks ending at position i by summing up the number of blocks ending at position k for all possible lengths less than or equal to j.
+
+Utilize a dictionary to store the memoized values for faster lookups.
+    - This will prevent redundant computation and reduce the time complexity.
+
+Note: The initial plan seems correct in terms of thinking about optimal substructure. It correctly captures how blocks can be extended from left to right, and utilizes dynamic programming with memoization to reduce computation time.
+
+However, there is one issue with the plan:
+
+* The range for k in the dp[i][j] calculation should start from 0 instead of i-j+1 because you want to consider all possible positions that could have ended a block of length j.
+
+Here's an updated version of the plan:

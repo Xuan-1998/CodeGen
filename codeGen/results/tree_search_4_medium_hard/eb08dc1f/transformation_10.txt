@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Let dp[i][j] be the count of blocks ending at each digit position up to length i and containing j 0's. Initialize all dp[i][j]'s to 0 for all i and j.
+
+The base case is when i = 1, where there can only be one block with length 1, which contains 1 or 9 (10^i - 1) 0's.
+
+For each length i > 1, consider the number of blocks ending at each digit position that are not fully utilized. This can be calculated by summing up all dp[i-1][j]'s for j ranging from 0 to 9 minus the number of blocks of length i - 1 that are not fully utilized.
+
+Store these counts in a prefix sum array, so that we only need to calculate the counts once and reuse them when calculating the counts for larger lengths.
+
+Finally, return the count of blocks ending at each digit position up to length n.
+===END PLAN===

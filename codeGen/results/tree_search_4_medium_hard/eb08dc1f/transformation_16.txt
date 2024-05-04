@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks ending at each digit position up to length k.
+A block is defined as a segment of consecutive equal digits; consider counting the number of blocks that end at each digit position.
+
+Use a 2D array dp[i][k] to store the count of blocks ending at i-th digit position up to length k, and then fill the dp array bottom-up using tabulation.
+For every possible block length from 1 to n, iterate over all numbers from 0 to 10^n - 1. For each number, check if it ends with a block of that length. If it does, increment the count for that block length.
+
+Initialize dp[0][k] to be 1 for k = 1 and 0 otherwise.
+For every possible digit d, iterate over all numbers from 0 to 10^n - 1. For each number, check if it ends with d and has a block of that length. If it does, increment the count for that block length.
+
+Fill dp array up to length n.
+Finally, return dp[0][n] as the answer.
+
+===END PLAN===

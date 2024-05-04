@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Choose a state for each digit position, i.e., the number of blocks that end at that position with length 1 to n.
+Consider the count of blocks ending at each digit position, as well as the block structure information at this position.
+Use a dictionary to store the dynamic programming table, mapping (i, j) tuples to the corresponding counts.
+
+Initialize dp[i][j] = 0 for all i and j.
+
+For every digit from 0 to 9:
+    For each length from 1 to n:
+        For each block ending at this position with this length:
+            If the block is not extended to the left or right, increment dp[len - 1][i] by 1.
+            For each previous block of the same length that ends at i - len + 1:
+                Increment dp[len - 1][i - len + 1] by dp[len - 2][i - len].
+            Update dp[i][j] = (dp[i][j] + dp[len - 1][i]) % 998244353.
+
+Print the counts in order from i = 0 to i = n, separated by spaces.
+===END PLAN===

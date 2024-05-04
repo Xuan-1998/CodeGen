@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them. Consider the state as (i, k) where i is the current digit and k is the length of the block.
+
+Let dp[i][k] be the count of blocks ending at position i that have a length of k.
+Let pre be the previous digit in the sequence (or -1 if it's the first digit).
+For each digit i from 0 to 10^n-1, do:
+    For each length k from 1 to n:
+        If i % 10^k == pre % 10^k, then dp[i][k] = dp[pre][k-1]
+        Else dp[i][k] = 0
+    pre = i
+
+Use a hashmap to store the frequency of each digit and then use this information to update the state.
+
+Finally, iterate over all positions from 0 to 10^n-1, and for each position, add up the counts of blocks ending at that position with lengths from 1 to n. This sum is the answer.
+===END PLAN===

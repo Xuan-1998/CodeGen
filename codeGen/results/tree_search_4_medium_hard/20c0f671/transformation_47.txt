@@ -1,0 +1,5 @@
+dp[0][h] = 0
+for i in range(1, n):
+    for h in range(h_max + 1):
+        dp[i][h] = min(dp[i-1][max(0, h-book_thickness[i])], dp[i-1][h])
+return dp[n-1][h_max]

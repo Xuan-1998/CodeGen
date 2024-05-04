@@ -1,0 +1,8 @@
+dp = {{} for _ in range(len(books) + 1)}
+for i in range(len(books)):
+    dp[i + 1] = {(j, k): float('inf') for j in range(max_shelf_width + 1) for k in range(min_height + 1)}
+    for shelf_width in range(max_shelf_width, -1, -1):
+        for book_index in range(i, -1, -1):
+            if books[book_index][0] <= shelf_width and dp[i][shelf_width][min_height] > dp[book_index][shelf_width - books[book_index][0]][min_height]:
+                min_height = min(min_height, max(books[book_index][1], dp[book_index][shelf_width - books[book_index][0]][min_height]))
+    dp[i + 1] = {j: min_height for j in range(max_shelf_width + 1) if (j, min_height) in dp[i + 1]}

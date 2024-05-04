@@ -1,0 +1,27 @@
+===
+// Step 1: Initialize memoization array
+dp = new int[10][n + 1];
+
+// Step 2: Base case: Count blocks ending at each digit position for length 1
+for (int i = 0; i < 10; i++) {
+    dp[i][0] = 1;
+}
+
+// Step 3: Fill up memoization array using dynamic programming
+for (int len = 1; len <= n; len++) {
+    for (int digit = 0; digit < 10; digit++) {
+        int total = 0;
+        for (int prev_digit = 0; prev_digit < 10; prev_digit++) {
+            if ((digit == prev_digit || prev_digit == 0) && prev_digit != digit) {
+                // Count blocks ending at previous position
+                total += dp[prev_digit][len - 1];
+            }
+        }
+        dp[digit][len] = (total + 998244353) % 998244353;
+    }
+}
+
+// Step 4: Print the count of blocks of each length
+for (int len = 1; len <= n; len++) {
+    System.out.print(dp[0][len] + " ");
+}

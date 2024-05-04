@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To use top-down approach with memoization, define a function that recursively counts blocks for smaller inputs.
+
+Let dp[i][j] be the count of blocks of length j ending at digit i.
+The state expression is a pair (i, j) where i is the current digit and j is the number of consecutive equal digits found so far.
+
+A memoization table could store counts of blocks for given lengths (up to n) and positions from 0 to 10^n-1
+
+Implement a recursive function with memoization using a dictionary to store the intermediate results. The base case would be when j = 1, in which case we simply count the number of blocks ending at digit i.
+
+The recursive case would be where we count the number of blocks ending at digit i and having length j.
+This is done by considering the previous digit (i-1) and the current digit (i).
+For each possible value of the previous digit, we check if it's equal to the current digit.
+If they're equal, then we add 1 to the count of blocks of that length found at the previous position.
+
+The function should return dp[i][j] for the given input i and j.
+
+The updated plan would be:

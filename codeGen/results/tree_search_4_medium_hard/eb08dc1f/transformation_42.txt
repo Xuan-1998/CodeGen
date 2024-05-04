@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming with memoization in a bottom-up approach.
+
+Let's define the state as (l, k): l is the length of the block and k is the count of blocks with this length. The function dp(i, j) will return the total number of blocks up to position i with the last j digits being equal.
+
+We can initialize a dictionary dp where keys are states and values are results. Then we iterate over all positions in the number from right to left and update the dp dictionary accordingly.
+
+Base cases: When i is less than 0, it means we have reached the beginning of the number, so return 1. If j is less than 0 or l is less than 0, it's not a valid state, so return 0.
+
+Transition rule: For each position i and last j digits being equal:
+
+- If this is the first digit, dp(i, j) = 1
+- If there are already k blocks of length l found before, add k to dp(i - 1, j)
+- Add a new block of length l to the count
+
+Finally, return dp(n - 1, n)
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Let dp[i][j] represent the number of blocks ending at position i with j digits.
+
+dp[i][j] = sum(dp[i-k-1][min(k, j)] for k in range(0, j+1))
+
+This formula counts the number of blocks ending at position i by considering all possible extensions from left to right. For each extension length k, we add up the number of blocks ending at positions i-k-1 (which have a valid extension) with minimum lengths min(k, j). This ensures that we don't overcount blocks.
+
+Let dp0[i] = 0 for all i, and let dp1[0] = 1, dp1[j] = 0 for j > 0. Then, construct the tables dp2, ..., dnp using the formula above.
+
+Finally, return dp[n][j] for j from 1 to n.
+===END PLAN===

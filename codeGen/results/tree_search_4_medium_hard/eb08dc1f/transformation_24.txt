@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them.
+
+Let the state be a tuple (k, c) representing the number of blocks ending at each digit position with exactly k consecutive equal digits in them, and c being the current count.
+
+Maintain a dynamic programming table dp[k] where dp[k] represents the total count of blocks ending at each digit position with exactly k consecutive equal digits in them.
+
+For each digit position i from 0 to n-1:
+
+    Initialize a variable curr_count = 0.
+    For each block length l from 1 to min(n, 10^(i+1)):
+        If the block has exactly l consecutive equal digits:
+            Update curr_count by adding dp[l-1] * (10^((i+1)-l) - 10^((i+1)-l-1)).
+        Else:
+            Break the loop.
+    Update dp[i] = curr_count.
+===END PLAN===

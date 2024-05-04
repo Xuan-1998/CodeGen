@@ -1,0 +1,12 @@
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks ending at each digit position up to length k.
+
+1. Initialize an array dp[10][n+1] where dp[i][k] represents the count of blocks that end with i as the last character and have a length of k.
+2. Iterate through all possible combinations of the last k digits, considering all possibilities for the previous (k-1) digits.
+3. For each combination, check if the last k digits are equal to i (the current block).
+   - If they are equal, increment dp[i][k].
+   - Otherwise, there is no new block, so do nothing.
+4. Finally, print out dp[0..9][n] as the number of blocks of each length.
+
+The time complexity is O(10^n) and space complexity is O(n), both modulo 998244353.
