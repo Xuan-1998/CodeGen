@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+DP Array: Create a 2D array dp where dp[i][j] represents the length of the longest increasing subsequence ending at index i with the last increase happening j steps ago.
+Initialization: Initialize dp[0][j] = 1 for all j, since the longest increasing subsequence ending at index 0 is always 1.
+Dynamic Programming: For each i from 1 to n-1 and each j from 0 to i:
+    - If there exists k such that dp[k][j-1] + 1 > dp[i][j]:
+        dp[i][j] = dp[k][j-1] + 1
+    - Otherwise:
+        dp[i][j] = max(dp[i-1][j], dp[i-1][j-1])
+Return: Return the maximum value in the last row of dp, which represents the length of the longest increasing subsequence.
+===END PLAN===

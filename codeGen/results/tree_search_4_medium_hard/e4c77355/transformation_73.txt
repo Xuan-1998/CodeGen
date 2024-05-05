@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Dynamic Programming: Identify the longest increasing subsequence's differences from an optimal solution.
+
+State expression:
+dp[i]: The length of the longest increasing subsequence ending at each position i.
+
+Initialization:
+dp[0] = 1, because a single element is considered as an increasing subsequence.
+For all other positions:
+dp[i] = max(dp[j]) + 1, where j < i and nums[i] > nums[j].
+
+Tabulation:
+Fill the dp array from left to right. For each position i, compare it with previous positions j (j < i). If nums[i] is greater than nums[j], update dp[i] as the maximum of its current value and dp[j] + 1.
+
+Termination condition:
+The length of the longest increasing subsequence is the maximum value in the dp array.
+
+Edge cases:
+- Empty input: Return 0, because there is no increasing subsequence.
+- Single element input: Return 1, because a single element is considered as an increasing subsequence.
+
+===END PLAN===

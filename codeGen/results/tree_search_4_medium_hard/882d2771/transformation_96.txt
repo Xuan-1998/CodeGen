@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls, where each girl is represented by a unique integer in range [1, n].
+
+Consider a recursive relationship: 
+f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls. 
+We can break it down further as follows:
+- If n is 1, then f(n) = 0 (no need for comparisons because there's only one girl)
+- If n > 1, then we have two sub-problems: 
+    - Select the most beautiful participant from the first n-1 girls.
+    - Then select the most beautiful participant from the remaining 1 girl.
+    We can combine these two cases to get f(n) = 1 + min(f(n-1), 0)
+    
+Create a 2D array dp where dp[i][j] represents the minimal total number of pairwise comparisons needed to select the most beautiful participant from j girls, given that i comparisons have been made. 
+
+Fill in the base cases: 
+- If j = 1, then dp[i][j] = 0 for all i
+- If j = 2, then dp[0][j] = 1 (one comparison needed to select the most beautiful participant)
+    
+Then fill in the rest of the dynamic programming values using the recursive relationship:
+- For each j from 3 to r, calculate dp[i][j] as 
+    - 1 + min(dp[i+1][j-1], dp[i+1][2]) if i comparisons have been made
+    - Otherwise, dp[i][j] = dp[0][j]
+
+Finally, the answer is the value at dp[t][r] modulo 109 + 7.
+
+===END PLAN===

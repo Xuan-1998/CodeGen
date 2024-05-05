@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+
+State expression is x and the base case is when x ≤ 0 or x > n (program terminates).
+
+State: dp[x][y] represents the final value of y after running the program on sequence [1..x] with current state (x, y)
+
+Transition:
+    - If x ≤ 0 or x > n, terminate the program and return y
+    - Otherwise, update dp[x][y] = min(dp[x-a[x]][y+a[x]], dp[x-a[x]][y]) + a[x]
+    - Update last_x, last_y to (x, y) for next iteration
+
+Dynamic programming with two-dimensional table (tabulation)
+Initialize dp[1..n][0..max(a[i])] to infinity and dp[0][0] = 0
+Fill the table row by row starting from x=2 and y=0
+Return dp[n-1][y]
+===END PLAN===

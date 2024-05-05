@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Since there is a tree structure, one possible choice for identifying overlapping subproblems could be to use DFS (Depth-First Search) to traverse the graph, where each node represents the maximum amount of gasoline that Nut can have at the end of the path. This approach would allow us to identify and store intermediate results to avoid redundant computation.
+
+State: dp[i][j] represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+To use a top-down approach with memoization, consider defining dp(i) as the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i. The state transition relationship could be based on recursively exploring all possible paths from city 0 to city i and storing the results in a memo dictionary to avoid redundant computation.
+
+State transition: 
+- If there is no road from city i, then dp[i][j] = j (since Nut can only have j units of gasoline).
+- If there is a road from city i to city k with length c, then consider two cases:
+  - Case 1: Nut has enough gasoline to reach city k. In this case, the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i is max(dp[k][j-c], j) (since Nut will choose the maximum amount of gasoline that he can have at the end of the path from city 0 to city k with (j-c) units of gasoline).
+  - Case 2: Nut does not have enough gasoline to reach city k. In this case, dp[i][j] = j (since Nut cannot have more than j units of gasoline).
+
+Use DFS-based dynamic programming with a 3D array dp[i][j][k] to store the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline and k as the road length. 
+===END PLAN===

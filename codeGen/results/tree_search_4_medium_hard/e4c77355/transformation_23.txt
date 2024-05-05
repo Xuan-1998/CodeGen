@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Dynamic Programming:
+Define a recursive relation between subproblems, then use memoization to store computed results.
+The number of elements less than x in the array up to index i
+Consider the longest increasing subsequence ending at each position, and how this relates to the longest increasing subsequences ending at previous positions.
+To implement a bottom-up dynamic programming approach by creating a 2D table where dp[i][j] represents the length of the longest increasing subsequence ending at index i and with the last element being j.
+
+1. Initialize a 2D table dp of size n x m, where n is the length of the array and m is the maximum value in the array.
+2. Fill the first row of the dp table, setting each cell to 1 since a single-element subsequence has a length of 1.
+3. For each element in the input array:
+    - Iterate through the previous elements in the array that are less than or equal to the current element.
+    - For each such previous element, find its longest increasing subsequence ending at that position.
+    - Update the dp table for the current element by taking the maximum of its current value and 1 plus the length of the longest increasing subsequence ending at the previous element.
+4. Return the maximum value in the last row of the dp table as the length of the longest increasing subsequence.
+
+===END PLAN===

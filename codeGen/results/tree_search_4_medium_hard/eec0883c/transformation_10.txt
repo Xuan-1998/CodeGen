@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+We will use DFS (Depth-First Search) to traverse the graph and build a dynamic programming table dp[i][j] where i represents the city and j represents the amount of gas Nut has at the end of the path. The base case is when there's no road connecting two cities, in which case Nut can't buy any more gas.
+We will iterate over all roads and for each road, we calculate the maximum amount of gasoline that Nut can have at the end of the path considering the current road. This will be done by iterating over all possible amounts of gasoline Nut can have at the end of the path and choosing the maximum one.
+
+For each city i, we also consider all possible amounts of gasoline Nut can buy in this city j <= w_i and calculate the maximum amount of gasoline that Nut can have at the end of the path considering the current road and the gas bought in this city. This will be done by iterating over all possible amounts of gasoline Nut can have at the end of the path j' <= dp[i][j] and choosing the maximum one.
+
+This approach ensures that we don't double-count any amount of gasoline and we avoid redundant computation.
+State: dp[i][j] is the minimum remaining gas for node i with j units of gas.
+Base case: When there's no road connecting two cities, in which case Nut can't buy any more gas. 
+Memoizing the function that calculates the maximum amount of gasoline by storing the results of subproblems in a dictionary.
+
+===END PLAN===

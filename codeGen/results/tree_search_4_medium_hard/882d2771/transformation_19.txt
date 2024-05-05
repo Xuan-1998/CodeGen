@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+We can use dynamic programming to solve this problem. Let's define dp[i] as the minimum total number of pairwise comparisons needed to select the most beautiful participant from i girls in a beauty contest.
+
+The base case is when there is only one girl left, which is 0 comparisons.
+
+For larger values of i, we can calculate f(i) by considering the last two girls and combining the results. The optimal substructure is that f(i) = 1 + min(f(j) + 1, j - dp[j-1]) for some j < i. This is because we need to select the most beautiful girl from each group until there is only one girl left.
+
+We can use memoization to store the results of smaller instances and avoid redundant calculations.
+
+The recursive function would be:
+
+f(i) = 1 + min(f(j) + 1, j - dp[j-1]) for some j < i
+
+where dp[i] is calculated recursively as:
+
+dp[i] = 1 + min(dp[j] + 1, j - dp[j-1]) for some j < i
+
+The base case is when there is only one girl left, which is 0 comparisons.
+
+We can use a loop to iterate from r to l and calculate the values of f(i) and dp[i] in a bottom-up manner.
+
+Finally, we can return the value of f(r) as the answer.
+
+===END PLAN===

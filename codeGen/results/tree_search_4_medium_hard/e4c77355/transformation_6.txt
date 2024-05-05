@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Dynamic Programming:
+  Define a recursive relation between subproblems
+    dp[i] = max(dp[j]) for j from 0 to i-1 where arr[i] > arr[j]
+  Use memoization to store computed results
+Create a 2D table to store the lengths of longest increasing subsequences ending at each position
+  table[i][j] represents the length of the longest increasing subsequence ending at index i with last element j
+Fill up the table accordingly:
+  for i from 0 to n-1
+    dp[i] = 1
+    for j from 0 to i-1
+      if arr[i] > arr[j]
+        dp[i] = max(dp[i], dp[j] + 1)
+Choose the maximum value from all subsequences as the final answer
+  return max(dp)
+===END PLAN===

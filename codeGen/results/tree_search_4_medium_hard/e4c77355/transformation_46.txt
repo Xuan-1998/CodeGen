@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+DP[i][j] represents the length of the longest increasing subsequence ending at index i with the last element being j.
+Update DP[i][j] based on the maximum value from previous states and current state, where:
+  - If there is no increasing subsequence ending at i with last element j, then it remains as previously calculated (DP[i-1][j-1]).
+  - If there is an increasing subsequence ending at i with last element j, then update DP[i][j] to be the maximum length of such subsequences.
+
+Use dynamic programming with memoization by using a top-down approach, where you start with the base case and build up the solution.
+Calculate the length of the longest increasing subsequence ending at each index in the array, storing this value in DP[i][i].
+For each index i and each element j in the array:
+  - If j is greater than all elements in the array before i, then the length of the longest increasing subsequence ending at i with last element being j is 1.
+  - Otherwise, update DP[i][j] based on the maximum value from previous states and current state.
+
+Calculate the maximum length of the longest increasing subsequences for each index in the array by iterating through the array one more time:
+  - The length of the longest increasing subsequence ending at any given index is the maximum length calculated for that index.
+===END PLAN===

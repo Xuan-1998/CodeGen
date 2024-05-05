@@ -1,0 +1,15 @@
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The maximum value seen so far in the array up to index i
+The longest increasing subsequence ending at a given index can be formed by appending an increasing integer to the longest increasing subsequences ending at previous indices.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i.
+For each element arr[i], we consider all previous elements that are smaller than arr[i].
+We keep track of the maximum value seen so far, let's call it max_val.
+If arr[i] > max_val, then we can form a new increasing subsequence by appending arr[i] to the longest increasing subsequences ending at indices less than i where the values were less than max_val.
+
+Tabulate the lengths of longest increasing subsequences ending at each index
+The base case is when i is 0 or the array is empty.
+dp[0] = 1, because there's always a single-element subsequence
+
+Updated Plan:

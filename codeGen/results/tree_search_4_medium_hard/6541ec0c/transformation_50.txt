@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+State: dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+
+dp[i][j] = 1 if there are at least k edges deleted from the tree such that for every connected component in the remaining subtree rooted at node i, the bitwise XOR of its nodes is the same with dp[prev_node][j-1], else 0.
+
+Create a 3D DP array to store states for each node, number of edges deleted, and XOR value
+
+Step-by-step approach:
+1. Initialize the 3D DP array with all values as 0.
+2. Iterate over each node i from 1 to n (inclusive).
+    - For each node i, iterate over each possible number of edges deleted j from 0 to k-1 (inclusive).
+        - For each possible XOR value xor_val from 0 to 10^9 (inclusive), update the DP state accordingly.
+            - If it's possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, set dp[i][j][xor_val] = 1. Else, keep it as 0.
+
+Step to check if it is possible:
+1. Iterate over each node i from 1 to n (inclusive).
+    - For each node i, iterate over each possible number of edges deleted j from k-1 to 0 (decrementing by 1 each time).
+        - If dp[i][j] = 1, return "YES". Else, continue.
+
+If the algorithm ends up not returning "YES" for all test cases, it means that it's impossible to make all connected components in the remaining subtree rooted at node i have the same XOR.
+So, output "NO".
+
+===END PLAN===

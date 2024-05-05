@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+The state is a pair (x, y), where x is the current position in the sequence and y is the value of y at that position.
+
+Consider the sequence values as a function that takes a state (x, y) and returns the next state, using rules for increasing/decreasing x and y simultaneously.
+
+Use dynamic programming with a 2D table to store states and their values, then fill the table from bottom up. Initialize the first column of the table with (1, 0), which is the initial state.
+
+For each cell in the table, calculate the next state by applying the transition rules: if x <= 0 or x > n, terminate; else increase both x and y by a_{x}, then decrease x by a_{x} and increment y by a_{x}.
+
+Finally, read the output as the value of y when x reaches the end of the sequence. If x never reaches the end of the sequence (i.e., the program does not terminate), output -1.
+
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+State S[i] is a set representing the longest increasing subsequence ending at index i.
+Represent the state S[i] as the maximum length of increasing subsequences that end at index i, considering all possible predecessors.
+
+Use a dynamic programming table to store the lengths of longest increasing subsequences ending at each index.
+
+Initialise the DP table with zeros: dp = [0] * len(arr)
+
+For each element arr[i]:
+    For each previous element j < i:
+        If arr[j] < arr[i]: 
+            Update dp[i] as max(dp[i], dp[j] + 1)
+
+Return the maximum length in the DP table.
+===END PLAN===

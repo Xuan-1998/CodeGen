@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Consider a state (i, j) where i is the number of groups and j is the maximum number of girls per group. Define the state as a tuple (i, j).
+
+State: (i, j) where i is the number of groups and j is the maximum number of girls per group.
+Implement memoization using a dictionary to store function calls with their corresponding results.
+
+Consider two cases:
+*   If the total number of girls (n) is less than or equal to the minimum number of girls in each group (j), then the minimum comparisons needed to select the most beautiful participant is n - 1. This is because all the groups have only one girl, so there are no more comparisons needed.
+*   Else, if n > j, then we need to divide the girls into groups and find the minimum number of comparisons needed for each group separately.
+
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Update state (i, j) as follows:
+    * If i == 1, update j = n / j.
+    * Else, j = min(j, n // (i + 1)).
+    * i += 1.
+
+Calculate f(n) by recursively calling the function with the updated state and storing the result in a dictionary for future reference.
+
+Finally, calculate the expression t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7.
+===END PLAN===

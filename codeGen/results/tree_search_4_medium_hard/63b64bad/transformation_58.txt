@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x represents the remaining values in the sequence and y is the final value of y after the program has terminated.
+
+The state can be represented by the current value x in the sequence, and the transition is determined by the operation of increasing both x and y by a_{x}.
+
+Model the problem as a graph using Floyd-Warshall algorithm for memoization with a slight modification: when updating the transition from node (x1, y1) to node (x2, y2), check if x2 > n or x2 ≤ 0 before performing the update. If true, mark this edge as terminated and skip further updates.
+
+For each pair of nodes (x1, y1) and (x2, y2), perform the following steps:
+
+    * Initialize dp[x1][y1] to -1
+    * For i from x1 + 1 to x2:
+        + If a[i] > 0, update dp[x2][y2] = max(dp[x2][y2], dp[i-1][y1 + a[i]] + a[i])
+        + Otherwise, mark this edge as terminated and skip further updates
+    * Return the final value of y for each run of the program
+
+===END PLAN===

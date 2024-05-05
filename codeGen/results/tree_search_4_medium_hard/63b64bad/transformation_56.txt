@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x represents the remaining values in the sequence and y is the final value of y after the program has terminated.
+The state can be represented by a pair (x, y) where x is the remaining values in the sequence and y is the final value of y after the program has terminated. The transitions are based on the operations performed by the program: increasing both x and y by a_{x}, then decreasing x by a_{x} while keeping y equal to itself.
+
+Creating a 2D array dp[][] where each cell dp[i][j] stores the maximum value of y for a given state (i, j), with i representing the remaining values in the sequence and j being the final value of y after the program has terminated. Then, iteratively fill up the table by considering all possible transitions from the current state.
+
+To determine whether the program terminates or not, we can use the following rule: if x ≤ 0 or x > n, the program immediately terminates. So, we only need to consider states where 0 < x <= n.
+
+In the end, for each run of the program on the sequence i, a_2, a_3, ..., a_{n}, output the value stored in dp[n][i-1] as the final value of y when the program terminates. If the program does not terminate, output -1.
+===END PLAN===

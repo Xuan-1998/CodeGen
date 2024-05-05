@@ -1,0 +1,28 @@
+code block:
+memo = {}
+
+def dp(x, y, prev_a):
+    if (x, y, prev_a) in memo:
+        return memo[(x, y, prev_a)]
+    
+    # calculate the new values of x and y based on the previous sequence
+    # ...
+    
+    # store the result in memo for future reference
+    memo[(x, y, prev_a)] = result
+    
+    return result
+
+result = 0
+
+for i in range(2, n+1):
+    a_i = int(input())  # read the current element of the sequence
+    x, y = dp(x-1, y-a_i, a_i)  # calculate the new values of x and y
+    
+    if x <= 0 or x > n:
+        result = -1
+        break
+    
+result += y
+
+print(result)

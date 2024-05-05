@@ -1,0 +1,11 @@
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+DP[i][j] represents the length of the longest increasing subsequence ending at index i with the last element being j.
+
+dp = [[0 for _ in range(10001)] for _ in range(n)]
+for i in range(n):
+    for j in range(len(arr)):
+        if arr[j] > arr[i]:
+            dp[i][j] = max(dp[i][j], dp[i-1][j-1]+1) if i>0 else 1
+dp = [max(subsequence) for subsequence in dp]
+print(max(dp))

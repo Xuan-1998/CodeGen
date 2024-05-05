@@ -1,0 +1,19 @@
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The number of elements less than x in the array up to index i can be calculated as follows:
+- Initialize dp[i] = 1 for all i
+- For each element j from 0 to i-1:
+    - If arr[j] < arr[i]:
+        - Update dp[i] = max(dp[i], dp[j] + 1)
+
+The longest increasing subsequence ending at index i can be calculated as follows:
+- Initialize lis[i] = 1 for all i
+- For each element j from 0 to i-1:
+    - If arr[j] < arr[i] and (j == 0 or lis[j] != lis[i]):
+        - Update lis[i] = max(lis[i], lis[j] + 1)
+
+Use memoization to store the lengths of the longest increasing subsequences ending at each position, then use these stored values to compute the length of the longest increasing subsequence in O(n^2) time complexity.
+
+Edge cases:
+- Handle empty array: return 0
+- Handle single-element array: return 1

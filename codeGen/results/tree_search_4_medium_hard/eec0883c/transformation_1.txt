@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Using DFS (Depth-First Search) to traverse the graph, where each node represents the maximum amount of gasoline that Nut can have at the end of the path.
+State: dp[i][j] represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+The state transition relationship could be based on the idea that if Nut has enough gasoline to reach city i, he can choose any road segment connecting city i-1 and city i to further decrease his gas level. This would involve subtracting the length of each road segment from j to get the new gas level.
+
+Use dynamic programming by iterating over all possible gas levels and cities, using previous computed values to avoid redundant computation.
+
+For each city i:
+  For each possible gas level j:
+    If j >= w_i (the current city's gasoline limit), update dp[i][j] as max(dp[i-1][j-w_i], ...); // explore all roads connecting city i-1 and city i
+    Else, update dp[i][j] = dp[i-1][j]; // no road available to decrease gas level
+
+Return dp[n-1][w_n-1]
+===END PLAN===

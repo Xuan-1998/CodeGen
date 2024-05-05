@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+We notice that the problem asks us to find the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls. This process can be broken down into selecting the most beautiful girl from each group until there is only one left.
+
+f(2n) = f(n) + 1, because we need to compare the remaining (2n - n) girls with the selected most beautiful girl in the first n groups.
+
+Try to find a recursive relation between f(l) and f(r), or more specifically, f(l + 1) and f(r).
+
+Use bottom-up dynamic programming with a table of size (r-l+1)*109+7 to store the values of f(n) for all n in [l, r].
+
+Let dp[i] be the minimal total number of pairwise comparisons needed to select the most beautiful participant from i girls. We can calculate dp[i] as follows:
+
+dp[2*i] = dp[i] + 1
+
+And we can use this relation to update our table.
+
+f(n) can be calculated by adding the values in the table for n-1, n-2, ..., l and subtracting l. This is because selecting the most beautiful participant from n girls is equivalent to selecting the most beautiful girl from each group until there is only one left, which requires dp[n-l] comparisons.
+
+We initialize our table with base cases and then fill it up using the recursive relation. Finally, we calculate f(r) - l·f(r) as the answer.
+
+===END PLAN===

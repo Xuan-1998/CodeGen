@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+
+Transition:
+	* Consider selecting the most beautiful girl from the current group (n-1).
+	* Recursively apply this process to remaining groups (f(n-1)).
+Memoize function f(n) directly.
+Recalculate: f(2) = 1, f(3) = 2, ...
+Updated: f(l) = minimal total number of pairwise comparisons needed to select the most beautiful participant from l girls.
+
+Calculation:
+	* t0·f(l) + t1·f(l+1) + ... + tr - l·f(r)
+Modulo: 109 + 7
+
+Edge Cases: None

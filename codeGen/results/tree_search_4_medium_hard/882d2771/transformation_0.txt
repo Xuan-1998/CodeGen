@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let's denote f(l-1) as base case 1 and f(r+1) as base case 2. Then f(n) = 0 if n is even.
+f(n) = min(f(i) + f(n-i-1)) where i from l to r, considering both the base cases.
+
+Memoization using Dynamic Programming:
+dp[i] = f(i)
+
+Initialize dp[l-1] and dp[r+1]
+For each i from l to r
+    For each j from 2^(i-l) to min(2^(i-l), r-i)
+        dp[i] = min(dp[i], dp[j] + dp[i-j-1])
+Return dp[r]
+===END PLAN===

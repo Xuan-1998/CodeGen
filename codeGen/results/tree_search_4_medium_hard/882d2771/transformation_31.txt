@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n+1) = f(n) + n
+
+Consider a state s = (n, k), where n is the number of participants and k is the number of groups. The transition relationship can be formulated as f(n, k) = min(f(n-1, k-1) + k, f(n-k, k)).
+
+Instead of using a recursive function with memoization, consider using dynamic programming with a bottom-up approach to calculate f(n).
+
+Create a 2D array dp where dp[i][j] represents the minimum number of comparisons needed to select the most beautiful participant from i participants divided into j groups.
+
+The base case would be when there is only one group left (i.e., j = 1), in which case the answer is simply i - 1.
+
+For larger values of j, use the transition relationship to calculate dp[i][j] based on dp[i-1][j-1] and dp[i-j][j].
+
+Finally, return dp[l][r] as the result.
+
+This approach avoids the need for a recursive function and memoization, making it more efficient.
+
+===END PLAN===

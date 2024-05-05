@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+State: dp[i][j] represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+1. Initialize dp[0][w_0] = w_0, since Nut starts with w_0 units of gasoline.
+2. For each edge (u, v, c) in the graph:
+    - Let p be the parent of node u. If p is not -1, then:
+        * Update dp[u][j] as follows: if j >= c and dp[p][j-c] + c <= w_u, then
+            dp[u][j] = max(dp[u][j], dp[p][j-c] + c)
+3. The answer is dp[n-1][max_gas_level]
+===END PLAN===

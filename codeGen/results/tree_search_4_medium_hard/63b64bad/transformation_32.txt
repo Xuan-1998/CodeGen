@@ -1,0 +1,9 @@
+1.  Initialize a 2D table dp with dimensions n x max_value_of_y, where max_value_of_y is the maximum possible value of y (calculated as sum of all sequence elements).
+2.  Set base cases: if x <= 0 or x > n, then terminate.
+3.  For each state (x, y) in the graph:
+    a. If the program has terminated, update dp[x][y] with its final value.
+    b. Calculate the next state by increasing both x and y by a_value equal to sequence element at position x.
+    c. Update dp[new_x][new_y] with the current state's value.
+4.  For each run of the program on the given sequence i, a_2, a_3, ..., a_n:
+    a. Iterate through the sequence elements from left to right and update the current state based on the plan above.
+    b. Store the final value of y in dp[i][y] if termination occurs; otherwise, output -1.

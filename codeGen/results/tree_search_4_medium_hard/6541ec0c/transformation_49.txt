@@ -1,0 +1,19 @@
+State: dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+
+dp[i][j][xor_val] = 
+    any(dp[k][j-1][xor_val] for k in range(i) if (a[k] ^ xor_val) % 2 == 0 and dp[k][j-1][xor_val])
+
+Initialization: dp[0][i][xor_val] = 1 for all i, xor_val
+dp[i][0][xor_val] = 1 for all i, xor_val
+
+Main Logic:
+    For each node i:
+        For each possible number of nodes j in the subtree rooted at i (from 1 to n):
+            For each possible XOR value xor_val:
+                If it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, then
+                    dp[i][j][xor_val] = 1
+                else
+                    dp[i][j][xor_val] = 0
+
+Output:
+    For each test case: "YES" if it is possible to delete at least one and at most k-1 edges from the tree so that for every connected component, the bitwise XOR of the values of the nodes in it is the same; otherwise, "NO"

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: s[n] is the minimum number of comparisons required to determine the most beautiful girl among n participants, and f(n) = t0·s[l] + t1·s[l+1] + ... + tr - l·s[r].
+
+Consider the state as a tuple (i, k), where i is the number of girls remaining and k is the current girl's position in the beauty contest.
+
+Use dynamic programming to build up the solution from base cases by iteratively calculating the minimum number of comparisons required for each state (i, k).
+
+Let dp[i][k] be the minimum number of comparisons required when there are i girls remaining and the current girl is at position k. 
+
+dp[1][1] = 0: no comparisons needed to determine the most beautiful girl among a single participant.
+
+for i from 2 to n:
+    for k from 1 to i:
+        dp[i][k] = min(dp[i-1][j] + 1) for j from 1 to k-1
+
+f(n) = t0·dp[l][l] + t1·dp[l+1][l+1] + ... + tr - l·dp[r][r]
+===END PLAN===

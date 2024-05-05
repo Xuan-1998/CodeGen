@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (l, r), where f(l) + f(l+1) + ... + f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls.
+
+Defining a recursive function to calculate f(n) for n > 2 as the minimum of:
+
+f(2) calculated recursively as the minimum of f(1) + 1 and f(3)
+
+And for n = 1, f(1) is 0 (no comparisons needed).
+
+Implement memoization with a recursive function to store previously computed values in a dictionary or hash table.
+
+Store the base cases (f(2), f(1)) before recursing to avoid redundant calculations.
+
+Update the recursive function to calculate f(n) as:
+
+Min(f(l), Min(f(l+1), ..., f(r))) - l
+
+Where f(k) is calculated recursively for k > 2, or directly for k ≤ 2.
+
+Memoize these values and store them in a dictionary.
+
+Finally, use the memoized values to calculate the result modulo 109 + 7.
+
+===END PLAN===

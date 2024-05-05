@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+
+Propose that f(n) can be expressed as the sum of the minimal total number of pairwise comparisons needed for each group of girls in state f(m), where m is an integer representing the size of the group.
+
+Utilize memoization by storing intermediate results in a dictionary and reusing them to avoid redundant computation. Initialize the memo dictionary with base cases, where f(1) = 0 (since there's only one girl, no comparisons are needed).
+
+Store and reuse intermediate values for groups of girls as follows:
+
+- For each group size m from l to r, calculate f(m) by iterating over all possible splits of the group into two subgroups.
+- Calculate the number of pairwise comparisons needed in each split (based on the recurrence relation).
+- Store the result in the memo dictionary.
+
+Calculate the final answer for t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) by iterating over all possible values and adding up their corresponding f(n) values.
+
+===END PLAN===

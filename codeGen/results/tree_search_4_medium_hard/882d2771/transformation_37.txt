@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+base case: f(1) = 0
+
+Let s(n) be the number of comparisons needed to select the most beautiful participant from a group of n girls. Then we can formulate state and transition relationships as:
+
+s(n) = min(s(m1) + 1 + s(m2)) for all m1, m2 in range(1, n), where m1 + m2 = n.
+
+This way, we can use dynamic programming to calculate f(n).
+
+Use a memoization dictionary where f(i) is calculated only once and stored for future use. Then use dynamic programming to combine the results of smaller instances.
+
+Since we need to find the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls, we should store the minimum value instead of just storing the result.
+
+For calculating s(n), we can start by initializing a dictionary memo with base case f(1) = 0. Then for each group size n in range(2, r+1):
+
+- Calculate s(n) as the minimum of s(m1) + 1 + s(m2) for all m1, m2 such that m1 + m2 = n.
+
+Finally, calculate and return the expression t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7.
+
+===END PLAN===

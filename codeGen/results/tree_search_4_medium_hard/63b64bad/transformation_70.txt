@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+The base case occurs when there are no more values left in the sequence, i.e., x = 0.
+
+The system can be viewed as a simple automaton with a finite number of states, which can be solved using a loop invariant technique.
+
+To apply dynamic programming, create a 2D array where the rows represent states of x and columns represent states of y. Fill the array with values based on the recurrence relation: 
+
+- If x = 0, then y is the maximum value reached so far.
+- Otherwise, calculate the new state of (x, y) as (x + a_x, y + a_x), or (x - a_x, y + 2 * a_x) depending on whether x > n or not.
+
+Use this array to fill up the values for all possible states and then read the value at the end state (n-1, 0) as the final result. If the program does not terminate, return -1.
+
+===END PLAN===

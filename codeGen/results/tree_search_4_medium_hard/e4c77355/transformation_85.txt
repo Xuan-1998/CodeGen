@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Let dp[i] denote the length of the longest increasing subsequence ending at index i.
+
+Base case: If the array is empty (i.e., i == 0), return 0.
+
+State transition: For each element in the array, update dp[i] to the maximum between:
+
+* The current state dp[i-1]
+* 1 + dp[j], where j is the greatest index such that arr[i] > arr[j]
+
+This ensures that we consider all possible extensions of the longest increasing subsequence ending at previous indices.
+
+Utilize tabulation by initializing an array with 0's and iterating through the input array from left to right, updating the array at each position to reflect the maximum length of longest increasing subsequences ending at that position.
+
+Final answer: Return dp[n-1], where n is the length of the input array.
+===END PLAN===

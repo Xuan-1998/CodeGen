@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Define states as tuples (i, j) where i is the number of groups and j is the maximum number of girls per group. 
+State: (n, k, g) where n is the remaining number of girls, k is the current group size, and g is the current girl's beauty.
+Consider a bottom-up approach using dynamic programming to solve subproblems.
+
+Let dp[i][j] represent the minimum total number of comparisons needed to select the most beautiful participant from i groups with j girls per group. 
+
+Base cases: 
+- If there's only one group left, return 0 (no more comparisons needed).
+- If there are no more girls in a group, move to the next group.
+
+Recurrence relation:
+- dp[i][j] = min(dp[i-1][k] + k * f(n - j) for k in range(2, j+1)) if n > 0
+- else return dp[0][0]
+where f(n) is the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+
+Top-down approach using memoization: 
+- If the result for (i, j) is already computed and stored in memo, return memo[i][j].
+- Otherwise, compute dp[i][j] recursively and store it in memo.
+===END PLAN===

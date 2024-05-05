@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+The state expression is y and the base case is when x = n (program terminates).
+State: (x, y); Transition: 
+    if (x <= 0 or x > n):
+        terminate
+    else:
+        (x', y') = ((x+a[x]) % n, y+a[x]), 
+        y'=y+a[x], 
+        x'=x+a[x], 
+        then update state with (x', y')
+Maintain two arrays, dp and prev, to keep track of the previous states and the corresponding values.
+dp[i] is the final value of y when the program terminates for sequence length i
+prev[i][j] is the previous state ((x, y)) before the transition that led to state (i, j)
+For each i from 2 to n:
+    Initialize dp[i] = -1 and prev[i][0] = (1, 0) (program starts with x=1 and y=0)
+    For each j from 1 to a[i]:
+        Transition: 
+            if (x <= 0 or x > i):
+                terminate
+            else:
+                (x', y') = ((x+a[x]) % i, y+a[x]), 
+                y'=y+a[x], 
+                x'=x+a[x]
+                Update dp[i] and prev[i][j] accordingly
+    Print dp[n-1]
+===END PLAN===

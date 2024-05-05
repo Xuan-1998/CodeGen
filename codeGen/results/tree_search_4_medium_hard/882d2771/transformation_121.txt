@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: s[n] is the minimum number of comparisons required to determine the most beautiful girl among n participants, and f(n) = s[1] + 2s[2] + ... + ns[n-1].
+
+Fathom that f(n) can be computed as the sum of f(i) where i ranges from 1 to n. This is because the total number of comparisons needed to determine the most beautiful girl among n participants can be broken down into the number of comparisons needed for each group of girls.
+
+Memoize the values using a dictionary where the key is the input value and the value is the precomputed result. This will help avoid redundant computation and improve efficiency.
+
+Tabulate the base cases: s[1] = 0, as there's only one participant and no comparisons are needed; s[2] = 1, as two participants require one comparison to determine the most beautiful girl.
+
+Build up the solution using dynamic programming. For each group of girls from n-1 down to 3:
+
+* Compute f(n) as the sum of f(i) where i ranges from 1 to n.
+* Update s[n] based on the values computed for smaller groups of girls.
+* Memoize the precomputed value.
+
+The final answer is f(r).
+
+===END PLAN===

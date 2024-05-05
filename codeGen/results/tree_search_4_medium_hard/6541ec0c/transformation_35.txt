@@ -1,0 +1,20 @@
+State: dp[i][j] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes have the same XOR, else 0.
+
+dp[i][j] = (1 if there's a node u in the subtree rooted at i such that dp[u][k-1] is 1 and all values except the value at u have the same XOR, else 0);
+
+memo = {i: {(j, val): False for j in range(k+1)} for i in range(n+1)}
+
+for i from n to 1:
+    for node u in subtree rooted at i:
+        if dp[u][k-1] is 1 and all values except the value at u have the same XOR:
+            for j from k-1 down to 1:
+                memo[i][j] = True
+        else:
+            memo[i][j] = False
+
+for i from n to 1:
+    for j in range(1, k+1):
+        if memo[i][j]:
+            print("YES")
+        else:
+            print("NO")

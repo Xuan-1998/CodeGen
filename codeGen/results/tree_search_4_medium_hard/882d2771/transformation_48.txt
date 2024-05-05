@@ -1,0 +1,21 @@
+===
+Dynamic Programming Plan:
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n) = 1 + f(n)
+
+Use memoization by defining a function f that takes an integer n as input and returns the minimum number of comparisons needed, with the help of a dictionary to store the results of subproblems. 
+
+Precompute all values of f up to r, then calculate the answer using these precomputed values.
+
+For edge cases:
+- If t=0, return 0
+- If l=r, return f(l)
+- If t is large, optimize by only storing and recalculating f(n) for n from l to r
+
+The plan can be improved by:
+- Optimizing the memoization function by using a more efficient data structure (e.g., array instead of dictionary) for small values of n
+- Using binary search or other optimizations to reduce the time complexity of calculating f(n)
+- Handling edge cases where t is large and l=r carefully
+===
+

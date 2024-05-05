@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+f(2n) = 1 + f(n)
+dp[i] = min(dp[j] + dp[k]) for all j, k such that 1 <= j < i and l <= k < r
+Memoize f(n) for all n from 2 to r and use it to calculate f(r) + l·f(l), then use this value to calculate t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r)
+Calculate dp[1] = 0
+For i from 2 to r:
+    For j from 1 to i-1:
+        For k from l to min(i, r):
+            dp[i] = min(dp[i], dp[j] + dp[k])
+Memoize dp values and use them to calculate f(r) = dp[r]
+Calculate the final result: t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r)
+===END PLAN===

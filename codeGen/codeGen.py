@@ -16,7 +16,7 @@ CHAT_MODE = "llama3"
 # tree search version 2 - with defined steps
 # tree search version 3 - with defined steps and evaluation steps
 # tree search version 4 - refine prompts
-def tree_search_4(prob: Problem)->list[str]:
+def tree_search_4_medium_hard(prob: Problem)->list[str]:
     algorithm = "Dynamic Programming" #prob.tag.strip().split(', ')[0]
     # general_steps, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
     # general_steps, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
@@ -36,10 +36,10 @@ def tree_search_4(prob: Problem)->list[str]:
         main_logger.info(f"POP0: Queue Length: {len(steps_queue)}, Current steps: {step}, Steps to generate: {steps_to_generate}")
         if len(steps_to_generate) == 0:
             transformation = "\n".join(step)
-            main_logger.info(f"Starting transformation evaluation: Transformation: {transformation}")
-            evaluated_transformation, _ = coding.evaluation_coder(prob.statement, algorithm, transformation, CHAT_MODE)
-            main_logger.info(f"Starting code generation: Transformation: {evaluated_transformation}")
             try:
+                main_logger.info(f"Starting transformation evaluation: Transformation: {transformation}")
+                evaluated_transformation, _ = coding.evaluation_coder(prob.statement, algorithm, transformation, CHAT_MODE)
+                main_logger.info(f"Starting code generation: Transformation: {evaluated_transformation}")
                 code, _ = coding.transformation_coder(prob.statement, evaluated_transformation, CHAT_MODE)
             except RetryError as e:
                 main_logger.error(f"An error occurred: {e}, {transformation}, {traceback.format_exc()}")
@@ -131,7 +131,7 @@ def save_results(prob: Problem, folderName: str, codes: list[str], transformatio
 
 def codeGen(
         data_path: str = "../data/mix-100", 
-        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_4,
+        codeGen_strategy: Callable[[Problem], tuple[list[str], list[str]]] = tree_search_4_medium_hard,
         baseline_strategy: Callable[[Problem, int], list[str]] = zero_shot
     ):
     main_logger.info("codeGen starts")
@@ -139,7 +139,7 @@ def codeGen(
     #     if os.path.isdir(os.path.join(data_path, source)) is False and source.endswith(".jsonl"):
     #         probs_path = os.path.join(data_path, source)
     #     else:
-    probs_path = os.path.join(r"../data/easy-dp/medium-dp.jsonl")
+    probs_path = os.path.join(r"../data/balanced-probs-dp/medium_hard/problems.jsonl")
     with open(probs_path, 'r') as file:
         for line in file:
             prob = problems.Problem.from_jsonl(line)
@@ -149,9 +149,9 @@ def codeGen(
             main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
             # skip if already generated.
             prob_save_path = f'results/{codeGen_strategy.__name__}/{prob_guid}'
-            if os.path.exists(prob_save_path) and prob_guid in os.listdir(
-                f"results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}"
-            ):
+            if os.path.exists(prob_save_path):# and prob_guid in os.listdir(
+                #f"results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}"
+           # ):
                 continue
             codes, transformations = codeGen_strategy(prob)
             main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")
@@ -172,4 +172,4 @@ if __name__ == "__main__":
     # working_directory = "/Users/jiangxuan/Desktop/09_CodeGen/CodeGen"
     # data_path = f"{working_directory}/data"
     # codeGen(data_path)
-    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_4, baseline_strategy=zero_shot)
+    codeGen(data_path="../data/balanced-probs",codeGen_strategy=tree_search_4_medium_hard, baseline_strategy=zero_shot)

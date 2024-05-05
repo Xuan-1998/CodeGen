@@ -1,0 +1,17 @@
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (r, k), where f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from r girls with at most k pairs of identical clothes.
+
+Formulate state and transition relationships: 
+f(S) = min(f(S - pair) + 1), for all 0 <= pair <= k, 
+where S - pair = (r - i, k - 1).
+
+Initialize memo array to store the results of expensive function calls.
+
+Iterate over possible values of r from l to r and for each value of r, iterate over possible values of k from 2 to the number of pairs of identical clothes. 
+
+In each iteration, compute f(r) using the transition relationships.
+
+Store the computed result in the memo array to avoid redundant calculations.
+
+Finally, return the result of f(r) modulo 109 + 7.

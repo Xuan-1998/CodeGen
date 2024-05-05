@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Dynamic Programming:
+    Initialize an array dp with the same length as the input array.
+    Set dp[0] = 1 (the longest increasing subsequence up to index 0 is always 1).
+    For each element at index i in the array, do the following:
+        Initialize maxLength = 0
+        For each previous index j such that array[j] < array[i]:
+            If dp[j] + 1 > maxLength:
+                maxLength = dp[j] + 1
+        Set dp[i] = maxLength
+    Return dp[-1] (the length of the longest increasing subsequence in the entire array)
+===END PLAN===

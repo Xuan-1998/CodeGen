@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: dp[i][j] represents the minimum total number of comparisons required to select the most beautiful girl from i groups with j participants each.
+
+dp[1][j] = j - 1, for all 2 ≤ j ≤ r, since we need to compare all girls in one group.
+For i > 1 and 2 ≤ j ≤ r:
+    dp[i][j] = min(dp[i-1][k] + (j-k+1)) for k in range(2, j+1);
+    Store the computed value of dp[i][j] in a dictionary to enable memoization.
+For t iterations:
+    Calculate the value of the expression: t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r), modulo 109 + 7;
+    Print the calculated value as the output.
+
+===END PLAN===

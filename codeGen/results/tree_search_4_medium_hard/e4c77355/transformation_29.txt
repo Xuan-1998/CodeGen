@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i in the array.
+
+For each element x at index i:
+
+1. If the current element is greater than any previous element, it can be appended to an existing increasing subsequence.
+    - In this case, dp[i] = 1 + max(dp[j]) for j < i and A[j] < A[i].
+2. Otherwise, consider all previous elements that are smaller than x. The longest increasing subsequence ending at index i is either the same as one of these subsequences or one element longer.
+    - In this case, dp[i] = 1 + max(dp[j]) for j < i and A[j] < A[i].
+
+Use a bottom-up approach with a tabulated array to fill up the solution.
+
+Fill in the dp table column by column from left to right. For each cell, compute the value based on its dependencies.
+Read off the answer as the maximum value in the last row of the dp table.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+base case: f(1) = 0
+The problem can be viewed as a sequence of comparisons, each comparison reducing the number of girls by half. Then, we can formulate state and transition relationships as:
+f(n) = min(f(n/2) + 1) for all n > 1
+Designing a stateful transition function
+We need to handle edge cases: f(2) = 1 (only one comparison needed to select the most beautiful participant)
+The plan is correct, but it's missing some crucial details. We should specify how we will store and update our dynamic programming table.
+We can use an array dp[n] where dp[i] represents the minimum total number of pairwise comparisons needed to select the most beautiful participant from i girls in a beauty contest.
+We fill up this array iteratively, starting from f(1) = 0, using the recurrence relation: dp[i] = min(dp[i/2] + 1) for all i > 1
+Finally, we return dp[r]
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x represents the remaining values in the sequence and y is the final value of y after the program has terminated.
+The state can be represented by the current value x in the sequence, and the transition is determined by the operation of increasing both x and y by a_{x}.
+
+Store the state space using a dictionary and implement memoization. 
+
+For each node in the graph, calculate the next nodes reachable from that node by performing the program steps.
+Use this to build a dynamic programming table where each cell represents the maximum final value of y for a given sequence up to that point.
+
+Start with an initial state (n-1, 0) and then traverse the graph until you reach a terminal state (x <= 0 or x > n).
+
+The final answer is stored in the last reachable node.
+===END PLAN===

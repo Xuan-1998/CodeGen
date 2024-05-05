@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Dynamic Programming Solution:
+Create a 2D table dp where dp[i][j] represents the length of the longest increasing subsequence ending at index i and with the last increase happening j positions ago.
+
+Initialize the dp table with zeros, assuming no increases have occurred yet.
+Iterate over the array elements.
+For each element x at index i:
+    For each possible previous increase j from 1 to i:
+        If x is greater than or equal to the previous element (j-1), update dp[i][j] as follows:
+            If there was an increase j positions ago, then consider it and add 1 to the length of the longest increasing subsequence ending at index j.
+            Else, start a new sequence with length 1.
+
+To find the length of the longest increasing subsequence (LIS), iterate over the dp table's last row [i][j] for i from 0 to n-1. The maximum value represents the LIS.
+
+===END PLAN===
