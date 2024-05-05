@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+The state expression is dp[i] = max(dp[2*i+1], dp[2*i+2]) + tree[i], where tree[i] is the value of the ith node in the binary tree and 0-indexing is used. This base case considers that each node can be either the start or end of a path.
+
+Define a state s[i] as the maximum sum of a path starting from the ith node. The transition relation is s[i] = max(s[2*i+1], s[2*i+2]) + tree[i].
+
+Implement memoization by defining a recursive function that stores previously calculated values in a dictionary to avoid redundant calculations.
+
+Recursively define the base case as dp[i] if i < 0, otherwise calculate the maximum sum of a path starting from the ith node by considering its children and the value of the ith node: max(dp[2*i+1], dp[2*i+2]) + tree[i].
+
+Implement a helper function to recursively calculate the maximum sum of a path starting from the ith node.
+
+Use a dictionary to store previously calculated values to avoid redundant calculations.
+
+===END PLAN===

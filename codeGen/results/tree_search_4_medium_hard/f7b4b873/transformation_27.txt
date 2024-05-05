@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+The state is a 2D array dp[i][j] representing whether the substring S[i..j] is palindromic.
+
+dp[i][j] represents whether S[i..j] is a palindrome, with base cases:
+
+* dp[i][i] being True if S[i] is a single character (i.e., itself is palindromic)
+* for 2 <= j - i < 2, dp[i][j] is True if S[i..j] is equal to its reverse
+
+Use a bottom-up approach to fill the dp table by iterating from i = 0 to N and j = i to N, and for each position [i][j], check if S[i..j] is palindromic or not based on the base case and recursive rules.
+
+To find all possible palindromic partitions, initialize an empty list partitions. Then, iterate from i = 0 to N and for each i, generate all substrings of S starting at position i and ending at position j such that j <= N. For each substring, check if it's a palindrome using the dp table. If it is, add it to the partition list.
+
+The final answer will be the list partitions.
+
+===END PLAN===

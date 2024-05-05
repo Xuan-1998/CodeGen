@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+The state expression would be the current position in the board, along with a flag indicating whether the previous ball was removed or not. This allows us to keep track of which colors are adjacent to each other and update our values accordingly.
+
+State: (i, prev_removed) where i is the current position in the board and prev_removed is a boolean indicating whether the previous ball was removed
+
+Use a dictionary to store the dynamic programming values and look up previously computed values as needed. Initialize all values to infinity except for the starting point on the board, which is set to 0.
+
+As we iterate through the board, check if the current ball matches the color of the previous ball (if it exists). If so, update our value by adding the cost of removing one group of balls. This is because we can remove all adjacent balls of the same color in a single move.
+
+If the current ball does not match the color of the previous ball (or if this is the first ball), simply set our value to 1 plus the minimum number of moves needed to remove all balls up until this point.
+
+Finally, return the value at the end of the board as our answer. If it's still infinity, that means we can't remove all balls and we should output -1 instead.
+
+===END PLAN===

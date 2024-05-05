@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state expression could be a tuple (room, painted) where room is the current room number and painted is a boolean indicating whether the ceiling has been painted.
+
+Let's define a 2D array dp where dp[i][0] represents the minimum number of steps to reach room i with an unpainted ceiling, and dp[i][1] represents the minimum number of steps to reach room i with a painted ceiling.
+
+We can initialize dp[0][0] = 0 because Vasya starts in room 0. For each subsequent room i:
+    - If the ceiling has not been painted (painted = False), we consider two cases: 
+        * Using the first portal and reaching room p_{i} with an unpainted ceiling
+        * Using the second portal and reaching room dp[p_{i}][1] with a painted ceiling
+    - If the ceiling has been painted (painted = True), we can only use the second portal and reach room p_{i}
+    - We update dp[i][0] to be the minimum of these two cases, and dp[i][1] to be 1 plus the result from the previous step
+
+Finally, the answer is dp[n+1][1], which represents the minimum number of steps Vasya needs to get out of the maze with a painted ceiling.
+
+===END PLAN===

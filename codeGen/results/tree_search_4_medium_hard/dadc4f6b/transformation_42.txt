@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the total brightness of stars within a rectangle can be broken down into smaller rectangles. 
+Use dynamic programming with tabulation by iterating over all possible views and calculating the total brightness for each view.
+
+Create a dictionary, dp, to store the total brightness for each unique rectangle-coordinate pair, using memoization to avoid redundant calculations.
+Let the state be (x1, y1, x2, y2) defining the coordinates of the viewed rectangle and its corresponding time t. 
+The transition relationship is based on iterating over all possible views and calculating the total brightness for each view.
+
+For a given view, iterate over all stars within the view's bounds and add their initial brightness to the total if they are visible.
+If a star is not visible due to its y-coordinate being outside the view's top and bottom boundaries or its x-coordinate being outside the view's left and right boundaries, ignore it.
+Add 1 to the time for each step of time passed since the last update. 
+Update dp[(x1, y1, x2, y2)] with the total brightness calculated from the current view.
+
+To query the total brightness for a given view, simply return dp[(x1, y1, x2, y2)].
+===END PLAN===

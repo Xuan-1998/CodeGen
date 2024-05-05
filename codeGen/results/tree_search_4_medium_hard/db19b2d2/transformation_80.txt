@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming (DP) instead. The idea is to create a table dp[i] that represents the probability that a randomly formed team will have at least one player from the department of interest when there are i players in total.
+
+Base case: If h = 1, then the probability is either 0 (if s1 < n) or 1 (if s1 >= n).
+
+The state is the total number of players from the desired department so far, with transitions based on adding one more player from this department. We need to calculate dp[i] for all i from 1 to n.
+
+Design a recursive function with memoization to store intermediate results and avoid redundant calculations. The base case can be calculated directly, while the recursive case involves calculating the probability that at least one player is chosen from the desired department when there are i-1 players in total, plus the probability that none of the first i-1 players is from the desired department.
+
+For instance, dp[i] = 0 if s1 < n, and dp[i] = 1 - (1 - p)^i otherwise, where p is the probability that a randomly chosen player is from the desired department.
+
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+Let's define dp[i] as the total count of ones in all numbers with exactly i digits less than or equal to n. We can then update dp[i+1] based on the previous state (dp[i]) by considering the possibilities when a new digit is added:
+
+For each number k in [0, 10^(i-1)], 
+    - The total count of ones in all numbers with exactly i digits less than or equal to n is the sum of:
+        * The total count of ones in all numbers with exactly (i-1) digits less than or equal to n (dp[i-1])
+        * The number of 1's that can be appended to these (i-1)-digit numbers: 
+            + For each k, there are 10^(n-i+1) possible values for the new digit
+            + In each case, we have exactly one 1 in the new digit
+
+So, dp[i] = dp[i-1] + 10^(n-i+1)
+The base case is when i=0: There is only one number (0) and it has no ones.
+
+Finally, the total count of ones in all numbers less than or equal to n is the sum of the counts for each digit position from 0 to log10(n): 
+    - For each i in [0, log10(n)], 
+        + Add dp[i] to the total
+===END PLAN===

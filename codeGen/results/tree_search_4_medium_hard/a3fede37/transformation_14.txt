@@ -1,0 +1,39 @@
+===BEGIN PLAN===
+Determine the maximum sum of a path by iterating through all possible paths in the tree using tabulation, and identify the optimal solution.
+
+// Initialize dp array with -1 representing infinity value for nodes without children
+int[] dp = new int[n];
+
+// Function to calculate maxPathSumUtil(node) that recursively calculates the maximum sum of a path from a given node to any leaf node.
+int maxPathSumUtil(int node) {
+    // Base case: If node is a leaf node, return its value as the maximum sum
+    if (node >= n || !hasLeftChild(node) && !hasRightChild(node)) 
+        return tree[node];
+
+    // Recursively calculate the maximum sum of paths from left and right children
+    int leftSum = hasLeftChild(node) ? maxPathSumUtil(leftChild(node)) : -1;
+    int rightSum = hasRightChild(node) ? maxPathSumUtil(rightChild(node)) : -1;
+
+    // Update dp[node] as the maximum sum of a path ending at node i, capturing the maximum sum of paths from left and right children
+    dp[node] = tree[node] + Math.max(leftSum, rightSum);
+
+    return dp[node];
+}
+
+// Function to calculate the maximum sum of all possible paths in the binary tree
+int maxPathSum() {
+    // Initialize dp array with -1 representing infinity value for nodes without children
+    int[] dp = new int[n];
+
+    // Calculate the maximum sum of a path ending at each node i, capturing the maximum sum of a path from node i to any leaf node
+    for (int i = 0; i < n; i++) {
+        maxPathSumUtil(i);
+    }
+
+    // Return the maximum value in dp array as the maximum sum of all possible paths in the binary tree
+    int maxSum = -1;
+    for (int i = 0; i < n; i++) {
+        maxSum = Math.max(maxSum, dp[i]);
+    }
+    return maxSum;
+}

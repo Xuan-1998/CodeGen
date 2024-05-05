@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers from 2 to n_max. Then:
+1. Iterate over each number below n_max.
+    * For each num, count its permutations by recursively generating all possible permutations of its digits.
+    * Store the result in a dictionary (num: permutation_count).
+2. The base case would be when num = 2, as there's only one permutation for the smallest prime number, which is itself.
+3. Develop a recursive function that calculates the permutations count for each prime number:
+    * For num > 10, break into smaller chunks (e.g., digits) and recursively generate all possible permutations of these chunks.
+    * If num < 10, there's only one permutation (itself), so return 1.
+4. Use dynamic programming to build up a table (dp) where dp[num] is the count of prime numbers with k_perms below n_max.
+5. Read the values from the table and find:
+    * The count of prime numbers with k_perms below n_max (sum(dp[:n_max])).
+    * The smallest and largest prime numbers among them.
+
+===END PLAN===

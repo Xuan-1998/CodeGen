@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = min(dp[i-1][k]) for k in range(j-M+1,j);
+
+Using a 2D array to store the intermediate results, where dp[i][j] represents the winner index if we have i players and j people having coins.
+
+The base case is when there's only one player left (i=1), then the winner_index is simply the current person having the coin.
+The recursive step would be: find the winner for i-1 players with j-1 people having coins, and repeat this process until we have 1 player left. Then, increment the winner index by 1.
+
+This approach can be improved by handling edge cases carefully. For example, when i is small (less than M), we don't need to compute dp[i][j] for all j up to X, but only up to i-1.
+===END PLAN===

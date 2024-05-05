@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+// Define base cases
+dp[0][j] = 0 for all j (no dough, no profit)
+dp[i][0] = d0 for all i (use only without stuffing)
+
+// Dynamic programming formula
+dp[i][j] = max(dp[i-1][j-1] + di - c0 if ai >= bi and i >= ci,
+              dp[i][j-1] + di, // no dough used
+              dp[i-ci][j] + (di - bi)) // use i-th stuffing
+
+// Memoization option
+dp = { }
+def max_profit(i, j):
+    if (i, j) in dp:
+        return dp[(i, j)]
+    result = ...
+    dp[(i, j)] = result
+    return result
+
+===END PLAN===

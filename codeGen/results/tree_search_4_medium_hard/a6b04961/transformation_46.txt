@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, making it amenable to bottom-up tabulation. Define a state as the tuple (t, p), where t is the length of the current tail and p is the number of vertices not yet included in the tail.
+
+Base case: When all vertices have been included in the tail or spines, i.e., t = n. Initialize memoization with base cases.
+
+Transition:
+1. If p > 0, consider adding the next vertex to the tail. Calculate the beauty if this is done and update the memoization.
+2. If p == 0, there are no more vertices to include in the tail or spines. The current beauty is the maximum achievable.
+3. Memoize the dynamic programming state (t, p) using a dictionary with (t, p) as keys and the maximum beauty as values.
+
+Memoized states should be calculated iteratively from smaller instances to larger ones. Start with base cases and incrementally build up the solution for larger instances.
+
+===END PLAN===

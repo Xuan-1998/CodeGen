@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+Let dp[i][j] represent whether there exist arrays a and b, each of length i and with no elements in common, so that p=merge(a,b) up to the i-th element. 
+
+dp[i][j] should also depend on whether there are any common elements between arrays a and b up to the i-th element, which can be represented as a binary flag.
+
+Initialize dp with a 2D array of size (n+1)*(2*n+1) filled with False values.
+
+For each permutation p, iterate over all possible splits of p into two arrays a and b. For each split, check if there exist common elements between a and b. If not, then set dp[i][j] to True where i is the length of a and j is the length of b.
+
+To avoid duplicates in the recursive calls, consider using memoization or caching.
+
+===END PLAN===

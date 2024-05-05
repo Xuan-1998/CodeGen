@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i][j] represents the number of arrays for which the result of the bitwise AND operation is at least 2^i-1 and the result of the bitwise XOR operation is less than or equal to 2^k - 1 - 2^(k-i).
+Fill dp table by iterating over all possible subproblems.
+For each i, iterate from k down to max bit set in the numbers.
+For j from 0 to 2^i-1:
+    If the result of bitwise AND operation for this array is at least 2^i-1 and the result of the bitwise XOR operation is less than or equal to 2^k - 1 - 2^(k-i), then dp[i][j] = dp[i-1][0] + dp[i-1][1]...dp[i-1][2^i-2] if i>0, else 1.
+    Else dp[i][j] = 0.
+Return the sum of all dp[k-1][-1] modulo 10^9+7.
+===END PLAN===

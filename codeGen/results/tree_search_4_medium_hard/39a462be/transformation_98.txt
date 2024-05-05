@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 3D table where each cell represents the similarity score between two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 3D array dp[i][j][k] where:
+
+* dp[i][0][0] and dp[0][j][0] represent the similarity score between an empty string A and a substring B[0..j-1].
+* dp[0][0][k] represents the similarity score between an empty string A and a substring A[0..k-1].
+
+The base case is when one or both strings are empty, in which case the similarity score is calculated as:
+
+* 4 times the length of the shorter string if both strings are empty (edge case).
+* The sum of lengths minus 4 times the length of the shorter string if only one string is empty.
+
+dp[i][j][k] is updated as the maximum of:
+
+* dp[i-1][j-1][k-1] plus 1, considering the similarity score between A[0..i-k] and B[0..j-k].
+* max(dp[i-1][j][k], dp[i][j-1][k]) considering the similarity scores between A[0..i-(k+1)] and B or A and B[0..j-(k+1)].
+
+Implement tabulation by initializing a 3D array with zeros, then filling it in row by row using two nested loops. The outer loop iterates over i and j (string lengths), while the inner loop fills in each cell based on the state expression.
+
+===END PLAN===

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+dp = [[0] * (2**k + 1) for _ in range(2**k + 1)]
+for i in range(2**k + 1):
+    for j in range(2**k + 1):
+        if i >= 2**k - 1:
+            dp[i][j] = 1
+        else:
+            and_count = 0
+            xor_count = 0
+            for x in range(n):
+                if (i & ((x+1) << k)) == i: and_count += 1
+                if (i ^ ((x+1) << k)) == j: xor_count += 1
+            dp[i][j] = and_count * (and_count + 1) // 2 - xor_count * (xor_count + 1) // 2
+for i in range(2**k + 1):
+    for j in range(i):
+        if j >= 2**k - 1:
+            dp[i][j] = dp[j][i-j-1]
+        else:
+            and_count = 0
+            xor_count = 0
+            for x in range(n):
+                if (i & ((x+1) << k)) == i: and_count += 1
+                if (i ^ ((x+1) << k)) == j: xor_count += 1
+            dp[i][j] = and_count * (and_count + 1) // 2 - xor_count * (xor_count + 1) // 2
+print(sum([dp[2**k-1][i] for i in range(2**k)]))
+===END PLAN===

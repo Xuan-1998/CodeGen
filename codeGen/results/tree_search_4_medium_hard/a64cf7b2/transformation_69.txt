@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+Define the state as a tuple (t, path), representing the maximum number of vertices that can be visited within a time limit of t by following the edge sequence in path.
+State expression: dp[(t, path)], which represents the maximum number of vertices that can be visited within a time limit of t and following the edge sequence in path.
+
+To utilize memoization in a recursive function by passing the current state and previous results as arguments to the function, allowing it to build upon previously computed values.
+
+Base case: dp[(T, [])] = 1 (base case: with T remaining time and no edges traversed, we can only visit vertex n)
+
+Recursive case:
+For each edge (u, v, t) in the graph:
+    If u == 1:
+        Consider visiting vertex v and then recursively exploring the subproblem dp[(T - t, [(v,) + path])]
+    Else if t <= T:
+        Recursively explore the subproblems for both options: visit vertex v and then recursively explore dp[(T - t, [(v,) + path])], or skip this edge and continue with the current path
+        Update the maximum number of vertices visited
+
+Memoization: Store the results in a dictionary dp and use it to avoid redundant computations.
+
+===END PLAN===

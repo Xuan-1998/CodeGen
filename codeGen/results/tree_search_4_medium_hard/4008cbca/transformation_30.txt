@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The state expression could be (length_of_current_window, last_ball_on_board), with the dynamic programming table storing the minimum number of moves needed to remove all balls up to that point given this window and last ball.
+
+Base case: When the board is empty, it would take 0 moves to remove all balls.
+
+To fill in the dynamic programming table, for each length_of_current_window from 1 to len(board), we iterate through all possible last_ball_on_board. For each combination, we check if there are three or more consecutive balls with the same color, and if so, update the minimum number of moves needed to remove all balls up to that point.
+
+For each possible state (length_of_current_window, last_ball_on_board), we can calculate the minimum number of moves needed to remove all balls up to that point by considering two options: either insert a ball into the current window or not. We choose the option that requires the fewest moves.
+
+Finally, we return the value in the dynamic programming table for the state (len(board), last_ball_on_board) as the minimum number of moves needed to remove all balls on the board.
+
+===END PLAN===

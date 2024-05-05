@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider each integer from 0 to n as a binary representation, with the most significant bit representing the number itself. The problem becomes one of counting the total number of times the digit 1 appears in all possible binary representations.
+
+Define an array dp where dp[i] represents the count of digit 1's in all non-negative integers less than or equal to i.
+dp[0] is initialized to 0 because there are no ones in the binary representation of 0.
+
+For each integer i from 1 to n:
+    Calculate the number of times the digit 1 appears in the binary representation of i. This can be done by counting the number of trailing zeros in (i - 1) and adding 1 if the most significant bit is 1.
+    Add this count to dp[i-1] and store it in dp[i].
+Return dp[n]
+===END PLAN===

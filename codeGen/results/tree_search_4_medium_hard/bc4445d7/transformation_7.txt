@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][j] = minimum product of (n-1) integers such that the sum of integers on path from node i to j equals k, where dp[i][j] represents the maximum possible distribution index for subtree rooted at node i with k as its product.
+
+dp[i][j] = min(dp[u][i] + j-u+1 + dp[v][j] + v-j+1) for all nodes u and v in subtree rooted at i
+
+Implement memoization with a hash table where dp[(i, j)] is the minimum product of (n-1) integers such that the sum of integers on path from node i to j equals k, and update the memoized values by iterating through all possible paths in the tree.
+
+For each edge (u, v), calculate the minimum product for subtree rooted at u with k-u as its product, and the minimum product for subtree rooted at v with k-v as its product. Then, for each node i, iterate through all nodes j that are reachable from i and update dp[i][j] accordingly.
+
+Initialize a variable max_index to keep track of the maximum possible distribution index. Iterate through all nodes i, and for each node i, calculate the sum of integers on path from i to j for all nodes j that are reachable from i. Update max_index with this sum if it is greater than the current value of max_index.
+
+Finally, print the value of max_index modulo 10^9 + 7 as the result.
+
+===END PLAN===

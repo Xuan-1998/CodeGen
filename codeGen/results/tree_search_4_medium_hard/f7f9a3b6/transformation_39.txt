@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately.
+
+Define the state as:
+dp[i][k] = maximum length of the k-th longest substring in all possible splits of s[0..i].
+
+Memoize the function that calculates the number of ways to split the message in each part separately.
+
+For unique characters, use a prefix sum array to count the number of times each character appears and then use this information to calculate the number of ways to split the unique characters into substrings.
+
+For repeated occurrences, use a sliding window approach to find all possible substrings that satisfy the condition. For each substring, update the state dp[i][k] based on whether the current substring can be added to any previous substrings.
+
+Count the total number of ways by multiplying the number of ways for unique characters and repeated occurrences.
+
+For the longest substring over all the ways, find the maximum length of all possible substrings in each part separately. Then take the minimum of these two lengths as the overall answer.
+
+Finally, compute the sum of the counts of all possible substrings to get the total number of substrings over all the ways and find its minimum value.
+
+===END PLAN===

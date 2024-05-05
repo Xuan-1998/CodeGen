@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][j] = minimum product of (n-1) integers such that the sum of integers on path from node i to j equals k, where dp[i][j] represents the maximum possible distribution index for subtree rooted at node i with k as its product.
+
+Create a 2D DP table with dimensions n x (n-1) where dp[u][v] = minimum product of (n-1) integers such that the sum of integers on path from node u to v equals k. Initialize this table by iterating over all edges in the tree and updating the values accordingly.
+
+For each edge (u, v), update dp[u][v] as follows:
+
+* If the prime factor p is present in k and (p-1) divides k/p, then add p-1 to dp[u][v]
+* Else, add 1 to dp[u][v]
+
+Finally, return the sum of all values in the DP table modulo 10^9 + 7.
+===END PLAN===

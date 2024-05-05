@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build a sequence with exactly i spheres having radii up to i, where 1 ≤ i ≤ C.
+
+dp[i] = sum(dp[j] * comb(N-j+M-i-1, M-i) for j in range(i)), where N-j+M-i is the remaining number of spheres that can be used to form an i-sequence
+
+Another option is to implement memoization using a dictionary where the key is a tuple (N, M, i) and the value is the number of ways to build an i-sequence given N upper hemispheres and M lower hemispheres.
+
+For edge cases, consider when N = 0 or M = 0. In this case, dp[i] should be initialized to 1 for all i, because there are no spheres available to form any sequence.
+
+The plan can be improved by adding more details about the initialization of dp and the calculation of comb(N-j+M-i-1, M-i).
+
+===END PLAN===

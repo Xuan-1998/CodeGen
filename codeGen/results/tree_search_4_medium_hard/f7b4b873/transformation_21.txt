@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem involves finding all possible palindromic partitions of a string, which can be solved using dynamic programming with memoization.
+
+state: (i, j) where i and j are the start and end indices of the substring to be checked for palindromeness
+base case: if j-i < 1, then return [[partition]]
+
+state: (i, j, is_palindrome) where i and j are the start and end indices of the substring to be checked for palindromeness and is_palindrome is a boolean indicating whether the substring is palindromic or not
+
+State transitions:
+- If is_palindrome is True, add the substring [i:j] to the partition and recurse on the remaining string (i+1, j-1)
+- If is_palindrome is False, do not include this substring in the partition and recurse on the remaining string (i+1, j)
+
+Memoization using a dictionary to store the results of subproblems
+
+===END PLAN===

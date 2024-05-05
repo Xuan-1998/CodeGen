@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Use dynamic programming with memoization in a top-down approach.
+
+State: (tail_length, number_of_spines), where tail_length is the length of the current hedgehog's tail and number_of_spines is the count of spines found so far. The base case would be when the tail reaches its maximum allowed length.
+
+Memoization dictionary: Store previously computed values for subproblems with the same state to avoid redundant computations.
+
+Function dp(tail_length, number_of_spines): Calculate the maximum beauty that can be achieved by extending the current hedgehog's tail of length tail_length and having number_of_spines spines so far.
+
+Base case 1: If the tail reaches its maximum allowed length (n), return the product of the tail length and the number of spines.
+Base case 2: If there are no more edges to consider, return the current beauty.
+
+Recursive step:
+For each edge (u, v):
+    If u is in the current hedgehog's tail, add the edge to the tail if v is not in it. Update the state and store the result in the memoization dictionary.
+    Calculate the maximum beauty that can be achieved by extending the current hedgehog's tail of length tail_length + 1 and having number_of_spines + 1 spines so far.
+
+===END PLAN===

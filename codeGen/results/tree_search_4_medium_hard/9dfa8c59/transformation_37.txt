@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers, then iterate over each number below n_max to count its permutations.
+
+Base case: when the input number is less than or equal to 1, it has no prime permutations and should not be counted.
+
+Store prime numbers in a set (primes) and iterate over each number (i) below n_max:
+    - For each number i, generate all possible permutations of its digits using recursion.
+    - Count the number of permutations that are also in the primes set. If this count is equal to k_perms, increment a counter for the total count of prime numbers with k_perms prime permutations.
+
+Use memoization (dp) to store the results of expensive function calls:
+    - dp[i][j] = 1 if i has j prime permutations, and 0 otherwise.
+    - If i is not prime, set dp[i][j] to 0 for all j.
+    - For each number i in primes, update dp[i][k_perms] with the correct count of its prime permutations.
+
+Finally:
+    - Return the total count, the smallest prime number, and the largest prime number among those with k_perms prime permutations. If no such numbers are found, return [0, 0, 0].
+
+===END PLAN===

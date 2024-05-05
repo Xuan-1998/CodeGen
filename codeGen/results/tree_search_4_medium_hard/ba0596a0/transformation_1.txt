@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Can we break down the problem into smaller subproblems that can be solved independently, but share some common information? If yes, dynamic programming with top-down approach using memoization might be suitable.
+
+The state is the current stone index i. The base case is when i is equal to the number of stones - 1, indicating that the frog has reached the end of the river.
+
+The state can be defined as a tuple (i, last_k), where i is the current stone index and last_k is the distance of the previous jump. The base case remains the same: when i is equal to the number of stones - 1.
+
+Create a 2D table dp where each cell represents the feasibility of the frog reaching the i-th stone with the last jump being k units, and fill up the table bottom-up starting from the base case.
+
+For each cell dp[i][last_k], check if the current stone index is within one unit distance to any of the previous stones. If yes, it means the frog can reach this stone. If not, it cannot.
+
+The transition function for the DP states: 
+dp[i][k] = (i > 0 && ((stones[i-1] - stones[i-2]) == k-1 || (stones[i-1] - stones[i-2]) == k || (stones[i-1] - stones[i-2]) == k+1)) || dp[i-1][abs(stones[i-1] - stones[i-2]) - 1]
+
+The base case is when i equals the number of stones - 1. The frog can reach the last stone if and only if it has reached the previous stone.
+
+The final answer is dp[stones.size()-1][0].
+
+===END PLAN===

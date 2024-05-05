@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state expression could be the length of the current window being considered, and the dynamic programming table would store the minimum number of moves needed to remove all balls up to that point. A base case would be when the board is empty.
+
+The state expression could also include the last color seen in the board and the hand, as this information can be used to prune branches in the dp table.
+
+This would simplify the state space and potentially reduce computation time.
+
+Implement tabulation using a 2D array dp where dp[i][j] represents the minimum number of moves needed to remove all balls from board[:i+1] when hand[:j+1] is used, with the additional consideration of the last color seen in both the board and the hand.
+
+The transition function would update dp[i][j] based on dp[i-1][k] for k ranging from 0 to j, considering whether inserting a ball from the hand can remove three or more consecutive balls with the same color.
+
+A base case would be when i is 0, representing an empty board, in which case the minimum number of moves needed is equal to the length of the hand.
+
+===END PLAN===

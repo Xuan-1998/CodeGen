@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is dp[i], where dp[i] represents the minimum number of perfect squares that sum up to i.
+dp[i] = min(dp[j] + 1 for j in range(0, int(i**0.5) + 1) if (j ** 2) <= i),
+Employ a 1D table dp with size n+1, where dp[i] represents the minimum number of perfect squares that sum up to i.
+The base case is dp[0] = 0, representing the fact that 0 can be represented as the sum of zero perfect squares.
+Initialize the table by filling in the base case: for i in range(n+1): dp[i] = n
+Then iterate from i=1 to n:
+    For each i, find the largest perfect square j such that (j ** 2) <= i. This can be done using a loop or a binary search.
+    Update dp[i] with the minimum of its current value and dp[i-j**2] + 1.
+Finally, return dp[n].
+===END PLAN===

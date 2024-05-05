@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequence and then count the number of maximum length subsequences
+dp[i] = max(dp[j] + 1 for j in range(i) if arr[j] < arr[i]), where i is the index of the array element
+Use a bottom-up approach where you iterate through the array from left to right, updating the dynamic programming table at each step.
+Implement memoization by storing the lengths of longest increasing subsequences in a dictionary as you iterate through the array, then count the number of maximum length subsequences.
+dp = [0] * len(arr)
+max_length = 1
+count = 0
+for i in range(len(arr)):
+    dp[i] = max(dp[j] + 1 for j in range(i) if arr[j] < arr[i])
+    if dp[i] == max_length:
+        count += 1
+    elif dp[i] > max_length:
+        max_length = dp[i]
+        count = 1
+print(count)
+===END PLAN===

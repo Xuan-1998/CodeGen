@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n by backtracking and uses memoization to store the results in a dictionary, then use the stored values to construct the optimal route.
+
+Define the state as a tuple (t, path), representing the maximum number of vertices that can be visited within a time limit of t by following the edge sequence in path. The base case is when t == 0 or path reaches vertex n.
+
+To implement dynamic programming using a bottom-up approach and construct the dp table row by row, starting with the base case (t=0) and iterating up to T. For each state (t, path), calculate the maximum number of vertices that can be visited within the time limit t by following edge sequence in path:
+
+1. If the current vertex is n, return 1.
+2. Otherwise, iterate over all edges from the current vertex to its neighbors. For each edge, recursively explore the neighbor and update the maximum number of vertices that can be visited.
+
+Store the calculated value in the dp table for the state (t, path) as dp[(t, path)] = max_vertex_count + 1, where max_vertex_count is the maximum number of vertices that can be visited within time t - edge_weight by following the edge sequence in path.
+3. If the time limit has been exceeded, return 0.
+
+Construct the optimal route by backtracking from vertex n to vertex 1 using the stored values in the dp table. Start with the state (T, [n]) and recursively explore the neighbors of each vertex until reaching vertex 1. For each edge, follow the neighbor that maximizes the number of vertices visited within the remaining time.
+
+===END PLAN===

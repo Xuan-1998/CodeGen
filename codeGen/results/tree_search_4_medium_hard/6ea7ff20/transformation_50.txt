@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider defining dp[i][j] as the boolean indicating whether it's possible to rearrange the elements at indices i and j in p into two arrays a and b, such that all elements in a are distinct and all elements in b are also distinct.
+
+ Define a state transition function based on whether the current element is already present in either array. If not, try to place the element in one of the arrays and update dp[i][j] accordingly. If it's already present in both arrays, then it's impossible to rearrange p into two distinct arrays, so set dp[i][j] to 0.
+
+ Consider initializing dp[0][0] to 1 since an empty array can always be rearranged into one with a single element and another with no elements. Then, fill up the dp table using a bottom-up approach:
+
+ For i from 1 to n:
+    For j from i to n:
+        If p[i-1] is not present in any of the arrays constructed so far (i.e., for all k < i, dp[k][j-k] is true):
+            Set dp[i][j] to 1 if and only if one of the following holds:
+                - p[i-1] can be placed in a new array with no common elements yet, or
+                - p[i-1] can be placed in an existing array, leaving its other elements unchanged.
+
+        Else set dp[i][j] to 0 since it's impossible to rearrange the current permutation into two distinct arrays.
+
+===END PLAN===

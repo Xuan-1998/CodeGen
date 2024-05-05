@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by iteratively building up solutions for subproblems.
+Define the state expression as (i, t), where i is the current vertex and t is the time spent so far to traverse from vertex 1 to vertex i. The base case is when i == n, in which case the maximum number of vertices that can be visited is 1.
+Express the state as a function dp(i, t) that returns the maximum number of vertices that can be visited from vertex 1 to vertex i within t time units.
+Initialize an array dp with length n + 1 and fill it with -1. Set dp(0) = 0 and dp(n) = 1 for the base case.
+Iterate over each edge (u, v, t) in the graph:
+    For each edge, update dp(v) to be the maximum of its current value and dp(u) + 1, if dp(u) + t <= T. This represents the maximum number of vertices that can be visited from vertex 1 to vertex v within t time units.
+Return dp(n), which is the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T.
+
+===END PLAN===

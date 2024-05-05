@@ -1,0 +1,19 @@
+state:
+    dp[i][j] = expected number of non-zero carries when adding A with j digits and B with N-j digits.
+
+    Let's analyze this further:
+        If j == 0, then we're dealing with two numbers that have no digits in common. 
+            In this case, the expected number of non-zero carries is simply the maximum of i and (N-i), because adding an i-digit number and a (N-i)-digit number will always result in some carry.
+        If j == N, then we're dealing with two numbers that have all their digits in common. 
+            In this case, the expected number of non-zero carries is 0, because there's no possibility of any carry.
+
+    So, our plan should be:
+    ===BEGIN PLAN===
+dp[0][j] = 0
+for i from 1 to N:
+    dp[i][0] = i
+    for j from 1 to N-i:
+        dp[i][j] = (dp[i-1][j-1] + dp[i-1][N-j]) / 2
+
+    For the final answer, we need to sum up all the values in dp[N][*], and then divide by the total number of possible pairs.
+    ===END PLAN===

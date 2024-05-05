@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i]: number of ways to reach room i from room 1; dp[0] = 1, since Vasya can always exit the maze from room n+1.
+dp[i][j]: boolean indicating whether it's possible for Vasya to reach room i with j crosses on the ceiling; dp[0][0] = True.
+
+Implement a bottom-up dynamic programming approach using a 2D array where dp[i][j] represents the minimum number of steps required to reach room i with j crosses on the ceiling. Then, update this value based on the first or second portal used, depending on whether j is odd or even.
+Finally, return dp[n][0], which represents the minimum number of ways Vasya can reach the final room (n+1) from the starting room 1.
+
+===END PLAN===

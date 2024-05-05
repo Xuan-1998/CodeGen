@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with Dynamic Programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+View the problem as counting the number of times '1' appears in all numbers that can be represented by 'n' bits, considering the case where n is very large and may not fit into a single integer variable.
+
+Create a Dynamic Programming function dp[i] to count the total number of digit 1's in all non-negative integers less than or equal to i.
+Iterate from i = 0 to n:
+    For each j such that (i + 1) / 2 <= j < i, 
+        Add j and its complement (i - j) to dp[i] based on whether the last bit is '1' or '0'.
+    If i is odd, add i to dp[i].
+Return dp[n].
+
+===END PLAN===

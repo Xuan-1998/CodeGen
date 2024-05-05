@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[0][0] is the maximum profit that can be achieved without any dough and without any stuffing type. This value would be d0, which is the initial price of a bun.
+
+For i > 0 and j > 0, consider two options: either make buns with all j stuffing types or don't use any stuffing type.
+- If we make buns with all j stuffing types, we need to check if there's enough dough left (i >= ci) and stuffing available (ai >= bi).
+- If we don't use any stuffing type, the profit would be dp[i-c0][j] + d0.
+The maximum of these two options is chosen.
+
+Memoization is used by storing previously computed values in a dictionary to avoid redundant computation.
+===END PLAN===

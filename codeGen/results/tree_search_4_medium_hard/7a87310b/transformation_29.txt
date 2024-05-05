@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation, as this problem has an optimal substructure.
+
+Define the state as dp[i] = the maximum number of matrices that can be formed with a trace of i and a positive determinant. This is because the problem only asks for the count, not the actual matrices.
+
+State transition relationship: 
+
+- If d > 0, then dp[i][d] = sum(dp[k][d-1] for k in range(1, min(i+1, d)))
+  - This counts all possible combinations of two positive integers that add up to i and have a determinant of d.
+- If d == 0, then dp[i][d] = 0 (no such matrices exist)
+
+Fill the table using nested loops:
+
+dp[0] = 0
+for i from N down to 1:
+    for d from 1 to min(i+1, d):
+        dp[i][d] = sum(dp[k][d-1] for k in range(1, min(i+1, d)))
+return dp[N]

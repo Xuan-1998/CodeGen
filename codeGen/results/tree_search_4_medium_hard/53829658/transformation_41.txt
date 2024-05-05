@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Define dp[i][p] as the minimum number of roads that need to be inverted in order to reach city i from the capital, given that p roads have been inverted so far.
+
+1. Initialize dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+2. For each city i > 1:
+   - Calculate the minimum number of roads that need to be inverted in order to reach city i from the capital, given that p roads have been inverted so far: 
+     dp[i][p] = min(dp[j][p-1] + 1 for j in adjacent_cities) if there's an edge between city i and city j.
+   - Update dp[i][0] to be the minimum of itself and one-edge shorter distances from all adjacent cities.
+3. Return dp[n][p], where n is the number of cities, as the minimum number of roads that need to be inverted in order to reach any other city from the capital.
+
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+The state is defined as dp[i] = maximum sum of f(u,v) values over all pairs (u,v) where u is a node with at most i children and v is its child, considering all possible ways to label the edges.
+
+dp[i][0] = 0
+
+Initialize dp[0] as an array of size n+1 where dp[0][j] represents the maximum sum of f(u,v) values over all pairs (u,v) where u is a node with at most j children and v is its child. 
+
+For each edge (u,v), consider labeling it with numbers 1 to i, inclusive.
+
+dp[i-1][k] + (i-1)!/(i-k)!*(n-i) when k+1 edges are labeled
+
+Fill up dp[0] based on the above recursive formula.
+
+Iterate through all test cases and for each edge, calculate the maximum sum of f(u,v) values considering all possible ways to label the edges.
+
+Finally, print the answer modulo 10^9 + 7.
+===END PLAN===

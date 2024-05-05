@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use memoization by defining a recursive function that stores the results of subproblems in a dictionary, but it would be more efficient to use tabulation by creating a 2D array where each cell [i][j] represents the maximum joy for i hares and j full hares.
+
+The state expression is correct: dp[i][j] = max(0 <= k < i ? dp[k][j-1] + b[i-k] : c[i]), where the base case is dp[0][*] = 0 and dp[*][0] = d[0], with dp[i][*] being monotonically increasing in i.
+
+The idea of using a 2D array dp where each cell [i][j] represents the maximum total joy when the first i hares are fed in some order, considering j of them as being full so far, is correct.
+
+We can use dynamic programming with a bottom-up approach, filling up the 2D table in a row-major order. The outer loop would iterate over the number of hares (i), and the inner loop would iterate over the number of full hares (j).
+
+The plan includes edge cases: dp[0][*] = 0 and dp[*][0] = d[0].
+
+Here is the updated plan:

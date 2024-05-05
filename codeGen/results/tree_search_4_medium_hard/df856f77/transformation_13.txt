@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming where we fill up the dp table in a bottom-up manner, starting from the smallest subproblems.
+
+state dp[i][j] represents the minimum number of operations needed to make the array strictly increasing up to index i with value j.
+dp[0][j] = 0 for all j
+
+For i > 0:
+    dp[i][j] = min(dp[k][j-1] + (A[j-1] - A[j]) if k < i and A[k] > A[k+1], 0) + 1
+         if A[j] > A[j-1]
+         else dp[i][j-1]
+
+dp = [[0 for _ in range(10001)] for _ in range(10001)]

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (stuffing_type, dough_left) as the state expression.
+
+State: ((total_profit, current_stuff), (dough_left))
+Transition: 
+  - If the dough_left is less than c0, return total_profit
+  - For each stuffing type i:
+    - Calculate the profit if we make a bun with the i-th stuffing: di - bi + max(0, ci - c0)
+    - Recursively calculate the maximum profit for the remaining dough_left and the current stuff: dp((stuffing_type, dough_left - c0), i)
+    - Return the maximum of the two profits
+
+Use a dictionary to store the results of subproblems, and for each new state, check if it has been computed before and return the stored result if true.
+
+Let's also keep track of the maximum profit we can get with the given amount of dough, so we'll maintain another variable max_profit = 0. When we calculate the total_profit in the dp function, update max_profit if necessary.
+
+When we're done calculating the maximum profit for all states, return the stored value of max_profit.
+===END PLAN===

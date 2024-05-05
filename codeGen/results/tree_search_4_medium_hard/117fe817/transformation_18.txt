@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+State: For a given digit position i, consider the total count of ones in all numbers from 0 to n having exactly i digits.
+Create a 2D table dp where dp[i][j] represents the total count of ones in all numbers from 0 to n having exactly j digits and the number starts with i.
+
+dp[1][1] = 1 (since there is one digit 1 in single-digit numbers)
+For each digit position i, 
+    For each digit length j,
+        If j == 1, dp[i][j] = 1 (since there is only one single-digit number that starts with i and contains 1's)
+        Else
+            Count the total count of ones in all numbers from 0 to n having exactly j digits and starting with i. 
+                This can be calculated by considering the last digit, which is either 0 or 1.
+                For each possible last digit d,
+                    If d == 1, add dp[i][j-1] (count of ones in all numbers from 0 to n having exactly j-1 digits and starting with i)
+                    Else, do not include this number
+
+dp[0][j] = 0 for all j (since there is no digit 1 at the beginning of zero)
+
+Sum up dp[i][j] for all i and j
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[i] = number of vertices reachable by i. Base case: 0 for all vertices (since every vertex is initially isolated).
+dp[i] is the maximum number of vertices reachable by i; transitively reachable vertices have dp values added.
+DP state: dp[u][v] = 1 if a path exists from u to v, else 0.
+
+Initialization: Set dp[0] = 2^n, where n is the number of vertices (since all vertices can reach themselves).
+
+Transitions:
+- If there's an edge from u to v, set dp[u][v] = 1
+- For each reachable vertex w, add dp[w] to dp[u]
+
+Base case: dp[u][0] = 1 for all vertices u
+
+Final answer: Check if dp[u][v] is 1 or not. If it is, return "YES"; otherwise, return "NO"
+
+===END PLAN===

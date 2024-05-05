@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers up to n_max.
+Let the state be a tuple (num, k) where num is a prime number and k is the count of its permutations that are also prime numbers below n_max.
+The transition relationship can be formulated as:
+    1. For each prime number p in the hash set:
+        2. For each permutation p' of p (generate all permutations):
+            3. If p' is a prime number and less than or equal to n_max, increment k by 1.
+    4. Use a dictionary to store the state where the key is the tuple (num, k) and the value is the count of such numbers.
+    5. Iterate over each prime number below n_max and check if its permutations satisfy k_perms == k.
+    6. If found, return [count, smallest_prime, largest_prime] where count is the total count, smallest_prime is the smallest prime number, and largest_prime is the largest prime number among them.
+
+===END PLAN===

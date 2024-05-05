@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp_state = 0  # initial state: last bit is 0
+for i in range(1, n+1):
+    bin_str = bin(i)[2:]  # convert integer to binary string
+    dp_state = (not dp_state) and all('10' in bin_str[j:j+2] for j in range(len(bin_str)-1))  # check if current number does not contain consecutive ones
+    if not dp_state:
+        counter += 1  # increment the counter for each number that does not contain consecutive ones
+===END PLAN===

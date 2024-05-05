@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+The state expression could be the shortest distance of each city from the capital, i.e., dp[i] = min distance from city i to the capital.
+dp[i] represents the shortest distance (in terms of number of reversals) from city i to the capital, and dp[j] + 1 is the transition relation if there's an edge from j to i.
+Initialize the distances for all cities except one (the root city), which will be chosen as the capital later. This can be done by initializing a variable dp[root], and then updating it accordingly based on the edges.
+Then, iterate over all other cities and update their distances using the transition relation. This is because each city's shortest distance from the capital can be found independently without considering other cities' values.
+Finally, once all cities' distances are updated, find the city with the smallest distance as the optimal capital, and calculate the minimum number of roads to be reversed if that city is chosen as the capital.
+The plan does not explicitly handle edge cases, but it should work correctly for all valid inputs.
+===END PLAN===

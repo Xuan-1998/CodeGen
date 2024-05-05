@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming. The greedy algorithm is not suitable as it does not guarantee an optimal solution.
+
+Base case: If h = 1, then the probability is either 0 (if s1 < n) or 1 (if s1 >= n).
+
+State representation: Let dp[i][j] represent the probability that a team of size j has at least one player from department i. The state space can be represented as a 2D array with dimensions m × (n + 1), where m is the number of departments and n is the maximum team size.
+
+Transition function: For each department i, calculate the probability dp[i][j] for all j ≤ si (number of players in department i). The transition function can be represented as a nested loop:
+
+    For j from 0 to si - 1:
+        If j + 1 > h: dp[i][j] = dp[i][h - 1]
+        Else: dp[i][j] = dp[i][j - 1] + (si - j) / si
+
+Memoization: Use a 2D array dp[][] to store the calculated probabilities and avoid redundant calculations.
+
+Return statement: The final answer is the probability that a team of size n has at least one player from department h, which can be represented as:
+
+    Return dp[h][n] if n <= m else -1
+
+===END PLAN===

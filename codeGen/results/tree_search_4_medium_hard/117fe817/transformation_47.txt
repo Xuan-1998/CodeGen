@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+For each integer i from 0 to n:
+    Initialize a variable cnt1 to keep track of the number of '1's.
+    For each base-10 representation of i (from its least significant bit to most significant):
+        If the current bit is '1', increment cnt1 by the number of times '1' appears in all integers less than or equal to floor(i/10).
+        Update i to be floor(i/10) for the next iteration.
+    The total count of digit 1's in all non-negative integers less than or equal to n is the sum of cnt1 over all values of i from 0 to n.
+
+The dynamic programming table dp with size n+1 can be initialized as follows:
+    For each integer i from 0 to n: 
+        dp[i] = 0 (initially).
+
+Populate the table from bottom-up by iterating through integers in descending order and applying the above logic. The final result is the sum of values in the table.
+
+===END PLAN===

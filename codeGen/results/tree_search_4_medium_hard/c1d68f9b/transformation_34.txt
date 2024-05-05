@@ -1,0 +1,55 @@
+state: n-integers, representing mood of each knight at its vertex.
+transition: 
+- for i from 1 to n:
+    - if current knight's mood is different from previous one:
+        - add 1 to count of good moods;
+    - else:
+        - keep it unchanged.
+use recursive function with memoization to store results of subproblems and avoid redundant computations.
+
+state transition: k, number of knights that have been placed at vertices in good mood so far. 
+
+dp[i][k] = true if i-th knight can be placed in good mood given k-1 previous good moods; false otherwise.
+
+base case: 
+- dp[0][k] = true for all k
+- dp[n][k] = (number of good moods is equal to k) or (number of good moods is greater than k)
+
+recurrence relation:
+dp[i][k] = (prev_mood == current_mood) && dp[i-1][k-1] || (!prev_mood && dp[i-1][k])
+
+memoize: store the results in a dictionary to avoid redundant computation.
+
+function can_form_polygon(n, moods):
+    if n < 3:
+        return "NO"
+
+    memo = {}
+
+    def dfs(i, k):
+        if (i, k) in memo:
+            return memo[(i, k)]
+
+        res = False
+        for j in range(i-1, -1, -1):
+            if moods[j] == moods[i]:
+                res = True
+                break
+
+        if res:
+            dp[i][k] = dfs(i-1, k)
+        else:
+            dp[i][k] = (dp[i-1][k-1]) or dfs(i-1, k)
+
+        memo[(i, k)] = dp[i][k]
+
+        return dp[i][k]
+
+    res = True
+    for i in range(n):
+        if moods[i]:
+            res &= dfs(i, 0)
+        else:
+            res &= dfs(i, 1)
+
+    return "YES" if res else "NO"

@@ -1,0 +1,9 @@
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far
+base case: if i >= len(S), then return [partition] as it's the only possible palindric partition
+state transition:
+  - if S[i] == S[0]:
+    - for j from i-1 to 0:
+      - check if S[j:i+1] is a palindrome (using a helper function)
+      - if true, add [S[j:i+1]] to the partition and recursively call the state with (j, partition + [[S[j:i+1]]]) as the new state
+  - else: 
+    - return memo[i][partition] if it exists in the memo table, otherwise return []

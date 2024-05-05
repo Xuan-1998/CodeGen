@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its value and whether it has been fully processed (processed or not), with base case being when m is 0.
+
+State expression: 
+dp[i][j] = length of i-th number after applying j operations.
+Base case: dp[0][m] = 1, since the initial number will always have a length of 1 after applying any operation.
+
+Transition function:
+For each operation, replace every digit d in the current number with decimal representation of integer d + 1 and apply j - 1 remaining operations to the new number. If m is 0, return 1.
+dp[i][j] = dp[i][j-1] if j == 0
+else: 
+    temp = 0
+    for digit in str(i):
+        temp = (temp * 10 + int(digit) + 1) % (10^9+7)
+    return dp[temp][j-1]
+
+Memoization:
+Use dictionary to store the results of each operation. The key is the state of the current number, and the value is the length of the i-th number after applying j operations.
+dp = [[0 for _ in range(m+1)] for _ in range(n+1)]
+
+Initialization: 
+dp[0][j] = 1 for all j
+dp[i][0] = 1 for all i
+
+Final answer:
+return dp[n][m]
+===END PLAN===

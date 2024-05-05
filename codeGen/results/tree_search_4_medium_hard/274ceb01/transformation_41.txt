@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+
+The state expression could be 'dp[i]: minimum sum of marks below water level among the first i days.' where dp[i] depends on dp[j] for all j < i.
+
+dp[0] is initialized to 0 because there are no marks below water level when i = 0. For i > 0, dp[i] is the minimum possible sum of marks strictly below the water level among the first i days, which depends on dp[j] for all j < i. This can be calculated by considering the number of marks above the water level on day i-1 and the minimum possible sum of marks strictly below the water level among the last n-i days.
+
+To implement tabulation, you could create an array dp of size n+1 and fill it in a bottom-up manner.
+For each i from 1 to n, calculate dp[i] as min(dp[j] + (i-j-1)*j) for all j < i. The base case is when i = 0, where dp[0] = 0.
+
+===END PLAN===

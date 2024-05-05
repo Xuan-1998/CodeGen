@@ -1,0 +1,16 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, considering only elements up to index i-1.
+
+Initialize dp with False values for all indices: dp = [[False for _ in range(K+1)] for _ in range(N+1)]
+
+Base case: When the number of elements is less than K, it's always possible to partition them into at most K partitions.
+For i from 1 to N:
+    For j from min(i, K) to K:
+        If the maximum and minimum element in A[0..i-1] have a difference not exceeding M, then consider the last element:
+            dp[i][j] = (dp[i-1][j-1] or (A[i-1]-M <= max(A[0:i-1]) and min(A[0:i-1]) <= A[i-1]+M)) 
+        Else, it's impossible to partition the subarray into j partitions.
+For i from 1 to N:
+    For j from K to 1:
+        dp[i][j] = or (dp[i-1][j+1] and min(A[0:i]) - max(A[0:i-1]) <= M)
+
+Return dp[N][K]

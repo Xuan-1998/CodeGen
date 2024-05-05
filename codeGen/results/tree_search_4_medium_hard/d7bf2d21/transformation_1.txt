@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a top-down approach using dynamic programming with memoization, where you recursively explore all possible subsequences and store previously computed results in a memo dictionary to avoid redundant computations.
+
+DP[i]: number of longest increasing subsequences ending at index i
+Consider the length of the longest increasing subsequence (LIS) ending at each index, where DP[i] = max(LIS[j] + 1 for j in range(i))
+
+LIS_len = [memo[i] for i in range(n)]
+
+for i in range(n):
+    if memo[i] == 0:
+        LIS_len.append(1)
+    else:
+        LIS_len.append(memo[i])
+
+return sum(1 for x in LIS_len if x == max(LIS_len))
+===END PLAN===

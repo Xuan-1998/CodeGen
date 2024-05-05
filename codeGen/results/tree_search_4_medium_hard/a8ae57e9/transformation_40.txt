@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in bottom-up manner.
+dp[i][j] is the maximum amount of money earned given the number of remaining tables and the total amount to spend, considering all possible requests
+
+State dp[i][j] represents the maximum money earned with i tables left and j total amount to spend. Transition relationship could be:
+dp[i][j] = max(dp[i-1][max(0, j-pi)], 0) + ci * min(i, pi), where pi is the size of the group and j-pi is the remaining amount to spend.
+
+Dynamically create and populate a 2D list dp with dimensions n+1 by k+1
+
+dp[0][j] = 0 for all j
+for i from 1 to n:
+    for j from k down to pi:
+        dp[i][j] = max(dp[i-1][max(0, j-pi)], 0) + ci * min(i, pi)
+
+Finally, return the maximum value in the bottom-right corner of the dp table as the maximum amount of money earned and the number of accepted requests
+
+return dp[n][k]
+===END PLAN===

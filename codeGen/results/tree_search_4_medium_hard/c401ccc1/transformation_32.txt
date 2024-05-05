@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the graph as a tree-like structure and use the observation that if there is no path between u and v, then for any w such that (u & w) = w, there will be no path between w and v. This can help in identifying overlapping subproblems and optimal substructure.
+The state could be whether a path exists from vertex u to some intermediate vertex w, given that there is no edge between u and w. The base case would be when u equals v.
+Use a 2D array dp where dp[u][w] represents whether there is a path from vertex u to vertex w given that there is no edge between u and w.
+
+ Initialize the dp array with all values set to FALSE.
+For each query (u, v), check if there exists a w such that (u & w) = w. If yes, then return "NO" as there will be no path between u and v.
+Otherwise, for each possible value of w from 0 to u-1:
+   If (u & w) == w, then mark dp[u][w] as TRUE.
+For each possible value of x from 0 to w-1:
+    If dp[w][x] is TRUE, then mark dp[u][x] as TRUE.
+If dp[u][v] is TRUE, return "YES". Otherwise, return "NO".
+
+===END PLAN===

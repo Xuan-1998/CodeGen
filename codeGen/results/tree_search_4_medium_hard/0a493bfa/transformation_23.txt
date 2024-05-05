@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify a recursive relationship between the maximum beauty of an array and its subarrays. Define a state expression based on the subarrays' lengths and their corresponding maximum beauties. 
+
+Let dp[i][j] represent the maximum beauty of the array after performing an arbitrary number of operations, given that the current operation is considering the two halves [i...j]. The base case would be when i = j, in which case we simply consider the original array.
+
+The transition relationship can be defined as follows:
+- For each bad prime number p, check if p is present in the current subarray [i...j].
+    * If p is not present, then the maximum beauty of this subarray would be the sum of the maximum beauties of its two halves.
+    * If p is present, then we can consider one of three cases:
+        1. The first half contains p and does not contain any other bad primes. In this case, the maximum beauty would be the maximum beauty of the right half (j to n) minus j.
+        2. The second half contains p and does not contain any other bad primes. In this case, the maximum beauty would be the maximum beauty of the left half (1 to i) plus i.
+        3. Both halves contain p or do not contain p at all. In this case, we can consider both options above and take the maximum.
+
+Use bottom-up approach with tabulation to fill up a 2D table, where each cell represents the maximum beauty of a subarray. Start from the base cases (i = j) and build up to larger values of i and j.
+===END PLAN===

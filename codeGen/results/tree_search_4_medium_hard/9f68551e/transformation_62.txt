@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+\
+
+dp[i][j] represents the maximum damage that can be achieved at the ith monster's appearance time, considering the current monster's health is j and the previous damage is i-1.
+
+State transition:
+1. If there is no previous damage (i.e., i = 0), then dp[i][j] = j.
+2. Otherwise, dp[i][j] = max(dp[i-1][k] + k+1 for k in range(j)).
+
+Base case: When the monster's health equals its appearance time, we can directly kill it with the maximum possible damage i-1.
+
+dp[i][i-1] = i-1
+
+Memoization:
+We use a 2D table dp of size (n+1) x (10^9+1), where n is the number of monsters. We initialize all entries in dp to -∞.
+
+The final answer is dp[n][max_health].
+
+===END PLAN===

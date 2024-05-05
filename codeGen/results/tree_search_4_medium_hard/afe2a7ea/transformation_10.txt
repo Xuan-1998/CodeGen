@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+dp[i][j] could represent the number of ways to select tower locations such that all towns get signal from exactly one tower and the total number of towers is j.
+Let dp[i][j] be the number of ways to set signal powers on n-1 towns such that no town gets signal from more than one tower, and j out of these n-1 towns have towers;
+Transition relationship is: dp[i][j+1] = (n-i) * sum(dp[k][i] for k in range(i));
+
+dp[0][k] = 1 if k == 0 else 0; // base case: no town gets signal from more than one tower
+dp[i][0] = 1 if i == 0 else 0; // base case: no town gets signal from any tower
+
+Memoize the function to store intermediate results and avoid redundant computations.
+
+===END PLAN===

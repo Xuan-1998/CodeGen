@@ -1,0 +1,9 @@
+def remove_balls(board, hand):
+    # ...
+    if len(set([board[i] for i in range(len(board))])) < 3:  # Check for three or more consecutive balls of the same color
+        return -1
+
+    # Remove the consecutive balls and insert a new ball in hand...
+    # ...
+
+    return min(remove_balls(board[1:], hand), remove_balls(board, hand-1)) + 1

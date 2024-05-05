@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use bottom-up approach with tabulation to update this state and determine if the current subsegment is a ladder.
+
+dp[i][j] = {
+  (dp[i-1][l-1] > 0 and a[l-1] >= a[r-1]) ? dp[i-1][l-1]+1 : 
+  (dp[i-1][l-1] < 0 or r-l+1 == j) ? 0 : -1
+}
+
+Initialize dp as an array of size n+1 filled with -1, and then fill it bottom-up using tabulation.
+
+for i from 1 to n:
+  for j from l to r:
+    if a[i-1] >= a[i]:
+      dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]+1)
+    else:
+      dp[i][j] = -1
+
+for query in queries:
+  l, r = query
+  if dp[r][r-l+1] > 0:
+    print "Yes"
+  else:
+    print "No"
+===END PLAN===

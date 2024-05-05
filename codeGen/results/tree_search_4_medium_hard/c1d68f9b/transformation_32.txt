@@ -1,0 +1,21 @@
+def dp(knights):
+    if len(knights) == 0: 
+        return 'NO'
+    
+    memo = {}
+    
+    def dfs(state, k):
+        if (state, k) in memo:
+            return memo[(state, k)]
+        
+        good_mood_count = sum(state)
+        if k == len(state):
+            return 'YES' if good_mood_count == len(state)/2 else 'NO'
+        
+        for i in range(len(state)):
+            new_state = state[:i] + [1 - state[i]]
+            memo[(new_state, k+1)] = dfs(new_state, k+1)
+        
+        return memo[(state, k)]
+    
+    return dfs(knights, 0)

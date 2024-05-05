@@ -1,0 +1,16 @@
+===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a top-down approach with memoization.
+
+The state could be defined as dp[i], which is an integer representing the shortest distance from the capital to city i. The base case would be all values of dp initially being 0, since we are starting at the capital and have not yet reached any other cities.
+
+Consider a directed graph where each node represents a city, and the edge weight is 1 for each road oriented towards the city. Use Dijkstra's algorithm to find the shortest distance from the capital to every other city, and then count the number of edges that would need to be reversed to reach any other city from the capital.
+
+Memoizing the function dp(i) which calculates the shortest distance from the capital to the given city i.
+    - Start at each node (city), and for each neighbor (adjacent city), calculate the shortest distance to the neighbor, adding 1 for each road in between. The shortest distance would be the minimum of this value and the current value.
+    - For each city that has not been visited before, use Dijkstra's algorithm to update the shortest distances.
+
+The plan is correct, but it can be improved by using a more efficient data structure such as a priority queue instead of Dijkstra's algorithm. This would reduce the time complexity from O(n log n) to O(n log m), where n is the number of cities and m is the number of roads.
+There are no potential issues with this plan, but it does not include edge cases. For example, what if there are multiple cities that have the same shortest distance to the capital? In this case, you would need to decide which city to choose as the capital.
+
+Overall, the plan is a good start for solving this problem.
+===

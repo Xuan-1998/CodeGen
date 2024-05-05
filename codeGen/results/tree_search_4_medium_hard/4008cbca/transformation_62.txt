@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+The state expression would be the current position in the board. The state expression is a tuple (i, prev_color) where i is the current position in the board and prev_color is the color of the ball to the left of the current position.
+
+State: (i, min_moves[i]) where i is the current position in the board and min_moves[i] is the minimum number of moves needed to remove all balls up to that position
+
+You can create a 1D array min_moves of size len(board), where min_moves[i] represents the minimum number of moves needed to remove all balls up to position i.
+
+Initialize the first element min_moves[0] with 0, as there are no previous positions to consider for the first ball.
+
+For each position i from 1 to len(board) - 1:
+
+    If the current color is different from prev_color:
+        The minimum number of moves needed at this position is equal to the minimum number of moves needed at the previous position (min_moves[i-1]) plus 1, because we need to remove all balls up to this position.
+
+    Else if the current color is the same as prev_color and there are more than two consecutive balls with the same color:
+        The minimum number of moves needed at this position is equal to the minimum number of moves needed at the previous position (min_moves[i-1]) plus 1, because we need to remove all balls up to this position.
+
+    Else: 
+        The minimum number of moves needed at this position is equal to the minimum number of moves needed at the previous position (min_moves[i-1]), because no new balls are added and we can keep removing them as before.
+
+Finally, return min_moves[-1] as the minimum number of moves needed to remove all balls on the board. If it's not possible to remove all the balls, output -1.

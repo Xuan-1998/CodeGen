@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+Let dp[i][j] be the minimum path sum up to cell (i, j). The base case is when i or j reaches 0.
+The optimal substructure is dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+
+Implement a bottom-up approach using dynamic programming with nested loops:
+
+    Initialize the first row and column of the dp array based on the grid values
+    For each cell (i, j) in the dp array:
+        If i or j is 0, set the value to the corresponding grid value
+        Otherwise, update the value as dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+
+    The final minimum path sum is stored in dp[m-1][n-1]
+
+===END PLAN===

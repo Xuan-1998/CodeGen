@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+The state is a tuple (i, j) representing the minimum total cost required to sort the first i strings in lexicographical order up to string j. 
+
+The transition relationship can be defined as follows:
+- If the jth string is less than or equal to the kth string, then dp[i][j] = dp[i-1][k] + c[j]
+- If the jth string is greater than the kth string, then dp[i][j] cannot be reached from dp[i-1][k], so set dp[i][j] to -1
+
+Use memoization within a recursive function to store intermediate results and avoid redundant computation.
+
+The base case for the recursion would be when i = 1, in which case we only need to consider the cost of reversing the first string to sort it with respect to itself. If j is the index of the smallest string in this case, then dp[1][j] = c[j]
+
+To find the minimum total cost required to sort all n strings, start by initializing dp[][] as a 2D array filled with -1's. Then iterate over all possible values for i and j, filling in dp[i][j] based on the transition relationship above.
+
+Finally, return dp[n][-1], which represents the minimum total cost required to sort all n strings.
+===END PLAN===

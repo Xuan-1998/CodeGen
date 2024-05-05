@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Combine bitwise operations with dynamic programming to efficiently count arrays.
+
+dp[i][j] = 1 if all elements in the range [0, i) have a bitwise AND with j and at least one element has a bitwise XOR with j, else dp[i][j] = 0;
+
+Let's define two states:
+- dp[i][k] represents whether the last k bits of all numbers in range [0, i) can be achieved through bitwise AND operation with some number;
+- dp'[i][k] represents whether there exists a number in range [0, i) that has at least one bit different from the last k bits;
+
+The transition function is:
+dp[i][k] = 1 if and only if all numbers in range [0, i) have the same last k bits and dp'[i-1][k-1] = 0;
+else dp[i][k] = 0;
+
+To determine dp'[i-1][k-1], we can check whether there exists a number that has at least one bit different from the last k-1 bits. If yes, then dp'[i-1][k-1] = 1; otherwise dp'[i-1][k-1] = 0.
+
+Let's define a new state: 
+dp[i][j] represents whether there exists an array that satisfies the condition and the bitwise AND operation on all elements is j.
+
+The transition function for dp[i][j] is:
+dp[i][j] = (dp'[i-1][k-1] and dp[i-1][j]) or (!dp'[i-1][k-1] and !dp[i-1][j]);
+
+This problem can be solved by using a combination of dynamic programming and memoization.
+
+===END PLAN===

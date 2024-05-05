@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i] = dp[i-1] and i-1 <= j <= min(i-1 + arr[j-1], n-1)
+The state is dp[i], which represents whether it's possible to reach the i-th index. The base case is dp[0] = True, since we can always start at the beginning.
+dp[i] is the maximum jump length at index i minus one, considering only the indices reachable from the previous steps.
+Design a recursive function with memoization using a dictionary to cache the computed values.
+For each element in the array, check if there's any previous reachable element that can reach it. If so, dp[i] = True; otherwise, dp[i] = False.
+Update the base case dp[0] = True
+dp[i] = max(1 <= j <= i-1 and arr[j] >= i-j) or (i > 0 and dp[i-1])
+Check edge cases: array is empty or contains only one element; array has no reachable elements
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using a dynamic programming approach where we fill up the dp table in a bottom-up manner, starting from the smallest subproblems.
+
+dp[i][j] will represent the minimum number of operations needed to make the array strictly increasing up to index i, considering that A[i-1] <= j.
+
+Consider dp[i-1][k] as the state and transition is based on whether A[i-1] > k or not. If A[i-1] <= k, then we can directly set dp[i][j] = dp[i-1][k]. Otherwise, we have two options: either increment j until it becomes greater than A[i-1], which takes one operation, or keep the same value of j and add 1 to the result of dp[i-1][j-1], which also takes one operation.
+
+Use a dictionary to store the computed values of dp[i][j] as you iterate through the array, and then look them up when needed. This will help us avoid redundant computations and reduce the time complexity.
+
+Initialize all dp[i][j] values with infinity, except for dp[0][1] which is 0 (since we can make the array strictly increasing by doing nothing).
+
+Then, start filling the dp table from bottom to top, using the transition function defined above. Finally, return dp[N-1][max(A)] as the minimum number of operations needed.
+
+===END PLAN===

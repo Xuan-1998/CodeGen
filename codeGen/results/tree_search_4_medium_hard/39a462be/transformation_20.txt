@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be viewed as a 2D DP table where each cell represents the similarity score between two substrings. The optimal substructure is the longest common subsequence (LCS) of two strings, which can be calculated using a 1D DP table.
+Define a 2D DP table dp[m+1][n+1] where dp[i][j] represents the similarity score between substrings A[0..i-1] and B[0..j-1]. The state expression is:
+    if i == 0 or j == 0: 
+        return 0
+    elif A[i-1] == B[j-1]:
+        dp[i][j] = dp[i-1][j-1] + 4
+    else:
+        dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+Memoize the LCS calculation using a 1D DP table for each pair of substrings.
+The maximal similarity score over all pairs of substrings is then the maximum value in the 2D DP table: 
+    return max(max(row) for row in dp)
+===END PLAN===

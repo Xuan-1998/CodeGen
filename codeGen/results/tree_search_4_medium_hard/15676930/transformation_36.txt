@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+The base case would be when there's only one hare or no hares, in which case we don't have any choices to make.
+
+Let's define states as (index of hare being fed, number of adjacent hares that are full). Transitions can be defined based on whether the current hare is adjacent to any full hares or not. The value function could then consider the different cases depending on how many adjacent hares are full and which ones need feeding.
+
+We'll implement a recursive function with memoization using a dictionary to store the intermediate results. We'll use the following keys in our dictionary: (i, 0) for when the hare at index i is being fed and no adjacent hares are full, (i, 1) for when the hare at index i is being fed and one adjacent hare is full, and (i, 2) for when the hare at index i is being fed and both adjacent hares are full.
+
+We'll also consider edge cases where there's only one hare or no hares.
+
+The recursive function would look like this:

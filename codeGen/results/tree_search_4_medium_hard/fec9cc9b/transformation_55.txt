@@ -1,0 +1,40 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment and update this state using bottom-up approach with tabulation.
+
+dp[i][j] = {
+    (isNonDecreasing(a, l, r) and isNonIncreasing(a, l, r)) ?
+        j - l + 1 : 0
+}
+
+isNonDecreasing(a, l, r) = {
+    for(int k=l; k<=r; k++)
+        if(a[k-1] > a[k])
+            return false;
+    return true;
+}
+
+isNonIncreasing(a, l, r) = {
+    for(int k=l; k<=r; k++)
+        if(a[k-1] < a[k])
+            return false;
+    return true;
+}
+
+Define another state as the last element of non-decreasing sequence seen so far in the current subsegment.
+
+lastDecreasingElement[i][j] = {
+    (isNonDecreasing(a, l, r)) ?
+        a[r-1] : -1
+}
+
+Define a function to check if the current subsegment is a ladder.
+
+isLadder(i) = {
+    for(int j=1; j<=m; j++)
+        if(dp[i][j] > 0)
+            return true;
+    return false;
+}
+
+Print "Yes" or "No" based on whether the subsegment is a ladder.
+===END PLAN===

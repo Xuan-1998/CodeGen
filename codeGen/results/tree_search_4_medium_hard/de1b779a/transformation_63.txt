@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Represent the state using a 2D array dp where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as:
+
+dp[i][0] = max(0, dp[i-c0][1]) + d0
+for 1 <= i <= n
+
+dp[i][j] = max(dp[i-1][0], dp[i-ci[j]][j-1]) + di[j]
+for 2 <= j <= m and i > ci[j]
+
+The base case is when there are no more stuffing types to consider, and it's equal to the maximum profit that can be achieved with i grams of dough without any stuffing.
+
+To reduce space complexity, we can use a 1D array with O(n) space complexity instead of a 2D array. We can store the state for the previous number of stuffing types in the current state, so the transition relationship becomes:
+
+dp[i] = max(dp[i-1], dp[i-ci[m-1]] + d[m-1])
+for i > ci[m-1]
+
+We also need to handle edge cases where i <= 0 or j <= 0. In this case, we return 0 as there's no dough left.
+
+===END PLAN===

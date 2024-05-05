@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i] = (any j in range(i-1) where dp[j] is True and jumps[j] >= i - j)
+Create dynamic programming table with initial values of False
+for i from 0 to len(jumps):
+    for j from 0 to i-1:
+        if dp[j] and jumps[j] >= i - j:
+            dp[i] = True
+            break
+return dp[-1]
+===END PLAN===

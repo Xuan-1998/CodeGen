@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+state dp[i][j] = {
+  pair of arrays a and b such that merge(a,b) equals permutation up to index i, 
+  with array a having length j
+};
+
+state dp[0][j] = (true if j == 0; false otherwise);
+state dp[i][0] = (true if p[i] in b && no previous elements in common; false otherwise);
+
+for n from 1 to N {
+  for j from 1 to n {
+    state dp[i][j] = (p[i-1] < p[i]) ? 
+      min(dp[i-1][k] for k from 0 to j) && p[i-1] in a && p[i-1] not in b; 
+    // OR
+      min(dp[i-1][k] for k from 0 to n-j+1) && p[i-1] in b && p[i-1] not in a;
+    else 
+      dp[i-1][j]
+  }
+}
+
+state result = (dp[N][n]);
+===END PLAN===

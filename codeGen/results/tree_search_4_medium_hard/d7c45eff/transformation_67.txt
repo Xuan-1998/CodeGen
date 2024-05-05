@@ -1,0 +1,15 @@
+{ 
+ Define dp as a dictionary where dp[i] stores the lexicographically smallest string of length i that can be obtained by either deleting the last character or duplicating the string.
+
+ Transition relationships:
+- If k is greater than the length of the original string, then we just duplicate the original string until it reaches length k.
+- If k equals to the length of the original string, then we have two options: delete the last character or keep the string as it is. We compare these two strings and store the lexicographically smaller one in dp[k].
+- For k less than the length of the original string, we consider all possible strings that can be formed by either deleting the last character or duplicating the string.
+  - If the current duplication count plus one would exceed k, then we just duplicate the current smallest string until it reaches length k.
+  - Otherwise, we consider two options: delete the last character and store the result in dp[k-1], or duplicate the current smallest string and store the result in dp[k].
+ 
+ Initialize dp with base cases. dp[0] should be an empty string, since there is no string of length 0 that can be obtained by either deleting the last character or duplicating the string.
+- For i > 0, if the original string ends at i, then we have two options: delete the last character and store the result in dp[i-1], or duplicate the original string until it reaches length i.
+
+ Print dp[k] as the lexicographically smallest string of length k that can be obtained by either deleting the last character or duplicating the string.
+}

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+\
+Let's define the state as dp[i] = minimum mana required to kill i-th and (i+1)-th monster, where 1 <= i < n. The base case is when i == n-1, so dp[n-1] = h_n.
+dp[i] represents the minimum mana required to kill all monsters that can be killed by the wizard's spell until the i-th second.
+Implement memoization using a dictionary to store previously computed values and update the current value accordingly.
+
+Let's consider the transition from dp[i-1] to dp[i]. When a new monster appears at time k_i, we know that we need to kill all monsters that appear before k_i. We can use the minimum mana required to kill these monsters as the base case for the next monster.
+This means that when calculating dp[i], we only need to consider monsters that appear after k_i.
+
+We also need to consider the case where the wizard doesn't cast a spell at time i. In this case, the maximum health of the monsters that can be killed is still the same as dp[i-1].
+Finally, we update dp[i] with the minimum value between these two cases.
+
+This plan should work correctly and efficiently.
+===END PLAN===

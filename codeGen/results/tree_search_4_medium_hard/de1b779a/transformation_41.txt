@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+The state is (dough_left, stuffings_used), where dough_left is the amount of dough left and stuffings_used is a boolean indicating whether any stuffing has been used yet.
+
+The subproblem could be to decide how many buns to make with the current stuffing type, considering the remaining dough and stuffings. The state would be (dough_left - c_i, true) if we use this stuffing, or (dough_left, false) if we don't. If the amount of dough left is less than the required dough for a bun, then it's not possible to make any more buns.
+
+Use memoization to store the results of subproblems and avoid recomputation. The final answer would be the maximum value in the memoized table.
+
+===END PLAN===

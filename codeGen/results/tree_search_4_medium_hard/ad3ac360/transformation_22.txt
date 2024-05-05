@@ -1,0 +1,15 @@
+Define a recursive function that checks if a substring is a palindrome. Since it has overlapping subproblems, consider using memoization to store the results of expensive function calls and avoid redundant computation.
+
+Consider using dynamic programming to build a 2D table where each cell represents whether a substring of given length is palindromic or not.
+
+The state expression can represent whether a substring is palindromic by considering the following:
+
+- If the string has only one character, it is considered palindromic.
+- If the first and last characters match and the middle part is also palindromic, then the entire substring is palindromic.
+- Otherwise, the substring is not palindromic.
+
+Use a 2D table to store whether a substring of given length is palindromic or not. Initialize the first row with True values because single-character strings are always palindromes.
+
+Fill in the rest of the table by checking if each character matches its corresponding character from the start (for odd-length substrings) or the middle (for even-length substrings). If it does, and the middle part is also palindromic, then mark that cell as True; otherwise, mark it as False.
+
+The minimum number of cuts required for palindrome partitioning can be found by iterating over the table and marking each cell where the substring is not palindromic. The count of such cells represents the minimum number of cuts needed.

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The dynamic programming problem involves finding the minimal number of elements that can be removed from a given range of the array so that the sign-variable sum of the remaining elements is zero.
+
+Define the state expression as dp[l][r] = the minimal number of elements that can be removed from the range [l, r] to make the sign-variable sum zero.
+
+dp[l][r] = min(dp[l+1][i-1] + count[sign], i-l) for all i in [l, r] such that sign is the same as the sign at position i.
+
+Design a memoized bottom-up approach where the state is updated incrementally as the function iterates through the problem instance, with memoization used to avoid redundant computation.
+
+For each query, iterate over the range and calculate dp[l][r] using the above recursive formula. The final answer will be the minimal number of elements that can be removed from the entire array.
+
+===END PLAN===

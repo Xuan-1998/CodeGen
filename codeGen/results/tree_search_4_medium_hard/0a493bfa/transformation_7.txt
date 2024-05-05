@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array and memoize them using dynamic programming with top-down approach.
+
+dp[i][j] = max( 
+    beauty(a[:i], b[:j]) + 
+    f(gcd(...)) for all possible subsets of a[:i] and b[:j]
+)
+
+Represent each state as a pair (i, j), where i is the index of the current element in the array and j is the index of the current bad prime number.
+
+Transition from state (i-1, j) to state (i, j+1) by considering whether or not the current element should be included in the subset.
+
+Use a dictionary to store memoized values where the key is tuple (i, j) and value is computed beauty.
+
+===END PLAN===

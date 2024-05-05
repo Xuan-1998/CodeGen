@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state expression could be (i, j) representing the current board and hand states, with i being the index of the last ball on the board and j being the number of balls in hand.
+
+The dynamic programming table dp would store the minimum number of moves needed to remove all balls up to that point. The base case would be when the board is empty, and we can set dp[0][j] = 0 for all j, since no moves are needed to remove an empty board.
+
+For each cell dp[i][j], we would consider two options: inserting a ball from our hand or not inserting one. If we insert a ball, it would be as if we're starting the process over with the new board state (i+1, 0), and we'd add j to the number of moves needed to remove the balls up to that point.
+
+If we don't insert a ball, we could just consider the previous state on the board (i-1, j) and add 1 to the number of moves needed to remove the balls up to that point. We would take the minimum of these two options as the value for dp[i][j].
+
+We would fill in the table by iterating over all possible states on the board and hand.
+
+The final answer would be dp[len(board)-1][len(hand)], since this represents the number of moves needed to remove all balls given our initial board state and hand.
+
+===END PLAN===

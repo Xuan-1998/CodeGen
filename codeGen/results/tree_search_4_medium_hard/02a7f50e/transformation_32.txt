@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+The problem can be viewed as finding the maximum value in a prefix sum array, which can be solved using binary search or segmented tree
+State: dp[i] represents the minimum number of beacons that could be destroyed if exactly one beacon is added to the right of the i-th beacon.
+dp[i] = min(dp[i-1], 1 + max(0, (b_i - b_{i-1}) // (a_{i+1} - a_i) - 1))
+Create a map memo where memo[i][j] stores the result for the subproblem (i, j).
+memo[i][j] = dp[j]
+Return dp[n-1]
+===END PLAN===

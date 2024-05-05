@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, such as calculating the number of ways to fill a sub-table. This suggests using dynamic programming with bottom-up approach and 2D table.
+
+The state is a 2D table dp[][] where dp[i][j] represents the number of different steady tables of size i x j.
+The base case is when all rows are filled (i.e., N = n_rows).
+
+For each cell dp[i][j], there are two possible ways to fill the (i, j)th cell:
+
+1. The last row sum is less than or equal to M and we can choose a new row sum from 0 to M.
+2. The last row sum is greater than M and we need to reduce the current row sum by some amount to make it less than or equal to M.
+
+For each of these cases, we recursively calculate the number of different steady tables for the sub-problem (i-1) x j and add the number of ways to choose a new row sum from 0 to M.
+
+To avoid redundant calculations and improve efficiency, we use memoization by storing the results in the dp[][] table as we fill it up.
+
+Finally, we return the value at cell dp[N][M] which represents the total number of different steady tables of size N x M modulo 1 000 000 000.
+===END PLAN===

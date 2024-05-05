@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position. The state expression would be the current position in the board.
+
+Define the state as dp[i] which represents the minimum number of moves needed to remove all balls up to position i. The base case would be when i is 0, and there are no balls to consider.
+
+Consider using a data structure like a stack to keep track of the minimum number of moves needed to remove all balls up to position i. Each element in the stack would represent the state at that position, and you'd update the stack by popping elements whenever you "remove" a ball.
+
+To determine whether a ball can be removed, iterate through the board from left to right, considering each ball. If three or more consecutive balls of the same color are found, they can be removed, and the minimum number of moves needed to remove all balls up to that position is decreased by 1.
+
+If it's not possible to remove all the balls, output -1. Otherwise, return the value at dp[n-1], where n is the length of the board.
+
+===END PLAN===

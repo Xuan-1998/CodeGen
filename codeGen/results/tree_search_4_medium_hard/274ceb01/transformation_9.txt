@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the sum of marks strictly below the water level for days 1 to i, and minimize this value. The recurrence relation becomes:
+dp[i] = min(dp[j-1] + m_i - dp[j] for j in range(1, i) if m_j < j)
+
+This is because we need to find the minimum sum of marks below the water level on days 1 to i. We can do this by considering all possible positions of the water level on day i. The minimum sum is achieved when the water level is at its lowest possible position.
+
+To use dynamic programming with a bottom-up approach, where the solution is built from smaller subproblems recursively:
+dp[0] = 0 (base case)
+for i in range(1, n):
+    dp[i] = min(dp[j-1] + m_i - dp[j] for j in range(1, i) if m_j < j)
+
+The final answer is dp[n-1]
+===END PLAN===

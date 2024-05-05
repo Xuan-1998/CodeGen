@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Hypothesize a top-down approach with memoization, defining recursive relationships between subproblems, and iteratively refining the solution.
+
+1.\*\*Memoization Table Construction\*\*:
+Create a 3D memoization table dp\[n]\[m]\[k] where n is the number of nodes in the subtree rooted at node i, m is the number of prime factors in k, and k is the product of all prime factors. Each entry represents the maximum possible distribution index for the subtree.
+
+2.\*\*Base Case\*\*:
+For a leaf node (i.e., a node with no children), set dp\[n]\[m]\[k] = 0 since there are no edges in this subtree and therefore, the distribution index is 0.
+
+3.\*\*Recursive Relationship\*\*:
+For an internal node i, calculate the maximum possible distribution index for its left subtree rooted at j, and right subtree rooted at k. Let the results be dp\[n_1]\[m_1]\[k_1] and dp\[n_2]\[m_2]\[k_2], respectively.
+
+4.\*\*Edge Case Handling\*\*:
+When calculating the maximum possible distribution index for the entire tree, consider edge cases where k is not a product of prime factors. Handle these cases separately by adjusting the base case calculation accordingly.
+
+5.\*\*Memoization and Iterative Refining\*\*:
+Fill up the memoization table recursively, using previously calculated values to avoid redundant computations. When all entries in the table are filled, the maximum possible distribution index for the entire tree can be obtained from the top-level entry dp\[n]\[m]\[k].
+===END PLAN===

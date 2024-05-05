@@ -1,0 +1,44 @@
+===BEGIN PLAN===
+state dp[i][j] = {
+    1 if there exist arrays a and b such that 
+        merge(a,b) equals permutation up to index i, with array a having length j;
+    else
+        0;
+};
+
+state: dp[i][j] = {
+    1 if the permutation from index 0 to i can be split into two non-empty arrays of lengths j and n-j, 
+        such that both arrays have no common elements;
+    else
+        0;
+};
+
+To use memoization with recursion where you break down the problem into smaller subproblems 
+and store the results in a dictionary to avoid redundant computations.
+
+state: if i < 2n:
+    for k from 1 to n:
+        if p[i-1] == p[k-1]:
+            dp[i][j] = 0;
+            return;
+
+state: let m = min(i, n);
+let s = max(i-m, j);
+if i > n and j < n:
+    if s > 0:
+        for k from 0 to s-1:
+            if p[k] == p[i-1]:
+                dp[i][j] = 0;
+                return;
+
+state: let left = merge([p[0..m-1]], [p[m..i-1]]);
+let right = [p[i-m+1..n]];
+let j_left = n - m;
+let j_right = i - n;
+if p[0..m-1] has no common elements with p[m..i-1]:
+    dp[i][j] = dp[m][j_left] * dp[n][j_right];
+else:
+    dp[i][j] = 0;
+
+state: return "YES" if dp[i][n] is equal to 1; else return "NO";
+===END PLAN===

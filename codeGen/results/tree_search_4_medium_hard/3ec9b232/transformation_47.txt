@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Let dp[i][j] be the number of different ways to create a collection V such that merging V into a sorted array results in an array with elements from [1, i] containing exactly j occurrences of 1.
+
+The state is (i, j) and the transition relationships can be formulated as follows:
+
+* If i > 0 and m_i-1 = i, then dp[i][j] += dp[i-1][j-1], because we can add a new element equal to i to the array with exactly j-1 occurrences of 1.
+* If i > 0 and m_i-1 != i, then dp[i][j] += dp[i-1][j], because we cannot add a new element equal to i to the array with exactly j occurrences of 1.
+
+Create a dynamic programming table with O(n^2) space complexity to store the number of different ways to create V for all possible values of i and j. Initialize the base case as dp[0][0] = 1, because there is only one way to create an empty array.
+
+Fill in the transition relationships iteratively from bottom up:
+
+* For each i from n-1 down to 1:
+	+ For each j from 0 to min(i, j):
+		- Apply the transition relationships above and update dp[i][j]
+
+Finally, compute the answer as (dp[n-1][0] + dp[n-1][1] + ... + dp[n-1][n-1]) modulo 10^9+7.
+
+===END PLAN===

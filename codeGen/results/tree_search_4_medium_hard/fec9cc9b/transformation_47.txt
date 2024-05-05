@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Define two 2D arrays dp and ladder to store the maximum length of non-decreasing sequence and whether the subsegment is a ladder, respectively.
+
+dp[i][j] = max(dp[i-1][k-1] for k in range(l, r+1) if a[k-1] <= a[k]) + 1
+ladder[i][j] = (max_length of non-decreasing sequence from i to j is odd)
+
+For each query, check if the subsegment [l, r] is a ladder by checking dp[l-1][r].
+
+If dp[l-1][r] is true and max_length of non-decreasing sequence in [l, r] is odd, then the subsegment [l, r] is a ladder.
+
+Initialize dp with zeros and set dp[0][i] = 1 for all i to represent an empty subsegment as a ladder. Then iterate through the array and update dp[i][j] based on the maximum length of non-decreasing sequence ending at each position j.
+
+Finally, iterate through the queries and check if the subsegment [l, r] is a ladder by checking dp[l-1][r].
+
+===END PLAN===

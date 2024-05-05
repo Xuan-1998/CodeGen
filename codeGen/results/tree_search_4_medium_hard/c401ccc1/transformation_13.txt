@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize dp array of size (2**30) * (2**30).
+
+Define the state as: dp[u][v] = whether there's a directed path from u to v. Base case: for any vertex, there's no path to itself.
+dp[u][v] represents the existence of a path from vertex u to vertex v.
+
+Transition relationship:
+for each w in range(2**30):
+    if (u & w) == w:
+        dp[u][v] = and(dp[u][w], dp[w][v])
+
+Memoize results by storing them in an array.
+For each query, return dp[u][v].
+
+Edge cases: Handle queries where u and v are the same vertex or checking for invalid inputs.
+
+return dp

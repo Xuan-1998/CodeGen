@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Define the state as a dictionary dp[i] = k, where k is the length of the longest increasing subsequence ending at index i in the given array.
+
+Determine whether two elements are part of the same increasing subsequence by comparing their values and store this information in a 1D table seen[i] to represent whether element i has been seen before. Initialize all elements in the seen table as False.
+
+Use a bottom-up approach with a dictionary dp[i] to store the length of the longest increasing subsequence ending at index i in the given array. Iterate through the array from left to right, and for each element i:
+
+1. If i is not seen yet (seen[i] == False), set its value to 1 and mark it as seen.
+2. Otherwise, update dp[i] with the maximum length of increasing subsequences ending at previously seen elements that are smaller than i, plus 1.
+
+Finally, return the maximum length of all values in the dp dictionary, which represents the number of longest increasing subsequences.
+===END PLAN===

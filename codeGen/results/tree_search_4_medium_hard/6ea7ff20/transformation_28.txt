@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when i=n and j=0, meaning we've reached the end of both arrays. In this case, return true if p is empty, otherwise false.
+
+State: dp[i][j] = a boolean indicating whether there exist two arrays a and b with no common elements so that p=merge(a,b) up to indices i and j.
+
+Transition relationship:
+  - If p[i+j-1] is in either a or b, then dp[i][j] = dp[i-1][j-1]
+  - Otherwise, dp[i][j] = False
+
+Use bottom-up dynamic programming with a 2D table to store the results of subproblems.
+
+Initialization:
+  - dp[0][0] = True if p is empty, otherwise False
+  - For i>0 and j>0: dp[i][j] = False
+
+Fill the table in a bottom-up manner:
+  - For each pair (i,j), calculate dp[i][j] based on the transition relationship and the values stored in previous subproblems.
+
+Return True if dp[n][0] is True, otherwise False.
+===END PLAN===

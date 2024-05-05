@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify the longest non-decreasing subsequence in the array as the base case, then use top-down approach with memoization to determine if a given subsegment is a ladder by checking if it's equal to the longest non-decreasing subsequence found so far.
+
+dp[i] = True if array[0:i] is a non-decreasing subsequence, False otherwise
+Select dp[i] as a boolean indicating whether array[0:i] is a non-decreasing subsequence. Transition: 
+    - If array[i-1] <= array[i], dp[i] = dp[i-1]
+    - Else, dp[i] = False
+
+Use a dictionary-based approach for memoization, where dp[i] stores the result of whether array[0:i] is a non-decreasing subsequence.
+
+For each query (l, r):
+    1. Check if there's an existing result in the memoization table for this subsegment (dp[r]). If found, return its value.
+    2. If not, calculate the result using the transition function and store it in the memoization table.
+    3. Return whether the subsegment is a ladder or not.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by iteratively building up a 2D table dp where dp[i][j] represents the maximum number of vertices that can be visited starting from vertex i and ending at vertex j within time T. 
+
+Initialize dp[0][n-1] = 1, since we start at vertex 1.
+
+Iterate over all edges in the graph: for each edge (u, v, t) from u to v:
+    If there is a path from vertex 1 to vertex u that can be traversed within time T and has visited vertices less than or equal to j, then update dp[i][j] = max(dp[i][j], dp[u][j-1] + 1)
+
+Finally, return the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n, which is stored in dp[1][n-1]
+
+Represent a tuple (i, j) as the state, where i represents the start vertex and j represents the end vertex. The transition relationship can be formulated as: if there is an edge from vertex u to vertex v with weight t, then we can visit vertex v if it has not been visited before and we have enough time left after traversing the edge.
+
+Implement dynamic programming using a 2D table to store the results of iterations and avoid redundant calculations.
+
+===END PLAN===

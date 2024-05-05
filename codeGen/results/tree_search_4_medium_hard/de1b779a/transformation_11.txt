@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+dp[0][j] = 0, for all j: This base case represents when there's no dough left.
+dp[i][0] = d0, for all i: This base case represents when there's no stuffing type left.
+
+For i > 0 and j > 0:
+- If the current amount of dough is enough to make at least one bun with the j-th stuffing (i >= ci), then consider two options:
+    * Make a bun with the j-th stuffing, which requires bi grams of the j-th stuffing, ci grams of dough, and gives profit di. The remaining dough is i - ci.
+    * Don't use the j-th stuffing type for this batch, so you have all the i grams of dough available for future buns.
+
+For each possible amount of dough from 0 to n (inclusive), iterate over all possible amounts of j from 0 to m (inclusive) and make the optimal choice.
+- Update dp[i][j] based on whether making a bun with the j-th stuffing is profitable or not.
+
+===END PLAN===

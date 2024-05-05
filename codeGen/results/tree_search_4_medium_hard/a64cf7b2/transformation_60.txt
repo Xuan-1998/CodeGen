@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Design a dynamic programming function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+Define the state as a tuple (i, prev), where i is the current vertex and prev is the previous vertex visited; define the state expression as dp[i][prev], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of T.
+
+Formulate the state expression as: 
+dp[i][prev] = max({dp[u][v] + 1 for u in range(1, n+1) if (u, v) is a valid edge and t < T})
+
+Use memoization to store the results of previously computed routes and avoid redundant calculations.
+
+Update dp[i][0] = 0 for all vertices i; update dp[1][None] = 1 since starting from vertex 1.
+
+Initialize an empty dictionary dp.
+
+For each edge (u, v) with weight t: 
+    For each previous vertex prev: 
+        Update dp[v][prev] = max(dp[v][prev], dp[u][prev] + 1 if t < T)
+
+Return the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T, which is dp[n][None]
+
+===END PLAN===

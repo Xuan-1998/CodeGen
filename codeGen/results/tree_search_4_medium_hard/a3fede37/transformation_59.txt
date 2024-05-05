@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+State expression:
+dp[i] = max(leftChildSum, rightChildSum) + tree[i]
+
+where i represents the current node and tree[i] is the value of the current node.
+The base case is when there are no more children (i.e., it's a leaf node).
+
+Fill in dp array using tabulation: 
+1. Initialize the dp array with all values initially set to negative infinity.
+2. Iterate through each node i in the binary tree:
+   - If the node has left child, calculate and store the maximum sum of path for the left child (dp[i*2+1]).
+   - If the node has right child, calculate and store the maximum sum of path for the right child (dp[i*2]).
+   - Calculate the maximum sum of a path through this node by taking the maximum of the sum of its left subtree (leftChildSum) and the sum of its right subtree (rightChildSum), plus the value of the current node.
+   - Store this value in dp[i].
+
+Return dp[0] as it represents the maximum sum of a path for the root node.
+
+===END PLAN===

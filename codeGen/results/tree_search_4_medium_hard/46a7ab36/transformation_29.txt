@@ -1,0 +1,7 @@
+], [
+dp[0][j] := 1;
+for i from 1 to k-1:
+    dp[i][j] := (i==0 || i%2!=0) ? 1 : dp[(i+1)%k][j-1];
+for j from 0 to m-1:
+    for i from 0 to k-1:
+        dp[i][j] := dp[k-1][m-j-1]+(i<k) ? sum(dp[i-1][:j]) : 0;

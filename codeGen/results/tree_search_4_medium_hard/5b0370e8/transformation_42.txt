@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+A tuple (i, s) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j, given that the last bit was set as s.
+Choose a tuple (i, mask) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to mask, given that the last bit was set as 0.
+Create a bottom-up dynamic programming table by initializing and updating entries iteratively based on smaller subproblems.
+
+For each i from 1 to n:
+    Initialize dp[i][mask] = 0 for every possible mask
+    For each s from 0 to (2^k) - 1:
+        If s & k is less than k, update dp[i][s & k] += dp[i-1][s]
+    For each mask from 0 to (2^k) - 1:
+        Update dp[n][mask] = (dp[n][mask] + sum(dp[i][mask & k] for i in range(1, n+1))) % (10^9+7)
+Return dp[n][k]
+
+===END PLAN===

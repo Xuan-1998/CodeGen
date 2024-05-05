@@ -1,0 +1,12 @@
+Dynamic programming approach:
+Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+dp[i][j] = min(dp[k][j-1] + (i-k), k=0...k) for all k such that 0 <= k < i and b_k > j
+
+Memoizing with a 2D table and using dynamic programming to fill it up, where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+The base case would be dp[0][b_i], which would be 0 because there are no beacons to the left.
+
+To fill up the table, we start from the bottom right corner (dp[n-1][b_n]) and work our way backwards. For each cell, we iterate over all previously activated beacons to its left and calculate the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+The edge cases would be when there are no beacons (i=0) or only one beacon (n=1). In these cases, the minimum number of beacons that could be destroyed would be 0.

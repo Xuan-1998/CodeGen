@@ -1,0 +1,17 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+i, j
+Create a dynamic programming table with dimensions (n+1) x (m+1) to store the maximum similarity score at each position.
+state_expression = (i, j, k)
+Base case: 
+    if i == n and j == m:
+        return 4 * k - (n + m)
+    else:
+        max_score = 0
+        for x in range(i+1):
+            for y in range(j+1):
+                if A[x:i] == B[y:j]:
+                    new_k = k + 1
+                    score = dp(x-1, j-1, new_k) if i > 0 and j > 0 else 0
+                    max_score = max(max_score, score)
+        return max_score

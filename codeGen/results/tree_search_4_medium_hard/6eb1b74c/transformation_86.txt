@@ -1,0 +1,31 @@
+===BEGIN PLAN===
+Create a 2D array dp where dp[i][j] represents the minimum number of steps needed to color all letters in the substring t[0...i-1] using only substrings s_1, ..., s_j.
+
+Top-down dynamic programming approach:
+    - Initialize dp with a grid filled with infinity values.
+    - Define a recursive function f(i, j) that returns the minimum number of steps needed to cover the first i characters of the string t using only the last j strings from the set S.
+    - For each pair (i, j), consider all possible ways to use one of the strings s_k in S to color some characters in the substring t[0...i-1].
+    - Update dp[i][j] by choosing the minimum number of steps from all possible choices.
+
+Memoization:
+    - Store the results of subproblems in a memo dictionary to avoid redundant calculations.
+    - Before making any recursive call, check if the result is already present in the memo; if yes, return the stored result.
+
+Bottom-up dynamic programming approach:
+    - Start with dp[0][j] = 0 for all j (base case: no characters to cover).
+    - For each i and j, update dp[i][j] by considering all possible ways to use one of the strings s_k in S to color some characters in the substring t[0...i-1].
+    - Use memoization to avoid redundant calculations.
+
+Combine top-down and bottom-up approaches:
+    - Initialize a 2D array dp with infinity values.
+    - Define a recursive function f(i, j) that returns the minimum number of steps needed to cover the first i characters of the string t using only the last j strings from the set S.
+    - For each pair (i, j), consider all possible ways to use one of the strings s_k in S to color some characters in the substring t[0...i-1].
+    - Update dp[i][j] by choosing the minimum number of steps from all possible choices.
+    - Use memoization to avoid redundant calculations.
+
+Edge cases:
+    - Handle edge case where i = 0 (no characters to cover).
+    - Handle edge case where j = 0 (no strings left in S).
+
+Return the minimum number of steps needed to color all letters in the original string t using only the given substrings.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Define dp[i] as the maximum bitwise OR value of two non-empty substrings that have a total length of i and can be obtained by splitting the original string s at some position j, where 0 <= j < i.
+
+Determine dp[i] based on whether the current character in the binary string is '1' or '0'.
+
+Use three pointers start, end, and max to iterate over the binary string from left to right, updating the dp table based on whether the current character is '1' or '0'. The max pointer keeps track of the maximum OR value seen so far.
+
+Initialize the dp array with zeros, and set dp[0] = 0. Iterate through the binary string:
+    If the current character is '1', update the start pointer to i+1 and set dp[i] = max(2^i + dp[end], dp[start]).
+    Else, update the end pointer to i-1.
+Update the max pointer with the maximum value in the dp array.
+
+Return dp[n].
+===END PLAN===

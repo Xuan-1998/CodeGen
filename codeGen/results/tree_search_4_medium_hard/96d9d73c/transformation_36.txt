@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+dp = {}
+def canPartition(i, k, m):
+    if (i, k) in memo:
+        return memo[(i, k)]
+    if i < 0 or k <= 0:
+        return False
+    if A[i-1] - A[i-k+1] > m:
+        return False
+    for j in range(k, 0, -1):
+        if canPartition(i-j, j, m) and (j == 1 or A[i-1] - A[i-j] <= m):
+            dp[(i, k)] = True
+            return True
+    dp[(i, k)] = False
+    return False
+
+memo = {}
+N, K, M = map(int, input().split())
+A = list(map(int, input().split()))
+for i in range(N+1):
+    for j in range(K+1):
+        dp[(i, j)] = None
+print(canPartition(N, K, M))

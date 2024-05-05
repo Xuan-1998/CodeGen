@@ -1,0 +1,8 @@
+state dp[i][j] represents the minimum number of operations needed to make the array strictly increasing up to index i with value j.
+
+dp[0][j] = 0 for all j (base case: no operations are required for an empty array)
+dp[i][j] = min(dp[k][A[k-1]] + A[k] - A[min(k for k in range(i))]) 
+            if dp[k][A[k-1]] is defined and A[k] > A[min(k for k in range(i))], else 0
+for i from 1 to N-1
+    for j from min(A) to max(A)
+        update dp[i][j]

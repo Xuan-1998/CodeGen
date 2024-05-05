@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i] will store the minimum number of operations needed to make the array strictly increasing up to index i.
+
+State: The current subarray A[:i+1].
+Transition: We either keep the current element as is, or increase it by 1 until we find an element that makes the subarray strictly increasing. For example, if A[i] > A[i-1], then dp[i] = dp[i-1] + (A[i]-A[i-1]).
+
+dp[i] = min(dp[j-1] + A[j-1] - A[i]) for j in range(i) if A[j] < A[i]
+===END PLAN===

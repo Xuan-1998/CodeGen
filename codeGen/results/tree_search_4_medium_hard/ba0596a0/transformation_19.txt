@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state of the frog is defined by its current position and previous jump length. We can express this in a mathematical formula as follows:
+
+dp[i][k] = true if there exists j (0 ≤ j < i) such that dp[j][prev_k] and k == (stones[i]- stones[j-1]) % 3
+dp[i][k] = false otherwise
+
+Create a dynamic programming table where each cell [i, k] represents whether the frog can reach the i-th stone with a maximum jump length of k.
+
+For initialization, dp[0][k] = true for all k (since we start from the first stone)
+For transition, if there exists j (0 ≤ j < i) such that dp[j][prev_k] and k == (stones[i]- stones[j-1]) % 3, then dp[i][k] = true
+Otherwise, dp[i][k] = false
+
+Check whether the last cell [n-1][k] is true for any k. If so, return true; otherwise, return false
+===END PLAN===

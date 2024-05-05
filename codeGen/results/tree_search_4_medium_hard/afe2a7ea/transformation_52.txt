@@ -1,0 +1,21 @@
+dp[i][k] = whether it's possible to place k towers in towns 1 to i,
+and each tower sends signal only to one town.
+
+dp[i][0] = True (base case)
+since we don't need any towers for no towns
+
+dp[0][k] = False for all k > 0
+since we can't place a tower in the first town with probability 1/2
+
+dp[i][k] = dp[i-1][k-1] or (dp[i-1][k-1] and dp[i-1][k-1]) (1 - 1/2) if i > 0
+since we can either place a tower in the current town with probability 1/2
+or not place it and the previous towns still work
+with probability (1 - 1/2)
+
+Memoization:
+store dp[i][k] in a dictionary for each unique pair (i, k)
+to avoid redundant calculations
+
+Edge cases: 
+dp[0][0] = True
+since we don't need any towers for no towns

@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+dp = [[-1 for _ in range(len(t) + 1)] for _ in range(n)]
+last_covered_position = [0] * (n + 1)
+used_strings = set()
+dp[0][0] = 0
+for i in range(1, len(t) + 1):
+    for j in range(i):
+        if t[j:i] in used_strings:
+            last_covered_position[i] = j
+            dp[i][i - last_covered_position[i]] = min(dp[j][last_covered_position[i] - 1]) + 1
+        else:
+            dp[i][j] = -1
+used_strings.update(s for s in s1, s2, ..., sn)
+for i in range(1, len(t) + 1):
+    print(min(dp[i]))
+    last_covered_positions = []
+    current_position = i
+    while current_position > 0:
+        last_covered_position = last_covered_position[current_position]
+        used_string_index = dp.index(min(dp[last_covered_position:current_position]))
+        last_covered_positions.append((used_string_index + 1, last_covered_position))
+        current_position = last_covered_position
+    for position in reversed(last_covered_positions):
+        print(position[0], position[1])
+===END PLAN===

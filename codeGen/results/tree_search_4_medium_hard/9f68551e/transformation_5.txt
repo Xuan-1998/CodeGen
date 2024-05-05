@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp[i][j] = min(dp[k-1][k]+h[k-1]-k) for k in range(k[j-1],i)
+Define memoization function to store and retrieve previously computed values.
+
+state: (t), t is the time from the start of the level
+base case: when all monsters have been killed or the level has ended
+
+for i in range(2, n+1):
+    for j in range(i):
+        if k[j] >= t:
+            dp[i][j] = min(dp[k-1][k]+h[k-1]-k) for k in range(k[j],i)
+        else:
+            dp[i][j] = dp[t-k[j]][j]
+for i in range(2, n+1):
+    for j in range(i):
+        if dp[i][j] < 0:
+            return -1
+return min(dp[n-1])
+===END PLAN===

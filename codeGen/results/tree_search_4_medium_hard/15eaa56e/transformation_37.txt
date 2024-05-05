@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val) where col is the column being checked and max_val is the maximum value seen in that column so far
+
+State: (col, max_val, prev_val), Transition: (new_col, new_max_val) -> update max_val and check if sorted based on previous value
+
+Consider using a dictionary to store the maximum values seen so far in each column as you iterate through the table.
+
+Iterate through tasks and for each task:
+    Get the subtable indices l and r
+    Check if the subtable is sorted by iterating through columns and updating max_val and prev_val accordingly
+    If at least one column is sorted, return "Yes", else continue to next task
+
+Return "No" after checking all tasks
+
+===END PLAN===

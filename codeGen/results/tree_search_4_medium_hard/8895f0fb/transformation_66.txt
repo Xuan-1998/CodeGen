@@ -1,0 +1,14 @@
+state: dp[i][j] = expected number of non-zero carries when adding A with j digits and B with N-j digits.
+
+dp[0][j] = 0 (base case)
+dp[i][j] = 
+    - If i is the last digit, then only consider the current carry
+    - Else, recursively calculate dp[i-1][k] for all k in [0, j]
+      and sum up the expected carries from these subproblems
+    - Add to this the probability of a non-zero carry occurring at the current position
+
+dp[i][j] = dp[i-1][j-1] + (carry_prob * 10^(N-i-j))
+
+Memoize the results of subproblems as you go through the dynamic programming process.
+
+The updated plan does not handle edge cases. We should consider handling N=0 and T=0 separately.

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The base case could be when A or B is 0, in which case X would just be the other value.
+
+State: (A, B), and the base case is when either A or B is 0.
+
+State: dp[(X, Y)] where X = 0 to A, Y = 0 to min(A, B),
+    dp[(i, j)] represents whether there exists a solution for i and j.
+Implement tabulation using a bottom-up approach, where you start with the base case (A=0 or B=0) and iteratively calculate 
+dp[i][j] for i and j from 1 to A and B
+
+State transition: dp[(i, j)] = true if there exists X such that i - X >= 0 and j ^ X < min(A, B), false otherwise.
+Base case: dp[(0, j)] = true for all j
+dp[(A, 0)] = true
+
+Top-down approach: We can solve this problem recursively. Initialize a dictionary to store the results of subproblems.
+
+State transition: If i > A or j > min(A, B), return false
+If (i, j) in dp, return dp[(i, j)]
+else if i - 1 >= 0 and j ^ (A - i) < min(A, B), return true 
+else if i - 1 >= 0 and dp[(i-1, j^ (A-i))], return True
+else return False
+
+Return the smallest X such that A = X + Y and B = X ^ Y.
+If no solution exists, return -1.
+
+===END PLAN===

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+Then, use memoization to fill in the states in top-down manner.
+
+dp[i][j] represents the maximum amount of money earned with i tables remaining and j total amount to spend
+dp[i][k] is the base case when there are no more money to spend
+
+Initialize a 2D DP table with zeros, then fill it in row-major order. 
+For each request:
+    For each possible number of tables used (from 1 to k):
+        Calculate the maximum amount earned by either using this many tables and spending up to j or not using any tables
+        If this is better than dp[i-1][j-ri*pi], then update dp[i][j]
+    Update the maximum amount earned with i-1 tables remaining and j total amount to spend
+
+For each table:
+    Calculate the maximum amount earned by either using a table and spending up to j or not using any table
+    If this is better than dp[k-1][j], then update dp[k][j]
+
+Return the maximum amount earned in the top-right corner of the DP table (dp[0][j])
+===END PLAN===

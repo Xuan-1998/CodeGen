@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be viewed as finding the cumulative distribution function (CDF) for the random variable representing the number of players from the department of interest.
+
+Let the state be a tuple (i, k) where i is the current department and k is the total number of players chosen so far. The base case is when all departments have been visited (i = m).
+
+The state transition function can be defined as:
+
+dp[i][k] = dp[i-1][k] * (m-i+1) / m + dp[i-1][k+si_i] * si_i / m
+
+where i is the current department, k is the total number of players chosen so far, and si_i is the number of basketball players in the i-th department.
+
+The final answer can be calculated as:
+
+P = 1 - sum(dp[m][0] to dp[m][n-1])
+
+The plan includes edge cases: if there are not enough basketball players in the university to form a team (i.e., n > m*max(si_i)), output -1 instead of calculating the probability.
+
+===END PLAN===

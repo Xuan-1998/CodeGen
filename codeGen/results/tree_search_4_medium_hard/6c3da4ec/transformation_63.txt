@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Might consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Define dp[i] as the maximum bitwise OR value of two non-empty substrings that have a total length of i and can be obtained by splitting the original string s at some position j, where 0 <= j < i. Initialize dp with zeros.
+
+Think about using a sliding window approach by maintaining the maximum bitwise OR value for each suffix of the substring and updating it as you move along the string. 
+
+Calculate dp[i] as the maximum of:
+- The bitwise OR value of two non-empty substrings that have a total length of i - 1, split at some position j where 0 <= j < i - 1.
+- The bitwise OR value of s[0...j] and s[j...i-1], for each possible j.
+
+For the sliding window approach:
+- Initialize left and right pointers to 0. 
+- Iterate over the string from left to right, updating dp[i] at each step.
+- For each i, update dp[i] as the maximum of:
+    - The bitwise OR value of s[0...left] and s[left...i], for all possible positions of left where 0 <= left < i.
+    - The bitwise OR value of s[right...i] and s[0...right], for all possible positions of right where 0 <= right < i.
+
+===END PLAN===

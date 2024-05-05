@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Define states as dp[i][p], where i is the city and p is the number of roads that have been inverted so far in order to reach city i from the capital.
+
+Base case: dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+State transition equation:
+dp[i][p] = min(dp[j][p-1] + (i != j) for j in neighbors(i))
+
+where neighbors(i) is the set of cities that are directly connected to city i.
+
+The goal is to minimize dp[n][p], where n is the total number of cities and p is the minimum number of roads that need to be inverted in order to reach any other city from the capital.
+
+Initialize dp with base case values for all cities.
+Fill in dp table using state transition equation.
+
+Answer: The minimum number of roads to be inverted is dp[n][p], where n is the total number of cities and p is the minimum number of roads that need to be inverted in order to reach any other city from the capital.
+Print dp[n][p].
+Print all possible ways to choose the capital — a sequence of indexes of cities in the increasing order.
+
+This plan handles edge cases by correctly calculating the minimum number of roads to be inverted for each city and handling the base case. The time complexity is O(n), where n is the total number of cities.
+===END PLAN===

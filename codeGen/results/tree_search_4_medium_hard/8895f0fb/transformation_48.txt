@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 1D array to keep track of the cumulative sum of carries.
+
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+    - Initialize dp[0] = 0
+dp[i] = (sum of dp[j] where j < i) + expected number of non-zero carries when adding last digit of A and B
+
+Design a function that calculates the expected number of non-zero carries recursively.
+
+function expected_carries(A, B, N):
+    if N == 1:
+        return max(A, B) // 10
+    else:
+        dp = [0] * (N + 1)
+        for i in range(2, N + 1):
+            dp[i] = sum(dp[j] for j in range(i)) + expected_carries(max(A % 10**i, B % 10**i) - min(A % 10**i, B % 10**i), max(9 * (i - 1), 0), i-1)
+        return dp[N]
+===END PLAN===

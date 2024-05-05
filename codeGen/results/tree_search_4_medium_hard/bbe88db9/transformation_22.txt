@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+State: (room, visited)
+Transition: next_state = (p[room], True) if visited else (p[1], False) if room == n+1
+dp[i] represents whether you can reach the (i+1)th room from the first room.
+Initialize dp with all values as False.
+Set dp[0] to True since you are always in the starting room.
+For each room i from 1 to n:
+    For each portal p in range(i):
+        if you can reach the next room j = p[i] and j <= n:
+            dp[j] = True
+Return dp[n]
+===END PLAN===

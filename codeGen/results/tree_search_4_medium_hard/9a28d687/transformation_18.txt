@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 2D array dp where dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals.
+State: dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals, where i = 0..n-1 and j = 0..k for some constant k.
+
+Create a 2D array dp of size (n+1) x (max_cost+1), where max_cost is the maximum cost required to reverse any string.
+For each pair of strings, if the first string is lexicographically smaller than the second string, then the minimum total cost is equal to the minimum total cost for the first i-1 strings plus the cost of reversing the ith string. If the first string is lexicographically larger than the second string, then the minimum total cost is equal to dp[i][j] plus the cost of reversing the ith string.
+
+To fill up the dp array, start from the base case where i = 0 and j = 0, then iterate through each pair of strings. If the first string is lexicographically smaller than the second string, then update dp[i+1][j+cost] to be the minimum of dp[i][j] and dp[i+1][j]. If the first string is lexicographically larger than the second string, then update dp[i+1][j+cost] to be dp[i][j]+cost.
+
+Finally, check if dp[n][max_cost] equals or exceeds the total cost required to reverse all strings. If it does, then return dp[n][max_cost]; otherwise, return -1.
+===END PLAN===

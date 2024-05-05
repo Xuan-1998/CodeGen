@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i] represents whether it's possible to reach the i-th index. The base case is dp[0] = True, since we can always start at the beginning.
+
+We initialize a table with False values, then iteratively update the table using the recurrence relation: dp[i] = (any j <= i-1 and arr[j] + 1 >= i) or any k < i and dp[k].
+
+To avoid unnecessary computations, we maintain the maximum reachable index so far in the form of max_reachable. We start from the first element and iteratively update max_reachable as we explore further.
+
+The final answer is whether dp[n-1] holds True, where n is the length of the array. If it does, then we can reach the last index; otherwise, we cannot.
+
+===END PLAN===

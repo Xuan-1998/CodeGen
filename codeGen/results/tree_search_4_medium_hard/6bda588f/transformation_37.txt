@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Let dp[i][j] be the minimum possible value of F for sequence a[1..i] and s[j]. Then dp[n][s] will be our final answer.
+
+For i = 1, ..., n:
+    For j = 0, ..., 2*10^5:
+        If i == 1, then dp[i][j] = a[1]*min(0, s - j)
+        Else
+            dp[i][j] = min(dp[i-1][k] + (a[i]-j)*min(0, s-k) for k in range(max(0, j-a[i]), min(s+1, 2*10^5)))
+    End
+End
+
+Let F be the minimum possible value of F. Then F is dp[n][s].
+===END PLAN===

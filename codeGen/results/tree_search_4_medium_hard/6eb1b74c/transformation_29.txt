@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Think about applying bottom-up dynamic programming by initializing a 2D array dp for the minimum number of steps and iteratively updating it based on prefixes and used strings.
+
+A state represents the last string used and its corresponding last covered position; the base case is when no string has been used. Initialize dp with base cases: dp[0][j] = 0 if s[j] does not appear in t, otherwise -1 for j from 1 to n.
+
+The transition relationship is defined as:
+
+dp[i][j] = min(dp[i-1][k]) + 1 if s[k] appears at or after i-1 and k != last_string_used, otherwise dp[i-1][j] for j from 1 to n;
+
+where i is the current position in text t, last_string_used is the index of the string used most recently, and j is the index of the string in the set.
+
+Iterate over the text from left to right: for i from 1 to |t|:
+
+Update dp[i][j] based on the transition relationship for j from 1 to n;
+
+After the iteration, find the minimum number of steps m = min(dp[|t|][j]) + 1 for j from 1 to n.
+
+If m is greater than -1, print m and construct the sequence of strings used: for j from 1 to m:
+
+Find the string k such that dp[i][k] = m-1 and i is the last covered position;
+
+Print pair (k+1, i) as a line in the output; increment i and decrement m until m becomes -1.
+
+Otherwise, print -1 as the result.
+===END PLAN===

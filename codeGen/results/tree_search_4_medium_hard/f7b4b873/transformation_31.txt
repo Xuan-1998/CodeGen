@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can also be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+The state is a 2D array dp[i][j] representing whether the substring S[i..j] is palindromic. We initialize the diagonal elements to True, as single characters are always palindromes. Then, we fill up the table in a bottom-up manner:
+
+- For substrings of even length, consider the middle character and check if the two halves on either side are palindromes.
+- For substrings of odd length, consider the middle character and check if one half is a palindrome (the other half will be empty).
+
+We apply memoization by storing the results of subproblems in a dictionary or a hash table, so that when the same subproblem occurs again during the computation, its result can be quickly retrieved and reused.
+
+Finally, we construct all palindromic partitions by iterating over the dp table and checking which substrings are palindromes. We generate each partition by considering every possible split of a palindromic substring into two halves.
+
+===END PLAN===

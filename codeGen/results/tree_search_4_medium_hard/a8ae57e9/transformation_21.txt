@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+A dictionary d = {} (not {(i, j): k}) where the key is the total amount of money earned by a group and the value is the number of tables needed to seat that group.
+let s[] be an array to store the sum of money earned by groups of each size, and t[] be an array to store the number of tables needed to seat all groups of each size; then dp[i][k] = max(s[i-1]+dp[i-1][t[j]], dp[i-1][k])
+
+Create a 2D table dp with dimensions (n+1) x (k+1), where dp[i][j] represents the maximum amount of money earned by groups of size up to i, and j tables are used.
+
+Sort the booking requests in descending order of their total amounts.
+For each request:
+    Calculate the group size ri
+    If there's a table k with enough capacity for ri, use it; else find the smallest available table.
+    Update dp[ri][k] accordingly
+
+Print out the maximum amount of money earned (dp[n][k]) and the number of accepted requests.
+
+Sort the booking requests again in descending order of their total amounts.
+For each request:
+    If dp[ri][k] is greater than or equal to the total amount, accept it; else decline
+    Print out the table number k for the accepted request
+
+===END PLAN===

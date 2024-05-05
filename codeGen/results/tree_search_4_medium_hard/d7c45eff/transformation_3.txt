@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+
+if k > n:
+    dp[i][j] = s[:k]
+else:
+    if i == 0:
+        dp[i][j] = s[:min(i,j)]
+    else:
+        if j <= i and dp[i-k][j] == min(s[:i-k][j], s[:i-k]+s[-1][j]):
+            dp[i][j] = s[:min(i,j)]
+        else:
+            dp[i][j] = min(s[:i][j], s[:i-1]+s[-1][j])
+===END PLAN===

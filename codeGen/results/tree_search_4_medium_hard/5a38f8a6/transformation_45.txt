@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+
+The state expression is dp[i] = min(dp[j] + 1) where j ranges from square root(i) down to 0 and j^2 <= i
+
+Use a set data structure to keep track of perfect squares less than or equal to n that are not yet used in a combination
+Initialize dp[0] = 0, as there is no combination for sum 0 (empty set)
+
+For each i from 1 to n:
+    Find the maximum j such that j^2 <= i and use it as an upper bound for the search
+    Iterate from j down to 0 and find the minimum number of perfect squares needed to sum up to i
+    Update dp[i] = min(dp[i], dp[j] + 1)
+Return dp[n]
+===END PLAN===

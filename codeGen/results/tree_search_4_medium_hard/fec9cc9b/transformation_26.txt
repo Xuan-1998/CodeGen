@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment.
+
+dp[i][j] = True if array[i-1] <= array[j] and j == r - 1, False otherwise
+
+Use a bottom-up approach to generate all possible combinations of increasing/decreasing elements within the subsegment and check if they form a valid ladder.
+
+Initialize dp[0][j] = True for 0 <= j < n (since a single element is always a ladder)
+
+For each segment [i, r], where i <= r:
+    Check if there's an increasing or decreasing trend in this segment
+        If so, update dp[i][r] = False
+
+Iterate over the array once and use dynamic programming to build up a table that stores whether each segment is a ladder or not.
+
+Print "Yes" for segments where dp[i][r] == True and "No" otherwise
+===END PLAN===

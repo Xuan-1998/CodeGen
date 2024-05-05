@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. Use bottom-up approach with dynamic programming to solve this problem.
+
+state dp[i][j] is defined as the maximum beauty achievable after performing operations on a[:i] with bad prime numbers b[:j]
+
+The state could be dp[i][j] = max( max(dp[i-1][j], f(dp[i-1][k]) + a[i]), g(dp[i-k][j]) - dp[i-k][j] ) where k is the largest index such that b[k] does not divide any number in a[:i]
+
+Use bottom-up dynamic programming to build up dp[i][j] from smaller subproblems, and use memoization to store previously computed values.
+
+Iterate through each element of array a[], and for each element i, iterate through each bad prime number j. 
+For each pair (i, j), compute the maximum beauty achievable by performing operations on a[:i] with b[:j]
+
+The final answer is stored in dp[n][m], where n is the length of the array a[] and m is the number of bad prime numbers b[]
+
+===END PLAN===

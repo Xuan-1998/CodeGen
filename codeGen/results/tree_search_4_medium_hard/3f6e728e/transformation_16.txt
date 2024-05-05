@@ -1,0 +1,42 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+
+For each upper hemisphere radius u in U_1, ..., U_N, create a hashmap U_count mapping from unique radii to their counts. Initialize dp[0] = 1 and dp[i] = 0 for 1 ≤ i ≤ C.
+
+Define a function memoize(dp, i):
+    if dp[i] is not None: return dp[i]
+    result = 0
+    for j in range(1, min(i+1, len(U_count))): 
+        count = U_count[j]
+        binom_coeff = comb(count, U_count.count(j))
+        result += dp[j-1]*binom_coeff
+    dp[i] = result % (10**9 + 7)
+    return dp[i]
+
+For each test case:
+    N, M, C = map(int, input().split())
+    U_count = {}
+    for _ in range(N):
+        u = int(input())
+        if u not in U_count: 
+            U_count[u] = 1
+        else:
+            U_count[u] += 1
+    L_count = {}
+    for _ in range(M):
+        l = int(input())
+        if l not in L_count: 
+            L_count[l] = 1
+        else:
+            L_count[l] += 1
+
+    dp = [0] * (C+1)
+    dp[0] = 1
+
+    for i in range(1, C+1):
+        memoize(dp, i)
+
+    print(*dp, sep=' ')
+===END PLAN===

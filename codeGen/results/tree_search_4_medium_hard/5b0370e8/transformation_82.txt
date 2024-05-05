@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Combine bitwise operations with dynamic programming to efficiently count arrays.
+
+dp[i][j] = 1 if all elements in the range [0, i) have a bitwise AND with j, else dp[i][j] = 0;
+dp[i][j] represents whether the first i numbers have a bitwise AND with j, considering only bits up to position k.
+
+To fill the values of dp[], we need to consider two cases:
+1. The current number is 0; in this case, all bits up to position k must be 0 for the bitwise AND operation.
+2. The current number is not 0; in this case, at least one bit from position 0 to k-1 must be 1.
+
+We can use a bottom-up approach by iterating over all possible values of j and updating dp[] accordingly.
+
+Finally, iterate through dp[] and count the arrays that satisfy the condition: bitwise AND > bitwise XOR. The count should be modulo 10^9+7.
+===END PLAN===

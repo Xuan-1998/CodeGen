@@ -1,0 +1,9 @@
+dp = {(i, j): False for i in range(2*2000) for j in range(2*2000)}
+dp[(0, 0)] = True
+for i in range(1, len(p)):
+    for j in range(i+1):
+        if p[i] < p[j]:
+            dp[(i, j)] = dp.get((j, i), False)
+        else:
+            dp[(i, j)] = (dp.get((i-1, j-1), False) or not dp.get((i-1, j), False))
+return "YES" if any dp[i][len(p)-1] for i in range(len(p)) and "NO" otherwise

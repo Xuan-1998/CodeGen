@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+A dynamic programming approach can be used to solve this problem. The state will represent the current palindromic partition of the string, and the goal is to find all possible palindromic partitions.
+
+Let's define the state as a tuple (left, right), where left and right are the indices that mark the start and end of the current palindromic partition.
+
+The base case will be when the entire input string has been processed, i.e., left equals right. This can be represented as a single-element list containing only the last character of the original string.
+
+For each recursive call, we'll consider two transitions: 
+
+1. Adding a new character to the partition if it's a palindrome.
+2. Removing the last character from the partition if it's not.
+
+To implement this, we can use a 2D table dp where dp[i][j] represents whether the substring s[i...j] is palindromic or not.
+
+The transitions will be calculated as follows:
+- If i == j, then the current character is a palindrome.
+- If i < j and s[i...j] is equal to the reverse of s[i...j], then the substring is a palindrome.
+
+The final result can be obtained by initializing an empty list res and iterating through all possible partitions of the input string. For each partition, we'll check if it's a palindrome and add it to the result list if it is.
+===END PLAN===

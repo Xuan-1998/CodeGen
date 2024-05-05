@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+A top-down approach using memoization could be implemented by defining a function that takes the current cell and direction (East) as inputs. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East.
+
+Define the state as dp[(i, j)], which stores whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight. The base case is when i reaches N - 1, meaning we've reached the edge of the grid in the vertical direction.
+
+State relationships can be defined as:
+
+* If there is no rock at cell (i, j), then dp[(i, j)] = 1 if all cells to the East have a mirror that can be placed without any rocks blocking the line of sight.
+* Otherwise, dp[(i, j)] = 0.
+
+Implement tabulation using a 2D array dp where dp[i][j] represents whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight. Initialize dp[0][j] = 1 for all j, since the edge of the grid has no rocks.
+
+Fill in the dp table using the state relationships and base cases. Finally, return dp[N - 1][j] as the answer for each test case.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation and memoization to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+The base case is when i = n (end vertex), in which case we return 1 because we can always visit the end vertex itself.
+
+Let dp[i][t] represent the maximum number of vertices that can be visited within t time units ending at vertex i. The state is the current vertex i, and the transition relationship is:
+
+dp[i][t] = max(dp[j][t - edge_weight] + 1 for all edges (j, i) with weight edge_weight)
+
+Use memoization with a dictionary to store the maximum number of vertices that can be visited within the remaining time limit for each subproblem.
+
+For each vertex i and time t, we can calculate dp[i][t] by iterating over all edges starting at i and considering all possible routes ending at i within t time units. We keep track of the maximum number of vertices that can be visited within t time units ending at i, which is the sum of the maximum number of vertices that can be visited within the remaining time limit for each edge's destination plus 1.
+
+Finally, we return dp[1][T] as the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T. We also store the indices of vertices that can be visited on the route from vertex 1 to vertex n in the order of encountering them.
+
+===END PLAN===

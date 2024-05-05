@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Hypothesize a top-down approach with memoization.
+
+Define a recursive relationship between subproblems:
+- Let dp[i][j] be the maximum possible distribution index for a tree with i nodes, where edge (i, j) is labeled x. 
+- Define f(i, j) as the sum of labels on the path from node i to node j. 
+- The maximum possible distribution index for this tree is the sum of dp[i][j] over all (i, j).
+
+Refine the solution iteratively:
+- Initialize a memoization table with zeros.
+- For each edge (u, v) in the tree, calculate dp[u][v] as f(u, v) + min(dp[u-1][v-1], dp[u-1][v], dp[u][v-1]).
+- Return dp[1][n] as the maximum possible distribution index for the entire tree.
+
+===END PLAN===

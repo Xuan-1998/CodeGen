@@ -1,0 +1,14 @@
+{
+dp = array of size k+1
+initialize dp[0] with ""
+for i from 1 to n:
+    if s[i-1] == s[k]:
+        for j from min(i, k) downto 1:
+            dp[j] = min(dp[j], (s[:i-1] + s[i-1]).ljust(k)[j:])
+    else:
+        for j from 0 to k:
+            if j < i:
+                dp[j] = min(dp[j], s[:i].ljust(k)[j:])
+            elif j == i:
+                dp[j] = min(dp[j], s.ljust(k)[j:])
+}

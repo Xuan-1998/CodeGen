@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Let dp[i][k] be the maximum length of the k-th longest substring in all possible splits of s[0..i].
+dp[i][k] = number of ways to split the first i characters into k substrings with unique characters.
+
+Use a 2D array to store dp values and fill it using bottom-up approach. Initialize the first row of the dp table as follows:
+- For each column j in the first row, set dp[0][j] = 1 if j is equal to the number of unique characters in s[0..i], otherwise set it to 0.
+
+For the rest of the dp table, for each cell dp[i][k]:
+    - If there are less than k substrings ending at position i, then dp[i][k] = 0.
+    - Otherwise, find all possible ways to split the first i characters into k substrings with unique characters. Let this number be m.
+    - Then calculate the maximum length of the k-th longest substring in those m splits. This will give us the value for dp[i+1][k-1]. Add this value to m and divide it by (i+1) (to account for the current character). If the division result is an integer, add 1 to it.
+    - Set dp[i][k] = this value.
+
+After filling the entire dp table, use the last row to find:
+- The number of ways to split the message into k substrings with unique characters: sum(dp[n-1][j] for j in range(1, min(k+1, 27)))
+- The length of the longest substring over all possible splits: max(dp[n-1][j] for j in range(1, min(k+1, 27)))
+- The minimum number of substrings over all possible splits: min(j for j in range(1, min(k+1, 27)) if dp[n-1][j])
+===END PLAN===

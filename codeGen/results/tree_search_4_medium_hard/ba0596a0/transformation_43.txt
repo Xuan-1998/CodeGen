@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. 
+dp[i] = whether the frog can reach stone i given the position of all previous stones. The base case would be dp[1] = True since there is no previous stone to consider.
+For the transition state, we need to consider if it's possible to jump from the (i-1)th stone to the ith stone with a jump distance of k - 1, k, or k + 1 units. This can be achieved by iterating over all previous stones and checking if it's possible to reach the ith stone.
+To make this plan more efficient, we can add an additional state dp[j] = whether there is a way to reach the jth stone from the first stone. This would allow us to skip unnecessary checks during our dynamic programming approach.
+
+dp[i] = whether the frog can reach stone i given the position of all previous stones,
+    1. If it's possible to jump directly from the (i-1)th stone to the ith stone, then dp[i] = True.
+    2. Else, iterate over all previous stones and check if it's possible to reach the ith stone.
+        * If it is possible for some previous stone j, then dp[i] = True.
+        * Else, dp[i] = False.
+
+Use bottom-up dynamic programming by initializing dp and filling it up iteratively.
+
+===END PLAN===

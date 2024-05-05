@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] = max(0 <= k < i ? dp[k][j-1] + (a[i-k] if j == 1 else b[i-k]) : c[0]), where:
+    - dp[i][*] is monotonically increasing in i, so we only need to store dp[i][j] for the latest values of j.
+    - We use tabulation instead of memoization because there are a lot of repeated subproblems and it's more efficient.
+    - The base case is dp[0][*] = 0 and dp[*][0] = c[0].
+    - For the recursive case, we transition from dp[i-1][k-1] + a[i-1-k] for some k.
+dp[i][j] represents the maximum total joy that can be achieved by feeding the first i hares, and only the last j-1 of them have been fed.
+===END PLAN===

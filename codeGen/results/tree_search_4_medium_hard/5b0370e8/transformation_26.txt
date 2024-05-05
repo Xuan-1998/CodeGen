@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+The state is a tuple (i, k-j) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to j. 
+The base case is when i = 0, which means there are no more bits to fill in, so we just need to consider the current value of j.
+Consider the state as (i, k-j) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to j. 
+The recurrence relation for this subproblem is: if j is a power of 2, then we have two options, either include it in the current bit or don't.
+If j is not a power of 2, then we can only choose whether to include it or not. This means that when calculating dp[i][k-j], we just need to consider the previous state where i-1 and k-j-1 are used for bitwise AND operation.
+
+The final answer will be dp[n][k]. 
+We also need to handle edge cases such as when i = 0, j = 0. In this case, there is only one way to form an array with no elements.
+===END PLAN===

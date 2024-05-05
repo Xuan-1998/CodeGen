@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i] depends on the maximum reachable index from the previous position. Initialize dp with False for all indices except the first one which is True.
+For each element at index i:
+    If the value at i is 0, then it's impossible to reach i and set dp[i] = False
+    Otherwise, calculate the maximum reachable index j such that arr[j] >= i - arr[j]
+    If j < len(arr) - 1, then it's possible to reach i, so set dp[i] = True; otherwise, set dp[i] = dp[len(arr)-1]
+Implement memoization by creating a dictionary where memo[i] stores whether it's possible to reach the ith index
+Return dp[-1] as the final answer
+===END PLAN===

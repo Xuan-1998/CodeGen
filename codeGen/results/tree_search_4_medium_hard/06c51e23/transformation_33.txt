@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+Consider the state expression as  'dp[i]' where dp[i] represents the maximum possible grade that can be obtained by rounding the decimal fraction up to i digits after the decimal point. Define the base case as dp[0] = 1 since a zero-digit decimal fraction has a maximum possible grade of 1.
+
+Let's define the recursive function as follows:
+
+- If the current digit is less than or equal to 5, round it down to the nearest integer and add the result to the previous maximum grade.
+- If the current digit is greater than 5, round it up to the nearest integer and add the result to the previous maximum grade.
+
+Use memoization to store and reuse previously computed values in the dynamic programming table. This ensures that we don't recalculate the same subproblem multiple times, which can significantly improve performance.
+
+The final answer would be dp[n], where n is the length of the decimal fraction.
+===END PLAN===

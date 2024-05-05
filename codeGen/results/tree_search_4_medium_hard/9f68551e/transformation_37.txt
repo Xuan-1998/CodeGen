@@ -1,0 +1,6 @@
+\ 
+Let's refine the state as dp[i][j] = minimum mana required to kill all monsters that appear before time i at most j seconds after their appearance. The base case is when i == n-1, so dp[n-1][j] = h_n if k_n <= j and infinity otherwise.
+Define a 2D dictionary dp that maps tuples (i, j) to the minimum mana required to kill monsters that appear before time i at most j seconds after their appearance. Initialize all values in dp to infinity, then iterate over each monster from n-1 to 0:
+    - If k_i <= j, update dp[i][j] with min(dp[i-1][max(0, j-k_i)], h_i) + (j > k_i)
+    - Else, set dp[i][j] to infinity
+The final answer is the minimum value in the last row of dp.

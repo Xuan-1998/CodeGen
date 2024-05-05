@@ -1,0 +1,20 @@
+Define the state dp[i] as the minimum number of roads that need to be inverted in order to reach city i from the capital.
+
+Base case: dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+Transition relationship:
+For each road (i, j), update dp[j] as min(dp[j], dp[i] + 1) if it's not already set to infinity. This represents the minimum number of roads needed to reach city j from city i.
+
+Use an iterative approach with a queue data structure to simulate the traversal process from the capital to each city, updating the minimum distance as we go. Initialize all dp values to infinity except for dp[0] = 0.
+
+Queue: {0}
+
+While there are still cities in the queue:
+- Dequeue the next city i.
+- For each neighbor j of i that has not been processed yet:
+    - Update dp[j] as min(dp[j], dp[i] + 1) if it's not already set to infinity.
+    - Add j to the queue.
+
+After processing all cities, the minimum number of roads that need to be inverted is the maximum value in the dp array. The capital city is any city with a distance equal to this minimum.
+
+Print the minimum number of roads and all possible ways to choose the capital.

@@ -1,0 +1,12 @@
+State:
+    dp[i] represents the maximum power level that can be added to the right of the first i beacons without destroying any existing beacons.
+
+Transition function:
+    dp[i] = max(dp[i-1], max(bi - ai for ai in range(i)))
+    where bi is the power level of the i-th beacon and ai are the positions of the previous beacons
+
+Initialization: 
+    dp[0] = 0 (no beacons to consider)
+
+Goal:
+    Return the minimum number of beacons that can be destroyed, which is equal to the maximum value in the dp array.

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[u][v] = whether there's a directed path from u to v. Base case: for any vertex, there's no path to itself.
+
+dp[i] = [1 if (i & j) == i and dp[j][0] else 0 for j in range(2**30)]
+
+Transition relationship: dp[u][v] = 1 if and only if there exists some neighbor w such that (u & w) == w and a path from w to v.
+
+for i in range(2**30): 
+    dp[i] = [any(j in range(2**30)) and (i & j) == i and dp[j][0] for _ in range(2**30)]
+===END PLAN===

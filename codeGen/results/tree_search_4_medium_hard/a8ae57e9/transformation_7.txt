@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a 2D array dp[i][j] where dp[i][j] represents the maximum amount of money earned by accepting the first i booking requests with group sizes less than or equal to j.
+
+Define a state that keeps track of the number of tables required and the total amount of money earned, with transitions based on whether to accept or decline a request.
+
+For each booking request (group size ci, pi), consider two options:
+1. Accept the request: Update the dp[i][j] state by considering the maximum money earned from the previous requests with group sizes less than j and adding the profit from the current request.
+2. Decline the request: Do not update the dp[i][j] state.
+
+Use dynamic programming with a 1D array and iterative approach to fill in the states.
+
+Let's use the following variables:
+- i: The number of booking requests considered so far
+- j: The group size of the current request
+- ci, pi: The group size and profit of the ith request
+
+The state transition is as follows:
+
+dp[i][j] = max(dp[i-1][k-1] + pi for k in range(1, j+1))
+
+The final answer can be obtained by finding the maximum value in dp[n][k].
+
+===END PLAN===

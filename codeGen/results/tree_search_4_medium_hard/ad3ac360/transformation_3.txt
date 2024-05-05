@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Consider a recursive function that checks if a substring is a palindrome, then use memoization to store the results of expensive function calls.
+
+State: dp[i] represents whether the last cut at position i resulted in a palindrome partition.
+
+Define the transition relationship as:
+
+dp[i][j] = (s[i] == s[j]) and ((i - 1 >= 0) and dp[i-1][j-1]) or (j + 1 < n) and dp[i+1][j+1])
+
+where s is the input string.
+
+Use a dictionary to store the results of expensive function calls, mapping each substring to a boolean value indicating whether it's a palindrome.
+
+For initialization: dp[0][n-1] = True, as an empty string is considered a palindrome. For all other positions, initialize dp[i][j] = False.
+
+Transition rules:
+If s[i] == s[j], then consider two subcases:
+	* If the substring from i to j-1 (inclusive) is a palindrome, and so is the substring from i+1 to j (inclusive), then it's also a palindrome.
+	* Else, if one of these substrings is not a palindrome, then this substring is not a palindrome either.
+
+If s[i] != s[j], then consider two subcases:
+	* If the substring from i-1 to j (inclusive) is a palindrome, and so is the substring from i+1 to n-1, then it's also a palindrome.
+	* Else, if one of these substrings is not a palindrome, then this substring is not a palindrome either.
+
+Calculate dp[i][j] based on these rules. Then, calculate the minimum number of cuts needed by iterating through the string and considering all possible cuts at each position.
+
+The answer will be the smallest integer k such that s[:k+1] and s[k+1:] are both palindromes.
+
+===END PLAN===

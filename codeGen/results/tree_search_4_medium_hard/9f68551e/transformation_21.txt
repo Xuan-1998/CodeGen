@@ -1,0 +1,19 @@
+\  
+The state can be defined as dp[i][j] = minimum mana required to kill i monsters with j seconds left, where 1 <= i <= n and 0 <= j <= k_n. The base case is when i == n, meaning all monsters are killed, so dp[i][j] = 0 for all j.
+
+dp = [[float('inf')] * (k_n + 1) for _ in range(n + 1)]
+
+for i in range(1, n + 1):
+    for j in range(1, k_n + 1):
+        if i == n:
+            dp[i][j] = 0
+        else:
+            last_monster_appeared_at = k_i - 1
+            min_mana_to_kill_monsters = float('inf')
+            
+            if j >= last_monster_appeared_at:
+                min_mana_to_kill_monsters = min(min_mana_to_kill_monsters, dp[i-1][last_monster_appeared_at] + h_i)
+            
+            dp[i][j] = min(dp[i][min(j, k_i - 1)], min_mana_to_kill_monsters)
+  
+print(dp[n][k_n])

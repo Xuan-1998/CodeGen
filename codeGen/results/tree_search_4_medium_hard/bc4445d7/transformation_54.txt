@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Hypothesize a bottom-up approach with dynamic programming, defining recursive relationships between subproblems, and iteratively refining the solution.
+
+Memoize the number of nodes in the tree (n) to avoid redundant calculations. Let's denote dp[i] as the maximum possible distribution index for a tree with i nodes.
+
+1. Define base cases:
+   - For n = 2, return 0 (since there is only one edge and no distribution index)
+
+2. Define recursive relationships between subproblems:
+   - For n > 2, consider all possible splits of the tree into two subtrees each with at most n-1 nodes.
+   - Calculate the maximum possible distribution index for each subtree recursively using dp[i] and dp[j], where i and j are the number of nodes in the two subtrees, respectively.
+   - Return the sum of these two recursive calls plus the product of edge labels on the split edge (which is equal to k) multiplied by the number of edges between the two subtrees.
+
+3. Initialize a memoization array with n+1 elements and fill it up iteratively using the above defined recursive relationships, starting from dp[2] = 0.
+
+4. Return dp[n] as the maximum possible distribution index for the original tree.
+
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+To solve this problem using dynamic programming with memoization:
+
+State: Define a state tuple (tail_length, visited) where tail_length is the length of the current hedgehog's tail and visited is a set containing all vertices that are part of the current hedgehog's tail. This allows for efficient checking of whether an edge connects two vertices already in the tail.
+
+Memoization: Use a nested dictionary memo to store the results of subproblems. The key would be the state tuple (tail_length, visited) and the value would be the maximum possible beauty of the hedgehog.
+
+Base Case: When the tail reaches its maximum allowed length (n), return 0 as there are no more edges that can contribute to the beauty.
+
+Top-Down Approach:
+
+1. Initialize memo with default values.
+2. For each edge i:
+    - If the edge connects two vertices already in the tail, skip it and move on to the next edge.
+    - Otherwise, for each possible length of the tail (up to n):
+        - Calculate the beauty if this edge is part of the tail: (tail_length + 1) * (number_of_spines + 1)
+        - Update memo with the maximum of the current value and the calculated beauty.
+
+3. Return the maximum value in memo when the tail reaches its maximum allowed length (n).
+
+This approach should work as it considers all possible combinations of edges that can form a hedgehog, and chooses the combination that results in the highest beauty.
+===END PLAN===

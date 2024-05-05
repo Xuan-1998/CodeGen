@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+{
+    dp = {}  # dictionary to store minimum mana required to kill each monster
+    for i in range(n):
+        j = ki[i]  # appearance time of current monster
+        if j >= kn:  # base case: no more monsters after this time
+            dp[j] = float('inf')  # infinity
+        else:
+            min_mana = float('inf')  # initialize minimum mana to infinity
+            for k in range(j):
+                if k not in dp:  # check if we have already calculated the minimum mana for this monster
+                    break
+                min_mana = min(min_mana, dp[k] + 1)  # update minimum mana
+            dp[j] = min_mana  # store minimum mana required to kill current monster
+}
+===END PLAN===

@@ -1,0 +1,15 @@
+===
+state represents maximum damage/mana that can be achieved at each monster's appearance time
+considering current monster's health and previous damage/mana
+base case: when monster's health equals its appearance time
+
+state1 = 0, for all monsters (initialize)
+for each monster from right to left:
+    if monster's health is less than or equal to its appearance time:
+        state2 = monster's health
+    else:
+        state2 = max(state1 + monster's health - previous damage/mana, state1) + previous damage/mana
+    state1 = state2
+
+output the last value of state1 as the least amount of mana required to kill all monsters
+===

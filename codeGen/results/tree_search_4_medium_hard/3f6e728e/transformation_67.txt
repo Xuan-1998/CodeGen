@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+We can use dynamic programming with memoization to solve this problem. We will use a 2D array dp[N+1][M+1] where dp[i][j] represents the number of ways to build an X-sequence using the first i upper hemispheres and the first j lower hemispheres.
+
+State: the number of ways to build an X-sequence using the first i upper hemispheres and the first j lower hemispheres.
+Base case: when both N and M are 0, there is only one way to build an empty X-sequence (i.e., dp[0][0] = 1).
+
+Transition relationship:
+- If the current upper hemisphere has radius U_i and it can be used in the X-sequence, then we have two options: either use this sphere or not. The number of ways is the sum of the number of ways without using this sphere (dp[i-1][j]) and the number of ways with using this sphere (the product of the number of ways without using any of the lower hemispheres and the number of ways to build an X-sequence using the remaining upper hemispheres).
+- If the current upper hemisphere cannot be used in the X-sequence, then we have only one option: do not use it. The number of ways is the same as without this sphere (dp[i][j]).
+
+Memoization:
+We will store the results in a 2D array memo[N+1][M+1] where memo[i][j] = dp[i][j]. This way, we avoid redundant computations and can efficiently retrieve the results for smaller subproblems.
+
+Initialization: dp[0][0] = 1; for i from 1 to N, do dp[i][0] = 0; for j from 1 to M, do dp[0][j] = 0; for i from 1 to N and j from 1 to M, do memo[i][j] = -1.
+Update: for i from 1 to N and j from 1 to M, do memo[i][j] = (memo[i-1][j] + ((U_i <= C) ? dp[i-1][j-1] : 0)) % (10^9+7).
+Final answer: print the values of memo[N][M] for each test case.
+===END PLAN===

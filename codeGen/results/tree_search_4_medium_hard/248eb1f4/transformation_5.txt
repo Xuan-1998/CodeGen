@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = (j % M) + 1 if i is odd, else ((X-j+1) % M) + 1
+Using a dictionary to store intermediate results and update them as needed.
+
+For each test case, iterate through X from 1 to X. For each i, calculate dp[i][j] for j from 0 to i-1. If i is odd, the winner index is (j % M) + 1; otherwise, it's ((X-j+1) % M) + 1.
+
+Store the calculated winner indices in a list and print them as output.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the total brightness of stars within a rectangle can be broken down into smaller rectangles. Use dynamic programming with tabulation by iterating over all possible views and calculating the total brightness for each view.
+
+State: (t, x1, y1, x2, y2), where (x1, y1) is the lower left corner and (x2, y2) is the upper right corner of the rectangle at time t.
+
+Tabulation with Iterative Approach: Initialize a 3D array of size (q+1, 101, 101) to store the maximum brightness at each query. Iterate over all possible views:
+
+* For each view, iterate from t = 0 to q:
+	+ If the current rectangle is within the bounds of the star's initial position and has not been affected by any other stars, add the initial brightness of the star to the total.
+	+ If the current rectangle is partially or fully covered by another star at a previous time step, update the total brightness accordingly.
+
+===END PLAN===

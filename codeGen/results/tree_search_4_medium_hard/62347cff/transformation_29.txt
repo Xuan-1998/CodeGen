@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure can be defined as the minimum sum of a single cell being either from above (top-down) or from left (bottom-up).
+dp[i][j] represents the minimum sum of all numbers along a path ending at cell [i][j]. The base case is when i or j is equal to 0, meaning we've reached the top or left boundary.
+For each cell, there are two possibilities: either come from above (dp[i-1][j]) or from left (dp[i][j-1]).
+Use a dictionary (memoization) to store previously computed values and avoid redundant calculations, filling in the table in a bottom-up manner.
+
+dp[i][j] = dp[i-1][j] + grid[i][j] if i > 0
+           else dp[i][j-1] + grid[i][j] if j > 0
+
+Fill the top row and left column first, as they only have one path option.
+Then fill in the rest of the table bottom-up, using memoization to avoid redundant calculations.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with tabulation to solve this problem by iterating through all vertices from 1 to n and storing the maximum number of vertices that can be visited for each vertex in an array.
+
+'Base case: if i == 1, then the maximum number of vertices that can be visited is 1, because we start at vertex 1.'
+
+Store a tuple (i, time) as the state, where i represents the current vertex and time represents the remaining time. The transition relationship can be formulated as: if there is an edge from vertex i to vertex j with weight t, then we can visit vertex j if we have enough time left after traversing the edge. In this case, update the time by subtracting t and increment the visited vertex count.
+
+Iterate through all vertices from 1 to n, and for each vertex i:
+    Initialize dp[i][t] as -∞ for all time values t.
+    For each edge (u, v) with weight w:
+        If there is an edge from vertex u to vertex v, update dp[v][t-w] as max(dp[v][t-w], dp[u][t] + 1).
+    Return the maximum visited vertex count stored in dp[n][T].
+===END PLAN===

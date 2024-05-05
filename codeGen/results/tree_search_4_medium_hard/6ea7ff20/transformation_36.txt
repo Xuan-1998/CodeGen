@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Think about how you can use memoization to avoid solving the same subproblem multiple times and store the results in a table for later reference.
+
+dp[i][j] = 1 if p[2i-1] < p[2j-1] and there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise
+dp[i][j] = 1 if p[2i] < p[2j] and there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise
+
+Use a set to store the unique permutations and check if each permutation is valid or not.
+
+For each unique permutation:
+
+- Initialize two arrays a and b of length n.
+- Iterate through the permutation, adding elements to either a or b based on whether p[2i-1] < p[2j-1] or p[2i] < p[2j].
+- If the current element is less than the previous element in the same array (a or b), merge the arrays and update a and b.
+- Check if there are any common elements between a and b. If not, return "YES".
+- If the permutation does not meet the above condition, return "NO".
+
+===END PLAN===

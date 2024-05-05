@@ -1,0 +1,32 @@
+===BEGIN PLAN===
+state: (i, j) where i and j are the start and end indices of the substring to be checked for palindromeness
+base case: if s[i:j+1] is palindrome and j-i > 0:
+    append [s[i:j+1]] to result
+    return result
+else:
+    for k from i to j:
+        if s[i:k] and s[k:j+1] are both palindromes:
+            partition = result + [s[i:k]]
+            memo[(i, j)] = partition
+            return memo[(i, j)]
+state: (i, j) where i and j are the start and end indices of the substring to be checked for palindromeness, with an additional parameter 'partition' to store the current partition.
+base case: if s[i:j+1] is palindrome and j-i < 1:
+    return [partition]
+else:
+    for k from i to j:
+        if s[i:k] and s[k:j+1] are both palindromes:
+            partition = result + [s[i:k]]
+            memo[(i, j)] = partition
+            return memo[(i, j)]
+state: (i) where i is the start index of the substring to be checked for palindromeness
+base case: if s[i] is palindrome and i < 1:
+    return [[s[i]]]
+else:
+    for k from i to n-1:
+        if s[i:k+1] is palindrome:
+            partition = result + [s[i:k+1]]
+            memo[(i)] = partition
+            return memo[(i)]
+state: () where there are no more substrings to be checked
+base case: return [[s]]
+===END PLAN===

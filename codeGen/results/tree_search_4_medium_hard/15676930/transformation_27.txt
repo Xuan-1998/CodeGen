@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+The state for each hare i is a tuple (left_hungry, right_hungry) where left_hungry indicates whether hare i-1 was hungry and right_hungry indicates whether hare i+1 was hungry. The state is (f_i, f_{i+1}) where f_i = 1 if hare i is fed and 0 otherwise, and f_{i+1} is similarly defined for the next hare.
+
+The dynamic programming table dp[i][left_hungry][right_hungry] stores the maximum joy that can be obtained by feeding hares from 1 to i with their left and right adjacent hares being hungry or full accordingly. 
+
+The base case is when i = 0, in which case dp[0][left][right] is just the sum of the initial joys.
+
+For each hare i, we consider two options: 
+- Feed hare i if both its adjacent hares are full.
+- Don't feed hare i and let the next hare decide whether to feed it or not. 
+
+We update the state dp[i+1][left][right] based on these two options and the current maximum joy is chosen.
+
+The memoization is implemented by storing the results of subproblems in a dictionary and using this information to avoid redundant calculations.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 3D table where each cell represents the similarity score between two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 3D array dp[i][j][k] where:
+- dp[i][j][k] represents the similarity score between the substrings A[0..i-k] and B[0..j-k]
+- Initialize dp[i][j][0] to be the sum of lengths minus 4 times the length of the shorter string, as this is the base case when one or both strings are empty
+- For non-empty strings:
+  - Update dp[i][j][k] as the maximum of:
+    - dp[i-1][j-1][k-1] plus 1 (if substrings match)
+    - dp[i-1][j][k] and dp[i][j-1][k]
+
+Use dynamic programming to initialize the table with base cases for empty strings, then fill in the rest of the table using a nested loop:

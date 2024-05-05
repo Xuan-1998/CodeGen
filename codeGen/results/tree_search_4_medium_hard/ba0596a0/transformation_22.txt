@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+The state of the frog is defined by its current position and previous jump length. We can express this in a mathematical formula as follows:
+dp[i][k] = dp[j][k-1] or (j == 0 and k == 0) or (dp[j-1][k-((stones[i]- stones[j]) % 3)])
+We start the dynamic programming process from the second stone, with initial conditions of dp[0][0] = True.
+For each stone i:
+    If there's no previous jump, we set dp[i][0] = True and dp[i][1] = False
+    For each possible jump length k, we check if it's valid (i.e., the distance is either k-1, k or k+1 units) and update dp[i][k] accordingly.
+    We fill up the table column by column from left to right.
+===END PLAN===

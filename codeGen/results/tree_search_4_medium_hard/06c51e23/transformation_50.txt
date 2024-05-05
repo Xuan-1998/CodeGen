@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using a bottom-up dynamic programming approach with tabulation. We can initialize a table dp of size n+1 and fill it up iteratively based on the problem constraints, where dp[i] represents the maximum possible grade that can be obtained for a decimal fraction of length i within time limit t.
+
+We need to consider two cases: 
+- Rounding at the current place: dp[i] = max(dp[i-1], 9.99 * (10^(n-i)) + round(0.01 * (10^(n-i))))
+- Not rounding at the current place: dp[i] = dp[i-1]
+
+Implement bottom-up dynamic programming with memoization to optimize the computation of the maximum possible grade that can be obtained for a decimal fraction of length i within time limit t.
+
+Fill up the table from left to right, starting from dp[0]. Initialize dp[0] as 0. 
+
+Finally, return dp[n-1] as the maximum possible grade that can be obtained.
+===END PLAN===

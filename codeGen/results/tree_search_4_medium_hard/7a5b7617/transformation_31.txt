@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider solving smaller subproblems first and combining them to solve larger problems. This could involve building up from base cases.
+
+dp[i][j] = sum of all possible table configurations ending at cell (i, j), where i ranges from 0 to N-1 and j ranges from 0 to M-1.
+dp[i][j] represents the number of ways to fill a table with sum i in the jth column, and dp[i][k] is updated based on dp[i-1][0:k].
+
+Dynamic programming using bottom-up approach where we start with base cases and iteratively build up the solution. Initialize dp[0][j] = 1 for all j, as there's only one way to fill a table of zero rows.
+
+dp[i][j] = sum(dp[i-1][0:j-1] * (M - sum(dp[i-1][0:j-1])))
+where sum(dp[i-1][0:j-1]) is the cumulative sum of the previous row, and M - sum(dp[i-1][0:j-1]) is the remaining space in the current column.
+
+Finally, calculate dp[N-1][M-1] and take modulo 1 000 000 000. This gives us the number of different steady tables of size N x M.
+===END PLAN===

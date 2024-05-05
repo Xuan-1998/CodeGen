@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The state expression could be a pair (last_ball, window_size), where last_ball is the color of the last ball on the board and window_size is the number of balls in the current window being considered. The dynamic programming table dp would store the minimum number of moves needed to remove all balls up to that point.
+
+Base case: When the board is empty (window_size == 0), the minimum number of moves needed is 0.
+Recursive case:
+    - If the last ball on the board matches the color of a ball in hand, we can remove the last ball and add it to the hand. The number of moves needed is the sum of the number of moves needed to remove all balls up to this point minus one (because we removed the last ball) and the minimum number of moves needed to remove all balls given the updated board.
+    - If there are three or more consecutive balls with the same color, we can remove them. The number of moves needed is the sum of the number of moves needed to remove all balls up to this point minus the number of consecutive balls (because we removed those) and the minimum number of moves needed to remove all balls given the updated board.
+    - If none of the above cases apply, we can add a ball from hand to the board. The number of moves needed is one plus the minimum number of moves needed to remove all balls given the updated board.
+
+Dynamic programming table dp with state expression (last_ball, window_size) where dp[i][j] represents the minimum number of moves needed to remove all balls up to the point where the last ball on the board has color i and there are j balls in the current window.
+===END PLAN===

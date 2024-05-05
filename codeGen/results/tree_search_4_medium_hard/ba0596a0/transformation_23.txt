@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state of the frog is defined by its current position and previous jump length. We can express this in a mathematical formula as follows:
+dp[i][j][k] = true if the frog can reach stone i with previous jump length j and current jump length k, false otherwise.
+
+Base case: dp[0][0][0] = true, because the frog starts on the first stone.
+
+Recursive case: 
+- If the current stone is the last one (i.e., stones[i] == stones[-1]), then the frog can reach it if and only if the previous jump length was k - 1 or k + 1. So, dp[i][j][k] = dp[i-1][0][(stones[i]-stones[i-1]) % 3].
+- If the current stone is not the last one, then the frog can reach it if and only if there exists a previous jump length j' such that the frog can reach the next stone with previous jump length j'. So, dp[i][j][k] = or [dp[i-1][0][(stones[i]-stones[i-1]) % 3], dp[i-1][1][(stones[i]-stones[i-1]) % 3], dp[i-1][2][(stones[i]-stones[i-1]) % 3]].
+
+Final answer: The frog can reach the last stone if and only if dp[-1][-1][-1] is true. We can use a 3D table to store the state of the frog, where dp[i][j][k] represents whether the frog can reach stone i with previous jump length j and current jump length k.
+
+===END PLAN===

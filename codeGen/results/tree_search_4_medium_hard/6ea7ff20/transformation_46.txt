@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Think about how you can use memoization to avoid solving the same subproblem multiple times and store the results in a table for later reference.
+
+Let dp[i][j] be 1 if there exists two arrays a and b, each of length n-1, such that p=merge(a,b), where i and j are the indices in p. Define dp[i][j] as follows:
+
+    - If p[i]<p[j], then dp[i][j]=1+dp[i+1][j]
+    - If p[i]>p[j], then dp[i][j]=1+dp[i][j-1]
+
+Create a 2D table dp where dp[i][j] represents the existence of two arrays a and b, each of length n-1, such that p=merge(a,b).
+
+The base case is when i=j, meaning we've processed all elements in p. In this case, we can simply return YES if there's at least one pair of indices with different values. Otherwise, return NO.
+
+For the state transitions, consider two cases:
+
+    - If p[i]<p[j], then we know a must have an element less than p[i] and b must have an element greater than p[i]. So, dp[i][j]=1+dp[i+1][j]
+    - If p[i]>p[j], then we know a must have an element greater than p[j] and b must have an element less than p[j]. So, dp[i][j]=1+dp[i][j-1]
+
+The state transition is based on the comparison of p[i] and p[j].
+
+===END PLAN===

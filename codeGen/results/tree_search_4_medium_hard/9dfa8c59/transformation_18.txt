@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers below n_max and then iterate over each number in this set to count its permutations.
+Maintain two arrays dp1 and dp2 where:
+    - dp1[i] represents whether i is a prime number
+    - dp2[i] stores the count of permutations for the prime number i
+Create an array perms to store the permutation counts for all numbers below n_max
+ Iterate over each number i in [1, n_max]
+    - Check if i is prime using the hash set and update dp1[i] accordingly
+    - Count the permutations for i by sorting all possible permutations of its digits (this can be done using recursion or iteration) and update dp2[i] accordingly
+Count the numbers with exactly k_perms permutations below n_max
+    - Iterate over each number i in [1, n_max]
+        - Check if dp2[i] equals k_perms and i is prime (i.e., dp1[i])
+            - If yes, increment the count of such numbers
+Return the count of such numbers, the smallest and largest prime numbers among them
+    - Return [count, min_prime, max_prime]
+
+===END PLAN===

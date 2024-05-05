@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if there exists a valid split of the substring s[i:j], otherwise it's 0.
+
+For each i in range(n):
+    dp[i][i] = 1 if all characters in s[i:i] are within max(a), otherwise 0.
+    For j from i+1 to n:
+        If all characters in s[i:j] are within max(a) and dp[i][j-1]:
+            dp[i][j] = (dp[i][i] + dp[i][j-1]) % MOD
+        Else:
+            dp[i][j] = 0
+
+For i from 1 to n:
+    If dp[0][i]:
+        ans += dp[0][i]
+    MODans %= MOD
+
+Print the answer modulo 10^9 + 7.
+
+The number of ways to split the message into substrings that fulfill the conditions mentioned in the problem is ans.
+The length of the longest substring over all the ways is max(j-i for i in range(n) and dp[0][j]).
+The minimum number of substrings over all the ways is min(i for i in range(n) if not dp[0][i]).
+===END PLAN===

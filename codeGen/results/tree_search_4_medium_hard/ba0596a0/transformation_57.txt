@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i] = True/False indicating whether the frog can reach stone i, with dp[0] = True as the base case.
+Let dp[i] be the smallest possible jump that can reach stone i. Then, state and transition relationships would be formulated based on these minimum jumps.
+
+Create a 2D array to represent the minimum jumps needed to reach each stone:
+
+dp[i][j] = True if the frog can reach stone i with j - 1, j, or j + 1 as the previous jump; False otherwise.
+
+Transition rules:
+- dp[i][j] is True if and only if there exists k such that dp[k][j - 1], dp[k][j], or dp[k][j + 1] are all True.
+- If dp[k][j - 1], dp[k][j], or dp[k][j + 1] are all False, then dp[i][j] is also False.
+
+Base case:
+dp[0][k] = True for any k (since the frog starts on stone 0).
+
+===END PLAN===

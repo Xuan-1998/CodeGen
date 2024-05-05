@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 2D array to keep track of the cumulative sum of carries.
+
+state: dp[i][k] = expected number of non-zero carries when adding A with k digits and B with i-k digits, both with less than or equal to i digits.
+dp[i][k] represents the expected number of non-zero carries when adding A with k digits and B with i-k digits, both with less than or equal to i digits. In this case, transition relationships could be formulated based on whether a carry occurs in the current column or not.
+
+For each i from 0 to N:
+    For each k from 1 to min(i+1, N):
+        If k is 1 and i is 0, dp[i][k] = 0 (base case)
+        Else if k > 1, calculate expected number of non-zero carries when adding A with k-1 digits and B with i-(k-1) digits using memoization
+        Update dp[i][k]
+===END PLAN===

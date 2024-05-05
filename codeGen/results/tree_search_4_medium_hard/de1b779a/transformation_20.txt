@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0). Initialize the base cases as follows:
+
+- When there's no dough left, dp[0][j] is 0 for all j. This is because we can't make any buns with no dough.
+- When there are no stuffing types left, dp[i][0] is d0 * min(c0 / ci, n) for i > 0. This is because we can only sell the remaining dough without any stuffing.
+
+The transition relationship would then depend on whether it's more profitable to make a bun with the current stuffing type or not, considering the price of the bun, the cost of the stuffing, and the cost of making the bun without any stuffing. Update dp[i][j] as follows:
+
+- If we have enough dough and stuffing for the j-th type, calculate the profit from making buns with this stuffing: ci - bi. Add this to dp[i-1][j-1]. If this is more profitable than not using this stuffing (dp[i-1][j]), update dp[i][j] accordingly.
+- If we don't have enough dough or stuffing for the j-th type, calculate the profit from making buns without any stuffing: d0 * min(c0 / ci, n). Add this to dp[i-1][j]. If this is more profitable than not using this stuffing (dp[i-1][j]), update dp[i][j] accordingly.
+
+Implement memoization using a dictionary where the key is the state (i, j) and the value is the corresponding maximum profit. Start filling up the table from i = 0 to n and j = 0 to m.
+
+The final answer would be dp[n][m].
+
+===END PLAN===

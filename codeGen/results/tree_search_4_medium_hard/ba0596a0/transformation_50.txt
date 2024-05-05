@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i] = True if there exists j (0 <= j < i) such that dp[j] is True and |i - j| in {k-1, k, k+1} for some k. This means we can reach stone i from stone j by a valid jump.
+dp[0] = True as the base case, since the frog starts on the first stone.
+Create a dp array of size n+1 and initialize dp[0] to True.
+For each stone i from 1 to n:
+    For each previous stone j such that 0 <= j < i:
+        If |i - j| in {k-1, k, k+1} for some k and dp[j] is True:
+            dp[i] = True
+            Break the inner loop since we've found a way to reach stone i.
+    If no valid jump was found:
+        dp[i] = False
+
+===END PLAN===

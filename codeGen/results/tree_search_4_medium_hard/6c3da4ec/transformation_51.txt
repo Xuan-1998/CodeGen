@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Think about using memoization to store the bitwise OR values of all possible pairs of non-empty substrings of s, with a dictionary mapping tuples of (start, end) indices to their corresponding bitwise OR values.
+
+The state expression could be dp[i][j][k] = max bitwise OR value for all pairs of substrings (s[m], s[n]) with m in [0, i) and n in [i, j] and k in [0, j)
+
+Think about using a dictionary mapping tuples of (start, end) indices to their corresponding bitwise OR values. This could be used to store memoized values.
+
+You can use dynamic programming to create a 3D table dp[i][j][k] where i is the start index, j is the end index, and k is the bitwise OR value for all pairs of substrings s[m] to s[n] with m in [0, i) and n in [i, j].
+
+The initialization step would be setting all values of dp[i][j][k] = 0.
+
+For each pair of substrings (s[i], s[j]) with i in [0, n-1] and j in [i, n), you need to calculate the bitwise OR value for this pair and update dp[i][j][k] accordingly.
+
+To calculate the bitwise OR value for a given pair of substrings, consider iterating over all possible pairs of characters (a, b) from the two substrings. Calculate their bitwise OR values and store them in a dictionary mapping tuples of indices to their corresponding bitwise OR values.
+
+Then you can update dp[i][j][k] = max bitwise OR value for all pairs of substrings s[m] to s[n] with m in [0, i) and n in [i, j] and k in [0, j).
+
+The final answer would be the maximum possible value in binary representation without leading zeroes.
+
+===END PLAN===

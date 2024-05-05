@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+State: (i, j) = current positions in a and b;
+Transition relationship:
+    - dp[i][j] = True if p[0...i+j-1] can be merged from a[0:i] and b[0:j];
+    - dp[i][j] = False if either i or j is greater than n, meaning we've gone beyond the length of the arrays.
+
+Base case:
+    - When i=n and j=0, return True if p is empty. Otherwise, return False.
+Memoization:
+    - Store the solutions of subproblems as they are solved, and reuse them when needed.
+
+Recursion:
+    - dp[i][j] = True if a[i-1] < b[j-1]; 
+        - then merge(a[0:i-1],b[0:j-1]) can be merged from a[0:i] and b[0:j].
+    - dp[i][j] = False if a[i-1] >= b[j-1];
+        - then we must add the element in array a to the beginning of the result, 
+          which means p[0...i+j-1] cannot be merged from a[0:i] and b[0:j].
+
+Edge cases:
+    - When i=0 or j=0, return True if p is empty. Otherwise, return False.
+    - When i=n or j=n, check the remaining elements in p to see if they can be merged.
+
+===END PLAN===

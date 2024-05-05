@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+state dp[i][j] = { pair of arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j };
+dp[0][0] = (true if p[0] not in array; false otherwise);
+for i from 1 to n:
+    for j from 0 to min(i,n):
+        if j == 0:
+            dp[i][j] = dp[i-1][n];
+        elif i % 2 == 0:
+            dp[i][j] = (dp[(i-1)/2][n-j] and p[i-1] not in array; false otherwise);
+        else:
+            dp[i][j] = (true if dp[(i-1)/2][n-j] or p[i-1] not in array; false otherwise);
+return dp[n][0];
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. To combine these subproblems and form the solution, we'll use Dynamic Programming with memoization.
+
+The state expression could be defined as:
+dp[i] = True if there is a valid sequence of jumps that allows the frog to jump from the 0th stone (the starting point) to the ith stone.
+
+The base case would be dp[1] = True because the frog can simply stay on the first stone. For any i > 1, we need to consider three possibilities:
+- The frog jumps directly from the (i - 1)th stone to the ith stone.
+- The frog jumps from the (i - 2)th stone to the (i - 1)th stone and then again from the (i - 1)th stone to the ith stone.
+- The frog jumps from the (i - 3)th stone to the (i - 2)th stone, then from the (i - 2)th stone to the (i - 1)th stone, and finally from the (i - 1)th stone to the ith stone.
+
+We can use memoization with recursion to keep track of previously computed subproblems and avoid redundant calculations. The recursive function would take two parameters: i, the current stone, and j, the target stone. It would return True if there is a valid sequence of jumps that allows the frog to jump from the 0th stone to the ith stone.
+
+The base case for the recursion would be when i equals j; in this case, the function returns dp[i]. Otherwise, it recursively calls itself with i - 1 as the new target stone and checks if there is a valid sequence of jumps that allows the frog to jump from the 0th stone to the (i - 1)th stone. If the recursive call returns True, then we consider the three possibilities mentioned above and return True if any of them are valid.
+
+The final answer would be dp[target], where target is the last stone in the input list.
+===END PLAN===

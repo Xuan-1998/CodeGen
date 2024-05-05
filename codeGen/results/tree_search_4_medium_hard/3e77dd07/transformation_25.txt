@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Is there a way to partition the strings into overlapping subproblems, making memoization more effective.
+
+To define the state as (i, j) where i is the length of the longest common prefix of s1 and s2 and check if the remaining parts of both strings are scrambled.
+State: (i, j) represents the scrambled status of the substring from index 0 to i in both strings;
+Transition: if s1[i] == s2[j], return True; otherwise, partition the remaining parts and recursively check if they are scrambled.
+
+Create a DP table where dp[i][j] is True if the substring from index 0 to i in s1 and j in s2 are scrambled, then fill it up using bottom-up dynamic programming.
+If the lengths of s1 and s2 differ, return False because strings must have equal lengths.
+Fill the base cases first: dp[0][0] = True since an empty string is always scrambled with itself.
+
+For each cell (i, j), consider two possibilities:
+- If s1[i] == s2[j], then the substrings from index 0 to i in both strings are scrambled. Check if the remaining parts are also scrambled.
+- Otherwise, partition the remaining parts and recursively check if they are scrambled.
+
+===END PLAN===

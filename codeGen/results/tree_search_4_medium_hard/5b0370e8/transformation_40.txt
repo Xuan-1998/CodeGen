@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+The state is a boolean indicating whether the current bit of the bitwise AND operation is set and the base case is when all bits are unset.
+
+DP on number of bits set: we can count the number of bits set in both AND and XOR results separately and find the condition that relates them. This will help us to determine the number of arrays that satisfy the condition for each subproblem.
+
+Using a list comprehension to initialize the DP table with base cases and then iteratively fill up the rest of the table based on previously computed values.
+
+Iterate over all possible values of bits set in AND result (0 to 2^k - 1). For each value:
+    Iterate over all possible values of bits set in XOR result (0 to 2^k - 1). 
+    If the bitwise AND of the current AND and XOR results is greater than or equal to the bitwise XOR, increment the count for the current state.
+    
+Calculate the total count modulo 10^9 + 7.
+
+===END PLAN===

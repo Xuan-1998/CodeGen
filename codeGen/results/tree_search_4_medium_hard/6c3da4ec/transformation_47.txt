@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+dp = {}
+
+def dp(i, j):
+    if i == 0 and j < len(s) - 1:
+        return int(s[j], 2)
+    elif i > 0 and j == len(s) - 1:
+        return int(s[i-1], 2)
+    elif i > 0 and j < len(s) - 1:
+        if (i, j) in dp:
+            return dp[(i, j)]
+        max_val = 0
+        for m in range(i):
+            for n in range(j+1):
+                new_max = dp(m, i-1) | dp(i, n)
+                max_val = max(max_val, new_max)
+        dp[(i, j)] = max_val
+        return max_val
+
+max_val = 0
+for i in range(len(s)):
+    for j in range(i+1, len(s)):
+        new_max = dp(0, i) | dp(i, j)
+        max_val = max(max_val, new_max)
+
+print(bin(max_val)[2:])
+===END PLAN===

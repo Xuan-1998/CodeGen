@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+1. Initialize a dynamic programming table dp of size i + 1, where i is the length of the input list.
+    Fill up the first element dp[0] = True, since the frog can always cross the first stone.
+
+2. Iterate over the input list from the second stone to the last stone:
+    For each stone at position j:
+        If the current stone is the last one, set dp[j] = True, because the frog has reached the end.
+        Otherwise, calculate dp[j] based on previous stones:
+            If there's a previous stone within distance k-1, k, or k+1, and it can be crossed (dp[i]), then the current stone can also be crossed. Set dp[j] = True.
+            If no such previous stone exists, set dp[j] = False.
+
+3. Return dp[i], which represents whether the frog can cross the last stone.
+
+===END PLAN===

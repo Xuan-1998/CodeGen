@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+The state is an integer i representing the number of strings sorted so far, and the base case is when i == n
+
+To define a set of states S = {1, ..., n} and a set of transitions T such that for any state s in S, there exists a transition t in T from s to s+1 if it is possible to sort the first s strings into lexicographical order by reversing some of them, with the initial condition being dp[0] = 0
+
+Define a function f(i) that returns the minimum total cost required to sort the first i strings, and then use dynamic programming to fill up the table for f(1), f(2), ..., f(n).
+
+To avoid sorting duplicate strings, consider comparing each string with its previous lexicographically smaller string. If they are equal, it means we have reached a stable state where no more strings can be sorted.
+
+===END PLAN===

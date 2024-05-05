@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use memoization by defining a recursive function that stores the results of subproblems in a dictionary, but since we know the number of hares and full hares are fixed (n), tabulation would be more suitable. 
+
+The state could be represented as i, which is the number of remaining hares, with the base case being when i == 0.
+
+Define the transition relationship: dp[i] = max(dp[i-1] + b_{i+1} if i > 0 else c_{i+1}) where dp[i] represents the maximum joy for i remaining hares. This is because we don't know which hare to feed first, so we consider feeding any of the remaining hares and choose the one that gives us the most joy.
+
+Implement dynamic programming by creating a 1D array to store the maximum joy for each number of remaining hares, filling in the array from left to right. 
+
+Let dp[0] = a_1, since there are no more hares to feed after we've fed the first one. Then fill in the rest of the array:
+
+dp[i] = max(dp[i-1] + b_{i+1} if i > 0 else c_{i+1})
+
+Finally, dp[n-1] gives us the maximum total joy.
+
+===END PLAN===

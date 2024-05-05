@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+
+State is a tuple (n, k_perms_count) where n is the current prime number and k_perms_count is the count of its permutations that are less than or equal to k_perms.
+Consider the state as a dictionary where the key is the prime number n and the value is the count of its permutations that are less than or equal to k_perms.
+
+Utilize memoization by storing the results of subproblems in a dictionary for later reuse
+
+Initialize an empty dictionary dp (for dynamic programming) with default value 0
+Iterate from 2 to n_max:
+    Check if the current number is prime using Sieve of Eratosthenes or other method
+    If it's prime, calculate its permutations and count how many are less than or equal to k_perms
+    Store this information in dp dictionary for memoization
+
+At the end of the iteration, iterate through dp dictionary to find the count of prime numbers with exactly k_perms prime permutations below n_max, the smallest and largest such prime numbers
+Return [count, smallest, largest]
+===END PLAN===

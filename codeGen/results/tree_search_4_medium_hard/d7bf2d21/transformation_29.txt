@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequences and then count the number of maximum length subsequences
+dp[i] = max(dp[j] + 1 for j in range(i) if arr[j] < arr[i]), where i is the index of the array element
+Consider a 2D DP approach, dp[i][j], represents the length of the longest increasing subsequence ending at index i with value j.
+Iterate over the array and update dp[i][j] as follows:
+dp[i][arr[i]] = max(dp[j][k] + 1 for j in range(i) for k in range(arr[i]) if arr[j] < arr[i] and k == arr[i])
+Count the number of maximum length subsequences by iterating over the values in the last column of the dp array
+===END PLAN===

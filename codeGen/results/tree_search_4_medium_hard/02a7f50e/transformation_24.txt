@@ -1,0 +1,22 @@
+Dynamic programming approach: Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+1. Initialize the DP table:
+   dp[0][0] = n (all n beacons need to be considered initially)
+   
+2. Iterate over each new beacon's position and power level:
+   For each pair of (i, j):
+     1. Calculate the number of previously activated beacons that will be destroyed by this new beacon: 
+         Let p = sum(1 for k in range(n) if a_k <= i and b_k >= j)
+     2. Update dp[i][j] to be the minimum value between:
+         - The current number of previously activated beacons (dp[i-1][p-1])
+         - Add 1 to p, because this new beacon will also need to be considered
+           for future calculations
+
+   For example, if we have three beacons at positions [2, 5, 8] with powers [10, 15, 20]:
+     dp[0][0] = 3
+     dp[1][10] = 3 (no beacons will be destroyed by the first one)
+     dp[2][10] = 2 (the second beacon will destroy one of the previous ones)
+     dp[5][15] = 2 (the third beacon will not destroy any previously activated beacons)
+     dp[8][20] = 1 (only this new beacon needs to be considered)
+
+3. The minimum number of beacons that could be destroyed is stored in dp[n-1][max(beacon powers)]

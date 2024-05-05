@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp = {}
+for i in range(n):
+    for j in range(i+1, n):
+        dp[(i, j)] = 0
+        for k in range(i, j):
+            if not (k in [m for m in range(i) if dp.get((m, k), 0) == 1]):
+                dp[(i, j)] = max(dp[(i, j)], dp.get((i, k), 0) | dp.get((k, j), 0))
+for i in range(n-1):
+    for j in range(i+1, n):
+        if not (j in [m for m in range(i, j) if dp.get((i, m), 0) == 1]):
+            print(max(bin(int(str(dp[(i, j)])))[2:].zfill(n), key=lambda x: int(x, 2)))
+===END PLAN===

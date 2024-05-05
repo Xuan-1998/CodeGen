@@ -1,0 +1,19 @@
+State expression: dp[i][j] represents the lexicographically smallest string that can be obtained by doing operations on the first i characters of s[:j]. 
+
+dp[0][j] is the lexicographically smallest character in s[:j], indicating that the optimal string of length j can be obtained by deleting characters from the first 0 characters of s. 
+This means dp[0][j] = s[:j] (as there are no operations to do)
+
+Transition function: 
+
+- If j is equal to k, then dp[i][j] = min(dp[i][j-1], s[i:j]) - because we're trying to find the lexicographically smallest string of length j
+- Otherwise, dp[i][j] = min(dp[i-1][j], dp[i][j-1])
+
+Base case: 
+dp[0][j] = s[:j]
+
+Memoization:
+Store all calculated values in a 2D list dp where dp[i][j] is the lexicographically smallest string of length j that can be obtained by doing operations on the first i characters of s. 
+
+Initialization:
+Initialize the memoization table with base case values for dp[0][*]
+dp[0][j] = s[:j], for all 1 <= j <= k

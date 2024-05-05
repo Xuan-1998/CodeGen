@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+states:
+- (0, [])  // initial state
+- For each character c at index i in S:
+    - If c is the same as the character at index j in S (i.e., the current substring is a palindrome):
+        + Recursively generate all possible palindromic partitions for the remaining substring (S[:i] + S[i+1:])
+        + Add the current substring to each partition
+        + Return the list of new partitions
+
+memoization:
+- Use a dictionary memo to store the memoized solutions of subproblems, with the key being a tuple of the current index and the partition so far, and the value being a list of possible palindromic partitions
+
+===END PLAN===

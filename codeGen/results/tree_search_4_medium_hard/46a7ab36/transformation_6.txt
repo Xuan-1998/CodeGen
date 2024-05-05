@@ -1,0 +1,18 @@
+], [
+state: (k, j) where k is the number of remaining letters that can appear at the beginning, and j is the current position in the alphabet.
+
+base case:
+	* when all letters have been placed or the alphabet is exhausted
+	* tab[k][l] = 1 if k == 0 || l >= n
+
+transition rule:
+	* for each letter i from 1 to m (inclusive):
+		- if 2i > n, then tab[k][j] = product(tab[k-1][m-1], tab[0][i]) + tab[k][j+1]
+		- else: tab[k][j] = tab[k-1][j]
+
+main function:
+	* for each test case:
+		- initialize a table with k rows and n columns
+		- set base case values
+		- fill in the transition rule values iteratively from top to bottom and left to right
+		- return product of last row (k-1)th column (m-1)th element modulo 10^8 + 7

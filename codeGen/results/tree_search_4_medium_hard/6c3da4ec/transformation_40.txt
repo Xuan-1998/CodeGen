@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Use a 2D DP table dp[i][j] where i and j are both indices from [0, n-1]. Initialize it with -1 for all i and j.
+For each i and j:
+    If i == 0, then dp[i][j] is the bitwise OR of the binary strings from index j to n-1 (inclusive). 
+    Else if i > 0 and j < i, then update dp[i][j] as the maximum of bitwise ORs between s[0:j] and s[j:i], and bitwise ORs between s[0:i-j-1] and s[i-j:n-1].
+Return max(dp[n-1][k]) for k in range(n).
+The time complexity is O(n^2), where n is the length of the string. This can be improved if we use a more efficient data structure to store the bitwise OR values, like a Segment Tree.
+===END PLAN===

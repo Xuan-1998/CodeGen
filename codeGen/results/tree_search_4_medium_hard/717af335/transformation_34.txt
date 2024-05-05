@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Define the state expression as dp[i][j] = min(X) such that A-i = X + j and B-j = X ^ j, where i is the current value of A and j is the current value of B.
+dp[i][j] could be formulated as dp[i][j] = X where A-i = X and B-j = X ^ (i-j), then find the minimum value of X
+
+State transition: 
+- If j == 0, then X = A - i
+- If i < j, then there is no possible solution for X and Y, so return -1
+- Otherwise, recursively call dp[i-j][j] to get the smallest value of X that satisfies B-j = X ^ (i-j), then update the result as min(X) + j
+
+Employ a recursive function with memoization to store the results of sub-problems
+
+State initialization: 
+- Initialize dp[0][0] = 0, since there is no possible solution for i = 0 and j = 0
+
+Memoization: 
+- Store the results of sub-problems in a 2D array dp[][]
+
+Main function:
+- Calculate the smallest value of X that satisfies A = X + Y and B = X ^ Y by calling dp[A][B]
+- If there is no possible solution, return -1
+- Otherwise, calculate Y as A - X and print the result
+
+===END PLAN===

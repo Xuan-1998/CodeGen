@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a top-down approach with memoization and depth-first search (DFS) to solve this problem by recursively exploring all possible routes from vertex 1 to vertex n, and store the results in a memoized dictionary to avoid redundant calculations.
+
+'Base case: if i == n, then the maximum number of vertices that can be visited is 1, because we end at vertex n.'
+
+Store a tuple (i, time) as the state, where i represents the current vertex and time represents the remaining time. The transition relationship can be formulated as: if there is an edge from vertex i to vertex j with weight t, then we can visit vertex j if we have enough time left after traversing the edge. In this case, update the time by subtracting t and increment the visited vertex count.
+
+Use a two-dimensional table dp to store the maximum number of vertices that can be visited for each vertex and each possible remaining time. Initialize dp[1][T] = 1, because we start at vertex 1 with T time left. Then, for each edge from i to j with weight t:
+
+    If time - t >= 0:
+        For each vertex k in the memoized dictionary that can be visited within time - t and has not been visited yet:
+            Update dp[j][time - t] = max(dp[j][time - t], dp[k][time - t] + 1)
+
+Return dp[n][T]
+===END PLAN===

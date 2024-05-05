@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[0][j] = 1 for all j (no sphere), and dp[C+1][j] = 0 for all j (sequences longer than C are not possible).
+dp[i][j] = sum(dp[k][i-1] * (1 if U_k <= j else 0) for k in range(N)) + 
+          sum(dp[k][i-1] * (1 if L_k <= j else 0) for k in range(M)),
+Create a two-dimensional array dp where dp[i][j] represents the number of ways to build an i-sequence with radii less than j.
+Initialize dp[0][j] = 1 and dp[C+1][j] = 0 for all j.
+Fill up the dp table row by row from top to bottom. For each row i, fill up the column j iteratively from left to right.
+For each cell dp[i][j], calculate the value based on the values of cells above it (dp[k][i-1]) and the radii of spheres available (U_k and L_k).
+Finally, return dp[C][j] for all j as the result.
+
+===END PLAN===

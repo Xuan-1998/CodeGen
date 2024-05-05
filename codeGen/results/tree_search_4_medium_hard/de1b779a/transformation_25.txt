@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a table dp[n][m] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[0][j] = d0, for all j
+
+For non-base cases, consider the maximum profit that can be achieved with i grams of dough and j stuffing types. We have two options:
+- Make buns without any stuffing: dp[i][0] = max(dp[i-c0][0], 0) * d0
+- Use one of the m stuffing types: for k from 1 to j, consider using the k-th stuffing type
+    - if there's enough dough and stuffing for a bun with this stuffing type: dp[i][j] = max(dp[i-ci[k]][k-1], 0) + di[k]
+    - otherwise, don't use this stuffing type and try the next one
+
+Implement memoization using a dictionary to store previously computed dp values.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state represents the minimum mana required to kill all monsters by a certain second. The base case is when there are no more monsters to kill.
+
+Let dp[i][j] be the minimum mana required to kill all monsters by the ith second, considering that monsters appear at times k1, ..., km. We use the following transition relationships:
+
+- If it's the first monster, we only need to consider the damage of the spell cast at the time the monster appears.
+- For each subsequent monster, we have two options: 
+  - Cast a spell with maximum possible damage in the previous second (i.e., dp[i-1][k_i] + k_i) if it's enough to kill the current monster.
+  - Otherwise, do not cast any spell and move on to the next second.
+
+The updated state is the minimum of these two options.
+
+To implement a bottom-up dynamic programming approach using a 2D table, where each cell (i, j) represents the minimum mana required to kill all monsters by the ith second, considering that monsters appear at times k1, ..., km.
+
+===END PLAN===

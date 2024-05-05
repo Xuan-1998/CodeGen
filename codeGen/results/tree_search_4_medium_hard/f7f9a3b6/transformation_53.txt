@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = maximum length of substring required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character. This is because we need to find the longest possible substring for each splitting.
+
+dp[i][j] = max(dp[i-1][k] + 1 for k in range(min(j, sum(a[ord(c)-97] for c in s[:i]))))
+Use bottom-up dynamic programming by initializing a table and filling it up from the initial state to the final state. For each character, try all possible lengths of substrings and update dp[i][j] accordingly.
+
+To find the number of ways to split the message, we can use a similar approach: dp[i][j] = sum(dp[i-1][k] for k in range(min(j, sum(a[ord(c)-97] for c in s[:i])))) + 1
+
+To find the minimum number of substrings over all the ways, we can use the same state as before but with a modification: dp[i][j] = min(dp[i-1][k] for k in range(min(j, sum(a[ord(c)-97] for c in s[:i])))) + 1
+
+To find the longest substring over all the ways, we can also use the same state as before but with a modification: dp[i][j] = max(dp[i-1][k] for k in range(min(j, sum(a[ord(c)-97] for c in s[:i])))) + 1
+
+Finally, we print out the results modulo 10^9 + 7.
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment.
+dp[i][j] = (i == 1 or array[i-1] <= array[j]) and j == r - 1, False otherwise
+Use a boolean array to track if the current segment is increasing or decreasing: dp[i] = [True, False] for i = 0..n-1; dp[n-1] = [False, True]
+Initialize the dp table with the following conditions:
+    For each subsegment, check if it's an increasing sequence (dp[i][j] = True) or a decreasing sequence (dp[i][j] = False)
+    Start from the beginning of the array and work your way to the end. For each element in the array, consider whether this element starts a new segment
+    If the current segment is increasing (dp[i][j] = True), then set dp[i+1][j-1] = True; if it's decreasing (dp[i][j] = False), then set dp[i+1][j-1] = False
+    For each query, check if the subsegment defined by l and r is increasing or decreasing. If it's increasing, print "Yes"; otherwise, print "No"
+===END PLAN===

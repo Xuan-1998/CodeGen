@@ -1,0 +1,8 @@
+A dynamic programming approach can be used to solve this problem by constructing a 2D array dp where dp[i][j] represents the minimum number of changes needed to make the substring s[i..i+j-1] equal to a substring of 'RGBRGBRGB...', considering only characters at positions i, i+1, ..., i+j-1
+
+dp[0][0] = 0
+For each i from 0 to n-k (since dp[n-k][k] is the answer for the query), and for each j from 1 to k:
+    dp[i][j] is 0 if and only if the substring s[i..i+j-1] can be found in an infinite string of 'RGBRGBRGB...' (regardless of changes)
+    If not, dp[i][j] is 1 plus the minimum number of changes needed to make the substring s[i+1..i+j] equal to a substring of 'RGBRGBRGB...'
+Use bottom-up dynamic programming with a 2D array dp where dp[i][j] represents the minimum number of changes needed to make the substring s[i..i+j-1] equal to a substring of 'RGBRGBRGB...',
+For each query, return dp[n-k][k]

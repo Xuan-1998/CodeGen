@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Let dp[i] be the maximum bitwise OR value of all substrings ending at index i.
+Define dp[i][j] as the maximum bitwise OR value of all substrings that end at position i and having length j.
+
+Use a bottom-up dynamic programming approach to fill up a table dp with dimensions (n, max_length), where n is the length of the binary string.
+Iterate from left to right for each index i, 0 <= i < n:
+    For each possible substring ending at i, calculate its bitwise OR value by considering two options: the last bit is 0 and the last bit is 1.
+    Update dp[i][j] with the maximum bitwise OR value of these two options.
+
+Since we're interested in the maximum possible value without leading zeroes, consider only substrings that don't have leading zeroes.
+This can be achieved by initializing dp[0][0] to 0 and updating dp[i][j] accordingly.
+
+Finally, iterate over the table dp to find the maximum bitwise OR value without leading zeroes.
+
+===END PLAN===

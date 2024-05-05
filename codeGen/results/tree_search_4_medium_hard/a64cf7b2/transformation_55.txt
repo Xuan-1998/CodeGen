@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Design a dynamic programming function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary, then use the stored values to construct the optimal route.
+
+Define the state as a tuple (i, t), where i is the current vertex and t is the remaining time; define the state expression as dp[i][t], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of T.
+
+Formulate the state transition function recursively: dp[i][t] = max({dp[u][t - t_u] + 1 for (u, v) in edges if u < i and t - t_u >= 0}), where i is the current vertex, t is the remaining time, and edges is a list of directed edges with their corresponding times.
+
+Create a dictionary dp with dimensions n+1 by T+1 to store the maximum number of vertices that can be visited starting from each vertex within a time limit of T, and initialize all values as 0.
+
+Find the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T: k = dp[n][T].
+
+Construct the optimal route by tracing back the vertices: result = []
+
+for i in range(n, -1, -1):
+    t = T
+    for (u, v) in edges:
+        if u < i and t >= 0 and dp[v][t] == dp[i][t]:
+            result.append(v)
+            i = v
+            t -= edges[(u, v)][2]
+            break
+
+Print the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T: print(k)
+
+Print the indices of vertices that can be visited on the route from vertex 1 to vertex n, in the order of encountering them: print(*result)
+===END PLAN===

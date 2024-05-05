@@ -1,0 +1,8 @@
+Determine the overlapping subproblems by recognizing that the minimum path sum for each cell depends on its neighbors. 
+Let dp[i][j] be the minimum sum of all numbers along a path from the top left corner to cell (i, j). Then the base case is when i or j equals 0, in which case the minimum sum is simply the value at cell (i, j).
+dp[i][j] depends on the values in dp[i-1][j] and dp[i][j-1], with the minimum path sum for each cell being the sum of its own value and the minimum of the sums above and to the left.
+Use dynamic programming to fill a table where each cell represents the minimum sum of all numbers along a path from the top left corner to that cell. 
+Start filling the table from the top left, using the base case when i or j equals 0. For other cells, calculate dp[i][j] as the sum of its own value and the minimum of the sums above and to the left.
+When filling the table, apply memoization by storing each calculated cell in a dictionary with the cell coordinates as the key. 
+Finally, return the value at the bottom right corner of the table as the minimum sum of all numbers along the path from the top left corner to the bottom right corner.
+

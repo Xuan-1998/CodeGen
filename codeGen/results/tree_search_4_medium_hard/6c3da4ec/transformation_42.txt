@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Think about using memoization to store the bitwise OR values of all possible pairs of non-empty substrings of s, with a dictionary mapping tuples of (start, end) indices to their corresponding bitwise OR values.
+
+Define the state expression as dp[i] = maximum bitwise OR value for all pairs of substrings (s[j], s[k]) with j, k in range(i).
+
+Base case: when n is 1 or 2
+dp[0] = 0, dp[1] = int(s[0])
+
+For i > 1:
+    For each pair (j, k) such that j, k in range(i), and k <= j + 1,
+        Calculate bitwise OR value for substrings s[j:i+1] and s[k:i+1]
+        Update dp[i] as max(dp[i], dp[j-1]+((1<<i)-1-(1<<j)))
+
+===END PLAN===

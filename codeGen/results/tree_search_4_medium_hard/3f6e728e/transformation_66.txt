@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+We can use dynamic programming with memoization to solve this problem efficiently.
+
+State: The state is represented as a tuple (i, j) where i is the number of upper hemispheres and j is the number of lower hemispheres. The base case is when both N and M are 0.
+
+Transition relationship:
+- dp[i][j] = sum(dp[k-1][j] * (dp[m-k+1][l-1] if l > 0 else 1) for k in range(i+1), m in range(M+1), l in range(j+1))
+
+We use a 3D array dp[N+1][M+1][C+1] where dp[i][j][k] represents the number of ways to build an X-sequence using the first i upper hemispheres, the first j lower hemispheres, and spheres with radii up to k.
+
+The recurrence relation considers all possible combinations of upper and lower hemispheres. For each combination, it calculates the number of ways to build an X-sequence using the remaining upper and lower hemispheres.
+
+Finally, we return dp[N][M][C] as the result.
+===END PLAN===

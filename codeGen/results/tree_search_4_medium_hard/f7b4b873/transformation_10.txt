@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+state: (s, p) where s is the remaining substring to be processed and p is the current partition
+base case: if s == '', then return [p]
+Consider a state (s, p) where s is the remaining substring to be processed, p is the current partition, 
+and dp is the dictionary storing all possible partitions for each substring; 
+
+Transition: 
+    - If s can be split into two non-empty substrings t and u such that 
+      t is a palindrome and u is also a palindrome or empty, then update 
+      dp with (t, p + [u])
+    - For each character c in s, consider the following options:
+        * Add c to the current partition p
+        * Split s into two non-empty substrings t and u such that t is a palindrome 
+          and u is also a palindrome or empty, then update dp with (t, p + [u])
+    - If s is a palindrome, then add it to the current partition p
+state: (s, p) => (sub_str, new_partition)
+Transition: 
+    - If sub_str is not empty and sub_str[0] == sub_str[-1], 
+      then update dp with (sub_str[1:-1], p + [sub_str])
+state: s == '' => return [p]
+state: s != '' => dp = find_palindromic_partitions(s, [])
+return dp
+===END PLAN===

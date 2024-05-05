@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+dp[i] represents the total number of X-sequences that can be built using hemispheres with radii from 1 to i.
+dp[i] = sum(dp[j] * (count of j-radius upper hemispheres) * (count of i-j radius lower hemispheres))
+
+1. Initialize a table dp of size C+1, where dp[i] represents the total number of X-sequences that can be built using hemispheres with radii from 1 to i.
+2. For each possible sphere size i from 1 to C:
+    a) Calculate the count of j-radius upper hemispheres for all j such that 1 ≤ j ≤ i and U_j = i.
+    b) Calculate the count of i-j radius lower hemispheres for all j such that 1 ≤ j ≤ i and L_j = i-j.
+    c) Update dp[i] as the sum of dp[j] * (count of j-radius upper hemispheres) * (count of i-j radius lower hemispheres) for all j such that 1 ≤ j ≤ i.
+
+===END PLAN===

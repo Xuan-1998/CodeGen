@@ -1,0 +1,11 @@
+    dp = [[False] * (stones[-1] + 1) for _ in range(len(stones))]
+
+    for i in range(len(stones)):
+        if i == 0:
+            dp[i][stones[0]] = True
+        else:
+            for j in range(max(0, stones[i] - k), min(stones[-1], stones[i] + k) + 1):
+                if dp[i-1][j]:
+                    dp[i][j] = True
+
+    return dp[-1][-1]

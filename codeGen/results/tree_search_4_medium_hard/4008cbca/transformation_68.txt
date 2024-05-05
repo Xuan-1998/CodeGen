@@ -1,0 +1,12 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+Define the state as dp[i][hand] which represents the minimum number of moves needed to remove all balls up to position i with hand many colors of balls in hand. The base case would be when i is 0, and there are no balls to consider.
+
+The transition equation could be: 
+dp[i][hand] = min(dp[i-1][hand], dp[i-1][hand-1] + 1)
+
+This means that at position i, we can either remove the current ball (dp[i-1][hand]) or insert a new ball (dp[i-1][hand-1] + 1) to make the current ball removable.
+
+The initial state would be dp[0][hand] = [0 for _ in range(hand+1)] because we start with no balls and no moves needed.
+
+Finally, return dp[-1][-1] as the answer, which represents the minimum number of moves needed to remove all balls.

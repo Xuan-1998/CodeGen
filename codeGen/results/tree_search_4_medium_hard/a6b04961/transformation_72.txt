@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a 2D table where each cell (i, j) represents the maximum possible beauty of a hedgehog with i edges and j spines. Initialize this table with zeros.
+
+State: Use a tuple (tail_length, number_of_spines) as the state expression, where tail_length is the length of the current hedgehog's tail and number_of_spines is the count of spines found so far. The base case would be when the tail reaches its maximum allowed length.
+
+Think about using a set to keep track of the vertices that are part of the current hedgehog's tail. This would allow you to efficiently check whether an edge connects two vertices already in the tail.
+
+To fill up the 2D table, iterate over all possible (tail_length, number_of_spines) pairs and for each pair:
+
+* If the tail_length is greater than the maximum allowed length, set the beauty to 0 as there are no more edges that can be added.
+* Otherwise:
+	+ For each edge in the graph, check if it connects two vertices not yet in the tail. If it does, consider adding this edge as a spine and update the number_of_spines accordingly. Calculate the new beauty by multiplying the current tail_length with the updated number_of_spines.
+	+ Update the 2D table with the maximum beauty found so far for the given (tail_length, number_of_spines) pair.
+
+Finally, return the value at the cell corresponding to the maximum allowed length and 0 as the initial state. This will give you the maximum possible beauty of a hedgehog.
+===END PLAN===

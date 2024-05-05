@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+The problem can be viewed as finding the maximum value in a prefix sum array, which can be solved using binary search or segmented tree
+State: dp[i] represents the maximum power level of a beacon that can be added to the right of the i-th beacon without destroying any existing beacons.
+dp[i] also represents the minimum number of beacons that would remain if all beacons with power levels less than or equal to b_i were added to the right of the i-th beacon.
+Calculate dp[n-1], then use this value as a starting point for a dynamic programming loop that iterates backwards from n-2 to 0.
+For each i, calculate dp[i] by iterating over all possible positions and power levels for the new beacon. For each position j and power level b_new, check if b_new + b_i > dp[i+1]. If it is, then update dp[i].
+Finally, return dp[0], which represents the minimum number of beacons that would remain if only one new beacon were added.
+===END PLAN===

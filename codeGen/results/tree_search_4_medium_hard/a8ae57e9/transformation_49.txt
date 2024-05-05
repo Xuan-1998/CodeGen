@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in bottom-up manner. Initialize dp with zeros, where dp[i][j] represents the maximum amount of money earned given i remaining tables and j total amount of money to spend.
+
+For each request (size c, money pi):
+- If there's enough capacity left in all tables to seat the group: consider dp[i-1][pi-c*s] as an option. This is because we can still use some tables even if we don't accept this current request.
+- Otherwise, consider dp[i][j-pi] as an option. This is because we can't accept this current request and have to reduce our expected income.
+
+Finally, return the maximum value in the last row of dp table (dp[k-1][m]).
+
+===END PLAN===

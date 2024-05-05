@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider a table dp[i] where dp[i] is the maximum profit that can be achieved with i grams of dough.
+
+dp[0] = 0 (base case: no dough left)
+
+The state could be dp[i] = max(profit, ci + di) where:
+- ci is the amount of dough required to cook a bun with the current stuffing type
+- di is the price at which the bun can be sold
+
+The transition relationship could be to consider all possible cases when making a bun with the current stuffing type or not:
+
+1. Make a bun without any stuffing: dp[i] = max(dp[i], d0)
+2. Make a bun with the current stuffing type:
+   - If there's enough dough for the current stuffing type: dp[i] = max(dp[i], ci + di)
+   - If there's not enough dough for the current stuffing type: dp[i] = dp[ci] (use up all available dough and then start using this stuffing type)
+
+Tabulation using a 1D array to store the maximum profit for each possible number of dough.
+
+===END PLAN===

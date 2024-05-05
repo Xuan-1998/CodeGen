@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+Consider a base case: dp[0] = 0, because there are no perfect squares that sum up to 0.
+dp[i] is the minimum number of perfect squares that sum up to i, and for j in range(1, sqrt(i)), dp[i] = min(dp[j] * 2 + (i - j), dp[j]) if i >= j else dp[0]
+Use a bottom-up dynamic programming approach with a tabulation table where dp[i] represents the minimum number of perfect squares that sum up to i.
+For each i from 1 to n:
+    for j from 1 to sqrt(i):
+        if i >= j:
+            dp[i] = min(dp[j] * 2 + (i - j), dp[i])
+===END PLAN===

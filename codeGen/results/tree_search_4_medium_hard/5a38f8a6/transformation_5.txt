@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Since we're trying to find the minimum number of perfect squares that sum up to n, we can identify overlapping subproblems by considering the maximum possible value of each perfect square (e.g., √n). This means we'll need a memoized function to keep track of previously computed values.
+
+The state expression is dp[i] where i ranges from 0 to √n, representing the minimum number of perfect squares that sum up to i.
+dp[i] = min(dp[j] + 1 for j in range(0, int(i**0.5) + 1))
+
+To improve the plan, we can add a base case for dp[0], since there is only one way to express 0 as the sum of perfect squares (i.e., no perfect squares are needed). This will help us avoid considering unnecessary subproblems.
+
+Additionally, we can optimize the memoized function by using a list or array instead of a dictionary. Since our indices range from 0 to √n, we don't need to store strings as keys in our memoization data structure.
+
+===END PLAN===

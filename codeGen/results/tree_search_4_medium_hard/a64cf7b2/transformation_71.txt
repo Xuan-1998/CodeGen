@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Design a bottom-up dynamic programming algorithm that fills up a 2D table dp[][] where dp[i][t] represents the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+
+State: (v, t), representing the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex v.
+
+Initialization: dp[0][t] = 0 for all t. This represents that no vertices can be visited if we start at vertex 0 (which doesn't exist in this graph).
+
+Transition function:
+- If there is an edge from vertex u to vertex v with weight w, then the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex v is equal to the maximum number of vertices that can be visited within a time limit of t-w when starting from vertex 1 and ending at vertex u, plus one (for visiting vertex v).
+- If there is no edge from vertex u to vertex v, then the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex v is equal to the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex u.
+
+Bottom-up approach:
+- Iterate over all edges (u, v) with weight w.
+- For each edge, iterate over all possible remaining times t-w.
+- Update dp[v][t] to be the maximum of its current value and dp[u][t-w] + 1.
+- Repeat this process for all vertices i = 2, ..., n.
+
+Final answer:
+The maximum number of vertices that can be visited within a time limit of T is stored in dp[n][T].
+
+Maximum number of vertices that can be visited: 
+Print the values stored in dp[n][0], ..., dp[n][T] to get the maximum number of vertices that can be visited.

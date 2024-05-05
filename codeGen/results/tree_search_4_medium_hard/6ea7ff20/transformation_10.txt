@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when i=n, meaning we've reached the end of the permutation. In this case, check if the current permutation p matches either array a or b.
+
+State: A pair of lists a and b representing the arrays we have processed so far.
+Transition: 
+  - If both a and b are non-empty and the next element in a is smaller than the next element in b:
+    Add the next element from a to p, then decrement the length of a by 1
+  - If both a and b are non-empty and the next element in a is larger than the next element in b:
+    Add the next element from b to p, then decrement the length of b by 1
+  - If one of a or b is empty:
+    Add all remaining elements from the other array to p
+
+Use bottom-up dynamic programming by iteratively building up solutions for subproblems and storing them in a table.
+
+===END PLAN===

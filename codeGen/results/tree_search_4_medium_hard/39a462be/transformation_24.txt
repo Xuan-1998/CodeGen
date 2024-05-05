@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming without building a suffix tree for both strings.
+
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B; The state represents the similarity score up to the current indices.
+Let dp[i][j] be a 2D array where i is the length of the substring of A ending at index i, j is the length of the substring of B ending at index j, and dp[i][j] stores the similarity score for these two substrings. The transition relationship would be:
+    if the characters at indices i-1 in string A and j-1 in string B are equal, then dp[i][j] = 4 + dp[i-1][j-1].
+    Otherwise, dp[i][j] is the maximum of 4 and dp[i-1][j] and dp[i][j-1].
+
+Use a bottom-up dynamic programming approach to fill up the state_expression (i, j) for all possible combinations of substrings in both strings.
+
+Let's initialize the base cases: dp[0][j] = -j and dp[i][0] = -i. This is because if the length of one string is 0, then the similarity score will be minus the length of the other string.
+
+Then use the transition relationship to fill up the state_expression (i, j) for all possible combinations of substrings in both strings.
+Finally, return dp[n][m] as the maximum similarity score over all pairs of substrings.
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (stuffing_type, remaining_dough) as the state expression.
+State: (stuffing_type, remaining_dough), Transition: whether to make a bun with this stuffing type or not
+
+We'll use dynamic programming with a 2D array dp[m+1][n+1], where dp[i][j] is the maximum profit that can be earned using i-1 types of stuffing and j grams of dough.
+
+To fill up the dp table, we'll iterate through each stuffing type and remaining dough amount. For each cell dp[i][j], we'll consider two options:
+
+* Make a bun with the current stuffing type: If there's enough dough (i.e., ci <= remaining_dough) and enough of the current stuffing type (i.e., ai >= 1), then we can earn di profit. We subtract bi grams of stuffing and ci grams of dough from the remaining amount.
+* Don't make a bun with the current stuffing type: In this case, we don't change the remaining dough or stuffing amounts.
+
+We'll take the maximum of these two options as the value for dp[i][j].
+
+The final answer will be stored in the bottom-right cell dp[m][n], which represents the maximum profit that can be earned using all m types of stuffing and n grams of dough.
+===END PLAN===

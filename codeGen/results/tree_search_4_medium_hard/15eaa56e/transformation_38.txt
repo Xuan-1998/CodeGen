@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val) where col is the column being checked and max_val is the maximum value seen in that column so far
+
+State: (col, max_val, prev_val), Transition: (new_col, new_max_val) -> update max_val and check if sorted based on previous value
+
+For each task's subtable:
+    1. Initialize an empty suffix array
+    2. Iterate over the rows in reverse order
+        a. For each row, find its column values for the current column
+        b. If the row is a new combination of values seen so far, add it to the suffix array and update the max_val
+        c. Check if the suffix array is sorted (i.e., all elements are in non-decreasing order)
+    3. If any subtable has a sorted suffix array, print "Yes"
+    4. Otherwise, print "No"
+
+===END PLAN===

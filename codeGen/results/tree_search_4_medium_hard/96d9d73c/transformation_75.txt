@@ -1,0 +1,21 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] is True if for some k, there exists a partition point p such that all elements from 0 to p are within M units of each other, and the remaining elements (from p+1 to i) can be partitioned into k partitions of size at least K, and dp[i-p][k] is True.
+
+dp = [[False]*(M + 1) for _ in range(N+1)];
+
+for i in range(K-1):
+    for j in range(min(i+1, M+1)):
+        if all(abs(A[x]-A[y]) <= M for x in range(j+1) for y in range(x, j+1)):
+            dp[i][j] = True
+
+for i in range(N+1):
+    for k in range(1, min(i//K, M+1)+1):
+        if all(abs(A[x]-A[y]) <= M for x in range(k*K-1, i) for y in range(x+k*K, i)):
+            dp[i][k] = True
+
+for i in range(N+1):
+    for k in range(1, min(i//K, M+1)+1):
+        if all(abs(A[x]-A[y]) <= M for x in range(k*K-1, i) for y in range(x+k*K, i)):
+            dp[i][k] = True
+return any(dp[N])

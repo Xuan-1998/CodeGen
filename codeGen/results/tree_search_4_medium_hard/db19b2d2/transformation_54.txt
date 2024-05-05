@@ -1,0 +1,11 @@
+Define the state as (k, h) where k is the current team size and h is 1 if the current team has at least one player from the department of interest, otherwise it's 0.
+Initialize a memoization table dp with size n+1.
+For each possible team size k from 1 to n:
+    For each possible number of players from the department of interest i from 0 to min(k, si):
+        If i is greater than 0 or (k-i) is less than n, then calculate the probability that a randomly formed team with i players from the department of interest and k-i players not in it will have at least one player from the department of interest.
+        Store this probability in dp[k][h].
+For k = n:
+    Calculate the total probability for all possible team sizes by summing up the probabilities stored in dp[n].
+Return the total probability.
+
+This plan includes edge cases like when there are not enough basketball players in the university to form a team, it will return -1.

@@ -1,0 +1,14 @@
+{
+Consider a state as a tuple of (remaining string, whether the last character is deleted or not). The dynamic programming table can be filled in bottom-up order by considering all possible strings that can be formed by either deleting the last character or duplicating the original string. The lexicographically smallest string among these possibilities can then be determined.
+
+Memoize the function that generates all possible strings by either deleting the last character or duplicating the original string.
+
+Let's define a helper function dp(s, delete) where s is the remaining string and delete is a boolean indicating whether the last character is deleted. The function should return the lexicographically smallest string of length k that can be formed from the remaining string s by either deleting the last character or duplicating the original string.
+
+The base case for the dynamic programming table would be when the length of the remaining string s is less than or equal to k, in which case we simply consider all possible strings that can be formed by either deleting the last character or duplicating the original string and return the lexicographically smallest one.
+
+For the recursive case, if the length of the remaining string s is greater than k, then we can recursively call dp on the remaining string with delete set to true (i.e., the last character is deleted) and also consider the string obtained by duplicating the original string. We then return the lexicographically smallest string among these possibilities.
+
+Finally, we fill in the dynamic programming table using a bottom-up approach. For each state (s, delete), we calculate the lexicographically smallest string of length k that can be formed from the remaining string s by either deleting the last character or duplicating the original string and store it in the dynamic programming table. We then return the lexicographically smallest string among all possible strings that can be formed from the original string by either deleting the last character or duplicating the original string.
+
+}

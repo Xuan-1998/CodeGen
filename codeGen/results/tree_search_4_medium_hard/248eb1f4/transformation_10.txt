@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i] = last_winner if we're considering i players, and the dynamic programming array stores the winners for each number of players from 1 to X.
+
+dp[i] = dp[i-1] if i is not a multiple of M, otherwise dp[(i-M) % (X+1)]. This choice assumes that the winner does not depend on whether it's M people or not.
+
+A top-down approach can be used where the function iterates over i in reverse order and fills up the dp array based on previously computed values. Start from X and go down to 1, filling up the dp array with the winners for each number of players.
+
+In the base case, when there's only one person left (i.e., i = 1), the winner is the remaining person.
+
+The recursive relation can be formulated as: if i is not a multiple of M, then the winner is the same as the previous step dp[i-1]; otherwise, the winner is the same as (i-M) players, which is dp[(i-M) % (X+1)].
+
+The function should return dp[X], which gives us the winner for X people.
+
+===END PLAN===

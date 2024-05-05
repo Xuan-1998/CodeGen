@@ -1,0 +1,10 @@
+dp = {(i, set(), 0) if i > n else (0, set(), 0) for i in range(n+1)}
+
+def beauty(i, bad_primes, max_beauty):
+    if i > n:
+        return 0
+    pivot = a[i]
+    new_bad_primes = bad_primes - {p for p in bad_primes if p | pivot == pivot}
+    gcd = lambda x: x if x == 1 else min(x, gcd(x // pivot))
+    next_beauty = max(max_beauty, pivot + beauty(i-1, new_bad_primes, 0) if i > 1 else pivot)
+    return dp[(i, new_bad_primes, next_beauty)]

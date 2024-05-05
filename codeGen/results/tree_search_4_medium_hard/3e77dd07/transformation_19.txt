@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+To solve this problem using dynamic programming, we can create a memoization table where each entry represents whether the substrings s1[:i] and s2[:j] are scrambled.
+We initialize all entries in the table to False, because initially we don't know if any two strings are scrambled.
+Then we iterate over the length of the input strings. For each length i, we check if the characters in the first i positions of s1 and s2 are equal.
+If they are equal, that means the strings are not scrambled, so we set all entries for this length to False.
+Next, we need to consider all possible ways to scramble the string. We can do this by considering all possible splits of the string into two non-empty substrings.
+For each split position j, we check if the characters in the first j positions of s1 and s2 are equal.
+If they are equal, that means these two parts of the strings are scrambled.
+We then recursively check if the remaining parts are also scrambled. If both checks pass, it means the whole string is scrambled, so we set this entry to True.
+Finally, we return the result of the memoization table for the given lengths.
+
+===END PLAN===

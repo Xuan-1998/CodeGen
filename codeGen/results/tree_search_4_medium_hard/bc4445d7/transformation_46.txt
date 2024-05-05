@@ -1,0 +1,19 @@
+Define a recursive function dp(u, v) that calculates the sum of numbers on simple paths from node u to node v.
+
+Let f(u, v) be 1 if edge (u, v) is not labeled and 0 otherwise. Then, define a base case as follows:
+
+- If u = v, then f(u, v) = 0
+- If (u, v) is not an edge, then f(u, v) = 0
+- If there are no prime factors of k, then f(u, v) = k
+
+Now define a recursive relationship as follows:
+
+f(u, v) = f(u, w) + f(w, v) - f(w, w)
+
+Let s be the number that edge (u, v) is labeled with. Then, dp(u, v) should return f(u, v) * s.
+
+Finally, define a memoization array memo[u][v] and fill it using this recursive function.
+
+For each test case, initialize a variable ans to 0, then iterate through all edges (u, v), updating ans by adding dp(u, v).
+
+Print the final value of ans modulo 10^9 + 7.

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] = number of ways to fill the current cell with a non-negative integer such that 
+  - The sums of elements in rows up to i are all less than or equal to M.
+  - The sums of elements in rows up to (i-1) are strictly less than the sum of elements in the ith row.
+
+dp[0][j] = number of ways to fill a single cell with non-negative integers such that 
+  - The sum of the cell is less than or equal to M.
+  - The sum of the cell is strictly less than M.
+
+For i > 0, dp[i][j] can be calculated as the sum of dp[i-1][k] over all k such that:
+  - k <= j
+  - sum of elements in rows up to (i-1) + k is less than or equal to M
+  - sum of elements in rows up to (i-1) + k is strictly less than the sum of elements in the ith row
+
+Memoize function calls to avoid redundant computations.
+
+===END PLAN===

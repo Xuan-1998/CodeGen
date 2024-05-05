@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider the strings that can be obtained by deleting the last character of s, which are all substrings of s. The lexicographically smallest string among these is either the original string or the string obtained by deleting its last character. If k > n, then the optimal solution is to duplicate the string until we reach a length of k.
+
+dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+- dp[i][j] = s[:n] if i >= n and j >= k
+
+The state transition would be based on whether it's better to delete the last character or duplicate the current string.
+
+Implement a tabulation approach using a 2D array dp where dp[i][j] represents the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+- If i > 0 and s[i-1] <= s[i], then dp[i][j] = dp[i-1][j]
+- Else, dp[i][j] = s[:i] if i == n
+- Else, dp[i][j] = dp[i-1][j]
+
+If j < k, then we need to duplicate the string until we reach a length of k. So, dp[i][k] = dp[i-1][k-1] + s[i-1]
+===END PLAN===

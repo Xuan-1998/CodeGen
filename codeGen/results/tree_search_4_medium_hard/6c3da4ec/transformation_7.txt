@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider using a 2D DP table to store the bitwise OR of all possible pairs of non-empty substrings of s, with dimensions n x (n+1) where each cell dp[i][j] represents the maximum bitwise OR value for the substring s[i:j].
+Initialize the base cases: dp[0][i] and dp[i][0] represent the bitwise OR values of single characters. For all i, set dp[0][i] to 0 (since there's no character before the first one) and dp[i][0] to 0 (since there's no character after the last one).
+For j > i:
+    - Calculate the maximum bitwise OR value for the pair of substrings s[i:j-1] and s[j:]. Use a prefix sum array to efficiently calculate this.
+    - Store the result in dp[i][j].
+Use a suffix sum array to efficiently calculate the maximum bitwise OR value for any given pair of non-empty substrings. Update the DP table accordingly.
+Finally, return the maximum value stored in the bottom-right cell (dp[0][n]) as the maximum possible bitwise OR value without leading zeroes.
+===END PLAN===

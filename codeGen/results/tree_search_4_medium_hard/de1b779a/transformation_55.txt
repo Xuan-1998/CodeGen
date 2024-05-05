@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Represent the state using a 3D array dp where dp[i][j][k] is the maximum profit that can be achieved with i grams of dough, j stuffing types, and k buns made. The transition relationship could be formulated as: 
+dp[i][j][k] = max(dp[i-1][0][0], dp[max(0, i-ci[j]), min(j, k)][k-1]) + di[j]
+where ci[j] is the amount of dough required to make a bun with the j-th stuffing.
+
+The state transition can be further simplified as: 
+dp[i][j][k] = max(dp[i-1][0][0], dp[max(0, i-ci[0]), min(j, k)][k-1]) + di[0]
+
+This plan correctly addresses the problem of maximizing profit by making buns with different stuffings or without any stuffing.
+===END PLAN===

@@ -1,0 +1,23 @@
+state: (i, j, partition) where i and j are the start and end indices of the substring to be checked for palindromeness and partition is the current partition
+state: (i, j, is_palindrome) where i and j are the start and end indices of the substring to be checked for palindromeness and is_palindrome is a boolean indicating whether the substring is palindromic or not, with an additional parameter 'partition' to store the current partition
+
+function memoized_palindromic_partitions(s):
+    memo = {}
+    def helper(i, j):
+        if (i, j) in memo:
+            return memo[(i, j)]
+        if i > j:
+            return [[s[i:j+1]]]
+        
+        partitions = []
+        for k in range(i, j + 1):
+            left = s[i:k]
+            right = s[k:j+1]
+            if left == right[::-1]:
+                for p in helper(i, k - 1):
+                    for q in helper(k + 1, j):
+                        partitions.append([left] + p + [right] + q)
+        memo[(i, j)] = partitions
+        return partitions
+    
+    return helper(0, len(s) - 1)

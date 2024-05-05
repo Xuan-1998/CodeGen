@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children and parent.
+The state expression is dp[i] = max(dp[2*i+1], dp[2*i+2]) + tree[i], where tree[i] is the value of the ith node in the binary tree and 0-indexing is used. This base case considers that each node can be either the start or end of a path.
+Consider the maximum sum of a path for each node, taking into account its parent, children, and itself. The state expression is dp[i] = max(dp[2*i+1], dp[2*i+2], dp[(i-1)/2]) + tree[i].
+Use a bottom-up dynamic programming approach by initializing an array with zeros and filling it up iteratively based on the state expression.
+Pre-compute the indices of children for each node. Initialize an empty dictionary, child_map = {}, to store the parent-child relationships in the binary tree. Iterate through the tree from left to right (0-indexed), updating child_map as you go. Then, fill dp with zeros and iterate through the tree again to calculate dp values.
+===END PLAN===

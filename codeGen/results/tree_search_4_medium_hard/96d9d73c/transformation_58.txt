@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = TRUE if:
+    - It is possible to partition the subarray A[0..i-1] into (j-1) partitions
+    - The maximum element in the last partition minus the minimum element does not exceed M
+
+Update the dp array using a bottom-up dynamic programming approach:
+
+for i from 1 to N:
+    for j from K to min(K, i):
+        if all elements in A[0..i-1] are within the range [A[i-K], A[i]]
+            dp[i][j] = TRUE
+        else:
+            dp[i][j] = FALSE
+
+Return dp[N][K]
+===END PLAN===

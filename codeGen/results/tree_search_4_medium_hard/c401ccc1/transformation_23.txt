@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another.
+
+Define the state as:
+dp[i] = number of vertices reachable by flipping all 1-bits at position i
+Base case: dp[i] = 2^i (since every vertex can reach itself)
+
+Transitive closure: for each pair (u, v), if u & v == v, then add dp[v] to dp[u]
+Memoization: use a dictionary to store the computed results and look up the values instead of recomputing them
+
+For the query (u, v), check if u & v == v
+If yes, recursively calculate the number of reachable vertices for v
+Return "YES" if any vertex is reachable from v, otherwise return "NO"
+
+===END PLAN===

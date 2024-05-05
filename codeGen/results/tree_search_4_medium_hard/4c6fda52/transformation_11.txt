@@ -1,0 +1,6 @@
+The problem can be broken down into smaller subproblems by considering all possible substrings of length k in s, and checking if they appear in the infinite string 'RGBRGBRGB...'.
+The state expression is dp[i][c] = minimum number of characters changed in the first c characters of s, considering all substrings of length k ending at index i
+dp[i][c] = min(dp[max(0, j-k)]:j in range(i-k+1, i+1)) + (s[i] != target)
+The base case is dp[0][c] = 0 for c in range(c+1), since the first c characters are already considered as part of the initial string.
+Using a 2D array to store the dynamic programming table and filling it up from bottom to top, with dp[i][c] being calculated based on dp[j][d-1] for j < i-k and d < c. This way, we avoid redundant calculations.
+The answer is then the minimum value in the last column of the 2D array, which represents the minimum number of characters that need to be changed in s so that a substring of length k can be found in s and also in an infinite string of "RGBRGBRGB...".

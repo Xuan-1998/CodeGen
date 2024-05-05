@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+The state expression could be dp[i][k] representing the probability that we get at least one player from the department of interest after choosing k players from i-1 departments. 
+
+dp[0][0] = 1, since it's guaranteed to have at least one player if there are no players chosen yet.
+
+For i > 0 and k < h, dp[i][k] is the probability that we get at least one player from the department of interest after choosing k players from i-1 departments. This can be calculated as the sum of the probabilities for all possible outcomes greater than or equal to 1: 
+
+    For j = 0 to s_i - 1, 
+        dp[i][k] += (s_i - j) / sum(s_1, ..., s_m) * dp[i-1][k]
+
+where sum(s_1, ..., s_m) is the total number of players in all departments.
+
+The probability that we get at least one player from the department of interest after choosing h players from i-1 departments can be calculated similarly: 
+
+    For j = 0 to min(h, s_i - 1), 
+        dp[i][h] += (s_i - j) / sum(s_1, ..., s_m) * dp[i-1][k]
+
+where k is the number of players chosen from i-1 departments.
+
+Finally, the probability that we get at least one player from the department of interest after choosing n players can be calculated as: 
+
+    result = 1 - dp[m][n]
+    
+This ensures that the answer only includes outcomes where there are at least h players chosen.
+===END PLAN===

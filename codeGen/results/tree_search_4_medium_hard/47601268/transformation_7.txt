@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp_base_case
+Let dp[i] represent whether number i has consecutive ones in its binary representation. The initial state is False (no consecutive ones) for state 0.
+
+Use a dictionary memo of size 2*n to store the results of subproblems, where memo[(i, flag)] represents whether the binary representation of number i contains consecutive ones given flag as the previous state.
+
+Iterate over all numbers less than or equal to n. For each number i:
+    If i is 0, set dp[i] to False (no consecutive ones).
+    Otherwise, iterate from j = i - 1 down to 0:
+        If j has no consecutive ones and the binary representation of j + 1 does not contain the last bit of j's one-counting sequence, then set dp[i] to False.
+        Else, set dp[i] to True.
+    Store the result in memo[(i, dp[i])].
+Count the numbers less than or equal to n that have no consecutive ones by summing up dp[i] for i from 0 to n.
+===END PLAN===

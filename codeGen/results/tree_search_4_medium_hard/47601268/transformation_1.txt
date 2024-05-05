@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+State: dp[k] = whether k-bit numbers do not have consecutive ones
+Base case: dp[0] = True (no bits -> no consecutive ones)
+
+Dynamic Programming:
+For each possible length k from 1 to log2(n):
+    For each possible k-bit number num:
+        If num does not have consecutive ones in its binary representation:
+            dp[k] = True
+        Else:
+            dp[k] = False
+
+Function: findCount(n)
+    Initialize a boolean array dp[log2(n)+1] with all elements set to True (base case)
+    For each possible length k from 1 to log2(n):
+        For each possible k-bit number num:
+            If num does not have consecutive ones in its binary representation:
+                dp[k] = True
+            Else:
+                dp[k] = False
+
+    Count the number of valid lengths by iterating over dp[] and summing up the boolean values
+    Return the count
+
+Edge cases: n=0 (base case), n=1 (no valid numbers), n>1 (dynamic programming works for all positive integers)
+
+===END PLAN===

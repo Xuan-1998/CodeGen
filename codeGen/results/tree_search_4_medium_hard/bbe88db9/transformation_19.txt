@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+State: (room, visited) = (int, bool)
+Transition: (next_room, next_visited) = 
+    if (cross_count % 2 == 1):
+        (p[room], False)
+    else:
+        (portal(room), True)
+
+Create a 2D array dp[n+1][2] to store the dynamic programming table, where each cell represents the minimum number of portal moves required to reach that room and whether it's been visited before.
+dp[i][0]: minimum number of portal moves to reach i-th room without visiting
+dp[i][1]: minimum number of portal moves to reach i-th room with visiting
+
+Initialise dp[0][0] = 0, dp[0][1] = -1 (since Vasya starts at room 1 and needs to get to room n+1)
+
+For each room i from 1 to n:
+    for each possible next_room j in [p[i-1], i]:
+        if it's the first visit:
+            dp[i][0] = min(dp[i][0], dp[j][0] + 1)
+            dp[i][1] = -1
+        else:
+            dp[i][0] = min(dp[i][0], dp[j][1] + 1)
+
+Return dp[n+1][0]
+===END PLAN===

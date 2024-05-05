@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Since we're trying to find the minimum number of perfect squares that sum up to n, we can identify overlapping subproblems by considering the maximum possible value of each perfect square (e.g., √n). This means we'll need a memoized function to keep track of previously computed values.
+The state expression is dp[i] where i ranges from 0 to n, representing the minimum number of perfect squares that sum up to i.
+dp[i] = min(1 + dp[j] for j in range(0, int(i**0.5) + 1) if i >= j**2) or 1 if i == 0
+The base case is when i is 0, in which case the minimum number of perfect squares that sum up to i is 1 (since we can use only 0 as a perfect square).
+Utilize memoization through recursion with a cache
+===END PLAN===

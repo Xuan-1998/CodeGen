@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can also be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+The state is a 2D array dp[i][j] representing whether the substring S[i..j] is palindromic. The base case is that a single character is always palindromic, i.e., dp[i][i] is True for all i.
+
+For 1 < j - i <= 1, check if S[i] == S[j]. If they are the same, then the substring S[i..j] is also a palindrome. This is because single-character substrings and substrings of length 2 with matching characters are always palindromes.
+
+For 2 <= j - i < 2, dp[i][j] is True if and only if S[i..j] is equal to its reverse.
+
+Create a 2D array of size (N+1) x (N+1) filled with False values, where N is the length of the input string S.
+
+Iterate over all possible substrings of S. For each substring, check if it's a palindrome by checking dp[i][j] for the corresponding indices i and j in the 2D array. If the substring is palindromic, then add it to the list of palindromic partitions.
+
+===END PLAN===

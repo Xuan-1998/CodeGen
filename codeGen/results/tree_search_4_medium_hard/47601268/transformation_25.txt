@@ -1,0 +1,20 @@
+dp_state = {
+    0: {i: False for i in range(32)}
+}
+
+for i in range(1, 32):
+    dp_state[i] = {}
+    prev_bit_zero = True if i > 0 else None
+    for j in range(n + 1):
+        bit_j = (j >> i) & 1
+        if bit_j == 0:
+            is_consecutive_ones = False
+        elif prev_bit_zero:
+            is_consecutive_ones = False
+            prev_bit_zero = True
+        else:
+            is_consecutive_ones = True
+        dp_state[i][j] = is_consecutive_ones
+
+result_count = sum(1 - dp_state[31][j] for j in range(n + 1))
+print(result_count)

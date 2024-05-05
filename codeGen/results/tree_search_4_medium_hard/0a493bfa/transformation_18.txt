@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array and bad prime numbers by considering all possible combinations of operations on each subset of the array with the given set of bad prime numbers.
+
+state dp[i][j] is defined as the maximum beauty achievable after performing operations on a[:i] with bad prime numbers b[:j]
+
+The state could be:
+- dp[i][j] = maximum beauty achievable after performing operations on a[:i] with b[:j] such that the last operation was either a single number replacement or an entire range replacement
+
+Design a bottom-up dynamic programming algorithm that iterates over the array and bad prime numbers in order, and uses memoization to avoid redundant computation.
+
+state:
+- for i from 1 to n (inclusive)
+    - for j from 0 to m (inclusive)
+        - if j == 0
+            - dp[i][j] = f(a[1])
+        - else
+            - if j > 0 and a[i] is divisible by b[j]
+                - dp[i][j] = max(dp[i-1][k], f(a[i]/b[j]))
+            - else
+                - dp[i][j] = dp[i-1][j]
+
+return the maximum value of dp[n][m]

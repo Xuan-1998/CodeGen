@@ -1,0 +1,8 @@
+dp[0] = 1 (no sequence can be built) and dp[C+1] = 0 (sequences longer than C are not possible).
+Create a state dp[i] that represents the number of ways to build sequences with i spheres, then define transitions using the number of upper and lower hemispheres with radii less than or equal to i.
+For each sphere radius from 1 to C, calculate the number of upper and lower hemispheres with that radius. Let this be denoted as U[i] and L[i], respectively.
+Then, for each state dp[j] where j is a number from 0 to C:
+    dp[j] = (dp[j-1] * (U[C-j+1] + L[C-j+1])) % (10^9 + 7)
+This ensures that the result is within the constraints of the problem.
+Finally, return the value at state dp[C], which represents the total number of sequences with C spheres.
+

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequences and then count the number of maximum length subsequences
+
+dp[i] = len([j for j in range(i) if arr[j] < arr[i]]) + 1, where i is the index of the array element
+Explore the idea of keeping track of the last element in a sequence and using it to determine whether a new sequence can be formed
+
+Initialize an empty dictionary dp with keys as the indices of the array elements
+For each element in the array:
+    Initialize the longest increasing subsequence ending at this element to 1
+    For each previous element that is smaller than the current element:
+        Update the longest increasing subsequence ending at this element if it's longer than before
+    Update dp with the maximum length of the longest increasing subsequences ending at each element
+
+Count the number of occurrences of the maximum length in dp and return this count as the result
+
+===END PLAN===

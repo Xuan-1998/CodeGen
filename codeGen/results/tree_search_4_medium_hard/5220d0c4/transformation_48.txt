@@ -1,0 +1,16 @@
+===
+state: (k, v) where k is the index of the last considered element in the array, and v is its beauty value;
+transition relation:
+    if the current number is a good prime, update the state as (k+1, v + min_prime);
+    if it's a bad prime, update the state as (k+1, max(0, v - 2));
+memoized dictionary: memo = {}
+base case: k == n-1;
+initialize dp array with base case value: dp = [0] * (n); 
+dp[0] = beauty of the first number in the array
+for i from 1 to n:
+    for j from 0 to i:
+        if array[j] is a good prime, update dp[i] as max(dp[i], dp[j-1] + beauty_of_good_prime);
+        if array[j] is a bad prime, update dp[i] as max(dp[i], dp[j-1] - 2);
+    memo[dp[i]] = i;
+return max(dp)
+===

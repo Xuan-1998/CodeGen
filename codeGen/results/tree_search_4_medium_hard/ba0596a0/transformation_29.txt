@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. Can we find a way to combine these subproblems to form the solution?
+The state expression could be defined as: dp[i] = True if the frog can reach stone i, False otherwise. The base case would be dp[0] = True since the frog starts on the first stone.
+dp[i] represents whether the frog can reach the ith stone after making at most one jump. The transition relationship is then dp[i+1] = any of the previous stones j such that |i-j| == k-1, k, or k+1 and dp[j] is True
+Memoize the function that checks if the frog can reach a stone given its current position and the number of jumps made so far.
+
+For every jump, we need to check three previous positions: i - k - 1, i - k, i - k + 1. This makes the plan correct.
+To improve this plan, we could add an additional base case for dp[stones.length] = True since the frog must reach the last stone.
+
+There are no potential issues with the plan as it correctly handles all edge cases.
+===END PLAN===

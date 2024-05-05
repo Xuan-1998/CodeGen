@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+The state expression could be dp[i] = number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+
+dp[i] is equal to the sum of dp[j] for all j such that j <= i and there exists an upper hemisphere with radius j and a lower hemisphere with radius i-j.
+
+Create a list dp of length C+1 and fill it up iteratively, updating each value based on previously computed values.
+
+Sort the upper hemispheres by increasing radius and the lower hemispheres by decreasing radius. This is to ensure that we consider all possible combinations of upper and lower hemispheres for building an i-sequence.
+
+For each upper hemisphere with radius j, update dp[i] for all i such that i >= j and there exists a lower hemisphere with radius i-j in the list. The updated value of dp[i] would be the sum of the previous value and the number of ways to build an (i-j)-sequence, which is stored at dp[i-j].
+
+For each test case, print the values of dp[1], dp[2], ..., dp[C] as space-separated integers.
+
+===END PLAN===

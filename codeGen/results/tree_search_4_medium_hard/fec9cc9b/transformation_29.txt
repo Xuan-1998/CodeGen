@@ -1,0 +1,8 @@
+Determine if there are any increasing or decreasing elements within the subsegment, and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder.
+
+dp[i][j] = True if array[l-1] is the smallest value for some l in range(l, j+1) such that array[k-1] <= array[k] and array[k] <= array[j], with base case being dp[0][l-1] = True.
+dp[i][j] = True if all elements from l to j are in non-decreasing order, otherwise False.
+
+Use a 2D array to store the dynamic programming states and initialize with zeros.
+
+For each query, iterate over the subsegment [l, r] and check for decreasing or increasing elements. If found, use dp[i][j] to determine if it's possible to get a ladder from this subsegment.

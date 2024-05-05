@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+Consider the number of steady tables ending at each cell as the state, where the base case is when all cells are filled with non-negative integers. Let the state be a 2D array dp[i][j] where dp[i][j] represents the number of steady tables ending at cell (i, j).
+
+The state transitions can be formulated as follows: if cell (i, j) is filled with k, then the possible states for the top-left and top-right cells are dp[i-1][j-k] and dp[i-1][j]. However, this transition rule does not consider the constraint that the sum of elements in the ith row is not less than the sum of elements in the (i-1)th row.
+
+To incorporate this constraint, we can maintain another 2D array cum_sum[i][j] where cum_sum[i][j] represents the cumulative sum of the first i rows and j columns. Then, for each cell dp[i][j], we can calculate the possible states for the top-left and top-right cells as follows: if cell (i, j) is filled with k, then the possible states are all dp[x][y] where x ranges from 1 to i-1 and y ranges from max(0, j-k) to min(j, cum_sum[i-1][j]).
+
+Use a bottom-up dynamic programming approach to fill up the 2D array dp, where each cell dp[i][j] represents the number of steady tables ending at cell (i, j). Start by initializing the base case when all cells are filled with non-negative integers. Then, for each cell, calculate the possible states as described above and update dp[i][j] accordingly.
+
+===END PLAN===

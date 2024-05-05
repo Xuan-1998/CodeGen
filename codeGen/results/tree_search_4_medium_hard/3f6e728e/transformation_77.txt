@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+We can use recursion to break down the problem into smaller subproblems, and then use memoization to store the results and avoid redundant computations.
+
+The state can be represented as the number of upper hemispheres with radius U_i. The base case is when i is 0.
+State: s where s is the set of unique upper hemisphere radii.
+Transition relationship:
+    dp[s] = product(choose(N, |s|))
+where choose(n, k) is the number of ways to choose k items from a set of n items.
+
+We need to consider that the order of the hemispheres matters. For example, [1, 2, 3] and [3, 2, 1] are considered different sequences.
+To avoid counting the same sequence multiple times, we can sort s before computing dp[s].
+
+Memoization:
+    Use a dictionary to store the results of subproblems and avoid redundant computations.
+
+Some edge cases to consider:
+    When N is 0 or M is 0, there's only one way to build an empty X-sequence.
+    When C is 1, there's only one way to build each possible sequence (i.e., all sequences are the same).
+
+===END PLAN===

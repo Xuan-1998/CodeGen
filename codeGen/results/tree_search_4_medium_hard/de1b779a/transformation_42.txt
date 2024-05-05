@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+The state is (dough_left, stuffings_used), where dough_left is the amount of dough left and stuffings_used is a boolean indicating whether any stuffing has been used yet.
+
+The subproblem could be to decide which stuffing type to use for the next bun, considering the remaining dough and each stuffing's availability. The state would be (dough_left, available_stuffs), where dough_left is the amount of dough left and available_stuffs is a list indicating which stuffings are still available.
+
+Create a 2D DP array dp[n][m] to store the maximum profit for each possible state (dough_left, stuffings_used). 
+
+dp[i][j] = max {
+  (price of bun with stuffing[j]) * min(dough left / dough required by this stuffing, amount of this stuffing left)
+  + dp[i - c0][j]
+  if dough left >= c0
+
+  price of plain bun
+  + dp[i - d0][0]
+  if j = 0 (no stuffing used)
+
+}
+
+Initialize the DP array with base cases.
+
+Fill in the DP array by iterating through each state and applying the recursive formula.
+
+Return dp[n][m] as the maximum profit.
+===END PLAN===

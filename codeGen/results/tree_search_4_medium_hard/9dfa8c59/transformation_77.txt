@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+
+The base case is when n exceeds n_max. The state then becomes None.
+
+Represent the state as a dictionary {prime: k_perms} where prime is the current prime number and k_perms is either True (the prime has k_perms permutations) or False (it doesn't).
+
+The transition relationship is:
+    - If k_perms is True, update it to False
+    - For each digit in the prime number, generate its permutations and count how many have k_perms. 
+      If any of these permutations are already in the dictionary with state True, then mark this prime as having k_perms too.
+    - If no such permutation exists, set k_perms to None.
+
+Iterative solution using a set to keep track of generated prime numbers and a dictionary to store the count of prime permutations for each prime number.
+
+For edge cases:
+- Handle n_max > 10000
+- Handle k_perms > 3
+
+The goal is to find all primes that have exactly k_perms permutations below n_max. We'll iterate through all primes below n_max, check if they have k_perms permutations and store the count of such primes, along with their smallest and largest values.
+
+===END PLAN===

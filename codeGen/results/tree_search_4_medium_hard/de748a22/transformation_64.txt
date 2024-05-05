@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The dynamic programming problem involves finding the minimum number of elements that can be removed from a given range of the array so that the sign-variable sum of the remaining elements is zero.
+
+State expression: dp[i][j] = min number of elements to be removed from [l..r] such that the sign-variable sum of the remaining elements is 0.
+The state transitions are:
+- If j-th element in [l..r] has the same sign as the j-th element in array[0..i-1], dp[i][j] = dp[i-1][j-1]
+- Otherwise, dp[i][j] = min(dp[i-1][j-1] + 1, dp[i-1][j])
+
+Use a combination of dynamic programming and prefix sums to efficiently compute the minimum number of elements to be removed.
+Compute the sign-variable sum for each subarray [l..r] using prefix sums.
+For each query [l..r], calculate dp[r][j] for all j in range(r, l-1, -1) and return min(dp[r][j]) + 1.
+===END PLAN===

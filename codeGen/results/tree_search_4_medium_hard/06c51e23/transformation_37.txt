@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+Let's define the state expression as 'state[i][j]' where state[i][j] represents whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point. Define the base case as state[0][j] = True for all j since it's always possible to get 0.0 within any time limit.
+
+The main state expression is state[i][j] which represents the maximum possible grade that can be obtained by rounding the first i digits after the decimal point within j seconds. We'll use a 2D array to represent the state, where state[i][j] stores the maximum grade that can be achieved in j time units by rounding the first i digits after the decimal point.
+
+To fill up the state array, we iterate over each digit after the decimal point from left to right and calculate the maximum possible grade at that point. If it's possible to round this digit within the given time limit, add 0.1 or 0.5 (depending on whether we're rounding down or up) to the current maximum grade.
+
+Finally, return state[n][t] as the maximum possible grade that can be obtained by rounding the decimal fraction within t seconds.
+===END PLAN===

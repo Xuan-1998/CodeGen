@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+Base case: when there's no dough left (i = 0) or no stuffing types left (j = 0).
+    - i == 0:
+        * dp[i][j] is the maximum profit that can be achieved with 0 grams of dough, j stuffing types, and the maximum number of buns that can be made using the current amount of dough and stuffing.
+    - j == 0:
+        * dp[i][j] is the maximum profit that can be achieved with i grams of dough, 0 stuffing types.
+
+Recursive function: use memoization to avoid recalculating the same subproblems multiple times.
+    * For each possible number of buns k, calculate the maximum profit from making k buns with the current amount of dough and j stuffing types.
+    * Update dp[i][j] as the maximum of this calculated value and the previously computed values for dp[i-ci][j-1] (when not using the i-th stuffing) or dp[i][j-1] (when not using any stuffing).
+
+===END PLAN===

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp = [(0, 0, n)]  # base case: no monsters left
+states = sorted([(0, i+1, n) for i in range(k_1-1)]) + dp
+
+for mana_usage, seconds_left, monsters_remaining in states:
+    if monsters_remaining == 0:
+        continue
+    
+    next_monster_appearance = min(monsters_remaining * (k_i for k_i, h_i in zip(k_[1:], h_[1:]))[i] for i in range(monsters_remaining))
+    
+    dp.append((mana_usage + seconds_left + 1, 1, monsters_remaining - 1)) if mana_usage < next_monster_appearance else 
+    for i in range(monsters_remaining):
+        if (k_i - k_[i-1]) > (next_monster_appearance - seconds_left):
+            break
+        dp.append((mana_usage + seconds_left + 1, 1, monsters_remaining - i)) if mana_usage < next_monster_appearance else 
+    for i in range(monsters_remaining):
+        if k_i > seconds_left:
+            continue
+        dp.append((mana_usage + seconds_left, seconds_left, monsters_remaining - i-1))
+        
+return dp[-1][0]

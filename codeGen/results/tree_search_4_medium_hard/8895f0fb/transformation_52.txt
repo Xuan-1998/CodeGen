@@ -1,0 +1,13 @@
+Determine if there's a way to use tabulation with a 2D array dp[i][j] to keep track of the cumulative sum of carries for each digit j in A and B.
+
+state: dp[i][j] = expected number of non-zero carries when adding A and B with i digits in total, considering j as the most significant digit.
+dp[0][j] = 0 for all j (base case) because there are no carries when adding two single-digit numbers
+
+for each i from 1 to N:
+    for each j from 0 to 9:
+        if j <= 4:  // considering digits 0-4 in the most significant digit position
+            dp[i][j] = min(10-j, max(0, 5-dp[i-1][min(9, j+1)]))  // model the process of adding two N-digit numbers in base 10 representation
+        else:  // considering digits 5-9 in the most significant digit position
+            dp[i][j] = min(5-j, max(0, 15-dp[i-1][min(9, j+1)]))  // model the process of adding two N-digit numbers in base 10 representation
+
+Finally, return sum(dp[N][k]) / (N * 10) as the expected number of non-zero carries when adding A and B

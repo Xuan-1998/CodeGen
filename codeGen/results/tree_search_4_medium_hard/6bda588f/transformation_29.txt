@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Think about applying memoization to a top-down recursive function that solves the problem:
+    * State is the remaining numbers in the sequence and the current sum.
+    * Base case: when there are no more numbers left to consider, return 0 (since we can't include or exclude anything).
+
+Think about using dynamic programming with two states:
+    * One for including the current number in the sum (F_inc), which would be the minimum possible value of F if we included the current number.
+    * Another for excluding it (F_exc), which would be the minimum possible value of F if we excluded the current number.
+
+Dynamic Programming Plan:
+    * Initialize dp array with size n+1 and fill dp[0] = 0. 
+    * For each number from i=1 to n:
+        - Calculate F_inc by considering the current number a_i and previous F_exc.
+        - Calculate F_exc by considering excluding the current number a_i and previous F_inc.
+        - Update dp[i+1] with min(F_inc, F_exc).
+    
+Base Case: Return dp[n]
+===END PLAN===

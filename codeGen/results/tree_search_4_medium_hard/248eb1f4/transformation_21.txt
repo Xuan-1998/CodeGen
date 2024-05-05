@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] represents the index of the winner when there are i players, and j people have coins in their hands.
+
+Let dp[i][0] = 1 for all i, since player 1 always wins with no coins.
+
+For 1 <= j < M-1, define the transition relationship as:
+dp[i][j] = (i - 1) mod X + 1 if (i - 1) % X == 0
+          = dp[(i - 1) % X][j-1]
+
+This is because when there are i players and j coins, the game continues with (i-1) players and (j-1) coins. If (i-1) mod X == 0, player 1 always wins.
+
+Finally, for M-1 <= j <= i-1, define the transition relationship as:
+dp[i][j] = dp[(i - (j + 1)) % X][M-2]
+
+This is because when there are i players and j coins, the game continues with (i-(j+1)) players and M-2 coins.
+
+===END PLAN===

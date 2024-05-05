@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up memoization and iteration.
+
+Define dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing. Initialize dp as a list of N zeros.
+
+dp[i] = min(dp[j-1] + 1 for j in range(i) if A[j] < A[i])
+for i in range(1, N):
+    for j in range(i):
+        if A[j] < A[i]:
+            dp[i] = min(dp[i], dp[j-1] + 1)
+
+Return dp[-1]
+===END PLAN===

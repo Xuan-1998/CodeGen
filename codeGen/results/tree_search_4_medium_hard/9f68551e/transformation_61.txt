@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+\
+The state represents the maximum damage that can be achieved at each monster's appearance time, considering the current monster's health and the previous damage. The base case is when the monster's health equals its appearance time.
+
+Let dp[i] represent the minimum damage required to kill all monsters up until the ith second.
+dp[0] = 0 (no mana used)
+
+For i > 0:
+    If there are no monsters at the ith second, then we just copy the value from the previous second. 
+    If a monster appears at the ith second with health h_i, then we have two options:
+        - We kill this monster immediately and use dp[i-1] mana, so the minimum damage required is max(h_i, dp[i-1])
+        - We don't kill this monster yet, so the minimum damage required is dp[i-1]
+
+dp[n] will give us the answer to our problem.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+state_expression = dp[i][j] where dp is a 2D table storing the maximum similarity scores for substrings of lengths i and j;
+The base case is when either i or j reaches the end of one of the strings, at which point the maximum similarity score is simply the length of the remaining string minus its own length.
+dp[i][j] is the maximum similarity score for substrings of lengths i and j, where transitions depend on matching/mismatching characters between the current position in strings A and B;
+Implementing a bottom-up approach using tabulation, where the goal is to fill in the dp[i][j] table by considering all possible transitions from shorter substrings to longer ones.
+dp[0][j] = j (the maximum similarity score for an empty string of length i paired with a substring of length j is j);
+dp[i][0] = i (the maximum similarity score for a substring of length i paired with an empty string of length j is i);
+for i from 1 to n:
+    for j from 1 to m:
+        if the current characters in strings A and B match, then consider all possible transitions from shorter substrings:
+            dp[i][j] = dp[i-1][j-1] + 4 (the maximum similarity score is increased by the length of the matching substring);
+        else, the maximum similarity score remains unchanged, so dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+return dp[n][m] as the maximum similarity score for all possible pairs of substrings;

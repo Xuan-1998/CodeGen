@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Define an array dp[26][n+1] where dp[i][j] represents the number of ways to split the message into substrings ending at index j using the i-th character as the previous seen character. Initialize all values in dp as 0.
+For each character c from 'a' to 'z', iterate over the string s and for each occurrence of c:
+    If c is the first character in s or it's not equal to the previous character, update dp[ord(c)-ord('a')][i+1] as the sum of its current value and dp[ord(c)-ord('a')][i]. Otherwise, update dp[ord(c)-ord('a')][i+1] as the sum of its current value and min(dp[ord(c)-ord('a')][i], a[ord(c)-ord('a')]).
+Finally, return dp[0][n] modulo 10^9 + 7.
+The length of the longest substring over all the ways is the maximum index j such that dp[i][j]>0 for any i. The minimum number of substrings over all the ways is the minimum value of j such that dp[j][n]>0.
+===END PLAN===

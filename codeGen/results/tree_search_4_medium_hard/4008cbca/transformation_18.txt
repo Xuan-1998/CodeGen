@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The state expression could be the last ball on the board, and the dynamic programming table storing the minimum number of moves needed to remove all balls given this last ball.
+
+State: The current length of the window being considered (i.e., the index of the board), with transitions defined by considering each possible move and updating the minimum number of moves needed to remove all balls up to that point.
+
+Transition:
+- If the current board position has three or more same color balls, we can simply remove them without any cost.
+- If not, we consider inserting a ball from our hand into this position. This will either create a new group of same color balls (if there are at least two more same color balls in our hand), or it won't affect the current groups.
+
+The state transition is defined as follows:
+
+dp[i] = min(dp[i-1], cost_to_insert + dp[j])
+where i is the length of the current window being considered, j is the index of the board before this move (i.e., the last position where we could have inserted a ball), and cost_to_insert is the cost to insert a new ball into the current position.
+
+Base Case: If the board is empty, then it takes 0 moves to remove all balls.
+
+The final answer will be dp[n], where n is the length of the initial board.
+===END PLAN===

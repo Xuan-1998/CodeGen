@@ -1,0 +1,7 @@
+Let's define dp[i][j] as the minimum mana required to kill the first i monsters by time j; The base case is when there are no more monsters to cast spells on.
+
+Let dp[i][j] be the minimum mana required to kill i monsters by time j. Then for each monster, we can either cast a spell at its appearance time or not. If we don't cast a spell, then the state remains the same as before; if we do cast a spell, then we need to recalculate the minimum mana required to kill the remaining monsters by the remaining time.
+
+We initialize dp[0][j] for all j to be 0, because it takes no mana to kill no monsters. Then, for each monster i and its appearance time k_i, we update dp[i][k_i] to be the minimum of not casting a spell (dp[i-1][k_i]) and casting a spell (dp[i-1][k_i-1]+h_i), because we can either skip this monster or cast a spell that kills it.
+
+Finally, we return dp[n-1][j], which is the minimum mana required to kill all monsters by time j. This solution has a time complexity of O(n*max_k) and a space complexity of O(n*max_k).

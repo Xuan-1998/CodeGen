@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The state expression could be the length of the current window being considered, and the dynamic programming table would store the minimum number of moves needed to remove all balls up to that point. A base case would be when the board is empty.
+
+Create a 2D DP table where dp[i][j] represents the minimum number of moves needed to remove all balls from board[:i+1] when hand[:j+1] is used.
+
+Iterate through the board and hand strings simultaneously, considering each ball in the board and the first j balls in the hand (0 <= i < len(board), 0 <= j < len(hand)).
+
+For each pair of board[i-1] and hand[j], consider the three options:
+
+*   Insert a ball from the hand into the board at position i.
+*   Remove a ball that is already in the board, if possible.
+*   Do nothing, which means we are stuck with the current state.
+
+Update the DP table based on the minimum number of moves needed to remove all balls up to the current position i and considering j balls from the hand.
+
+The final answer would be dp[-1][-1], which represents the minimum number of moves needed to remove all balls in the board using all the balls in the hand.
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Since we need to maximize the grade, consider using a top-down dynamic programming approach with memoization. We can define a state as the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+dp[i] is the maximum of:
+    1) The previous maximum: dp[i - 1], representing the maximum grade that can be obtained without rounding the current digit.
+    2) And the maximum grade that can be obtained by rounding the current digit, which depends on whether it's less than or equal to the average of the two possible rounded values.
+
+State: dp[i]: Maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+Use dynamic programming with memoization to store the results of subproblems in a bottom-up manner, updating dp[i] as you iterate through the decimal fraction. Start by initializing dp[0] = 0 and dp[1] = 1 (assuming the maximum grade for a single-digit decimal is 1).
+
+Then, for each i from 2 to n:
+    1) Calculate the average of the two possible rounded values: (num[i - 1] * 10 + num[i]) / 2.
+    2) Update dp[i] as the maximum of:
+        a) The previous maximum: dp[i - 1].
+        b) And the maximum grade that can be obtained by rounding the current digit, which is either ceil or floor of the average.
+
+Finally, return dp[n] as the maximum possible grade that can be obtained for the given decimal fraction within time limit t.
+===END PLAN===

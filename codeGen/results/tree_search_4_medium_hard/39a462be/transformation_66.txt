@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved by building a 2D array dp where dp[i][j] is the maximum similarity score at index i in string A and j in string B. The base case is when there are no more characters to find, at which point the maximum similarity score is 4 times the length of common characters minus total lengths of strings.
+
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B
+
+State
+Dynamic programming with a 2D array where state_expression represents each cell
+dp[i][j] = max(0, dp[i-1][j-1] + 4) if strings A and B match at index i-j
+            dp[i-1][j] + dp[i][j-1] - (i+j) otherwise
+
+Base case: dp[0][0] = 4*min(i,j) - i-j
+===END PLAN===

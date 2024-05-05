@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+State: Initialize dp array with size n+1 to store minimum removals for each prefix. For each query (l, r), find the minimum number of elements that can be removed within the given range [l,r] such that the sign sum is 0. The base case would be when l=0 or r=n-1.
+
+Consider a state where dp[i][j] represents the minimum number of elements that can be removed within the range [i,j] such that the sign sum is 0.
+
+Use prefix sums to calculate the sign sum for each subarray and compare it with the target value. Initialize two arrays, ps and ns, to store the total positive and negative signs in each subarray. 
+
+For each query (l, r), iterate from i=l-1 to j=r+1 and update dp[i][j] based on whether the sign sum is 0 or not.
+
+Base case: When l=0 or r=n-1, the minimum removals are simply the number of elements with signs different from the target value (which is either positive or negative).
+
+Recursive relation: For each i such that l <= i <= j, consider two cases:
+
+1. The sign sum for subarray [l:i] is 0. In this case, dp[l][j] = min(dp[l][i-1], dp[i+1][j]).
+2. The sign sum for subarray [l:i] is not 0. In this case, dp[l][j] = min(dp[l][i-1] + |sign_sum|[l:i]|, dp[i+1][j]), where sign_sum[k] is the total sign of elements in range [k,k].
+
+===END PLAN===

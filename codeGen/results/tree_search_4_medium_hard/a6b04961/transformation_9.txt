@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems that share common information, making it suitable for a dynamic programming approach with top-down memoization. This allows you to avoid redundant computation and efficiently store intermediate results.
+
+To define the state, consider the maximum beauty that can be achieved by forming a hedgehog given a certain tail, and the last vertex of the tail.
+
+State: The state is defined as (t, v), where t is the length of the current tail and v is the last vertex in the tail. This captures the information needed to determine the maximum beauty that can be achieved with this tail.
+
+Transition: When adding an edge to the tail, update the state based on whether it results in a longer tail or not. If the edge connects two vertices in the tail, the length of the tail does not change, and we simply move on to the next edge. If the edge connects the last vertex in the tail to a new vertex that is not in the tail, the length of the tail increases by 1, and we update the state accordingly.
+
+To avoid redundant computation, use top-down memoization where you recursively explore all possible tails and spines, storing intermediate results. This allows you to avoid recalculating the maximum beauty for the same tail and spine combinations multiple times.
+
+Finally, consider edge cases such as when the input graph is a single connected component or has no edges at all. In these cases, the maximum beauty would be 0 since there are no spines to form a hedgehog with.
+
+===END PLAN===

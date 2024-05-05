@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+The state can be defined as dp[k][n], where k is the digit place (0-indexed) and n is the integer value. The base case is when n < 10^(k-1), since all integers less than that do not have a kth digit.
+dp[k][n] = sum(1 for digit in str(n) if digit == '1')
+
+Create a 2D array with dimensions (n+1) by 10, where dp[i][j] will store the total number of '1' digits up to i in integers less than j.
+
+Notice that dp[k][n] only depends on dp[k-1][n//10] and not on dp[k][n-1]. This is because whether or not there's a '1' at the kth place does not depend on the digits to the right of the kth place. Therefore, we can fill up the 2D array in a bottom-up manner from left to right.
+
+This plan correctly captures the essence of the problem and uses dynamic programming to solve it efficiently.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using dynamic programming with a state representing the current number of players from the department of interest and transitions representing the addition of new players to the team.
+
+Let dp[i] be the probability that a randomly formed team with i players will have at least one player from the department of interest. The initial condition is dp[0] = 1, since an empty team does not contain any players from the department of interest.
+
+The transition can be calculated as follows:
+dp[i] = (sum(dp[j] for j in range(h, i+1)) / (i - h + 1)) * (m - h) / m
+
+The numerator represents the probability that a randomly formed team with i players will have at least one player from the department of interest, considering all possible ways to add new players. The denominator represents the total number of ways to add new players.
+
+Finally, calculate the desired probability as:
+1 - dp[n]
+
+===END PLAN===

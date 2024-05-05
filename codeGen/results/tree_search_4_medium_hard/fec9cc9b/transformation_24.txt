@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment, and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder.
+
+dp[i][j] = True if array[i-1] <= array[j] and j == r - 1, False otherwise
+dp[i][r] = dp[i-1][k] for k in range(l, r+1) such that array[k-1] <= array[k]
+
+Implement tabulation by initializing a 2D table with dimensions (n + 1) x m and fill it row by row, where dp[i][j] represents whether the subsegment from l to r is a ladder.
+
+For each query, iterate over the subsegment and check if there are any decreasing or increasing elements. If not, update dp[i][r] to True. Then, for each element in the subsegment, check if it's part of a valid ladder by looking up dp[i-1][k]. If it is, update dp[i][r] to True.
+
+Finally, for each query, print "Yes" if dp[m][j] is True and "No" otherwise.
+===END PLAN===

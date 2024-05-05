@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far,
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+idea: iterate over the string S and for each character, try to add it to the current partition. If adding the character results in a palindrome, recursively call the function with the updated state.
+
+step 1:
+    initialize a dictionary memo to store the solutions of subproblems
+    initialize an empty list result to store all possible palindromic partitions
+
+step 2: 
+    for each index i in range(len(S)):
+        for each character c at index i in S:
+            try to add c to the current partition
+            if adding c results in a palindrome, recursively call the function with the updated state (i+1, [partition, c])
+            else, skip this branch
+
+step 3: 
+    for each partition p in result:
+        check if p is a palindromic partition
+        if it is, add it to the final result
+
+===END PLAN===

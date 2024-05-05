@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+Let dp[i] be true if there's a path from u to i for some u. The base case is that there are no vertices with an out-degree greater than 1. 
+
+dp[i] indicates the existence of a path from i to any other vertex. This means we need to update dp[i] based on whether there's a path from each of its neighboring vertices.
+
+Dynamic programming with bottom-up approach where dp[i] is updated based on dp[j] for j < i.
+
+To avoid unnecessary computation, initialize dp[i] as false initially. Then iterate over all vertices v. For each vertex v, check if there's an edge (u, v) such that u & v = v. If there is, update dp[v] to true. This ensures that we only consider edges with out-degree 1.
+
+This approach avoids considering multiple paths and ensures correctness. The time complexity is O(n * m), where n is the number of vertices and m is the maximum degree of a vertex.
+===END PLAN===

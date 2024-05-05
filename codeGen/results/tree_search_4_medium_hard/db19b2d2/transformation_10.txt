@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using bottom-up tabulation instead of top-down memoization for dynamic programming approach where the state represents the number of players from the department of interest, and the transitions represent the addition of new players to the team.
+
+state = 0, dp[0] = 1 (base case: initially no player from the department of interest)
+transitions:
+    - if the current player is from the department of interest, state += 1
+    - otherwise, state remains unchanged
+
+dp[i] = min(1 + dp[i-1] * sum(sj <= i for sj in s), 1) (transition equation)
+
+Calculate the probability that a randomly formed team will have at least one player from the department of interest by summing up the probabilities that the team has exactly k players from the department of interest, where k ranges from 0 to h.
+
+===END PLAN===

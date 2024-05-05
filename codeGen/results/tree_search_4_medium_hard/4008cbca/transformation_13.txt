@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state expression could be the length of the current window being considered, with the dynamic programming table storing the minimum number of moves needed to remove all balls up to that point.
+
+A base case would be when the board is empty, in which case 0 moves are needed. 
+
+The dynamic programming table dp[i] for index i on the board could store the minimum number of moves needed to remove all balls up to that point.
+dp[i] = min(dp[j-1] + 1 (if current ball matches previous ball) or dp[0], j=0..i)
+
+Consider using a dictionary as a dynamic programming table, where keys are tuples representing the state (i.e., the length of the current window being considered) and values store the minimum number of moves needed to remove all balls up to that point.
+
+The final answer would be dp[-1] (since we're considering all the way up to the end of the board).
+If dp[-1] is still greater than 0, then it's not possible to remove all the balls and we return -1.
+===END PLAN===

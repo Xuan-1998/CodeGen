@@ -1,0 +1,9 @@
+Dynamic programming approach: Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+dp[i][j] represents the minimum number of beacons that could be destroyed if a beacon at position i with power j is just about to be activated, considering the effects of all previously activated beacons.
+
+Let dp[i][j] be the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j. Then, for each 0 ≤ i < n and 1 ≤ j ≤ 1,000,000:
+    dp[i][j] = min((i-k) + dp[k][min(j,b_k)] for k in range(i))
+
+dp = [[float('inf')] * (j+1) for _ in range(n+1)]
+dp[0][0] = 0

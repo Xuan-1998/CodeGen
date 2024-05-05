@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+state is a 2D table where the first dimension represents node indices and the second dimension represents the number of ones on the path from the root to that node; initialize it with zeros.
+Create a recursive function that calculates the maximum possible distribution index for each subtree rooted at node i, given the current state at node i.
+The base case is when processing nodes that have no children, as there's only one way to distribute ones among their edges.
+state[i][ones] = state[children][ones-1] + (ones == 0 ? 1 : -1) for each child c of node i;
+Create a main function that iterates over all nodes and calculates the maximum possible distribution index for each subtree rooted at each node; fill up the state table in a bottom-to-top manner, considering each node as its own subtree.
+state[0][0] = 0; //root has no ones
+for (int i = 1; i < n; i++) {
+    for (int j = 0; j <= ones[i]; j++) {
+        state[i][j] = state[children[i]][j-1] + (j == 0 ? 1 : -1);
+    }
+}
+return state[n-1][ones[n-1]];
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+The state can be defined as dp[k][n], where k is the digit place (0-indexed) and n is the integer value. The base case is when n < 10^(k-1), since all integers less than that do not have a kth digit.
+dp[k][n] = sum(dp[k-1][int(str(n)[:k])] for k in range(len(str(n)))) + (str(n)[k] == '1')
+
+Use memoization with dictionary to store the results of subproblems
+Memo = {}
+def dp(k, n):
+    if n < 10**(k-1): return 0
+    if (k, n) in Memo: return Memo[(k, n)]
+    result = sum(dp(k-1, int(str(n)[:i+1])) for i in range(min(len(str(n)), k))) + (str(n)[k] == '1')
+    Memo[(k, n)] = result
+    return result
+
+return dp(len(str(n)), n)
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+Let dp[i][j] represent whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+dp[i][j] = and_(j >= 1, (k != 0 || i % 2 != 0), min(j-1, i-1) < k and dp[i-k][min(j-1, k-1)])
+
+Dynamic Programming with Memoization: Define a dictionary dp where each key is a tuple of (i, j) and the value is the result of calculating dp[i][j].
+
+The base case for this recursive formula would be when i or j is 0.
+
+dp[0][j] = 1 if j == 0 else 0
+
+Finally, calculate dp[n][n] to get the answer.
+===END PLAN===

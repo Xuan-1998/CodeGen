@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem involves finding all possible palindromic partitions of a string, which can be solved using dynamic programming with memoization.
+
+state: (s, p) where s is the remaining substring to be processed and p is the current partition
+base case: if s == '', then return [p]
+
+Formulate state as (i, s) where i is the current index and s is the remaining substring to be processed; Transition:
+    - if s can be split into two non-empty substrings t and u such that t is a palindrome and u is also a palindrome or empty,
+      then update dp with partition(p + [s[:i]], [u])
+    - else, update dp with partition(s[:i], p)
+
+Create a 2D array where dp[i][j] stores the minimum number of operations required to transform the substring s[i..j] into a palindrome
+
+===END PLAN===

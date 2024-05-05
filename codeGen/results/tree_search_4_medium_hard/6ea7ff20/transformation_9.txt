@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when i=n, meaning we've reached the end of the permutation. In this case, check if the current permutation p matches either array a or b.
+
+State: A tuple (i, j) representing the indices in arrays a and b that we have processed so far.
+Transition:
+    If i < n, then consider adding ai to p and incrementing i.
+    If j < n, then consider adding bj to p and incrementing j. We also need to handle the case when both i and j are less than n.
+
+Utilize memoization by creating a dictionary memo where memo[(i, j)] = True if p matches arrays a and b up to indices i and j.
+    Initialize the memo with base cases: memo[(n, 0)] = False, memo[(0, n)] = False
+    For each (i, j) in range(n+1):
+        If p[i] == ai or p[j] == bj:
+            If i < n:
+                If j < n:
+                    memo[(i+1, j+1)] = True if (p[:i+1], p[:j+1]) can be merged else False
+                Else: 
+                    memo[(i+1, 0)] = True
+            ElseIf j < n:
+                memo[(i, j+1)] = True
+
+Return "YES" if memo[(n, n-1)] is True; otherwise return "NO".
+===END PLAN===

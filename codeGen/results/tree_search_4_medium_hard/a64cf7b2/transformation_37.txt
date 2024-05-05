@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+The base case is when t = 0, in which case we return 0 because we cannot visit any vertices within 0 time units.
+
+State: dp[i][t] represents the maximum number of vertices that can be visited from vertex i to the end vertex n within t time units, considering all possible edges.
+
+Use a 2D array with dimensions (n+1) by (T+1), where:
+
+* For each vertex i from n to 1:
+	+ Initialize dp[i][0] = 0, as we cannot visit any vertices within 0 time units.
+	+ For each edge (u, v, t) from u to v with weight t:
+		- If the edge can be traversed within t time units and v is reachable from i, update dp[v][t - t] = max(dp[v][t - t], dp[i][t] + 1)
+* Return dp[1][T]
+
+This plan should correctly solve the problem. It uses a dynamic programming approach to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+Define the state expression as dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j].
+
+The dynamic programming state dp[i][j] represents the minimum path sum up to cell (i, j), and the transition relationship is dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j].
+
+Create a 2D array dp with size m x n, where dp[i][j] will store the minimum path sum up to cell (i, j).
+
+Set dp[0][0] to the value of the top left cell.
+
+For each cell from i = 1 to m-1 and j = 1 to n-1:
+    If it's the first row or column, set dp[i][j] as the sum of the current cell and the previous cell.
+    Else, calculate dp[i][j] as the minimum of the top cell and left cell, plus the value of the current cell.
+
+Return dp[m-1][n-1], which is the minimum path sum from the top left to the bottom right.
+
+===END PLAN===

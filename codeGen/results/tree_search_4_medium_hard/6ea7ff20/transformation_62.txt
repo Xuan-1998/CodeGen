@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+state dp[i][j] = { pair of arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j };
+if (i == 0): // base case
+    if (j == 0):
+        state dp[i][j] = {(∅, ∅)}
+    else:
+        state dp[i][j] = {({head(p)}, ∅) for p in permutations(1..n)}
+else:
+    for k from 0 to j-1:
+        if p[i-1] < p[k]:
+            if (i-k-1 > 0 and j-k-1 > 0):
+                state dp[i][j] = {(a+b) | (a, b) in product(dp[k][j-k], permutations(p[k+1..i])))
+            else:
+                state dp[i][j] = {({p[0..k]}, ∅) for p in permutations(1..n)}
+        elif p[i-1] > p[k]:
+            if (i-k-1 > 0 and j-k-1 > 0):
+                state dp[i][j] = {(a+b) | (a, b) in product(permutations(p[0..k]), dp[k][j-k]))
+            else:
+                state dp[i][j] = {({p[0..i]}, ∅) for p in permutations(1..n)}
+===END PLAN===

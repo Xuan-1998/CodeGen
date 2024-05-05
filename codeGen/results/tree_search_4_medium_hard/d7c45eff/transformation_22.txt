@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+
+dp[i][0] = if i == 0, then return an empty string; else, return the lexicographically smallest string that can be obtained by deleting the last character of dp[i-1][0].
+
+dp[i][j] = if j > n - i + 1, then duplicate s[:i] until we reach a length of j; else, return the lexicographically smallest string that can be obtained by deleting the last character of dp[i][j-1].
+
+Consider edge cases: 
+* If k > n, then the optimal solution is to duplicate the string until we reach a length of k.
+* If k == 0, then the optimal solution is an empty string.
+
+===END PLAN===

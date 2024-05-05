@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Is there a way to partition the strings into overlapping subproblems, making memoization more effective.
+To define the state as (i, j) where i is the index of s1 and j is the index of s2 and check if they are scrambled strings up to those indices.
+Partition the strings into non-overlapping subproblems by considering all possible ways to partition the string into two parts, and then recursively check if each part is a scrambled string.
+Consider using a 3D DP table where dp[i][j][k] represents whether the first i characters of s1 are scrambled with the first j characters of s2 when k is the index of the current character that we consider for scrambling.
+The base case would be when the strings up to the current indices are equal, then they are definitely scrambled.
+When the current character in both strings matches, then recursively check if the rest of the strings are scrambled.
+When the current characters do not match, then try all possible ways to scramble and recursively check if the rest of the strings are scrambled for each possibility.
+The final answer would be whether dp[n][n][0] is True where n is the length of the string.
+
+===END PLAN===

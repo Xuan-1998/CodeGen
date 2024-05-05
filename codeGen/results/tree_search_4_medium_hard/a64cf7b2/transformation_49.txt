@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n using memoization to store the results in a dictionary.
+Define the state as a tuple (i, j), where i is the current vertex and j is the maximum time left; define the state expression as dp[i][j], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+Consider dp[i][j] as the maximum number of vertices that can be visited if we start at vertex i, have j time units left, and use all edges with weights up to t.
+Memoizing the recursive function by storing the results in a dictionary to avoid redundant computations.
+
+To improve the plan:
+* Use dynamic programming instead of recursion to reduce the risk of hitting the maximum recursion depth or exceeding memory limits.
+* Initialize dp[i][j] as 0 for each vertex i and time j, assuming no vertices can be visited initially.
+* For each edge (u, v) with weight t, consider two cases: 
+  - If the remaining time j-t is sufficient to visit all edges from vertex v to n, then we can visit at most dp[v][j-t] + 1 vertices; 
+  - Otherwise, we cannot visit any vertices starting from vertex v.
+* Store the maximum number of visited vertices in dp[i][j] and update it accordingly.
+
+Edge cases:
+* Handle the case where j is less than the weight of an edge or is equal to 0. In this case, no vertices can be visited.
+* Handle the case where i equals n, indicating we have reached the end vertex.
+
+===END PLAN===

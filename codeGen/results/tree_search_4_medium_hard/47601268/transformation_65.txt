@@ -1,0 +1,15 @@
+let dp[0] = 1
+for i in range(1, n+1):
+    let consecutiveOnesCount = (bin(i)[2:].count('1'))
+    if consecutiveOnesCount == 0:
+        dp[i] = dp[i-1] + 1
+    elif consecutiveOnesCount == 1:
+        dp[i] = dp[i-1]
+    else:
+        for j in range(consecutiveOnesCount):
+            if f(int(bin(i)[2:][:_].count('1')+1)) and i-j > 0 and dp[i-j] >= 1:
+                dp[i] = dp[i-j] + 1
+                break
+        else:
+            dp[i] = dp[i-1]
+return dp[n]

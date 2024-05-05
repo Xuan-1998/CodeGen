@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Consider using top-down memoization for a dynamic programming solution where you maintain a dictionary to store previously computed values, allowing you to avoid redundant computation.
+
+Define the state expression as dp[i][j] = minimum possible distribution index of the tree when node i is the root and edge labels are [1..j].
+
+dp[0][0] = 0 (base case)
+
+Consider using memoization for a recursive function that calls itself with smaller subproblems and stores the results in a dictionary to avoid redundant computation.
+
+Function to calculate dp[i][j]:
+    - If j == 0, return dp[i-1][j-1] + i
+    - If there are no more edges left (i.e., j == n-2), return dp[i-1][n-2]
+    - Otherwise, consider two cases:
+        * Case 1: The edge between node i and the next node is labeled with a prime factor.
+            Calculate dp[i+1][j-1] + i
+        * Case 2: The edge between node i and the next node is not labeled with a prime factor.
+            Calculate dp[i-1][n-2] + i
+
+Store the results in a dictionary to avoid redundant computation.
+
+Finally, calculate and return the maximum possible distribution index of the tree by summing up all values in the dp array.
+
+===END PLAN===

@@ -1,0 +1,20 @@
+dp[i][k] = whether the kth tower in towns 1 to i can be used to send signal to town i.
+
+1. dp[0][0] = True because no towers are needed for town 0
+2. dp[n+1][n+1] = False because no towers can send signal to town n+1
+
+for i from 1 to n:
+    for k from 0 to i:
+        if k == 0 or k == i: 
+            # town 0 doesn't get any signal
+            # and town i doesn't get any signal either
+            dp[i][k] = dp[i-1][k]
+        else:
+            # calculate the probability of kth tower sending signal to town i
+            # check if the (k-1)th tower can send signal to town i-1
+            if dp[i-1][k-1]:
+                dp[i][k] = True 
+            else: 
+                dp[i][k] = False
+
+total probability = dp[n+1][n]

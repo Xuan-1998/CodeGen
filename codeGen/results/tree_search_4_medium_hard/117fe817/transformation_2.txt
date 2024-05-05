@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+Let dp[i] represent the count of ones in all numbers up to i. Then we need to calculate dp[i] recursively using dp[j] for j < i.
+
+The base case is when i is a single-digit number (i.e., i < 10). In this case, we can simply count the number of ones manually: 1 appears once for each number that ends with 1 (n/10 to n) and twice for each number that ends with 11 (n/100 to n/10).
+
+The recursive case is when i >= 10. Then we need to consider numbers from 0 to i-9, calculate the count of ones in these numbers using dp[i-9], then add the counts of ones for numbers that end with 1 and 11.
+
+Finally, the total count of ones up to n is the sum of all dp[i] for i from 0 to n.
+
+===END PLAN===

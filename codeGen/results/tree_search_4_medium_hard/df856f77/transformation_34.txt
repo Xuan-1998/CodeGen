@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up approach and memoization.
+
+Define dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing. 
+
+dp[i] = min(dp[j-1] + 1 for j in range(i+1) if A[j-1] <= A[i])
+Using a bottom-up dynamic programming approach with memoization to store the minimum number of operations needed for each subarray
+
+For the base case, set dp[0] as 0 since no operations are required for an empty array.
+
+Iterate through the array from i=1 to N, and for each element, find the minimum number of operations needed to make the subarray A[0..i] strictly increasing by considering all previous elements j such that A[j] <= A[i].
+The minimum number of operations is then dp[i] = min(dp[j-1] + 1 for j in range(i+1) if A[j-1] <= A[i])
+
+At the end, return dp[N] which represents the minimum number of operations needed to make the entire array strictly increasing.
+
+===END PLAN===

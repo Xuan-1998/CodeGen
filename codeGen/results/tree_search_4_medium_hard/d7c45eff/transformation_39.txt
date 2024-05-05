@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string.
+
+Let dp[i][j] represent the lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+
+dp[i][j] is equal to the minimum between deleting the last character of s[:i] (dp[i-1][j]) and duplicating s[:i-1] (dp[i-1][j-1]).
+
+You can use a 2D array dp to store the minimum lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+
+If j is less than i, then it means we are considering strings with fewer characters. In this case, dp[i][j] should be equal to dp[i-1][j]. This is because there's no need to delete the last character if j is less than i.
+
+Finally, initialize dp[0][k] as the lexicographically smallest string of length k that can be formed by duplicating an empty string. Then, fill up the dp array row by row, starting from the first row and ending at the nth row. For each cell in the dp array, update its value based on the minimum lexicographically smallest string of length j-1 that can be formed by either deleting the last character or duplicating the original string.
+
+Once you have filled up the entire dp array, you can easily find the lexicographically smallest string of length k that can be formed by either deleting the last character or duplicating the original string as dp[n][k].
+
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+The state is defined as dp[i][j] = maximum sum of f(u,v) values over all pairs (u,v) where u is a node with at most i children, v is its child with j edges labeled from 1 to p, and considering all possible ways to label the edges.
+
+dp[0][j] = 0
+Initialize dp[i][j] for i = 1 to n-1 and j = 1 to m (the number of prime factors)
+For each edge (u,v), consider labeling its corresponding integer as x where x is a product of some of the prime factors.
+Compute f(u,v) for this labeling, which is the sum of numbers on the simple path from u to v.
+
+Memoize recursive function calls by storing intermediate results in a dictionary, then look up the memoized value instead of recalculating it. This approach avoids redundant computation and reduces time complexity.
+
+For each edge (u,v), calculate the contribution of this edge's labeling to dp[i][j] where i is the number of children of u, j is the number of edges labeled from 1 to p.
+dp[i][j] = max(dp[i-1][k] + f(u,v)) for all possible k and labelings that result in f(u,v).
+
+Fill up the table dp[][] in a bottom-to-top manner. 
+For the root node (1), calculate the maximum sum of f(u,v) values over all pairs (u,v) where u is the root and v is its child, considering all possible ways to label the edges.
+This value represents the maximum possible distribution index.
+
+Print the value of dp[0][j] modulo 10^9 + 7 as the answer for each test case.
+
+===END PLAN===

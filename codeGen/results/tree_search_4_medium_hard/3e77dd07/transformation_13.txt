@@ -1,0 +1,32 @@
+===BEGIN PLAN===
+Code block wrapping:
+Boolean isScrambled(string s1, string s2) {
+    int n = s1.length();
+    // Create a memoization table
+    boolean[][] dp = new boolean[n][n];
+    
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++) {
+            if (s1.substring(0, i - j + 1).equals(s2.substring(j, i + 1))) {
+                dp[i][j] = true;
+                // If the substrings match, check if the remaining parts are scrambled
+                for (int k = 0; k < n - i - j; k++) {
+                    for (int l = 0; l <= k; l++) {
+                        if (!dp[k + i][l + j]) break;
+                    }
+                    if (k == n - i - j) dp[i][j] = true;
+                }
+            } else {
+                // If the substrings don't match, check the remaining parts are scrambled
+                for (int k = 0; k < n - i - j; k++) {
+                    for (int l = 0; l <= k; l++) {
+                        if (!dp[k + i][l + j]) break;
+                    }
+                    if (k == n - i - j) dp[i][j] = false;
+                }
+            }
+        }
+    }
+    
+    return dp[n - 1][n - 1];
+}

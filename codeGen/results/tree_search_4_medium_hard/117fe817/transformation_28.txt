@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+Let the state be dp[i], where dp[i] represents the number of times 1 appears in all integers less than i. The base case is when i = 0, since there are no digits to count.
+
+To calculate dp[i], we can consider the numbers with the same last digit as i and count how many times 1 appears in these numbers.
+
+The dynamic programming approach could involve initializing a table dp of size n+1, where dp[i] represents the number of times 1 appears in all integers less than i. We can iterate from i = 0 to n and for each i, we calculate dp[i] using the following recurrence relation: dp[i] = (i // 10) * dp[i-10] + sum(1 <= j <= 9 and (i - 1) % 10 == j)
+
+We can also optimize the dynamic programming approach by only calculating the values of dp[i] that are needed to calculate the final result. This can be done by initializing a variable count = 0 and then iterating from i = 1 to n, adding dp[i-1] to count whenever i is a multiple of 10 (since the last digit of such numbers will be 0).
+
+===END PLAN===

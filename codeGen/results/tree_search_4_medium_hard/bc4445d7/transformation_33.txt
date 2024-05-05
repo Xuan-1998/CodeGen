@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Decide on a top-down approach with memoization by defining the state as dp[i][j] = maximum sum of f(u,v) values over all pairs (u,v) where u is a node with at most i children and v is its child.
+
+dp[0][1] = 0, since there's no edge to consider when the number of nodes is 1.
+
+For i > 0:
+    For j from 1 to n:
+        If j has i-1 children:
+            dp[i][j] = max(dp[i-1][k] + f(k,j)) for all k from 1 to j
+        Else:
+            dp[i][j] = max(dp[i-1][k] + f(k,j)) for all k from 1 to n
+
+Use the formula: (product of labels on edges) % (10^9+7) as the maximum sum value.
+
+Print dp[n][1].
+===END PLAN===

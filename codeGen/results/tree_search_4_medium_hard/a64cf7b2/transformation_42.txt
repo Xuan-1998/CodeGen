@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+State: dp[u][t] is 1 if there's an edge from vertex u to the end vertex n and we have enough time (t >= w), otherwise it's 0. Here, w is the weight of the edge from u to n. If no such edge exists, then dp[u][t] = 0.
+
+The base case is when t = 0, in which case we return 0 because we cannot visit any vertices within 0 time units.
+
+For a given vertex u and time t, if there's an edge from u to the end vertex n with weight w, where w <= t, then dp[u][t] = 1. Otherwise, dp[u][t] = 0.
+
+Use memoization to store the results of subproblems as you solve them, so that you don't have to re-compute the same values multiple times.
+
+For each vertex v, iterate from v down to 1. For each time t, check if there's an edge from v to n with weight w <= t. If yes, then dp[v][t] = 1; otherwise, dp[v][t] = 0.
+
+The maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T is stored in dp[1][T]. This value represents the maximum number of vertices that can be visited on the route from vertex 1 to vertex n, within the given time limit.
+
+To find the actual vertices that can be visited, iterate from 1 up to the end vertex n. For each vertex v, if there's an edge from v to n with weight w <= T-v+1 (to account for the remaining time), then include it in the result; otherwise, skip it.
+===END PLAN===

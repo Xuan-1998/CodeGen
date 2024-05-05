@@ -1,0 +1,21 @@
+state: (i, j, partition) where i and j are the start and end indices of the substring to be checked for palindromeness and partition is the current partition
+base case: if j-i < 1, then return [partition]
+
+states:
+    (0, len(S)-1, [])  # initialize the base state
+
+actions:
+    1. check if S[i:j+1] is a palindrome 
+    2. for each possible partition of S[:i]:
+        - if the remaining substring S[i:j+1] is a palindrome: 
+            - add the current partition to the set of all partitions
+            - recursively explore the subproblem with i as the new start index and j as the new end index
+
+transition function:
+    (i, j, partition) -> [(i, j-1, [S[i:j+1]] + partition), ...]  # recursive exploration 
+
+termination condition:
+    base case: if j-i < 1, then return [partition]
+
+memoization:
+    store the results of subproblems in a memo table and check for them before solving the problem

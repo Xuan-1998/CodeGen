@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+\
+
+The state represents the maximum damage that can be achieved at each second, considering the current monster's appearance time and health.
+
+Let dp[i][j] be the minimum mana required to kill all monsters by the i-th second, assuming there are j monsters left. Then we have two options for the (i-1)th second: either a spell is cast with damage d or no spell is cast. In the first case, we need to ensure that the monster's health is less than or equal to d, so we set dp[i][j] = d if this condition holds; otherwise, we just copy the value from the previous second.
+
+The base case is when there are no more monsters to kill (i.e., j=0). In this case, dp[i][0] = 0 because no mana is needed anymore.
+
+Memoization can be used by defining a recursive function that calculates the minimum mana required for a given number of seconds and monsters, and then caching its results using a dictionary or a similar data structure.
+
+Let f(i, j) return the minimum mana required to kill all monsters by the i-th second, assuming there are j monsters left. Then we have:
+
+f(i, 0) = 0
+f(i, j) = min(d + 1, dp[i-1][j]) if k_j <= i else f(i-1, j)
+
+The final answer is f(n, n), where n is the number of test cases.
+
+===END PLAN===

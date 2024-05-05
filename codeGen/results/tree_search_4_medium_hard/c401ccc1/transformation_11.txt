@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[u][v] = whether there's a directed path from u to v. Base case: for any vertex, there's no path to itself.
+
+dp[u][v] represents the existence of a path from vertex u to vertex v. Transition relationship: dp[u][v] = OR of all possible paths from vertex u to vertex v, considering each neighbor w such that (u & w) == w and not visited[w].
+
+Implement an iterative function with memoization.
+
+Create a visited array to keep track of the vertices that have been processed.
+Initialize the dp table with False for all pairs (u, v).
+Iterate over all vertices u. For each vertex u:
+    Iterate over all vertices v such that (u & v) == v and not visited[v].
+    Update the dp[u][v] = OR of dp[u][w] and dp[w][v].
+
+Print "YES" if there's a path from u to v, otherwise print "NO".
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a top-to-bottom manner, exploiting the optimal substructure.
+
+The state is defined as dp[i][j] = minimum possible number of ones in the labels for nodes i to j, considering all edges between them.
+dp[i][j] could be the product that can be achieved by multiplying all labels on the path from node i to j.
+
+Memoizing a recursive function that calculates dp[i][j] for each edge between node i and j.
+Iterate through the tree edges and update the table accordingly. 
+For each edge (u, v), find the minimum number of ones in the labels for nodes u to v by trying all possible combinations of labels on the path from u to v.
+
+After filling up the table, calculate the maximum distribution index by summing up the products for all paths.
+Finally, return the calculated distribution index modulo 10^9 + 7.
+
+===END PLAN===

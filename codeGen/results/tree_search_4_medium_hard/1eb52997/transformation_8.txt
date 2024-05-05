@@ -1,0 +1,14 @@
+dp = [[0 for _ in range(N)] for _ in range(N)]
+
+for j in range(N):
+    dp[0][j] = 1
+
+for i in range(1, N):
+    for j in range(N):
+        if grid[i-1][j] == '.':
+            dp[i][j] = max(dp[i-1][j], dp[i][j])
+        else:
+            dp[i][j] = 0
+
+result = sum([1 for row in dp if all([dp[i][j] for j in range(N)])])
+print(result)

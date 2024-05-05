@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+State: for each number i in the array, define a tuple (i, beauty) where beauty is the maximum beauty that can be achieved after applying all possible operations starting from number i.
+
+The state could be a combination of the current pivot and its GCD with other pivots in the array, along with their respective beauty values. This will allow us to solve subproblems efficiently by reusing previously computed solutions.
+
+Use tabulation by creating a 2D table where each cell (i, j) represents the maximum beauty that can be achieved after applying all possible operations starting from the first i numbers and ending at number j in the array.
+
+Edge cases:
+- If the array only contains one element, return its value as the beauty.
+- If there are no bad prime numbers, return the sum of the array elements as the beauty.
+
+Iterate through the array, for each pivot i:
+- Calculate its GCD with all other numbers j in the array (j != i).
+- For each GCD k:
+  - Update the state for number j by subtracting k from its current value if k is a bad prime number.
+  - Add the beauty of the updated state to the beauty of the current pivot.
+
+The maximum beauty will be stored in the last cell of the table (n, n), where n is the length of the array.
+===END PLAN===

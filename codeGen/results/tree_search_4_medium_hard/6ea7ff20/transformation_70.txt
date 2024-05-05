@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+state dp[2n][2n] = {{ pair of arrays a and b such that merge(a,b) equals permutation, with array a having the same length as array b }};
+dp[i][j] will represent whether there exist two arrays a and b, each of length j-i, so that p=merge(a,b).
+To use top-down approach by defining a recursive function that takes the current subproblem, i.e., pair of arrays a and b, as input.
+Fill dp[0][n-1] to dp[n-1][0] with base case values. This is because when the length difference between array a and array b is more than 1, it's clear that they cannot be merged into the given permutation p.
+Now, for each i from 1 to n-1:
+    If there exist two arrays c and d such that merge(c,d) equals p[:i], then:
+        dp[i][j] = TRUE if and only if any of these four conditions hold:
+            - dp[i-1][j-1] = TRUE
+            - dp[i-1][j+1] = TRUE
+            - There exist two arrays e and f such that merge(e,f) equals p[:i] and a single element a_k is added to the front of array d, where k is any integer from 0 to i.
+            - There exist two arrays g and h such that merge(g,h) equals p[:i] and a single element b_l is inserted at the beginning of array c, where l is any integer from 0 to i.
+        dp[i][j] = FALSE otherwise.
+Fill dp[n-1][n-1] with the final result. If it's TRUE, then print "YES", else print "NO".
+===END PLAN===

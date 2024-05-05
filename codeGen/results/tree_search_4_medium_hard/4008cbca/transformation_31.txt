@@ -1,0 +1,13 @@
+===
+The state expression could be the tuple (window_length, last_ball), where window_length is the length of the current window being considered and last_ball is the color of the last ball on the board.
+The dynamic programming table would store the minimum number of moves needed to remove all balls up to that point given this window and last ball.
+
+A base case would be when the board is empty, in which case the minimum number of moves needed would be 0.
+
+To fill in the dynamic programming table, we could iterate over the board from left to right. For each position i, we would consider all possible last balls that could have been added to the window at this point (i.e., the balls in hand), and for each of these possible last balls, we would calculate the minimum number of moves needed to remove all balls up to this point given this new window and last ball.
+
+If there are no more balls in hand that can be added to the window without violating the rule of not having three or more consecutive balls with the same color, then we know that it is impossible to remove all the balls, so we would return -1.
+
+The final answer would be the value stored at the last position in the dynamic programming table.
+===
+

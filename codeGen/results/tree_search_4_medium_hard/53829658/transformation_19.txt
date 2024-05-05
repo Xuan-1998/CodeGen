@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Initialize dp with all cities as infinity (or some very large number). This represents that we can't reach these cities directly from the capital without reversing any edges.
+
+For each city i:
+ 1. Perform DFS/BFS from city i to find its shortest distance from the capital.
+    - If it's the first visit, update dp[i] with the number of reversed edges needed to reach this city.
+    - If we've visited this city before, just look up the memoized value and don't change it.
+
+After visiting all cities:
+ 1. Initialize the result as infinity (or some very large number).
+ 2. For each city i, update the result with min(result, dp[i]) if dp[i] is smaller than the current result.
+ 3. Return the final result.
+
+===END PLAN===

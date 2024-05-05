@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+dp = {}
+def is_ladder(i, j):
+    if i > j:
+        return True
+    if dp.get((i, j)):
+        return dp[(i, j)]
+    min_val = arr[i]
+    max_val = arr[i]
+    is_non_decreasing = True
+    for k in range(i, j+1):
+        if arr[k] < min_val or arr[k] > max_val:
+            is_non_decreasing = False
+            break
+        min_val = min(min_val, arr[k])
+        max_val = max(max_val, arr[k])
+    if not is_non_decreasing:
+        dp[(i, j)] = False
+    else:
+        dp[(i, j)] = (j-i+1) == 1 or is_ladder(i, j-1)
+    return dp[(i, j)]
+n, m = map(int, input().split())
+arr = list(map(int, input().split()))
+for _ in range(m):
+    l, r = map(int, input().split())
+    print("Yes" if is_ladder(l, r) else "No")
+===END PLAN===

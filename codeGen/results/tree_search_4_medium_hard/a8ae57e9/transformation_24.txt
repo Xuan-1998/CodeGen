@@ -1,0 +1,9 @@
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+A dictionary d = {(i, j): k} where (i, j) is the group size and k is the corresponding table number
+{d[(i, j)] = min( max(dp[i-1][j-1] + c[j], dp[i-1][k]) for i from 2 to n, j from 0 to k}
+
+Implementing a 3D table dp where dp[i][j][k] is the maximum amount of money earned with i groups, j tables and k capacity. 
+{dp[i][j][k] = max(dp[i-1][j-1][k] + p[i]*1 for p in c) if i > 0 else 0 for i from n to 1, j from 0 to k, k from 0 to m}
+
+The final answer will be the maximum value of dp[n][k][m]

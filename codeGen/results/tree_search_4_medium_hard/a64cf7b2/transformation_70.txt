@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+State: (v, t), representing the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex v.
+
+Top-down dynamic programming:
+    1. Create a dictionary dp to store the state values.
+    2. Define a recursive function dfs(u, t) that takes the current vertex u and remaining time t as inputs.
+    3. If t is less than or equal to 0, return 0 (no vertices can be visited).
+    4. If u equals n, return 1 (vertex n is reached).
+    5. For each neighbor v of u with a weight w:
+        a. Calculate the remaining time left after visiting vertex v and crossing the edge.
+        b. Recursively call dfs(v, t - w) to get the maximum number of vertices that can be visited from vertex v within the remaining time.
+        c. Store the result in dp[(u, t)].
+    6. Return the value stored in dp[(u, t)].
+
+To construct the optimal route:
+    1. Initialize an empty list path to store the visited vertices.
+    2. Call dfs(1, T) and store its return value k.
+    3. Create a new dictionary memo to store the previous vertices in the optimal path.
+    4. While k > 0:
+        a. Find the vertex v with the maximum number of adjacent vertices that can be visited within the remaining time using dfs(v, t - w) and dp[(v, t)].
+        b. Add v to the end of the path.
+        c. Decrement k by the number of adjacent vertices that can be visited from v.
+    5. Return the constructed path.
+
+===END PLAN===

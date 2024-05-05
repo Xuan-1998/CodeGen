@@ -1,0 +1,12 @@
+Whether the scrambling operation can be decomposed into smaller subproblems, allowing for a dynamic programming solution.
+
+The state expression could be a boolean array dp of size (n+1) x (m+1), where n and m are the lengths of s1 and s2 respectively, indicating whether s2[0...i] can be obtained by scrambling s1[0...j]. The base case would be when i or j is 0.
+
+For each cell dp[i][j], we need to consider the possible scrambling operations that lead to s2[0...i] from s1[0...j]. We can do this by iterating through all possible subarrays of s1[0...j] of length equal to i, and checking if the corresponding substring in s2 matches the scrambled version. 
+
+If we find a match, we mark dp[i][j] as true, indicating that s2[0...i] can be obtained by scrambling s1[0...j]. 
+
+We also need to handle the case where i or j is 0 correctly.
+
+The number of distinct characters in s1 and s2 are the same. This ensures that the scrambling operation is well-defined.
+Maintain a 2D boolean array dp of size (n+1) x (m+1), where n and m are the lengths of s1 and s2 respectively, to store whether s2[0...i] can be obtained by scrambling s1[0...j]. 

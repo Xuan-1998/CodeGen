@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+state: (s, p) where s is the remaining substring to be processed and p is the current partition, base case: if s == '', then return [p]
+Consider a state (s, p) where s is the remaining substring to be processed, p is the current partition, and dp is the dictionary storing all possible partitions for each substring;
+Transition:
+    - if s starts with an even-length palindrome u, update dp with (u, p + [u])
+    - if s starts with an odd-length palindrome t, split it into two parts: a single character at the beginning and the remaining string; 
+      recursively call the function on this smaller substring and the current partition
+    Memoize the recursive function by storing the results of subproblems in a dictionary
+===END PLAN===

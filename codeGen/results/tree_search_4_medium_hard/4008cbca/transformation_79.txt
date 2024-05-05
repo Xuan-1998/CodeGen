@@ -1,0 +1,16 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+The state expression would be (i, prev_ball) where i is the current position in the board, and prev_ball is the color of the ball at the previous position.
+
+The transition relationships would be defined as follows:
+- If there are 3 or more consecutive balls with the same color, they can be removed immediately.
+- If there are less than 3 consecutive balls with the same color, but a ball of the same color is available in hand, it can be inserted to remove those balls.
+- If none of the above conditions apply, no move can be made.
+
+The base case would be when i == len(board), which means we've reached the end of the board. In this case, if there are still balls remaining in hand that match the color of the last ball removed, it's possible to remove all balls, and we return the length of the hand minus 1. Otherwise, we return -1.
+
+The recursive relation would be:
+
+dp[i] = min(dp[i-1], dp[i-2] + 1 if prev_ball == board[i] and board[i] in hand else dp[i-2])
+
+This plan takes into account edge cases such as when there are no balls left to remove, or when it's not possible to remove all the balls.

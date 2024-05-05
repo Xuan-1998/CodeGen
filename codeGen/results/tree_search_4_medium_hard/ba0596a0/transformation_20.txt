@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The state of the frog is defined by its current position and previous jump length. This can be represented mathematically as follows:
+
+dp[i] = dp[j] if k == (stones[i]- stones[j-1]) % 3
+dp[i] = dp[j] + 1 if k == (stones[i]- stones[j-1]) % 3
+
+Use memoization to store and reuse previously computed values in a dictionary, where keys are tuples representing the current position and previous jump length.
+
+Initially, set dp[0] = True, indicating that the frog can reach the first stone without jumping into the water. Then, iterate over the stones from left to right, updating dp[i] based on whether or not the frog can reach the i-th stone given its previous state.
+
+When reaching the last stone, return dp[-1], which indicates whether or not the frog can cross the river.
+===END PLAN===

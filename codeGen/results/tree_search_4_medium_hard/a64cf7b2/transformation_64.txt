@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+Define the state as a tuple (t, i), representing the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+State expression: dp[(t, i)] = max(dp[(t - w, j)] + 1) for all edges (i, j) with weight w.
+
+Use a dictionary to store the results of subproblems as they are computed, with keys being tuples of (t, i) and values being the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+Initialize dp[(0, 1)] = 1.
+
+Iterate over all edges (i, j) in the graph. For each edge:
+    If there is no edge or if traversing this edge would exceed the time limit, skip it.
+    Otherwise, recursively compute dp[(t - w, j)] and add 1 to it.
+    Store the result as dp[(t, i)].
+
+Return dp[(T, n)] as the maximum number of vertices that can be visited within a time limit of T starting from vertex 1 and ending at vertex n.
+
+===END PLAN===

@@ -1,0 +1,10 @@
+], [
+dp[i][j] represents the number of possible words ending at index j with the last letter being from position i in the alphabet.
+
+Base Case: dp[n][m]
+dp[i][j] for i = 1 to n and j = 0 to m-1 can be calculated as follows:
+    If j is even, then we have two options - either place any of the n letters or not. This corresponds to the number of possible words ending at index (j+1) multiplied by the number of choices for the last letter.
+    If j is odd, then the last letter must be from position i in the alphabet. This corresponds to dp[i-1][j-1] * (n-i+1).
+Memoization using a dictionary to store the results of subproblems and avoid redundant computation.
+
+Final Answer: The final answer will be dp[1][m]

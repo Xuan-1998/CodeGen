@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+The base case would be when there are no more tables or no more money to spend, then return 0. Then, use memoization to fill in the states in top-down manner.
+
+dp[i][j] represents the maximum amount of money earned with i tables remaining and j total amount to spend
+dp[i][j] = max(dp[i-1][j-ci*ri], dp[i][j-ci*ri]) for each request
+
+Maintain a memo dictionary to store the results of subproblems, using a recursive function to calculate dp[i][j] and check if the result is already stored in memo.
+
+The base case will be when i == 0 or j == 0, return 0.
+For each table i from k-1 down to 0
+    For each request ri and ci from requests
+        If the group can fit at this table:
+            Calculate dp[i][j] as the maximum of two options: 
+                Accepting the request: dp[i-1][j-ci*ri]
+                Declining the request: dp[i][j-ci*ri]
+            Store the result in memo
+
+Finally, return dp[0][n]
+
+===END PLAN===

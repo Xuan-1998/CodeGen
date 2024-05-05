@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+A state consists of three indices: t (time), x (x-coordinate), y (y-coordinate) indicating which stars are currently within the rectangular view.
+
+State: s[t][x][y], where s is the memoized table. Transition relationship:
+	- If t advances, the state transitions when the time advances.
+	- If the rectangle does not change, the state remains the same.
+	- The state also changes if a new star enters or an existing one leaves the view.
+
+Design a recursive function that uses memoization to store the results of subproblems and avoid redundant calculations. 
+
+Function: dp(t, x1, y1, x2, y2) 
+	- Base case: If no stars are within the view (x1 > x2 or y1 > y2), return 0.
+	- Recursive case:
+		+ Calculate the brightness of stars that enter the view at time t.
+		+ Add the total brightness of stars that stay in the view and remain at their initial positions.
+		+ Subtract the total brightness of stars that leave the view.
+
+Memoize the results for subproblems (t, x1, y1, x2, y2) to avoid redundant calculations.
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (stuffing_type, dough_left) as the state expression:
+
+State: (stuffing_type, remaining_dough)
+Transition: whether to make a bun with this stuffing type or not
+
+Use iterative dynamic programming with a 2D array dp[m+1][n+1], but only update dp[i][j] based on the previous row (i-1) rather than the entire state space.
+
+Update the maximum profit for each possible combination of remaining dough and stuffing types, considering both making a bun with the current stuffing type or not:
+
+dp[i][j] = max(dp[i-1][j], dp[i-1][j-ci[i]] + di[i] - bi[i])
+
+Initialize the base case: when there is no more dough left (n < 0) or no more stuffing types (i > m), the maximum profit is 0:
+
+for j in range(n+1):
+    for i in range(m+1):
+        if j < 0 or i == 0:
+            dp[i][j] = 0
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+The state expression could be the count of ones in each number from 0 to n, and base case would be considering only single-digit numbers.
+State: For a given digit position i, consider the total count of ones in all numbers from 0 to n having exactly i digits, and use this information to calculate the total count of ones for the next higher digit position.
+
+// Improved version:
+For each digit position i, calculate the number of ways to form i-digit numbers that contain at least one '1' (which is 5 for single-digit numbers).
+Let dp[i] be the state expression for i-digit numbers. Then:
+
+* For i = 0, dp[0] = 1
+* For i > 0:
+    + Calculate the number of ways to form i-digit numbers that start with '1' (which is 5^i - 9^(i-1))
+    + Add the count of ones in all (i-1)-digit numbers (dp[i-1])
+    + Sum up these counts for all i from 0 to n
+
+The plan does not include edge cases, but it can be easily modified to handle edge cases.
+
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Determine the maximum sum of a path by iterating through all possible paths in the tree using dynamic programming and memoization.
+
+Define the state as a dictionary where the key is the node value and the value is the total sum for that node. 
+dp[node] = total sum for node; the base case is when there are no more nodes.
+dp[root] = root.value (base case)
+
+The recursive formula is:
+dp[node] = max(
+    dp[left_child] + left_child.value if left_child else 0, 
+    dp[right_child] + right_child.value if right_child else 0,
+    node.value
+)
+Tabulate the maximum sum of a path by iterating through all possible paths in the tree and keeping track of the optimal solution.
+
+To improve:
+- Initialize memoization table with base case values (root node).
+- Optimize recursion by pruning branches when the current sum is less than the previously computed maximum.
+- Handle edge cases where left or right children are None (no child).
+
+This plan should correctly find the maximum sum of a path in the binary tree. It also includes handling edge cases like nodes without children.
+===END PLAN===

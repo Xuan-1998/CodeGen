@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+Let dp[i][j] be the maximum amount of money earned by accepting the first i booking requests with group sizes less than or equal to j.
+The state can be initialized as follows:
+- For all 0 ≤ i ≤ n and 1 ≤ j ≤ k, set dp[0][j] = 0
+- For all 1 ≤ i ≤ n and 1 ≤ j ≤ k, set dp[i][j] = -∞
+
+Now we fill in the states using tabulation or memoization. Let us consider each booking request from left to right.
+For each booking request with group size s and total money m:
+- If s is less than or equal to the current table's capacity c, then add dp[i-1][s] + m to dp[i][c]
+- Else, set dp[i][c] = -∞
+Finally, for all 0 ≤ i ≤ n and 1 ≤ j ≤ k, find the maximum value in dp[n][j] that is greater than or equal to 0.
+
+To decide which requests to accept and which to decline, iterate through the booking requests from left to right.
+For each request:
+- If s is less than or equal to the current table's capacity c, then add this request to the accepted list
+- Else, skip this request
+
+===END PLAN===

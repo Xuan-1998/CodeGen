@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i] = last_winner if we're considering i players, and the dynamic programming array stores the winners for each number of players from 1 to X.
+
+dp[i] = 1 + dp[i-1] - ((i-1)//M)*M. This choice considers the previous winner and how many times the coin has been passed.
+
+To avoid calculating the same subproblems multiple times, we can use a 2D array to store winners for each number of players and step: dp[step][player].
+
+dp[0][p] = p (base case: only one person remains)
+
+dp[s][p] = 1 + dp[(s-1)%M][p] - (p-1)//M (recursive formula)
+
+Implementing the function to calculate winners for each number of players from 1 to X:
+
+function find_winners(M, X):
+    dp = [[0]*(X+1) for _ in range(X+1)]
+    for s in range(X+1):
+        for p in range(1, X+1):
+            if s == 0:
+                dp[s][p] = p
+            else:
+                dp[s][p] = (1 + dp[(s-1)%M][p]) - (p-1)//M
+
+    return [dp[step][player] for step in range(X, 0, -1) for player in range(1, X+1)]
+===END PLAN===

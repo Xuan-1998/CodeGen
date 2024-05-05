@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Define a state as a tuple (room, portals_used, ceiling_painted) where:
+  - room is an integer representing the current room number
+  - portals_used is an integer representing the number of portal moves used to reach this room
+  - ceiling_painted is a boolean indicating whether the ceiling has been painted
+
+Create a priority queue min_heap PQ and initialize it with the starting state (1, 0, False)
+
+While PQ is not empty:
+  Extract the state with the minimum portals_used from PQ
+  If the extracted state's room is the target room (n+1):
+    Return the number of portal moves used to reach this room
+  For each one-way portal in the current room:
+    Calculate the new state by using the first or second portal depending on ceiling_painted being True or False
+    Add the new state to PQ if it has not been visited before
+
+===END PLAN===

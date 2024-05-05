@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly below the water level at the end of day i.
+
+dp[i] is the minimum of two cases: 
+1. The current number of marks strictly above the water (m_i) plus the minimum number of marks strictly below the water for all previous days (dp[i-1]).
+2. The minimum number of marks strictly below the water for all previous days (dp[i-1]).
+
+Utilize a dictionary memo to store and retrieve previously computed values for efficient computation.
+
+To further optimize, consider using a two-pointer approach to keep track of the current maximum mark above the water level and the total number of marks above the water level. This can help reduce the number of recursive calls or iterations needed to compute dp[i].
+
+Additionally, ensure that edge cases are handled correctly. For example, what if n = 1? What if m_1 = 0?
+
+===END PLAN===

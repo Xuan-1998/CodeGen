@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts: one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately, then combine them.
+
+Define the state as:
+dp[i][j] = minimum number of substrings required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+dp[i][j] = min(dp[k][l] + 1 for k in range(i) for l in range(26) if sum(s[m] == chr(m+96) for m in range(k, i)) <= a[ord(s[i-1])-97])
+Implement memoization using recursive function calls and a dictionary to store intermediate results.
+
+Consider the base case: dp[0][j] = 1 for all j (since there's only one way to split an empty string).
+
+For each character in the message, update the dynamic programming table based on the previous characters. If the current character is unique or can be repeated at most a[s[i-1]-1] times, then we have two options:
+- Continue with the same number of substrings.
+- Start a new substring.
+
+The time complexity will be O(n * 26) due to the nested loops and the space complexity will be O(n * 26) for storing intermediate results.
+
+===END PLAN===

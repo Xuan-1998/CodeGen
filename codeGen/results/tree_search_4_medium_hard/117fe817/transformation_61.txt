@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Let dp[i] be the count of digit 1's up to the i-th integer. Initialize the base case: dp[0] = 0, since there are no digits in the 0-th integer.
+
+Then, calculate the total number of times 1 appears in all integers that end with the state i (i.e., the last digit is i). This can be done by considering two cases:
+    - If i is 0, then the integers ending with 0 do not have a trailing 1. So, dp[i] = dp[i-1].
+    - If i is 1, then the integers ending with 1 always have a trailing 1. So, dp[i] = dp[i-1] + 1.
+
+Update the table accordingly:
+    - For each integer k from 1 to n (inclusive):
+        - Calculate the last digit of k as i.
+        - Update dp[k] using the recurrence relation above.
+    - Return the final value of dp[n] as the total count of digit 1's in all non-negative integers less than or equal to n.
+
+This plan takes into account edge cases, such as n = 0 and n = 1. It also avoids counting the same integer multiple times by considering only the last digit of each integer.
+===END PLAN===

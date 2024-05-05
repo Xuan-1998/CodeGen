@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The problem involves finding all possible palindromic partitions of a string, which can be solved using dynamic programming with memoization.
+
+state: (s, p) where s is the remaining substring to be processed and p is the current partition
+base case: if len(s) == 0, then return [[p]]
+
+Formulate state as (s, i) where s is the remaining substring to be processed and i is the current index
+Transition:
+    for j in range(i, len(s)):
+        t = s[:j+1]
+        if t == t[::-1]: # check if t is a palindrome
+            update dp with ((s[j+1:], p + [t]))
+        else:
+            break
+
+Use a dictionary to store the memoized values for each state
+dp = {}
+
+Corrected Base Case: 
+    instead of returning [[p]], return [[list(p)]]
+
+Edge Cases:
+    - if s is empty, return []
+    - if s has only one character, return [[s]]
+
+Updated Plan:

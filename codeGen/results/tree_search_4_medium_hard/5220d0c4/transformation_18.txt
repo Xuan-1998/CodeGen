@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: For each element in the array, consider the minimum prime divisor of that element. If two elements have the same minimum prime divisor, they can be combined into a single subproblem. This approach uses memoization to store the beauty values for previously computed subproblems.
+A possible state expression could be the current element i and the maximum beauty achieved so far, considering all previous elements up to i-1.
+
+Consider two states: (i, m) representing the beauty value for elements from 0 to i and the maximum beauty achieved considering all previous elements up to i-1; and (j, k) for elements from j to i, where k is the minimum prime divisor of the elements in this range. Transition between these states occurs when the minimum prime divisor changes or if a bad prime number is encountered.
+
+Consider creating a 2D table dp[][] to store the beauty values for each subproblem, where the outer array represents the current element i and the inner array represents the maximum beauty achieved considering all previous elements up to i-1. Initialize the first row as -1, since we can't combine elements from an empty array.
+
+For each element in the array, iterate over the table rows starting from the current element, and for each column, check if the minimum prime divisor of the element at that position is equal to the minimum prime divisor of the current element. If it is, update the beauty value by adding the current element to the combined elements.
+
+To handle bad prime numbers, set the corresponding beauty values in the table to -1, indicating that combining elements with a bad prime number decreases the maximum beauty.
+
+Finally, return the maximum beauty value from the last row of the table.
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Define two dynamic programming tables dp1 and dp2 with size n+1, and initialize all values to 0.
+
+dp1[i] = minimal number of elements that can be removed from the range [0, i) to make the sum of signs zero.
+dp2[i] = minimal number of elements that can be removed from the range (i, n] to make the sum of signs zero.
+
+Create a string sign with length n representing the signs of the elements in the array. Initialize dp1[0] and dp2[n] to 0.
+
+Iterate through each query i:
+   If the query range is [l, r], calculate dp1[r] as the minimal number of elements that can be removed from the range [0, r) to make the sum of signs zero.
+   Calculate dp2[l-1] as the minimal number of elements that can be removed from the range (l, n] to make the sum of signs zero.
+   The answer for this query is dp1[r] + dp2[l-1].
+
+Iterate through each element i in sign:
+   If the sign at position i is 1, update dp1[i+1] as dp1[i] + 1 and dp2[i-1] as dp2[i] - 1.
+   If the sign at position i is -1, update dp1[i+1] as dp1[i] - 1 and dp2[i-1] as dp2[i] + 1.
+
+Return dp1[n].
+===END PLAN===

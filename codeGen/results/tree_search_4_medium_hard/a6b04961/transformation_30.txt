@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, meaning the solution to a larger instance can be constructed from solutions of smaller instances, making it amenable to bottom-up tabulation.
+
+Consider a state representing the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i, where 1 ≤ i ≤ n.
+
+Transition relationship: If we extend the current tail, we have to choose an edge from the previous vertex in the tail to i. The maximum beauty in this case is dp[i - 1] * (i + 1). If we start a new spine, we can choose any uncolored edge incident to i.
+
+Memoize the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i using a 1D array dp of size n. Initialize all elements in dp as 0.
+
+For each vertex i from 2 to n:
+    For each previous vertex j such that the edge (j, i) is colored and j < i:
+        Update dp[i] = max(dp[i], dp[j - 1] * (i + 1))
+    For each uncolored edge (k, i):
+        If k is not in the tail: 
+            Update dp[i] = max(dp[i], dp[k - 1] * (i + 1))
+
+Return dp[n]
+===END PLAN===

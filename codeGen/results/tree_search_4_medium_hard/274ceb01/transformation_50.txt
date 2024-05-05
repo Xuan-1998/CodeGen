@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[n][k] = sum(1 for i in range(k)) if k == 0 else min(dp[k-1][i] + (n-k)*i for i in range(k))
+Use a bottom-up dynamic programming approach where dp[i][k] depends only on the values of dp[j][l] where j<i and l<k.
+Memoize the function using a dictionary to store previously computed values, where the key is the number of days and the value is another dictionary that stores the minimum sum for each possible water level.
+dp[0][0] = 0
+for i in range(1, n+1):
+    dp[i][0] = 0
+    for j in range(1, i+1):
+        dp[i][j] = min(dp[k-1][i-j] + (n-k)*i for k in range(j))
+===END PLAN===

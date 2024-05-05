@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Think about how you can use memoization to avoid solving the same subproblem multiple times and store the results in a table for later reference.
+
+Let dp[i][j] be 1 if there exist arrays a, b such that p = merge(a,b) with no common elements.
+dp[i][j] will be 0 otherwise.
+
+For i=0: Initialize dp[0][0] to 1 because empty array can always be merged with itself.
+
+For i from 1 to n:
+    For j from 0 to n:
+        If p[2i-1] < p[2j-1]:
+            dp[i][j] = 1 if and only if there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j].
+            dp[i][j] = 0 otherwise.
+        If p[2i] < p[2j]:
+            dp[i][j] = 1 if and only if there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise.
+
+For i from n to 2n:
+    For j from 0 to n:
+        If p[2i-1] < p[2j-1]:
+            dp[i][j] = 1 if and only if there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise.
+        If p[2i] < p[2j]:
+            dp[i][j] = 1 if and only if there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise.
+
+If dp[n][n] is 1 then return "YES", else return "NO".
+===END PLAN===

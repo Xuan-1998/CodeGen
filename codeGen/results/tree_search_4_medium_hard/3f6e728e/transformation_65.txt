@@ -1,0 +1,16 @@
+State: (i, j)
+Base case: dp(0, 0) = 1
+
+Transition relationship:
+dp[i][j] = sum(dp[k-1][j] * (dp[m-k+1][l-1] if l > 0 else 1) for k in range(i+1), m in range(M+1), l in range(j+1))
+
+Memoization: use a dictionary dp to store the memoized values and update them accordingly
+
+Pre-computation: compute all possible pairs of upper and lower hemispheres' radii before the main computation to reduce time complexity
+
+Edge cases:
+- N = 0 or M = 0, return 0
+- U_i = L_j for any i, j, return dp[i][j]
+- N > M, swap N and M
+
+Updated plan:

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries, one called memo and another called dp.
+
+Define the state as (i, j) where i is the current index and j is the number of partitions required.
+
+For each pair (i, j), check if it's possible to partition A[0..i-1] into j-1 partitions with maximum difference M. If not, then for every k from 1 to j:
+    - Calculate the sum of elements in A[i-k+1..i]. Call this sum 'sum'.
+    - Check if it's possible to partition the subarray A[0..i-k] into j-1 partitions with maximum difference M.
+    - If yes, then check if every element in the last k elements is within the range [A[i-k] - M, A[i-k] + M]. If not, return false. Otherwise, add 1 to the count of k and update the memo dictionary accordingly.
+
+Maintain another dictionary tabulation where tabulation[i][j] stores whether it's possible to partition A[0..i-1] into j partitions with maximum difference M.
+===END PLAN===

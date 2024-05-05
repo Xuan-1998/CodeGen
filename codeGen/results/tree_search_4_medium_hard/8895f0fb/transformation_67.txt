@@ -1,0 +1,11 @@
+state: dp[i][j] = expected number of non-zero carries when adding A with j digits and B with N-j digits.
+
+Initialization:
+dp[0][0] = 0 (base case for single-digit numbers)
+
+Transition function:
+dp[i][j] = dp[i-1][j-1] + P(i, j) * (1 - 9^(-i)) (cumulative sum of carries when adding i-digit number and (N-i)-digit number)
+where P(i, j) is the probability of a non-zero carry in the ith digit
+
+Termination condition:
+dp[N][0] = expected number of non-zero carries when adding A and B

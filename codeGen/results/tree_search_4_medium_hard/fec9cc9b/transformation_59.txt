@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Define states as follows:
+- state[i][j][0] is the maximum length of non-increasing sequence seen so far in the current subsegment ending at index j
+- state[i][j][1] is the maximum length of non-decreasing sequence seen so far in the current subsegment ending at index j
+
+Use dynamic programming with bottom-up approach to update these states and determine if the current subsegment is a ladder.
+
+state[0][j] = [0, 0] for all j
+for i from 1 to n:
+    for j from l to r:
+        if array[j-1] >= array[j]:
+            state[i][j][0] = max(state[i-1][k][0] for k in range(j-l+1) if array[k-1] > array[k]) + 1
+        else:
+            state[i][j][1] = max(state[i-1][k][1] for k in range(j-l+1) if array[k] <= array[k+1]) + 1
+
+Return "Yes" if state[n][r][0] > state[n][r][1], and "No" otherwise
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+The base case is when j=0, meaning we're considering an empty array. In this case, check if the remaining elements in the permutation match array b.
+
+Define state s as the number of elements in array a, and transition relationship by trying all possible splits of the permutation at position i, updating s accordingly.
+
+Apply memoization using a dictionary to cache and reuse subproblem results.
+
+For each test case:
+  Initialize a boolean flag isPossible = false
+  Iterate through the permutation p from right to left (i.e., from end to start)
+    For each i in range(2n-1, n-1, -1):
+      If p[i] < p[i+1]:
+        Split the permutation at position i into two arrays a and b
+        Recursively call the function on a and b
+        If the recursive call returns true:
+          Set isPossible = true
+          Break the loop
+
+  Return "YES" if isPossible; otherwise, return "NO"
+
+===END PLAN===

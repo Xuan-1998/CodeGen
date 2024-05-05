@@ -1,0 +1,8 @@
+dp[i] = max(dp[j]+(stones[i]-stones[j]), k) if i-j in {k-1,k,k+1} else -float('inf')
+for i in range(len(stones)-1):
+    for j in range(i):
+        if (stones[i]-stones[j]) % 3 == (k-1)%3:
+            dp[i] = max(dp[i], dp[j])
+        elif abs(i-j) in {k-1,k,k+1}:
+            dp[i] = max(dp[i], dp[j]+(stones[i]-stones[j]))
+dp[-1]

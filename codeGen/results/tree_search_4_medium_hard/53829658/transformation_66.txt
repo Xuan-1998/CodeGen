@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i][j] = minimum number of reversed roads needed to reach city j from city i. The base case is dp[1][i] = 0 for all i. This choice focuses on finding the minimum number of reversed roads for each pair of cities.
+
+dp[i][j] is updated as min(dp[k][j] + 1) where k is such that there's an edge from city k to city j and i != k. We use a dictionary memo = {} as a hash table to store intermediate results and update them accordingly, for example, memo[i][j] would be the minimum number of reversed roads needed to reach city j from city i.
+
+To find all possible ways to choose the capital, we can maintain an array parent[] where parent[i] is the previous city in the path from the capital to city i. We use a dictionary memo = {} as a hash table to store intermediate results and update them accordingly, for example, memo[i][j] would be the previous city in the path from city j to city i.
+
+The plan can be improved by using a priority queue to always consider the city with the maximum in-degree first. This would reduce the number of iterations required to find the optimal capital.
+
+The plan does not include edge cases, but it is easy to verify that the plan works for all possible inputs. For example, if there's only one city, then the minimum number of reversed roads needed to reach any other city from itself is 0, and the only way to choose the capital is by choosing this single city.
+
+===END PLAN===

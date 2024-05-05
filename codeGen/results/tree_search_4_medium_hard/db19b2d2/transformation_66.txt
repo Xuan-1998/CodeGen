@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming. Yes, it's possible.
+
+Base case: If the total number of players from all departments is less than n, then there's no way to form a team with at least one player from the department of interest. This ensures that we only consider valid team formation possibilities.
+
+State: Define dp as a 2D array where dp[i][j] represents the probability that the team formed with i players will have at least one player from the j-th department.
+Implement memoization by creating a dictionary where the keys are the subproblems (i, j) and the values are the corresponding results. This way, you can avoid redundant calculations and directly retrieve the result when needed.
+
+Initialize dp[0][j] = 0 for all j, because there's no team formed with 0 players.
+dp[i][h] represents the probability that a team of size i will have at least one player from the department of interest. If s_h >= i, then we're guaranteed to get at least one player from the department of interest.
+
+For i = 1 to n:
+    For j = 1 to m:
+        if j == h: dp[i][j] = min(1, (s_j + dp[i-1][j]) / s_j)
+        else: dp[i][j] = max(dp[i-1][j], 1 - (s_j + dp[i-1][h]) / s_j)
+
+Return dp[n][h]
+
+===END PLAN===

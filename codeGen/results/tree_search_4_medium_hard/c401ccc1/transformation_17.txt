@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[u][v] = whether there's a directed path from u to v. Base case: for any vertex, there's no path to itself.
+
+dp[u][v][k] represents whether there's a path from vertex u to vertex v with exactly k bits set in common between the two vertices. Transition relationship: dp[u][v][k] = OR of all possible paths from vertex u to vertex v with k bits set, considering each neighbor w such that (u & w) == w.
+
+Implement a recursive function g(u, v) that uses memoization to determine whether there's a directed path from vertex u to vertex v, and then use this function to fill the dp table. For the memoization, maintain a hashmap <int, boolean> where the key is the pair (u, v) and the value is whether there's a path.
+
+Use g(u, v) to initialize the base cases for all vertices: dp[u][u] = false for all u. Then fill the dp table using g(u, v).
+
+Finally, query for each edge (u, v), return "YES" if dp[u][v], and "NO" otherwise.
+
+===END PLAN===

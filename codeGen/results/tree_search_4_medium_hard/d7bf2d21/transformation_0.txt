@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming without memoization, where you iteratively build up the solution by considering all possible subsequences.
+
+DP[i]: length of the longest increasing subsequence ending at index i
+Initialize DP with zeros for each index i in the array.
+Iterate through the array from left to right:
+For each element arr[i]:
+    Update DP[i] = 1 if it's the first element (or LIS ending at previous elements is less than 1).
+    Otherwise, find the largest j such that arr[j] < arr[i], and update DP[i] as max(DP[j] + 1, DP[i]).
+Return the maximum value in DP array.
+
+This approach ensures that we consider all possible subsequences and avoid redundant computations.
+===END PLAN===

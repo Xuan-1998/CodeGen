@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: For each element in the array, consider the minimum prime divisor of that element. If two elements have the same minimum prime divisor, they can be combined into a single subproblem. This approach uses memoization to store the beauty values for previously computed subproblems.
+
+The state expression could be defined as a tuple (i, j) representing the range [0, i] in the array and the set of bad prime numbers up to j.
+
+The state is a pair (i, k) where i represents the index in the array and k is the maximum bad prime number considered so far. This allows us to use dynamic programming by storing the beauty values for previously computed subproblems in a dictionary dp.
+
+To calculate the beauty value for each state, we iterate over all elements in the range [0, i] and for each element, check if it is a good or bad prime number based on whether its minimum prime divisor is less than or equal to k. If it's a good prime number, add 1 to the beauty value; if it's a bad prime number, subtract 1 from the beauty value.
+
+Use a list comprehension to create a dictionary where each key is the state and each value is the minimum prime divisor for that state.
+
+The function to calculate the minimum prime divisor could be written recursively or iteratively. For example, you can use a helper function to find the next prime number starting from a given number, and then iterate until it's less than the current number.
+
+===END PLAN===

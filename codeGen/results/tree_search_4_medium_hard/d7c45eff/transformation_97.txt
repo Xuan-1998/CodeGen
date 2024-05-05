@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[j] is a boolean array where dp[j] = True if the lexicographically smallest string of length j can be obtained by duplicating s[:i], and False otherwise.
+
+dp[0] = True
+dp[i] = (s[i-1] <= s[0]) or dp[i-1]
+
+Memoize the function calls to avoid redundant computation and reduce time complexity
+
+If j == 1, return s[0]
+Else if j < 1, raise an error
+For i from 1 to k:
+    If j-i > 0 and not dp[j-i], continue
+    If s[i-1] <= s[0]:
+        Return s[:i]
+    Else:
+        Return s[:i-1]
+
+===END PLAN===

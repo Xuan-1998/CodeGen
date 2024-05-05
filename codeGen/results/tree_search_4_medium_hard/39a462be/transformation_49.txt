@@ -1,0 +1,44 @@
+===BEGIN PLAN===
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Transition
+memoization_with_dictionary = {i: {j: (k, maximum_similarity_score) for j in range(m+1)} for i in range(n+1)}
+
+Memoization:
+- Initialize a dictionary memo with dimensions n*m to store maximum similarity scores.
+- For each possible pair (i, j) of indices in strings A and B, calculate the maximum similarity score as 4 times the length of common characters minus total lengths of strings.
+- Store this value in the memo dictionary.
+
+Memoization_with_dictionary:
+- Create a dictionary memo with dimensions n*m to store maximum similarity scores for all possible prefixes of both strings.
+- Initialize the memo dictionary with base case values: (i, j, k) = 4 times length of common characters minus total lengths of strings when there are no more common characters to find.
+
+Memoization_with_dictionary:
+state_expression = (i, j, k)
+memo[i][j] = max(0, k + 4 * len(common_chars(A[:i], B[:j])) - i - j)
+
+Memoization_with_dictionary:
+- For all possible pairs of substrings, calculate maximum similarity score based on length of common characters and lengths of strings.
+- Store this value in memo dictionary.
+
+Memoization_with_dictionary:
+state_expression = (i, j, k)
+memo[i][j] = max(memo[i-1][j-1], memo[i-1][j], memo[i][j-1])
+
+Memoization_with_dictionary:
+- Calculate maximum similarity score for a pair of substrings based on the scores of similar prefixes.
+- Store this value in memo dictionary.
+
+Memoization_with_dictionary:
+state_expression = (i, j, k)
+maximum_similarity_score = max((k + 4 * len(common_chars(A[:i], B[:j])) - i - j) for i in range(n+1) for j in range(m+1))
+
+Memoization_with_dictionary:
+- Calculate maximum similarity score over all pairs of substrings.
+- Return this value as the solution.
+
+Memoization_with_dictionary:
+state_expression = (i, j, k)
+return maximum_similarity_score
+

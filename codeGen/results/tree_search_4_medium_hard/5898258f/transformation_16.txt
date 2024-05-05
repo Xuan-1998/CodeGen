@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Choose a dynamic programming approach: Bottom-Up Approach with Tabulation: Iteratively computing the solution from the base case up to the current state.
+
+Consider defining dp[i][j] as the maximum XOR value that can be obtained from the first i elements and j elements are considered for adding X, then the base case could be dp[0][0] = 0. This approach looks at the possible ways of selecting elements to add X.
+
+dp[i][0] = max(dp[i-1][0], dp[i-1][1] + XOR(A[i-1], X))
+dp[i][1] = max(dp[i-1][0], dp[i-1][1] - XOR(A[i-1], X))
+
+The above base cases are considering the last element A[i-1]. If we add X to it, then the next possible value is either 0 or X. Similarly, if we subtract X from it, then the next possible value is either X or 2X.
+
+From this point, we can fill up the dp table using the above base cases and iterate over all possible combinations of elements that can be added with X.
+
+===END PLAN===

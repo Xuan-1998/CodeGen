@@ -1,0 +1,10 @@
+def min_cuts(s):
+    n = len(s)
+    dp = [n] * n
+    dp[0] = 0
+    for i in range(n - 1):
+        if is_palindrome(s[i:i + 2]):
+            dp[i + 1] = min(dp[i + 1], dp[i])
+        else:
+            dp[i + 1] = min(dp[i + 1], dp[i] + 1)
+    return dp[-1]

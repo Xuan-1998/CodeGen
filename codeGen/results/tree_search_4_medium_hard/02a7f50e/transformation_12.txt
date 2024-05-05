@@ -1,0 +1,12 @@
+Dynamic programming approach:
+Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+1. Initialize a 2D DP table, dp, of size (n+1) x (1,000,001), and set all values to infinity.
+2. For each 0 ≤ i < n:
+    a. Iterate over 1 ≤ j ≤ 1,000,000:
+        i. If there is no beacon at position i, then dp[i][j] = 0, as no beacons will be destroyed.
+        ii. Otherwise, update dp[i][j] to the minimum value of:
+            a. The current minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j (dp[i-1][max(0,j-b_i)] + 1), considering the effects of all previously activated beacons.
+            b. The result of recursively calculating dp[k][max(0,j-b_k)] for k in range(i) and then adding i-k, representing the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j, taking into account the effects of all previously activated beacons.
+
+3. The final result will be stored in dp[n][b_n], which represents the minimum number of beacons that could be destroyed if exactly one beacon is added at the last position with its given power level.

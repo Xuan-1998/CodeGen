@@ -1,0 +1,7 @@
+state: (s, p) where s is the remaining substring to be processed and p is the current partition, base case: if s == '', then return [p]
+Consider a state (s, p) where s is the remaining substring to be processed, p is the current partition, and memo is the dictionary storing all possible partitions for each substring; Transition: 
+  * if s[0] == s[-1], 
+    update memo with (s[1:-1], [p + [s[0]]])
+  * else, recursively call state(s[:i+1], p) and state(s[i:], p) for all odd indices i, then combine the results into the current partition
+memoize this recursive function by storing its return values in a dictionary memo
+return memo.get((s, p), [[p]])

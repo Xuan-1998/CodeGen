@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+Consider a base case: dp[0] = 0, because there are no perfect squares that sum up to 0.
+dp[i] is the minimum number of perfect squares that sum up to i, and dp[i] = min(dp[j] + 1) for j in range(i+1), where j is a perfect square less than or equal to i.
+Combine both ideas by first computing the tabulation table for smaller values (up to sqrt(n)) using the formula above, then use memoization to solve larger problems.
+To avoid unnecessary computation, only calculate dp[j] when j is a perfect square. This can be done by iterating from 1 to sqrt(n) and checking if i is divisible by k^2 for each k in that range.
+===END PLAN===

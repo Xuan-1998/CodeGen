@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Can we use dynamic programming with tabulation, where we fill up a table with solutions to smaller subproblems and then use them to solve larger ones?
+
+The state is dp[i] = True/False indicating whether the frog can reach stone i, with dp[0] = True as the base case.
+
+Let dp[i] be the smallest possible jump that can reach stone i. Then, state and transition relationships would be formulated based on these minimum jumps:
+
+* If a stone can be reached by jumping from one of its previous stones, then it can be reached.
+* The frog cannot jump backwards or beyond the last stone. So, if there is no previous stone to jump from, dp[i] = False.
+
+To fill up the table, for each stone i:
+	1. Check all stones j that are within k (k - 1, k) and check if dp[j] = True.
+	2. If any such stone j exists, then dp[i] = True; otherwise, dp[i] = False.
+
+Finally, return dp[-1], indicating whether the frog can reach the last stone.
+
+===END PLAN===

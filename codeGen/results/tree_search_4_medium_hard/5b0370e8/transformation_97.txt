@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+dp[i][j] = sum(dp[m][j-1] * (bitwise AND of all elements in range [i-m, i) has bitwise AND j-1) for m from 0 to i)
+Initialize dictionary dp with default values
+dp[i][0] = 1 if i is power of 2 else 0
+
+for k from 1 to 2^k:
+    for i from 0 to n:
+        if (i & (k - 1)) == (k - 1):
+            for m from 0 to i:
+                dp[i][k] += dp[m][k-1]
+        else:
+            dp[i][k] = dp[i][k-1]
+
+for test case:
+    ans = 0
+    for k from 2^k down to 0:
+        if (n & (k - 1)) == (k - 1):
+            ans += dp[n][k]
+        else:
+            break
+    print(ans mod 10^9+7)
+
+===END PLAN===

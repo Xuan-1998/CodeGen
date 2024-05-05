@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify potential subproblems: Consider breaking down the problem into smaller instances of the same problem, where each instance has a unique set of inputs.
+
+DP states: For each position i, define dp[i] as True if it's possible to reach index i from the start, and False otherwise.
+dp[i] is True if it's possible to reach i-1 from the start, and i-1 + arr[i-1] >= i.
+
+Implement memoization using a dictionary to store previously computed DP states. Initialize dp[0] as True since the start position is always reachable.
+
+For each index i from 1 to n-1:
+    If it's possible to reach i-1 (dp[i-1]), check if arr[i-1] >= i - i-1. 
+    If yes, set dp[i] as True.
+    Otherwise, set dp[i] as False.
+Set dp[n-1] as the answer.
+
+===END PLAN===

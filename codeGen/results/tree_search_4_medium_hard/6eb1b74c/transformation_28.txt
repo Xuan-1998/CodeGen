@@ -1,0 +1,19 @@
+dp = {(0, 0): 0}
+
+for i in range(len(t)):
+    min_steps = float('inf')
+    for j in range(n):
+        if t[i:].find(s[j]) != -1:
+            last_used_string = j
+            last_covered_position = i + len(s[j])
+            new_state = (last_used_string, last_covered_position)
+            dp[new_state] = min(dp.get(new_state, float('inf')), dp[(j, i)] + 1)
+    if min_steps == float('inf'):
+        print(-1)
+        break
+    for _ in range(min_steps):
+        last_used_string, last_covered_position = max((k[0], k[1]) for k in dp if dp[k] == min_steps)
+        print(f"{last_used_string} {last_covered_position - len(s[last_used_string])}")
+        del dp[(last_used_string, last_covered_position)]
+    else:
+        print(min_steps)

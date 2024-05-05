@@ -1,0 +1,15 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far; 
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+For each possible pair of characters (a, b) from A[i] to B[j], if a == b then update k and move to the next pair of characters
+state_expression = (i-1, j-1, k+1); 
+if i > 0 && a != A[i-1] or j > 0 && b != B[j-1] then return the maximum similarity score found so far; 
+else state_expression = (i-1, j-1, k)
+Use a 2D array dp where dp[i][j] represents the maximum similarity score for the first i characters of A and j characters of B.
+state_expression = (0, 0, 0); 
+for i from 0 to len(A):
+    for j from 0 to len(B):
+        if i > 0 && a != A[i-1] or j > 0 && b != B[j-1]:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) - (i+j);
+        else:
+            state_expression = (i, j, k+1)
+return 4 * state_expression[2] - len(A) - len(B); 

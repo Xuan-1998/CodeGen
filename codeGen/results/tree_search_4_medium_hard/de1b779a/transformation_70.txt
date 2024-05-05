@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i][j] is the maximum number of buns Lavrenty can make with i grams of dough and j stuffing types left.
+
+The state could be represented using a 2D array dp where dp[i][0] is the base case when there are no more stuffing types to consider, and it's equal to the maximum profit that can be achieved with i grams of dough without any stuffing. The transition relationship could be formulated as:
+dp[i][j] = max(dp[i-1][0], dp[i-ci[j]][j-1]) + di[j]
+
+for each i from n down to c0, for each j from m-1 down to 0,
+if ci[j] > i, dp[i][j] = dp[c0][0];
+else
+dp[i][j] = max(dp[i-ci[j]][j], dp[i][j-1])
+
+Dynamically build up the 2D array dp by iterating over each cell from top to bottom, and left to right, filling in the maximum number of buns Lavrenty can make with i grams of dough and j stuffing types left.
+
+The maximum profit that can be achieved is stored at dp[n][m-1]
+
+===END PLAN===

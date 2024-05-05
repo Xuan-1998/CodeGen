@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string. 
+Use dynamic programming to avoid re-computing the same subproblems multiple times.
+
+Each state represents a pair (prefix, operation), where prefix is the current prefix of the desired string and operation is either 'delete' or 'duplicate', indicating the last action taken to form the prefix.
+
+Use a 2D array dp[i][j] to store dynamic programming states, where:
+- dp[i][0] = s[:i], the lexicographically smallest string of length 0 formed by doing operations on the first i characters of the original string.
+- For j > 0, dp[i][j] represents the lexicographically smallest string of length j that can be formed by either:
+    - deleting the last character from dp[i-1][j-1] if i > 0 and j > 0
+    - duplicating dp[i-1][j] if i > 0
+
+Initialize dp[0][0] = "".
+
+For k from 1 to n, 
+    For j from 0 to min(k, n), 
+        If j == 0 or s[n-j] <= s[n-k], 
+            dp[k][j] = dp[k-1][j]
+        else
+            dp[k][j] = s[n-k:n] + dp[k-1][j]
+
+Return dp[n][k].
+===END PLAN===

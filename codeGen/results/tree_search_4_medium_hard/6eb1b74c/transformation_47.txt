@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Create a 2D memoized array dp where dp[i][j] represents the minimum number of steps required to color all letters in t[0:i] given that strings s_1, s_2, ..., s_j have been used. 
+\ 
+Fill the base case for dp[0][j] which represents the minimum number of steps required to color all letters in an empty string. This should be 0.
+\
+Initialize a variable min_steps as INF (Infinity) or -1 to keep track of the overall minimum number of steps.
+\
+Create a recursive function that takes the current position i and the strings seen so far j as inputs, and returns the minimum number of steps required to color all letters starting from that position given those strings have been used. 
+\ 
+Base case: If i is equal to the length of t, then return 0.
+\
+Otherwise, for each string s_k in s_1, ..., s_j:
+    Calculate the number of new characters covered by s_k starting from position i.
+    Recursively call the function with the updated position and strings seen so far (j+1), and add 1 to the result.
+    Update min_steps if necessary.
+\
+Return min_steps.
+\ 
+Finally, initialize dp[0][0] as 0 and update dp[i][j] for each i from 0 to |t| and j from 0 to n.
+\
+Read the input strings t and s_1, ..., s_n.
+\
+For each string in t:
+    Initialize a variable pos at the beginning of the string.
+    While there are still uncolored characters in the string:
+        Calculate the number of new characters covered by any used string starting from position pos.
+        Update pos accordingly.
+    Print min_steps and the sequence of strings used to cover all characters.
+===END PLAN===

@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+Consider the current position i and the previous last split position k. If all characters from k+1 to i are the same, then there exists a valid split at this position.
+Create a dictionary memo with default value False, and update it accordingly as you calculate the dynamic programming values.
+
+Let's consider the substrings ending at each position:
+- For each substring ending at position i, we check if all characters from k+1 to i are the same. If they are, then there exists a valid split.
+- If not, we can only consider the cases where the first character after the last split is different from the previous one.
+
+Let memo[i][j] = True if and only if dp[i][j] = 1
+memo[k][i-1] = True
+dp[k+1][i] = dp[k+1][k+1-1] + (a[ord(s[k+1]) - ord('a')] > 0) * memo[k+1][k]
+dp[i][j] = sum(dp[m][m-1] for m in range(k, i)) if memo[i][j]
+
+Let's find the number of ways to split the message:
+total_ways = dp[0][n-1]
+
+Let's find the length of the longest substring:
+max_len = max(m - k for k, m in enumerate(dp) if memo[m][m-1])
+
+Let's find the minimum number of substrings:
+min_substrs = min(len(list(filter(None, memo))) + 1 for i in range(n))
+
+Print the results modulo 10^9 + 7:
+print((total_ways % (10**9 + 7)))
+print((max_len % (10**9 + 7)))
+print((min_substrs % (10**9 + 7)))
+
+===END PLAN===

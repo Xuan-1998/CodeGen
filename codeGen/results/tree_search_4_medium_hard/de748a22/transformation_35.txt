@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+The state can be represented as (left, right, sign_sum), where left and right are the indices of the leftmost and rightmost elements in the subarray, respectively, and sign_sum is the sum of signs in this subarray.
+Tabulate the dynamic programming solution by creating a 3D array where the first two dimensions represent the query range indices (left, right) and the third dimension represents the sign sum state.
+
+Base case: When the query range contains only one element. In this case, no elements need to be removed since the sign sum is already zero.
+Transition function:
+For each cell in the dynamic programming array, calculate the minimum number of elements that can be removed by considering all possible leftmost and rightmost elements that can be removed within the given range.
+
+State transitions:
+- If the current subarray has an odd number of 1's, it means we need to remove one more 1 from the beginning of the subarray.
+- If the current subarray has an even number of -1's, it means we need to add one more -1 to the end of the subarray.
+
+Time complexity: O(n * q)
+Space complexity: O(n * q)
+
+===END PLAN===

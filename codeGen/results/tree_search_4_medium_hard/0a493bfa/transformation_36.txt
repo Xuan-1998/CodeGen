@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+The base case would be when the array contains only one element, in which case the beauty is 0.
+
+To solve this problem using dynamic programming, we can fill up a table dp[i][j] where i is the index of the pivot and j is the number of operations performed so far. For each pivot, calculate its GCD with all other numbers in the array to create new subproblems.
+
+Memoize the recursive function using a dictionary to store previously computed values.
+
+For each operation, if the GCD is good (not in the set of bad prime numbers), add the size of the subset to the beauty. If the GCD is bad, subtract the size of the subset from the beauty.
+
+The table dp[i][j] would be initialized with 0s and filled up as follows:
+
+- For each pivot i, calculate its GCD with all other numbers in the array.
+- For each j from 1 to m (the number of operations), for each good prime p less than or equal to i:
+	+ If p is not in the set of bad prime numbers, update dp[i][j] as the maximum beauty achieved by performing j operations on the subset {p}.
+	+ Update dp[i][j] as the maximum beauty achieved by performing j-1 operations on the subset {i/p} if p divides i.
+- The final answer would be the maximum value in the table.
+
+The plan includes edge cases: when the array contains only one element, the beauty is 0. When there are no more operations to perform, we return the current beauty.
+===END PLAN===

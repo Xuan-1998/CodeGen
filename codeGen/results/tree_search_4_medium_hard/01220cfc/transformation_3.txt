@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify potential subproblems: Consider breaking down the problem into smaller instances of the same problem, where each instance has a unique set of inputs.
+
+DP states: For each position i, define dp[i] as True if it's possible to reach index i from the start, and False otherwise.
+dp[i] is True if there's an index k such that k <= i and arr[k] >= i - k, and also dp[k] is True.
+
+Define a 1D table dp with length n+1, where n is the length of the array. For each position i, dp[i] represents whether it's possible to reach index i from the start.
+
+The base case is dp[0] = True, as we can always reach the start.
+
+For each i from 1 to n:
+    If arr[i-1] >= i - 1 and dp[i-1], then dp[i] = True.
+    Otherwise, dp[i] = False.
+
+Finally, return dp[n].
+===END PLAN===

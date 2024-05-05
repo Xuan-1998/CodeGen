@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays.
+
+Consider the maximum beauty value for all possible combinations of good and bad primes. The key insight is that if we fix the right boundary j, then the maximum beauty value can be computed in terms of the maximum beauty values for smaller intervals [i, j-1]. This allows us to use dynamic programming.
+
+The state expression is a 4-tuple (i, j, f, g) representing the current window [i, j] with flags f indicating whether to consider bad primes or not and g indicating whether the right boundary has been reached. The base case would be when i = j, which corresponds to an empty subarray.
+
+The maximum beauty value is computed by iterating over all possible combinations of good and bad primes in the interval [i, j] and choosing the one that results in the highest beauty value.
+
+Implement memoization by storing the beauty values in a dictionary, using a custom hash function as the key. This would avoid redundant computations.
+
+===END PLAN===

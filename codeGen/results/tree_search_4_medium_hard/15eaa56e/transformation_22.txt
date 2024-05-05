@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming with three dimensions - row, column and state.
+
+State expression: (is_sorted, max_val) where is_sorted is a boolean indicating whether the subtable is sorted up to each element and max_val is an integer representing the maximum value in the subtable up to each element.
+
+Base case: When the subtable consists of only one row, in which case it's always True and the maximum value is simply the maximum value in that row.
+
+Transition relationship: For each cell, check if the current element is less than or equal to its adjacent elements in the same column. If true, then the subtable up to this cell is sorted, else not.
+
+Tabulate using a 3D array (row, col, state) where state represents the pair (is_sorted, max_val)
+
+For each task, iterate over all columns and check if the subtable in that column is sorted from row l to r. If it's found that at least one column has its subtable sorted, then print "Yes". Else print "No".
+
+===END PLAN===

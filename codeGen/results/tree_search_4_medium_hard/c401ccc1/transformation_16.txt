@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as:
+dp[u][v] = whether there's a directed path from u to v.
+Base case: for any vertex, there's no path to itself.
+
+Transition relationship:
+dp[u][v] = OR of all possible paths from vertex u to vertex v with exactly k bits set in common between the two vertices. 
+
+For every neighbor w such that (u & w) == w, recursively calculate dp[w][v]. If the result is true, return true; otherwise, continue the calculation.
+
+Define a function f(u, v) that returns whether there's a directed path from vertex u to vertex v using memoization.
+f(u, v) = 
+    if (u & v) == v: 
+        True
+    else:
+        dp[u][v] = False
+        for w in neighbors(u):
+            if (u & w) == w and f(w, v): 
+                return True
+        return False
+
+Memoization will be used to store the values of dp[u][v].
+f(u, v) = memo.get((u, v), f(u, v))
+memo[(u, v)] = f(u, v)
+
+The function f will calculate and return whether there's a directed path from vertex u to vertex v.
+===END PLAN===

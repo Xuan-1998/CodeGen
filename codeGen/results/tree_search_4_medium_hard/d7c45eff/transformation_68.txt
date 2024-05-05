@@ -1,0 +1,11 @@
+{
+    Define states as the current number of duplications (0-indexed). The goal is to find the lexicographically smallest string of length k.
+    Initialize dp array with size k+1, where dp[i] represents the lexicographically smallest string of length i that can be formed by either deleting the last character or duplicating the original string.
+    Base case: dp[0] = "" (empty string), since there are no characters to duplicate or delete initially.
+    Transition relationships:
+        For j from 1 to k:
+            If j == 0, dp[j] should be the same as dp[0], since we can't form a string of length 0 by duplicating or deleting characters.
+            Otherwise, consider two cases: either we duplicate the original string (dp[j-1] + s) or delete the last character (dp[j-1]).
+            Calculate and compare the lexicographically smallest string between these two options. If j is less than k, update dp[j+1] accordingly.
+    The lexicographically smallest string of length k that can be formed by either deleting the last character or duplicating the original string is stored in dp[k].
+}

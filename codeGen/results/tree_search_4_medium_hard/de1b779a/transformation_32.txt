@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+i == 0:
+    dp[i][j] is the maximum profit that can be achieved by making a bun with the j-th stuffing type (if possible) or not making any buns at all.
+    Initialize an empty list for dp and then fill it with values based on this condition: 
+    if there's no dough, calculate the maximum profit from each stuffing type without considering the cost of dough
+dp[i][j] is calculated as follows:
+    1. If i >= c0 (dough available), consider making a bun with j-th stuffing (or none) and dp[i-c0][j-1] if j > 0, or dp[i][j-1] otherwise
+    2. Calculate the maximum profit from this option: dp[i][j] = max(dp[i-c0][j-1], dp[i][j-1]) + d0 - c0
+    If i < c0 (no dough), consider not making any buns at all and dp[0][j]
+dp[i][j] is calculated as follows:
+    1. If j > 0, calculate the maximum profit from each stuffing type: dp[i][j] = max(dp[i][k-1] + d[k] - c[k], 0 <= k < j)
+    2. Add the maximum profit without any stuffing: dp[i][j] = max(dp[i][j], dp[0][j])
+===END PLAN===

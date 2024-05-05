@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with prefix sum and difference arrays.
+
+State expression: dp[i][j] is equal to 1 if the sign-variable sum of array[0..i-1] for query [l_ j, r_j] is zero, and 0 otherwise.
+
+Use a bottom-up dynamic programming approach, initializing two arrays pref_sum and diff_sum with size n+1, where pref_sum[i] stores the sum of signs from array[0..i], and diff_sum[i] stores the difference between the sign-variable sum of array[0..i-1] and array[0..i].
+
+For each query [l_i, r_i], calculate the prefix sum and difference at l_i and r_i, and use these values to fill up the dp table.
+
+The final answer is the minimum value in the last column of the dp table.

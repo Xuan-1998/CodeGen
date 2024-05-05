@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Let dp[i] be the number of times '1' appears as the ith bit (0-indexed) in all non-negative integers less than or equal to i. Then, we can calculate dp[i] using the following recurrence:
+
+- For i = 0, dp[0] is simply the count of '1's appearing at the most significant digit.
+- For i > 0, consider two cases:
+    - If the (i-1)th bit is 0, then the ith bit can only be 1 if it appears as a leading digit in numbers less than or equal to i-1. In this case, dp[i] is simply the count of '1's appearing at the most significant digit.
+    - If the (i-1)th bit is 1, then we have two possibilities: either the ith bit is also 1 (in which case, it appears as a leading '1' in numbers less than or equal to i-1), or it is not. In this case, dp[i] is the sum of dp[i-1] and the count of '1's appearing at the most significant digit.
+
+This recurrence can be calculated iteratively using a dynamic programming approach.
+
+Let memo be a dictionary to store the counts for each number of leading ones (i.e., dp[i]).
+For i from 0 to n:
+    - If i is 0, then dp[0] is simply the count of '1's appearing at the most significant digit.
+    - For i > 0, calculate dp[i] using the recurrence above and store it in memo.
+Finally, return the sum of all values in memo.
+
+This plan avoids counting duplicate numbers by considering each number only once. It also handles edge cases correctly.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Can we identify a recursive structure in the problem that allows us to break it down into smaller instances of the same problem?
+
+The state could be the position in the string, and the base case would be when the end of the string is reached.
+
+The state could be a tuple of two indices into s1 and s2, representing the current position in each string. The base case would be when both indices reach the end of their respective strings. The transition relation would involve incrementing one or both of the indices depending on whether we're comparing characters at the same position.
+
+Define a recursive function that takes two indices into s1 and s2, and returns True if the substrings s1[i:] and s2[j:] are scrambled.
+
+Then use memoization to avoid recomputing the same subproblems multiple times.
+
+Let's define the base case as when both indices reach the end of their respective strings. This means the function should return True if both strings have ended, indicating that the remaining characters in s1 and s2 are the same.
+
+For the transition relation, we can increment one or both of the indices depending on whether we're comparing characters at the same position. If the characters at the current positions in s1 and s2 are the same, we can increment both indices. If they're different, we can try to swap the remaining characters in s1 and s2 and see if the result is a scrambled string.
+
+To avoid recomputing the same subproblems multiple times, we can use memoization. This means we store the results of subproblems as we solve them, so we don't have to recompute them later.
+
+===END PLAN===

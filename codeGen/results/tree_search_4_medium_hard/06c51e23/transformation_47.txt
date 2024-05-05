@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider using a bottom-up dynamic programming approach with tabulation. We can initialize a table dp of size n+1 and fill it up iteratively based on the problem constraints, where dp[i] represents the maximum possible grade that can be obtained for a decimal fraction of length i within time limit t.
+dp[0] = 0
+For each i from 1 to n:
+    if last digit is less than 5: dp[i] = dp[i-1]
+    else: dp[i] = dp[i-1] + 9.99 * (10^(n-i))
+This approach ensures that the maximum possible grade is obtained by rounding at most one place after the decimal point.
+To handle edge cases, we can add additional checks for i=0 and i=n to ensure proper handling of the initial and final states.
+===END PLAN===

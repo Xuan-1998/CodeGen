@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 1D array to keep track of the cumulative sum of carries.
+
+state: dp[i] = expected number of non-zero carries when adding A with i digits and B with N-i digits.
+Consider using dynamic programming with memoization to keep track of previously computed values and avoid redundant calculations.
+
+dp[i] = expected number of non-zero carries when adding A with i digits and B with N-i digits, iterate through the array in a bottom-up manner to fill up the table.
+For each digit position from left to right:
+    Iterate through all possible combinations of A's i-1 and B's N-(i-1) digits
+    Calculate the expected number of non-zero carries for that combination
+    Add it to dp[i]
+Iterate through the array in a top-down manner to get the final answer.
+dp[0] = 0 (base case)
+For each digit position from right to left:
+    Calculate the expected number of non-zero carries by considering all possible combinations of A's and B's digits
+    Add it to dp[i]
+Return dp[N]
+
+===END PLAN===

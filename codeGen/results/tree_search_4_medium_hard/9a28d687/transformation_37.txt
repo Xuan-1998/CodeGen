@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 1D array dp where dp[i] represents the minimum total cost required to sort the first i strings in lexicographical order.
+
+State: A 3D array dp[n][m][2] where n is the number of strings and m is the length of each string. The third dimension represents the orientation (0 for ascending or 1 for descending) of the string at a given position. This state will be updated based on the previously computed states.
+
+Initially, the base case is dp[0] = 0 because there are no strings to sort. 
+
+For each i from 1 to n-1:
+    For each j from 1 to m:
+        If the current string at index j is less than the previous one in lexicographical order (dp[i-1][j-1][1]), then we need to reverse it, so dp[i][j][0] = dp[i-1][j-1][1] + cost[i]. 
+        Otherwise, if the current string at index j is greater than or equal to the previous one in lexicographical order (dp[i-1][j-1][0]), then we don't need to reverse it, so dp[i][j][1] = dp[i-1][j-1][0].
+        If neither of the above conditions are met, then we can either reverse or not reverse, so dp[i][j][0] = min(dp[i-1][j-1][0], dp[i-1][j-1][1]) + cost[i].
+
+Finally, check if it's possible to sort all strings. If the last string is greater than or equal to the previous one in lexicographical order (dp[n-1][m-1][0]), then we can't sort the strings and return -1.
+
+Otherwise, return dp[n-1][m-1][0] as the minimum total cost required to sort all strings.
+===END PLAN===

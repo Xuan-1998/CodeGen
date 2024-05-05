@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define a boolean array dp where dp[i] represents whether the substring from index 0 to i can be palindrome-partitioned into smaller palindromic substrings.
+
+Create a dynamic programming table with rows representing indices and columns representing whether the substring can be palindrome-partitioned. The state expression captures all possible substrings of the input string because we are considering each character as the starting point for a potential palindrome, allowing us to cover all possible substrings.
+
+For each index i, check if the current character is equal to itself (ignoring case). If it is, then update dp[i] to true. This is because a single character is always considered a palindrome. Then, iterate from left to right and check for palindromes with increasing lengths by considering the characters on both sides of the current character.
+
+If at any point we find that the substring is not a palindrome, set dp[i] to false. If we can successfully partition the entire string into smaller palindromic substrings without cutting it, then return 0 as the minimum number of cuts. Otherwise, continue updating the dynamic programming table and eventually return the minimum number of cuts needed.
+
+===END PLAN===

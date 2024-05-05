@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far, base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+state: (i, partition, memo) where i is the current index in the string, partition is a list of strings representing the palindromic partition so far, and memo is a dictionary storing the solutions to subproblems.
+
+Use list comprehension to initialize memo:
+memo = [[] for _ in range(len(S)+1)]
+
+state transition: 
+- if S[i] == S[j], then (i, partition + [S[i:j+1]], memo) where j ranges from i-1 down to 0
+- else, then return all possible partitions that do not include the current character S[i]
+
+base case:
+- return [partition] when i >= len(S)
+
+main function:
+for i in range(len(S)):
+    for partition in memo[i]:
+        # recursive call here
+
+return all unique partitions from the memo dictionary
+
+===END PLAN===

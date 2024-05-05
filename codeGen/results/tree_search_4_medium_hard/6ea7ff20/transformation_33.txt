@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+State: 
+- i: the current index in p
+- j: the current index in one of the arrays (either a or b)
+- a: the set of elements in array a
+- b: the set of elements in array b
+
+Transition relationship:
+dp[i][j] = True if and only if:
+
+    - i == n and j == 0: base case, return True if p is empty
+    - (a ∩ b) == set() and can be merged from a and b
+    - for every possible element x in p[i], dp[i-1][j] or dp[i-1][j+1]
+
+Employ top-down approach, recursively solving subproblems and storing results in a dictionary.
+
+===END PLAN===

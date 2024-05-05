@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = sum(dp[k-1][j-1]*a[ord(s[k-1])-97] for k in range(j, i+1)) if s[j:i].isalpha() and i-j+1<=max(a) else 0
+
+A dynamic programming approach could be used to build up a table of possible splits based on the maximum number of consecutive occurrences for each character.
+
+Apply tabulation by iterating over the message from right to left, updating the dynamic programming state accordingly. Initialize dp[i][j] as True for all i and j, since initially no split has been performed.
+
+For each letter in the message:
+
+* If the current letter is within its maximum consecutive occurrences (i.e., i-j+1<=max(a)), update dp[i-1][j-1]*a[ord(s[i-1])-97] to dp[i-1][j-1]
+* Otherwise, set dp[i-1][j-1] as False
+
+After the loop:
+
+* Count the number of ways to split the message by summing up all True values in the dp table (i.e., count(dp[i][j]))
+* Calculate the length of the longest substring over all ways by finding the maximum value in the dp table
+* Calculate the minimum number of substrings over all ways by finding the minimum value in the dp table
+
+Finally, output the results modulo 10^9 + 7.
+
+===END PLAN===

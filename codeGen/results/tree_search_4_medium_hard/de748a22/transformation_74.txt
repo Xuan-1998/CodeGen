@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The dynamic programming problem involves finding the minimal number of elements that can be removed from a given range of the array so that the sign-variable sum of the remaining elements is zero.
+
+Define the state expression as dp[i][j] = minimal number of elements to remove from [i, j] such that the sign-variable sum of the remaining elements is zero.
+
+dp[0][n-1] = 0 (base case)
+
+For each i from n-2 down to 1:
+    For each j from i+1 to n-1:
+        If signs[i] == signs[j]:
+            dp[i][j] = min(dp[i][j], 1 + dp[i+1][j]) (add one element and recursively remove elements in the range [i+1, j])
+        Else:
+            dp[i][j] = min(dp[i-1][j-1], 2) (remove two elements from the range [i-1, j-1])
+
+dp[0][n-1] = minimal number of elements to remove from [0, n-1]
+
+===END PLAN===

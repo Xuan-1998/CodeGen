@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+A tuple (i, s) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j, given that the last bit was set as s.
+A state s represents the last k bits of an array and the corresponding transition is based on whether the next element should be a 0 or 1 in the least significant bit position.
+Iterate through each possible combination of the last k bits (2^k) to calculate the transitions, where the transition for a given state depends only on its value.
+Fill up the table by considering all possible states and transitions.
+
+For the base cases:
+- Handle arrays with i = 0 or s = 0 separately. There is only one way to form such an array (i.e., the empty array or an array consisting entirely of zeros).
+- Consider the case where the last bit of the array is 1. If this is allowed, then there are two possibilities: the next element can be a 0 or a 1.
+
+===END PLAN===

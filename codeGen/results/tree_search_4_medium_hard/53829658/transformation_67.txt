@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i][j] = minimum number of reversed roads needed to reach city j from city i, with base case being dp[1][i] = 0 for all i. This choice focuses on finding the minimum number of reversed roads for each pair of cities.
+
+dp[i][j] is updated as min(dp[i][k] + 1) where k is such that there's an edge from city k to city j and i != k. 
+
+The plan can be improved by initializing dp[][] with a default value, say infinity or a very large number, for all pairs (i, j). This way we ensure that the minimum number of reversed roads needed to reach any city is initially set to infinity.
+
+The nested loop structure where you iterate over each city and for each city, iterate over its incoming edges can be implemented as follows:
+
+for i from 2 to n:
+    for k in range(1, n+1):
+        if there's an edge from city k to city i:
+            dp[i][k] = min(dp[i][k], dp[k][i] + 1)
+
+Finally, the capital city is the one with the maximum in-degree.
+
+===END PLAN===

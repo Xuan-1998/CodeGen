@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine that the problem has an optimal substructure: the number of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones, can be calculated by solving smaller instances of the same problem for smaller values of n. This allows you to use dynamic programming with memoization.
+
+The state is dp[i], where dp[i] is the count of non-negative integers less than or equal to i, whose binary representations do NOT contain consecutive ones.
+
+Initialize a dictionary dp where dp[0] = 1 (since the only number that has no consecutive ones in its binary representation for n=0 is 0 itself).
+
+For each integer i from 1 to n:
+    - If the binary representation of i does not have consecutive ones, then dp[i] = dp[i-1] + 1.
+    - Otherwise, dp[i] = dp[i-1].
+
+Return dp[n].
+===END PLAN===

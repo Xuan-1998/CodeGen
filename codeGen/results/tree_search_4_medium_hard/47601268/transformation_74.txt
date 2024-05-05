@@ -1,0 +1,13 @@
+Determine that the problem has an optimal substructure: the number of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones, can be calculated by solving smaller instances of the same problem for smaller values of n. This allows you to use dynamic programming with memoization.
+
+The state is dp[i], where dp[i] is the count of non-negative integers less than or equal to i, whose binary representations do NOT contain consecutive ones.
+
+The transition relationship could be dp[i] = dp[(i-1) / 2] + (1 if i % 4 == 0 else 0), as it only depends on the previous state. Note that we need to handle the edge case where i is a power of 2, in which case dp[i] can be calculated independently.
+
+Use dynamic programming with top-down approach, define a recursive function that computes dp[n] and use memoization to avoid redundant calculations.
+
+Memoize the results of subproblems and store them in a dictionary called memo. This will allow you to reuse previously computed values instead of recalculating them.
+
+The base case is when i is 0 or 1, in which case dp[i] is simply 1.
+
+This plan does not include edge cases for negative numbers, but since the problem statement specifies that n is a positive integer, we can assume that n > 0 and handle the case where n is 1 separately.

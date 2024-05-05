@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+dp = [[0] * (C + 1) for _ in range(C + 1)]
+dp[0][j] = 1 if j == 0 else 0
+for i in range(1, C + 1):
+    dp[i][0] = 1
+    for j in range(1, min(i, C)):
+        if any(U_k <= j for U_k in U) and any(L_k <= j for L_k in L):
+            dp[i][j] = sum(dp[k][i-1] * (1 if U_k <= j else 0) for k in range(N)) + sum(dp[k][i-1] * (1 if L_k <= j else 0) for k in range(M))
+        elif any(U_k <= j for U_k in U):
+            dp[i][j] = sum(dp[k][i-1] * (1 if U_k <= j else 0) for k in range(N))
+        elif any(L_k <= j for L_k in L):
+            dp[i][j] = sum(dp[k][i-1] * (1 if L_k <= j else 0) for k in range(M))
+        else:
+            dp[i][j] = 0
+
+===END PLAN===

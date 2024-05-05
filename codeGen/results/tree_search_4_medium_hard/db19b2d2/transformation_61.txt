@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming, where you start by calculating the number of ways to select players from each department, and then iteratively add these counts to calculate the total probability.
+
+Base case: If the total number of players from all departments is less than n, then there's no way to form a team with at least one player from the department of interest. Initialize dp[0][j] = 1 for all j, since it's possible to select no players and still have 0 players from the department of interest.
+
+State: Consider a 3D array dp where dp[i][j][k] represents the number of ways to form a team with exactly i players, considering only k departments, and having at least one player from the h-th department. Initialize dp[0][j][0] = 1 for all j, since it's possible to select no players.
+
+for i in range(1, n+1): 
+    for j in range(m+1):
+        for k in range(j, min(j+h-1, m)+1):
+            if k == h: dp[i][j][k] = (s[h] / sum(si for si in s)) * (dp[i-1][j][k-1] + dp[i][j-1][k]) 
+            else: dp[i][j][k] = dp[i-1][j][k]
+        if j > 0: dp[i][j][j] = 1
+    return sum(dp[n][i][h] for i in range(m+1)) / (sum(si for si in s) ** n)
+
+===END PLAN===

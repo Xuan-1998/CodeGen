@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp[i][j] = sum(dp[m][k-1] * (bitwise AND of all elements in the range [m, i) is j-1) for m from 0 to i
+for k from 2^k to 1:
+    dp[0][j] = 1 if j == 0 else 0
+    for i from 0 to n:
+        dp[i][j] += sum(dp[m][j-1] * (bitwise AND of all elements in the range [i-m, i) is j-1) for m from 0 to i)
+    for i from 0 to n:
+        if bitwise AND of all elements in the range [0, i) is less than or equal to k-1:
+            dp[i][j] = 0
+        else:
+            dp[i][k-1] += dp[i-1][k-1]
+    for j from 2^k to 0:
+        for i from n-1 downto 0:
+            if bitwise AND of all elements in the range [i, n) is less than or equal to k-1:
+                dp[n][j] = 0
+            else:
+                dp[n][j] = sum(dp[m][k-1] * (bitwise AND of all elements in the range [n-m, n) is j-1) for m from 0 to n)
+    return dp[n][2^k]
+===END PLAN===

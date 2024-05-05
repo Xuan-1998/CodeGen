@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. 
+Define the state as: dp[i] = whether there exists a path from i to 0 (since all vertices are connected by edges). 
+Base case: dp[0] is always true.
+dp[i] = any(dp[u] for u in range((i.bit_length() - 1), -1, -1) if not (i & (1 << u))); 
+Use a list comprehension with a conditional statement to generate the values of dp. This condition ensures that there's an edge from i to u and then a path from u to 0.
+===END PLAN===

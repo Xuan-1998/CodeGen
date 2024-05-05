@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Hypothesize a top-down approach with memoization, defining recursive relationships between subproblems, and iteratively refining the solution.
+
+Define the state expression for each node i as the product of edge labels on the shortest path from i to the root, with base case being nodes that have only one child or are leaves.
+
+Formulate the state as the maximum possible distribution index of the tree, using memoization to avoid redundant computation. Define a dynamic programming table dp[node] where each cell dp[i] stores the maximum possible distribution index of the subtree rooted at node i.
+
+Define recursive relationships between subproblems:
+
+1. For nodes with only one child, the maximum possible distribution index is 0.
+2. For leaves, the maximum possible distribution index is the product of edge labels on the path from the leaf to its parent.
+3. For non-leaf nodes i, the maximum possible distribution index is the sum of:
+   a. The product of edge labels on the path from node i to its parent.
+   b. The maximum possible distribution index of the subtree rooted at each child j of node i.
+
+Iteratively refine the solution by computing the maximum possible distribution index for each node and updating the dynamic programming table accordingly.
+
+Finally, return the maximum possible distribution index of the entire tree as the result.
+
+===END PLAN===

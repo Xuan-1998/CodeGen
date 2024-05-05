@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Recognize that the problem can be solved by iterating over all numbers less than or equal to n, checking if their binary representation contains consecutive ones, and incrementing a counter for each number that does not contain consecutive ones.
+
+dp_state = [False] * (n + 1)
+for i in range(2, n + 1):
+    bin_str = bin(i)[2:]
+    has_consecutive_ones = False
+    count = 0
+    for j in range(len(bin_str)):
+        if bin_str[j] == '1':
+            count += 1
+            if count > 1 and bin_str[j - 1] == '1':
+                has_consecutive_ones = True
+                break
+        else:
+            count = 0
+    dp_state[i] = not has_consecutive_ones
+
+count = 0
+for i in range(2, n + 1):
+    if dp_state[i]:
+        count += 1
+
+return count
+===END PLAN===

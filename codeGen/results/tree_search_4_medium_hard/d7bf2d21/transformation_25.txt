@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively compute and store previously computed results in a memo dictionary to avoid redundant computations.
+
+Memo: {i: longest_increasing_subsequence[i]: length of the longest increasing subsequence ending at index i}
+
+The key insight lies in recognizing that each element can be either part of the longest increasing subsequence or not, so focus on finding the longest increasing subsequences that end at each index i.
+
+Use a 2D list memo where memo[i][0] represents the length of the longest increasing subsequence ending at index i and memo[i][1] stores the last element of that subsequence. 
+
+For each element in the array, compute the longest increasing subsequence ending at that index by considering two possibilities: 
+- The current element is part of the longest increasing subsequence (in which case you can simply add it to the subsequence ending at the previous index), or
+- The current element starts a new longest increasing subsequence (in which case you start a new subsequence with this element).
+
+If the current element is part of the longest increasing subsequence, update memo[i][0] and memo[i][1] accordingly.
+
+If the current element starts a new longest increasing subsequence, initialize memo[i][0] to 1 and memo[i][1] to the current element.
+
+Finally, return the maximum length of the longest increasing subsequences ending at each index, which will give you the number of longest increasing subsequences in the array.
+
+===END PLAN===

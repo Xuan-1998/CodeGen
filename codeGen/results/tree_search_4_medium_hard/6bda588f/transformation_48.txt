@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The optimal substructure of this problem could be broken down into smaller instances of itself, making a recursive function a suitable choice.
+
+Let the state expression be (n, s, prefix_sum) where n is the remaining number of integers to process, s is the current value of s, and prefix_sum is the sum of the first i integers in the sequence.
+
+The goal is to minimize F = Σ (x_i * y_{i+1}) where x_i and y_i are non-negative integers that satisfy the conditions x_i + y_i = a_i and (x_i - s) * (y_i - s) ≥ 0.
+
+Let dp[i][j] represent the minimum value of F for the first i integers and s = j. Initially, set dp[0][s] to the sum of the first integer in the sequence for all values of s.
+
+For each additional integer in the sequence, iterate from n = 1 to n = N (the total number of integers). For each value of n, iterate from s = 0 to s = S (the maximum possible value of s).
+
+In each iteration, calculate two possibilities:
+
+1. The current integer is added to the previous sum as x_i.
+2. The current integer is subtracted from the previous sum as y_{i-1}.
+
+For both cases, update dp[n][j] with the minimum value between these two possibilities and the previously calculated value of F for the same sequence but one less integer.
+
+Finally, return dp[N][S].
+
+===END PLAN===

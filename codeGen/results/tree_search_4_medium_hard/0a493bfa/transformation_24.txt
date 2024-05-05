@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify a recursive relationship between the maximum beauty of an array and its subarrays. Define a state expression based on the subarrays' lengths and their corresponding maximum beauties. Use bottom-up approach with tabulation to fill up a 2D table, where each cell represents the maximum beauty of a subarray.
+
+The maximum beauty of an array depends on the maximum beauties of its two halves, and the number of operations performed to combine these two halves. Define the state as the maximum beauty of the array after performing an arbitrary number of operations, based on the lengths of its two halves. The transition relationship would involve calculating the maximum beauty for each half and combining them according to the problem's rules.
+
+Utilize memoization by storing the calculated maximum beauties in a dictionary, allowing you to avoid redundant calculations and improve the efficiency of your code. Initialize a 2D table dp with size (n+1) * (m+1), where n is the length of the array and m is the number of bad prime numbers.
+
+Fill up the table by iterating over all possible lengths of subarrays from 1 to n, for each half-length i:
+    Calculate the maximum beauty of the left half (i) using the previously computed values in the table.
+    Calculate the maximum beauty of the right half (n-i) using the previously computed values in the table.
+    Calculate the maximum number of operations required to combine these two halves according to the problem's rules.
+    Update the value at dp[i][m] as the maximum of the left and right halves, plus/minus the number of operations.
+
+Finally, return the value at dp[n][m] as the maximum beauty of the array.
+
+===END PLAN===

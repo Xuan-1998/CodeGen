@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i] depends on the maximum reachable index from the previous position. If there are no elements that can be reached, then dp[i] = False; otherwise, it's possible to reach dp[i].
+Use a dynamic programming table dp where dp[i] is true if and only if it's possible to reach the i-th element.
+For each i, calculate the maximum reachable index from previous positions by iterating over all j < i and checking if j + arr[j] >= i. If such a j exists, then dp[i] = True; otherwise, dp[i] = False.
+Use memoization to store and reuse previously computed values of dp[i].
+Fill in dp[0] as it's always possible to reach the first element.
+Return dp[-1] as that's the last index we're interested in.
+===END PLAN===

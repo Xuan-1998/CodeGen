@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+DP state: (n, k) where n is the current digit being processed and k is the number of non-zero carries seen so far.
+
+Let's define two base cases:
+1. When processing the last digit (n = N), there are no more digits to process.
+2. If carry == 0 or carry >= 10, the expected number of non-zero carries doesn't change.
+
+For the recursive case:
+
+Let dp[n][k] be the expected number of non-zero carries when adding two numbers with n digits and k non-zero carries seen so far.
+1. Calculate the number of ways to add the current digit and another digit (0-9) without any carry, considering both A and B have N-digits.
+2. For each possible pair:
+   - If there is no carry (dp[n-1][k]), add the result to the total expected number of non-zero carries for this subproblem.
+   - Otherwise (dp[n-1][k+1]), add the result multiplied by 10 to account for the carry.
+3. Calculate the average of these results.
+
+Memoize the recursive function with a dictionary to store the results of subproblems.
+
+===END PLAN===

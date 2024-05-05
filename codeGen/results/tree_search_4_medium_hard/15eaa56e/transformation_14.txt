@@ -1,0 +1,26 @@
+def is_sorted(table):
+    n, m = len(table), len(table[0])
+    dp = {}
+
+    def helper(i, j):
+        if (i, j) in dp:
+            return dp[(i, j)]
+
+        if i == 0:
+            return True
+
+        for k in range(m):
+            if table[i-1][k] > table[i-1][k]:
+                return False
+        return True
+
+    for i in range(n):
+        for j in range(m):
+            dp[(i, j)] = helper(i, j)
+
+    # check if any column is sorted up to each row
+    for j in range(m):
+        is_sorted_column = all(helper(i, j) for i in range(n))
+        if is_sorted_column:
+            return "Yes"
+    return "No"

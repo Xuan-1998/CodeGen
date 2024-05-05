@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i][j]: the number of ways to build a sequence with exactly j spheres having radii up to i, where 1 ≤ i ≤ C and 0 ≤ j ≤ min(N, M).
+
+dp[i][j] = sum(dp[k][min(j-1, m)] for k in range(1, i+1) if find_upper_hemisphere(k) <= j)
+
+Memoization can be applied by storing previously computed values in a dictionary.
+
+The base case is dp[0][j] = 1 for all j, since there is only one way to build a sequence with no spheres.
+
+For the edge cases, we need to consider N=0 and M=0 separately. For N=0, the answer is 0 if C<2, and 1 otherwise (since you can still have an empty sequence). Similarly, for M=0, the answer is 0 if C<2, and 1 otherwise.
+
+The final step is to iterate over all test cases, compute the dp values for each case, and then print the result.
+
+===END PLAN===

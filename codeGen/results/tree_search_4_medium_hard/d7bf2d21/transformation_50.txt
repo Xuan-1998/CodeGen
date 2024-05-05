@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequence and then count the number of maximum length subsequences
+dp = [0] * len(array)  # Initialize a dynamic programming table with zeros
+for i in range(len(array)):
+    max_length = 0
+    for j in range(i):
+        if array[j] < array[i]:
+            max_length = max(max_length, dp[j]) + 1
+    dp[i] = max_length
+
+max_length = max(dp)  # Find the maximum length of increasing subsequences
+count = sum(1 for x in dp if x == max_length)  # Count the number of longest increasing subsequences
+===END PLAN===

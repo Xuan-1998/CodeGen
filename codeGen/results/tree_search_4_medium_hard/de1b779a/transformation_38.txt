@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or without any stuffing. This would lead to a recursive formula, which can then be memoized.
+
+The state is (i, j), where i represents the current stuffing type, and j represents the remaining dough grams.
+
+dp[j] = max(dp[j], dp[j-ci] + di) for 0 <= j <= n
+
+Using a bottom-up dynamic programming approach with two loops:
+    for m types of stuffing
+        for n grams of dough
+
+This plan is correct in general. However, it might not consider the edge case where Lavrenty runs out of dough or stuffings.
+
+To improve this plan, we could add an additional condition to check if there is enough dough and stuffing left before making a decision.
+
+Here's the updated version:
+

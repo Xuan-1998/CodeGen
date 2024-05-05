@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+
+Define the state expression as a boolean array representing whether each city is reachable from the capital with 0 or more reversed edges.
+Let dp[i] = True if city i can be reached from the capital by reversing at most k edges. Then:
+
+    - Initialize all dp values to False
+    - For each road (si, ti) starting from the capital:
+        + Set dp[si] to True (since we are already at the capital)
+        + For each city j such that dp[j] = False:
+            * If there is a path from the capital to j with no more than k reversed edges, set dp[j] = True
+    - Return the minimum number of roads to be inversed if the capital is chosen optimally.
+
+The dynamic programming approach could be to maintain an array dp of size n, where dp[i] is true if city i can be reached from the capital by reversing at most k edges.
+Use dynamic programming to fill up the dp array in a bottom-up manner, starting from the cities that are one edge away from the capital and moving towards the leaf nodes.
+
+===END PLAN===

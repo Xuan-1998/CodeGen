@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems that share common information, making it suitable for a dynamic programming approach with top-down memoization. This allows you to avoid redundant computation and efficiently store intermediate results.
+
+We define the state as the maximum beauty achievable given the last vertex in the tail, and all edges connected to it. The transition is when adding an edge to the tail; update the state based on whether it results in a longer tail or not.
+
+Implement memoization by storing the maximum beauty achievable for each possible tail length. Update this value when adding an edge to the tail.
+
+To avoid redundant computation, iterate through the edges and consider them as potential additions to the tail. For each edge, calculate the new state (maximum beauty) considering the last vertex in the tail and all edges connected to it.
+
+When updating the state, consider two cases: 
+
+1. The edge can be added to the tail without extending its length. In this case, simply add the spine's beauty to the current maximum beauty.
+2. The edge extends the tail's length. In this case, update the state by considering the new last vertex in the tail and all edges connected to it.
+
+Keep track of the maximum beauty achieved so far and update it whenever a better value is found.
+
+===END PLAN===

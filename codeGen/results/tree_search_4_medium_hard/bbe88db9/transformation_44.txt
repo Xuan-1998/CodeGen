@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i]: number of ways to reach room i from room 1; dp[0] = n+1, since Vasya starts at room 1 and needs to get to room (n+1).
+
+dp[i]: number of ways to reach room i with an odd number of crosses on the ceiling.
+
+Use a dynamic programming table dp where dp[i] is the minimum number of steps required for Vasya to reach room i from room 1. The base case should be dp[0] = 0, since Vasya starts at room 1 and doesn't need any moves.
+
+For each room i > 1, calculate dp[i] as follows:
+
+* If the ceiling has an odd number of crosses, use the second portal (p[i-1]) and set dp[i] to be the minimum of:
+	+ dp[p[i-1]] + 1
+	+ dp[i-1]
+* Otherwise, use the first portal and set dp[i] to be the minimum of:
+	+ dp[i-1]
+	+ dp[p[i-2]]
+
+===END PLAN===

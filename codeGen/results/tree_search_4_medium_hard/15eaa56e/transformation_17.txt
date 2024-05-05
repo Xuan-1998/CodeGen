@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming to determine if each subtable is sorted in non-decreasing order. Here's an updated and detailed plan:
+===
+dp[(i, j)] = whether the column is sorted up to element (i, j); 
+Transition: 
+    * Initialize dp[(0, 0)] = True; // base case for a table with only one row
+    * For each subtable from (1, 0) to (n - 1, m - 1):
+        + If all elements in the current row are less than or equal to their previous elements in the same column:
+            - dp[(i, j)] = dp[(i - 1, j)] // continue the sorted subtable
+        + Otherwise: 
+            - dp[(i, j)] = False; // the subtable is not sorted
+    * For each task (l, r):
+        + Check if all elements in rows from l to r are less than or equal to their previous elements in the same column.
+        + If they are, print "Yes"; Otherwise, print "No";
+===END PLAN===

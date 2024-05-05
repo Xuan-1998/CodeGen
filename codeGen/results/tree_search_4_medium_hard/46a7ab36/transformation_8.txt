@@ -1,0 +1,12 @@
+], [
+The state can be represented as (i, j) where i is the number of letters that have been placed so far and j is the current position in the alphabet.
+Base case: When all letters have been placed or the alphabet is exhausted.
+Transition:
+    * If 2j > n, then the next letter can be any of the n letters.
+    * If 2j <= n, then the next letter must be greater than or equal to j.
+Memoization can be used to store intermediate results and avoid redundant computations.
+The base case is when i = m (all letters have been placed) or j = n (the alphabet is exhausted).
+The transition from state (i, j) to state (i+1, k) is done by considering the next letter that can be placed.
+If 2j > n, then the number of possible words at this state is n * dp[i-1][k].
+If 2j <= n, then the number of possible words at this state is dp[i-1][max(0, j-n/2)] + (n-j) * dp[i-1][k-n/2].
+The final answer is dp[0][0].

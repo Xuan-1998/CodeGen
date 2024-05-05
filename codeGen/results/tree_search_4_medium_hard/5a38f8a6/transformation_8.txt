@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Since we're trying to find the minimum number of perfect squares that sum up to n, we can identify overlapping subproblems by considering the maximum possible value of each perfect square (e.g., √n). This means we'll need a memoized function to keep track of previously computed values.
+The state expression is dp[n] where n is the input integer, representing the minimum number of perfect squares that sum up to n.
+dp(n) = min(1 + dp(i) for i in range(int(sqrt(n)))) where i is a perfect square less than or equal to n.
+Memoize the function by creating a dictionary and storing previously computed values.
+
+For edge cases:
+- Handle n=0, since the minimum number of perfect squares that sum up to 0 is 0 (no perfect squares are needed).
+- Handle n=1, since the minimum number of perfect squares that sum up to 1 is also 0 (no perfect squares are needed).
+
+===END PLAN===

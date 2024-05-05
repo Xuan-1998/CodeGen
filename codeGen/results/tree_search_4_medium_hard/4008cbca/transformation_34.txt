@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Another approach could be to use a top-down DP with memoization, where the state expression is the current position in the board and the dynamic programming table stores the minimum number of moves needed to remove all balls starting from that position.
+
+The state expression is a tuple (i, j) representing the current index i in the board string and the number of balls of the same color as the last ball inserted at position j. The DP table can be updated recursively as follows:
+
+- If we are at the end of the board, return 0 if no more moves are needed.
+- If there is a ball to remove at the current position, update the state expression by removing that ball and incrementing the count of balls of the same color.
+- If not, use memoization to check if the minimum number of moves has been calculated before for this state. If it has, return the cached value.
+
+The DP table can be filled iteratively by considering all possible states and updating the values accordingly.
+
+This plan considers the edge case where there are no more balls to remove at the end of the board, returning 0 in such a scenario.
+
+===END PLAN===

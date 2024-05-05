@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is dp[i], where dp[i] represents the minimum number of perfect squares that sum up to i.
+dp[i] = min(dp[j] + 1 for j in range(1, int(i**0.5) + 1) if (j ** 2) <= i and dp[i - j ** 2] > 0),
+Initialize a list dp with len(n+1) elements, set all elements in dp to infinity except for dp[0] which is 0.
+Then fill up the dp table using a loop. Specifically:
+    Iterate through each number i from 1 to n
+    For each i, iterate through all perfect squares j such that j^2 <= i
+    If the current minimum number of perfect squares that sum up to i - j^2 is greater than 0 (i.e., it's not impossible to reach i - j^2), then update dp[i] with the minimum of its current value and dp[j] + 1.
+Finally, return dp[n].
+===END PLAN===

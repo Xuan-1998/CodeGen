@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+State: a tuple (rows, cols) representing the current subtable where rows is a list of lists and cols is the set of column indices that have not been fully processed yet.
+Transition: update the state by incrementing the index of the last row in 'rows' if it has been fully processed.
+Use a 2D DP table dp[m][n] to store the sorted status of each subtable where m represents the number of rows and n represents the number of columns.
+dp[i][j] is True if the subtable from (0,0) to (i,j) is sorted in non-decreasing order.
+
+State: a tuple (rows, cols) representing the current subtable where rows is a list of lists and cols is the set of column indices that have not been fully processed yet.
+Transition: update the state by incrementing the index of the last row in 'rows' if it has been fully processed.
+The base case is when all rows have been processed, then dp[n-1][m-1] represents whether the entire table is sorted.
+
+Initialize a variable res to False and iterate through the DP table starting from (0,0).
+If for any column j, there exists a row i such that dp[i][j] is True, set res to True.
+Return "Yes" if res is True else return "No".
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===
+dp[i] = min(dp[j]) + 1, where (stones[j+1]- stones[j]) % 3 == k%3
+state = (i, k), transition = min(state)
+Consider using a dp array to store the minimum number of jumps required to reach each stone
+Initialize dp[0] = 0 and dp[i] for i > 0 with some value that will be updated later
+For all stones, starting from the first one:
+    For all possible previous jump lengths k:
+        If the frog can reach this stone from the previous stone with j jumps, then update dp[i] = min(dp[i], dp[j-1]+1)
+    Update dp[i]
+Return dp[stones.length - 1]
+===

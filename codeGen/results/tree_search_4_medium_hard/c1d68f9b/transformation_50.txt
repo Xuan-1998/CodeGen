@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+You can also think of a bottom-up tabulation solution where you build up the table row by row, considering the current polygon configuration and the next knight's mood.
+
+The state could be a boolean indicating whether the current polygon is regular, with the base case being when there is only one knight (YES) or no knights (NO).
+
+State: The maximum number of good-mooded knights seen so far, and whether they can form a regular polygon with that many vertices; 
+Transition: If the next knight's mood is 1 (good), update the maximum if necessary; if the next knight's mood is 0 (bad), keep the maximum unchanged.
+
+The problem can be solved by creating a dynamic programming table where each cell dp[i] represents whether it is possible to form a regular polygon with i good-mooded knights.
+
+For edge cases: If n < 3, return "NO" because there must be at least 3 knights; 
+For initialization: Set dp[0] = "NO", and dp[1] = "YES"; 
+For the transition function: Update dp[i] based on whether the current knight's mood is good or bad.
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+The state is a pair (i, j) representing the current row i and column j to check for sorting
+The dynamic programming approach involves defining the state as a tuple (c) where c is the current column index. The goal is to check if the entire subtable from column 1 to c and rows l to r is sorted in non-decreasing order. The transition relationship can be defined as: dp[c] = True if all rows from l to r in column c are sorted in non-decreasing order, False otherwise.
+
+You could implement a 2D table where the state is the current column index and the value at that state represents whether the subtable from column 1 to that column and rows l to r is sorted in non-decreasing order. Initialize dp[0] as True for base case (no columns) and then fill up the dp array.
+
+For each column c, check if all rows from l to r are sorted in non-decreasing order by iterating through the rows and comparing adjacent elements. If any row is not sorted, set dp[c] = False. Otherwise, set dp[c] = True.
+
+Finally, iterate through tasks and for each task, check if there exists a column c where dp[c] = True (i.e., subtable in that column is sorted). If such a column is found, print "Yes". Otherwise, print "No".
+
+===END PLAN===

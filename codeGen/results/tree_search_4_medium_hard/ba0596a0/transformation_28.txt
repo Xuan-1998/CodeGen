@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. Can we find a way to combine these subproblems to form the solution?
+The state expression could be defined as: dp[i] = True if the frog can reach stone i, False otherwise. The base case would be dp[0] = True since the frog starts on the first stone.
+dp[i] represents whether the frog can reach the ith stone after making at most one jump. The transition relationship is then dp[i+1] = any of the previous stones j such that |i-j| == k-1, k, or k+1 and dp[j] is True
+We can use a bottom-up approach with dynamic programming, where we initialize dp as a list of False values of length n+1 and then update each dp[i] based on the previous stones that can be reached.
+For edge cases, we need to ensure that the first stone's position is always 0. We also need to handle the case where k is either 1 or -1 (which means the frog can only jump forward or backward by 1 unit).
+===END PLAN===

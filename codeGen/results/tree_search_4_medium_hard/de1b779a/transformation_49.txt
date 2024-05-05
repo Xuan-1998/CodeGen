@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (dough_left, available_stuffs) as the state expression.
+State: (remaining_dough, remaining_stuffs), Transition: for each available stuff, decide whether to use it or not
+    - If the dough is enough and there are still some stuffing left, we can try using this stuffing. Otherwise, skip it.
+Use a dictionary to store the intermediate results, where keys are tuples of (dough_left, remaining_stuffs) and values are maximum profits at that state
+
+Let's break down the problem into smaller subproblems:
+    - For each available stuff, check if there is enough dough for making buns with this stuff. If not, skip it.
+    - If we have enough dough, calculate the profit from using this stuffing, considering the remaining dough and stuffing
+    - Calculate the maximum profit by choosing the best option between using the current stuff or skipping it
+
+Memoize the intermediate results to avoid recalculating the same subproblems multiple times.
+
+===END PLAN===

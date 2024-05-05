@@ -1,0 +1,10 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+i, j, k
+Create a dictionary to store memoized values and update it as you calculate the maximum similarity scores.
+Create a suffix tree for both strings A and B. The nodes in the suffix tree represent substrings of the original strings.
+For each node (substrings) at the same level in the two suffix trees:
+    Calculate the length of the common substring represented by this node.
+    Add 4 times this length minus the total lengths of the substrings to a running total.
+Return the maximum value from the running total.

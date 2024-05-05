@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+The state expression is dp[i]: the number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+dp[0] = 1 (base case: there's one way to build a sequence with no spheres)
+For each i from 1 to C:
+    If there are more than zero upper hemispheres and lower hemispheres of radius i or less:
+        dp[i] = sum(dp[j]*binom(U_count[U_index][j], U_count[U_index].index(j)) for j in range(1, i+1))
+    else:
+        dp[i] = 0 (edge case: no way to build an i-sequence)
+Return the value of dp[C]
+===END PLAN===

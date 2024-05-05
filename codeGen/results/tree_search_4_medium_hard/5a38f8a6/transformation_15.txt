@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+
+Consider a base case: dp[0] = 0, because there are no perfect squares that sum up to 0.
+
+dp[i] is the minimum number of perfect squares that sum up to i, and dp[i] = min(1 + dp[j]) for j in range(int(i**0.5)) + 1
+
+Use a bottom-up dynamic programming approach by initializing an array dp of size n+1 with all values set to infinity, then iteratively update each value based on the recurrence relation:
+
+dp[0] = 0
+for i from 1 to n:
+    for j from 0 to int(i**0.5):
+        if i >= j*j:
+            dp[i] = min(dp[i], 1 + dp[i-j*j])
+===END PLAN===

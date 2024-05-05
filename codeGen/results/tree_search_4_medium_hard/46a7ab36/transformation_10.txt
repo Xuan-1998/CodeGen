@@ -1,0 +1,13 @@
+], [
+Think about the state as (k, l) where k represents the number of letters that can still appear at the beginning of the word, and l represents the current position in the alphabet.
+state: (k, l) where k is the number of remaining letters that can appear at the beginning, and l is the current position in the alphabet.
+
+Create a 2D array dp where dp[i][j] represents the number of words with i letters and ending with the letter at position j. 
+dp[0][l] = 1 for each l (base case: empty word)
+dp[m][l] = n-1 for all l <= floor((n+1)/2) (base case: last letter in the alphabet, or immediately followed by any letter)
+
+For all i from 1 to m and j from 0 to floor((n+1)/2), 
+    dp[i][j] = sum(dp[k][p] for k from i-1 down to 0, p from 0 to min(j, floor((n+1)/2)))
+        if (i-1)*floor((n+1)/2) + p <= n
+
+Return the value of dp[m][0]

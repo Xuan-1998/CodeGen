@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The transition relationship could be defined based on the portal rules: if the ceiling has an odd number of crosses, take the second portal; otherwise, take the first one. We can use this rule to define a recurrence relation that depends only on the current state.
+
+Define the state as dp[i] = minimum portal moves to reach room i
+
+dp[i] represents the number of times Vasya needs to use portals to reach room i. We can update dp[i] based on whether the ceiling has an odd or even number of crosses, which depends on p_{i-1}.
+
+Let's denote dp[i-1]%2 as the parity of the number of crosses in room i-1. If this parity is 0 (even), then we take the first portal; if it's 1 (odd), then we take the second portal.
+
+Update rule: dp[i] = min(dp[p_{i-1}], dp[i-1]%2 == 0 ? i - p_{i-1} : i - p_{i-1} - 1) + 1
+
+Implement memoization using a dictionary to store the results of subproblems.
+
+Initialize the dp array with all values set to infinity.
+
+For each room i, update dp[i] based on the above update rule and the value of dp[i-1].
+
+Finally, return dp[n+1]
+
+===END PLAN===

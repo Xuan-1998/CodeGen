@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i] depends on the maximum reachable index from the previous position. If there are no elements that can be reached, then dp[i] = False; otherwise, it's possible to reach dp[i].
+Consider two cases: either we can jump to the last element or not. 
+If yes, then dp[len(arr)-1] = True; otherwise, False.
+Use dynamic programming with a 1D table where dp[i] represents whether it's possible to reach the ith index, and update dp[i] based on the maximum reachable index from the previous position.
+
+dp[i] = (max_reachable_index_from_prev_pos >= i) or (i == len(arr)-1)
+for i in range(len(arr)):
+    max_reachable_index = 0
+    for j in range(i):
+        if arr[j] >= i - j and j + arr[j] > max_reachable_index:
+            max_reachable_index = j + arr[j]
+    dp[i] = (max_reachable_index >= i) or (i == len(arr)-1)
+return dp[len(arr)-1]
+===END PLAN===

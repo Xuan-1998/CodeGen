@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+We can use dynamic programming with memoization to solve this problem.
+
+The state can be represented as two integers i and j, where i is the number of hemispheres in consideration (both upper and lower) and j is the difference between the number of upper and lower hemispheres.
+The base case is when there are no more hemispheres to consider, which means dp[0][j] = 1.
+
+The transition relationship can be formulated as:
+dp[i][j] = sum(dp[min(i-1,k)][abs(j-k)] for k from max(0,j-i) to min(i,j))
+
+This is because we can build an i-sequence by choosing the number of upper hemispheres from 0 to i, and the remaining lower hemispheres will be j - k. We need to consider all possible combinations.
+The state transition rule ensures that we do not double-count any sequence, since for each i-sequence we are considering one particular combination of upper and lower hemispheres.
+
+Finally, the answer is dp[C][M], where C is the maximum number of hemispheres in consideration (both upper and lower).
+
+===END PLAN===

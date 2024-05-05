@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+Define the state expression as a boolean indicating whether the current partition is a palindrome or not. The initial state for each substring S[i..j] is False, assuming it's not a palindrome initially.
+
+The transition relationship is defined as:
+- If the current character matches with its previous counterpart in the partition (i.e., they are the same), then the new state becomes True if and only if the remaining part of the partition (excluding the first and last characters) is also a palindrome. This can be determined by checking the state of the corresponding cell [k][j-1] where k = i+1.
+- If the current character does not match with its previous counterpart, then the new state remains False.
+
+Implement a dynamic programming solution by creating a 2D table where each cell [i][j] represents whether the substring S[i..j] is a palindrome or not. Initialize all cells to False, and update them according to the transition relationship.
+
+Finally, construct the palindromic partitions by backtracking from the bottom-right corner of the table to the top-left corner, following the transition relationships. For each cell [i][j], if it's True, then the substring S[i..j] is a palindrome, and you can append it to the current partition. If it's False, then the substring is not a palindrome, so move to the previous character.
+
+===END PLAN===

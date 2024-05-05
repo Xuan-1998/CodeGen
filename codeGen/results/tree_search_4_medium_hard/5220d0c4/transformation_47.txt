@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. 
+
+state: (k, v) where k is the index of the last considered element in the array, and v is its beauty value; 
+transition relation: 
+  - if the current number is a good prime, update the state as (k+1, v + min_prime); 
+  - if it's a bad prime, update the state as (k+1, max(0, v - 1)); 
+
+Create a dp table where dp[i] represents the maximum beauty value ending at index i. Initialize dp[n-1] to be the beauty of the last element.
+Iterate backwards from n-2 to 0. For each index i:
+  - Calculate min_prime as the minimum prime divisor of the number at index i;
+  - If the current number is a good prime, update dp[i] as max(dp[i+1], v + min_prime);
+  - If it's a bad prime, update dp[i] as max(dp[i+1], max(0, v - 1));
+Return dp[0].
+===END PLAN===

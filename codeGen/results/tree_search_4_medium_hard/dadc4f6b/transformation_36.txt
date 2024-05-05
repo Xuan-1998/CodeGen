@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the total brightness of stars within a rectangle can be broken down into smaller rectangles. Use dynamic programming with tabulation by iterating over all possible views and calculating the total brightness for each view.
+
+State: (t, x1, x2), where t is the time, x1 is the x-coordinate of the lower left corner, and x2 is the x-coordinate of the upper right corner, representing the current moment of interest and rectangle boundaries. The total brightness is calculated based on the stars within this slice.
+
+State equation: dp[t][x1][x2] = dp[prev_t][min(x1, prev_x)] * c + sum(s[i] for i in range(min(x1, prev_x), max(x1, prev_x)) if x1 <= x_i <= x2 and t <= t_i) + dp[t][max(x2, prev_x)][x2]
+
+Memoization key: (t, x1, x2)
+
+Base case: dp[0][x1][x2] = 0 for all x1 and x2
+
+Initialization: dp[0][x1][100] = 0 for all x1
+
+Main loop:
+for t in range(1, q+1):
+    for x1 in range(1, 101):
+        for x2 in range(x1, 101):
+            dp[t][x1][x2] = ...
+
+Output: The total brightness of stars in the corresponding view is calculated by summing up dp[t][x1][x2] for all (t, x1, x2) and printing the results.
+
+===END PLAN===

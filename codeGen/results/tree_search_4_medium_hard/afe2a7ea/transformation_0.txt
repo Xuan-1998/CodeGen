@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i][j] where dp[i][j] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+dp[i][j] = (i > 0) ? dp[i-1][j-1] || (i % 2 == 1 && j > 0) : (i == 0 && j == 0)
+
+Use a 2D array to store the dynamic programming table and fill it in from bottom-up.
+
+For each cell dp[i][j], check if building a radio tower at town i is possible. If yes, recursively call dp[i-1][j-1]. If not, or if there are no more radio towers to build, return whether j == 0 (base case).
+
+===END PLAN===

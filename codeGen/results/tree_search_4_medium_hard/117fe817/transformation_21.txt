@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+// Initialize state dp[10] = {0}, representing the count of ones for single-digit numbers
+state expression: dp[i], representing the count of ones in the i-th digit position (from 0 to n)
+
+base case: considering only single-digit numbers (i.e., dp[1] + dp[2] + ... + dp[n])
+
+transition relationship: for each additional digit added to an existing number, the total count of ones would increase by the number of ones in the next available digit (i.e., the remaining digits from 1 to 9)
+
+Tabulating the results of counting the number of 1's in each number from 0 to n
+For example, when considering the number 10, we need to consider all numbers from 0 to 9 that have a 1 in their ones place. This would increase the total count by the number of ones in the next available digit (i.e., 2).
+
+// Initialize dp[0] = 0
+for i from 1 to n:
+    if i < 10: // single-digit number
+        dp[i] = i
+    else:
+        // add the count of ones in the last digit (i % 10) to the sum of counts for the remaining digits
+        dp[i] += dp[i % 10]
+
+// The final answer is the sum of all counts
+answer = Σ(dp[i]) from 1 to n
+
+===END PLAN===

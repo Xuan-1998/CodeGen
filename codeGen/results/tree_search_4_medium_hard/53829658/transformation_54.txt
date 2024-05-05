@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = max number of reversed roads to reach city i from an arbitrary capital, with base case being dp[1] = 0. This choice considers the maximum in-degree as the optimal capital.
+
+dp[i] = min(max number of reversed roads to reach city i from an arbitrary capital with no edges reversed) + 1 if the last edge is from city (i-1) to city i
+
+Use memoization by maintaining a dictionary where each key is a city index i and its corresponding value dp[i] is the maximum number of reversed roads to reach city i from an arbitrary capital, and update the values recursively.
+
+After finding all dp[i], iterate through cities again, keep track of their in-degrees, and pick the city with the maximum in-degree as the optimal capital. If there are multiple such cities, any one can be chosen as the optimal capital.
+
+===END PLAN===

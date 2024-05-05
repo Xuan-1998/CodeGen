@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities.
+
+The state could be defined as dp[i][p], where p is an integer representing the number of roads that have been inverted so far in order to reach city i from the capital. The base case would be dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+dp[i][p] = min(dp[j][p-1] for j in adjacent_cities(i)) + (p > 0)
+
+Use a 2D array (list of lists) to tabulate the solutions for all possible values of i and p, initializing each cell to infinity and then updating it based on the base case and recurrence relation.
+
+To find the minimum number of roads that need to be inverted in order to reach any other city from the capital, iterate over all cities and find the smallest value of dp[i][p] for i > 1.
+
+Finally, to find all possible ways to choose the capital, initialize a list res with [1], then for each city i, add i-1 to res if dp[i-1][0] < dp[i][0].
+
+===END PLAN===

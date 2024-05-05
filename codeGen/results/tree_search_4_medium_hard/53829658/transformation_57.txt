@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = max number of reversed roads to reach city i from an arbitrary capital, with base case being dp[1] = 0. This choice considers the maximum in-degree as the optimal capital.
+
+dp[i] = min number of reversed roads to reach city i from an arbitrary capital by considering all possible ways to reverse the edge from city j to city i for j in range(i+1, n)
+
+Use dynamic programming with a 2D array dp[i][j] where dp[i][j] is the minimum number of reversed roads to reach city j from city i.
+
+For each city i, iterate through all cities j such that j > i and update dp[i][j] as min(dp[i][k] + 1) for k in range(i+1, j)
+
+Finally, return max(j - 1 for j in range(2, n)) where the maximum is taken over all cities with in-degree greater than or equal to (n-1)/2
+
+This will give us the optimal capital city and the minimum number of reversed roads to reach any other city from the capital.
+
+The base case is dp[1] = 0 since there's no need to reverse any edges for the first city.
+===END PLAN===

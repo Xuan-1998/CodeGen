@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Another approach could be to use a top-down DP with memoization, where the state expression is the current position in the board and the dynamic programming table stores the minimum number of moves needed to remove all balls starting from that position.
+
+The state expression is a tuple (board_config, hand_state) where board_config is the current row of balls on the table and hand_state is the number of balls in hand. The base case is when there are no more balls in hand or when the entire board is empty.
+
+Using a 2D array to store the dynamic programming table and iterate over the board and hand states from top to bottom and left to right, starting from the initial state (board_config[0], hand_state), where board_config[0] is the first row of balls on the table and hand_state is the number of balls in hand initially.
+
+For each cell in the DP table, calculate the minimum number of moves needed by considering the following options: 
+- Remove all balls at the current position if there are three or more consecutive balls with the same color.
+- Insert a ball into the row to split consecutive balls of the same color and move on to the next state.
+- Don't insert any ball and move on to the next state.
+
+The final answer is stored in the bottom-right cell of the DP table, which represents the minimum number of moves needed to remove all balls starting from the initial state.
+
+===END PLAN===

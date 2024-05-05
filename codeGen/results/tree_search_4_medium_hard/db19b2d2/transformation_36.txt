@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Let dp[i][k] be the probability that we get at least one player from the department of interest after choosing k players from i-1 departments.
+
+We can calculate dp[i][k] as follows:
+- If i == 0, then it means we have already chosen all m departments. So, dp[0][k] is simply the cumulative probability that we have at least one player from the department of interest.
+- If k > s_h (the number of basketball players in the department of interest), then there's no way we can choose more than or equal to 1 player from this department, so dp[i][k] = 0.
+- Otherwise, consider choosing exactly x players from the h-th department. This leaves us with n - k + x players left. The probability that we have at least one player from the remaining departments is dp[i-1][n-k+x-1]. So, the total probability that we get at least one player from the department of interest after choosing k players from i-1 departments is the sum of probabilities over all possible values of x.
+
+The recurrence relation becomes:
+dp[i][k] = (sum from x=0 to min(k, s_h) of dp[i-1][n-k+x-1]) / binomial(n, k)
+
+We initialize dp[0][0] = 1, and for i > 0, we iterate over all possible values of k such that 0 <= k <= n. For each k, we calculate dp[i][k] using the recurrence relation.
+
+Finally, our answer is dp[m][n].
+
+===END PLAN===

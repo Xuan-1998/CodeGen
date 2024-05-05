@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider a directed graph where each node represents a city, and the edge weight is 1 for each road oriented towards the city. 
+Let's denote the capital as 0, and use Dijkstra's algorithm to find the shortest distance from city 0 (the capital) to every other city.
+For each city i, let dp[i] be the minimum number of roads to be inverted to reach city i from the capital.
+The base case would be all values of dp initially being Infinity, since we are starting at the capital and have not yet reached any other cities. 
+Then for each road (si, ti), update dp[ti] as min(dp[ti], 1 + dp[si]) if si is reachable from city 0.
+The minimum number of roads to be inverted would be the maximum value in dp.
+All possible ways to choose the capital could be found by backtracking from each city i to find all paths from city 0 to city i, and then return these paths as a sequence of indexes of cities in increasing order. 
+This could be done using a recursive function that takes a current city and returns the path if it's the capital, or finds all paths to adjacent cities and concatenate them with the current city.
+===END PLAN===

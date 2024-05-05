@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i][j]: number of ways to reach room j from room i, considering whether Vasya has already used a portal in room i or not; dp[1][1] = 1, since Vasya can always start the maze.
+
+dp[i][j] = 
+    1 if j == n+1;
+    dp[i-1][p_{i-1}] + 1 if k is a previously visited room and Vasya has already used a portal in room i;
+    otherwise, 0;
+
+You can use a bottom-up approach to implement tabulation, where you fill up the dp table row by row from top to bottom.
+
+For each room i, consider all possible choices for the next room k:
+    If Vasya hasn't used a portal yet, choose the smaller of the two portals.
+    If Vasya has already used a portal, choose the larger of the two portals if it's previously visited; otherwise, choose the smaller.
+
+This plan handles edge cases by considering all possible choices and updating dp[i][j] accordingly. The use of memoization ensures that we avoid redundant calculations and only store necessary solutions.
+===END PLAN===

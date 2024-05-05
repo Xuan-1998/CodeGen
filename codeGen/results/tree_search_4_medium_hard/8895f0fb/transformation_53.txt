@@ -1,0 +1,14 @@
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+dp[i] = min(9-i+dp[i-1], max(0,10-dp[i-1]-5)) to model the process of adding two N-digit numbers in base 10 representation
+Initialize a 1D array dp[N+1] with all elements set to 0
+iterate through each possible pair of digits (0-9) for the most significant digit
+    update dp[i] based on the cumulative sum of carries
+
+state: dp[1] = expected number of non-zero carries when adding A and B with 1 digit in total.
+dp[1] = min(9-dp[0], max(0,10-dp[0]-5))
+
+state: dp[2] = expected number of non-zero carries when adding A and B with 2 digits in total.
+dp[2] = min(8+dp[1], max(0,10-dp[1]-5))
+
+state: dp[3] = expected number of non-zero carries when adding A and B with 3 digits in total.
+dp[3] = min(7+dp[2], max(0,10-dp[2]-5))

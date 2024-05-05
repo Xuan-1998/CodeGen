@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Use memoization for top-down approach: Implement a dictionary or cache to store and reuse previously computed solutions for overlapping subproblems.
+
+The state could be the current index i and whether it's possible to reach it (denoted as dp[i]).
+
+Transition relationship:
+- If arr[i] >= 1, then dp[i+arr[i]] is True if and only if dp[i] is True
+- If arr[i] == 0, then dp[i] is the same as dp[i]
+
+Initial condition: dp[0] = True
+
+Memoization table: dp[i]
+
+Update memoization table:
+
+for i from 1 to n:
+    dp[i] = (arr[i] >= 1 and dp[i-arr[i]]) or dp[i-1]
+
+Return dp[n]
+===END PLAN===

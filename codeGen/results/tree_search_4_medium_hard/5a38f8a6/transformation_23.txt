@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is dp[i], where dp[i] represents the minimum number of perfect squares that sum up to i.
+
+dp[i] = min(dp[j] + 1 for j in range(0, int(i**0.5) + 1) if (j ** 2) <= i),
+
+Use a dictionary to store the computed values of dp[i] and look up the value for dp[i] whenever it's needed.
+
+Store the minimum number of perfect squares that sum up to n in a variable named result.
+dp = {0: 0}
+
+for i in range(1, n+1):
+    dp[i] = float('inf')
+    for j in range(int(i**0.5) + 1):
+        if (j ** 2) <= i:
+            dp[i] = min(dp[i], dp[j] + 1)
+
+result = dp[n]
+
+===END PLAN===

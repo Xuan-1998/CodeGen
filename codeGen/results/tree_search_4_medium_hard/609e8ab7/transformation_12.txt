@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The dynamic programming problem seems to be related to a tree data structure, so consider using memoized DFS to explore the tree and optimize the solution.
+
+The state expression could be the maximum value that needs to be subtracted from all nodes in the subtree rooted at a given node, with the root node as the starting point. The base case would be when the current node has no children, and the solution is simply the range value of the node itself.
+
+Consider using a 2D DP table where each cell dp[i][j] represents the minimum number of operations needed to adjust all nodes in subtree rooted at node i, such that the maximum value is j.
+
+Use memoized DFS with a 2D DP table where:
+- Initialize dp[0][0] = 0 (base case)
+- For each node i and maximum value j:
+    - If node i has no children, calculate dp[i][j] as min(0, r_i - l_i) where r_i and l_i are the range values of node i
+    - Otherwise, recursively calculate dp[i][k] for all k from 1 to max(r_i, j)
+    - Add 1 to dp[i-1][k] (parent node operations) for each k
+    - Return min(dp[i][j], dp[i-1][max(r_i, j)]) as the minimum number of operations
+
+===END PLAN===

@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, we can define a function f(i, j) that returns the total number of diamonds in the i-th row and j-th column. The optimal substructure is that the total number of diamonds in the i-th row and j-th column depends on the sum of even digits and odd digits in the current room number, as well as the total number of diamonds in the (i-1)-th row and (j-1)-th column.
+
+We can use memoization to store the values of f(i, j) for smaller values of i and j. However, since we are dealing with a 2D problem, it would be more efficient to use dynamic programming with tabulation approach using nested loops instead of memoization.
+
+Let the dynamic programming function dp[i][j] be the total number of diamonds in the first i rows and the first j columns. Then, for 1 ≤ i ≤ N and 1 ≤ j ≤ N, we have that dp[i][j] = |sum of even digits in (i + j - 1) - sum of odd digits in (i + j - 1)| + dp[i-1][j-1].
+
+To implement dynamic programming using a tabulation approach with nested loops:
+

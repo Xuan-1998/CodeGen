@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up approach.
+
+Consider dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing, given that A[i-1] is in its correct position.
+
+Let's fill up the dp array in a single pass. We can start from i = 1 and for each i, we need to consider all j such that 0 <= j < i. For each such j, if A[j] < A[i], then we have two choices:
+- Consider A[j] as the last element of an increasing subarray ending at i (dp[j] + (i - j)), or
+- We do not include A[j] in our increasing subarray.
+
+We take the minimum of these two options and store it in dp[i]. This is because we want to minimize the number of operations needed to make the array strictly increasing up to index i.
+
+The base case for this dynamic programming is dp[0] = 0, since there are no operations needed to make an empty array strictly increasing.
+
+Finally, the minimum number of operations needed to make the entire array strictly increasing is stored in dp[n-1], where n is the length of the array.
+===END PLAN===

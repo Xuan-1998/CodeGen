@@ -1,0 +1,26 @@
+], [
+The state could be represented by (n, m) where n is the remaining size of the alphabet and m is the remaining length of the word. The base case would be when there are no more characters left to place in the word.
+
+dp[i][j] = (
+    j == 0
+        ? 1
+        : sum(
+            dp[k][j-1] * 
+            min(min(2*k + m, n), k/2 + m) - k/2
+            for k in range(i+1)
+        ),
+    for 0 <= i < n, j >= 0
+)
+
+Use dictionary to store the results of subproblems and look them up as needed
+
+if j == 0:
+    return 1
+elif dp[i][j-1] is not None:
+    result = 0
+    for k in range(i+1):
+        if 2*k + m <= n and (k/2 + m >= j or k/2 + m >= i - k):
+            result += dp[k][j-1]
+    return result % (10**8 + 7)
+else:
+    return 0

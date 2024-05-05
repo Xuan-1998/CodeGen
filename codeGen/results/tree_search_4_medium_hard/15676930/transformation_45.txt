@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use tabulation by creating a 3D array dp of size n x (n+1) x (n+1), where dp[i][j][k] represents the maximum joy for i hares, j full hares, and k hungry hares.
+The state expression could be dp[i][j][k] = max(0 <= l < i ? dp[l][j-1][k-1] + (a[l] if k > 0 else b[l]) : c[k], where the base case is dp[0][*][*] = 0 and dp[*][0][*] = c[0], with dp[i][j][k] being monotonically increasing in i.
+Consider defining a function to calculate the maximum joy for a given state, using memoization to avoid redundant calculations. The base case would be when there are no more hares (i == 0), in which case the maximum joy is 0.
+Create a loop that iterates over all possible states and calculates the maximum joy for each state using the function defined above.
+The final answer would be the value of dp[n][j][k] where j and k represent the number of full and hungry hares respectively, after iterating through all possible states.
+
+===END PLAN===

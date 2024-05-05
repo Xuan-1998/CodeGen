@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved by building a suffix tree for both strings and then calculating the similarity score based on the number of nodes at the same level in the suffix trees.
+
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far; The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Let's define a 3D table dp[i][j][k] where dp[i][j][k] represents the maximum similarity score for substrings ending at indices i and j with k common characters found so far.
+
+Fill in the 3D table by iterating over all possible combinations of (i, j, k) such that i <= n-1 and j <= m-1.
+For each combination, calculate the maximum similarity score based on the following rules:
+- If there are no more common characters to find, then the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings (base case).
+- Otherwise, iterate over all possible combinations of substrings ending at indices i+1 and j+1 with k-1 common characters found so far.
+For each combination, calculate the maximum similarity score by recursively calling the function with the updated state expression.
+
+Finally, return dp[0][m-1][0] as the maximum similarity score over all pairs of substrings. This is because we are considering substrings ending at indices 0 and m-1 for string A and B respectively, which ensures that we consider all possible combinations of substrings.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers below n_max and iterate over each number in the range to count its permutations. Let the state be a tuple (num, k) where num is a prime number and k is the count of its permutations that are also prime numbers.
+
+Define two states: 'prime' for prime numbers and 'permutation' for their permutations. Transition from 'prime' to 'permutation' when a permutation is found to be prime.
+
+Implement tabulation by creating a 2D array with dimensions (n_max, k_perms + 1) and iterate over each cell (num, k) to compute its value based on the values of its neighbors:
+
+* For the base case, if num is less than n_max and has no permutations, set state (num, 0) = 1.
+* If a permutation is prime, increment the count for that permutation and update the state accordingly.
+* Iterate over each permutation of num and check if it's prime. If it is, update the count and transition to the 'permutation' state.
+
+===END PLAN===

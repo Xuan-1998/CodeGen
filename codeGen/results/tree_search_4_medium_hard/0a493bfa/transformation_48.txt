@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+Define state as the tuple (i, bad_primes, max_beauty), where i is the current index, bad_primes is the set of bad prime numbers seen so far, and max_beauty is the maximum beauty achievable at this point. The base case is when the subarray has only one element, in which case the beauty is equal to the single element itself.
+
+Transition relationship could involve updating the set of bad primes by checking if the GCD is a bad prime, and calculating the new GCD for each pivot. The beauty of the new state would be the maximum of the current beauty and the beauty achievable by applying the operation on this subarray.
+
+Memoize the state using a dictionary to store the results of subproblems as you solve them. Start from the last element in the array, and work your way back to the first element, at each step calculating the optimal sequence of operations that maximizes the beauty.
+
+To optimize the memoization process, consider implementing a more efficient data structure for storing the states, such as a priority queue or a binary heap, which can be used to efficiently retrieve the best possible solution.
+
+===END PLAN===

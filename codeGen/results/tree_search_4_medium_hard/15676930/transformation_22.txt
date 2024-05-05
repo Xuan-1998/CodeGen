@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: The dynamic programming solution can be viewed as a 2D array, where each cell [i][j] represents the maximum joy that can be obtained by feeding the first i hares and having j hares full.
+
+The state expression could be dp[i][j] = max(dp[i-1][0] + c_i, dp[i-1][1] + b_i) if j > 0 else a_i
+
+dp[i][0] = sum of joys for each possible ordering of the last two hares
+dp[0][j] = 0 for j=0 to n
+
+Implement memoization using a recursive function with an optional cache parameter to store intermediate results.
+
+The base case is when i == 0, where dp[i][j] = 0 for all j. This handles the edge cases of feeding no hares.
+
+To improve this plan, we can use dynamic programming and memoization to avoid redundant calculations by storing intermediate results in a cache.
+
+The potential issue with this plan is that it assumes the maximum total joy can be obtained by feeding the hares in a certain order. However, this may not always be the case, especially if there are multiple possible orders of feeding the hares that achieve the same maximum total joy.
+===END PLAN===

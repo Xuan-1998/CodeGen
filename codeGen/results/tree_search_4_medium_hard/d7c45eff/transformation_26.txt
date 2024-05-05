@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+state dp[n+1][2], where n is the length of the original string s.
+
+dp[i][0] represents the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string up to index i. dp[i][1] represents the same thing but with an additional operation (either delete or duplicate) at index i.
+
+Choose a set of states to represent possible strings that have been formed by either deleting the last character or duplicating the original string.
+DP state: Consider all possible prefixes of the input string, and for each prefix, consider two options - delete the last character or duplicate the prefix. This will help you avoid re-computing the same subproblems multiple times.
+
+Base case: dp[0][0] = "", dp[0][1] = ""
+
+Transition function:
+dp[i][0] = min(dp[i-1][0], s[i-1] + dp[i-1][1])
+dp[i][1] = min(s[i-1] + dp[i-2][0], dp[i-1][1])
+
+Final answer: the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string up to index k is dp[k][0].
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][j][k] = 1 if there exists an edge between nodes i and j such that their labels add up to k, otherwise 0, where dp[i][j][k] represents whether the edge (i, j) has label k or not.
+
+dp[u][v][label] = 1 if the path from u to v has label as a prefix and sum of labels on this path equals k, otherwise 0.
+
+Create a memoized function that takes in node pair (u, v) and prime factor k, and returns whether there exists an edge between nodes u and v such that their labels add up to k, considering previously computed values.
+
+Initially, create a 2D array dp of size n x n with all elements initialized as 0. This will store the memoized values for each node pair (u, v) and prime factor k.
+
+For each edge (u, v), iterate over the prime factors p1 to pm and check if there exists an edge between nodes u and j such that their labels add up to p1, where j is any node in the tree. If yes, set dp[u][v][p1] = 1.
+
+Now, for each node pair (u, v) and prime factor k, use memoization to find whether there exists an edge between nodes u and v such that their labels add up to k.
+
+Finally, calculate the maximum possible distribution index of the tree by summing over all edges and prime factors, considering previously computed values.
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Let dp[i] represent the maximum possible bitwise OR value for any substring of length i in binary string s. Develop an iterative approach to update the DP table by iterating over the binary string and updating the values based on the current character and previously computed values.
+
+To implement a 1D dynamic programming solution where dp[i] represents the maximum bitwise OR value for any substring of length i in binary string s:
+
+    Initialize the DP table with zeros.
+    Iterate over the binary string from left to right.
+        For each character at index j:
+            If j is less than n-1 (i.e., we're not yet considering the last character), calculate the maximum bitwise OR value for a substring of length i starting at j and ending at i+n-1. This is done by performing a bitwise OR operation between the current character at index j and the previously computed value dp[i-1]. Update dp[i] with this calculated value.
+            If j is equal to n-1, set dp[n-1] as 0, since we're considering the last character.
+
+    The maximum possible bitwise OR value for any substring of length n in binary string s can be found at index dp[n-1].
+
+===END PLAN===

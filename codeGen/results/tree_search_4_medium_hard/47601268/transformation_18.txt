@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+dp[0] = 1, because there is only one number (0) that does not have consecutive ones.
+
+The state is the current number i, and the transition relationship can be formulated as:
+    if the binary representation of i does not contain consecutive ones,
+        then dp[i] = dp[i-1] + 1, because we can increment the counter by 1 for each such number.
+    else
+        then dp[i] = dp[i-1], because there is no new number to add to the count.
+
+Maintain a set to keep track of numbers that do not contain consecutive ones,
+and use this set to calculate the final result.
+
+Initialize dp array with size n+1 and all values as 0.
+Fill up the dp array by iterating from i = 1 to n:
+    for each i, check if its binary representation contains consecutive ones or not
+    if it does not contain consecutive ones, then update dp[i] as dp[i-1] + 1
+    else, keep dp[i] same as dp[i-1]
+
+Return the final value of dp[n]
+===END PLAN===

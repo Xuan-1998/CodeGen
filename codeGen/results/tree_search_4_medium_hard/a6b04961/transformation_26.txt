@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, meaning the solution to a larger instance can be constructed from solutions of smaller instances, making it amenable to bottom-up tabulation. You can start by solving the base case and then iteratively build up the solution for larger instances.
+
+Consider a state representing the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i, where 1 ≤ i ≤ n.
+
+State: dp[i] = the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i, where 1 ≤ i ≤ n. It depends on whether we extend the current tail or start a new spine.
+
+Dynamic programming using a bottom-up approach: Build a table dp[] of size n+1 to store the maximum beauty that can be achieved by the hedgehog with its tail ending at each vertex i, where 1 ≤ i ≤ n.
+
+dp[0] = 0 (base case, since there's no edge to start with)
+
+For each vertex i from 1 to n:
+    1. If i is the first vertex in a new spine, calculate dp[i] as the maximum beauty that can be achieved by extending the current tail or starting this new spine.
+    2. Otherwise, dp[i] = max(dp[j] + (i-j) * (number of spines ending at i)) for all j such that there's an edge from vertex j to i.
+
+The final answer is dp[n].
+
+===END PLAN===

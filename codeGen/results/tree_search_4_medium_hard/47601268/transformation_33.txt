@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Let dp[i] be the count of numbers j such that 0 <= j <= i and the binary representation of j does not contain consecutive ones.
+dp[0] = 1, because there is only one number (0) less than or equal to 0 whose binary representation does not contain consecutive ones.
+For each integer i from 1 to n:
+    Let prev_bit be the last bit in the binary representation of i - 1.
+    If prev_bit == 0, then the binary representation of i can have any sequence of bits and still not contain consecutive ones. So dp[i] = dp[i-1] + 1.
+    Else if prev_bit == 1, then the binary representation of i cannot contain two adjacent ones, so it must be followed by a zero. In this case, dp[i] = dp[i-1].
+For each integer i from n down to 0:
+    Return dp[i]
+===END PLAN===

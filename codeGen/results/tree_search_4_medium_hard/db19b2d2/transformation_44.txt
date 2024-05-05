@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+To calculate the PMF, consider each department separately: given that we have chosen k players and are currently considering the i-th department, what is the probability that we get at least one player from this department?
+
+Use a 2D array dp where each cell [i][j] represents the probability of having at least j+1 players from the department of interest given that we have chosen i players. Initialize all cells to 0.
+
+For each department i, consider the number of basketball players si. Calculate the probability that we get at least one player from this department, which is 1 - (n-si)/n if si > 0, and 1 otherwise. Update dp[h][j] accordingly.
+
+Finally, calculate the sum of the probabilities for all possible outcomes greater than or equal to 1, i.e., dp[m-1][n-m+1], to get the probability that a randomly formed team will have at least one player from the department of interest.
+===END PLAN===

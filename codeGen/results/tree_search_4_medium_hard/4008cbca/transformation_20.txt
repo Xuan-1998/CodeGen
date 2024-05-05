@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+The state expression could be the last ball on the board and the dynamic programming table storing the minimum number of moves needed to remove all balls given this last ball.
+State: The current length of the window being considered (i.e., the index of the board), with transitions defined by considering each possible move and updating the minimum number of moves needed to remove all balls up to that point, for every possible color of the last ball on the board.
+Using a 3D dynamic programming table, where the state represents the current length of the window being considered, the index of the last ball on the board, and the color of the last ball on the board, with transitions defined by considering each possible move and updating the minimum number of moves needed to remove all balls up to that point.
+Transition: If the last ball is removed (i.e., it's not in the hand), the new state would be the previous state minus one. If the last ball is inserted at an empty spot, the new state would be the current state plus one. If the last ball is inserted at a non-empty spot, the new state would be the same.
+Base case: The board being empty with no moves needed.
+Transitions are only considered if it's possible to remove the balls at that position (i.e., there are three or more consecutive balls of the same color).
+To avoid considering impossible moves, we can keep track of the maximum length of consecutive balls of the same color in the current window and only consider inserting a ball at a spot where the maximum length is greater than 2.
+===END PLAN===

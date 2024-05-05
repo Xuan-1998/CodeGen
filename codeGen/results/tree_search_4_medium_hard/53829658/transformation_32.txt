@@ -1,0 +1,15 @@
+Define dp[i] as the minimum number of roads that need to be inverted in order to reach city i from the capital.
+
+Base case: dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+Transition relationship:
+- For each city i, calculate its shortest distance from the capital by considering all adjacent cities.
+- If city i is not reachable directly from the capital (i.e., it has more than one parent), then dp[i] = min(dp[j]) + 1, where j are all parent cities of city i. This ensures that we consider the minimum number of roads to be inverted in order to reach city i.
+- If city i is directly reachable from the capital, then dp[i] = 0.
+
+Initialize a set of parent cities for each city, and update it based on the parent cities of its adjacent cities.
+For each city i, update its parent city as follows:
+- If city i has more than one parent, then its parent city is the city with the minimum number of roads that need to be inverted in order to reach it from the capital. This ensures that we choose the optimal parent city for each city.
+- If city i has only one parent, then its parent city is the same as its adjacent city.
+
+Print all possible ways to choose the capital by considering all possible sequences of indexes of cities in increasing order. For this, iterate over all cities and print their index if they are reachable from the capital.

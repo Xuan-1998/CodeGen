@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i][k] where dp[i][k] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly k radio towers built so far.
+
+dp[i][j] = (i == n + 1) || (some condition)
+
+Create a recursive function that takes previous state as input, storing previously computed values for faster lookups. The base case would be dp[0][0] = True, as it's always possible to set signal powers with no radio towers.
+
+dp[i][k] = if i == 0 || k == 0 then 
+             (i == n + 1) || 
+             else ((some condition) && dp[i-1][j-1]) 
+
+===END PLAN===

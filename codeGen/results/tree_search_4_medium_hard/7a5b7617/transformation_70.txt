@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+Let's define dp[i][j] as the number of ways to fill the first i rows and the last j columns such that each element is less than or equal to M minus the sum of previous rows. We initialize dp[0][j] = 1 for all j, because there's only one way to fill a row with no elements.
+
+The state expression could be: dp[i][j] = sum(dp[k][j-1]) where k ranges from i-1 down to 0, and M minus the sum of previous rows is less than or equal to j.
+
+We then use this formula to fill up our dynamic programming table. Finally, we return dp[N][M] as the number of different steady tables of size N x M modulo 1 000 000 000.
+
+===END PLAN===

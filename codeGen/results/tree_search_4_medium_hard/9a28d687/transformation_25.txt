@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 3D array dp where dp[i][j][k] represents the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals on the current string, considering that k is the number of distinct characters seen so far. We can further break down this state into two sub-states:
+- State 1: dp[i][j][k] = min(dp[i-1][j-1][m] + c) where m is the number of distinct characters in the current string
+- State 2: dp[i][j][k] = dp[i-1][j][k] if the current string is already in lexicographical order with respect to previous strings
+
+Memoization by storing the results of subproblems and reusing them when needed.
+
+Initialize base cases:
+- If i == 0, then dp[0][j][k] = 0 for all j and k
+- If j == 0, then dp[i][0][k] = c[i] * (i+1) where c[i] is the cost of reversing the i-th string
+
+Fill up the dp table by iterating over strings from left to right, considering each possible number of reversals:
+- For each string and reversal count j:
+  - If the current string is in lexicographical order with respect to previous strings, then update dp[i][j][k] = dp[i-1][j][k]
+  - Otherwise, consider two sub-states: 
+    - State 1: min(dp[i-1][j-1][m] + c) where m is the number of distinct characters in the current string
+    - State 2: dp[i-1][j][k] if the current string is already in lexicographical order with respect to previous strings
+
+Return the minimum total cost required to sort all strings, which can be found at dp[n-1][-1][0]
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+Define two states: 
+dp[i] is the maximum sum of a path ending at the ith node. 
+parent[i] is the parent node of the ith node (or -1 if it's the root).
+
+The state transition is:
+dp[i] = max(dp[2*i+1], dp[2*i+2]) + tree[i]
+parent[i] = 2*(i//2)
+
+Start from the leaf nodes and work your way up to the root. 
+For each node, calculate its maximum sum of a path using the transition relation.
+
+The base case is when i is less than or equal to 1 (i.e., it's a leaf node). In this case, dp[i] = tree[i].
+
+===END PLAN===

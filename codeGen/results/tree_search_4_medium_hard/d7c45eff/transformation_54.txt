@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+We can use dynamic programming with memoization to solve this problem efficiently.
+
+**State:** A tuple (s, d) representing the current string s and a boolean d indicating whether we should delete or duplicate the last character in the previous state.
+
+**Transition:** We have two options:
+
+* If d is False (i.e., we didn't delete/duplicate the last character), we can either:
+	+ Delete the last character of s, resulting in a new string with length |s|-1 and a new boolean value True.
+	+ Duplicate s, resulting in a new string with length 2|s| and a new boolean value False.
+* If d is True (i.e., we deleted/duplicated the last character), we can only duplicate s, resulting in a new string with length 2|s| and a new boolean value False.
+
+**Memoization:** We store the lexicographically smallest strings corresponding to each state in a 3D array dp[][][], where dp[i][j][0/1] represents the lexicographically smallest string of length i that can be obtained by either deleting or duplicating the last character, and dp[i][j][2] indicates whether we should delete or duplicate the last character.
+
+**Base case:** If i == 0, there are only two possible strings: an empty string and a duplicated version of the original string. We store these in dp[0][k][0/1].
+
+**Recursive formula:** For i > 0, we can use the transition rules above to compute dp[i][j][0/1] based on dp[i-1][j][0/1] and dp[i-1][j][2]. We choose the option that results in a lexicographically smaller string.
+
+**Final answer:** The lexicographically smallest string of length k is stored in dp[n][k][0/1].
+
+===END PLAN===

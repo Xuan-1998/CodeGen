@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character of s[:i] or duplicating the original string s[:i-1].
+To avoid re-computing the same subproblems multiple times, we can use memoization.
+We need to fill up dp[0][j] first. When i is 0, it means we are considering an empty string. The lexicographically smallest string of length j that can be formed by duplicating the original string s[:i] or deleting the last character of s[:i-1] is simply the concatenation of the lexicographically smallest string of length j-1 and the jth character of the original string.
+Now, we need to fill up dp[i][j]. We have two options: either delete the last character of s[:i], or duplicate s[:i-1].
+For deleting the last character, it's straightforward. The lexicographically smallest string is simply dp[i-1][j-1] + s[i-1].
+For duplicating s[:i-1], we need to consider two cases: either the jth character of the original string s[:i] matches with the (j-1)th character of s[:i-1], or it doesn't.
+If they match, then the lexicographically smallest string is dp[i-1][j-1].
+If they don't, we need to compare the two strings: one where we duplicate s[:i-1] and another where we delete the last character. The lexicographically smaller one is our answer.
+Finally, we can construct the lexicographically smallest string of length k by tracing back from dp[n][k].
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the sum of marks strictly below the water level for days 1 to i, and minimize this value.
+
+dp[i] = min(dp[j-1] + (i-j)*m_i + dp[k] - m_k for j in range(i) if j < k)
+
+Design a bottom-up dynamic programming approach with a 2D array to store the minimum sum of marks strictly below the water level for each prefix of days, using a divide-and-conquer strategy to break down the problem into smaller subproblems.
+
+The base case is when i=1, dp[i] = m_0 (since there are no marks above the water level)
+
+Then, for i > 1, compute dp[i] as the minimum of the following values:
+
+- dp[j-1] + (i-j)*m_i (for all j in range(i) such that j < i and m_j < i)
+- dp[k] - m_k (for all k in range(j) such that k < j and m_k < j)
+
+===END PLAN===

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+The base case would be when there are no more tables or no more money to spend, then return 0. Then, use memoization to fill in the states in top-down manner.
+
+dp[i][j] represents the maximum amount of money earned with i tables remaining and j total amount to spend
+
+Create a 2D DP table with dimensions n x k where n is the total number of requests and k is the number of tables. For each request, calculate the maximum amount of money that can be earned given the remaining tables and total amount to spend. If the group size is less than or equal to the available capacity, add the amount spent by this group to the DP table.
+
+Update the DP table accordingly:
+
+- If j < pi (the amount spent by the current group), dp[i][j] remains the same
+- If j >= pi, dp[i][j] becomes max(dp[i-1][j-pi], dp[i][j-pi]) + pi
+
+The maximum money earned is stored in dp[0][k]
+
+The final answer will be the total amount of money spent by accepted requests. The accepted requests are those that contribute to the maximum amount of money earned.
+
+For each request, check if the amount spent by this group can be added to the current maximum earnings. If it can, then add it and update the remaining tables and total amount to spend. The final answer will be the total number of accepted requests and the total amount of money spent.
+
+The updated plan is as follows:

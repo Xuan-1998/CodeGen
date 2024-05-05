@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Define state dp[i] as the minimum number of roads that need to be inverted in order to reach city i from the capital.
+
+Base case: dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+Transition relationship:
+- For a non-root node i, let its parent be j. Then, dp[i] = min(dp[j] + 1 for j in adjacent Cities(i)).
+
+Bottom-up approach:
+
+- Initialize an array of size n with all values set to infinity.
+- Iterate over each city i from 1 to n (inclusive).
+    - If i is the root node, then dp[i] = dp[0].
+    - Else, update dp[i] based on its parent node j: dp[i] = min(dp[j] + 1 for j in adjacent Cities(i)).
+- The final answer will be dp[n - 1], which represents the minimum number of roads that need to be inverted in order to reach any other city from the capital.
+
+===END PLAN===

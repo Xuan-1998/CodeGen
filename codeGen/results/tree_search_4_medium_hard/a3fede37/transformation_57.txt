@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+The state expression is dp[i] = max(dp[childLeft], dp[childRight]) + tree[i-1], where i represents the current node and childLeft/childRight represent its left/right children. The base case is when there are no more children.
+
+dp[i] = max(sumPathLeft, sumPathRight) where sumPathLeft and sumPathRight are the maximum sums of paths through node's children
+
+Use a 1D array to store the dynamic programming table with dimensions equal to the number of nodes in the tree, where each index represents a node and its value is the maximum sum of a path starting from that node.
+
+For the base case when there are no more children, set dp[i] = tree[i-1]
+
+Initialize maxSum as -1000 (or any value less than the minimum possible value in the tree)
+
+For each node i:
+    Initialize leftMax and rightMax to 0
+    For childLeft from i+1 to lastNode:
+        leftMax = max(leftMax, dp[childLeft])
+    For childRight from i+1 to lastNode:
+        rightMax = max(rightMax, dp[childRight])
+    dp[i] = max(tree[i-1], tree[i-1] + leftMax) or (tree[i-1] + rightMax)
+    Update maxSum if needed
+
+Return maxSum
+===END PLAN===

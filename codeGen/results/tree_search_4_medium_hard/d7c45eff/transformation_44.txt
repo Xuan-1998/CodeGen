@@ -1,0 +1,11 @@
+{
+DP state: For each string of length i, consider all possible strings that can be formed by either deleting the last character or duplicating the original string up to length i-1, and find the lexicographically smallest one among them.
+
+Let dp[i][j] represent the lexicographically smallest string of length j that can be formed by either deleting the last character or duplicating the original string up to length i. Then:
+
+* If i < j, then dp[i][j] is equal to dp[i][j-1], because we cannot delete a character from an empty string.
+* If i >= j, then:
+    + If the last character of the original string up to length i is smaller than the lexicographically smallest string of length j-1 that can be formed by either deleting the last character or duplicating the original string up to length i-1 (i.e., dp[i-1][j-1]), then dp[i][j] is equal to the last character of the original string up to length i.
+    + Otherwise, dp[i][j] is equal to the lexicographically smallest string of length j that can be formed by either deleting the last character or duplicating the original string up to length i-1 (i.e., dp[i-1][j]).
+Tabulation: Initialize a 2D array dp of size (n+1) x (k+1), where dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character or duplicating the original string up to length i.
+}

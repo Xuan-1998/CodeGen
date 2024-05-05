@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+state dp[i][j] = { 1 if there exist arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j; else 0 };
+state: 
+dp[0][0] = 1 (base case: empty permutation)
+for i from 1 to n:
+    for j from 1 to min(i, j):
+        if pi-1 > pj and dp[i-1][j-1]:
+            dp[i][j] = 1
+        elif pi-1 < pj and dp[i-1][j]:
+            dp[i][j] = 1
+        else:
+            dp[i][j] = 0
+===END PLAN===

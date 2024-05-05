@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, we can use Dynamic Programming with memoization.
+For each query, calculate the total brightness for the given rectangular view and store these values in a 2D DP table dp[i][j] representing the maximum brightness at position (i, j) within the rectangle.
+
+State: (i, j), where i is the index of the leftmost star that has not been covered by the current view and j is the index of the topmost star that has not been covered by the current view.
+
+Transition relationship: The state transitions when a new line segment is added to the view. We can calculate dp[i][j] based on the previously calculated values dp[i-1][j] and dp[i][j-1].
+
+Fill in the base cases with initial brightness values for each star.
+Iterate through all possible positions within the rectangle, updating dp[i][j] as the maximum of dp[i-1][j], dp[i][j-1], and the sum of s[k] where k is the index of the stars that fall within the current rectangular view.
+
+Store the total brightness for each query in a memoized table to avoid recalculating the same value multiple times.
+For each query, return the stored total brightness value.
+===END PLAN===

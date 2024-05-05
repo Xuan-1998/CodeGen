@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Since we need to find the smallest possible value of X, it seems like a bottom-up approach might be more suitable. We could start by breaking down the problem into smaller subproblems where we're given values for A and B that are closer to the solution, and then use memoization to store the results so we don't have to recompute them.
+
+Define the state expression as dp[i][j], which represents the smallest possible value of X when A = i and B = j. The base case is when A = 0 or B = 0.
+
+The relationship between dp[i][j] and subproblems can be represented as:
+dp[i][j] = min(dp[k][l] + l, dp[k][j-k+l]) for k in range(min(i,j), max(i,j))
+
+This relationship can be used to reduce the problem size by considering smaller subproblems.
+
+Create a function that takes A, B as input and returns the smallest possible value of X using memoization
+
+===END PLAN===

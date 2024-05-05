@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if s[:j].isalpha() and j <= max(a) else 0
+for i in range(1, n+1):
+    for j in range(i-1, -1, -1):
+        if s[j:i].isalpha() and i-j+1 <= max(a):
+            dp[i][j] = sum(dp[k][j-1]*a[ord(s[k-1])-97] for k in range(j, i))
+        else:
+            dp[i][j] = 0
+dp_max_length = max(max(k) for k in dp)
+min_substrings = min(min(len(list(x)) for x in dp))
+
+ways_to_split = sum(dp[n][i] for i in range(n+1))
+
+print((ways_to_split % (10**9 + 7)), flush=True)
+print(dp_max_length, flush=True)
+print(min_substrings, flush=True)
+===END PLAN===

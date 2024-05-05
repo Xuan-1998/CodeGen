@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][d] is True if it's possible for the frog to reach stone i from stone 0 with a jump distance d
+The base cases are:
+- dp[0][0] = True, because the frog starts on the first stone and doesn't need to make any jumps
+- dp[1][k] = True for k in [0, 1], because the frog can reach the second stone without making a jump
+
+For i > 1, we can use the following recurrence:
+dp[i][d] = (dp[i-1][d] and (d == k-1 or d == k or d == k+1)) for some k
+This means that if it's possible to reach the previous stone with a jump distance d, then it's possible to reach the current stone with a jump distance d, as long as the frog can make a jump of size k-1, k, or k+1 from the previous stone
+
+We fill up the table from top to bottom and left to right
+The final answer is dp[n-1][*], where n is the number of stones, because this is the possibility for the frog to reach the last stone
+===END PLAN===

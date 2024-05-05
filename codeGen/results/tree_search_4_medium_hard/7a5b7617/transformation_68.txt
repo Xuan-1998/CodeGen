@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation and memoization.
+
+The state expression could be dp[i][j] = sum(dp[i-1][k]) for k in range(j+1), representing the number of ways to fill the current row such that the sum is less than or equal to M minus the sum of previous rows. 
+
+Memoization using dictionary where memo[(i, j)] stores the result for subproblem (i, j). This can prevent redundant computations.
+
+To solve the problem, we can create a 2D array dp with size N+1 by M+1 and initialize it as [0] * (N+1) * [0] * (M+1).
+
+Then, iterate over each row i from 1 to N. For each row i, calculate the number of ways to fill the current row such that the sum is less than or equal to M minus the sum of previous rows.
+
+Finally, return dp[N][M].
+
+===END PLAN===

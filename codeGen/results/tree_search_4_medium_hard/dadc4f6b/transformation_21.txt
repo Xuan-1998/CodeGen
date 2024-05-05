@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+For each query, we will calculate the total brightness for the given rectangular view and store these values in a memoized table to avoid recalculating the same value multiple times.
+
+A state consists of two indices i and j indicating which stars are currently within the rectangular view.
+
+State: (i, j), where:
+- i is the index of the leftmost star that has not been covered by the current view
+- j is the index of the topmost star that has not been covered by the current view
+
+Transition relationship:
+- The state transitions when a new line segment is added to the view.
+
+To efficiently calculate the total brightness within the rectangular view at each time step, we maintain a priority queue of stars and use it to determine which stars are currently visible. We prioritize the stars based on their distance from the current query coordinates.
+
+Memoization:
+- Store the calculated values in a memoized table.
+- Check if the state is already present in the memoized table before calculating the total brightness for each query.
+
+To ensure correctness, we handle edge cases as follows:
+
+- When i or j reaches n (the number of stars), it means that all stars are within the rectangular view. In this case, the total brightness is the sum of the initial brightness of all stars.
+- When i is 0 and j is n - 1, it means that all stars are initially visible. In this case, the total brightness is the sum of the initial brightness of all stars.
+
+The plan is correct, but we can improve it by using a more efficient data structure for the priority queue, such as a balanced binary search tree (e.g., an AVL tree or a red-black tree). This will reduce the time complexity for calculating the total brightness within the rectangular view at each time step.
+
+===END PLAN===

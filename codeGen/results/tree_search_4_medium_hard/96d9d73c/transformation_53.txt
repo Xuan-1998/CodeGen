@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i][j] is true if it's possible to partition subarray A[0..i-1] into j partitions.
+If we can't partition i-1 elements into j-1 partitions, we definitely can't do so with i elements.
+So, dp[i][j] = dp[i-1][min(j-1, ceil((i-1)/M)+1)] or (A[i-1]-A[i-2]) <= M and i >= K
+This is because if j-1 partitions are not possible for the first i-1 elements, adding one more element won't help.
+Memoize a function that checks if it's possible to add an element to an existing partition, considering constraints K and M.
+For the base case, dp[0][j] = false for all j > 1 because we can't partition an empty array into more than one partition.
+dp[i][0] is true only when i >= K because we need at least K elements in each partition.
+===END PLAN===

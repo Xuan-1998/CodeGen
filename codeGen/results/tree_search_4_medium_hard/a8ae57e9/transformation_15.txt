@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a tuple (i, j), where i is the maximum amount of money earned by accepting groups up to size k-i, and j is the number of tables required to accommodate all groups with sizes up to k-i. The transition relationship is that if we accept the current request, the new state will be (i + ci * pi, min(j, k - 1)). If we decline the current request, the new state will be (i, j).
+
+Fill in a table dp with n+1 rows and k+1 columns, where dp[i][j] represents the maximum amount of money earned for all groups with size i or less, using at most j tables.
+
+For each row i from 0 to n, do the following:
+  For each column j from 0 to min(i, k):
+    If j == 0, set dp[i][j] to 0.
+    Else, calculate the maximum amount of money earned by either accepting or declining the current request and update dp[i][j] accordingly.
+  Find the maximum value in the last row (n+1) and use it as the result.
+
+===END PLAN===

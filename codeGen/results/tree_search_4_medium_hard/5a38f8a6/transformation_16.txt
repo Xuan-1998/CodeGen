@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+Consider a base case: dp[0] = 1, not 0, since we need at least one perfect square to sum up to 0 (which is 0 itself).
+dp[i] is the minimum number of perfect squares that sum up to i.
+dp[i] = min(1 + dp[j]) for j in range(sqrt(i)) 
+    * If i can be represented as a single perfect square, then we need one more perfect square to sum up to i.
+    * Otherwise, consider all possible values of j such that j^2 <= i and find the minimum number of perfect squares needed to sum up to i - j^2.
+Utilize a memoized function that takes an integer input and returns the minimum number of perfect squares that sum up to that number, with base cases handling 0 and negative integers separately.
+To avoid overflows when calculating j^2, consider using long long instead of int for the calculation.
+===END PLAN===

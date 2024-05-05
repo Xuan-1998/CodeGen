@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved using Dynamic Programming with prefix sum technique.
+
+Define dp[l] and dp[r] as the minimum number of elements that can be removed from the range [l, r] such that the sign-variable sum is zero.
+
+For each query (l, r), calculate the total sum of signs in the range [0, l-1] and [r+1, n-1]. This will give you the net sign variable required to make the sign-variable sum zero in the range [l, r].
+
+Then for each element from l to r, calculate the minimum number of elements that can be removed to make the sign-variable sum zero by taking the minimum between removing the current element and not removing it.
+
+The state expression dp[i] = True if the ith element is a common prefix/suffix, and False otherwise. This approach doesn't need this state expression as we are considering the whole range [l, r].
+
+Implement dynamic programming using a loop to build the dp array.
+
+For each query (l, r), calculate the minimum number of elements that can be removed by taking the minimum between dp[l-1] + sum(signs[i] for i in range(l, r+1)) and dp[r-1] - sum(signs[i] for i in range(0, l))
+
+===END PLAN===

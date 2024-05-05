@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table.
+
+The state is a tuple containing the star's initial brightness s_i, its position (x, y), and the current time t: (s_i, x, y, t).
+
+The state transition function can be defined as follows:
+- If the current time is before any of the stars' initial times, return 0.
+- Otherwise, calculate the total brightness for all stars that are currently visible within the rectangular view. This involves summing up their initial brightnesses and considering only those stars whose position lies within the rectangle.
+
+The state transition function can be implemented as follows:
+- Create a dictionary to store the memoized values, where each key is a unique state tuple (s_i, x, y, t) and its value is the total brightness for that state.
+- Iterate through all queries.
+  - For each query, determine the time at which the view is taken.
+  - Calculate the total brightness for this state by looking up the memoized value or calculating it recursively if it's not cached.
+- Return the calculated brightness values as output.
+
+This plan can be improved by implementing a more efficient data structure to store and retrieve the memoized values, such as a trie or a quadtree, which could reduce the time complexity of querying states that have already been evaluated.
+===END PLAN===

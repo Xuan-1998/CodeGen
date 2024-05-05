@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment, and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder.
+
+1. Initialize a 2D array dp of size (n+1) x (m+1), where dp[i][j] represents whether the subsegment from index i-1 to j is a valid ladder.
+   - Fill the first column as True, since any single element is considered a valid ladder.
+   - Iterate through each query (l, r):
+     1. Initialize two variables, inc and dec, to track if there are increasing or decreasing elements in the current subsegment.
+     2. Check for all elements from l-1 to r:
+       * If the current element is greater than the previous one, increment inc.
+       * If the current element is less than the previous one, increment dec.
+     3. Check if there are any increasing or decreasing elements in the subsegment (inc > 0 and dec > 0).
+       - If yes, then update dp[l][r] as True, since the subsegment has both increasing and decreasing elements, which can form a valid ladder.
+       - If not, then update dp[l][r] as False, since the subsegment only has one type of increase/decrease, which cannot form a valid ladder.
+
+2. Print the results: for each query (l, r), print "Yes" if dp[l][r] is True, and "No" otherwise.
+===END PLAN===

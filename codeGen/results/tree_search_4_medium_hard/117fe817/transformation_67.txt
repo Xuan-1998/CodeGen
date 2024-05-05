@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+\\
+The state can be the last k bits of each integer, where k is the number of bits in n. For example, if an integer ends with '11', then its last k bits are '11'. The transition relationship is that adding 1 to an integer changes its last bit from 0 to 1 or vice versa.
+Use a list to store the results of subproblems and avoid redundant calculations.
+The base case would be when n is less than 10. In this case, we can directly count the number of digit 1's in each integer.
+For larger values of n, we iterate from 0 to n, and for each integer i, we calculate the number of times '1' appears at its last k bits by using the results stored in the list. This is done by considering two cases: when the last bit of i is 0 or 1.
+The updated result would be the sum of these two cases plus the result for i-1 (if i is not less than n, then we stop here).
+This way, we avoid redundant calculations and count the total number of digit 1's in all non-negative integers less than or equal to n.
+===END PLAN===

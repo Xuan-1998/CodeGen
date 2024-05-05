@@ -1,0 +1,22 @@
+state: (s, p) where s is the remaining substring to be processed and p is the current partition
+base case: if s == '', then return [[p]] (not just [p], because we want a list of all possible partitions)
+
+Consider a state (s, p) where s is the remaining substring to be processed, p is the current partition
+Transition:
+    if len(s) < 2, then update dp with [[p]]
+    else:
+        for i in range(len(s)):
+            if s[:i+1] == s[:i+1][::-1]: (check if the substring is a palindrome)
+                for r in dp.get((s[i+1:], p + [s[:i+1]]), []):
+                    update dp with [(p + [s[:i+1]]).extend(r) for r in dp.get((s[i+1:], p + [s[:i+1]]), [])]
+
+Implement dynamic programming using a dictionary to store the solutions to subproblems
+state: (s, p)
+base case: if s == '', then return [[p]]
+Transition:
+    for i in range(len(s)):
+        if s[:i+1] == s[:i+1][::-1]: (check if the substring is a palindrome)
+            update dp with [(p + [s[:i+1]]).extend(r) for r in get_subpartitions(s[i+1:], p + [s[:i+1]])]
+    return dp[[p]]
+
+Note: The plan should be able to handle edge cases such as an empty string, a single-character string (which is always a palindrome), and strings with even and odd lengths.

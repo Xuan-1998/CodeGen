@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another.
+
+Define the state as: dp[i] = whether there's a path from i to 0 (since all vertices are connected by edges). Base case: dp[0] is always true.
+
+dp[i] = any(dp[u] for u in range(i.bit_length()) if not (i & (1 << u)));
+
+You can use a dictionary to store the values of dp and update them accordingly as you iterate through the bits.
+
+Iterate over all vertices, updating dp[i] based on whether there's an edge from i to 0. For each bit position, check if it's set in i. If not, then there must be an edge from i to 0 at that bit position. So, update dp[i] accordingly.
+
+===END PLAN===

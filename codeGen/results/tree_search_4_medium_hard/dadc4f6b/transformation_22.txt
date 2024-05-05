@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+A state consists of two indices i and j indicating which stars are currently within the rectangular view.
+
+State: (i, j), where i is the number of stars within the current view, and j is the maximum brightness of these stars. Transition relationship: The state transitions when a star enters or exits the current view.
+
+Create a 2D table with dimensions n x (c + 1), where n is the number of stars and c is the maximum brightness. Initialize each cell to 0.
+
+Initialize the base cases by setting dp[i][0] = 0 for all i, as there are no stars within the current view with initial brightness less than or equal to 0.
+
+For each star (x_i, y_i) with initial brightness s_i:
+    Update dp[0][j] = dp[0][j-1] + min(s_i, j) for j = 1 to c, as all stars are initially outside the view.
+    For each query (t, x1i, y1i, x2i, y2i):
+        Initialize the total brightness within the current view to dp[0][c].
+        For each star (x_i, y_i) that enters or exits the view:
+            Calculate its new state as (i-1, j-1) if it exits the view, or (i+1, max(j-1, s_i)) if it enters the view.
+            Update the total brightness within the current view by adding dp[new_state][c] - dp[old_state][c].
+        Return the total brightness within the current view.
+
+===END PLAN===

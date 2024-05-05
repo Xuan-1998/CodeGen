@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State: The number of ways to choose k-bit integers for the first i elements, such that bitwise AND is greater than or equal to bitwise XOR; Base Case: 1 when i = 0
+Use a state variable that represents the maximum value achievable in the bitwise AND operation for the first i elements and use this value to determine the next possible states.
+State variables:
+    dp[i][max_and]: The number of ways to choose k-bit integers for the first i elements, such that bitwise AND is greater than or equal to max_and
+    max_and: The maximum value achievable in the bitwise AND operation for the first i elements
+
+Dynamic programming with nested loops to tabulate intermediate results:
+    For each possible state (i, max_and):
+        If max_and == 0:
+            dp[i][max_and] = 1
+        Else:
+            dp[i][max_and] = sum(dp[j][and_result] for j in range(i) for and_result in range(max_and))
+        For each possible next_state (j, new_max_and):
+            if j < i and new_max_and <= max_and:
+                dp[i][max_and] += dp[j][new_max_and]
+    Base Case: dp[0][0] = 1
+
+===END PLAN===

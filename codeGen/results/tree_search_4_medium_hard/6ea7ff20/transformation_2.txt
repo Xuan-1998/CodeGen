@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+Let dp[i][j] represent whether there exist arrays a and b, each of length i and with no elements in common, so that p=merge(a,b) up to the i-th element.
+dp[i][j] can be true if either p[i-1] is the largest element in array a (and thus needs to be added to b), or if it's the smallest element in array b (and thus needs to be removed from b).
+
+Apply top-down dynamic programming using memoization.
+
+Let memo[i][j] represent whether there exist arrays a and b, each of length i and with no elements in common, so that p=merge(a,b) up to the i-th element.
+memo[i][j] can be true if either p[i-1] is the largest element in array a (and thus needs to be added to b), or if it's the smallest element in array b (and thus needs to be removed from b).
+
+Initially, memo[i][j] = false for all i and j.
+
+For each pair of i and j such that 2 ≤ i ≤ n and 0 ≤ j ≤ n:
+
+    If p[i-1] > max(a), then memo[i][j] = memo[i-1][k] for some k < j.
+    Else if p[i-1] < min(b), then memo[i][j] = memo[i-1][l] for some l < k.
+    Else, there is no way to merge a and b up to the i-th element, so memo[i][j] = false.
+
+Finally, check if dp[n][n] is true. If it is, output "YES". Otherwise, output "NO".
+
+===END PLAN===

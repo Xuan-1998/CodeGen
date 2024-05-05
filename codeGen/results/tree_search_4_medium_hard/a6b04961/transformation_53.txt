@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Dynamic programming with memoization in a top-down approach is a good idea.
+
+State: (nodes_in_tail, max_length) as the state expression, where nodes_in_tail is the set of vertices that form the current path of the hedgehog's tail and max_length is the maximum length of the tail seen so far. This will allow us to keep track of the different paths we can take and their corresponding lengths.
+
+Base case: When the tail has reached its maximum length or when there are no more nodes that can be connected to the tail, we have a base case.
+
+Use a nested dictionary to store the maximum beauty for each possible state (nodes_in_tail, max_length) as you build it up from scratch. This will allow us to avoid recomputing the same subproblems multiple times and thus reduce the time complexity of our algorithm.
+
+Steps:
+1. Initialize an empty dictionary dp.
+2. Iterate over all nodes in the graph.
+3. For each node, iterate over all its neighbors that are not yet in the tail.
+4. For each neighbor, calculate the maximum beauty of a hedgehog ending at this neighbor and having length max_length + 1.
+5. Update dp[nodes_in_tail][max_length] with the calculated maximum beauty if it is greater than the current value.
+
+This plan seems correct, but we should also consider that nodes in the tail cannot be connected to other nodes not in the tail to form a hedgehog. Therefore, we need to keep track of whether each node is in the tail or not.
+
+===END PLAN===

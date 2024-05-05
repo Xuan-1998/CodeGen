@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the sum of marks strictly below the water level for days 1 to i, and minimize this value. To do this, calculate the difference between the current marks above the water level (n-i)*m_i and the minimum number of marks below the water level so far dp[j], considering all previous j where m_j < i.
+
+The recurrence relation is:
+dp[i] = min(dp[i-1] + (n-i)*m_i - dp[j] for j in range(i) if m_j < i)
+
+Create a 2D table where each cell represents the minimum number of marks strictly below the water level for a given prefix of days.
+
+Fill up the first row as base cases, since there are no previous days to consider. Initialize all values to infinity or some large value, and then update them based on the recurrence relation.
+
+Finally, return dp[n-1] which represents the minimum number of marks strictly below the water level for all days.
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use dynamic programming for bottom-up approach: Implement a 2D array dp where dp[i][1] represents whether it's possible to reach index i, and dp[i][0] is not used.
+
+The state could be the current index i. The transition relationship could be defined as 'it is possible to reach the next index if the current index is within the jump range of the maximum reachable index'.
+
+dp[i][1] = True if any j < i such that arr[j] >= i - j and dp[j][1] is True, otherwise False.
+
+Fill up the array in bottom-up manner from left to right. Start with dp[0][1] = True (since it's possible to reach index 0).
+
+For each cell dp[i][1], consider all indices j < i such that arr[j] >= i - j and check if dp[j][1] is True. If any such j exists, set dp[i][1] = True; otherwise set it to False.
+
+Finally, return dp[n-1][1] as the result, where n is the length of the array.
+===END PLAN===

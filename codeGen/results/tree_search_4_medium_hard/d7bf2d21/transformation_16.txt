@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+DP[i][j]: length of the longest increasing subsequence ending at index i with j elements
+State transition:
+- If there's no increasing subsequence (i.e., previous element is smaller), then it starts a new subsequence, so DP[i][1] = 1.
+- Otherwise, the maximum length is the maximum of the current subsequence and the maximum length of the previous increasing subsequences ending at i-1, so DP[i][j+1] = max(DP[i-1][k] + 1 for k in range(j)) + 1
+Memoization:
+- Initialize memo with all values being -1.
+- For each pair (i,j), if j == 0, it's the base case where we return 1. If memo[i][j] is not updated yet, update it according to the state transition.
+Top-down approach:
+- Start from i=0 and calculate DP[0][j] for all j.
+- For each i, start from j=1 and calculate DP[i][j].
+- Return the maximum value of DP[n][k], where n is the length of the array.
+Edge cases:
+- Handle edge case when input array is empty or contains only one element.
+===END PLAN===

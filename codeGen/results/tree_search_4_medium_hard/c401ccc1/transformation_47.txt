@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state is a boolean array dp where dp[i] is true if there's a path from 0 to i, and false otherwise. The base case is that there's no path to any vertex with an in-degree of 1.
+
+dp[0] = True (since we're starting at vertex 0)
+
+For each vertex i:
+
+    For each vertex j < i such that u & i == i:
+        dp[i] = dp[j] or (u & i == i and dp[i])
+
+The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+Use a bottom-up approach with tabulation, initializing the dp array and filling it up from 0 to all vertices.
+===END PLAN===

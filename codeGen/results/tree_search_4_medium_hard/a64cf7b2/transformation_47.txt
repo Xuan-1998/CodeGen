@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Design a bottom-up dynamic programming function that builds up the solution from vertex 1 to vertex n.
+
+Define the state as a tuple (i, j), where i is the current vertex and j is the maximum time left; define the state expression as dp[i][j], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+Initialize the dynamic programming table dp[][] with zeros. dp[i][0] = 1, because only one vertex (vertex 1) can be visited in zero time.
+
+For each edge (u, v, t) in the graph:
+
+    Calculate dp[u][t] as the maximum of:
+        - dp[u-1][t] if there is no edge from u to v
+        - dp[u-1][t-t'] + 1 if there is an edge from u to v with weight t'
+    If there is an edge from u to v, update dp[u][t] as the maximum of the above two cases.
+
+Return dp[n][T], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T.
+
+===END PLAN===

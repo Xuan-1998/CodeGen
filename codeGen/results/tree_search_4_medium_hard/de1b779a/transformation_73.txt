@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Represent the state using a 3D array dp where dp[i][j][k] is the maximum profit that can be achieved with i grams of dough, j stuffing types available, and k buns made. The transition relationship could be formulated as:
+dp[i][j][0] = max(0, min(i, c0) - bi[j-1])
+for k > 0: 
+    dp[i][j][k] = max(dp[i][j][k-1], di[j-1] + dp[i-ci[j]][j-1][k-1])
+dp[0][j][k] is the base case when there's not enough dough to make any buns, regardless of the number of stuffing types available.
+Consider representing the state as dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types
+Tabulating the solution using a nested loop structure, where the outer loop iterates over the amount of dough i and the middle loop iterates over the number of stuffing types j.
+The inner loop could iterate from 1 to k (the number of buns made) to fill up the dp array with the correct values. The maximum profit earned would be stored in dp[n][m][k].
+===END PLAN===

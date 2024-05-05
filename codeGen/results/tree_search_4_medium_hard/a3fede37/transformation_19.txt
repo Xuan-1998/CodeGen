@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine the maximum sum of a path by iterating through all possible paths in the tree using dynamic programming (DP), and identify the optimal solution.
+
+The state expression is dp[i][j], representing the maximum sum of a path from root to node j, including all nodes on that path.
+Maintain two arrays, leftSum[] and rightSum[], to store the cumulative sums of left and right subtrees for each node. This will help avoid redundant calculations.
+
+Define a recursive function maxSumPath(i, j) with memoization to avoid redundant calculations. The base case is when i > j (i.e., we've reached a leaf node), in which case return the value at that node.
+
+The recursive case: calculate the maximum sum of a path from root to node j by considering three options:
+    1. Include the current node's value in the path.
+    2. Exclude the current node's value, but consider the left subtree (i-1) and rightSum[] for nodes in that subtree.
+    3. Exclude the current node's value, but consider the right subtree (j+1) and leftSum[] for nodes in that subtree.
+
+Return the maximum of these three options.
+
+Use bottom-up DP to fill up dp[][] array starting from leaf nodes and moving towards the root. Finally, return dp[0][n-1], where n is the number of nodes in the tree.
+
+===END PLAN===

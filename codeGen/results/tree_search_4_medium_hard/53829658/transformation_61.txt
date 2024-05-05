@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = max number of reversed roads to reach city i from an arbitrary capital, with base case being dp[1] = 0. This choice considers the maximum in-degree as the optimal capital.
+
+dp[i] = min(max number of cities that can be reached from city i with no edges reversed, dp[j-1] + 1) if there is an edge from city j to city i and not all such edges have been used
+
+The plan will then iterate over each city, considering the maximum in-degree as the optimal capital. Then, it will calculate the minimum number of roads that need to be reversed for every other city starting from this capital.
+
+This can be achieved by maintaining a priority queue where cities are ordered based on their out-degrees (i.e., the number of edges leaving each city). For each city, we add its in-degree to the total count and update the minimum number of roads that need to be reversed. We continue doing this until the maximum in-degree is reached.
+
+This plan does not include edge cases but can be improved by considering all possible scenarios. It's a good starting point for solving this problem.

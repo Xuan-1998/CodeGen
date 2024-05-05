@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use bottom-up tabulation approach with two variables: one for the maximum length of non-decreasing sequence and another for the maximum length of non-increasing sequence.
+state[i][j] = max(state[i-1][k] + 1 if a[k] <= a[j] else state[i-1][k] for k in range(l, r+1))
+state[0][0] = 0
+Achieve the goal by initializing two variables: one for the maximum length of non-decreasing sequence and another for the maximum length of non-increasing sequence.
+Update these variables by iterating through the array from left to right. If a[i] <= a[j], increment the maximum length of non-decreasing sequence, otherwise increment the maximum length of non-increasing sequence.
+Return True if both lengths are equal or one is greater than the other, indicating a ladder; False otherwise.
+

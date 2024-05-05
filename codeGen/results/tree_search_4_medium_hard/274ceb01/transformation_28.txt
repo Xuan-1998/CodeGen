@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+
+The state expression could be 'dp[i]: minimum sum of marks below water level on day i', where dp[i] depends on dp[j] for all j < i.
+minimum possible sum of the number of marks strictly below the water level on day i is dp[i-1] + (n - i)
+
+To use a top-down dynamic programming approach with memoization, defining a recursive function that calls itself with smaller inputs until the base case is reached, then storing the results in a dictionary for later reuse.
+
+The base case would be when i == 0 or i == n, where the minimum sum of marks below water level on day i is 0.
+
+A more efficient approach could be to use bottom-up dynamic programming, defining dp[i] recursively based on dp[j] for j < i-1, and then iteratively update dp[i] from left to right. This way, we can avoid redundant calculations.
+
+===END PLAN===

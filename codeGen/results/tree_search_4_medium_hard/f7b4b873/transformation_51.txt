@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+Base Case:
+When the length of the string is 1, since a single character is always a palindrome. This means that for each substring of length 1, we have only one possible partition: the substring itself.
+
+State Definition:
+Define a state as a set of all possible palindromic partitions for each substring of the input string. This can be represented using a 2D array dp where dp[i][j] represents the set of all possible palindromic partitions for the substring S[i..j].
+
+Transition Function:
+To update the state based on the previous states, we need to consider two cases: when the characters at the current positions are the same and when they are different. If they are the same, we can add a new palindrome to the set of palindromic partitions for the substring. If they are different, we cannot add any new palindrome.
+
+Base Case Update:
+For the base case where the length of the string is 1, we can directly assign the state as {{S[i..i]}} for each substring S[i..i].
+
+Recursive Formula:
+For longer substrings, update dp[i][j] by considering all possible palindromic partitions for the substrings S[i..k] and S[k+1..j], where k is an integer such that i <= k <= j. If S[i..k] and S[k+1..j] are both palindromes, then S[i..j] is also a palindrome.
+
+Answer Construction:
+Finally, we can construct the answer by iterating over all substrings of the input string and considering each possible palindromic partition for that substring. If the partition is a palindrome, add it to the list of answers.
+
+===END PLAN===

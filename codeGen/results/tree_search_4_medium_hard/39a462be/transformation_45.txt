@@ -1,0 +1,28 @@
+state_expression = (i, j, k) where i is the current index for string A, 
+j is the current index for string B, and k is the number of common characters found so far; 
+
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Let dp[i][j] be the maximum similarity score for the first i characters of string A and the first j characters of string B. 
+
+Then we have:
+
+- If A[0..i-1] == B[0..j-1], then dp[i][j] = 4 * (k+1) - (i+j)
+- Else, dp[i][j] is the maximum of dp[i-1][j-1] + 1 and the maximum of dp[i-1][j] and dp[i][j-1]
+
+Let's start with the base case:
+
+dp[0][0] = 4 * (k+1) - (i+j)
+
+Now we fill up the table in a bottom-up manner. 
+
+For i > 0 or j > 0, if A[0..i-1] == B[0..j-1], then dp[i][j] = 4 * (k+1) - (i+j)
+ Else, dp[i][j] is the maximum of:
+
+* If i > 0 and j > 0, dp[i-1][j-1] + 1
+* If i > 0, dp[i-1][j]
+* If j > 0, dp[i][j-1]
+
+Finally, we return dp[n][m] as the maximum similarity score.
+
+This plan correctly solves the problem using dynamic programming. It also handles edge cases where strings A and B have no common characters.

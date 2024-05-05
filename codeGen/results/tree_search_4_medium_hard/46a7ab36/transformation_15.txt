@@ -1,0 +1,12 @@
+], [
+The state could be represented by (n, m) where n is the remaining size of the alphabet and m is the remaining length of the word. The base case would be when there are no more characters left to place in the word.
+
+dp[i][j] = (
+    i == 0
+        ? 1 
+        : (i % 2 == 0
+            ? dp[i-1][m-1] * (n - i/2) + (i/2 > n ? dp[i/2][m-1] * (n - i/2) : 0)
+            : 0),
+    for 0 <= i < n, j >= 0
+
+Implement a recursive function with memoization using a dictionary to store the intermediate results.

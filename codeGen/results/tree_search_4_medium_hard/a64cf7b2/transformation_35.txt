@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using a dynamic programming approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+The base case is when i = n (end vertex), in which case we return 1 because we can always visit the end vertex itself.
+
+Let dp[i] represent the maximum number of vertices that can be visited within a time limit of T, considering all edges that start at vertex i. The transition relationship is:
+
+dp[i] = max(dp[j] + 1) for all j such that there exists an edge from vertex j to vertex i
+
+We can use a dictionary to store the maximum number of vertices that can be visited within a time limit for each subproblem, where the keys are the current vertex and the values are the maximum number of vertices that can be visited within the remaining time.
+
+Finally, we return dp[1], which is the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T.
+
+===END PLAN===

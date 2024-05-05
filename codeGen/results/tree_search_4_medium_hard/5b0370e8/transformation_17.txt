@@ -1,0 +1,18 @@
+State: dp[i][and][xor] where:
+    i: index in array
+    and: bitwise AND result up to this point
+    xor: bitwise XOR result up to this point
+    
+Memoize recursive function calls by storing intermediate results in a dictionary.
+
+Base Case: 
+    dp[-1][0][0] = 1 (initially, only one valid array)
+    
+Transition:
+    For each possible value v in range [0, 2^k - 1]:
+        If bitwise AND of current array with v is greater than or equal to and, and bitwise XOR of current array with v is less than or equal to xor:
+            Update dp[i][and][xor] by considering the number of arrays that end with v
+
+Dynamically calculate the number of arrays with bitwise AND less than bitwise XOR.
+
+Return 1 + sum(dp[-1][and][xor]) % (10^9 + 7) for each test case

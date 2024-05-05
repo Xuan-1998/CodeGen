@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far. However, this is not enough because we need to consider if a string should be reversed or not.
+
+Let's introduce another dimension k in dp[i][j], where k represents whether the current string (i-1)th string is already in its original form or has been reversed.
+
+So, the state dp[i][k] would represent the minimum total cost to sort the first i strings in lexicographical order, with the (i-1)th string being either in its original form or having been reversed, and j being the maximum length of all the strings seen so far.
+
+We need to consider two cases for each string:
+
+Case 1: The current string is already in its original form. In this case, dp[i][k] = dp[i-1][j]
+
+Case 2: The current string has been reversed. In this case, we need to add the cost of reversing this string to the minimum total cost of sorting the previous strings.
+
+The transition function would be:
+
+dp[i][0] = dp[i-1][0]
+dp[i][1] = min(dp[i-1][0], dp[i-1][1]) + (cost of reversing the i-th string)
+
+Finally, we need to return dp[n][max_length]. If it is impossible to sort the strings in lexicographical order, output -1.
+
+===END PLAN===

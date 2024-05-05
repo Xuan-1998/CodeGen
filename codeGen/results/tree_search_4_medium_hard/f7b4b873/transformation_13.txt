@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+state: (s, p) where s is the remaining substring to be processed and p is the current partition
+base case: if s == '', then return [p]
+The key insight here is that we can recursively break down the problem into smaller subproblems by considering all possible partitions of the remaining substring. This allows us to leverage memoization to avoid redundant computations.
+Transition:
+    1. If s starts with a palindrome (i.e., a sequence of characters that reads the same forwards and backwards), then update dp with (s[0], p + [s[0]]) to account for this partition.
+    2. Otherwise, split s into two non-empty substrings t and u such that t is a palindrome and u is also a palindrome or empty. Then, update dp with (t, p + [u]).
+state transition: if s can be split into two non-empty substrings t and u such that t is a palindrome and u is also a palindrome or empty
+base case: if s == '', then return [p]
+Memoization:
+    1. Store the memoized values in a dictionary dp.
+    2. Before computing a new value for dp, check if it already exists in the dictionary. If it does, return the cached result to avoid redundant computations.
+
+===END PLAN===

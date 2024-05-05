@@ -1,0 +1,26 @@
+state dp[2n][2n] = { pair of arrays a and b such that merge(a,b) equals permutation, with array a having the same length as array b };
+dp[i][j] = True if and only if either i==0 or (there exists k such that (i==k||dp[i-1][k]) && dp[k][j]), 
+  meaning the problem can be broken down into smaller subproblems;
+if i-j > n, return False; // base case: if the difference between indices exceeds length of arrays
+else if i-j == n, return True; // base case: when the indices are equal, it means that arrays a and b have same length and no common elements
+else { 
+  for (int k = 1; k <= n; k++) {
+    if ((i-k) % 2 == 0 && dp[i-k][j+k]) || ((i-k) % 2 != 0 && dp[i-k-1][j+k-1]) {
+      return True;
+    }
+  }
+  return False;
+}
+for (int i = n; i < 2n; i++) {
+  for (int j = 0; j <= n; j++) {
+    if (!dp[i][j]) { 
+      print "NO";
+      break;
+    }
+  }
+  if (!dp[i][j]) { 
+    print "NO"; 
+    break;
+  }
+}
+print "YES";

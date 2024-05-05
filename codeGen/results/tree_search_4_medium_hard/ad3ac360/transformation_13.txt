@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine the optimal substructure by defining a dynamic programming table where each cell represents whether a given substring is palindromic.
+
+dp[i][j] = 1 if s[i..j] can be partitioned into two palindromes and one separator character. That is, dp[i][j] = 1 if s[i..i+1] and s[j..j-1] are both palindromes, and s[i..j] can be partitioned into these two palindromes with at most one separator character between them.
+
+dp[i][j] = 1 if dp[i][i+1] == 1 and dp[j-1][j] == 1. This is because a palindrome substring can only be cut into smaller palindromes, not non-palindromic parts.
+
+To fill in the table, for each cell, check whether the current substring s[i..j] is palindromic. If it's not, set dp[i][j] to 0. Otherwise, try cutting at every position k such that i <= k <= j. If any of these cuts results in two palindromes and one separator character, then set dp[i][j] = 1.
+
+The minimum number of cuts needed is the maximum value along the diagonal of the table, minus 1. This is because we count the separators as part of the cuts.
+
+===END PLAN===

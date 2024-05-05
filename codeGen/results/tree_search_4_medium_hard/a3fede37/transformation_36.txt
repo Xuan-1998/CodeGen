@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+Let dp[i] = max_sum_of_path_ending_at_node_i be the state expression, which represents the maximum sum of a path ending at node i.
+View each node's maximum sum of a path ending at it as the maximum of:
+    - Its own value
+    - The value of its left child
+    - The value of its right child
+    - And the sums of paths ending at its children, recursively calculated for all child nodes
+
+Use a separate array to store the maximum sum of a path ending at each node.
+
+The base case is when the input array only contains one node, in which case dp[i] = arr[i].
+
+To fill up the dp array:
+    1. Iterate through the array from left to right.
+    2. For each node i, calculate its max_sum_of_path_ending_at_node_i as the maximum of:
+        - Its own value
+        - The value of its left child
+        - The value of its right child
+        - And the sums of paths ending at its children
+
+The final answer is the maximum sum stored in the dp array.
+
+===END PLAN===

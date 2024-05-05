@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+State: dp[n+1] = 0 (base case)
+Transition:
+    for room in range(n+1):
+        if room == n+1:
+            dp[room] = True
+        else:
+            visited = any(visit in dp[:room] for visit in range(room))
+            next_room = p[room] if visited else 0 or p[1] if room == 1
+            dp[next_room] = dp.get(next_room, False) or dp[room]
+    return dp[n+1]
+===END PLAN===

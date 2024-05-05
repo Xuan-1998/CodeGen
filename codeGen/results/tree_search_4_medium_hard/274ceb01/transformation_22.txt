@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp[i]: minimum sum of marks below water level on day i
+The state expression could be dp[i] = min_sum_below_water(i), where dp[i] depends on dp[j] for all j < i.
+
+function min_sum_below_water(i):
+    if i == 1:
+        return m_1
+    else:
+        min_sum = INF
+        for j in range(1, i):
+            min_sum = min(min_sum, dp[j] + (i - j - 1) * m_i)
+        return min_sum
+
+Memoization: Define a function min_sum_below_water that takes i as input and returns the minimum sum
+of marks below water level on day i, given the number of marks above water level on previous days.
+
+Let's consider some edge cases:
+* If n is 1, then we have only one mark above the water level. So, dp[0] = m_0.
+* If n is greater than or equal to 2, then for each day i > 1, dp[i] depends on dp[j] for all j < i.
+
+This plan includes edge cases and it's correct in terms of using dynamic programming with memoization. It can be improved by optimizing the function min_sum_below_water(i) to reduce its time complexity.

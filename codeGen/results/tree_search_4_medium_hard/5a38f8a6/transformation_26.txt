@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is dp[i], where dp[i] represents the minimum number of perfect squares that sum up to i.
+dp[i] = min(dp[j] + 1 for j in range(1, int(i**0.5) + 1) if (j ** 2) <= i and dp[i - j ** 2] > 0)
+Store the results of subproblems as we solve them using a dictionary, where the keys are the values of n and the values are the minimum number of perfect squares that sum up to those values.
+For edge cases, initialize dp[0] = 0, since it takes zero perfect squares to sum up to 0. Initialize dp[i] = infinity for i > 10^4, as per the problem constraints.
+===END PLAN===

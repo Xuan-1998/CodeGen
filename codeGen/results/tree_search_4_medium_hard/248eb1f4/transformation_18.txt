@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+dp[i][j] represents whether jth person is alive after (M-1) rounds with i players; if not, the next winner index will be (j+1)%i. 
+
+For M=1, dp[i][0] = 0 for all i (base case). For M>1:
+    Calculate dp[i][j] based on whether jth person is alive or dead.
+        If jth person is dead, the next winner index will be (j+1)%i. 
+        If jth person is alive, calculate the number of rounds it takes for jth person to get the coin and pass it clockwise M-2 times; then calculate the next winner based on this.
+
+Store all possible combinations of M-1 rounds in a hash map for fast lookups.
+For each round, update dp[i][j] according to whether jth person is dead or alive. 
+
+Finally, pre-compute and store all possible values of dp[i][0] (the number of players) from 1 to X.
+
+To get the winner index when there are i people playing, find the first value in the hash map where key is i.
+===END PLAN===

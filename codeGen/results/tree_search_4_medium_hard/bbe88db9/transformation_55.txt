@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i][j]: number of ways to reach room j from room i, considering whether Vasya has already used a portal in room i or not; dp[1][_]=1, since Vasya can always start the maze.
+
+dp[i][j] = 0 if j < i, since it's impossible to reach a smaller room number. 
+dp[i][k] + 1 if k is a previously visited room and Vasya has already used a portal in room i.
+Otherwise, dp[i][p_{i-1}] + 1 if the second portal hasn't been used yet; otherwise, dp[i-1][p_{i-1}].
+
+Use dynamic programming with recursion to break down the problem into smaller subproblems.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+Let's define our state as 'state[i][j]' where state[i][j] represents whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point. Define the base case as state[0][j] = True for all j since it's always possible to get 0.0 within any time limit.
+
+For the recursive case, consider the following:
+state[i][j] = state[i-1][t-j] + (int(10^k * f) % 10 == 5 || int(10^k * f) % 10 > 4 ? 9 : int(10^k * f) % 10)
+
+This expression calculates the maximum possible grade when rounding the first i digits after the decimal point. It considers two options: either round up or don't round at all.
+
+Implement memoization using a dictionary to store the function calls and their corresponding results, allowing you to avoid redundant computations when solving subproblems.
+
+Finally, return state[n][t] as the maximum possible grade that can be obtained within the given time limit.
+===END PLAN===

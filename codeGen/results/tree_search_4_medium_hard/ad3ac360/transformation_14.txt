@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Determine the optimal substructure by defining a dynamic programming table where each cell represents whether a given substring is palindromic.
+
+Let dp[i][j] be a boolean indicating whether the substring s[i..j] can be partitioned into two palindromes with at most one separator character between them. 
+
+Set up base cases:
+- A single-character string is always palindromic (no cuts needed).
+- An empty string can also be considered as a palindrome with no cuts.
+
+Fill in the table bottom-up:
+
+1. Iterate through the string, and for each substring s[i..j], 
+   - Check if it's a single character or an empty string; in that case, dp[i][j] = 1 (palindromic).
+   - If not, then check if the middle character is the same as the first and last characters.
+     - If so, consider cutting at the middle character. 
+     - Recursively check if the left half (s[i..m]) can be partitioned into two palindromes with at most one separator character between them.
+     - Similarly, recursively check for the right half (s[m+1..j]).
+     - If both halves are palindromic, then s[i..j] is also palindromic and dp[i][j] = 1.
+
+2. For each cell dp[i][j], calculate whether it can be partitioned into two palindromes with at most one separator character between them.
+   - If the middle character is not the same as the first and last characters, then s[i..j] cannot be cut into two palindromes.
+
+3. The minimum number of cuts needed for palindrome partitioning will be the smallest number of cells that have dp[i][j] = 0 in the table.
+
+===END PLAN===

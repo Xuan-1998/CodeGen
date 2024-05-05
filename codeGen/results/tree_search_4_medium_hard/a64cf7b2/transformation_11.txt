@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by building up solutions for smaller subproblems and combining them to find the solution for the original problem.
+
+State: dp[i][t] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within time t.
+
+Base case: if i == 1, then the maximum number of vertices that can be visited is 1, because we start at vertex 1.
+Transition relationship:
+- If there are no edges leaving vertex i or all remaining time t is used up before reaching any neighbor of i, then the maximum number of vertices that can be visited is dp[i - 1][t].
+- If there is an edge from vertex i to vertex j with weight ti and we have enough remaining time after traversing the edge (i.e., t >= ti), then we can visit vertex j if we have enough remaining time after traversing the edge. In this case, update dp[j][t - ti] by setting it to max(dp[j][t - ti], dp[i - 1][t]).
+- If there is an edge from vertex i to vertex j with weight ti and we don't have enough remaining time after traversing the edge (i.e., t < ti), then we cannot visit vertex j, so update dp[j][t] by setting it to dp[i - 1][t].
+
+Function: dp[i][t] = max(dp[i - 1][t], max(dp[j][t - ti] for all edges from i to j with weight ti and t >= ti) if t >= 1, otherwise dp[i - 1][t].
+Result: The maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within time T is dp[n][T].
+
+===END PLAN===

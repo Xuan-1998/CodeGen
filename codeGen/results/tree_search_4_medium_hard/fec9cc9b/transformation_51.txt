@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment and update this state using bottom-up approach with dynamic programming to determine if the current subsegment is a ladder. 
+dp[i][j] = max(0, dp[i-1][k] + (a[k-1] >= a[r-1])) for k from l to r
+Define another state as the maximum length of non-decreasing sequence seen so far in the current subsegment and update this state using bottom-up approach with dynamic programming to determine if the current subsegment is a ladder. 
+dp[i][j] = max(dp[i-1][k] + (a[k-1] <= a[r-1]), 0) for k from l to r
+Use a 2D array dp of size (n+1) x (m+1) where dp[i][j] stores the maximum length of non-decreasing sequence seen so far in the current subsegment, and update this state accordingly. 
+For each query, check if the difference between the two states is equal to the length of the current subsegment. If true, then it's a ladder; else, it's not.
+===END PLAN===

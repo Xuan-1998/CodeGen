@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Identify a recursive relationship between the maximum beauty of an array and its subarrays. Define a state expression based on the subarrays' lengths and their corresponding maximum beauties. Use bottom-up approach with tabulation to fill up a 2D table, where each cell represents the maximum beauty of a subarray.
+The maximum beauty of an array depends on the maximum beauties of its two halves, and the number of operations performed to combine these two halves.
+
+State (n, prev_operations) represents the maximum beauty of a subarray with length n and previous operations. Initialize a 2D table dp[n][prev_operations] where dp[i][j] will store the maximum beauty of a subarray of length i after j operations.
+
+Bottom-up approach:
+1. Base case: When n = 1, prev_operations = 0 (no operations performed), and dp[1][0] = 0.
+2. Recursive relationship: For any n > 1 and any number of previous operations, the maximum beauty of a subarray of length n is either the same as the maximum beauty of the left half plus one operation or the same as the maximum beauty of the right half minus one operation, depending on whether the maximum prime factor of the current element is good or bad.
+
+Fill up the table in this order:
+- Initialize dp[1][0] = 0.
+- For each i from 2 to n:
+    - For each j from 0 to min(i, prev_operations):
+        - If i is odd, set dp[i][j] to max(dp[i-1][j], dp[i-1][j-1]) + a[i].
+        - If i is even, set dp[i][j] to max(dp[i/2][j-1], dp[i/2][j-1]-a[i]).
+    - For each j from 0 to min(i, prev_operations):
+        - Set dp[i][j] to max(dp[i-1][j+1], dp[i-1][j+1]-a[i]).
+
+Return the value of dp[n][0].
+===END PLAN===

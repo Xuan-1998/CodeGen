@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or without. This would lead to a recursive formula, which can then be memoized.
+
+The state is (i, j), where i represents the current stuffing type, and j represents the remaining dough grams.
+
+dp[i][j] = max(
+    dp[i][j], 
+    min(dp[k][n] for k in range(m) if k != i) + di
+) for 0 <= j <= n
+
+Memoization by defining a recursive function and storing the results in a dictionary.
+
+===END PLAN===

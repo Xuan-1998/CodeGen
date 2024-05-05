@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[0][j] = 1 (no sphere) and dp[C+1][j] = 0 (sequences longer than C are not possible).
+The state is dp[i][j], where i is the number of spheres in the sequence, and j is the maximum radius of the spheres.
+The transition relationship is that for each sphere, we either add a new sphere with its radius or reuse an existing sphere with a smaller radius.
+Memoization can be used to store the results of subproblems and reusing them when needed; 
+dp[i][j] can be calculated as 1 if i==0 or j==0, otherwise it's the sum of all dp[k][i-1] for k ranging from U_k to L_j.
+This is because for each sequence, we either add a new sphere with its radius or reuse an existing sphere with a smaller radius.
+The final answer will be the sum of all dp[C][j] for j ranging from 1 to C.
+===END PLAN===

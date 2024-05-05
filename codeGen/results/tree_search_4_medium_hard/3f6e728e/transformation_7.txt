@@ -1,0 +1,47 @@
+The plan can be refined as follows:
+
+===BEGIN PLAN===
+dp[i] = number of ways to build an i-sequence.
+
+// Initialize dp array with zeros.
+for i in range(C+1):
+    dp[i] = 0
+
+// Fill up the dp array from bottom to top.
+for i in range(C, 0, -1):
+    for j in range(1, i):
+        // Calculate the number of ways to build an i-sequence.
+        dp[i] = (dp[i] + dp[j]) % (10**9 + 7)
+        
+// For each test case, output the number of ways to build sequences of spheres with radii from 1 to C.
+for _ in range(T):
+    N, M, C = map(int, input().split())
+    U = list(map(int, input().split()))
+    L = list(map(int, input().split()))
+    
+    // Sort upper and lower hemispheres by radius.
+    U.sort()
+    L.sort()
+    
+    // Initialize dp array with zeros.
+    for i in range(C+1):
+        dp[i] = 0
+        
+    // Fill up the dp array from bottom to top.
+    for i in range(C, 0, -1):
+        for j in range(1, i):
+            if U[j-1] >= i:
+                Uj = len([x for x in U if x >= i])
+            else:
+                Uj = j
+                
+            if L[0] <= i:
+                Lj = len(L)
+            else:
+                Lj = 0
+                
+            // Calculate the number of ways to build an i-sequence.
+            dp[i] = (dp[i] + (Uj * Lj) % (10**9 + 7)) % (10**9 + 7)
+            
+    // Output the number of ways to build sequences of spheres with radii from 1 to C for each test case.
+    print(*[str(dp[i]) for i in range(C)], sep=' ')

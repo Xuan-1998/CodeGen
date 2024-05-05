@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+You can also think of a bottom-up tabulation solution where you build up the table row by row, considering the current polygon configuration and the next knight's mood.
+
+State: A boolean indicating whether a regular polygon can be formed with the given knights in good mood, considering the current configuration;
+Transition: If the next knight's mood is 1 (good), then it depends on the previous state; if the next knight's mood is 0 (bad), then the state becomes 'NO' regardless of the previous state.
+
+You can use dynamic programming to build up a table row by row, where each cell dp[i] represents whether a regular polygon can be formed with the given knights in good mood, considering the first i knights. The transition from one state to another would depend on the current knight's mood and the previous configuration.
+If the current polygon is not regular, then it doesn't matter what the next knight's mood is; you will always get 'NO'. So, you just need to update the state correctly when a new good knight appears.
+
+Here are some key steps:
+
+- Initialize dp[0] to 'YES' because with no knights, there can be no polygon. Then for each i from 1 to n:
+  - If the current mood is 1 (good), then check if the previous configuration was regular; if it wasn't, then you get 'NO'; otherwise, update the state as before.
+  - If the current mood is 0 (bad), then just set the state to 'NO' regardless of the previous configuration.
+
+Finally, return dp[n].
+
+===END PLAN===

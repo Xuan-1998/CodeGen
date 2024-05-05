@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. However, we can further optimize this approach.
+
+dp[i][j] = max( beauty(a[:i], b[:j]) + f(gcd(...)) ) for all possible subsets of a[:i] and b[:j]
+The current subset is represented as a binary string where 1 represents a number in the subset, and 0 represents a number not in the subset. The goal is to find all subsets of the array and determine which one maximizes the beauty.
+
+Instead of using a top-down approach with memoization, we can use a bottom-up dynamic programming approach. Initialize a 2D table dp where dp[i][j] represents the maximum beauty that can be achieved by choosing a subset of a[:i] and b[:j].
+
+For each i from 1 to n, and each j from 0 to m:
+    - If j is 0, then dp[i][j] = f(gcd(a[1], ..., a[i])) as we are considering the entire array.
+    - Otherwise, consider all possible subsets of a[:i] and b[:j]. For each subset S of a[:i], find its corresponding subset T of bad prime numbers by selecting only the elements in T that are also in S. Calculate dp[i][j] = max(dp[k][l] + beauty(a[k:i], t[l:j])) for all k from 1 to i and l from 0 to j, where k is the starting index of subset S, and l is the starting index of subset T.
+
+Finally, return dp[n][m] as the maximum beauty that can be achieved.
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+'for all j < i' should be replaced with '0 ≤ j < i'
+
+dp[i]: minimum sum of marks below water level on day i', where dp[i] depends on dp[j] for 0 ≤ j < i.
+
+To calculate dp[i], iterate over all days j from 1 to i-1, and update dp[i] with the minimum value between its current value and (i - j) * m_j + dp[j]
+
+Applying top-down memoization with a recursive function and dictionary caching
+
+Memoize the results using a dictionary for efficient computation

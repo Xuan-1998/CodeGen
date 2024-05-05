@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly above the water level at the beginning of day i.
+
+Let's iterate over each day. For day i:
+    1. If it's the first day (i == 1), dp[i] is simply m_1, because there are no marks above the water yet.
+    2. Otherwise, consider two cases: either we include all marks from the previous day, or we don't include any marks from the previous day.
+        * If we include all marks from the previous day (dp[i-1] + (n-i)), that means we're including marks strictly above the water level.
+        * If we don't include any marks from the previous day, that means we're starting fresh with the marks on this day (m_i).
+    3. Choose the case that leads to the minimum number of marks strictly below the water level.
+
+The final answer is dp[n].
+
+===END PLAN===

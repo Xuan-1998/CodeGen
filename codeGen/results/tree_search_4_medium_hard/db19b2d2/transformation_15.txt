@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a dynamic programming approach where the state represents the number of players from the department of interest, and the transitions represent the addition of new players to the team.
+
+Let dp[k] be the probability that a randomly formed team with k players will have at least one player from the department of interest. Then:
+
+- If k is less than the number of players from the department of interest (h), then dp[k] = 0, since it's impossible to form a team with fewer players.
+- Otherwise, consider all possible combinations of k players, and count those that include at least one player from the department of interest. This can be done by iterating over all combinations of players, checking if any of them have at least one player from the department of interest, and summing up these probabilities.
+
+The transitions for dp[k] could be formulated as:
+dp[k] = 1 - (1 - (sum of probabilities that teams with k-1 players do not include a player from the department of interest)) * (probability that a new randomly chosen player is not from the department of interest)
+
+This plan correctly solves the problem by iterating over all possible combinations of players and counting those that include at least one player from the department of interest.
+
+However, this plan can be improved by using binary search to find the minimum number of players needed for a team to have at least one player from the department of interest. This is because we don't need to check all combinations of players; instead, we just need to find the smallest k such that dp[k] > 0.
+
+The plan does not include edge cases. However, it handles the case where there are not enough basketball players in the university to form a team by returning -1.

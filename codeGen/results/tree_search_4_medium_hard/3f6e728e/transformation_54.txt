@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build a sequence with exactly i spheres having radii up to i, where 1 ≤ i ≤ C.
+
+dp[i] = dp[i-1] + sum(dp[j] * binomial(N-j, M-i) for j in range(max(1, i-M+1), i))
+
+From the bottom up: Implement a bottom-up dynamic programming approach where dp[i] is calculated based on dp[j], with 0 ≤ j < i.
+
+For edge cases: If i == 1 or i == 2, return 1 because there's only one way to build a sequence with one or two spheres having radii up to i.
+
+===END PLAN===

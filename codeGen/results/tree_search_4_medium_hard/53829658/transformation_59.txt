@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = max number of reversed roads to reach city i from an arbitrary capital, with base case being dp[1] = 0. This choice considers the maximum in-degree as the optimal capital.
+Let's use a dictionary to store the in-degrees and out-degrees of each city, then find the maximum value to determine the optimal capital.
+
+The state transitions are:
+- For every edge from city j to city i, if we choose city i as the capital, we need to reverse all edges going into city i. So dp[i] = max(dp[j-1] + 1, dp[i])
+
+Finally, return the maximum value and print it along with the optimal capital.
+
+===END PLAN===

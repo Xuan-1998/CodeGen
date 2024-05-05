@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To improve the array by performing a sequence of operations, we can use dynamic programming with memoization. Let's define dp[i][j] as the maximum beauty of an array with numbers a[:i] and bad prime numbers b[:j].
+
+1. For all possible subsets of a[:i] and b[:j], calculate the beauty using the following recursive formula:
+
+    - If there are no more bad prime numbers, calculate the beauty of the array with the current subset.
+    - Otherwise, for each number in the subset that is not a bad prime number:
+        * Recursively calculate the beauty of an array with the remaining numbers and the updated set of bad prime numbers (without the current number).
+        * Add the greatest common divisor of the current number and the remaining numbers to the result.
+
+2. Use memoization to store intermediate results in a dictionary and avoid recalculating the same subproblems multiple times.
+
+3. The goal is to find all subsets of the array and determine which one maximizes the beauty.
+===END PLAN===

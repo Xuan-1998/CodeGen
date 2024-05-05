@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Define a dynamic programming table dp of size n+1, where dp[i] represents the total count of digit 1's up to i. Initialize the base case dp[0] = 0.
+
+The state is the number of trailing zeros in an integer, and the transition relationship is that the total count for an integer with k trailing zeros is the sum of the total count for an integer with k-1 trailing zeros and the count of 1's in the integer with k trailing zeros. This count is calculated as (i//5)*((10-i%5)//9) + i%5, which represents the number of 1's in all multiples of 5 that are less than or equal to i.
+
+The recurrence relation is dp[i] = dp[i-1] + (i//5)*((10-i%5)//9) + i%5.
+
+Update the table bottom-up by iterating from i=1 to n and updating each entry using the recurrence relation. Finally, return the total count of digit 1's in all non-negative integers less than or equal to n, which is dp[n].
+
+===END PLAN===

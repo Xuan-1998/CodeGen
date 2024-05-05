@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Dynamic programming can solve this problem by defining a state that represents the maximum amount of money earned for each possible table configuration and total amount of money spent.
+
+The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use tabulation to fill in the states in bottom-up manner:
+
+dp[0][i] = 0 for i in range(k+1)
+for j in range(1, n+1):
+    dp[j][i] = max(dp[j-1][i], sum(max(pi * min(k, ci) for pi, ci in zip(requests[:j], group_sizes[:j]), i))
+
+Transition: dp[i][j] = max(dp[i-1][j], pi * min(k, ci)) for each request
+
+Consider using a bottom-up dynamic programming approach by initializing the dp table and filling it in from left to right.
+
+===END PLAN===

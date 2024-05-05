@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Let dp[i][j] represent the maximum amount of money earned with i tables remaining and j total amount to spend.
+The recursive formula can be written as:
+dp[i][j] = max(dp[i-1][j-ci*ri] + pi, dp[i][j-ci])
+This represents the maximum amount of money earned by either accepting or declining a request with size c, pi, and total money spent ri.
+
+To implement memoization, store the results of subproblems in a 2D table and fill it up in top-down manner.
+Use a nested loop to iterate over all possible states (i, j), and for each state, calculate dp[i][j] using the recursive formula. If the result is already stored in the table, return the stored value instead of recalculating.
+
+===END PLAN===

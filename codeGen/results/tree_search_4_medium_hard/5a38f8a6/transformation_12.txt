@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+We can identify overlapping subproblems by considering the maximum possible value of each perfect square (e.g., √n). This means we'll need a memoized function to keep track of previously computed values.
+
+The state expression is dp[n] where n is the input integer, representing the minimum number of perfect squares that sum up to n.
+
+dp(n) = 1 if n is a perfect square, and min(dp(i) + 1 for i in range(int(sqrt(n)))) otherwise.
+
+To avoid redundant computation, we can use dynamic programming with memoization. Implement tabulation by creating a table dp of size n+1 with initial values set to infinity. Then iterate from n down to √n, and update the table accordingly:
+
+dp(0) = 0
+for i from √n to 1:
+    for j from i^2 to 1:
+        dp[j] = min(dp[j], dp[i^2 - j] + 1)
+return dp[n]
+
+===END PLAN===

@@ -1,0 +1,18 @@
+A bottom-up approach using tabulation could be implemented by creating a 2D table where each cell represents the number of possible options to place a mirror at 45 degrees for that specific cell. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East. 
+
+State relationships can be defined as the sum of the number of empty cells to the East with no rocks blocking the line of sight, considering the previous row's tabulation results.
+
+The state can be defined as a binary value indicating whether there's a rock or not on the East side from that specific cell, or as the number of possible options to place a mirror at 45 degrees for that specific cell. 
+
+Using 2D table to store the number of possible options to place a mirror at 45 degrees for each cell.
+
+For each cell in the grid, iterate through the cells in the same row and column, considering only the cells that are not at the edge of the grid. For each such cell:
+
+- If there is no rock to the East, increment the count of possible options to place a mirror at 45 degrees for that specific cell.
+- If there is a rock to the East, reset the count to zero.
+
+After iterating through all cells in the row, store the number of possible options to place a mirror at 45 degrees for each cell in the table.
+
+Repeat this process for each row in the grid. 
+
+Finally, return the sum of the counts stored in the last row as the total number of possible options to place a mirror at 45 degrees.

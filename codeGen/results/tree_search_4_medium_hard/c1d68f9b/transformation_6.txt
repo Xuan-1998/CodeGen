@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider a dynamic programming solution where you build up a table of valid polygon configurations from left to right, using the current knight's mood as input for each configuration.
+
+The state expression is a tuple (mood_sum, k_count), where mood_sum is the sum of all knights' moods seen so far and k_count is the count of good moods.
+
+State: ((k_count-1)%n==0 ? 1 : -1) + (mood_sum%n==0 ? 1 : -1)
+Transition:
+    If state[0]>0, then YES;
+    else if state[0]<0, then NO;
+    else
+        For each possible polygon configuration with k_count good moods and mood_sum total moods:
+            If the difference between mood_sum and (k_count*n) is divisible by n, then YES; else NO.
+
+Use a 2D table where each cell represents the minimum number of bad moods needed to form a polygon with the given mood sum and knight count.
+===END PLAN===

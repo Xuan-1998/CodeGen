@@ -1,0 +1,9 @@
+dp[0][j] = 1 if j = 0
+dp[1][0] = 1
+dp[2][1] = 1
+
+for i in range(3, n+1):
+    for j in range(min(i+1, n)):
+        dp[i][j] = (i-1)//2 * [sum(1 for _ in range(min(i+1, j))) for _ in range((998244353 + 1)//2)] + sum(dp[i-1][min(k, i)] for k in range(min(i+1, j)))
+
+The plan is now more detailed and addresses potential issues. However, the actual implementation may still need to be adjusted based on specific requirements.

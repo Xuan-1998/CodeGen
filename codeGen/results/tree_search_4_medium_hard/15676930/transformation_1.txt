@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: The dynamic programming solution can be viewed as a 2D array, where each cell [i][j] represents the maximum joy that can be obtained by feeding the first i hares and having j hares full.
+
+The state expression could be dp[i][j] = max joy obtained by feeding first i hares, with j hares full.
+dp[i][j] = max(dp[i-1][0], dp[i-2][1] + a_i if i == 1 else dp[i-1][j-1] + (a_i if j == 1 else c_i)),
+
+Use memoization to store the intermediate results and update them lazily as needed, by creating a dictionary dp where dp[i][j] = result.
+
+The base case is when i or j equals to 0, in which case return 0.
+dp[0][j] = dp[j][0] = 0
+
+Update the plan as follows:
+===END PLAN===

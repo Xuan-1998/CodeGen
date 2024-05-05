@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify potential subproblems: Consider breaking down the problem into smaller instances of the same problem, where each instance has a unique set of inputs.
+
+Define dp[i] as True if for some j in [0, i-1], dp[j] is True and jumps[i-1] >= i - j. This means that there's a way to reach index i by jumping from some earlier position.
+dp[i] = any dp[j] where j < i and j + jumps[j] >= i
+
+Use memoization by defining a dictionary dp where keys are indices and values are boolean values indicating whether it's possible to reach that index.
+
+For initialization, set dp[0] to True since we can always reach the first index.
+dp[i] = False for all i > 0 initially, as we haven't checked if it's possible to reach those indices yet
+
+Iterate from i = len(jumps) - 1 down to i = 0:
+    If jumps[i] >= i: dp[i] should be True since we can always reach the current index
+    For j in range(0, i):
+        If dp[j] and i <= j + jumps[j]: set dp[i] to True
+
+Return dp[-1]
+===END PLAN===

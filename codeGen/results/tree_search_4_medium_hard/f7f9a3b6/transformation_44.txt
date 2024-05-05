@@ -1,0 +1,36 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][k] = maximum length of the k-th longest substring in all possible splits of s[0..i].
+
+dp[i][j] = number of ways to split the first i characters into j substrings such that:
+    - The length of the last substring is at most a[0]
+    - The sum of lengths of all substrings is equal to i
+    - dp[k][l] is known for 0 <= l < j
+
+DP with two variables: Use a 2D array dp[i][k] where:
+    - dp[i][k] represents the maximum length of the k-th longest substring in all possible splits of s[0..i]
+    - Initialize dp[0][k] = 1 for 1 <= k <= 26 (base case: no substrings)
+
+Update dp[i][k]:
+    - If i < a[0], set dp[i][k] to the number of ways to split the first i characters into k substrings
+    - Else, calculate the maximum length of the k-th longest substring in all possible splits of s[0..i-a[0]]
+        + For each way to split the last a[0] characters, update dp[i][k]
+
+Find the number of ways to split the message:
+    - Initialize count = 1
+    - For each i from 1 to n:
+        + Calculate the maximum length of the k-th longest substring in all possible splits of s[0..i]
+        + Update count by multiplying it with the number of ways to split the remaining characters
+
+Calculate the minimum and maximum lengths of substrings:
+    - Initialize min_len = n, max_len = 0
+    - For each i from 1 to n:
+        + Calculate the maximum length of the k-th longest substring in all possible splits of s[0..i]
+        + Update min_len and max_len accordingly
+
+Output:
+    - The number of ways to split the message (modulo 10^9 + 7)
+    - The maximum length of substrings
+    - The minimum length of substrings
+===END PLAN===

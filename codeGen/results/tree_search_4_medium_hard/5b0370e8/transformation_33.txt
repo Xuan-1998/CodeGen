@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+State: A 2D boolean array (n x 2^(k-1)) dp[n][m] where:
+    - n is the number of elements in the array.
+    - m is the mask for bitwise AND operation.
+
+Base case: All bits are unset. In this case, the result of the bitwise XOR operation is also 0.
+
+DP on bit position:
+    For each bit, if it's 0 in the AND result, then it can only be 0 in all elements.
+    If it's 1 in the AND result, then it must be 1 in at least one element. This means we need to consider two possibilities - whether this bit is set in any element and whether it's not.
+
+Iterative approach with a boolean array for the state:
+    Initialize dp[0][mask] = true for all masks where mask is unset.
+    For each additional element, iterate over all previous elements' masks:
+        Calculate the new mask by performing bitwise AND with the current element.
+        For each possible outcome of this bit (both 0 and 1), update the dp array accordingly.
+
+State transition:
+    If the current element's value is less than or equal to the mask, then it can only be 0 in all elements. In this case, we need to consider whether any previous bits are set.
+    If the current element's value is greater than the mask, then it must be 1 in at least one element. In this case, we need to consider whether some previous bits are set.
+
+Edge cases:
+    Handle arrays with only one element and with no elements.
+    For each array, calculate the result of bitwise AND and XOR operations on all elements.
+    Count the number of arrays for which the result of the bitwise AND operation is greater than or equal to the result of the bitwise XOR operation on all elements.
+
+===END PLAN===

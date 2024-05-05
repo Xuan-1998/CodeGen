@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The key insight is that the optimal solution for a given length j can be computed from the optimal solutions for lengths j-1 and j-2. Specifically, if s[:k] is the optimal string of length k, then either s[:k+1] (by adding one more character) or s[:k-1] (by removing the last character) could be the optimal solution for length k+1.
+
+State expression: dp[j] is a boolean array where dp[j] = True if the lexicographically smallest string of length j can be obtained by duplicating s[:i], and False otherwise.
+
+dp[i] = (s[i-1] <= s[-1]) or (dp[i-1] or dp[i-2])
+
+Using a boolean array to store the dynamic programming states
+
+Initial state: dp[0] = True
+Transition rule: for j from 1 to k, dp[j] = (s[j-1] <= s[-1]) and (dp[j-1] or dp[j-2])
+
+Termination condition: return the smallest string that can be obtained by duplicating s[:i], where i is the largest integer such that dp[i] is True
+
+Edge cases: handle strings of length 0 and 1 separately

@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Determine that the problem has an optimal substructure: the number of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones, can be calculated by solving smaller instances of the same problem for smaller values of n. This allows you to use dynamic programming with memoization.
+The state is dp[k][i], where k is the number of consecutive ones in the binary representation of i and i is the current integer. The base case is when k is 0, dp[0][i] = 1 if i's binary representation does not contain consecutive ones, otherwise it's 0.
+Let state dp[i] be the count of non-negative integers less than or equal to i that do not have consecutive ones in their binary representation. Then transition relationship is: dp[i] = sum(1 for j in range(i+1) if bin(j).count('1') < 2 and j <= i).
+Implement memoization by defining a recursive function with memoization, where the base case is when k is 0, and use it to calculate the count of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones.
+Store previously computed values in a dictionary dp and check if a value is already computed before calculating it. This will improve performance by avoiding redundant calculations.
+===END PLAN===

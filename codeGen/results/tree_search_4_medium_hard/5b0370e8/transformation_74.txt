@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if all elements in the range [0, i) have a bitwise AND with j, else dp[i][j] = 0;
+dp[i][k] represents whether the last k bits of all numbers in range [0, i) can be achieved through bitwise AND operation with j.
+Create a 2D array dp where dp[i][j] = 1 if and only if the last k bits of all numbers in range [0, i) can be achieved through bitwise AND operation with j.
+For each number x in the given array:
+    Check if dp[x][k] is 1;
+    If yes, then for every y in the array where y >= x:
+        Update dp[y][k] = 1 since it's possible to achieve the last k bits of numbers from [0, y) through bitwise AND with j.
+    Else, update dp[x][k] = 0 and don't update any other values of dp;
+For each number in the given array, if its value is less than 2^k, then it can be achieved by setting the last k bits to the corresponding bits of this number.
+So, initialize a variable count = 1 since the empty array satisfies the condition.
+Now for each number x in the array:
+    If dp[x][k] is 1, increment count;
+Print the value of count modulo 10^9+7 as the output.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its length and value, and use memoization to store the results for each operation.
+
+The state is defined by the length and value of the current number, considering all possibilities for the last digit. Base case is when n is a single digit.
+You can represent the state as (n, last_digit) where n is the length of the current number and last_digit is the last digit of val after an operation is applied.
+
+Then the transition relationship can be formulated based on whether last_digit + 1 has more or less digits than the previous last_digit. For example:
+
+- If last_digit is even, then last_digit + 1 will always have one more digit.
+- If last_digit is odd, then last_digit + 1 may either remain the same length (if it's a single-digit number) or increase by one digit.
+
+Use memoization by creating a dynamic programming table dp of size 10^9 x 2, where each cell (n, i) stores the length of n after applying i operations. Initialize dp with base cases for single digit numbers and then fill up the rest of the table based on whether the last digit + 1 has more or less digits than the previous last_digit.
+
+===END PLAN===

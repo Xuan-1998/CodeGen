@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val) where col is the column being checked and max_val is the maximum value seen in that column so far
+State: (col, max_val), Transition: (new_col, new_rows) -> check if sorted for new_cols
+
+Dynamically Create an Array of Arrays with Sort Function:
+    Initialize a 2D array dp where each cell represents the result for the corresponding column
+    Iterate over all columns and for each column, iterate over all rows and check if the current row is sorted based on the maximum value seen so far
+        If it's not sorted, mark as False in the dp array; otherwise, mark as True
+
+Check if any column has at least one "True" to determine if there's at least one task with a subtable that's sorted in non-decreasing order
+
+===END PLAN===

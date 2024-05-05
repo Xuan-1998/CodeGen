@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i][j] where dp[i][j] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+dp[i][k] = (i == 0 || k > 0) && ((i % 2 == 0 && k == 0) || (i % 2 != 0 && dp[i-1][k-1]))
+
+Memoize function calls using recursion with a dictionary, filling in memo table as needed.
+
+dp[i][0] = i == 0
+
+Calculate the probability of finding a way to set signal powers to meet all constraints by summing up the values of dp[n][0] modulo 998244353.
+===END PLAN===

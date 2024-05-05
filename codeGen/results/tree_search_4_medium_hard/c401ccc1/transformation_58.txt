@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others.
+
+The state is the set of all vertices reachable from v, and the base case is when v has no outgoing edges.
+
+State: The current vertex v
+Transition: If there's no outgoing edge from v, the state remains unchanged; otherwise, it becomes the set of all vertices reachable from the adjacent vertex
+
+Memoization using a dictionary to store the set of reachable vertices for each vertex
+
+Initialization:
+- Create an empty dictionary dp where dp[v] represents the set of all vertices reachable from v
+- Set dp[0] = {0} as the base case since 0 has no outgoing edges
+
+Recurrence relation:
+- For each vertex v, if there's no outgoing edge from v, then dp[v] remains unchanged
+- If there is an outgoing edge from v to w, then dp[v] becomes the union of its current value and dp[w]
+
+Termination condition: When all vertices have been processed (i.e., the loop finishes)
+
+Final answer:
+- For each query (u, v), check if u is reachable from 0 in O(1) time using the memoized values
+- If yes, print "YES"; otherwise, print "NO"
+
+===END PLAN===

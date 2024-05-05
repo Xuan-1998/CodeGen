@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Let the state be a tuple (d, k) where d is the department of interest and k is the number of players from departments other than the department of interest.
+
+The initial state would be (0, 0), representing no players on the team yet. The transitions would represent adding a player to the team, updating the number of players from departments other than the department of interest, and checking if this adds up to at least one player from the department of interest.
+
+Let P(d, k) be the probability that the randomly formed team has at least one player from department d given there are k players on the team. The state transitions would be as follows:
+
+* If k < n - 1, then P(d, k+1) = P(d, k) * (s_d / (n-k-1)) + (1 - s_d / (n-k-1))
+* If k >= n - 1 or d != h, then P(d, k) = 0
+
+The final answer would be the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+===END PLAN===

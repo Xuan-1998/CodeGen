@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+state = 0
+dp = {0: ""}
+
+for i in range(1, n+1):
+    state += 1
+    for j in range(state-1, -1, -1):
+        new_state = j + (k-i)
+        if new_state in dp:
+            new_string = dp[new_state] + s[i-1]
+            dp[state] = min(dp.get(state, s[:i]), key=lambda x: (x+new_string)[::-1]) + new_string[::-1][:-1]
+        else:
+            dp[state] = dp[0] + s[:i]
+
+return dp[k].ljust(k)
+===END PLAN===

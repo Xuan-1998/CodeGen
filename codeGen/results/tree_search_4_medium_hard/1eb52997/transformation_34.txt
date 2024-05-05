@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A top-down approach using memoization could be implemented by defining a function that takes the current cell and direction (East) as inputs. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East.
+
+State relationships can be defined as the number of empty cells to the East with no rocks blocking the line of sight.
+Define the state as dp[(i, j)], which stores whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight. The base case is when i or j reaches N - 1, meaning we've reached the edge of the grid.
+
+Define the state as dp[(i, j)] = 1 if there is no rock to the East at cell (i, j) and all cells to the East have a mirror that can be placed without any rocks blocking the line of sight. The base case is when i or j reaches N - 1.
+
+Use memoization by defining a dictionary memo where memo[(i, j)] stores whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight.
+
+For each cell in the grid, check if it's an edge case or not. If it's an edge case, directly return 1 as we know there are no rocks blocking the view.
+If it's not an edge case, recursively call dp with updated i and j values until you hit the edge case. Return 1 if all cells to the East have a mirror that can be placed without any rocks blocking the line of sight.
+
+Finally, calculate the total number of empty cells where a mirror can be placed at 45 degrees to see what is happening on the East side without any rocks blocking the line of sight by summing up dp[(i, j)] for all (i, j) in the grid.
+
+===END PLAN===

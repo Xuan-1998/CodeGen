@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem involves finding the minimal number of elements that can be removed from a given range of the array so that the sign-variable sum of the remaining elements is zero.
+
+The state expression is dp[l][r] = min_number_of_elements_to_remove_between_range_l_and_r
+dp[l][r] is equal to 1 if the sign-variable sum of the elements in array[l..r] is zero, and 0 otherwise.
+
+Top-down approach with memoization can be applied. The dynamic programming table dp[] has size (q+1) x (n+1), where q is the number of queries and n is the number of elements in the array.
+dp[i][j] = min(dp[i-1][j], dp[i][j-1], 1 + dp[0][j-1]) if j >= l_i and r_i <= j
+dp[i][j] = dp[i-1][j] otherwise
+
+Implement memoization by using a dictionary to store previously computed values and avoid redundant computation.
+
+===END PLAN===

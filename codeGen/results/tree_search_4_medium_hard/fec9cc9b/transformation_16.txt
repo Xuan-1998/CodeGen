@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Identify the longest non-decreasing subsequence in the array as the base case, then use top-down approach with memoization to determine if a given subsegment is a ladder by checking if it's equal to the longest non-decreasing subsequence found so far.
+dp[i] = True if array[0:i] is a non-decreasing subsequence, False otherwise
+Select dp[i] as a boolean indicating whether array[0:i] is a non-decreasing subsequence. Transition: dp[i] = dp[i-1] if array[i-1] <= array[i], False otherwise.
+dp[l-r+1] = True if array[l:r+1] is a ladder, False otherwise
+For each query l and r:
+    If array[l] > array[r]:
+        return "No"
+    For i from l to r:
+        dp[i] = dp[i-1] if array[i-1] <= array[i], False otherwise
+    Check if array[0:r+1] is a non-decreasing subsequence. Return "Yes" or "No" based on the result.
+===END PLAN===

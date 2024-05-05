@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider the graph as a tree-like structure and use the observation that if there is no path between u and v, then for any w such that (u & w) = w, there will be no path between w and v. This can help in identifying overlapping subproblems and optimal substructure.
+
+The state could be whether a path exists from vertex u to some intermediate vertex w, given that there is no edge between u and w. The base case would be when u equals v.
+
+DAG traversal with dynamic programming: Perform a topological sort on the graph to ensure a correct order of visited vertices. Then, use DP to solve the problem. For each vertex w, compute whether there exists a path from u to w. If it does not exist, return "NO". Otherwise, continue the process until w equals v.
+
+The dynamic programming table would be 2D, with rows representing the intermediate vertices and columns representing the possible values of (u & w).
+
+===END PLAN===

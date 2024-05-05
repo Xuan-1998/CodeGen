@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Create a 2D table dp of size (|t|+1) x n where dp[i][j] represents the minimum number of steps required to color all characters in the substring t[0..i-1] using the first j strings.
+
+Bottom-up approach:
+1. Initialize dp[0][j] = 0 for 0 <= j < n.
+2. Iterate over the text t and for each character at index i:
+    - If there is a string s_j in the set that matches the character, update dp[i+1][j] to be the minimum of its current value and 1 + dp[i][j-1].
+    - If no strings match the character, update dp[i+1][j] to be 1 + dp[i][j].
+3. The answer is stored in dp[|t|][n].
+
+Top-down approach:
+1. Create a recursive function f(i, j) that returns the minimum number of steps required to color all characters in the substring t[0..i-1] using the first j strings.
+2. Base case: If i == |t|, return 0.
+3. Recursive case: If there is a string s_j in the set that matches the character at index i, return the minimum of f(i+1, j) and 1 + f(i, j-1).
+4. If no strings match the character, return 1 + f(i, j).
+5. Use memoization to store the results of subproblems and avoid redundant calculations.
+6. The answer is stored in f(|t|, n).
+
+===END PLAN===

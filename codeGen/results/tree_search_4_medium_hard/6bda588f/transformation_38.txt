@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][j] represents the minimum possible value of F for the first i numbers in the sequence with the j-th number being used as s
+The base case is when i = 0, dp[0][j] = 0
+For each number a_i, consider two cases: 
+- Use a_i - 2 * s as x_i and y_i (if it's non-negative), or 
+- Use s as x_i and a_i - 2 * s as y_i (if it's non-negative)
+In the first case, dp[i][j] = dp[i-1][j+1] + (a_i - 2*s) * s
+In the second case, dp[i][j] = dp[i-1][j-1] + (a_i - 2*s) * s
+The minimum possible value of F is then dp[n-1][s]
+===END PLAN===

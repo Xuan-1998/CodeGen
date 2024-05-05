@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a 2D list [dp1, dp2, ..., dkn] where each dpi represents the maximum amount of money earned for all groups with size i and the minimum number of tables required to accommodate them. Let the state be the number of accepted requests at a given total spending and the transition relationship be that if we accept the current request, the new state will be the maximum of the previous state and the total spending minus the cost of the current request. If we decline the current request, the new state will be the same as the previous state.
+
+Create a 2D list dp of size (k+1) x (max_group_size + 1) and initialize each element as 0. Then use nested loops to update the state at each position based on the previous positions. For each group size, calculate the maximum amount of money earned and the minimum number of tables required considering all previous requests.
+
+===END PLAN===

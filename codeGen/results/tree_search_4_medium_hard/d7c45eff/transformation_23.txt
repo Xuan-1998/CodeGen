@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+
+If i >= n and j >= k, then dp[i][j] = s[:n]
+Otherwise,
+    If j < n - i, then we have two options: either duplicate s[:i] or delete the last character of s[:i]. 
+        Let's denote this option as opt1.
+    Otherwise (j >= n - i), we only have one option: delete the last character of s[:i].
+        Let's denote this option as opt2.
+
+So, dp[i][j] = min(opt1, opt2)
+
+opt1 = if j < k then s[:i] + s[-1] else s[:i]
+opt2 = if i > 0 and j >= n - i then s[:i-1] else ''
+
+The base case is when i == 0. In this case, we only have one option: if j >= k, duplicate an empty string (which gives us an empty string of length k), otherwise return an empty string of any length.
+
+dp[0][j] = if j >= k then '' else ''
+
+The final answer will be dp[n-1][k]
+===END PLAN===

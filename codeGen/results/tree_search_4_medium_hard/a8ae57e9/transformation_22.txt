@@ -1,0 +1,12 @@
+Dynamic programming: The problem can be solved using dynamic programming by defining two states: dp[i] representing the maximum amount of money earned for groups of size up to i, and t[k] representing the minimum number of tables required to accommodate all groups with sizes up to k.
+
+A dictionary d = {(i, j): k} where (i, j) is the group size and k is the corresponding table number
+let s[i] be the sum of money earned by groups of size i; then dp[i] = max(s[i]+dp[i-1], dp[i-1])
+Use memoization by defining a dictionary dp = {0: 0} and fill it in bottom-up manner.
+For each request, check if the group size is greater than any existing group size. If yes, update the maximum amount of money earned for groups of that size.
+
+Initialize t[k] to k tables.
+For each request, for each table from 1 to k, calculate the remaining capacity and the potential earnings. 
+Choose the table with the highest potential earnings. Update the minimum number of tables required accordingly.
+
+The plan can be improved by initializing dp[0] = 0 instead of assuming it will always be 0.

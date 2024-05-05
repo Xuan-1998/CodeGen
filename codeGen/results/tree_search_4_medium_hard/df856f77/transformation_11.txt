@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming where we fill up the dp table in a bottom-up manner, starting from the smallest subproblems.
+
+dp[i] will store the minimum number of operations needed to make the array strictly increasing up to index i.
+Let dp[i] represent the minimum number of operations needed to make the array strictly increasing up to index i. State: The current subarray A[:i+1]. Transition: We either keep the current element as is, or increase it by 1 until we find an element that makes the subarray strictly increasing.
+
+dp[0] = 0
+for i in range(1, n):
+    dp[i] = min(dp[i-1], sum(min(A[k+1]-A[k], 0) for k in range(i)) + (A[i] - A[i-1]))
+===END PLAN===

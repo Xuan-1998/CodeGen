@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+dp[i][j] represents the minimum sum of all numbers along a path ending at cell [i][j].
+The base case is when i or j is equal to 0, meaning we've reached the top or left boundary.
+For each cell, there are two possibilities: either come from above (dp[max(0, i-1)][j]) or from left (dp[i][max(0, j-1)]).
+The minimum sum is the sum of the current cell value and the minimum sum of the cell above or to the left.
+Store this value in dp[i][j] and use memoization by passing the current cell's coordinates as keys.
+
+dp = {}
+def min_sum(grid):
+    m, n = len(grid), len(grid[0])
+    for i in range(m):
+        for j in range(n):
+            if i == 0 and j == 0:
+                dp[(i, j)] = grid[i][j]
+            elif i > 0 and j > 0:
+                dp[(i, j)] = min(dp.get((i-1, j), float('inf')), dp.get((i, j-1), float('inf'))) + grid[i][j]
+            else:
+                if i == 0: # top boundary
+                    dp[(i, j)] = dp.get((i, j-1), float('inf')) + grid[i][j]
+                elif j == 0: # left boundary
+                    dp[(i, j)] = dp.get((i-1, j), float('inf')) + grid[i][j]
+    return dp[(m-1, n-1)]
+
+===END PLAN===

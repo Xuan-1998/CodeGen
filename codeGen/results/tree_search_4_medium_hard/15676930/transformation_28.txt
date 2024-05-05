@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+State is represented as dp[i][left_hungry][right_hungry] which stores the maximum joy that can be obtained by feeding hares from 1 to i with their left and right neighbors being respectively left_hungry and right_hungry.
+
+The state transitions are as follows:
+dp[i][0][0] = max(dp[i-1][1][1], dp[i-1][0][0]) + a_i
+dp[i][0][1] = max(dp[i-1][0][1], dp[i-1][1][1]) + b_i
+dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][0][1]) + c_i
+
+The base case is when i=1, where the maximum joy is 0.
+
+The plan can be implemented using tabulation with a 3D array dp of size n+1 x 2 x 2, where dp[i][left_hungry][right_hungry] represents the maximum joy that can be obtained by feeding hares from 1 to i with their left and right neighbors being respectively left_hungry and right_hungry.
+
+The final answer is dp[n][0][0], which represents the maximum possible total joy of the hares.
+
+===END PLAN===

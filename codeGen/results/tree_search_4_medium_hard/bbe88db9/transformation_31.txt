@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The transition relationship could be defined based on the portal rules: if the ceiling has an odd number of crosses, take the second portal; otherwise, take the first one. We can use this rule to define a recurrence relation that depends only on the current state.
+
+Define the state as dp[i] = minimum portal moves to reach room i
+
+dp[i] is the minimum number of moves from room 1 to room i, considering only the portals in rooms [1, i-1]. We can update dp[i] by considering all possible moves from room i-1 and choosing the one that minimizes the total number of moves.
+
+To calculate dp[i], we need to consider two possibilities: 
+
+*   Take the first portal from room i-1. This leads to room p_{i-1}, which is reached in dp[i-1-p_{i-1}] moves.
+*   Take the second portal from room i-1. This leads to room i, which takes 0 moves.
+
+We can choose the option that results in the minimum number of moves and update dp[i].
+
+To avoid recomputation, we store the results of subproblems in an array memo. We use this memoization technique to implement dynamic programming using a top-down approach.
+
+The plan is: 
+
+1. Initialize dp[1] = 0 (base case) 
+2. For each room i from 2 to n+1:
+   - Calculate dp[i] based on the portal rules and the results of subproblems
+   - Store the result in memo[i]
+3. Return dp[n+1]
+
+This plan considers all possible moves and chooses the one that minimizes the total number of moves. It also avoids recomputation by storing the results of subproblems.
+
+===END PLAN===

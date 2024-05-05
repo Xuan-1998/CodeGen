@@ -1,0 +1,7 @@
+Let's define the state as dp[i] = maximum health of i-th and (i+1)-th monster, where 1 <= i < n. The base case is when i == n-1, so dp[n-1] = h_n.
+
+Define state dp[i][j] as the minimum mana required to kill all monsters that appear before time i at most j seconds after their appearance. Then, we have dp[i][j] = min(dp[i-1][max(0, j-1)], max(h_1, ..., h_i)) + (j > 0)
+
+To implement tabulation, define a 2D array dp of size n * max(k), where n is the number of monsters and max(k) is the maximum appearance time. Initialize all values in dp to infinity, then iterate over each monster and update dp[i][k_i] with the minimum mana required to kill that monster.
+
+Initialize the first column of dp to 0, as no mana is needed at the start. For the rest of the columns, starting from the second column, calculate the minimum mana required for each monster based on its health and previous seconds' damage.

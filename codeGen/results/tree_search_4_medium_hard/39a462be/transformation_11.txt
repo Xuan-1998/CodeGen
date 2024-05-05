@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem can be viewed as a 3D DP table where each cell represents the similarity score between two substrings and the maximum length of common prefix.
+
+dp[i][j][k] = max( dp[i-1][j-1][k] + (4 * len(lcs(A[0..i], B[0..j])) - (i + j)) , dp[i-1][j][k-1] + (4 * len(lcs(A[0..i], B[0..j]))) ) if i > 0 and j > 0 else 0
+
+where dp[i][j][k] is the maximum similarity score for substrings A[0..i] and B[0..j] with k common prefix characters.
+
+Base cases are when one of i, j or k is 0. The optimal substructure is the LCS of two strings.
+
+Calculating the LCS lengths using a 3D DP table and then calculating the similarity score.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+The base case would be when the array contains only one element, in which case the beauty is 0.
+
+We use dynamic programming to fill up the table:
+Let's define dp[i][j] as the maximum beauty we can get after processing the first i pivots and the last j numbers. We need to find the maximum value of dp[n][m], where n is the length of the array and m is the number of bad prime numbers.
+
+Formulate state as an array of tuples, where each tuple represents a pivot and its corresponding beauty; transition by updating the beauty of adjacent pivots based on their GCDs.
+dp[i][j] = max(dp[i-1][k-1] + min(a[i], gcd(a[i], a[k])) for k in range(1, i+1)) if j == 0
+else dp[i][j] = max(dp[i-1][k-1] - min(b[j-1], gcd(a[i], a[k])) for k in range(1, i+1))
+
+Memoization using recursion with memoized dictionary to store subproblems.
+
+This plan covers all possible edge cases: the array can be empty or contain only one element, and the number of bad prime numbers can be 0.
+===END PLAN===

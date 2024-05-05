@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if p[2*i] < p[2*j] and there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise
+For i from 0 to n-1:
+    For j from i+1 to n-1:
+        If p[2*i] < p[2*j]:
+            dp[i][j] = 1 if exists k such that merge(p[:2*i], p[2*i:2*k]) = p[:2*(i+k)] and all elements in the arrays are less than p[2*k], dp[i][j] = 0 otherwise
+        Else:
+            dp[i][j] = 1 if exists k such that merge(p[:2*j], p[2*j:2*k]) = p[:2*(k+j)] and all elements in the arrays are less than p[2*k], dp[i][j] = 0 otherwise
+Return dp[n-1][n-1]
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+State: Initialize dp array with size 2*n+1 to store minimum removals for each prefix and suffix. For each query (l, r), find the minimum number of elements that can be removed within the given range [l,r] such that the sign sum is 0. The base case would be when l=0 or r=n-1.
+
+Define dp[i][j] as the minimum number of elements that need to be removed from the subarray A[i..j] to make the sign sum zero, considering all possible removals
+
+Dynamic programming with tabulation: Initialize a 2D array dp where dp[i][j] represents the minimum number of elements that can be removed from A[i..j] to make the sign sum zero.
+
+For each query (l,r), consider the cases:
+
+- When l=0, dp[0][r] is the answer
+- When r=n-1, dp[l][n-1] is the answer
+- Otherwise, calculate dp[l][r] as min(dp[l][i-1], dp[i+1][r]) + count(A[i])
+
+Edge cases:
+- l=0 or r=n-1: handle separately
+
+===END PLAN===

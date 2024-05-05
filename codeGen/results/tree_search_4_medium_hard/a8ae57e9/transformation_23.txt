@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+A dictionary d = {(i, j): k} where (i, j) is the group size and k is the corresponding table number
+
+Let s[i] be the sum of money earned by groups of size i, and t[k] be the number of tables needed to seat all groups of size up to k; then dp[i][k] = max(s[i]+dp[i-1][t[k]], dp[i-1][k])
+
+Implement tabulation using nested loops: 
+for each group size i from 1 to n, and each number of tables j from 0 to k, calculate the maximum amount of money earned by groups of size up to i, and j tables are used.
+
+Let m be the maximum amount of money earned and k_max be the corresponding table number. Then, for each accepted request (i, p), seat the group at table d[i-1][k_max].
+
+The plan includes edge cases as it handles all possible scenarios by using dynamic programming to find the optimal solution. 
+
+However, the plan does not handle the constraint that a group can be seated only if there is enough capacity in the chosen table. This should be added to ensure the correctness of the algorithm.
+
+The plan also assumes that the input values are within the given constraints, but this assumption needs to be explicitly stated for clarity.
+
+Overall, the plan provides a good starting point and highlights the importance of considering edge cases when designing algorithms.

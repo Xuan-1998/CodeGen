@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if all elements in the range [0, i) have a bitwise AND with j and bitwise XOR with at least j; else dp[i][j] = 0;
+Let's define dp[i][j][k] as the number of arrays such that the kth bit is 1 and bitwise AND of all elements is at least bitwise XOR of all elements.
+For each element x in range [0, i), calculate its bitwise AND with j and bitwise XOR with at least j. This can be done using dp[x][j][k] = (x & j >= j) && ((x ^ j) >= j).
+dp[i][j][k] = sum of all dp[x][j][k] for x in range [0, i).
+To make the problem more efficient and avoid redundant calculations, we can calculate dp[i][j][k] only when the kth bit is 1. If the kth bit is not set for any element in range [0, i), then all bits from k+1 to k-1 are 1.
+Finally, return sum of all dp[i][j][k] for j in range (2^k).
+===END PLAN===

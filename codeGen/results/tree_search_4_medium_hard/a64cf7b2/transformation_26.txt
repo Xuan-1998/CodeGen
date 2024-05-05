@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+dp: a 2D array where dp[i][t] represents the maximum number of vertices that can be visited within t time units when starting from vertex i.
+
+dp[n][T]: the maximum number of vertices that can be visited within T time units, which is our final answer.
+
+For each edge (u, v, t) in the graph:
+    Update dp[v][t] as max(dp[v][t], 1 + dp[u][t - w]) where w is the weight of the edge.
+This update rule ensures that we consider all possible paths from vertex 1 to vertex n and take the maximum number of vertices that can be visited within T time units.
+
+Finally, return dp[n][T].
+===END PLAN===

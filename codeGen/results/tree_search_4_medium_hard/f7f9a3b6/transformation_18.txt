@@ -1,0 +1,33 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming.
+
+Let dp[i][j] represent the number of ways to split the substring s[i:j+1] into substrings satisfying the condition, where i is the start index and j is the end index.
+
+dp[i][j] = sum(dp[k-1][min(j, k+a[ord(s[k-1])-97]-1)]*a[ord(s[k-1])-97] for k in range(i, j+1)) if s[i:j].isalpha() else 0
+
+The base case is when i == j, which means we are considering a single character. In this case, the number of ways to split the substring is 1 if the character appears consecutively up to its maximum frequency a[ord(s[i])-97], and 0 otherwise.
+
+To avoid redundant calculations, we can use memoization by storing the results in a dictionary dp_dict. The function take two parameters: i and max_a, where max_a is the maximum length of consecutive appearances of characters.
+
+dp_dict = {}
+def dp(i, max_a):
+    if (i, max_a) in dp_dict:
+        return dp_dict[(i, max_a)]
+    if i == len(s):
+        return 1
+    res = 0
+    for j in range(i, min(len(s), i+a[ord(s[i])-97])):
+        if s[i:j].isalpha():
+            res += dp(j+1, min(max_a, a[ord(s[j])-97]))
+        else:
+            res += 1
+    dp_dict[(i, max_a)] = res
+    return res
+
+The output will be the number of ways to split the message into substrings that fulfill the conditions mentioned in the problem, modulo 10^9 + 7. The length of the longest substring over all the ways can be calculated by finding the maximum j such that dp[i][j] is not zero for some i.
+
+The minimum number of substrings over all the ways can be calculated by finding the minimum k such that sum(dp[i][k-1]*a[ord(s[k-1])-97] for i in range(len(s))) > 0. If no such k exists, the minimum number of substrings is 1.
+
+Finally, we calculate and output the results.
+
+===END PLAN===

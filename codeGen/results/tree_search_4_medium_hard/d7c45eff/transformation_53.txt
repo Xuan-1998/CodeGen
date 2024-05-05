@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string. 
+State: The last k characters of the string s; Transition: If k is less than the length of the original string, consider deleting the last character of s. Otherwise, consider duplicating the original string.
+
+1. Initialize a 2D table dp with dimensions (n+1) x (k+1), where n is the length of the original string.
+   - dp[i][j] represents the lexicographically smallest string that can be formed by considering the first i characters of s and the last j characters.
+2. Base case: If k is 0, return an empty string as there are no characters left to consider.
+
+3. Iterate over all possible lengths of substrings from k down to 1:
+   - For each length j:
+     - If j is less than or equal to the length of the original string, consider deleting the last character of s.
+       dp[i][j] = min(dp[i-1][j], s[i-1] + dp[i-1][j-1]) 
+     - Otherwise, consider duplicating the original string. 
+       dp[i][k] = s[0:i-1] + dp[i-1][k]
+4. Return dp[n][k]
+
+===END PLAN===

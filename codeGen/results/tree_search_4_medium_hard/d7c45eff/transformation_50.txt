@@ -1,0 +1,5 @@
+{
+DP transition: Initialize DP state as an array dp of size n+1, where dp[i] is the lexicographically smallest string of length i that can be formed by deleting or duplicating characters from s. For each i from k to 0:
+    If i == k, then dp[i] = s[:i] (last i characters of s). Else if i > 0 and dp[i-1][i-1] <= s[i-1], then dp[i] is the lexicographically smallest string obtained by deleting the last character from dp[i-1]. Otherwise, it's the lexicographically smallest string obtained by duplicating dp[i-2].
+Implement memoization by defining a function min_string(i) that recursively calculates the lexicographically smallest string of length i formed from the last i characters of s.
+}

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i][j]: the number of ways to build a sequence with exactly j spheres having radii up to i, where 1 ≤ i ≤ C and 0 ≤ j ≤ min(N, M).
+
+dp[0][0] = 1 (base case: no spheres)
+
+for c in range(1, C+1):
+    for n in range(min(N, M)+1):
+        dp[c][n] = sum(dp[k][max(0, n-m)] for k in range(c, 0, -1) if k <= c and find_lower_hemisphere(k) >= m)
+        dp[c][n] %= 10^9+7 (modular arithmetic)
+
+for i in range(C):
+    print(*dp[i])
+
+===END PLAN===

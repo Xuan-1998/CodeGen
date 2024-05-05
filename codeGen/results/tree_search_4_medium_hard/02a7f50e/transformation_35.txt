@@ -1,0 +1,12 @@
+===
+State: dp[i] represents the maximum power level of a beacon that can be added to the right of the i-th beacon without destroying any existing beacons.
+
+1. Initialize an array dp with n+1 elements, where each element represents the minimum number of beacons that could be destroyed if exactly one more beacon with power level b_i was added after all beacons up to position a_i.
+2. Iterate through the input from right to left (i.e., from the last beacon to the first). For each i-th beacon:
+    * Calculate dp[i] as the minimum number of beacons that could be destroyed if exactly one more beacon with power level b_i was added after all beacons up to position a_i.
+        + If dp[i-1] is larger than or equal to b_i, then no beacons will be destroyed, so dp[i] = 0.
+        + Otherwise, calculate the minimum number of beacons that could be destroyed as the difference between dp[i-1] and b_i (since one more beacon with power level b_i was added).
+    * Update dp[i] as the minimum number of beacons that could be destroyed if exactly one more beacon with power level b_i was added after all beacons up to position a_i.
+3. Return dp[0], which represents the minimum number of beacons that could be destroyed if exactly one more beacon with power level b_n was added after all beacons up to position a_0.
+
+This plan seems correct, as it correctly calculates the minimum number of beacons that could be destroyed when adding a new beacon. The dynamic programming approach works well in this case.

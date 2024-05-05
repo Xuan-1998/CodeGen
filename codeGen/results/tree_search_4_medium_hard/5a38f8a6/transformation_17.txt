@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+Consider a base case: dp[0] = 0, because there are no perfect squares that sum up to 0.
+dp[i] is the minimum number of perfect squares that sum up to i, and dp[i] = min(1 + dp[j]) for j in range(int(i**0.5)) + 1
+This is because a perfect square less than or equal to i can be decomposed into the sum of smaller perfect squares.
+The recursive function should check if i is a perfect square, and if so, return 1 as it requires only one perfect square to sum up to itself.
+Otherwise, the function should recursively calculate dp[j] for j in range(int(i**0.5)) + 1 and add 1 to the minimum of these values.
+Implement a bottom-up dynamic programming approach by initializing an array with dp[0] = 0 and then iteratively updating dp[i] for i from 1 to n, using the above recursive function.
+===END PLAN===

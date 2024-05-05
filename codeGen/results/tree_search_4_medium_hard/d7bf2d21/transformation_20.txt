@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Consider a top-down approach using dynamic programming with memoization, where you recursively explore all possible subsequences and store previously computed results in a memo dictionary to avoid redundant computations.
+
+Memo: {i: longest_increasing_subsequence[i]: length of the longest increasing subsequence ending at index i}
+View this problem as an instance of the classic problem 'Length of Longest Increasing Subsequence' (LLIS) and leverage existing solutions such as dynamic programming with a 1D array or binary search-based approach.
+
+Memoize the length of longest increasing subsequence ending at each index
+
+For each element in the array:
+    - Initialize memo[i] to 1 if the current element is greater than all previous elements
+    - Iterate over previous elements and update memo[i] as the maximum between its current value and the length of the longest increasing subsequence ending at that previous element plus 1 if the current element is greater
+
+This plan can be improved by:
+    - Implementing a more efficient memoization strategy, such as using a Trie or Hash Map to store previously computed results
+    - Optimizing the algorithm to avoid redundant computations and reduce time complexity
+
+Potential issues with this plan include:
+    - Inefficient use of memory for large arrays
+    - High computational complexity if not optimized correctly
+
+This plan does not explicitly handle edge cases, but can be adapted to do so by:
+    - Initializing memo dictionary with default values or handling invalid inputs
+    - Handling cases where the longest increasing subsequence is of length 1 or more

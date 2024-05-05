@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming (not top-down) to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Determine a base case: There is exactly one way to represent each digit from 0 to 9, and none of these representations contain the digit 1.
+
+Define the recurrence relation:
+- For k = 0, count_k(n) = number of ways to represent 0 (which is 1)
+- For k > 0, count_k(n) = count_k(k - 1) + (number of ways to represent k with a leading 1) + (number of ways to represent n-k with no leading 1)
+
+Implement the dynamic programming approach using an array dp, where dp[k] represents the total number of digit 1's in all non-negative integers less than or equal to k. Initialize dp[0] = 1 and compute each subsequent value as per the recurrence relation.
+
+Finally, return dp[n].
+
+===END PLAN===

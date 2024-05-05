@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+You can also think of a bottom-up tabulation solution where you build up the table row by row, considering the current polygon configuration and the next knight's mood.
+
+State: A tuple (max_good, regular) where max_good is the maximum number of good-mooded knights seen so far, and regular is a boolean indicating whether they can form a regular polygon with that many vertices; Transition:
+  If the next knight's mood is 1 (good), update max_good if necessary and set regular to True if max_good equals n; 
+  If the next knight's mood is 0 (bad), keep max_good unchanged and set regular to False;
+Memoization can be applied by using a dictionary dp to store previously computed values of dp[i] for faster lookup.
+
+Initialize dp with base cases:
+  dp[1, True] = YES
+  dp[0, regular] = NO
+
+For i from 2 to n:
+  For each possible (max_good, regular) state up to the current i-1:
+    Transition according to the next knight's mood
+    Store the updated (max_good, regular) in dp[i]
+
+Return 'YES' if dp[n][regular], otherwise 'NO'
+
+===END PLAN===

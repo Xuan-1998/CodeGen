@@ -1,0 +1,22 @@
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B;
+The state represents the similarity score up to the current indices.
+
+state = tuple(i, j, k) where i is the current index for string A, j is the current index for string B, and k is the length of the longest common subsequence found so far.
+Transition relationship: if characters at indices i in string A and j in string B are equal, then (i+1, j+1, max(k, 1)). Otherwise, it's the tuple with maximum value of k.
+
+Use a dictionary to store and update the dynamic programming table as you fill it in. 
+
+Let dp be a dictionary where key is the state and value is the corresponding similarity score.
+For each index i in string A and j in string B:
+    If characters at indices i in string A and j in string B are equal, then calculate the new state (i+1, j+1) with maximum length of common subsequence found so far. 
+    Otherwise, update the state to be the tuple with the maximum value of k.
+
+dp = {(0, 0, 0): 0}
+For each index i in string A:
+    For each index j in string B:
+        if characters at indices i in string A and j in string B are equal:
+            dp[(i+1, j+1, max(k, 1))] = 4 * (max(k, 1)) - (i + 1) - (j + 1)
+        else:
+            dp[(i+1, j, k)] = dp.get((i, j, k), 0)
+
+Return the maximum value in the dictionary.

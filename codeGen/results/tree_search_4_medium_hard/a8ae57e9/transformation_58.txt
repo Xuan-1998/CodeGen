@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Dynamic programming can solve this problem by defining a state that represents the maximum amount of money earned for each possible table configuration and total amount of money spent. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Let dp[i][j] be the maximum amount of money earned with i requests and j tables available. Then:
+
+dp[0][j] = 0 for all j
+dp[i][0] = 0 for all i
+
+For i in range(1, n+1) and j in range(1, k+1), we have:
+
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + pi * min(k, ci)
+    if the current request can be seated at any of the available tables
+dp[i][j] = max(dp[i-1][j], dp[i-1][j-1]) + pi * min(k-j+1, ci)
+    if the current request requires a new table
+
+Tabulate the dynamic programming solution using nested loops:
+
+for i in range(n+1):
+    for j in range(min(i+1, k)+1):
+        for c in range(1, min(j+1, ci)+1):
+            dp[i][j] = max(dp[i-1][j], dp[i-1][j-c]+pi*c)
+for i in range(n+1):
+    for j in range(k+1):
+        if j > 0:
+            dp[i][j] = max(dp[i][j], dp[i-1][j-1]+pi*min(j, ci))
+
+Finally, the total amount of money earned is dp[n][k].
+
+===END PLAN===

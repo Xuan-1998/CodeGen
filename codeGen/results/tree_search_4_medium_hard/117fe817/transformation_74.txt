@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Determine the maximum trailing digit that can be paired with a given leading '1'. Count the number of such pairs for each leading '1'.
+
+Create a dynamic programming table dp where dp[i] represents the total number of times the digit 1 appears in all non-negative integers less than i.
+
+Iterate through the range from 0 to n and for each integer i:
+
+- If i is 0 or 1, set dp[i] = i (since there's only one way to make a single-digit number).
+- For i > 1, consider the last digit of i. If it's 1:
+  - Count the number of trailing 1's in integers less than i that end with 1.
+  - Add this count to dp[i] based on the leading digits (i.e., numbers from 0 to i-1).
+  - If the last digit is not 1, set dp[i] = dp[i-1].
+- Return the total number of times the digit 1 appears in all non-negative integers less than or equal to n, which is dp[n].
+
+===END PLAN===

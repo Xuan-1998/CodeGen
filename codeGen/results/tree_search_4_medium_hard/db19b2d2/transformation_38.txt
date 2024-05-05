@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+To model this problem as a cumulative distribution function (CDF), we can calculate the probability mass function (PMF) and then take the sum of the probabilities for all possible outcomes greater than or equal to 1. 
+The state expression could be dp[i][k] representing the probability that we get at least one player from the department of interest after choosing k players from i-1 departments. 
+
+We can iterate over each department, and for each department, calculate the probability that we get at least one player from this department given the number of players in this department. Then, recursively call dp[i-1][k] to get the probability that we don't get any players from this department. 
+Finally, add up these two probabilities to get the total probability.
+
+The base case would be when i = 0 or k = 0. In this case, there are not enough basketball players in the university to form a team, so we return -1. 
+
+To avoid redundant calculations, we can use memoization to store intermediate results. 
+===END PLAN===

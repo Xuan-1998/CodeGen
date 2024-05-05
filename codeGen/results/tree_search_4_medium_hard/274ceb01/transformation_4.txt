@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the sum of marks strictly below the water level for days 1 to i, and minimize this value. This can be calculated recursively by considering all possible water levels that could have been present at the end of day i-1, which would then affect the number of marks strictly below the water level on day i.
+
+For each such water level, calculate the total marks above the water level, which is (i - m_i). Add this to the minimum sum of marks below the water level for days 1 to i-1. This gives us dp[i].
+
+However, we need to consider all possible previous water levels that could have been present at the end of day j < i, where m_j < i. For each such water level, calculate the total marks above the water level, which is (i - j). Add this to the minimum sum of marks below the water level for days 1 to j, and subtract m_j from it.
+
+The final calculation becomes dp[i] = min(dp[j] - m_j + i - j for j in range(i) if m_j < i) + (n - i)*m_i. Implement memoization by defining a recursive function that stores and reuses previously computed values to avoid redundant computation.
+
+===END PLAN===

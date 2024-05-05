@@ -1,0 +1,22 @@
+Plan:
+
+The subproblems are based on a rectangle view, considering overlapping views in terms of their coordinates.
+
+State: A pair (t, r) where t is the time and r is a set of rectangles viewed up to that time, with the base case being when there are no views left.
+  - Start by sorting all rectangles by their x-coordinates.
+  - For each rectangle, calculate its brightness for the current time t. This will involve checking if any stars in the rectangle have not yet faded out (i.e., their initial brightness is greater than c).
+  - Calculate the total brightness of stars that are still visible within this rectangle.
+  - Store this result and the rectangles viewed up to this point (r) as the state for this time t.
+  
+Base case: When there are no views left, the total brightness is just the sum of all star initial brightnesses.
+
+Memoization:
+  - To avoid redundant calculations, use memoization by storing the intermediate results in a list and using it as a cache for future computations. 
+
+Optimizations:
+
+1. Consider sorting rectangles by their y-coordinates within each x-coordinate range. This can help to reduce unnecessary comparisons when checking which stars are still visible.
+
+2. Use a binary search or a sweep line algorithm to find the range of time points where stars in this rectangle will be visible.
+
+3. Implement a priority queue data structure for storing and retrieving rectangles based on their x-coordinates.

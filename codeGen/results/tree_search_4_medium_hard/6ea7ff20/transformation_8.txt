@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when i = n, meaning we've reached the end of the permutation. In this case, check if the current permutation p matches either array a or b.
+
+State: A tuple (i, j) representing the indices in arrays a and b that we have processed so far.
+Transition:
+    - If i < n and aj <= pi:
+        + If j < n and ap < aj:
+            + Set dp[i][j] to FALSE
+        + Else:
+            + Set dp[i][j] to dp[i-1][j]
+    - If i < n and aj > pi:
+        + Set dp[i][j] to dp[i][j-1]
+    - If j < n and bj > pj:
+        + Set dp[i][j] to dp[i][j-1]
+    - Else:
+        + Set dp[i][j] to TRUE
+
+Use dynamic programming by creating a 2D table dp where dp[i][j] stores whether the permutation p matches arrays a and b up to indices i and j.
+
+Edge cases:
+    - When i or j is equal to n, check if the remaining elements in p match either array a or b.
+    - If both i and j are equal to n, return YES if p matches either array a or b.

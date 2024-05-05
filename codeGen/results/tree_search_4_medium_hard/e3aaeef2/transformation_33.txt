@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] is the length of the resulting number when starting with a number of i digits and applying j operations.
+
+State: (i, j)
+where i is the current number of digits and j is the current number of operations.
+
+Use a 2D array dp to store the intermediate results for each length and number of operations.
+dp[i][0] = i (starting with i digits)
+
+Transition:
+dp[i][j] = 1 + dp[ceil(log10(n+1))][j-1]
+where ceil(log10(n+1)) is the new number of digits after applying one operation.
+
+Base case: dp[1][m] = m (when starting with a single digit and applying m operations)
+
+Solution:
+Print dp[n][m] % 10^9 + 7 as the final answer.
+===END PLAN===

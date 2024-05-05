@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+dp[i][j] = {
+    1 if i == 0 and j <= k: duplicate s[:i] until we reach a length of k,
+    dp[i-1][j] if i < n and j <= len(s): the lexicographically smallest string that can be obtained from s[:i] with exactly j characters is either the original string or the string obtained by deleting its last character,
+    s[:i] if j == i and j == min(i, k): return the lexicographically smallest substring of s[:i] with exactly j characters
+}
+dp[0][j] = {
+    if j <= n: duplicate s until we reach a length of j,
+    ''
+}
+
+Let's consider some examples:
+
+* If k > n, then the optimal solution is to duplicate the string until we reach a length of k.
+* If k == n, then the lexicographically smallest string that can be obtained by either deleting the last character or duplicating the string is s itself.
+
+We need to make sure that our state expression captures all these cases correctly. The base case dp[0][j] handles the case where we start with an empty string and duplicate it until we reach a length of j.
+The recurrence relation dp[i][j] takes into account whether we should delete the last character or duplicate the string.
+
+===END PLAN===

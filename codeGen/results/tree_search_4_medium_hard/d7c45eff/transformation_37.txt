@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them.
+
+dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+
+Consider dp[i][j] as the minimum of two options: 
+    - delete the last character of s[:i] and get dp[i-1][j-1]
+    - duplicate s[:i-1] to get dp[i-1][j]
+
+Implement memoization with recursion, using dp[i][j] to store the result of subproblems.
+
+Initialize dp[0][0] as the original string, since there's no operation needed for a string of length 0. For all i > 0 and j >= 0, if s[:i] has more characters than s[:i-1], then consider duplicating s[:i-1] to get dp[i-1][j]. If s[:i] is lexicographically smaller than the result from dp[i-1][j-1], then consider deleting the last character of s[:i] and get dp[i-1][j-1].
+
+For edge cases, handle strings with lengths less than or equal to 0 separately.
+===END PLAN===

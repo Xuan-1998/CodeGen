@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if all elements in the range [0, i) have a bitwise AND with j and a bitwise XOR with (2^k - 1), else dp[i][j] = 0;
+Initialize dp arrays for 0 <= i < n and 0 <= j < k
+For each pair (i, j):
+    Count the number of elements in range [0, i) that have a bitwise AND with j
+    If count is equal to i:
+        Set dp[i][j] = 1 if all elements in range [0, i) have a bitwise XOR with (2^k - 1), else dp[i][j] = 0;
+    Else:
+        dp[i][j] = dp[i-1][j]
+Return the count of arrays that satisfy the condition: sum(dp[n][0], ..., dp[n][k])
+Modulo it by 10^9+7
+===END PLAN===

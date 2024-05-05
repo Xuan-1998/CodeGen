@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Use a bottom-up approach with memoization to solve this problem by iteratively exploring all possible routes from vertex 1 to vertex n and storing the results in a memoized dictionary to avoid redundant calculations.
+
+Define the state expression as (i, j), where i is the current vertex and j is the maximum number of vertices that can be visited starting from vertex i within a time limit of T.
+
+Define the state dp[i][j] as the maximum number of vertices that can be visited starting from vertex i and ending at vertex n within a time limit of j. The transition relationship can be formulated based on whether or not it's possible to traverse an edge from vertex u to vertex v within the remaining time t.
+
+Implement memoization using Python's built-in functools.lru_cache decorator to cache function calls and reduce computational complexity.
+
+For each edge (u, v, t) in the graph, if t <= T, calculate dp[v][T-t] = max(dp[v][T-t], dp[u][T-u] + 1). If not possible to traverse the edge within the remaining time t, set dp[v][j] = dp[u][j].
+
+Initialize dp[0][T] = 0 and for each vertex i in range(2, n+1), initialize dp[i][T] = 1.
+
+The maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T is the value stored in dp[n][T].
+
+To construct the route, start from vertex n and traverse back to vertex 1. For each vertex i, select the edge with the maximum remaining time t such that t <= T and dp[v][T-t] > 0.
+
+For each selected edge (u, v, t), update the route by appending vertex v and subtracting t from T. Repeat this process until reaching vertex 1.
+
+Return the constructed route as a list of vertices.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+The state expression could be (board_length, hand_left), where board_length is the current length of the board and hand_left is the number of balls left in the hand.
+The dynamic programming table would store the minimum number of moves needed to remove all balls up to that point. A base case would be when the board is empty, in which case it's possible to remove all balls with any hand size.
+
+Here are some steps to fill the dynamic programming table:
+
+1. Initialize the DP table with a large value (e.g., INT_MAX) for all states.
+2. For each state (board_length, hand_left), iterate over all possible moves:
+   - If there's enough ball in the hand to match the current board length, update the DP table with 0 if it's already empty, or else decrement hand_left and increment board_length.
+   - If not, try inserting one ball from the hand into the board. Update the DP table with the minimum number of moves needed for this new state.
+3. For each state, check if there are three consecutive balls of the same color. If so, update the DP table with 0 (because they can be removed immediately).
+4. When filling in the DP table, also keep track of whether it's possible to remove all balls with the given hand at any point.
+5. The final answer would be the minimum number of moves needed for the current state, or -1 if it's not possible to remove all balls.
+
+The edge cases would include handling when the board becomes empty and when there are no more balls in the hand. In both cases, you'd need to check whether it's still possible to remove all balls with the given hand size.

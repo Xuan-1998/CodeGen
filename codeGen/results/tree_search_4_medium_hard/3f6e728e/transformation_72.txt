@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+We can use dynamic programming to solve this problem. The state can be represented as (i, j) where i is the current upper hemisphere index and j is the count of different radii used so far.
+
+State: dp[i][j] represents the number of ways there are to build an i-sequence using at most j different radii.
+Base case: When i is 0, dp[0][j] = C for all j (since we can use any of the available radii for the lower hemispheres).
+Transition relationship:
+dp[i][j] = sum(dp[k][j-1] * (U_k == U_i)) for k from 0 to i
+
+We can use memoization within a recursive function by defining a dictionary memo = {} to store previously computed values and avoid redundant computations.
+
+To improve the plan, we can modify the transition relationship to:
+dp[i][j] = sum(dp[k][j-1] * (U_k == U_i) for k from 0 to i)
+
+This way, we can take advantage of the fact that the upper hemispheres with the same radius have the same effect on the number of ways there are to build an i-sequence.
+
+The plan includes edge cases such as when N is 0 or M is 0.
+===END PLAN===

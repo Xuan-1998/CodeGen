@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or without. This would lead to a recursive formula, which can then be memoized.
+
+The state is (i, j), where i represents the current stuffing type, and j represents the remaining dough grams.
+dp[i][j] = max(dp[i][j], dp[max(i-1, 0)][j-ci] + di) for 0 <= i < m, 0 <= j <= n
+
+Dynamic Programming using a table (tabulation) to store intermediate results
+For the base case, we set dp[-1][-1] = 0 and fill up the dp table row by row.
+The final answer is dp[m-1][n]
+
+We handle edge cases by ensuring that i and j are within valid ranges. This can be done by checking if i < m and j <= n before accessing or updating the dp array.
+
+===END PLAN===

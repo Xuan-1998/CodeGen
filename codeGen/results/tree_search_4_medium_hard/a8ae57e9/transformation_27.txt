@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in top-down manner.
+
+dp[i][j] represents the maximum amount of money earned with i tables remaining and j total amount to spend
+dp[i][k][j] represents the maximum amount of money earned with i tables remaining, k as the maximum capacity of each table, and j total amount to spend
+
+The transition from one state to another is based on considering all possible group sizes and amounts spent. For each group size r <= k, consider accepting the group if its amount spent is less than or equal to j - dp[i-1][k][j-r]. If accepted, update the state dp[i][k][j] as the maximum of the current state and the amount earned from the accepted group.
+
+Implement tabulation using a loop where dp[i][k][j] is updated based on the maximum amount of money earned from the previous states
+
+Finally, return the maximum amount of money earned with all tables used up (i.e., i = 0) as well as the total amount to spend (j).
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation, as this problem has an optimal substructure.
+
+Define the state dp[i] as the maximum number of matrices that can be formed with a trace of i and a positive determinant, for all 1 <= i <= N.
+
+The transition relationship is:
+    - For i == N, dp[i][j] = sum(dp[k][j-1] for k in range(j)) if j > 0 else 1 (base case: one matrix with trace N has a positive determinant)
+    - For i < N, dp[i][j] = 0
+
+Use a dynamic programming table to store the state dp[i], where dp[i] is the maximum number of matrices that can be formed with a trace of i and a positive determinant, for all 1 <= i <= N.
+
+The final answer is the value in dp[N].
+
+===END PLAN===

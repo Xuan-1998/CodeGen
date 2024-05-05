@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table to avoid recalculating the same value multiple times.
+
+The state is a tuple containing the star's initial brightness s_i, its position (x, y), and the current time t: (s_i, x, y, t).
+
+The state transitions are obtained by iterating through all stars and updating their brightness at the given time. For each star, calculate its new brightness at the current time using the formula:
+
+new_brightness = min(c, s_i * e^(-t / t_0))
+
+where c is the maximum brightness, s_i is the initial brightness of the star, t is the current time, and t_0 is a constant representing the lifetime of the star.
+
+To avoid recalculating the same value multiple times, use memoization to store the calculated values in a table. The key for this table would be the state tuple (s_i, x, y, t), and the value would be the total brightness at that state.
+
+Implement tabulation or memoization using dynamic programming techniques such as bottom-up or top-down approaches.
+
+===END PLAN===

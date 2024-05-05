@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary, then use the stored values to construct the optimal route.
+
+Define the state as two variables: t, representing the remaining time; and i, representing the current vertex. Define the state expression as dp[(t, i)], which represents the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+
+State: (t, i), representing the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+
+Use a bottom-up dynamic programming approach by defining a tabulation function that iterates over all possible values of t and i, filling up a table with the maximum number of vertices that can be visited within a time limit of t when starting from vertex 1 and ending at vertex i.
+
+If t is less than or equal to 0, return 0 (no more time left).
+
+Otherwise, iterate through each edge (u, v, t) in the graph. If the edge starts from vertex i and ends at vertex u, update dp[(t - t_edge, u)] with the maximum of its current value and dp[(t, i)] + 1.
+
+Finally, return dp[(T, n)], where T is the time limit.
+
+===END PLAN===

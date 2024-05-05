@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes.
+
+Use memoization to store the beauty values for previously computed subproblems.
+
+State: dp[i][j] representing whether the array [A[i], ..., A[j]] is good or bad, with dp[i][j] being true if the array is good and false otherwise.
+
+Memoize Beauty values as you calculate them, using a 2D dictionary where the key is the tuple (i, j) representing the range [i, j] in the array, and the value is the maximum beauty value for this range.
+
+To determine whether an array is good or bad, iterate through the array and check if any of the elements are bad primes. If no bad primes are found, then the array is good; otherwise, it's bad.
+
+To calculate the Beauty value for a given range [i, j], consider all possible combinations of good and bad primes within this range. The beauty value for each combination can be calculated by recursively calling the function on subarrays of [i, j].
+
+Use dynamic programming to store the Beauty values for previously computed subproblems in a 2D dictionary dp[i][j]. This will allow you to avoid recalculating the same subproblem multiple times.
+
+===END PLAN===

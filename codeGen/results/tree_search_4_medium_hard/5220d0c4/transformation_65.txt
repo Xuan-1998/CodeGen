@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use tabulation to fill a 2D table where each cell represents the beauty value of a subarray ending at that index. The state transition relationship is defined by considering the minimum prime divisor of the last element in the subarray and whether it's a good or bad prime. Fill the table from left to right, top to bottom.
+
+Define the state expression as the minimum prime divisor of the last element in the subarray and whether it's a good or bad prime number. The base case is the beauty value of an empty subarray, which is 0.
+
+Consider a state as the last element in the subarray, whether it's good or bad prime, and the maximum beauty obtained so far for subarrays ending at previous elements.
+
+Create a 2D table where each cell represents the beauty value of a subarray ending at that index. Initialize all cells to -1 (or any other value that can be differentiated from valid beauty values).
+
+For each element in the array:
+  * For each good prime number p such that the current element is divisible by p:
+    + Update the state for this element as the maximum of its current state and the state obtained by considering the beauty value of the subarray ending at the previous element (if it exists) plus the beauty value of a subarray with only one element, which is 1 if the element is good prime and 0 otherwise.
+  * For each bad prime number p such that the current element is divisible by p:
+    + Update the state for this element as the minimum of its current state and the state obtained by considering the beauty value of the subarray ending at the previous element (if it exists) minus the beauty value of a subarray with only one element, which is 1 if the element is bad prime and 0 otherwise.
+
+Return the maximum beauty value obtained for any element in the array.
+===END PLAN===

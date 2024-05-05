@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Let's refine the state definition:
+dp[i][j][k] = number of ways to split the string s[0..i-1] into j substrings, such that there are k unique characters used across all substrings. This allows us to track both the total length and the number of unique characters in each substring.
+
+The recursive formula is:
+dp[i][j][k] = sum(dp[l][m][n] * (a[ord(c)-97] - n) for l in range(max(0, i-a[ord(c)-97]), i) for m in range(min(j-1, max(0, (i-l)//a[ord(c)-97]))+1) for n in range(min(k-1, m)) if s[l..i-1].count(c) <= a[ord(c)-97])
+
+Define the base case:
+dp[i][j][k] = 1 if i == 0
+
+Define a function memoize(dp) that takes in the current state dp and recursively calculates and stores all possible states for smaller i's, j's, and k's. Finally, use this function to calculate the final answer.
+
+Calculate the number of ways to split the message:
+ways = sum(sum(dp[i][j][k] for j in range(min(i//a[ord(c)-97]+1, 10^3))) for k in range(26))
+
+Find the length of the longest substring over all the ways:
+longest_substring_length = max(dp[n-1][min(n//a[ord(c)-97]+1, 10^3)][k] for n in range(1, n+1) for k in range(26))
+
+Calculate the minimum number of substrings over all the ways:
+min_substrings = min(min(dp[i][j][k] for j in range(min(i//a[ord(c)-97]+1, 10^3))) for k in range(26)) for i in range(n+1))
+
+Output the results modulo 10^9 + 7:
+print(ways % (10**9 + 7))
+print(longest_substring_length)
+print(min_substrings)
+
+===END PLAN===

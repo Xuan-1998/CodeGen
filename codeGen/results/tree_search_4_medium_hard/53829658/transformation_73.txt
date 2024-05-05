@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = whether city i can be reached with at most k reversed roads, with base case being dp[k+1][n] = True. This choice explores the idea of finding a capital that requires the fewest reversed roads to reach any other city.
+
+dp[i] = whether city i is reachable from capital city j by reversing at most k edges, using a queue-based BFS approach.
+Utilize memoization by storing the results of subproblems in a dictionary for faster lookups.
+
+To find all possible ways to choose the capital — a sequence of indexes of cities in increasing order — iterate through each city and keep track of its maximum in-degree. This is because the city with the highest in-degree can be reached by reversing the fewest edges from any other city, making it an optimal choice as the capital.
+
+The plan seems correct, but it would be more efficient to solve this problem using a disjoint set data structure (Union-Find) rather than a queue-based BFS approach. This is because the Union-Find algorithm can handle the in-degree calculation and find the root of each connected component in O(alpha(n)) time complexity, where alpha(n) is the inverse Ackermann function.
+
+The plan does not explicitly mention handling edge cases, but it implicitly assumes that there are no isolated cities (i.e., cities with an in-degree of 0). It also assumes that all edges point from a city to another, which is stated in the problem description.
+
+Here's an updated version of the entire detailed plan:
+

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Since we need to maximize the grade, consider using a top-down dynamic programming approach with memoization. We can define a state as the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+The base case is dp[0] = 0, since there are no digits to round.
+
+dp[i][t] represents the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t, considering all possible rounding choices at the ith digit. We need to consider two possibilities:
+- Round down: dp[i - 1][t - 1]
+- Rounding up or not rounding at all: dp[i - 1][t] + 0.5
+Apply bottom-up approach by iterating over decimal fraction length from n to 1, using a 2D array dp[i][t] to store maximum grade for each possible time limit t at ith digit.
+The final answer is the maximum value in the last column of dp array, i.e., dp[n][t].
+===END PLAN===

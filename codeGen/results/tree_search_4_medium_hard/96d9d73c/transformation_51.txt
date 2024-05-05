@@ -1,0 +1,15 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = (dp[i-1][min(j-1, ceil((i-1)/M)+1)] or (A[i-1]-A[i-2]) <= M) and i >= K
+
+Use a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+Initially, all values in dp[0][j] are set to false for 1 <= j <= ceil(N/M)+1
+
+For i from 2 to N:
+
+    For each j from 1 to ceil(i/M)+1:
+        If A[i-1]-A[i-2] > M, then dp[i][j] = false
+        Else if i >= K and (dp[i-1][min(j-1,ceil((i-1)/M)+1)] or dp[i-1][j]), then dp[i][j] = true
+
+Return dp[N][ceil(N/M)+1]

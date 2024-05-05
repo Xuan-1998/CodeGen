@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers up to n_max. Then iterate over each prime number and count its permutations that are also prime numbers below n_max.
+Let the state be a tuple (num, k) where num is a prime number below n_max and k is the count of its permutations that are also prime numbers below n_max.
+Consider using dynamic programming to build up a table dp[num] = k such that for each prime number num in the range [2, n_max], dp[num] represents the count of its permutations that are also prime numbers below n_max.
+For each prime number num, iterate over all integers in the range [10^(num-1), 10^num) and count their permutations. If a permutation is also a prime number, increment the corresponding entry in the dp table.
+Finally, iterate over the dp table to find the count of prime numbers with k_perms prime permutations, the smallest and largest such prime numbers, and return [count, min_prime, max_prime].
+This plan ensures that edge cases are handled by considering prime numbers up to n_max and by using a hash set to store prime numbers.
+===END PLAN===

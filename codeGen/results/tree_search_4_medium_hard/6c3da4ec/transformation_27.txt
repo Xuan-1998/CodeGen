@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Think about using memoization to store the bitwise OR values of all possible pairs of non-empty substrings of s, with a dictionary mapping tuples of (start, end) indices to their corresponding bitwise OR values.
+
+The state expression could be dp[i][j] = max bitwise OR value for all pairs of substrings (s[k], s[l]) with k in [0, i) and l in [i, j)
+Use a dictionary to store the bitwise OR values of all possible pairs of non-empty substrings of s, where the key is a tuple of (start, end) indices.
+
+Initialize an n x n array dp where dp[i][j] represents the maximum bitwise OR value for all pairs of substrings (s[k], s[l]) with k in [0, i) and l in [i, j)
+Fill up the dp table row by row. For each cell dp[i][j], iterate over all possible pairs of substrings (s[k], s[l]) where k is in range(i), l is in range(j+1) to i
+For each pair, calculate the bitwise OR value and update the dp[i][j] accordingly.
+After filling up the dp table, find the maximum bitwise OR value from dp[n-1][n-1]
+Output this value as the result
+
+===END PLAN===

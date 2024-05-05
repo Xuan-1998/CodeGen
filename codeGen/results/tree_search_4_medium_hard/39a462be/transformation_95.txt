@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 3D table where each cell represents the maximum similarity score between two substrings. The state expression is the pair of substrings and the base case is when one or both strings are empty.
+
+The state expression is a 3D array dp[i][j][k] where:
+    - dp[i][j][0] represents the maximum similarity score between the substrings A[0..i-1] and B[0..j-1].
+    - The base case is when one or both strings are empty, in which case the similarity score is calculated as the sum of lengths minus 4 times the length of the shorter string.
+
+Update dp[i][j][k] as:
+    - 1 + max(dp[i-1][j-1][k], dp[i-1][j][k], dp[i][j-1][k]) if both strings are non-empty.
+    - The maximum LCS length between substrings A[0..i-1-k] and B[0..j-1-k].
+    - 0 if either string is empty.
+
+Use a dynamic programming approach where you iterate through all pairs of substrings, calculate their LCS length, and update the maximal similarity score accordingly.
+
+===END PLAN===

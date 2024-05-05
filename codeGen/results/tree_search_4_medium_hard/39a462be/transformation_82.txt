@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 2D table where each cell represents the LCS of two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 2D array dp[i][j] where dp[i][j] represents the LCS of substrings A[0..i-1] and B[0..j-1]. The base case is when one or both strings are empty, in which case the LCS is an empty string.
+
+The recurrence relation is:
+dp[i][j] = max(dp[i-1][j-1] + (A[i-1] == B[j-1]), dp[i-1][j], dp[i][j-1])
+
+This is because we can either include the current characters in the LCS or not. If they match, we add 1 to the length of the LCS. If they don't match, we consider two cases: either the LCS only includes characters from A[0..i-1] and B[0..j-1], or it only includes characters from A[0..i-2] and B[0..j-2].
+
+Use this recurrence relation to fill in the 2D array. Then, use memoization with a recursive function that calculates the LCS of two substrings, and then use this function to calculate the maximal similarity score.
+
+The state expression is still dp[i][j], but now it represents the maximum similarity score over all pairs of substrings ending at A[0..i-1] and B[0..j-1].
+
+The recurrence relation is:
+dp[i][j] = max(dp[i-1][j-1] + 4 - (i+j), dp[i-1][j], dp[i][j-1])
+
+This is because we can either include the current characters in the LCS and add to the similarity score, or not. If they don't match, we consider two cases: either the LCS only includes characters from A[0..i-1] and B[0..j-1], or it only includes characters from A[0..i-2] and B[0..j-2].
+
+Finally, return dp[n][m] as the maximal similarity score.
+
+===END PLAN===

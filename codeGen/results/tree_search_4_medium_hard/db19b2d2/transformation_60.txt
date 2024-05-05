@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming instead. This would involve creating a 2D array dp where dp[i][j] represents the probability that we can form a team with at least one player from the department of interest using the first i players, and considering only j departments so far.
+
+Base case: If the total number of players from all departments is less than n, then there's no way to form a team with at least one player from the department of interest. In this case, return -1.
+
+State: For 0 <= i < n and 0 <= j < m:
+    dp[i][j] = 
+        if s[h] > 0:
+            max(dp[i-1][j], dp[i][j-1]) + (s[h] / sum(si for si in s)) * (i == h)
+        else: 
+            dp[i-1][j]
+State transition: If we've reached the end of the department or we've selected all players, then there's no need to continue.
+
+Boundary conditions:
+    dp[0][0] = 0
+    for j from 0 to m-1:
+        if h == j:
+            dp[n][j] = (s[h] / sum(si for si in s))
+        else:
+            dp[n][j] = 0
+
+Terminal state: When i = n, we've reached the end of our selection process. If there's at least one player from the department of interest, then return the probability calculated earlier; otherwise, return -1.
+
+===END PLAN===

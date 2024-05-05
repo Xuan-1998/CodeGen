@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Let dp[i] be the count of numbers j such that 0 <= j <= i and the binary representation of j does not contain consecutive ones.
+
+dp[0] = 1 // base case: there is only one number (0) which has no consecutive ones in its binary representation
+
+For i from 1 to n:
+    Let b = bin(i) // convert integer to binary string
+    count = 0 // initialize the count of numbers that do not have consecutive ones in their binary representation up to i
+    for j from 0 to len(b)-1:
+        if b[j] == '1' and (j == 0 or b[j-1] != '1'):
+            count += 1 // increment the count whenever a number does not have consecutive ones in its binary representation
+
+    dp[i] = count // update the dynamic programming array with the count of numbers that do not have consecutive ones in their binary representation up to i
+
+The answer is dp[n]
+
+===END PLAN===

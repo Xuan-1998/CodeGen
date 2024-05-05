@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The base case could be when A or B is 0, in which case X would just be the other value.
+We consider using a bottom-up approach and a dictionary to store intermediate results for memoization.
+
+State: (A, B)
+Base case: When either A or B is 0
+
+Transition relationship:
+For each i from 1 to A+1 and j from 0 to min(A, B), 
+if there's no solution for i-1 and j, then consider X = i and Y = j-i as the solution.
+Store (A, B) -> (X, Y) in the dictionary if a solution is found.
+
+Memoization:
+Recursively solve the problem and store intermediate results in a dictionary to avoid redundant computations.
+
+Edge cases:
+Handle A=0 or B=0 separately, returning (0, B) or (A, 0) respectively.
+===END PLAN===

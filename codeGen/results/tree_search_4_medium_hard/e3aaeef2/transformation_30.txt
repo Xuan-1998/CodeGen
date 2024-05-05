@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its length and value, and use memoization to store the results for each operation.
+
+State expression: Define the state as the decimal representation of the current number, and the base case is when the decimal representation has no more than one digit.
+dp[i][j] = 1 if i-th operation on j leads to a single-digit number
+Consider the state as a vector representing the digits of the current number, and use memoization to store the results for each operation.
+
+Memoizing a dictionary with tuples as keys: dp[(n, m)]
+
+Base case:
+- If n has only one digit (1 <= n <= 9), return its length.
+- If n is single-digit after m operations (e.g., if n = 123 and m = 3), return the length.
+
+Recursive case:
+- Split n into two parts: first k digits and remaining digits.
+- Apply the operation on the first k digits, and recursively call dp on the result.
+- Add the length of the recursive result to the length of the remaining digits.
+- Repeat this process until base case is met or no more operations are left.
+
+Example:
+- n = 123, m = 3
+    - Split n into two parts: 1 and 23
+    - Apply operation on 1 (no change), and recursively call dp on 23 with 2 remaining operations.
+    - Add the length of the recursive result (2) to the length of "1" which is 1, so 2 + 1 = 3
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Whether the scrambling operation can be decomposed into smaller subproblems, allowing for a dynamic programming solution.
+
+The state expression could be a boolean array dp of size (n+1) x (m+1), where n and m are the lengths of s1 and s2 respectively, indicating whether s2[0...i] can be obtained by scrambling s1[0...j].
+
+The base case would be when i or j is 0. In this case, dp[i][j] should be true if one of the strings is empty.
+
+The scrambled string of a character in s1 matches the corresponding character in s2, regardless of whether they match each other. This allows us to ignore any matching characters between the two strings and focus on the non-matching ones.
+
+Create a 2D array where dp[i][j] represents whether s1[0...i-1] and s2[0...j-1] are scrambled versions of each other. Fill this array by checking if characters at same positions in both strings match or not, ignoring any matching characters.
+
+For each cell dp[i][j], consider the last character of s1[0...i-1] and the last character of s2[0...j-1]. If they match, then dp[i][j] should be true if and only if either the subproblem dp[i-1][j-1] is true (characters match) or both subproblems dp[i-1][k-1] and dp[k-1][j-1] are true for some k in [0, i-1] (non-matching characters).
+
+If they don't match, then dp[i][j] should be true if the last character of s1[0...i-1] is scrambled to the last character of s2[0...j-1], which can be determined by checking all possible scrambles of the two characters.
+
+The final answer would be dp[n][m].
+
+===END PLAN===

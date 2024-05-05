@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its length and value, and use memoization to store the results for each operation.
+
+State expression: Define the state as the decimal representation of the current number, with the base case being when the decimal representation has no more than one digit.
+Let's denote the initial state (n, 0) where n is the initial number, and the result after m operations as (l, v).
+
+Define a function applyOp(n, m, memo): 
+    - If m == 0, return (n, n)
+    - Initialize (l, v) = (1, n) // start with the initial state
+    - For each digit d of n:
+        - Calculate d + 1 and convert it to a string str
+        - Calculate the new length l' as the number of digits in str + l - 1 (accounting for the leading digit)
+        - If memo[(l', str)] exists, return memo[(l', str)]
+        - Calculate v' = str * 10^(l'-1) + v % 10^9+7
+        - Update (l, v) = (l', v')
+    - Return (l, v)
+
+Memoize the function applyOp(n, m, memo)
+Apply the operation recursively until m == 0
+Return the result after applying m operations
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Define a state as a tuple (tail_length, spines_count) where tail_length is the number of vertices in the current path and spines_count is the number of edges that have one endpoint in this path. This state captures the information necessary to determine whether extending the path would increase its beauty.
+
+Initially, consider all possible extensions from each vertex. For each vertex, compute the maximum beauty achievable by considering all extensions from it, using memoization to avoid redundant computations. The key is a tuple representing the current state and the value is the maximum beauty achievable for that state.
+
+The transition relationships involve updating tail_length and spines_count based on whether extending the path or not. For each edge connected to the last vertex in the path, consider two options: 1) extend the path by one more vertex; 2) stop extending the path here.
+
+If option 1 is chosen, increment tail_length and decrement spines_count since all edges incident to the new vertex are now considered as part of the tail. If option 2 is chosen, do not update any variables.
+
+Use a dictionary to store intermediate results, where the key is a tuple representing the state and the value is the maximum beauty achievable for that state. The base case would be when there are no more edges to consider.
+
+Start by initializing the dictionary with all states having tail_length 0 and spines_count 0 mapped to a value of 0, since there is no way to increase the beauty from this state.
+
+Then, iterate over all possible states in topological order (i.e., start from states where no edges are colored), for each state consider all its extensions, update the dictionary with the maximum beauty achievable for that state, and finally return the value corresponding to the initial state.
+===END PLAN===

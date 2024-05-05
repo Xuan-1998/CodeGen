@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+let dp[0] = 1; // base case: only one number that is less than or equal to 0 has no consecutive ones
+for i from 1 to n:
+    let consecutiveOnesCount = 0;
+    for j from i-1 downto 0:
+        if (j & 1) == 1 and ((j >> 1) & 1) == 1: // check if the binary representation of j has consecutive ones
+            consecutiveOnesCount++;
+        else:
+            dp[i] += 1; // increment the count for numbers that do not have consecutive ones
+    if consecutiveOnesCount > 0: // if there are consecutive ones in the current number's binary representation
+        dp[i] -= consecutiveOnesCount;
+===END PLAN===

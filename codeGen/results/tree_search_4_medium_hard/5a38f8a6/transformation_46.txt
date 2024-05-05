@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+
+The state expression is s, where s represents the set of possible summands for n.
+
+Define a state as f(i, k) representing the least number of perfect squares that add up to i using no more than k summands.
+
+Create a 2D array dp where dp[i][k] represents the least number of perfect squares that add up to i using no more than k summands.
+
+ Initialize the base case: f(0, k) = 0 for all k >= 0, because we can always represent 0 as the sum of 0 perfect squares.
+
+ Iterate over all possible numbers from 1 to n:
+
+    For each number i:
+        For each possible number of summands k from 1 to min(i^(1/2), k):
+            Update dp[i][k] = min(dp[i][k], 1 + f(j, k - 1)) where j is the largest perfect square not exceeding i.
+
+ Return dp[n][?].
+===END PLAN===

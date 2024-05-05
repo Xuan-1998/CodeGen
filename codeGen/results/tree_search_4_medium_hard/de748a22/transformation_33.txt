@@ -1,0 +1,16 @@
+State: For each query, consider a set of variables that represent the minimum number of elements to be removed from subarrays within the given range. Initialize an array dp[i] where i is the maximum number of positive integers seen so far in the given range.
+
+Transition relationships can be established using dynamic programming:
+
+dp[i] = min(dp[j-1] + (pos_count[r] - pos_count[l-1]), i) 
+
+where l and r are the query's left and right boundaries, and pos_count is an array that keeps track of the cumulative count of positive integers up to index i.
+
+Maintain a separate array pos_count[i] that keeps track of the cumulative count of positive integers up to index i. This can help in determining the state transition.
+
+For each query:
+
+1. Calculate pos_count[r] - pos_count[l-1] which represents the number of new positive integers seen in this range.
+2. For each possible subarray within the given range, calculate dp[j-1] + (pos_count[r] - pos_count[l-1]) where j is the maximum number of positive integers seen so far in this subarray.
+3. Return min(dp[j-1] + (pos_count[r] - pos_count[l-1])) as the minimum number of elements that can be removed.
+

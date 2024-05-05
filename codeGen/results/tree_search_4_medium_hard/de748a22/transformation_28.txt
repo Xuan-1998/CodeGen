@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+State: For each query, consider a set of variables that represent the minimum number of elements to be removed from subarrays within the given range. Initialize dp array with size 3*n and fill this table using bottom-up dynamic programming.
+
+Step by step plan:
+
+* Calculate prefix sum for signs array
+* Iterate over all queries:
+	+ For each query, iterate over the range [l_i, r_i] 
+	+ Use prefix sum to keep track of the cumulative sum of the signs within each query's range.
+	+ If the sign-variable sum is zero, then dp[i] = 0 (no elements need to be removed)
+	+ Else:
+		- Calculate the number of positive and negative numbers in the subarray [l_i, r_i]
+		- Use dynamic programming to fill up the dp array. 
+			- For each element i in the dp array:
+				- If sign-variable sum is zero, then dp[i] = 0 (no elements need to be removed)
+				- Else: calculate the minimum number of elements that can be removed from subarray [l_i, r_i] such that the sign-variable sum becomes zero
+			- Return dp[n+q-1] as the answer
+
+===END PLAN===

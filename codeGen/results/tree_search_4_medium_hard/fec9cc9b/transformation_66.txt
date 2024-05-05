@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use top-down approach with memoization to update this state and determine if the current subsegment is a ladder.
+
+state[i][j] = max(state[i-1][k] for k in range(l, r+1) if state[i-1][k-1] > 0 or (state[i-1][k-1] == 0 and a[k-1] >= a[k]))
+
+Achieve the goal by maintaining two variables: one for the maximum length of non-decreasing sequence seen so far in the current subsegment, and another for the maximum length of non-increasing sequence seen so far in the current subsegment. Use a bottom-up tabulation approach to update these variables and determine if the current subsegment is a ladder.
+
+Determine if each query [l, r] is a ladder by iterating through the subsegment from l to r and maintaining two variables: one for the maximum length of non-decreasing sequence seen so far in the current subsegment, and another for the maximum length of non-increasing sequence seen so far in the current subsegment.
+
+===END PLAN===

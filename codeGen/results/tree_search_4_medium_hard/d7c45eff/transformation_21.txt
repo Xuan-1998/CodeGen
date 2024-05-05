@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider the strings that can be obtained by deleting the last character of s, which are all substrings of s. The lexicographically smallest string among these is either the original string or the string obtained by deleting its last character.
+
+dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+dp[i][0] = s[:i-1] if i > 0, else s
+
+The base case is dp[n][k], which is either s[:n] if k >= n or the lexicographically smallest string among all strings that can be obtained by deleting the last character of any substring of s[:n] with exactly k characters.
+
+To implement a bottom-up approach, initialize the DP table with base cases and then iteratively compute each cell based on previously computed cells. Start from dp[0][j], where j is the number of characters to add to obtain a string of length k.
+
+dp[i][j] = s[:i-1] + min(s[i-1:j-1] for j in range(i+1)) if i > 0 and j > 0
+dp[0][j] = s[:j]
+
+Finally, the lexicographically smallest string that can be obtained from s with exactly k characters is dp[n][k].
+
+===END PLAN===

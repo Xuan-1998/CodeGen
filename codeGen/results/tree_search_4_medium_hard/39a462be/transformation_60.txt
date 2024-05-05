@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be solved by building suffix trees for both strings and then calculating the similarity score based on the number of nodes at the same level in the suffix trees.
+
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Transition
+Use a dictionary to store previously computed values for memoization
+
+state_transition = {
+    (i, j, k): max_similarity_score(i-1, j-1, k)
+    if i > 0 and j > 0 and A[i-1] == B[j-1] else
+    4 * k - (n + m) 
+}
+
+===END PLAN===

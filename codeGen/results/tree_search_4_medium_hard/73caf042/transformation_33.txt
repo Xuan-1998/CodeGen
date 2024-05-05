@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, we can define a function f(i, j) that returns the total number of diamonds in the i-th row and j-th column. The optimal substructure is that the total number of diamonds in the i-th row and j-th column depends on the sum of even digits and odd digits in the current room number, as well as the total number of diamonds in the (i-1)-th row and (j-1)-th column.
+
+Let f(i, j) be the number of diamonds in the i-th row and j-th column. The base case is when i or j equals 1.
+state: f(i, j) = |even_sum - odd_sum| where even_sum is the sum of even digits in the i-th row and j-th column, and odd_sum is the sum of odd digits in the same.
+
+Create a 2D table dp to store the number of diamonds in each cell
+
+For each cell (i, j), calculate even_sum and odd_sum
+even_sum = sum of even digits in room(i, j)
+odd_sum = sum of odd digits in room(i, j)
+
+f(i, j) = |even_sum - odd_sum|
+
+dp[i][j] = f(i, j)
+
+for i from 1 to N:
+    for j from 1 to N:
+        dp[i][j] = f(i, j)
+        
+return sum of all values in dp table
+===END PLAN===

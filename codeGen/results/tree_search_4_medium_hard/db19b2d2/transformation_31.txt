@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+The state expression could be dp[i][k] representing the probability that we get at least one player from the department of interest after choosing k players from i-1 departments.
+
+dp[i][0] = (s1 + ... + si-1) / n <= calculate the number of basketball players in the first i-1 departments divided by the total number of players.
+For each j from 1 to min(h, s[h]), dp[i][j] = dp[i-1][j-1] * ((si - max(0, h-j+1)) / (n-j+1)) + (1 - dp[i-1][j]) * dp[i-1][j], where si is the number of basketball players in the i-th department.
+dp[m][k] = 1 if k >= 1 and 0 otherwise.
+Calculate the answer by summing up all probabilities dp[m][k] for k from 1 to min(n, s[h]).
+===END PLAN===

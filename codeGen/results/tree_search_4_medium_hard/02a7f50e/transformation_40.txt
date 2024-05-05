@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j]: The minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+
+dp[i][0] is 0 for all i, because there are no beacons to the left of the first one.
+For each i from 1 to n:
+    dp[i][j]: The minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+    If the j-th beacon can destroy all previous beacons, then dp[i][j] is min(dp[k-1][k-1] + 1 for k in range(1, j+1)) because we need to add this new beacon and also consider the minimum number of beacons destroyed by each previous one.
+    Else, dp[i][j] is dp[i-1][j].
+Store all these values in a dictionary memo where the key is the state (i.e., which ones have been destroyed) and the value is the minimum number of beacons that could be destroyed in that state.
+
+After filling up the dp table, return dp[n][n], which represents the minimum number of beacons that could be destroyed after activating all beacons.
+===END PLAN===

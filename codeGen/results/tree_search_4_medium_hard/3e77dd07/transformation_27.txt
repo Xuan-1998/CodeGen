@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+State: dp[i][j] is a boolean indicating whether the substring from index i to j is scrambled;
+Transition:
+    for each character c at position k,
+        if s1[i..j] matches s2[k..k+m],
+            set dp[i][j] = True if and only if
+                dp[i+1][k+m-1] and dp[k+m][j-1] are both True;
+Definition of the state:
+    (i, j) where i is the length of the longest common prefix of s1 and s2,
+    and check if the remaining parts of both strings are scrambled
+Transition:
+    for each character c at position k,
+        if s1[i..j] matches s2[k..k+m],
+            set dp[i][j] = True if and only if
+                s1[i+1..j] is scrambled with s2[k+m..]
+===END PLAN===

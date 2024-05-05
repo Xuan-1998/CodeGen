@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+state dp[2*n][2*n] = { pair of arrays a and b such that merge(a,b) equals permutation };
+dp[i][j] = True if and only if either i==0 or (there exists k such that (i-k)%2==1 && j+k==n && (dp[(i-k)/2][k/2] && !found[k/2]) || (i-k)%2==0 && dp[i-1][j] );
+using memoization with dictionary
+for each p in permutation:
+    for i from 0 to n-1:
+        for j from 0 to n-1:
+            if dp[i][j]:
+                // a and b found, check if their union equals the permutation
+                if merge(a,b) == permutation:
+                    print "YES"
+                    return
+print "NO"
+===END PLAN===

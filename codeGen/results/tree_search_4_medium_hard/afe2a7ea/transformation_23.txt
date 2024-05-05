@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i] where dp[i] represents whether it's possible to set signal powers for all towns up to i, given that radio towers are built in exactly i - 1 towns and only the tower at town j - 1 serves town j.
+
+dp[i] is equal to true if one of the following conditions is met:
+    - It's not possible to build a tower at town i (i.e., no tower was built at any previous town) or
+    - There exists j where 0 <= j < i and dp[j] is true, meaning it's possible to set signal powers for all towns up to j and the signal power set on tower j - 1 serves town i.
+
+Maintain a memoization table dp[] with size n + 2, initialized as false. Then, perform a recursive function that fills in the dp[] array. The base case is when i = 0 or i = n + 1, where dp[i] is always true.
+
+The recurrence relation could be:
+    - For i > 0 and i < n + 1, dp[i] = (i == 0 || i == n + 1) ? false : (dp[0] || any j where 0 <= j < i and dp[j])
+
+Finally, return the value of dp[n].
+
+===END PLAN===

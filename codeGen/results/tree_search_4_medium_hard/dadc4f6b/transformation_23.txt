@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+A state consists of two indices i and j indicating which stars are currently within the rectangular view.
+State: (i, j), where i is the number of stars within the current view and j is the maximum brightness of these stars.
+
+Transition relationship: The state transitions when a star enters or exits the current view. To determine if a star is within the view, check if its coordinates fall within the given rectangular view's lower left and upper right corners.
+Maintain a dictionary or hashmap to store the memoized values, where the key is the state (i, j) and the value is the calculated total brightness.
+
+Initialize an empty memoized table and add the base case: (0, 0) with a total brightness of 0. 
+
+For each query:
+1. Determine the lower left corner (x1, y1) and upper right corner (x2, y2) of the rectangular view.
+2. Initialize i to 0 and j to 0.
+3. For each star:
+    1. Check if the star's coordinates are within the current view's bounds.
+    2. If they are, increment i by 1 and update j with the maximum brightness between j and s_i (the initial brightness of the star).
+4. Look up the memoized value for state (i, j). If it exists, return the stored total brightness.
+5. Otherwise:
+    1. Calculate the total brightness for the current state (i, j) by summing the initial brightnesses of the stars within the view and multiplying by their maximum brightness.
+    2. Store the calculated value in the memoized table with key (i, j).
+6. Return the stored total brightness.
+
+===END PLAN===

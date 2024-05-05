@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure property is satisfied because the minimum total cost required to sort the first i strings depends on the minimum total cost required to sort the first (i-1) strings, plus the reversal cost of the i-th string if it's in correct position.
+The overlapping subproblems exist since we might have multiple i-th strings that need to be reversed. We can use dynamic programming with tabulation to solve this problem.
+
+Let dp[i] represent the minimum total cost required to sort the first i strings in lexicographical order, without considering any lengths.
+
+dp[i] is the minimum total cost of sorting the first i-1 strings plus the reversal cost of the i-th string if it's in correct position, or -1 otherwise. This is because we can't simply reverse a string and expect it to be in its final position in the sorted array.
+
+We use a bottom-up dynamic programming approach with tabulation, where we build the solution from the smallest subproblem to the largest.
+For the base case, dp[0] = 0 since there's nothing to sort. For i > 0, we can calculate dp[i] as min(dp[j] + c[i-j-1]) for all j in [0..i-1].
+
+The edge cases would be n = 2 or n = 3, where we have either one or two strings to sort.
+
+===END PLAN===

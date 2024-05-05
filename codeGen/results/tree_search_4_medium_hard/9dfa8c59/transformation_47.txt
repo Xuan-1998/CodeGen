@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+We can use dynamic programming with a recursive function that checks if a number is prime and has k_perms permutations, updating the results as needed.
+
+Let's define a state variable (n, k) where n is the current prime number and k is the count of its prime permutations. We'll create a 2D table dp[][] to store intermediate results, where dp[i][j] represents the number of prime numbers with j prime permutations below i.
+
+Initially, set dp[0][k] = 0 for all k. This represents that there are no prime numbers with k prime permutations below 0 (which doesn't make sense).
+
+For each prime number p below n_max:
+
+1. Calculate the number of prime permutations for p using a recursive function (e.g., check_prime_permutations(p, k)).
+2. Update dp[n][k] = dp[n][k] + 1 if p has k prime permutations.
+3. For each possible value of j from 0 to k:
+   - If j is equal to the count of prime permutations for p, update dp[n][j] = dp[n][j] + 1.
+
+The final answer will be (dp[n_max][k_perms], min_p, max_p) where min_p and max_p are the smallest and largest prime numbers among those with k_perms prime permutations.
+
+===END PLAN===

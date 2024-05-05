@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+dp[i][j] could represent the number of ways to select tower locations such that all towns get signal from exactly one tower and the total number of towers is j.
+
+Consider a subset of towns A with |A| = i and no town in A gets signal from more than one tower, then transition relationship could be: dp[i+1][j+1] = sum(dp[k][j] for k in range(k+1, min(i+2, j+1)));
+
+Implement a recursive function with memoization using a dictionary where keys are tuples (i, j) and values are the results of those states. The base case is when i > j or j = 0.
+
+===END PLAN===

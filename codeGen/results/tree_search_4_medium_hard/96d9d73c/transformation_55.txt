@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = (exists k in [0, i-K) such that 
+        dp[k][j-1] and max(A[k:k+K])-min(A[k:k+K]) <= M
+    ) or j == 1
+
+Define a base case for j = 1: dp[0][1] = True (since it's always possible to partition the empty array into one partition)
+
+Then fill in the rest of the table using dynamic programming principles:
+- For each i, consider all possible values of k such that 0 <= k < i-K and dp[k][j-1]
+- If any such k exists and max(A[k:k+K])-min(A[k:k+K]) <= M, then set dp[i][j] = True
+- Otherwise, if j == 1 (base case), then set dp[i][j] = True
+- Otherwise, set dp[i][j] = False
+
+Finally, return dp[N][K]
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+The state is a tuple (bool, int), where bool indicates whether the current bit of the bitwise AND operation is set and int represents the number of 1's in the corresponding elements. The base case is when all bits are unset.
+
+DP on bit position: for each bit, if it's 0 in the AND result, then it can only be 0 in at least one element; if it's 1 in the AND result, then it must be 1 in at most k-1 elements. This means we need to consider two possibilities - whether this bit is set in exactly j elements and whether it's not.
+
+Recursive function with a caching mechanism:
+    - If the current bit of the bitwise AND operation is 0, then consider two possibilities: 
+        * All bits are unset
+        * Some bits are set
+
+    - If the current bit of the bitwise AND operation is 1, then consider three possibilities: 
+        * All bits are set
+        * Exactly one bit is set
+        * No bits are set
+
+===END PLAN===

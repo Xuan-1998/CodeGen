@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Think about how you can use dynamic programming to solve this problem. You can consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them. This way, you can avoid re-computing the same subproblems multiple times.
+
+Determine a recursive formula for the dynamic programming solution: Let dp[i] represent the lexicographically smallest string of length i that can be obtained by either deleting the last character or duplicating the original string. Then, we have:
+- dp[0] = "" (base case)
+- dp[i] = min({"original_string[0:i-1]" + original_string[i-1], "dp[i-1]"}) for i > 0
+
+Implement memoization accordingly: Use a dictionary to store the intermediate results. Initialize an empty dictionary, and update it as you fill the dp array.
+
+Use tabulation by initializing an array with size k+1: dp = [-inf] * (k+1), where each cell represents the lexicographically smallest string of that length. Then fill this array iteratively from bottom up:
+- dp[0] = ""
+- for i in range(1, k+1):
+    - if original_string[i-1] < dp[i-1]:
+        dp[i] = original_string[i-1]
+    - else:
+        dp[i] = dp[i-1]
+
+Find the lexicographically smallest string of length k: return dp[k]
+
+===END PLAN===

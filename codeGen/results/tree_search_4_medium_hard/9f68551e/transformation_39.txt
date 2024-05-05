@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+\
+State represents the maximum mana that can be achieved at each second, considering the current monster's appearance time and health.
+The base case is when there are no more monsters to kill.
+
+Use a 2D array dp[][] to store the minimum mana required at each second to kill all monsters up to that moment. 
+dp[i][j] will represent the minimum mana required to kill all monsters up to the i-th monster's appearance time, considering the current monster is the j-th one (1-indexed).
+For each monster:
+  - For every previous monster (up to the current one), calculate the maximum damage achievable at its appearance time.
+    This can be done by iterating over all previous monsters and finding the maximum damage that kills the current monster.
+  - Add the health of the current monster to this maximum damage. This is because we need to kill the current monster with a spell that has enough damage to exceed its health.
+  - dp[i][j] will be the minimum between the current value (dp[i-1][k]) and the new calculated value.
+
+The final answer will be the value in the last row of the dp[][] array, which represents the minimum mana required to kill all monsters.
+===END PLAN===

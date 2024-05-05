@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = minimum number of substrings required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+
+dp[i][j] = min((j - 1) + (s[:i].count(c) // a[c - 97] + 1 if s[:i].count(c) % a[c - 97] > 0 else 0 for c in set(s[:i]))[0], j) + 1
+
+Use memoization to avoid repeated computations. Start by initializing the dp array with a value of infinity, then fill it up using the recurrence relation above.
+
+Finally, return dp[n][k] as the answer, where k is the number of ways to split the message.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[n][n] = { pair of arrays a and b such that merge(a,b) equals permutation, with array a having the same length as array b };
+for n from 1 to 2*2000:
+    for i from 0 to n-1:
+        for j from i to n-1:
+            if i==0 or j==0:
+                dp[i][j] = True
+            elif p[i]<p[j]:
+                for k from 0 to i-1:
+                    if dp[k][i-1] and dp[i][j]:
+                        dp[i][j] = True
+            else:
+                for k from i+1 to j-1:
+                    if dp[i][k] and dp[k][j]:
+                        dp[i][j] = True
+===END PLAN===

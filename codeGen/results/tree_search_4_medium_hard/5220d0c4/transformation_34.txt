@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes.
+
+State: dp[i][j] representing whether the array [A[i], ..., A[j]] is good or bad, with dp[i][j] being true if the array is good and false otherwise.
+
+Memoization:
+dp[i][j] = max(beauty_values_for_good_primes(dp[i][k-1]), beauty_values_for_bad_primes(dp[k+1][j]))
+
+beauty_values_for_good_primes(dp[i][k-1]) = max(belonging_to_previous_range(dp[i][k-2]), dp[i][k-1])
+
+beauty_values_for_bad_primes(dp[k+1][j]) = max(beauty_values_for_bad_primes(dp[k+2][j-1]), dp[k+1][j])
+
+belonging_to_previous_range(dp[i][k-2]) = True if the array [A[i], ..., A[k-2]] is good and False otherwise
+
+dp[0][n-1] as the base case for dynamic programming, where n is the size of the array.
+
+===END PLAN===

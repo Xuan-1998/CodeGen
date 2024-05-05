@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a 2D array [dp[i][0], dp[i][1], ..., dp[i][jmax]] where each row represents the maximum amount of money earned for all groups with size i and column j represents the total spending up to j. The value of dp[i][j] represents the maximum amount of money earned for groups with size up to i and spending up to j.
+
+The transition relationship is that if we accept the current request, the new state will be the maximum of the previous state and the total spending minus the cost of the current request. If we decline the current request, the new state will be the same as the previous state.
+
+Use a 2D array to store the state dp[i][j] that represents the maximum amount of money earned for groups with size up to i and spending up to j. The initialization should set all values in dp[0][j] to 0, since there are no requests to accept or decline initially.
+
+The final answer will be the maximum value in the last row of the 2D array.
+
+===END PLAN===

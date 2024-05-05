@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+dp[i][0] = 0 for all i (base case: when there are no more money to spend), dp[0][j] = 0 for all j (base case: when there are no more tables)
+
+dp[i][j] represents the maximum amount of money earned given i remaining tables and j total amount of money to spend.
+
+Design a bottom-up dynamic programming approach by iterating over the requests and updating the table values accordingly:
+
+Let dp[i][j] be the maximum amount of money earned given i remaining tables and j total amount of money to spend.
+For each request (size, spend):
+    If the group can fit in any of the remaining tables:
+        Update dp[i-1][j-spent] to max(dp[i-1][j-spent], dp[i-1][j-spent] + spent)
+    Else:
+        dp[i][j] = 0
+
+Return dp[k][n]
+
+===END PLAN===

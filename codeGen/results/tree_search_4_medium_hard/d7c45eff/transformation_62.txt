@@ -1,0 +1,14 @@
+{
+    Initialize a dictionary dp with default value as None for (remaining_string, is_last_deleted).
+    Iterate from n down to k:
+        For each remaining string and its corresponding boolean value:
+            If the remaining string has length 1 or is empty, set dp[(remaining_string, is_last_deleted)] as the lexicographically smallest string.
+            Otherwise:
+                Consider two options: deleting the last character (dp[(remaining_string[:-1], True)]) or duplicating the string (dp[(remaining_string, False)]).
+                Set dp[(remaining_string, is_last_deleted)] to the lexicographically smaller string between these two options.
+    Initialize a variable result as None.
+    Iterate from n down to k:
+        For each remaining string and its corresponding boolean value:
+            If dp[(remaining_string, is_last_deleted)] is not None, set result as dp[(remaining_string, is_last_deleted)] and break the loop.
+    Return result.
+}

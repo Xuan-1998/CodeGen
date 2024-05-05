@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively build up the dp table by iterating over the array elements in order, considering each element as the end of a potential increasing subsequence and recursively exploring all possible predecessors to find the maximum length.
+
+Let DP[i] be the length of the longest increasing subsequence ending at index i. Initially, set DP[i] = 1 for all i (since a single-element subsequence is always increasing).
+
+Iterate over the array elements in order. For each element x at index i:
+    - Initialize max_length to 0.
+    - Iterate over previous elements y at indices j < i such that y <= x:
+        - If y + 1 > max_length, update max_length = DP[j] + 1.
+    - Update DP[i] = max_length.
+
+Finally, iterate over the array and count the number of occurrences of the maximum value in the dp table to get the number of longest increasing subsequences.
+
+===END PLAN===

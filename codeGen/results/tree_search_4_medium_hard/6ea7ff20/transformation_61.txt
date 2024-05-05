@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+state dp[i][j] = { pair of arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j };
+dp[0][0] = { {}, {} } // base case
+for i from 1 to n:
+    for j from min(i//2, n-1) to 0: 
+        if dp[i-j][j].first < p[i]:
+            dp[i][j] = {{dp[i-j][j].first + [p[i]]}, {}}
+        elif p[i] < dp[i-j][j].first:
+            dp[i][j] = {{}, dp[i-j][j].second + [p[i]]}
+        else:
+            // handle case where first elements are equal
+            ...
+    for j from 0 to n-1:
+        if dp[i-1][j].first < p[i]:
+            dp[i][j] = {dp[i-1][j].first + [p[i]], {}}
+        elif p[i] < dp[i-1][j].first:
+            dp[i][j] = {{}, dp[i-1][j].second + [p[i]]}
+        else:
+            // handle case where first elements are equal
+            ...
+===END PLAN===

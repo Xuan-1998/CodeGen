@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 3D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+The state is defined as dp[u][v][k] = maximum sum of f(i,j) values over all pairs (i,j) where i is a node with at most u children, j is its child, and k is the number of edges labeled so far. The product of edge labels from nodes 1 to u should equal v.
+
+dp[0][v][k] = -∞ for any v and k
+
+DP with memoization: Store intermediate results in a dictionary as you iterate through the nodes, and use these stored values to avoid recalculations when needed.
+
+For each node i:
+    For each child j of i:
+        For each possible edge label e:
+            Calculate f(i,j) = sum of edge labels from i to j
+            Update dp[i][j][k] if necessary
+    Update dp[i+1][v][k+1] if necessary
+
+===END PLAN===

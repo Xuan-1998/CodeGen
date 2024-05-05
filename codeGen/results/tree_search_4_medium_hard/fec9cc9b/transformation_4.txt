@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify the longest non-decreasing subsequence in the array as the base case.
+
+dp[i][j] = 
+    if j == 0: return True
+    for k from i-1 down to 0:
+        if array[k] <= array[j]:
+            dp[i][j] = max(dp[i][j], dp[i-1][k])
+    return dp[i][j]
+
+for each query (l, r):
+    result = dp[r][r]
+    for i from r down to l:
+        result = min(result, dp[i][i])
+    if result: print("Yes")
+    else: print("No")
+
+===END PLAN===

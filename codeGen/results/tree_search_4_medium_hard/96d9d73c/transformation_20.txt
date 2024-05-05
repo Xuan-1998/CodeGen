@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Define the dynamic programming table as a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, each with at least K elements and absolute difference not exceeding M.
+dp[i][j] represents whether the jth partition has at least K elements.
+
+Let dp[i][j] be true if A[0..i-1] can be partitioned into j partitions, each with at least K elements and absolute difference not exceeding M. Then, dp[i][j] is true iff there exists a partition point k such that 1 <= k <= i-1, the first k elements are in one partition, and the rest i-k elements are also in one partition.
+
+The base case is when j = 0 or i = 1, then dp[i][j] is always false.
+
+For each i from 2 to N, fill dp[i][j] for all j from 0 to min(i, K) as follows:
+- If j == 0, dp[i][j] is true if and only if the first element of A[0..i-1] is not greater than M.
+- For j > 0, dp[i][j] is true if there exists a k such that 1 <= k <= i-1, the maximum value in the subarray A[0..k-1] is less than or equal to A[k] + M and the minimum value in the subarray A[k..i-1] is greater than or equal to A[k] - M. dp[i][j] is also true if and only if dp[k][j-1] is true.
+
+The answer to the problem is dp[N][K].
+===END PLAN===

@@ -1,0 +1,31 @@
+===BEGIN PLAN===
+Use a top-down approach with memoization to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider the state as the last digit of an integer and formulate a recurrence relation based on this state. Let dp[i] be the number of times the digit 1 appears in all numbers from 0 to i.
+
+For the base case, when i is 0, we can set dp[0] = 0 because there are no digits 1 in 0.
+
+For other values of i, consider two cases: 
+- The last digit of the number is 1 (in which case we add 1 to the count of smaller numbers), and 
+- The last digit of the number is not 1 (in which case we don't change the count).
+
+Let's formulate a recurrence relation based on these two cases. If i ends with 1, then there are (i // 10) numbers less than or equal to i that end with 1, and each of them has one more digit 1. So, we add dp[i // 10] + 1 to the count.
+
+If i does not end with 1, then we just consider smaller numbers without adding any digits 1, so the count remains the same as in the smaller number. This can be represented by dp[i - 1].
+
+So, our recurrence relation is:
+
+dp[i] = if i % 10 == 1: 
+           dp[i // 10] + 1
+       else:
+           dp[i - 1]
+
+Implementing a bottom-up dynamic programming approach using a list to store the intermediate results.
+
+Initialize an empty dictionary dp and set dp[0] = 0. Then, for each number i from 1 to n:
+
+- If i ends with 1, calculate dp[i] based on the recurrence relation above.
+- Otherwise, simply copy the count from the previous smaller number.
+
+Finally, return dp[n].
+===END PLAN===

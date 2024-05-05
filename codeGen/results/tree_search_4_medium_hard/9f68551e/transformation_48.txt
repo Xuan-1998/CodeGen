@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp = {}
+def dp_function(current_time):
+    if current_time > k[n-1]:
+        return 0
+    if (current_time, 0) in dp:
+        return dp[(current_time, 0)]
+    
+    min_mana = float('inf')
+    for i in range(n):
+        if k[i] == current_time:
+            for damage in range(h[i], h[i]+h[i]):
+                min_mana = min(min_mana, dp_function(k[i]+1) + damage)
+    
+    dp[(current_time, 0)] = min_mana
+    return min_mana
+
+n = int(input())
+k = list(map(int, input().split()))
+h = list(map(int, input().split()))
+print(dp_function(1))

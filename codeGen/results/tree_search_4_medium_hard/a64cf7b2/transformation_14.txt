@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use a top-down approach with memoization to solve this problem by recursively exploring all possible routes from vertex 1 to vertex n, and store the results in a memoized dictionary to avoid redundant calculations.
+
+Define the state expression as (i, t), where i is the current vertex and t is the time spent so far to traverse from vertex 1 to vertex i. The base case is when i == n, in which case the maximum number of vertices that can be visited is T + 1.
+
+Formulate state and transition relationships as follows:
+- If (i, t) is not in the memoized dictionary, explore all possible routes by recursively calling the function on each neighboring vertex (u, v) such that there exists an edge from u to v with weight w, where w ≤ T - t.
+- For each route, calculate the maximum number of visited vertices and update the memoized dictionary accordingly.
+- Return the maximum number of visited vertices.
+
+Employ a greedy strategy by sorting edges based on their weights and then iteratively selecting the edge that minimizes the time spent to traverse while keeping track of the maximum number of visited vertices.
+
+To improve the plan, consider using a priority queue instead of recursive function calls to explore all possible routes. This can help reduce the time complexity of the solution.
+
+The potential issue with the plan is that it may not correctly handle cases where there are multiple edges with the same weight and the order in which they are traversed affects the maximum number of visited vertices.
+
+The plan does include edge cases, as it handles the base case when i == n and also considers the time limit T in its state expression.
+
+===END PLAN===

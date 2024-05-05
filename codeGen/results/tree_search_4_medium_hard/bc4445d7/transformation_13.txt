@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][j][k] = 1 if there exists an edge between nodes i and j such that their labels add up to k, otherwise 0, where dp[i][j][k] represents whether the edge (i, j) has label k or not.
+
+dp[i][j][k] = 1 if for all u in the subtree rooted at i, there exists an edge (i, u) such that its label is p and a product of prime factors equals to k/p, where p is the product of prime factors in the subtree rooted at i. Otherwise, dp[i][j][k] = 0.
+
+Use a recursive function with memoization to store values as you compute them and avoid redundant computation.
+
+For each node i, initialize an array dp[i][1...n-1][1...k] where n is the number of nodes in the tree and k is the given product of prime factors. Then for each edge (i, j) with label x, update dp[i][j][k/x] = 1.
+
+Finally, return the sum of all values in dp array.
+===END PLAN===

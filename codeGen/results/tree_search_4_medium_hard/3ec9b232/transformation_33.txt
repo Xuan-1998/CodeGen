@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp(i, j) = number of ways to create a collection V such that merging V into a sorted array results in M[:j+1] with value m_i at index i.
+Define the state expression and base case as dp(n-1, n-1) = 0 since there are no more values to consider.
+
+For j = 0 to n-1:
+    Initialize dp(i, j) = 0
+    For k from 0 to i:
+        If M[k] <= m_i:
+            dp(i, j) += dp(k, j)
+        Else:
+            dp(i, j) += sum(dp(l, j) for l in range(k+1, i+1))
+    Return dp(n-1, n-2)
+
+Memoize the state transition function with a dictionary and update it recursively
+===END PLAN===

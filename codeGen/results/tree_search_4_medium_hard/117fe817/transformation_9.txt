@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+The state expression could be the total count of ones in all numbers less than or equal to n up to the current digit position i, i.e., dp[i] represents the sum of ones in all numbers from 0 to i.
+
+dp[i] = dp[i-1] + (n // 10**i) * (10**i).count('1')  # update state
+
+Counting the number of 1's in each digit position by iterating from 0 to log(n):
+
+for i from 0 to log(n):
+    dp[i] = dp[i-1] + (n // 10**i) * (10**i).count('1')
+
+Finally, sum up all these counts:
+
+return sum(dp)
+
+===END PLAN===

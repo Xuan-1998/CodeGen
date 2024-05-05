@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state expression is (board_state, hand_state) where board_state is the current configuration of the board and hand_state is the number of balls in hand.
+We can use a 2D dynamic programming table dp[][] to store the minimum number of moves needed to remove all balls starting from each possible board_state and hand_state.
+
+Let's initialize the dynamic programming table with a size of (len(board) + 1) x (len(hand) + 1). The base case is when there are no more balls in hand, which means we only need to consider the initial state of the board.
+We then iterate over the board and hand states simultaneously. For each cell dp[i][j], we check if it's possible to remove all balls starting from the current board_state and using j balls from the hand.
+
+If it's possible, calculate the minimum number of moves needed by considering all possible next states: insert a ball into an empty space, swap two adjacent balls that are different colors, or move a single ball away from the end.
+Finally, update dp[i][j] with the minimum value across all possible next states. If it's not possible to remove all balls, set dp[i][j] to -1.
+
+The final answer is stored in dp[len(board)][len(hand)].
+
+===END PLAN===

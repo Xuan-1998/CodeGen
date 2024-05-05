@@ -1,0 +1,14 @@
+], [
+Consider the state as (i, j) where i is the current position in the alphabet (1-indexed), and j is the current index of the word.
+The base case would be when we have reached the end of the word. Let's define this as dp[m][m].
+The state as dp[i][j] where i represents the number of letters that have been placed before the current position, and j is the current index of the word. The base case would be when we have reached the end of the word, i.e., j=m. We can transition to a new state by either placing any of the n letters at position j or by not placing anything.
+For simplicity, let's assume that dp[i][j] represents the number of ways to form the first j characters given the last i letters in the alphabet.
+Tabulation using a bottom-up approach by filling up the dp array in a row-major order starting from the base case. This can be achieved with nested loops.
+
+Let's consider the transition for dp[i][j]:
+- If 2i>n, then we have two options: either place any letter at position j or don't place anything.
+	+ If we place any letter at position j, it could be any of the n letters. This gives us n choices.
+	+ If we don't place anything, then the last character in the word is a special case and can be treated as if the index was 1 (since 2i>n). We have dp[i-1][j-1] ways to form the first j-1 characters given the last i-1 letters.
+- If 2i<=n, then we only have one option: don't place anything. The reason is that if we place a letter at position j, it would be followed by any of the n letters and this could be treated as placing a letter with index greater than or equal to 2i.
+
+Finally, to calculate the number of possible words modulo $10^8+7$, we sum over all possibilities for dp[m][j] from j=1 to m.

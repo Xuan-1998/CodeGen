@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. 
+The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0). 
+i + c0, j = 0
+Consider a table where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+For each cell dp[i][j], you could either use the current amount of dough and stuffings to make a bun or skip making a bun. 
+To decide whether to make a bun, calculate the remaining dough after using it for a bun: i - ci; 
+and the remaining stuffings: j - 1 (since one stuffing is used). 
+If this amount of remaining dough and stuffings are sufficient to make another bun, then consider making a bun. 
+The maximum profit from making a bun is di - bi, assuming the price of the ith-stuffing bun is di.
+However, if there's not enough dough or stuffing for a bun, you cannot make a bun, so skip it and move on. 
+If skipping the current amount of dough and stuffings to make a bun results in more profit than making a bun, then do that. 
+The maximum profit from not using the current amount of dough and stuffings is just the dp[i-1][j-1] value.
+Finally, for each cell dp[i][j], consider all possible choices: either use or skip making a bun with the ith-stuffing, 
+and update the maximum profit accordingly. 
+This recursive process will fill up the table correctly.
+The maximum profit that can be achieved is stored in dp[n][m].
+===END PLAN===

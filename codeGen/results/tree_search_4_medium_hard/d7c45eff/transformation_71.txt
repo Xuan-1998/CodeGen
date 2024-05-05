@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Think about how you can use dynamic programming to solve this problem. You can consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them. This way, you can avoid re-computing the same subproblems multiple times.
+
+:  The state represents a tuple (s, i), where s is the current string of length up to k and i is an integer from 0 to k representing the number of characters in the string that have not been deleted or duplicated yet.
+
+Use a list dp of size k+1 to store the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string up to length k, where dp[i] represents the lexicographically smallest string that can be formed using i characters.
+
+For each state (s, i), you have two options:
+
+- If s is not empty and its last character is equal to the current character of the original string, then you can either delete the last character or duplicate the entire string. In this case, you update dp[i] with the lexicographically smallest string that can be formed by either deleting the last character or duplicating the entire string.
+
+- If s is not empty and its last character is different from the current character of the original string, then you can only delete the last character. You update dp[i] with the lexicographically smallest string that can be formed by deleting the last character.
+
+If s is empty, then you have only one option: duplicate the entire string. You update dp[i] with the lexicographically smallest string that can be formed by duplicating the original string.
+
+Finally, return dp[k].
+
+===END PLAN===

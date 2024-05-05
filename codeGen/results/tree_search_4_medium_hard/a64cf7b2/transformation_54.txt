@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+Define the state as a tuple (i, j), where i is the current vertex and j is the maximum time left; define the state expression as dp[i][j], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+Let dp[i][j] be the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j, by considering the longest path that ends at vertex i and has total weight less than or equal to w. 
+
+Define base cases: dp[0][j] = 0 for all j, since there are no vertices before vertex 0.
+
+ Define recursive case:
+- If the current time left is greater than T, return 0 (no more vertices can be visited).
+- If the current vertex i is equal to n, return 1 (the maximum number of vertices that can be visited).
+
+Define iterative dynamic programming approach:
+
+Initialize dp array with base cases: for each i from 0 to n, set dp[i][j] = 0 for all j.
+
+Iterate through each edge and update dp array:
+- For each edge from vertex u to vertex v with weight t, and current time left j:
+    - If the remaining time after traversing this edge is greater than T, skip this edge.
+    - Otherwise, calculate the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex v within a time limit of j-t: dp[v][j-t].
+    - Update dp[u][j] to be the maximum of its current value and dp[v][j-t] + 1 (the number of vertices visited by traversing this edge).
+
+Find the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T: max(dp[n][T], key=lambda x: x[0])
+
+Return the indices of vertices that can be visited on the route from vertex 1 to vertex n, in the order of encountering them.
+
+===END PLAN===

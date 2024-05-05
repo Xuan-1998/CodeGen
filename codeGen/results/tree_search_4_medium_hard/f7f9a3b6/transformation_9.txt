@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+
+Consider the current position i and the previous last split position k. If all characters from k+1 to i are the same, then there exists a valid split at this position. Otherwise, we can only consider the cases where the first character after the last split is different from the previous one.
+
+Use 2D array dp with size n+1 x (sum(a) + 1) to store whether each substring satisfies the condition.
+
+For each i, iterate over all possible splits ending at position i and check if the current split satisfies the condition. If it does, update dp[i][j] accordingly.
+
+To find the number of ways to split the message into substrings that fulfill the conditions mentioned in the problem, use a variable to store the total count of valid splits.
+
+To find the length of the longest substring over all the ways and the minimum number of substrings over all the ways, iterate over each i from 1 to n and keep track of the maximum length and minimum count of valid splits.
+
+Finally, print out the results modulo 10^9 + 7.
+===END PLAN===

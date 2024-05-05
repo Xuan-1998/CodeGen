@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider the strings that can be obtained by deleting the last character of s, which are all substrings of s. The lexicographically smallest string among these is either the original string or the string obtained by deleting its last character. If k > n, then the optimal solution is to duplicate the string until we reach a length of k.
+
+The state expression could be dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+
+dp[i][j] = 
+  min(lexicographically_smallest_string(s[:i-1], k-1), s[:i])
+    if i > 0 and j <= n
+
+Use memoization to store the lexicographically smallest strings that can be obtained from substrings of s, and then use these stored values to compute the answer.
+
+If k > n, 
+  return s * (k // n) + s[:k % n]
+
+===END PLAN===

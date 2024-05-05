@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+dp[i][t]: maximum number of vertices that can be visited within t time units, considering only edges with weight less than or equal to t. The state transition function is:
+- If there are no outgoing edges from vertex i, then dp[i][t] = max(dp[j][t-w] for all j in the previous level) + 1
+- If there is at least one outgoing edge from vertex i with weight w, then dp[i][t] = 1 + max(dp[j][min(t-w, t)] for all j in the previous level)
+
+Create a 2D table dp where dp[i][t] represents the maximum number of vertices that can be visited within t time units, considering only edges with weight less than or equal to t.
+
+The final answer is the value of dp[n][T]
+
+===END PLAN===

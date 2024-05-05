@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+The state expression is 'state[i][j]' where state[i][j] represents whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point. Define the base case as state[0][j] = True for all j since it's always possible to get 0.0 within any time limit.
+
+state[i][j] represents the maximum possible grade that can be obtained by rounding the first i digits after the decimal point within j seconds.
+
+Use a 2D array to represent the state, where each cell contains the result of the dynamic programming subproblem.
+
+For each cell in the state table, calculate the maximum possible grade that can be obtained by:
+
+- Rounding the current digit and recursively calculating the maximum possible grade for the remaining time and decimal places
+- Not rounding the current digit and recursively calculating the maximum possible grade for the same time and decimal places
+
+The final answer will be stored in state[n][t].
+===END PLAN===

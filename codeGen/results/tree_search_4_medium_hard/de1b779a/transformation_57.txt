@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Create a 2D array dp of size (n+1) x (m+1), where dp[i][j] represents the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+For each state s = (i, j):
+    If j == 0, then no stuffing is used, so the maximum profit is simply di[0], which is the price at which a bun without any stuffing can be sold.
+    If i < c[0] (the amount of dough required to cook a bun with the first type of stuffing), then we cannot make any buns using this type of stuffing, so the maximum profit is dp[i][j-1], which is the maximum profit that can be achieved without using any of the current type of stuffing.
+    Otherwise, we can use this type of stuffing to cook a bun, so the maximum profit is max(dp[i-c[0]][j-1], di[0]), where di[0] is the price at which a bun with this type of stuffing can be sold.
+
+The updated state s = (i, j) will be dp[s].
+
+===END PLAN===

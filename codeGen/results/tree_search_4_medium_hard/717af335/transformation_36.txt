@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The state expression seems like it would involve finding the minimum value for X that satisfies the given conditions. The transition relationships might involve recursively calling the function with smaller values of A and B, or maybe even using some kind of iterative approach.
+
+Define the state expression as dp[i][j] = min(Y) such that A-i = X + Y and B-j = X ^ Y, where i is the current value of A and j is the current value of B.
+dp[i][j] = min(dp[k][l]) for k in range(i-1,-1,-1) and l in range(j-1,-1,-1)
+    if (A-k == X+Y) and (B-l == X^Y)
+        or -1 if no such Y exists
+dp[i][j] = min(dp[k][l]) for k in range(i) and l in range(j)
+
+===END PLAN===

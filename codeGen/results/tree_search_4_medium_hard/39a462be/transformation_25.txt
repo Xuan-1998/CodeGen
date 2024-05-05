@@ -1,0 +1,29 @@
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B; The state represents the similarity score up to the current indices.
+
+Let dp be a 2D array of size m+1 * n+1 where m is the length of string A and n is the length of string B. Let's initialize it with zeros.
+
+The transition relationship would be: if the characters at indices i-1 in string A and j-1 in string B are equal, then dp[i][j] = 4 + dp[i-1][j-1]. If they're not equal, dp[i][j] is the maximum of 4 and dp[i-1][j] and dp[i][j-1].
+
+To improve this plan, we can use memoization using a dictionary to store and reuse previously computed similarity scores between substring pairs. This would reduce the time complexity from O(m*n) to O(m+n).
+
+Let's also handle edge cases: if i or j is zero, it means that the current substring is empty, so we return 0 as the similarity score.
+
+Here's an updated version of the plan:
+
+state_expression = (i, j)
+where i is the current index for string A and j is the current index for string B
+The state represents the similarity score up to the current indices
+
+Let dp be a 2D array of size m+1 * n+1 where m is the length of string A and n is the length of string B
+Let's initialize it with zeros
+
+state = (i, j)
+if i or j is zero, return 0 as the similarity score
+
+transition relationship:
+if characters at indices i-1 in string A and j-1 in string B are equal:
+dp[i][j] = 4 + dp[i-1][j-1]
+else:
+dp[i][j] is the maximum of 4 and dp[i-1][j] and dp[i][j-1]
+
+Memoization using dictionary to store and reuse previously computed similarity scores between substring pairs

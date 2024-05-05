@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the sum of marks strictly below the water level for days 1 to i, and minimize this value.
+Let's initialize dp[0] = 0 since there are no marks below the water level initially.
+
+For i > 0:
+    For j in range(i):
+        If m_j < j:
+            dp[i] = min(dp[i], dp[j - 1] + (i - j) * m_i - dp[j - 1])
+
+The plan minimizes the sum of marks strictly below the water level by considering all possible prefixes and choosing the one with the minimum sum.
+
+===END PLAN===

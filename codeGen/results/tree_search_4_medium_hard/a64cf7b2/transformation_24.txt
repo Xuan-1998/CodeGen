@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+Consider the state as dp[i][t]: maximum number of vertices that can be visited within t time units, considering only edges with weight less than or equal to t.
+
+Formulate a recurrence relation based on whether an edge with weight w can be traversed before reaching vertex i:
+dp[i][t] = 1 if i == n
+         = max(0, dp[j][t-w_edge] + 1) for each j from (i-1) down to 1 that has an edge with weight w_edge such that (j-1)*T >= w_edge
+         else 0
+
+The initial condition is dp[0][t] = 0 for all t.
+
+The final answer can be obtained by finding the maximum value in the table where the last column corresponds to the time limit T.
+===END PLAN===

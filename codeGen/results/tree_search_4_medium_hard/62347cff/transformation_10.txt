@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] will represent the minimum path sum up to cell (i, j).
+The base case is when i or j reaches 0. For these edge cases, we can simply return the remaining grid values as there's no further movement possible.
+
+To define the optimal substructure, consider the minimum path sum up to each cell (i, j) as being the sum of its current value and the minimum path sum of either the cell directly above it or the cell directly to its left. This is because we can only move down or right at any point in time.
+
+Utilize memoization by defining a function that takes (i, j) as input and returns the minimum path sum up to cell (i, j). Then update this value recursively for cells below and right.
+
+The updated plan looks like this:
+
+dp[0][j] = grid[0][j] (edge case: start from top)
+dp[i][0] = grid[i][0] (edge case: start from left)
+
+For all other cells:
+dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+
+This plan takes into account the given constraints and provides a clear approach to solving the problem.
+===END PLAN===

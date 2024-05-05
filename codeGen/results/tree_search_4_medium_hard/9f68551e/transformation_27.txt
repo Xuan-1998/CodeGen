@@ -1,0 +1,11 @@
+===
+The state can be defined as dp[i] = minimum mana required to kill the monster that appears at time i, where 1 <= i <= k_n. The base case is when there are no more monsters, so dp[i] = infinity for all i >= k_n.
+
+dp[i] = min(dp[i-1] + 1, h) if i == k_i
+dp[i] = min(dp[i-1] + 1, dp[k_{i-1}]) if i > k_{i-1}
+
+Store the minimum mana required to kill each monster in an array dp, where dp[i] is the minimum mana required to kill the monster that appears at time i.
+
+The plan can be improved by initializing dp[0] = 0, as there are no monsters before time 0. The original plan also assumes that all monsters appear at different times, which might not be the case. To handle this edge case, we should check if a monster's appearance time is equal to its health, and update dp[i] accordingly.
+
+The plan does include most edge cases, but it would be more robust to add checks for extreme values of n, k_i, or h_i.

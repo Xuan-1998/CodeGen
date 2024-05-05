@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Let dp[i] represent the maximum possible bitwise OR value for any substring of length i in binary string s.
+Create a 1D DP table to store the maximum bitwise OR values for each suffix of the substring, where dp[i] represents the maximum possible bitwise OR value for any substring of length i starting from index 0.
+
+Initialize dp[0] = 0, since the maximum bitwise OR value for an empty string is 0.
+Iterate over the binary string from left to right. For each character at index i:
+
+- If the current character is '1', then update dp[i+1] as follows: 
+    - If s[i-1] (i.e., the previous character) is also '1', then update dp[i+1] as the maximum bitwise OR value between dp[i] and the bitwise OR of the previous character and the current character.
+    - Else, update dp[i+1] = dp[i].
+- If the current character is '0', then simply update dp[i+1] = dp[i].
+
+Finally, return max(dp) as the maximum possible bitwise OR value for any substring without leading zeroes.
+
+===END PLAN===

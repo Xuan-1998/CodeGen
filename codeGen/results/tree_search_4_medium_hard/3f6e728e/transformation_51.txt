@@ -1,0 +1,7 @@
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build a sequence with exactly i spheres having radii up to i, where 1 ≤ i ≤ C.
+dp[i] = (C-i) choose k + (k+1) choose (C-k-1) * dp[k-1], where the transition depends on the number of ways to select k spheres with radii up to i
+
+To use a 2D table and fill it row by row from top to bottom, initialize the base case dp[0] = 1
+dp[i] = sum(dp[j] for j in range(0, min(i+1, C))) if i > 0 else 1

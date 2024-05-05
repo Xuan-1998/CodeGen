@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Since we're trying to find the minimum number of perfect squares that sum up to n, we can identify overlapping subproblems by considering the maximum possible value of each perfect square (e.g., √n). This means we'll need a memoized function to keep track of previously computed values.
+
+The state expression is dp[i] where i ranges from 0 to n, representing the minimum number of perfect squares that sum up to i. We can start by initializing the dp array with infinity or some large value for each index.
+
+dp[i] = min(dp[j] + (i - j**2) // j**2 for j in range(1, int(i**0.5) + 1)) if i > 0 else 0
+
+The recursive function can be implemented as follows:
+def recursive_function(i):
+    if i == 0: return 0
+    if i < 0: return infinity
+    if i in cache: return cache[i]
+    
+    min_count = float('inf')
+    for j in range(1, int(i**0.5) + 1):
+        count = recursive_function(i - j**2) + 1
+        if count < min_count:
+            min_count = count
+    cache[i] = min_count
+    return min_count
+
+Finally, we can call the function with n as input to get the minimum number of perfect squares that sum up to n.
+
+===END PLAN===

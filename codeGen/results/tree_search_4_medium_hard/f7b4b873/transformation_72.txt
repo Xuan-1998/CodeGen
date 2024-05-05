@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The goal is to find all possible palindromic partitions of the given string S.
+
+State: The last character seen in the current palindrome found so far, and the length of this palindrome.
+
+Base case: When the length of the current palindrome exceeds the maximum allowed palindrome size.
+
+Recursive function:
+- If the state's length exceeds the maximum allowed palindrome size, return a list with an empty partition.
+- If the state is at the start of the string, consider all possible partitions starting from the beginning of the string. 
+  For each possible partition, recursively call the function with the remaining part of the string and append this to the current palindromic partition.
+- Else, consider the last character seen as a potential center for a palindrome. 
+  If it's a single character or if it forms a palindrome with its corresponding character from the start, add this as a new possible partition.
+  Recursively call the function with the remaining part of the string and append this to the current palindromic partition.
+
+Memoization:
+- Store previously computed solutions for each state in a dictionary to avoid redundant computations.
+- Check if a solution is already stored before computing it. If it is, return the stored solution.
+
+Edge cases:
+- Handle the case when the input string has less than 3 characters (since these cannot form palindromes).
+- Handle the case when the input string contains special characters or spaces.
+- Handle the case when the maximum allowed palindrome size is too small to cover the entire string.
+
+===END PLAN===

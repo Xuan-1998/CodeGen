@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+Define dp[i] to represent the number of times 1 appears in all non-negative integers less than i. The base case is when i = 0, since there are no integers.
+
+dp[i] represents the number of times 1 appears in all non-negative integers less than i. Transition relationship: dp[i] = dp[i - 1] + sum(1 appears in each integer from i-1 to i), where sum is calculated based on the binary representation of numbers between 0 and i.
+
+Implement dynamic programming using an array dp where dp[i] represents the number of times 1 appears in all non-negative integers less than i. Then update dp[i] based on the binary representation of numbers between 0 and i, considering only the rightmost bit that is 1 (since we're counting 1's).
+
+For each integer j from i-1 to 0, calculate the number of times 1 appears in its binary representation. This is equal to the number of trailing zeros in j + 1, which can be calculated as floor(log2(j+1)).
+
+Add this value to dp[i - 1] and store it back in dp[i].
+
+Repeat this process for all i from 0 to n.
+
+The final answer will be dp[n].
+===END PLAN===

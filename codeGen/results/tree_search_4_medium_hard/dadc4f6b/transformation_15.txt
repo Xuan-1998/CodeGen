@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state is a tuple (s, x, y, t) and the new state transitions are obtained by moving to neighboring cells based on coordinates and time.
+
+For each query, calculate the total brightness for the given rectangular view, and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+Create a 3D table dp[0...c][1...100][1...100] where dp[s][x][y] represents the total brightness at time t=0 for star s with initial brightness s and position (x, y).
+
+Initialize the dp table with zeros. For each query, calculate the total brightness by iterating over all stars in the given view and adding their initial brightness to the corresponding dp cell.
+
+For edge cases: 
+- If c is very large, consider using a more efficient data structure like a priority queue.
+- Handle the case where the rectangle has no stars.
+
+The plan includes dynamic programming with memoization for efficient computation. It considers all possible transitions based on coordinates and time, which seems correct.

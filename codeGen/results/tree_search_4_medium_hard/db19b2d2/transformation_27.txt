@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+Let the state be a tuple (i, k) where i is the current department and k is the number of players chosen so far. The base case is when all departments have been visited (i = m).
+
+Create a 2D array dp[i][k] where dp[i][k] represents the probability that the k-th player chosen comes from the department of interest, considering all departments up to i.
+
+The transition function would be: dp[i+1][k+1] = (number of players in department i+1) / (total number of players so far + 1)) * (dp[i][k] if h < i+1 else dp[i][k] - dp[i][k-1]).
+
+The final answer would be the sum of all probabilities where k >= n, divided by the total probability that a randomly formed team will have at least one player from the department of interest.
+
+===END PLAN===

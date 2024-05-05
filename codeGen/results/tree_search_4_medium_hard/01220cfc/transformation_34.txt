@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i] depends on the maximum reachable index from the previous position. If there are no elements that can be reached, then dp[i] = False; otherwise, it's possible to reach dp[i].
+dp[i] is True if i+1 <= len(arr) and arr[i] >= 1, else False.
+Create a dictionary memo to store the intermediate results of subproblems and avoid redundant computation.
+
+For each index i in range(len(arr)):
+    If i == 0 or memo.get(i-1, False): # base case: start from the beginning
+        j = min(i+arr[i], len(arr)-1)
+        while j >= 0:
+            if memo.get(j, False):
+                return True
+            j -= arr[j]
+        return False
+
+return dp[-1] # final answer
+===END PLAN===

@@ -1,0 +1,18 @@
+Determine that the problem has an optimal substructure: the number of non-negative integers less than or equal to n, whose binary representations do NOT contain consecutive ones, can be calculated by solving smaller instances of the same problem for smaller values of n. This allows you to use dynamic programming with memoization.
+
+The state is dp[i], where dp[i] is the count of non-negative integers less than or equal to i, whose binary representations do NOT contain consecutive ones.
+
+Create a 2D array dp of size (n+1) x 2, where:
+
+- dp[i][0] is the count of non-negative integers less than or equal to i-1, whose binary representations do NOT contain consecutive ones.
+- dp[i][1] is the count of non-negative integers less than or equal to i-1, whose binary representations DO contain consecutive ones.
+
+Base case: dp[0][0] = 1 (since there's only one number that has no binary representation), and dp[0][1] = 0 (since there are no numbers with consecutive ones).
+
+Transition function:
+
+- For i > 0:
+    - If the least significant bit of i is 0, then you can simply add the count of non-negative integers less than or equal to i-1, whose binary representations do NOT contain consecutive ones.
+    - If the least significant bit of i is 1, then you have two options: either i has a consecutive one in its binary representation (in which case you don't include it in your count), or i does not have a consecutive one in its binary representation (in which case you do include it in your count). So, dp[i][0] = dp[i-1][1] + dp[i-1][0], and dp[i][1] = 0.
+
+Memoization: use memoization to store the results of subproblems so that they can be quickly retrieved when needed.

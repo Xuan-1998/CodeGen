@@ -1,0 +1,34 @@
+===
+state = (previous_mana, seconds_left, monsters_remaining)
+states_dict = {}
+
+def dp(seconds):
+    if seconds < 0:
+        return float('inf')
+    
+    if seconds == 0 and monsters_remaining == 0:
+        return 0
+    
+    state_key = (previous_mana, seconds, monsters_remaining)
+    if state_key in states_dict:
+        return states_dict[state_key]
+    
+    min_mana = float('inf')
+    for i in range(previous_mana + 1):
+        mana = dp(seconds - 1) + i
+        if i >= monsters_remaining and mana < min_mana:
+            min_mana = mana
+    
+    states_dict[state_key] = min_mana
+    return min_mana
+
+n, k, h = map(int, input().split())
+monsters = [(k_i, h_i) for k_i, h_i in zip(*[map(int, input().split()) for _ in range(n)])]
+for monsters_remaining in range(n, 0, -1):
+    min_mana = float('inf')
+    for seconds_left in range(monsters_remaining, 0, -1):
+        previous_mana = dp(seconds_left - 1)
+        if h > previous_mana + 1:
+            continue
+        min_mana = min(min_mana, previous_mana + h)
+    print(min_mana)

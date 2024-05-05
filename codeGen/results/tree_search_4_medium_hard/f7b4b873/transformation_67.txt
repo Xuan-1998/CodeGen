@@ -1,0 +1,11 @@
+An alternative approach would be to use dynamic programming with bottom-up tabulation, where the solution to the larger problem is constructed from the solutions of smaller subproblems.
+
+The state is a tuple consisting of the remaining substring to process and the previous partition, and the base case is when the remaining substring is empty. 
+
+Start by initializing a 2D table dp of size (N+1) x (N+1), where N is the length of the input string S, with all elements set to an empty list.
+
+The recurrence relation would be: for each character c in the string S, if the remaining substring is not empty and the previous partition does not include c, then consider adding c as a new palindrome to the current partition. 
+
+If this addition results in a valid palindromic partition (i.e., the added substring is a palindrome), then add it to the dp table for the current state.
+
+The final answer would be the list of lists stored in the bottom-right cell of the dp table, which represents all possible palindromic partitions of the input string S.

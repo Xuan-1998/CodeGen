@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+\
+
+Let's define the state as dp[i] = maximum health of i-th and (i+1)-th monster, where 1 <= i < n. The base case is when i == n-1, so dp[n-1] = h_n.
+
+Let dp[i] be the minimum mana required to kill all monsters up to the i-th second. Then, we have dp[i] = min(dp[i-1], h_i) + 1 if no monster appears at the i-th second, and dp[i] = 1 otherwise.
+
+We can use a two-pointer approach: Initialize two pointers i and j to 0, where i is the current time and j is the index of the next monster's appearance. Iterate through the monsters, updating the minimum mana required at each step.
+
+For each iteration, we check if the i-th second is the appearance time for some monster. If it is (j < n), then we update dp[i] = min(dp[i-1], h_j) + 1 and increment j. If not (j == n), then dp[i] = dp[i-1]. Finally, increment i.
+
+The plan includes edge cases: when there are no monsters (n == 0), the minimum mana required is 0; when a monster appears immediately, we set dp[0] = h_0 + 1.
+
+===END PLAN===

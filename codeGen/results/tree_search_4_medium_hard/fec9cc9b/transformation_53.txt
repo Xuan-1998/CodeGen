@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Define a state as (max_non_decreasing, max_increasing) where max_non_decreasing is the maximum length of non-decreasing sequence seen so far in the current subsegment and max_increasing is the maximum length of increasing sequence seen so far in the current subsegment. Then use top-down approach with memoization to update this state and determine if the current subsegment is a ladder.
+
+dp[i][j] = { (a[j-1] <= a[j-2] && j == r) ? 1 : (max_non_decreasing > 0 && a[j-1] >= a[j-2]) ? max_non_decreasing + 1 : 0
+
+For each query, iterate over the range [l,r]. If dp[i][j] is greater than 0, then it means the current subsegment is a ladder. So print "Yes" for this query and move to the next query. Otherwise, print "No".
+
+===END PLAN===

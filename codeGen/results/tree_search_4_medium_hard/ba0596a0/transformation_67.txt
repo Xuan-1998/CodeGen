@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp = [[False for _ in range(3)] for _ in range(len(stones))]
+dp[0][1] = True  # base case: frog can start on first stone
+for i in range(1, len(stones)):
+    for k in [1, 2]:
+        if dp[i-1][k+1]:  # check if frog can reach current stone from previous one
+            dp[i][k] = True  # update dp table with solution to smaller subproblem
+for i in range(len(stones)-1):
+    if dp[-1][1]:  # check if frog can reach last stone
+        return True  # return True if it's possible for the frog to cross the river
+return False  # otherwise, return False

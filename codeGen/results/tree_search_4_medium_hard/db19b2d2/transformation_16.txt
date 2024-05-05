@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+state = n - i, transitions = [dp[n-i] * (1 - p) + dp[n-1] * p]
+Consider using a dynamic programming approach where the state represents the number of players left to add to the team, and the transitions represent the addition of new players to the team. This could be solved using either top-down memoization or bottom-up tabulation.
+
+Dynamic programming using bottom-up tabulation: Create a table dp where dp[i] represents the probability that the team with i players will have at least one player from the department of interest.
+
+1. Initialize dp[0] = 0, as there are not enough basketball players to form a team.
+2. Calculate dp[n] = 1 if there's at least one player from the department of interest, otherwise dp[n] = 0.
+3. For i from n-1 down to 1:
+   - If there are more than h players in the university who are from the department of interest, set dp[i] = 1.
+   - Otherwise, calculate dp[i] as 1 - (1 - p)^(n-i).
+4. Calculate the final answer as 1 - dp[0].
+===END PLAN===

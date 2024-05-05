@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use a top-down approach with memoization to solve this problem by recursively exploring all possible routes from vertex 1 to vertex n, and store the results in a memoized dictionary to avoid redundant calculations.
+
+Define the state expression as (i, v), where i is the current vertex and v is the maximum number of vertices that can be visited up to this point. The base case is when i == n, in which case the maximum number of vertices that can be visited is v + 1.
+
+Instead of considering only the last visited vertex, consider the time spent traversing edges from the previous visited vertex to the current vertex. Define a new state expression as (i, v, T), where i is the current vertex, v is the maximum number of vertices that can be visited up to this point, and T is the remaining time limit.
+
+Use a dictionary-based memoization approach by storing the results of subproblems in a dictionary and checking if the result for a given state has been computed before. When exploring possible routes from vertex 1 to vertex n, prune branches with insufficient time to traverse all edges.
+
+In the recursive function, explore all possible routes from the current vertex i, considering each edge (j, k, t) such that j == i and the remaining time T >= t. For each edge, update the state by decrementing the time T and incrementing the maximum number of vertices v if k is not visited before.
+
+For each visited vertex, store the result in a dictionary to avoid redundant calculations. When reaching the target vertex n, return the maximum number of vertices that can be visited within the given time limit.
+
+===END PLAN===

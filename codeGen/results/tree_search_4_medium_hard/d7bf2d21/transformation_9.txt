@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP[i][j]: length of the longest increasing subsequence ending at index i with j elements
+Consider two states: DP[i][k] represents the length of the longest increasing subsequence ending at index i with k elements, where k is the number of elements in this subsequence.
+1. Initialize a 2D array DP with size (n+1) * (n+1), where n is the length of the input array.
+   Fill up all DP[i][0] values with 1 since each element forms a single-element increasing subsequence.
+2. Iterate over the input array and for each element at index i:
+   a. Update DP[i][j] values by considering two possibilities:
+      * If the current element is greater than the previous one, it can be appended to the existing increasing subsequence of length j-1.
+      * If the current element is not greater than any previous one, start a new increasing subsequence of length 1.
+   b. Update DP[i][j] as the maximum of these two possibilities plus one (since we're considering subsequences ending at index i).
+3. Initialize variables to store the maximum length and count of longest increasing subsequences.
+4. Iterate over the last row of the DP array, and for each cell:
+   a. If the value is greater than the previous maximum length, update the maximum length and increment the count.
+5. Return the count as the result.
+
+===END PLAN===

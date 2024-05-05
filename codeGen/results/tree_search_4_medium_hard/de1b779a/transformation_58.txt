@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Represent the state using a 2D array dp where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as:
+
+dp[i][0] = max(dp[0][0], 0) + d0 (base case)
+dp[i][j] = max(dp[i-1][0], dp[i-ci[j]][j-1]) + di[j] for j > 0
+
+Define state s as (i, j) representing the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as:
+
+dp[s] = max(dp[(s[0]-c0, 0)], dp[(s[0], s[1]-1)]) + d0 if s[1] > 0
+dp[s] = max(dp[(s[0]-c0, 0)], 0) + d0 if s[1] == 0
+
+Use memoization by creating a dictionary dp to store the computed values, and then update dp using the transition relationship.
+
+For the initial state, initialize dp[0][j] = 0 for all j.
+
+To find the maximum profit, iterate from i = n down to 1, and from j = m down to 1. For each (i, j), calculate the maximum profit using the transition relation and store it in dp[i][j].
+
+Finally, return dp[n][m] as the maximum profit.
+
+===END PLAN===

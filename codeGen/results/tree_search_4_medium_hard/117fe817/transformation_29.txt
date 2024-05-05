@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+Let the state be dp[i], where dp[i] represents the number of times 1 appears in all integers less than i. The base case is when i = 0, since there are no digits to count.
+To think about numbers with the same last digit as i and count how many times 1 appears in these numbers. 
+Memoizing the count function to avoid redundant computations while generating the results.
+Consider using a loop from 1 to n to iterate through all integers less than or equal to n, counting the number of times 1 appears for each integer. Use this count as an increment in dp[i] where i is the last digit of the integer.
+The state transition function can be defined as: 
+dp[i] = sum(dp[j]) for j from 0 to (i-1) and j % 10 == i
+This way, we only need to calculate once for each group of numbers with the same last digit. We don't have to recalculate this count for every number.
+This will significantly reduce the time complexity of our solution.
+The final answer is dp[n].
+===END PLAN===

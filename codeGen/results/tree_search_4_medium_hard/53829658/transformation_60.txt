@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = max number of reversed roads to reach city i from an arbitrary capital, with base case being dp[1] = 0. This choice considers the maximum in-degree as the optimal capital.
+
+dp[i] = max of:
+    - dp[j-1] + 1 if there is an edge from city j to city i and not all such edges have been used
+    - 0 if no such edge exists
+
+Utilizing a depth-first search (DFS) to traverse the tree, keep track of the maximum in-degree city, and update the dp array accordingly.
+
+Perform DFS on each city to calculate the minimum number of reversed roads needed to reach that city from an arbitrary capital. This is equivalent to calculating the longest distance from the capital to each city.
+
+The optimal capital is the one with the maximum in-degree. All possible ways to choose the capital are simply all cities with the maximum in-degree, which can be obtained by storing them in a set or list during DFS.
+
+===END PLAN===

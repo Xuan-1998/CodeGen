@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities.
+
+Define the state as visited[i], which is a boolean indicating whether or not city i has been reached before. The base case would be all values of visited initially being False, since we are starting at the capital and have not yet reached any other cities.
+
+Define another state dp[i] to keep track of the minimum number of roads to be inversed to reach city i from the capital. The initial value for all dp[i] would be -1, indicating that it's not possible to reach those cities without reversing any roads.
+
+The key insight is that we can update dp[i] by considering all adjacent cities j and calculating the minimum number of roads to be inversed to reach city i through city j.
+
+For each city i, we iterate over its neighbors j. If city j has been reached (visited[j]), then we can consider it as an intermediate step to reach city i. We calculate the minimum number of roads to be inversed to reach city i from city j and add 1 to account for the edge from city j to city i.
+
+We update dp[i] with the minimum value found, which is either its current value or the new calculated value. If no adjacent city can be reached (visited[j] is False), then we leave dp[i] as -1.
+
+Finally, we find the minimum number of roads to be inversed to reach any other city from the capital by iterating over all cities i and taking the minimum of their corresponding dp[i].
+
+===END PLAN===

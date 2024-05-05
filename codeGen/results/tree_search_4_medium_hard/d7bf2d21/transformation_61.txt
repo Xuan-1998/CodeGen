@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp = {}
+for i in range(len(arr)):
+    for j in range(i+1):
+        if arr[j] < arr[i]:
+            dp[(i,j)] = dp.get((j,i-1), 0) + 1
+        else:
+            dp[(i,j)] = 1
+max_length = max(dp.values())
+count = sum(1 for k, v in dp.items() if v == max_length)
+print(count)
+===END PLAN===

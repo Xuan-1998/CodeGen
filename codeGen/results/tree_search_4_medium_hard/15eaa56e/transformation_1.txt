@@ -1,0 +1,21 @@
+def is_sorted(row, col):
+    if col == 0:  # base case: single row
+        return True
+    sorted_prev_col = is_sorted(row - 1, col - 1)
+    for i in range(row):
+        if row[i][col - 1] > row[i][col]:
+            return False
+    return sorted_prev_col and any(is_sorted(i, col) for i in range(row))
+
+def solve():
+    n, m = map(int, input().split())
+    table = [[*map(int, input().split())] for _ in range(n)]
+    k = int(input())
+    tasks = [list(map(int, input().split())) for _ in range(k)]
+
+    for task in tasks:
+        l, r = task
+        if is_sorted(r, m):
+            print("Yes")
+        else:
+            print("No")

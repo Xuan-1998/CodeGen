@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+state[i][j] represents whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point. Define the base case as state[0][j] = True for all j since it's always possible to get 0.0 within any time limit.
+
+The recurrence relation is: 
+state[i][j] = state[i-1][t-j] && ((int(10^k * f) % 10 == 5 || int(10^k * f) % 10 > 4) ? 9 : int(10^k * f) % 10)
+
+Use a tabulation approach by defining a 2D array to store the computed values of state[i][j] and fill it in a bottom-up manner, then return the maximum value in the last column of the array (i.e., state[n][t]).
+
+===END PLAN===

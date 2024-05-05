@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if all numbers less than or equal to 2^k have bitwise XOR of at least j, else dp[i][j] = 0;
+Let i and j be non-negative integers where i < 2^k and j <= i.
+For each number x in the array:
+    If x < 2^(k-1), then its bitwise AND with any y will be less than or equal to 2^(k-1).
+    If x >= 2^(k-1) and x < 2^k, then its bitwise AND with any y will be at least 2^(k-1).
+Let d[i][j] represent the number of arrays that have bitwise XOR of j and bitwise AND equal to i.
+For each number x in the array:
+    If x is less than or equal to 2^(k-1), then it contributes to dp[i-2^(k-1)][j].
+    If x is greater than 2^(k-1) but less than 2^k, then it contributes to dp[2^(k-1)-x][j-x];
+For each i in range(0, 2^k):
+    For each j in range(0, i+1):
+        dp[i][j] = sum(dp[i-2^(k-1)][j], dp[2^(k-1)-i][j-i]);
+Return dp[2^k-1][0];
+===END PLAN===

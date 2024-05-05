@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far.
+
+The base case would be initializing the table for the first string. For example, dp[1][0] = 0 because we don't need to reverse any characters to get the first string in lexicographically sorted order.
+
+To fill up the table, iterate from i = n to 1. For each i, iterate from j = 0 to max_length. If the current string at index i-1 is lexicographically smaller than the previous strings seen so far (i.e., dp[i-1][j-1] represents a string that ends with the character of the current string), then we can simply add the cost to reverse the current string and set dp[i][j] = dp[i-1][j-1] + cost[i-1]. Otherwise, consider two cases: if the current string is equal to the previous strings seen so far (i.e., j == max_length), we don't need to reverse any characters; otherwise, we can reverse the first character of the current string and set dp[i][j] = dp[i-1][j+1] + cost[i-1].
+
+Finally, return dp[n][max_length] as the minimum total cost.
+
+===END PLAN===

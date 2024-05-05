@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i][j] = minimum mana required to kill i monsters with j seconds left, 
+where 1 <= i <= n and 0 <= j <= k_n. The base case is when i == n, 
+meaning all monsters are killed, so dp[i][j] = 0 for all j.
+
+dp[i][j] = min(dp[i-1][k_i - 1] + h_i, dp[i][j]) if j >= k_i 
+else dp[i][j]
+
+state transition: 
+- from state (i-1, k_i-1) to state (i, j), using mana h_i
+- or from the same state (i-1, k_i-1) to state (i, j)
+
+Apply memoization by storing the minimum mana required in a dictionary 
+and reusing calculations
+
+===END PLAN===

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The problem involves finding all possible palindromic partitions of a string, which can be solved using dynamic programming with memoization.
+
+state: (i, j) where i and j are the start and end indices of the substring to be checked for palindromeness
+base case: if j-i < 1, then return [[]]
+
+state: (i, j, partition) where i and j are the start and end indices of the substring to be checked for palindromeness and partition is the current partition
+
+1. If the substring from index i to j is a palindrome:
+   - For each possible partition of the substring:
+     - Add the new partition to the list of partitions
+     - Recursively find all palindromic partitions of the remaining string (from index 0 to i-1) and append them to the list
+   - Return the updated list of partitions
+
+2. If the substring from index i to j is not a palindrome:
+   - For each possible partition of the substring:
+     - Add the new partition to the list of partitions
+     - Recursively find all palindromic partitions of the remaining string (from index 0 to i-1) and append them to the list
+   - Return the updated list of partitions
+
+3. If the input string is empty:
+   - Return [[]]
+
+This plan can be improved by implementing a helper function to check if a substring is palindrome or not, and also by handling edge cases like when the input string is empty.
+
+===END PLAN===

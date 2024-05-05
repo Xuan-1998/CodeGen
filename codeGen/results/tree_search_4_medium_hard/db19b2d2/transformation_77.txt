@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using a greedy algorithm, where you start by selecting the most promising department and then iteratively add players until the team is complete. This might involve some form of sorting or priority queue.
+
+Base case: If h = 1, then the probability is either 0 (if s1 < n) or 1 (if s1 >= n).
+
+The state represents a subset of departments, with transitions based on the number of players in each department.
+
+Dynamically build an array where dp[i] is the probability that a randomly formed team will have at least one player from the first i departments. Initialize dp[0] to 0 and dp[1] to s1 / (s1 + n - 1) if s1 >= n, else dp[1] = 0.
+
+For i = 2 to m:
+    Calculate dp[i] as the maximum of the following two cases:
+        1. The probability that a randomly formed team will have at least one player from the first (i-1) departments, which is dp[i-1].
+        2. The probability that a randomly formed team will not have any players from the first (i-1) departments, and then add at least one player from the i-th department. This is calculated as (s_i / (m - i + s_i)) * (1 - dp[i-1]).
+
+Return dp[m] as the answer.
+===END PLAN===

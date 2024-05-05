@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use dynamic programming with a bottom-up approach by tabulating the intermediate results for each length and number of operations.
+
+Let dp[i][j] be the length of the resulting number after applying j operations, given that the initial number has i digits. We need to maintain this 2D array dp where dp[i][j] represents the desired result.
+
+The base case is dp[0][j] = 1 for all j, since there are no digits initially. This means we can start with a length of 1 digit even when applying operations.
+
+dp[i][j] is equal to the minimum between:
+
+- The maximum possible number of digits that can be obtained by applying j operations to an i-digit number (i.e., ceil(i / 2)) 
+- The actual number of digits in the resulting number after applying j operations and having i digits initially
+
+This means we should consider the effect of each operation on the length of the number, taking into account the number of digits initially.
+
+Finally, return dp[n][m] as the answer to the problem.
+
+===END PLAN===

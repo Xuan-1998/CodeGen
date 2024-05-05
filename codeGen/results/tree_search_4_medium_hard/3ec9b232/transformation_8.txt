@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The number of different ways can be calculated by considering all possible permutations of the set {1, 2, ..., n}. Each permutation represents a unique way to partition the array into subsets, and the number of subsets in each partition determines the final output.
+
+The state is dp[i][j] representing the number of ways to merge an array of size i with exactly j 1's. 
+
+let d0 be the number of ways to create V such that m0 is at index 0, 
+and let d1 be the number of ways to create V such that m0 is not at index 0; 
+
+dp[i][j] = sum(d0*d[ i-1 ][ j-1 ] + d1*d[ i-1 ][ j ], x=0..i-1) for all i > 1 and 0 <= j <= i
+
+Create a memoized function that uses a dictionary or cache to store the results of subproblems, so that when the same subproblem is encountered again, it can be looked up in the cache instead of recomputed.
+
+Initialize dp[0][j] = 1 for all 0 <= j <= n. This represents the base case where there are no elements left to partition.
+
+Fill up the dp table using the recurrence relation above and iterate over all possible partitions of {1, 2, ..., n}.
+
+Finally, return dp[n][k] where k is the number of 1's in M.
+
+===END PLAN===

@@ -1,0 +1,9 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+state_expression = (i+1, j+1, k) if characters at index i in A and j in B match and are not part of any previous LCS
+state_expression = max(similarity(state_expression), state_expression(i-1, j-1, 0)) if characters at index i in A and j in B do not match or are part of previous LCS
+function similarity(A, B) 
+    for each possible substring S1 in A and each possible substring S2 in B:
+        calculate LCS(S1, S2)
+        add it to k
+    return 4 * k - (len(A) + len(B))

@@ -1,0 +1,37 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+Let dp[i] be the number of ways to build an i-sequence, where 1 ≤ i ≤ C. Initialize a hashmap, C_count, to store the count of each radius from 1 to C.
+
+The state expression can be updated as follows:
+dp[i] = sum(dp[j]*binom(C_count[C_index].index(j), C_count[C_index][j]) for j in range(1, i+1))
+
+Memoize the dp array with a loop to update the state:
+
+for i in range(1, C+1):
+    if i not in C_count:
+        C_count[i] = 0
+    dp[i] = sum(dp[j]*C_count[C_index].index(j) for j in range(1, i+1))
+
+Finally, iterate over each test case and calculate the number of different X-sequences that can be built:
+
+for _ in range(int(input())):
+    N, M, C = map(int, input().split())
+    upper_radii = list(map(int, input().split()))
+    lower_radii = list(map(int, input().split()))
+    
+    dp = [0]*(C+1)
+    dp[1] = 1
+    
+    for radius in upper_radii:
+        if radius not in C_count:
+            C_count[radius] = 0
+        C_count[C_index].index(radius) += 1
+    
+    for i in range(2, C+1):
+        if i not in C_count:
+            C_count[i] = 0
+        dp[i] = sum(dp[j]*C_count[C_index].index(j) for j in range(1, i+1))
+    
+    print(*[dp[i]%10**9+7 for i in range(1, C+1)], sep=' ')
+===END PLAN===

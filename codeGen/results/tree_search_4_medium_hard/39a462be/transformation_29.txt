@@ -1,0 +1,13 @@
+state_expression = (i, j, k) where i is the current index for string A and j is the current index for string B; The state represents the similarity score up to the current indices.
+
+Let state be a tuple (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the length of the longest common subsequence found so far. The transition relationship would be: if the characters at indices i in string A and j in string B are equal, then (i+1, j+1, max(k, 1)). Otherwise, it's the tuple with the maximum value of k.
+
+Define a recursive function that calculates the state value based on the current characters in the strings and stores the results in a dictionary for memoization.
+
+The plan can be improved by initializing the base case to consider all substrings (i.e., i = 0 and j = 0) with an initial similarity score of 4 times the length of the longest common subsequence of empty strings, which is 0. This ensures that the base case considers all possible pairs of substrings.
+
+The plan also needs to handle edge cases where one string is a prefix of the other or they are identical. In these cases, the maximum similarity score would be the sum of the lengths of the strings minus their LCS length.
+
+To further improve the plan, consider using dynamic programming with bottom-up approach instead of top-down recursive function as it can lead to faster execution time.
+
+Finally, note that this plan does not handle the constraint of $1 \leq n, m \leq 5\*10^3$. If the strings are too large to fit in memory, consider using an external memory algorithm or a distributed computing approach.

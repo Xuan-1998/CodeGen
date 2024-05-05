@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts: one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as:
+dp[i][j] = number of ways to split the string s[0..i-1] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+If i is 0, dp[i][j] = (j==1 and 1 or 0) because there's only one way to split an empty string.
+
+dp[i][j] = 
+  sum(dp[i-1][k-1] * a[s[i-1]-ord(c)] for c in set(s[:i])) +
+  (k==1 and 1 or dp[i-k][0]) for k=1..min(j, i//a[ord(c)-1] for c in set(s[:i]))
+
+Define a tabulation-based approach by iterating from i = n - 1 to 0, updating the state at each step based on the previous states and the constraints of the problem.
+
+dp[n][0] will store the number of ways to split s into substrings that fulfill the conditions mentioned in the problem. The output will be dp[n][0]%10^9 + 7. The length of the longest substring over all the ways can be found by finding the maximum value of j such that dp[i][j]%10^9 + 7 is positive for some i. The minimum number of substrings over all the ways can be found by finding the minimum value of j such that dp[i][j]%10^9 + 7 is positive for some i.
+
+===END PLAN===

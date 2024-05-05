@@ -1,0 +1,21 @@
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use top-down approach with memoization to update this state and determine if the current subsegment is a ladder.
+
+dp[i][j] = {
+    (a[i-1] >= a[j]) && (dp[i-1][l-1] > 0) ? dp[i-1][l-1]+1 : 0
+}
+
+Consider using a 2D array dp of size (n+1) x (m+1) where dp[i][j] stores whether the subarray from i to j is a ladder, and update dp[i][j] based on dp[i-1][l-1] and a[l-1] >= a[r-1].
+
+for each query l and r:
+    for i from l to r:
+        if (dp[i][j] > 0) {
+            print "Yes"
+            break
+        }
+    if no "Yes" was printed, print "No"
+
+This plan is mostly correct, but it can be improved by avoiding unnecessary computations. The top-down approach with memoization is a good start, but the current implementation still does a lot of repeated work.
+
+To improve this plan, we can use a bottom-up dynamic programming approach instead. This way, we only need to compute each dp[i][j] once, and we don't need to repeat any computations.
+
+The edge cases are handled correctly in this plan. For example, the plan will correctly handle the case where there is no subarray that is a ladder.

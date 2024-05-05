@@ -1,0 +1,36 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+Let dp[i] represent the count of ones in all numbers up to i.
+Let dp represent the total count of ones in all numbers less than or equal to n.
+
+The state transition could be: 
+dp = sum(dp[j] * (10**(len(str(n))-j-1)) for j in range(len(str(n))))
+
+This is because every number from 0 to n has a unique representation in base 10. The total count of ones in all numbers less than or equal to n can be calculated by considering each digit position separately.
+
+For example, the number 101 has one 1 in its tens place and two 1's in its ones place. So, the total count of ones is dp[0] + dp[2].
+
+The initial state could be: 
+dp = [0 for _ in range(len(str(n)))] 
+
+Since there are no ones in any number less than or equal to n, the total count of ones is initially 0.
+
+The base case could be: 
+n == 0, return 0
+
+This is because there are no ones in any number less than or equal to 0. So, the total count of ones is 0.
+
+The solution would be: 
+def countOnes(n):
+    dp = [0 for _ in range(len(str(n))))]
+    if n == 0:
+        return 0
+    for i in range(1, len(str(n))):
+        for j in range(i+1):
+            if (j + 1) * 10**(i-1) <= n:
+                dp[i] += 1
+            else:
+                break
+    totalOnes = sum(dp[j] * (10**(len(str(n))-j-1)) for j in range(len(str(n))))
+    return totalOnes
+===END PLAN===

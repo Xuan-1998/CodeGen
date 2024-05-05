@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val) where col is the column being checked and max_val is the maximum value seen in that column so far
+
+State: (rows, max_val), Transition: (new_row, new_max_val) -> update max_val and check if sorted
+
+Implement dynamic programming by defining a function dp(c, r) that returns True if the subtable from (1, 1) to (r, c) is sorted in non-decreasing order, and False otherwise. Then, iterate over each task and call the dp function for each column.
+
+Define the base case as follows: dp(c, 0) = True
+
+The transition function can be implemented as follows:
+- If max_val >= new_row[c], return dp(c, r - 1)
+- Else, update max_val with new_row[c] and return False
+
+Iterate over each task and call the dp function for each column. For each task, check if the subtable is sorted in non-decreasing order.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic programming with a recursive function that checks if a number is prime and has k_perms permutations.
+Consider using a 2D table dp[n_max+1][k_perms+1] where dp[i][j] represents the count of prime numbers with exactly j prime permutations below i.
+State: k, where k is the count of prime numbers with exactly k_perms prime permutations below n_max.
+Initial state: k = 0
+Base case:
+- For each number from 2 to n_max:
+	+ Check if it's a prime number.
+	+ If it's not prime, continue to the next number.
+	+ If it's prime, calculate its permutations using recursion.
+	+ Update dp[i][k] where i is the current number and k is the count of permutations.
+- For each k from 0 to k_perms:
+	+ Initialize a counter for numbers with exactly k prime permutations: count = 0
+	+ Iterate over the table dp in reverse order (from n_max down to 2) and update the counter if the current number has k prime permutations.
+	+ Update k accordingly.
+Return [k, smallest_prime, largest_prime] where smallest_prime is the smallest prime number with exactly k_perms prime permutations below n_max, and largest_prime is the largest one.
+
+===END PLAN===

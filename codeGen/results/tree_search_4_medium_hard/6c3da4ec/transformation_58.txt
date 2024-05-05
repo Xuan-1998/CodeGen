@@ -1,0 +1,11 @@
+Might consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Define dp[i] as the maximum bitwise OR value of all substrings that end at position i. Then, consider two options: the last bit is 0 and the last bit is 1. Calculate the maximum bitwise OR value for each option separately.
+
+For the first option (the last bit is 0), consider the maximum bitwise OR value of all substrings ending at index i-1 and extend it with either 0 or 1, whichever gives a larger bitwise OR value.
+
+For the second option (the last bit is 1), consider the maximum bitwise OR value of all substrings ending at index i-1 and extend it with 1. Since this option only increases the bitwise OR value, update dp[i] as the maximum between the previous maximum and the current value extended with 1.
+
+Apply dynamic programming by maintaining a 1D array dp of size n, where dp[i] is the maximum bitwise OR value of all substrings that end at position i.
+
+Finally, return the maximum bitwise OR value from the last element in the dp array (dp[n-1]), which corresponds to the maximum bitwise OR value for the entire binary string.

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Create a memoization table dp where dp[i][j] represents whether or not it's possible to split the permutation from index 2i to index 2j+1 into two arrays that satisfy the condition.
+
+For each cell in the table, calculate whether p[2*i]+p[2*i+1] is less than or equal to p[2*j]+p[2*j+1]. If true, dp[i][j]=1; otherwise, dp[i][j]=0. This is based on the idea that if p[2*i]+p[2*i+1] is less than or equal to p[2*j]+p[2*j+1], then it's possible to split the permutation from index 2i to index 2j+1 into two arrays.
+
+dp[i][0]=1 for all i because if you're splitting a range of length 1, you can always split it into two arrays with no elements in common. dp[0][j]=1 for all j because if you're considering the first element only, you can always split it into an empty array and another array with that one element.
+
+To solve this problem, iterate through the permutation from left to right. For each index i, calculate whether there exists a j such that p[i] is less than or equal to p[2j+1]. If yes, then dp[i][j]=1; otherwise, dp[i][j]=0. This means that you can split the permutation up to index i into two arrays.
+
+Finally, check if there's any pair of indices (i,j) such that dp[i][j]=1. If yes, then return "YES", otherwise return "NO".
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. Use top-down approach with memoization to solve this problem.
+
+Use a 2D DP table dp[i][j] that stores the maximum beauty for the first i elements and the last j elements in the array.
+- Initialize dp[0][j] = f(1) = 0, since there are no operations to be performed on an empty array.
+- For each element at position i in the array:
+  - Find all possible subsets of the numbers from 1 to i that include this element and have no bad prime numbers. 
+  - For each subset s:
+    - Calculate f(s) using the given function definition.
+    - Update dp[i][j] = max(dp[i-1][k-1]*f(s)) for k from j down to 0.
+
+View the problem as a function that takes a set of numbers and returns its beauty. Break down this function into smaller functions, each operating on a subset of the input set. Formulate state and transition relationships for these sub-functions.
+
+Use dynamic programming to break down the problem into smaller subproblems by finding overlapping subarrays within the input array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers.
+
+===END PLAN===

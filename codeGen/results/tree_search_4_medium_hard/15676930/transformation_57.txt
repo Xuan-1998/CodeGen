@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use tabulation by creating a 2D array where each cell [i][j] represents the maximum joy for i hares and j full hares.
+
+The state could be dp[i][j]: maximum joy for i hares, with k full hares; Transition: 
+dp[i][k] = max(dp[i-1][k-1], dp[i-1][k] if k < n else c[i-1]) + a[i-1]
+
+Define a loop that iterates over the hares and for each hare, use another loop to calculate the maximum joy considering all possible states.
+Initialize dp[0][j] = 0; dp[i][0] = 0;
+
+State: 
+dp[i][k]: maximum joy for i hares, with k full hares;
+Base case: dp[1][0] = a[0], dp[1][1] = b[0]; dp[1][n-1] = c[0]
+
+Loop over the number of hares:
+For each number of hares i:
+  Loop over all possible states k from 0 to n-1:
+    Calculate dp[i][k]: maximum joy for i hares, with k full hares;
+    Update the maximum joy for this state
+Return dp[n-1][n-2]
+===END PLAN===

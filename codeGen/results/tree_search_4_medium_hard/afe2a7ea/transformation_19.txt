@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i] where dp[i] represents whether it's possible to set signal powers for all towns up to i, given that radio towers are built in exactly i - 1 towns.
+dp[i] = True if and only if there exists a way to set signal powers for all towns up to i, given that radio towers are built in exactly i - 1 towns.
+
+The base case could be dp[0], which is always True because there's no need to build any radio towers.
+
+For the recursive case, we consider two possibilities: building a tower in town i or not. If we don't build a tower, then we must have already built a tower in one of the previous towns (i - 1) that covers town i. In this case, dp[i] = dp[i - 1]. If we do build a tower, then we know it will cover exactly one town (say j), and there are two possibilities: either we've already built a tower covering town j - 1 or not. If we have, then the problem reduces to setting signal powers for towns 0 to i - 2. If we haven't, then the problem reduces to setting signal powers for towns 1 to i - 1.
+
+The memoized function could be defined as follows:
+def set_signal_powers(n):
+    dp = {0: True}
+    for i in range(1, n + 1):
+        if i % 2 == 0:
+            dp[i] = (dp[i // 2] and not dp[i - 1]) or dp[i - 1]
+        else:
+            dp[i] = (not dp[i - 1] and (i > 1)) or dp[i - 1]
+    return dp[n]
+
+The function could be called as follows:
+n = int(input())
+print(set_signal_powers(n) % 998244353)

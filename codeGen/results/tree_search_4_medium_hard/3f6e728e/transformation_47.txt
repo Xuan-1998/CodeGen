@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp[i][j] = 1 (no sphere) and dp[C+1][j] = 0 (sequences longer than C are not possible).
+The state is dp[r], where r is the maximum radius of the spheres. The transition relationship is that for each sphere, we either add a new sphere with its radius or reuse an existing sphere with a smaller radius.
+Implementing a hash map to store the states as key-value pairs.
+
+for c in range(C+1):
+    for u in range(N+1):
+        for l in range(M+1):
+            if c == 0:
+                dp[c][u][l] = 1
+            elif u > c or l > c:
+                dp[c][u][l] = 0
+            else:
+                dp[c][u][l] = (dp[c-1][u][l] + dp[c-1][u-1][l]) % mod
+
+for i in range(T):
+    n, m, c = map(int, input().split())
+    print(*[dp[i][n][m] for i in range(c+1)], sep=' ')
+===END PLAN===

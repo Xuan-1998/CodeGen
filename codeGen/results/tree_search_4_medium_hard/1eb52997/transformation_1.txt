@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The number of possible options to place a mirror at 45 degrees can be computed by iterating over each cell in the grid, considering its East side visibility. Overlapping subproblems arise when multiple cells have the same East side visibility pattern. Optimize with dynamic programming.
+
+The state expression is dp[i][j], where i represents the row number (0-indexed) and j represents the column number (0-indexed). The value of dp[i][j] is 1 if the cell at position (i, j) can see an empty cell to its East, and 0 otherwise.
+
+To compute the value of dp[i][j], consider the following cases:
+    - If grid[i][j] == '.', check if there's any '#' in the column j from i+1 to N. If not, set dp[i][j] = 1.
+    - If grid[i][j] == '#', set dp[i][j] = 0.
+
+Memoize previously computed values using a dictionary to store the state expressions as keys and their corresponding values as values.
+
+Use a loop to compute and store the values of dp[][] for each cell in the grid, top-down manner. For each cell, consider its East side visibility pattern and update the value of dp[i][j] accordingly.
+
+Finally, return the sum of all dp[i][j] where i ranges from 0 to N-1.
+===END PLAN===
