@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining two arrays: dp and prev. dp[i] would store the maximum score that can be achieved after i moves, and prev[i] would store the previous index used to calculate this score.
+
+Initialize two arrays: dp[0..k] and prev[0..k-1] with all values set to -∞ (or a value that is guaranteed to not be the answer).
+
+For each move from 1 to k:
+    If the current move is less than or equal to z, consider moving left and right.
+        Calculate the maximum score by considering two options: 
+            1. Move left: dp[i-1] + arr[i-1]
+            2. Move right: dp[i-1] + arr[i]
+        Update dp[i] with the maximum of these two options.
+
+Update prev[i] to store the previous index used to calculate this score.
+Return dp[k] as the maximum score that can be achieved after k moves.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+The base case would be when only one element is left, in which case the maximum score is just that single element
+Represent states as (i, score) pairs, where i is the current index and score is the maximum achievable score at that index, considering the allowed moves up to k steps.
+
+Create a list of tuples (i, score) representing the maximum achievable scores at each index, sorted by increasing index; use dynamic programming to fill in the list in bottom-up manner.
+For each state (i, score), consider all possible moves: moving to the right (score + array[i+1]) and moving to the left (score + array[i-1])
+For each move, check if it's within the allowed k steps and if there haven't been more than z consecutive moves to the left
+If the move is valid, update the score at state (i, score) with the maximum achievable score considering this move
+
+Let dp[i] be the maximum achievable score at index i. The final answer will be dp[n]
+Initialize dp[0] = array[0], since there's no previous element to consider for the first index
+Iterate over indices 1 to n-1, and for each i:
+    - If there haven't been more than z consecutive moves to the left, update dp[i] with max(dp[i-1] + array[i-1], dp[i+1] + array[i+1])
+    - If there have been more than z consecutive moves to the left, update dp[i] with dp[i-z]
+
+Return dp[n]
+===END PLAN===

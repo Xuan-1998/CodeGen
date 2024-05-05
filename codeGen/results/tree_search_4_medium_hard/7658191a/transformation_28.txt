@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a 2D table dp[n+1][k+1] where dp[i][j] represents the maximum score that can be achieved by processing i elements with j moves performed.
+
+Initialize dp[0][0] to 0 as the base case.
+
+Iterate over all elements from index 1 to n, and for each element, iterate over all possible number of moves from 0 to k.
+For each move, calculate the maximum score that can be achieved by either:
+- Processing this current element (i.e., adding its value to the previous score)
+- Moving left by at most z steps (i.e., adding the value of the previous element to the previous score)
+
+Choose the maximum between these two options and store it in dp[i][j].
+
+The final answer will be stored in dp[n][k].

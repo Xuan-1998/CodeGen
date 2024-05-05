@@ -1,0 +1,40 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+
+Consider a 2D array dp of size (M+1) x (N+1), where dp[i][j] represents the minimum initial points required to reach the cell at position (i, j). The base case is dp[0][0], which is equal to grid[0][0]. The transition relationship is:
+
+dp[i][j] = min({
+    if i > 0 && j > 0 and grid[i-1][j-1] > 0:
+        dp[i-1][j-1] + grid[i-1][j-1]
+    elif i > 0 and j > 0 and grid[i-1][j-1] <= 0:
+        float('inf')
+    else:
+        min({
+            if j > 0 and grid[i][j-1] > 0:
+                dp[i][j-1] + grid[i][j-1]
+            elif j > 0 and grid[i][j-1] <= 0:
+                float('inf')
+            else:
+                float('inf')
+        })
+} + grid[i][j]
+
+Use a 2D array to store the minimum initial points required to reach each cell, where dp[i][j] = min({
+    if i > 0 and j > 0 and grid[i-1][j-1] > 0:
+        dp[i-1][j-1] + grid[i-1][j-1]
+    elif i > 0 and j > 0 and grid[i-1][j-1] <= 0:
+        float('inf')
+    else:
+        min({
+            if j > 0 and grid[i][j-1] > 0:
+                dp[i][j-1] + grid[i][j-1]
+            elif j > 0 and grid[i][j-1] <= 0:
+                float('inf')
+            else:
+                float('inf')
+        })
+}) + grid[i][j]
+
+===END PLAN===

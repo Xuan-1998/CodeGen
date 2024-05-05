@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider the maximum score achieved after processing i elements, with j moves performed in total (0 <= j <= k), where j <= z if i < n - 1.
+
+Let dp[i][j] be the maximum score achievable after processing i elements and performing j moves. We can formulate a relation between the current maximum score and the maximum scores of previous states as follows:
+
+dp[i][j] = max(dp[i-1][j], dp[i-1][min(j, z)] + arr[i])
+
+This is because we have two options: either process the next element and perform j moves in total (if i < n - 1), or skip processing the next element and perform min(j, z) moves.
+
+Use dynamic programming by iterating over the array from left to right and keeping track of the maximum scores for each subproblem. Initialize dp[0][0] to 0, as there is no score initially.
+
+Iterate over the array from left to right, considering only the previous state when calculating the current maximum score:
+
+for i in range(1, n):
+    for j in range(min(k, i - 1) + 1):
+        dp[i][j] = max(dp[i-1][j], dp[i-1][min(j, z)] + arr[i])
+
+Finally, return the maximum score achievable after processing all elements and performing k moves:
+
+return dp[n-1][k]
+===END PLAN===

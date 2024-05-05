@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+Consider selecting the most beautiful girl from current group and then recursively apply this process to remaining groups.
+
+DP with a 2D table dp[k][n] where k is the number of girls selected so far, and n is the remaining girls in the group.
+
+Base case: When there's only one girl left (n = 1), it takes f(n) = 0 comparisons.
+Recurrence relation:
+- If k > 1, consider selecting the most beautiful girl from the current group.
+	+ Selecting the most beautiful girl takes f(1) = 0 comparisons (since we're comparing to nothing).
+	+ Recursively apply this process to the remaining groups with k - 1 girls selected so far and n - 1 remaining girls.
+	+ Add the minimal total number of pairwise comparisons needed for each group.
+
+Calculate dp[k][n] as min(dp[k-1][i] + 1) over all possible i from l to r, inclusive.
+===END PLAN===

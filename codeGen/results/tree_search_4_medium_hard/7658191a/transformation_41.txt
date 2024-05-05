@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+The base case would be when only one element is left, in which case the maximum score is just that single element
+
+Define state transitions based on the allowed moves: if the current score is higher than the previous one, make a right move; otherwise, try to make a left move, but not more than z times in a row.
+
+For memoization, use a dictionary where the key is a tuple of the current index and number of moves, and the value is the maximum score achieved so far. Use memoization to avoid recalculating the same subproblems multiple times.
+
+Use dynamic programming by iterating over the array from left to right. Initialize the maximum score for each index as 0. Then iterate k times:
+
+For each move, calculate the maximum score by considering two options:
+    1. Move right: Calculate the maximum score including the current element and recursively call the function with the updated index and number of moves.
+    2. Move left: If less than or equal to z moves were made in a row, try to move left. Calculate the maximum score excluding the current element and recursively call the function with the updated index and number of moves.
+
+Store the calculated maximum score in the memoization dictionary for future reference.
+
+Finally, return the maximum score at the end of the array.
+
+===END PLAN===

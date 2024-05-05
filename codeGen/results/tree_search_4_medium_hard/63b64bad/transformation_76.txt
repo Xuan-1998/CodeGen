@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+Let's define states as tuples of (x, y), where x is the current position in the sequence and y is the value of y at that position. We can represent the state space as a 2D grid with dimensions n+1 by max(a_i).
+
+Define transitions based on whether x <= 0 or x > n, considering sequence values and updating both x and y accordingly. For states where x <= 0 or x > n, we can immediately terminate the program.
+
+To solve this problem using dynamic programming, we can create a memoization dictionary to store intermediate results and avoid redundant computations.
+
+For each state (x, y), calculate the next state by increasing both x and y by a_value = a_x simultaneously. Then, decrease x by a_x while increasing y by a_x.
+
+Use the memoization dictionary to store the results for each state and update it accordingly.
+
+Finally, iterate through all states and find the maximum value of y that can be achieved, or output -1 if the program does not terminate.
+===END PLAN===

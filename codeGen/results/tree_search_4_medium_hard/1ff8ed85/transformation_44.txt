@@ -1,0 +1,16 @@
+dp[i] = (exists two sequences a1 and a2 such that their concatenation forms b[:i] 
+         and the lengths of a1, a2 are either all even or all odd) for i from 0 to n-1
+if (b[0] % 2 == 0): dp[0] = True; else: dp[0] = False
+
+dp[i] = (dp[j] and exists a sequence a3 such that a1+a3+b[j:i] forms b[:i]) 
+         for i from j+1 to n-1
+for i from 1 to n-1:
+    for j from 0 to i-1:
+        if dp[j]:
+            even = odd = False
+            for k from 0 to min(i-j, len(b)-j):
+                if b[k] % 2 == 0: even = True; else: odd = True
+            if (even and not odd) or (not even and odd): 
+                dp[i] = True; break
+
+print("YES" if any(dp[i]) for i in range(n)) else print("NO")

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i] represents the maximum score that can be achieved after i moves, with at most z moves to the left.
+Base case: When k = 0, dp[k] = sum of all values in the array.
+For each i from 1 to k:
+    if i <= z, consider two cases:
+        1. The last move is to the right, adding the value at index i to the score. In this case, we can achieve a maximum score of arr[i-1] + dp[i-1].
+        2. The last move is to the left, adding the value at index i-1 to the score. In this case, we can achieve a maximum score of arr[i-1] + dp[i-z].
+    Choose the maximum between these two cases.
+For each i from k+1 to n:
+    Since we have already used all k moves, the last move must be to the right. In this case, we can achieve a maximum score of arr[i-1] + dp[k].
+Return dp[k]
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Consider the maximum score achieved after processing i elements, with j moves performed in total (0 <= j <= k), where j <= z if i < n - 1.
+Consider the current maximum score as the state, and formulate a relation between the current maximum score and the maximum scores of previous states. For example, you could have something like dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + arr[i]), where i is the number of elements processed, j is the total number of moves performed, and arr[i] is the value at index i.
+
+Create a 2D array dp where dp[i][j] represents the maximum score that can be achieved after processing i elements with j moves performed in total.
+Consider edge cases: for i = 1, j = 0, dp[1][0] should be equal to arr[1], since we start from index 1 and have no moves.
+
+dp[i][j] = max(dp[i-1][j], dp[i-1][min(j-1, z)] + arr[i]), for i > 1.
+The outer loop iterates over the elements in the array (from left to right), while the inner loop iterates over the possible number of moves performed (from 0 to k).
+For the base case when i = 1, dp[1][j] should be equal to arr[1], for j from 0 to min(k, z).
+
+Initialize a 2D array dp with size n x (k + 1) filled with negative infinity.
+Fill up the dp table by iterating over the elements and moves performed.
+
+Finally, return dp[n-1][k] as the maximum score that can be achieved after processing all elements with k moves performed in total.
+===END PLAN===

@@ -1,0 +1,12 @@
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: dp[i][j] represents the minimum total number of comparisons required to select the most beautiful girl from i groups with j participants each.
+
+dp[0][j] = j - 1 (base case, no more groups but still need to compare)
+dp[i][1] = 0 (base case, only one participant left)
+
+for i in range(2, l):
+    for j in range(2, r+1):
+        dp[i][j] = min(dp[i-1][k] + dp[1][j-k]) for k in range(j);
+
+Use a 2D array to store the dynamic programming values and initialize it with base cases.

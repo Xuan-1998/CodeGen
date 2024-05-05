@@ -1,0 +1,13 @@
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The maximum value seen so far in the array up to index i
+
+Think about the last element added to each increasing subsequence, and how it affects the lengths of subsequences that come before it.
+Create a bottom-up dynamic programming table using a 2D array where dp[i][j] represents the length of the longest increasing subsequence ending at index i with value j.
+
+The recursive relation is: dp[i][j] = max(dp[k][x], 1) if k < i and x < j, or there's no such x in the previous subsequences.
+This is because for any increasing sequence ending at index i with value j, either it starts a new increasing subsequence (in which case its length is 1), or it extends an existing increasing subsequence of some length l (in which case its length is l + 1).
+
+Use memoization to store the computed results in dp[i][j], and update the table as you fill it.
+
+The time complexity is O(n^2) where n is the size of the array.

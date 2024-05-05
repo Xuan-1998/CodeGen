@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+State
+Initialize a 2D table dp with size ((10^5 + 1) * 2), where dp[i][j] represents whether the subsequence of length i ending at value j can be obtained from sequence a.
+
+Transition function:
+- If n > prev_val, then we can add a new segment to the current subsequence, so dp[n][j] = OR(dp[n - 1][k], dp[prev_val][j]) for all k in [1, j].
+- If n <= prev_val, then we cannot add a new segment to the current subsequence, so dp[n][j] = dp[prev_val][j].
+
+Initialization: dp[0][i] = False for 1 ≤ i ≤ 10^9.
+
+Final answer: Whether or not sequence b can be obtained from sequence a is represented by dp[n][b_n].
+===END PLAN===

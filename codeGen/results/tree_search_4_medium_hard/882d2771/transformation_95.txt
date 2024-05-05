@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (r, k), where f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from r girls with at most k pairs of identical clothes.
+
+Formulate state and transition relationships:
+f(S) = min(f(S - pair) + 1), for all 0 <= pair <= k,
+where S - pair = (r - i, k - 1).
+
+Use dynamic programming to tabulate the values of f(r) for all possible values of r and k.
+Compute the final answer by summing up the values:
+t * f(l) + t1 * f(l+1) + ... + tr * f(r) - l * f(r)
+Modulo 109+7.
+
+===END PLAN===

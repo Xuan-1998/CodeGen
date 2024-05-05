@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+The state is a tuple (x, y), where x is the current position in the sequence and y is the value of y at that position.
+Consider the sequence values as a function that takes a state (x, y) and returns the next state, using rules for increasing/decreasing x and y simultaneously.
+
+Create a memoized dictionary to store previous states and their corresponding transitions. Initialize it with an initial state (1, 0). For each transition from state (x, y) to (x', y'), calculate the new value of y as the sum of y and the sequence value at position x. If x' is less than or equal to 0 or greater than the sequence length n, terminate the program.
+
+For each run of the program on the sequence i, a_2, a_3, ..., a_{n}, simulate the transitions until termination. Store the final value of y in a dictionary. The keys are the indices and the values are the corresponding final y values.
+===END PLAN===

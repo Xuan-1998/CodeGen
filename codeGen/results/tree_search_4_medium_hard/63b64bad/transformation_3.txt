@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Create a 2D table dp where dp[x][y] stores the maximum value of y when x is at position x in the sequence and the current value of y is y.
+
+State: (x, y)
+Transition:
+    - If x ≤ 0 or x > n, terminate and return y as the final value.
+    - Otherwise, recursively explore two options:
+        * dp[x + a[x]][y + a[x]]
+        * dp[x - a[x]][y + a[x]]
+
+Base Case: When x ≤ 0 or x > n
+
+dp[1][0] = 0 (initial state)
+For each i from 2 to n
+    For each j in range(n+1):
+        If i <= 0 or i > n, break
+        dp[i][j] = max(dp[i + a[i]][j + a[i]], dp[i - a[i]][j + a[i]])
+
+Return dp[n-1][-1] as the final value
+
+===END PLAN===

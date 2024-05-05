@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table dp in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+dp[i][j] might represent the minimum cost for a passenger to reach time t_i, considering j 90-minute tickets used till now. The transition can be defined as:
+
+- If j < i // 60 / 90 (minutes per day), update dp[i][j+1] with min(dp[i-1][j], dp[i-1][j+1]) + cost(90-minute ticket)
+- Otherwise, update dp[i][0] with min(dp[i-1][0], dp[i-1][1]) + cost(one-day ticket)
+
+Dynamic programming with bottom-up tabulation: Create a 2D table dp where dp[i][j] represents the minimum cost for a passenger to reach time t_i, considering j tickets used till now.
+
+===END PLAN===

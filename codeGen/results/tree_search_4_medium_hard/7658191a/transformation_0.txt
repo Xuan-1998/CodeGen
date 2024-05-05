@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D array dp where dp[i][j] represents the maximum score that can be achieved after processing the first i elements and j moves.
+
+Define dp[i][0] as the sum of the first i elements, since no moves are allowed initially.
+For each move j from 1 to k:
+    For each position i from j to n (inclusive):
+        Calculate the maximum score for this subproblem by considering two cases:
+            Case 1: The current move is a right move. In this case, the maximum score is dp[i-1][j-1] + arr[i].
+            Case 2: The current move is a left move. In this case, the maximum score is dp[i-1][j-1] + arr[i-1].
+        Choose the better option and update dp[i][j] accordingly.
+Memoize the dynamic programming process by storing previously computed results in a dictionary.
+
+Compute the final maximum score as dp[n][k].
+
+===END PLAN===

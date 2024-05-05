@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Determine whether there exist two sequences, one with lengths that are either all even or all odd, such that their concatenation forms sequence $b$.
+
+dp[i][j] = 1 if and only if it's possible to form sequence b[:i] using segment lengths of parity j from a.
+Let the parity be represented by an integer p (0 for even, 1 for odd).
+For i from 0 to n:
+  For j in {0, 1}:
+    dp[i][j] = False
+    If i == 0:
+      dp[0][p] = True
+    Else:
+      For k from 0 to min(i, n):
+        If (dp[k][not p] and b[i-k] % 2 == j) or (dp[k][p] and b[i-k]%2 != j):
+          dp[i][j] = True
+          Break
+    End if
+
+For i from 1 to n:
+  For j in {0, 1}:
+    If not dp[i-1][j]:
+      dp[i][j] = False
+    Else:
+      For k from 0 to min(i, n):
+        If (dp[k][not p] and b[i-k]%2 == j) or (dp[k][p] and b[i-k]%2 != j):
+          dp[i][j] = True
+          Break
+
+Print "YES" if dp[n][0] or dp[n][1], else print "NO"
+===END PLAN===

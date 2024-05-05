@@ -1,0 +1,18 @@
+A bottom-up approach with tabulation can be used where we fill up a 3D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+dp[i][j][k] might represent the minimum cost for a passenger to reach time t_i, considering j tickets of type A (1-trip) and k tickets of type B (90-minute), assuming there are no tickets of type C (1-day) used so far.
+
+The state can be defined as (i, j, k), where i represents the current timestamp, j is the number of 1-trip tickets used so far, and k is the number of 90-minute tickets used so far.
+
+Implementing tabulation by initializing dp[0][j][k] = cost[j*20 + k*50] for all 0 ≤ j ≤ max_j and 0 ≤ k ≤ max_k, and filling up the table in a bottom-up manner.
+
+For each i from 1 to n:
+    For each 0 ≤ j ≤ max_j and 0 ≤ k ≤ max_k:
+        Consider the minimum cost for the current timestamp i with j tickets of type A and k tickets of type B used so far.
+        If using one more ticket of type A doesn't exceed the maximum time t_i, then consider the minimum cost dp[i-1][j+1][k] + 20.
+        If using one more ticket of type B doesn't exceed the maximum time t_i, then consider the minimum cost dp[i-1][j][k+1] + 50.
+        Choose the minimum cost from above and store it in dp[i][j][k].
+
+Finally, for each i from 1 to n:
+    For each 0 ≤ j ≤ max_j and 0 ≤ k ≤ max_k:
+        Print the value of dp[i][j][k] as the minimum cost charged after trip i.

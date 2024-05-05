@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = { 
+  (i == 0 || j == 0) ? grid[i][j] : 
+    min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+}
+
+Define the DP relation recursively: 
+
+dp[i][j] = min(
+  i > 0 ? dp[i-1][j] + grid[i][j] : grid[0][j],
+  j > 0 ? dp[i][j-1] + grid[i][j] : grid[i][0]
+)
+
+Use memoization with a recursive function to explore all possible paths. The base cases should be when the current cell is the top-left or bottom-right cell, in which case return the value of that cell directly. Otherwise, recursively explore the right and down cells and choose the minimum points required.
+
+===END PLAN===

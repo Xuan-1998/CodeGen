@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+A state could be defined as dp[i] = min_cost_till_ti, where min_cost_till_ti is the minimum cost for the passenger to reach time t_i.
+
+Consider a 2D array dp[][] where dp[i][j] represents the minimum cost up to timestamp i after using j tickets.
+
+We can fill up this table row by row. For each row i and column j:
+- If we haven't used any ticket yet (i.e., j = 0), then the minimum cost is just the cost for the current trip.
+- Otherwise, consider all possible combinations of tickets that can be used to reach time t_i with at most j tickets. 
+  - For each combination, calculate its cost by summing up the costs of individual trips. 
+  - The minimum cost will be the minimum of these costs.
+
+Memoization can be achieved using a function that takes the current timestamp and the number of tickets used as arguments. This function would return the minimum cost after using these many tickets at this timestamp.
+
+This plan covers all the possible scenarios for each trip, considering the optimal ticket combinations to minimize the total cost.
+
+===END PLAN===

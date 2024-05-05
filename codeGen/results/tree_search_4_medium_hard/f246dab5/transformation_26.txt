@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+state: dp[i] = min_cost_to_activate_after_trip_j, where j is the previous trip that has started the ticket activation for trip i.
+
+State dp[i] represents the minimum cost to activate tickets after trip i. The transition relationship is:
+dp[i] = 
+    if i-t_min >= 140 (1 day):
+        min(dp[j | t_j <= t_i-140] + 120, dp[i-1] + (i-140)*50) 
+    elif i-t_min >= 90 (90 minutes): 
+        min(dp[j | t_j <= t_i-90] + 50, dp[i-1] + (i-90)*20)
+    else:
+        dp[i-1] + (i)*20
+
+Memoize dp[i] as the minimum cost to activate tickets after trip i.
+The base case is dp[0] = 0.
+
+This plan considers all edge cases: 
+    - When a new ticket activation starts for each trip
+    - When no previous ticket activation exists
+    - When trips are made within 90 minutes and 1 day
+===END PLAN===

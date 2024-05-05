@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+State:
+dp[(n, prev_val)] = 1 if there exists an arrangement of sequence a such that its segments are written to the left of segment lengths with values from sequence b and ending at (n, prev_val).
+= 0 otherwise
+
+Dynamic Programming Approach:
+1. Initialize dp as an empty dictionary.
+2. For each (n, prev_val) in the set {(1, x) | x is a value in sequence b}:
+   1. If n = 1 or prev_val > max(sequence b):
+      dp[(n, prev_val)] = 0
+   2. Else:
+      dp[(n, prev_val)] = 1 if (n-1, x) exists in dp and x < prev_val for some x in sequence b; otherwise dp[(n, prev_val)] = 0
+
+3. Print "YES" if there exists an (n, prev_val) such that dp[(n, prev_val)] = 1; otherwise print "NO"

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+Define states as follows:
+dp[i] = min_cost_till_ti, where min_cost_till_ti is the minimum cost for the passenger to reach time t_i and use only tickets purchased up to i (inclusive).
+
+Create a 2D array dp where dp[i][j] represents the minimum cost for the passenger to reach timestamp j considering all possible ticket combinations from 0 to i.
+
+For each cell dp[i][j], consider three options:
+1. Use no ticket: This is represented by dp[i-1][j]. If there's no ticket purchased up to i, then the minimum cost is the same as not using any ticket at time j.
+2. Use a single-trip ticket: This would be 20 rubles if j <= t_i + 59 (i.e., one trip duration), else it's infinite. The minimum cost considering this option is min(dp[i-1][j], 20).
+3. Use a 90-minute ticket: This can be used if j - t_i >= 90, then the minimum cost is min(dp[i-1][j-89], 50). If not, consider using no ticket instead.
+
+The final answer is dp[n-1][t_n].
+
+===END PLAN===

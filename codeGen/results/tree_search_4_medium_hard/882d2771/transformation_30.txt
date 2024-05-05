@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n. This subproblem relation will help us avoid redundant computations.
+
+f(2n+1) = f(n) + n
+This recursive formula helps us reduce the problem size from 2n+1 to n and n-k.
+
+Consider a state s = (n, k), where n is the number of participants and k is the number of groups. The transition relationship can be formulated as follows:
+f(n, k) = min(f(n-1, k-1) + k, f(n-k, k))
+
+The base case should handle when there's only one group left (n == 1 or k == 1). In this case, the comparison process becomes unnecessary.
+
+Implement a bottom-up dynamic programming approach using a 2D array to store the state values. This will ensure that we calculate each f(n, k) value exactly once and reuse previously computed values for larger instances of n and k.
+
+The plan does not include edge cases explicitly, but it can be handled implicitly by considering the base case (when there's only one group left).
+
+===END PLAN===

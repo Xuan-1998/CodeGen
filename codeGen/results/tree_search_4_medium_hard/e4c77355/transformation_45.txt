@@ -1,0 +1,11 @@
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+DP[i][j] represents the length of the longest increasing subsequence ending at index i with the last element being j.
+
+Initialize DP table to store lengths of longest increasing subsequences.
+Fill in base cases for the first element: DP[0][i] = 1 (since it's a single-element subsequence).
+
+Iterate through the array:
+For each element i, iterate through all previous elements j < i:
+If the current element is greater than the previous one, update DP[i][j] to be the maximum of its current value and DP[j][k] + 1 (where k is the previous element in the subsequence).
+
+Return the maximum length found in the DP table.

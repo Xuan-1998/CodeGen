@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n+1) = f(n) + 1 (since we compare girls in pairs)
+f(2n) = f(n) + n (since we have n comparisons to make)
+
+Tabulate the dynamic programming state with an array dp, where dp[i] represents the minimal total number of pairwise comparisons needed to select the most beautiful participant from i girls in a beauty contest.
+
+dp[1] = 0 (base case: no comparisons needed for one girl)
+dp[2] = 1 (base case: one comparison needed for two girls)
+
+For larger n, we have:
+dp[n] = min(dp[i] + dp[j] + 1) for all i, j < n such that i + j = n
+
+Initialize the dp array with values for small n and calculate the rest using the above recurrence relation.
+
+===END PLAN===

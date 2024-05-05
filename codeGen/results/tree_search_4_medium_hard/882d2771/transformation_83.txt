@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Consider a state (i, j) where i is the number of groups and j is the maximum number of girls per group. Define the state as a tuple (i, j).
+
+State: (n, k, g) where n is the remaining number of girls, k is the current group size, and g is the current girl's beauty.
+
+Tabulating values of f(i) for i = 1, 2, ..., r
+
+Define a function dp(n, k, g) that returns the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls with maximum group size k and beauty g.
+
+For the base case, when there is only one girl left (n == 1), return 0 because no comparisons are needed.
+
+For the recursive case:
+
+1. If k == 1, return the minimal number of comparisons needed to select the most beautiful participant from n girls.
+2. For each group size j from k down to 1:
+   a. Calculate the number of comparisons needed to select the most beautiful participant from the first j girls and subtract that from dp(n - j, k, g).
+   b. Add the minimal number of comparisons needed to compare the remaining n - j girls.
+3. Return the minimum value among all possible combinations in step 2.
+
+===END PLAN===

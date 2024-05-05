@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(n) = 1 + min(f(i-1) + f(n-i)) over i in [2, n]
+state: dp[n], transiton: dp[n] = 1 + min(dp[i-1] + dp[n-i]) over i in [2, n]
+
+Use bottom-up dynamic programming with a loop to fill up the DP table.
+
+dp[1] = 1
+for i from 2 to r:
+    dp[i] = 1 + min(dp[j-1] + dp[i-j]) over j in [2, i]
+return (t0*dp[l] + t1*dp[l+1] + ... + tr*dp[r]) mod 109 + 7
+===END PLAN===

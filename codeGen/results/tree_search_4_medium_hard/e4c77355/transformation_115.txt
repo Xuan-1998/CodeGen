@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+State expression: Let dp[i] be the length of the longest increasing subsequence ending at position i.
+
+Top-down recursive function:
+- For each position i in the array, calculate the length of the longest increasing subsequence ending there. 
+  - This is done by considering all previous positions j where arr[j] < arr[i]. 
+  - The length of the longest increasing subsequence ending at i is then the maximum of this plus one (for the new element) and dp[j].
+- Use memoization to store intermediate results in a table dp[].
+
+Base case: If the array contains only one unique integer, its length is 1.
+
+State transition:
+- For each position i, update dp[i] as the maximum over all previous positions j where arr[j] < arr[i], plus one for the new element.
+- Update memoization table dp[].
+
+Main function:
+- Initialize a table dp[] of size n+1 with -∞ (or some large negative number).
+- Fill the dp[] table using top-down recursive function with memoization.
+- Return dp[n].
+
+Edge cases: 
+- If array is empty, return 0.
+- If array contains only one unique integer, return 1.
+
+===END PLAN===

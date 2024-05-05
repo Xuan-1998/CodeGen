@@ -1,0 +1,10 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell dp[i][j] represents the minimum cost for a given timestamp t_i, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][0] representing the minimum cost for a passenger to reach time t_i using no 90-minute tickets. This would be equal to the sum of the fares for each trip up until time t_i.
+dp[i][j] represents the minimum cost for a passenger to reach time t_i using j 90-minute tickets, considering all possible ticket combinations from the start till now.
+
+Fill up the 2D table in bottom-up manner. For each cell dp[i][j], consider two possibilities:
+1. The current trip does not require any new ticket: In this case, the cost for the current trip will be added to the minimum cost of previous trips.
+2. The current trip requires a new 90-minute ticket: In this case, the cost for the current trip and the additional cost of the new ticket will be added to the minimum cost of previous trips.
+
+The final answer would be dp[n-1][0], which represents the minimum cost for all trips using no 90-minute tickets.

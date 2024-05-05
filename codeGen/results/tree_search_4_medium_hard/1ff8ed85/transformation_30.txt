@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+The base case could be when n == 0 or prev_val is not present in sequence a.
+
+State: dp[i] = True if the last i elements of sequence a can be sent over the network to get sequence b.
+Transition relationship: 
+dp[i] = dp[i-1] and (b[i-1] - b[i-2]) == a[j-1] for some j, where a[j-1] is the last element in sequence a that has length equal to the difference between consecutive elements of sequence b.
+
+Use a single-dimension array to store the dynamic programming state, with the index representing the current segment and its value indicating whether the segment can be sent over the network.
+
+For each element in sequence b, iterate through the possible values of segments in sequence a. If we find a segment that has length equal to the difference between consecutive elements of sequence b and is within bounds (i.e., not greater than n), then set dp[i] = True.
+
+Return YES if dp[n] == True, otherwise return NO.
+===END PLAN===

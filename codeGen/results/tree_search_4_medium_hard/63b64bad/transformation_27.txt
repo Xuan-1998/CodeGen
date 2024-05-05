@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x is the current index in the sequence and y is the final value of y after the program has terminated.
+
+The transition relationships can be formulated based on the operations performed on the sequence:
+
+    - Increase both x and y by a_{x}
+    - Decrease x by a_{x} while increasing y by a_{x}
+
+Create a dictionary to store previously computed values and use it to avoid recalculating the same subproblems.
+
+Define a recursive function to compute the final value of y for each state:
+
+    - If x > n or x ≤ 0, return -1 (program terminated)
+    - Increase both x and y by a_{x}
+    - Call the recursive function with new values of x and y
+    - Decrease x by a_{x} while increasing y by a_{x}
+    - Call the recursive function with new values of x and y
+
+Use memoization to store previously computed values in a dictionary, and return the stored value if the state has been visited before.
+
+===END PLAN===

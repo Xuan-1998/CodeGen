@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i] = min_cost_to_activate_after_trip_j
+state dp[i] represents the minimum cost to activate tickets after trip i.
+The transition relationship is:
+  if i-t_min >= 90:
+    dp[i] = min(dp[i-1], dp[min(j | t_j <= t_i)]) + (i-t_min)*50
+  else:
+    dp[i] = min(dp[i-1], dp[min(j | t_j <= t_i)]) + 20
+state dp[0] = 0, representing the initial cost of activating tickets
+iterate through all trips i=1..n
+  update state dp[i] according to the transition relationship
+  print dp[n]
+===END PLAN===

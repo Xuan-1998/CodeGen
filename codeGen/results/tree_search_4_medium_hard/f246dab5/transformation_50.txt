@@ -1,0 +1,14 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+Let's define the state as dp[i][j] = min_cost_for_passenger_at_time_i_to_start_of_trip_j, where j is the trip number (1-indexed) and i is the time in minutes. This state represents the minimum cost for the passenger to reach the start of the j-th trip at time i.
+
+The transition function can be defined as follows:
+
+- For the first trip, dp[i][1] = 20 (the cost of a single ticket)
+- For trips that start after the first one, consider all possible combinations of tickets that can be used for this trip. There are three types of tickets: a ticket for one trip costs 20, a ticket for 90 minutes costs 50, and a ticket for one day (1440 minutes) costs 120.
+- For each combination, calculate the minimum cost using the dp[i][j-1] value as a starting point. This is because we can use tickets purchased before this trip to minimize our expenses.
+- Choose the combination that results in the minimum cost.
+
+The final answer would be the sum of all dp[i][n], where n is the number of trips.
+
+This plan should work correctly, but it's always a good idea to test it with some examples to ensure its correctness. Also, the time complexity could be improved by using more efficient data structures or algorithms.

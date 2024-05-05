@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach with memoization by defining a recursive function that calculates the maximum score for each subproblem, then apply memoization to avoid redundant calculations.
+
+Define dp[i][j] as the maximum score that can be achieved by the end of the ith element if we have made j moves so far. The base case would be when i equals n or j equals 0.
+
+ Define two variables, left and right, which store the maximum scores for the cases where the last move was to the left and the right respectively.
+
+The transition relationship involves calculating the scores for these two cases: one where the last move was to the left (left = dp[i-1][j-1] + a[i-1]) and the other where it was to the right (right = dp[i+1][j-1] + a[i]). Then, choose the maximum between left and right.
+
+ Define dp[i][j] as the maximum score that can be achieved by the end of the ith element if we have made j moves so far. Apply memoization to avoid redundant calculations in a top-down approach. Use a dictionary or a hashmap to store and retrieve the calculated values efficiently.
+
+For each move, check if it's within the allowed limit (j <= z). If not, reset the move count to 0 and continue with the next iteration.
+
+The final answer would be dp[n][k].
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+state: dp[i] = min_cost_to_activate_after_trip_i
+dp[0] = 20 (cost for one trip)
+for i from 1 to n-1:
+    state: dp[i] = min(dp[j-1] + ticket_cost_for_trip_i, dp[j-2] + ticket_cost_for_trip_j) for j from 1 to i
+    update: if t_i <= 89, dp[i] = min(dp[i-1], 50); 
+             else dp[i] = min(dp[i-1], 120)
+state: dp[n-1] = the minimum cost to activate tickets after trip n
+
+===END PLAN===

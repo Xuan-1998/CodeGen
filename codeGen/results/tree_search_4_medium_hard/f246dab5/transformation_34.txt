@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][j] representing the minimum cost for a passenger to reach time t_i using j 90-minute tickets. 
+
+state is dp[t][k] where k is the number of 1-day tickets and t is the current timestamp. The transition relationship is based on deciding whether to use a 1-day ticket or a 90-minute ticket to reach time t.
+
+Define a function f(t, k) that returns the minimum cost to reach time t with k 1-day tickets. 
+
+We can fill up dp[] table row by row and then column by column from left to right and top to bottom respectively. The base case for our state equation would be when there are no tickets remaining, in which case the cost is just the cost of all trips taken.
+
+The time complexity of this approach would be O(n*m) where n is the number of trips and m is the maximum time of a trip. This could be improved by only considering the last 90 minutes when calculating the minimum cost for each row.
+===END PLAN===

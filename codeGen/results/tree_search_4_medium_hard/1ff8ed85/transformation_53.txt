@@ -1,0 +1,49 @@
+===BEGIN PLAN===
+Determine whether there exist two sequences, one with lengths that are either all even or all odd, such that their concatenation forms sequence $b$.
+
+dp[i] = min(dp[j] + (b[i] == len(a)) for j in range(i))
+for i from 0 to n-1
+
+HashMap to store cumulative sum of lengths and their indices
+HashMap dp = new HashMap();
+int cum_sum = 0;
+for(int i=0; i<n; i++){
+    if(b[i]%2==0)
+        dp.put(cum_sum, i);
+    cum_sum += b[i];
+}
+
+for(int i=n-1; i>=0; i--){
+    if(i%2==0){
+        int prev_even = -1;
+        for(int j=i; j<n; j+=2){
+            if(j==n-1) break;
+            if(b[j]%2!=0){
+                prev_even = dp.get(cum_sum-b[j]);
+                if(prev_even!=-1)
+                    break;
+            }
+            cum_sum += b[j];
+        }
+        if(prev_even != -1)
+            print YES
+        else
+            print NO
+    }else{
+        int prev_odd = -1;
+        for(int j=i; j<n; j+=2){
+            if(j==n-1) break;
+            if(b[j]%2==0){
+                prev_odd = dp.get(cum_sum-b[j]);
+                if(prev_odd!=-1)
+                    break;
+            }
+            cum_sum += b[j];
+        }
+        if(prev_odd != -1)
+            print YES
+        else
+            print NO
+    }
+}
+===END PLAN===

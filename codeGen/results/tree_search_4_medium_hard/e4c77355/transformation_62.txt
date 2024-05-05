@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+State S[i] is a set representing the longest increasing subsequence ending at index i.
+
+Define a bottom-up approach by iterating through the array, updating longest increasing subsequences as you go, and using previous states to compute current ones.
+
+Use dynamic programming to build up a table of the longest increasing subsequences from left to right.
+
+For each element in the array:
+    Initialize S[i] with {i} (the subsequence ending at index i has only one element).
+    For each previous element j such that arr[j] < arr[i]:
+        Update S[i] by taking the maximum length of the longest increasing subsequences ending at indices j and i, adding 1 to it.
+    
+This approach guarantees O(n^2) time complexity. To improve it to O(n log n), we can use a more advanced data structure such as segment trees or binary indexed trees to store the lengths of longest increasing subsequences ending at each index.
+
+The plan includes edge cases: it handles the case where there is only one element in the array by initializing S[i] with {i}. It also handles the case where all elements are the same by not updating S[i].
+
+===END PLAN===

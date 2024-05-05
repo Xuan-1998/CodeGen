@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Determine whether there exist two sequences, one with lengths that are either all even or all odd, such that their concatenation forms sequence $b$.
+
+dp[i] = (exists two sequences a1 and a2 such that their concatenation forms b[:i] and the lengths of a1, a2 are either both even or both odd) for i from 0 to n-1
+
+Using a boolean array to store whether each subsequence is formable by concatenating two sequences with all even or all odd lengths.
+
+For i from 0 to n-1:
+    For j from 0 to i:
+        If b[j] is even, dp[i] = dp[i] || (dp[j] && (b[j+1:i+1].length() is even or b[j+1:i+1].length() is odd))
+        Else
+            dp[i] = dp[i] || (dp[j] && (b[j+1:i+1].length() is odd or b[j+1:i+1].length() is even))
+
+For i from 0 to n-1:
+    If dp[i] then print YES, else print NO
+
+===END PLAN===

@@ -1,0 +1,24 @@
+state:
+    dp[i] = min_cost_to_activate_after_trip_i
+dp[i] is updated as follows: 
+    for j from 1 to i:
+        if trip_j_time <= t_i:
+            dp[i] = min(dp[j-1] + ticket_cost_for_trip_i, dp[j-2] + ticket_cost_for_trip_j)
+        else:
+            dp[i] = min(dp[i-1] + ticket_cost_for_trip_i, 0)
+
+state: 
+    if i == 0:
+        dp[0] = 20
+    elif i == 1:
+        dp[1] = 50
+    else:
+        for j from 2 to i:
+            if trip_j_time <= t_i:
+                dp[i] = min(dp[j-1] + ticket_cost_for_trip_i, dp[j-2] + ticket_cost_for_trip_j)
+            else:
+                dp[i] = min(dp[i-1] + ticket_cost_for_trip_i, 0)
+
+return:
+    for i from 0 to n - 1: 
+        print(dp[i])

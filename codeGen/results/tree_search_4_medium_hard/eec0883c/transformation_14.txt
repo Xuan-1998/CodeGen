@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Since there is a tree structure, one possible choice for identifying overlapping subproblems could be to use DFS (Depth-First Search) to traverse the graph, where each node represents the maximum amount of gasoline that Nut can have at the end of the path. This approach would allow us to identify and store intermediate results to avoid redundant computation.
+State: dp[i] is the minimum remaining gas for node i, and base case is when there's no road connecting two cities.
+
+1. Initialize a visited array and a memoization table dp[].
+2. Perform DFS traversal:
+    * Start at city 1, marking it as visited.
+    * For each unvisited neighbor of current city, calculate the maximum amount of gasoline that Nut can have by adding the gas available in the current city minus the distance to the neighbor to the minimum remaining gas stored in dp[neighbor].
+    * Update the memoization table with the calculated value.
+3. Return the value in dp[n] as the maximum amount of gasoline that Nut can have at the end of the path.
+
+===END PLAN===

@@ -1,0 +1,23 @@
+Plan:
+
+Consider a bottom-up approach with memoization by defining a recursive function that calculates the maximum score for each subproblem, then apply memoization to avoid redundant calculations.
+
+A state expression could be dp[i][j] = max(dp[i-1][j-1] + arr[i-1], dp[i-1][j] + arr[i]) if i > 0 and j <= k.
+The base case would be when i or j reaches zero.
+
+dp[0][j] = 0 for all j
+dp[i][0] = 0 for all i
+
+A recursive function to calculate the maximum score for each subproblem could be:
+
+max_score(i, j) {
+    if (i == 0 || j == 0) return 0
+    if (memo[i][j]) return memo[i][j]
+    max_left = max_score(i-1, j-1) + arr[i-1] if i > 0 and j > z
+    max_right = max_score(i-1, j) + arr[i] if i > 0 and j <= k
+    dp[i][j] = max(max_left, max_right)
+    memo[i][j] = dp[i][j]
+    return dp[i][j]
+}
+
+The maximum score that can be achieved for the given array is dp[n][k].

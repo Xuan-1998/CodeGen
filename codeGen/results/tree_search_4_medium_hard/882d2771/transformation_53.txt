@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+To compute f(n), we consider two cases:
+1. If n is even, then f(n) = 2f(n/2) + 1.
+2. If n is odd, then f(n) = f((n+2)/3) + (n+2)/3 - n + 1.
+
+Tabulate the dynamic programming state as a list of size r-l+1 with dp[i] representing the minimum number of comparisons needed to select the most beautiful participant from i girls. Initialize dp[0] and dp[1] based on the base cases.
+For each i from l to r, calculate dp[i] using the recursive formula.
+Finally, return t0·dp[l] + t1·dp[l+1] + ... + tr·dp[r] - l·f(r) modulo 109 + 7.
+
+===END PLAN===

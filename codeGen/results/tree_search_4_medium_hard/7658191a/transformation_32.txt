@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Let dp[i][j] be the maximum score that can be achieved after processing i elements and performing j moves. Initialize dp[0][0] as 0, since we start with no elements processed and no moves performed.
+
+For each i from 1 to n and each j from 1 to k:
+    If j is less than or equal to z, consider the possible cases where either the previous element or the next element is taken. Update dp[i][j] as the maximum score between these two possibilities.
+    Otherwise, since we cannot make more than z moves to the left in a row, update dp[i][j] as the maximum score considering only the current element and the previous elements processed.
+
+Implement memoization by storing the results of expensive function calls and reusing them when the same inputs occur again. This can be achieved using a 2D array or a hashmap.
+
+Finally, return dp[n][k] as the maximum score that can be achieved after processing all n elements and performing k moves.
+===END PLAN===

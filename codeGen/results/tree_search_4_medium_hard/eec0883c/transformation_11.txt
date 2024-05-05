@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+We can solve this problem using DFS with memoization. The main idea is to maintain a 2D array dp where dp[i][j] represents the maximum amount of gasoline Nut can have at city i, assuming he has j units left. This state captures the information we need to decide which road to take next.
+
+State: dp[i][j], where i is the city and j is the remaining gas.
+Base case: When there's no road connecting two cities, then Nut cannot buy any more gas, so dp[i][0] = 0 for all i.
+
+Function: dfs(i, j) returns the maximum amount of gasoline Nut can have at city i, assuming he has j units left. The function takes into account the roads that connect city i to its neighbors and updates the state accordingly.
+
+Memoization is used to store the results of subproblems so we don't compute them multiple times.
+
+The main loop iterates over all cities, and for each city, it calls dfs(i, w_i) where w_i is the maximum amount of gasoline available at city i. The function returns the maximum amount of gasoline Nut can have at that city.
+
+===END PLAN===

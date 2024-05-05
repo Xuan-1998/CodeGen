@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Base case: If the array is empty, return 0.
+
+Define a state representing the length of the longest increasing subsequence ending at each position. Initialize an array dp with the same size as the input array and all elements set to 1 (since the longest increasing subsequence ending at any element is just itself).
+
+Transition relationship: for each element in the array, update the state to the maximum between the current state and 1 if the current element is greater than the previous one. This can be done by iterating over the array from left to right, and for each element, find the longest increasing subsequence ending at the previous elements that is smaller than the current element, then add 1 to this length.
+
+Apply memoization: create a dictionary that maps each element in the array to its length of longest increasing subsequence, then use this dictionary to avoid redundant computations during the iteration process. This can be done by iterating over the array from left to right, and for each element, check if it's already in the dictionary, if so, return the corresponding value, otherwise, calculate the value based on the transition relationship and update the dictionary.
+
+Return the maximum length of longest increasing subsequence ending at any position as the final answer.
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+dp[0] = True since an empty sequence can be sent over the network as it is already empty.
+
+State: dp[j] = True if the last j elements of sequence a can be sent over the network to get sequence b.
+Transition relationship: 
+    - If there are no segments in the sequence (i.e., n == 0), then we can send an empty sequence over the network, so dp[0] should be True. 
+    - Otherwise, consider the last segment of length j in the sequence a. 
+        - We can split this segment into two parts: one part to the left and one part to the right. The left part would have a length equal to the remainder when j is divided by prev_val.
+        - Similarly, the right part would also be equal to the remainder.
+        - If both these parts are present in sequence b (i.e., their lengths match), then we can send the remaining segments of a over the network to get the remaining elements of b. 
+        - Hence, dp[j] should be True if and only if there exists prev_val such that j % prev_val is equal to some element in sequence b.
+
+Memoization: 
+    - We can store the results of subproblems in a dictionary. If we have already computed dp[i] for some i <= j, then it is unnecessary to compute dp[j+1]. This is because once we know that there exists a way to send over the network the last i elements of sequence a, then we can easily find a way to send over the network the last (i + 1) elements by adding an extra segment.
+
+Edge cases: 
+    - We should handle the case where n == 0 and check if dp[0] is True. This will tell us whether it's possible to send an empty sequence over the network.
+    - We also need to handle the edge case where j % prev_val is not present in sequence b for some i. In this case, we should return False.
+
+===END PLAN===

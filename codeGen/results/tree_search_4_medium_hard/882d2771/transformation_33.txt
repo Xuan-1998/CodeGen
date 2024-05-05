@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let's define F(x) as the minimum number of comparisons required to select the most beautiful participant from x participants. The transition relationship can be formulated as:
+F(i) = min(F(i-1) + 1, F(i-2) + 2)
+
+To implement memoization using a dictionary to store the calculated values of f(n), allowing for efficient lookups.
+
+Calculate f(0) and f(1) as base cases. Then, iterate from l to r (inclusive) and calculate f(n) for each n. For each f(n), calculate f(n-1) and f(n-2) using memoization.
+
+The final answer can be calculated by summing up the products of ti and fi(l + i - 1) for i ranging from 0 to t, then subtracting l * f(r) modulo 109 + 7.
+
+===END PLAN===

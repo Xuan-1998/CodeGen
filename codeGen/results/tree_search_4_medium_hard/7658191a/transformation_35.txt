@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Formulate state and transition relationships by considering the maximum score that can be achieved with j moves, given the scores of the first i elements. Let dp[i][j] denote the maximum score that can be achieved using at most j moves after processing the first i elements.
+
+Transition from dp[i-1][j-1] to dp[i][j] by considering two cases: 
+1) Process the current element and move to the right.
+2) Move to the left and process the previous element.
+
+Update dp[i][j] based on these two cases, considering that we have at most z moves to the left.
+
+Use memoization with a dictionary that maps (i, j) tuples to their corresponding maximum scores. This way, we can avoid recomputing the same subproblems multiple times and reduce the time complexity of our solution.
+
+Implement the recursive function to compute dp[i][j] based on the transition rules and memoize it.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+State: dp[i] is the maximum amount of gasoline that Nut can have at the end of the path when he starts from city i.
+The base case would be when there's no road connecting two cities, in which case dp[i] = w[i], where w[i] is the maximum amount of gasoline available at city i.
+For other cases, we need to consider all possible roads that start from city i. 
+Let c be the length of the road and j be the destination city. We can travel along this road as long as Nut has enough gas for the road. 
+If he runs out, we can't go any further. So, the maximum gasoline available at the end of the path is the minimum between the current gas available and the gas consumed by the road.
+The recurrence relation would be dp[i] = max(dp[j], w[i]-c) if there's a road from i to j; otherwise, dp[i] = w[i].
+We can implement this approach using DFS with memoization. 
+For each city we visit, we calculate the maximum gasoline available at that city and store it in dp.
+If we have visited this city before, we directly return the stored value instead of recalculating it.
+This would avoid redundant computation and make our algorithm more efficient.
+===END PLAN===

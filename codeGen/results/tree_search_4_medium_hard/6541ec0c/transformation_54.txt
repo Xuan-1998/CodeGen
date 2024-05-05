@@ -1,0 +1,26 @@
+State: dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+
+dp[i][j][xor_val] = 1 if all subtrees rooted at node i with exactly j nodes and having xor_val as their XOR value can be made to have the same XOR after at most k edge deletions, else 0.
+
+Maintain a hashmap or dictionary to store previously computed values of dp[i][j][xor_val] for memoization purposes.
+
+Initialization: Initialize dp[0][0][0] = 1 and fill up the first row (i=0) with 0s since it's not possible to make all connected components have the same XOR in a single node.
+
+Transition Function:
+
+dp[i][j][xor_val] = 1 if for each child of i, dp[child][j-1][xor_val^val] is 1. 
+
+else dp[i][j][xor_val] = 0
+
+Loop over all nodes i from 1 to n.
+For each node i and number of nodes j in the subtree rooted at i, calculate the XOR value xor_val of this subtree by iterating over its nodes.
+
+Check if dp[i][j][xor_val] is already computed. If yes, return the stored value. If not, compute it using the transition function and store it in the hashmap or dictionary for future reference.
+
+Loop over all k possible edge deletions.
+For each node i and number of nodes j in the subtree rooted at i, calculate the XOR value xor_val of this subtree by iterating over its nodes.
+
+Check if dp[i][j][xor_val] is already computed. If yes, return the stored value. If not, compute it using the transition function and store it in the hashmap or dictionary for future reference.
+
+Output: 
+If dp[n][k][xor_val] = 1 then print "YES" else print "NO"

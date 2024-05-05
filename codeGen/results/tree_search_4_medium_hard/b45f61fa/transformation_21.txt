@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+    Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j, k) representing the current matrix being multiplied with k matrices on its right, and the base case is when i == 0 (first matrix) or k == 0 (no more matrices to multiply).
+
+    State: dp[i][j] representing the minimum number of multiplications needed to multiply all matrices from index i to j.
+
+    Transition:
+        if j - i == 1, then there's only one matrix to multiply;
+        else, consider two options: either include the current matrix in the multiplication chain or not.
+        The minimum cost can be calculated using the memoized values and previously computed dp[i][j-1] values.
+
+Use dynamic programming with a table dp[][] to store the solutions to subproblems:
+
+    Initialize the base case when i == 0 or k == 0: dp[0][i] = 0, dp[i][0] = 0
+
+    For each possible split (i, j) of the matrix chain:
+        Calculate the minimum cost for the left and right parts using memoized values
+        Consider including the current matrix in the multiplication chain or not
+        Choose the option with the minimum cost
+
+    Return the solution for the entire matrix chain: dp[0][n-1]
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be dp[i] = minimum number of multiplications needed to multiply matrix i with all matrices after it, and dp[0] is the base case. 
+
+dp[i][j] = min(dp[i-1][k] + p[i-1]*p[i]*p[k+1]) for k in range(j); dp[0][0] is the base case.
+
+Memoization: initialize a 2D array dp of size n*n with all elements initialized to infinity, then update dp[i][j] as described above. 
+
+Backtracking: construct the optimal parenthesization by tracing back the minimum number of multiplications from the bottom-up approach. Start from dp[n-1][n-1], and for each step, add parentheses around the matrix with the minimum number of multiplications needed to multiply it with all matrices after it.
+
+Edge cases:
+* n=2: return "A * B" (since only two matrices)
+* n=3: return "((A * B) * C)" (since three matrices)
+
+===END PLAN===

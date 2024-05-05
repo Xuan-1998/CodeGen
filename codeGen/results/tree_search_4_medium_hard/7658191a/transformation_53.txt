@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a table or array, where each cell represents the maximum score for a corresponding subproblem.
+
+ Initialize dp and pre arrays of size n+1 with zeros. dp[i] will store the maximum score for i moves and pre[i] will store the last element used for making the ith move.
+
+ Fill dp[0] to dp[k-1] as follows: dp[0] = 0, and for each i from 1 to k-1, calculate dp[i] as the maximum of dp[i-1] + a[i+1] (if i+1 is within z moves of current move) and dp[i-2] + a[i] (if i+1 is more than z moves away).
+
+ For each i from k to n, fill pre[i] with the value that gives the maximum score for the ith move. Calculate this by considering two possibilities: either use the element at index i-1 or at index i+z.
+
+ Fill dp[i] as the maximum of dp[pre[i]] + a[i] and dp[i-z] + a[i-z].
+
+ Return dp[n].
+===END PLAN===

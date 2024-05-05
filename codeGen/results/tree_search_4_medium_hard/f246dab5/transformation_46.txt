@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+Let's define the state as dp[i] = min_cost_till_ti, where min_cost_till_ti is the minimum cost for the passenger to reach time t_i.
+
+We create a 2D array dp[][] where dp[i][j] represents the minimum cost up to timestamp i after using j tickets. 
+
+Initially, all dp[i][0] are set to dp[0][0] = 20 (the cost of one ticket), as we need at least one ticket to start with.
+
+Then for each trip i from 1 to n:
+    For j from 0 to min(i-1, 3) (to consider the maximum number of tickets used):
+        If this is the first trip or no new ticket is needed, dp[i][j] = dp[i-1][j]
+        Else, calculate the cost for using a new ticket and update dp[i][j] if it's cheaper.
+
+Finally, we print out dp[n][0] as the minimum cost to reach the last trip.
+===END PLAN===

@@ -1,0 +1,21 @@
+Top-down approach with memoization:
+Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j, k) representing the current matrix being multiplied with k matrices on its right, and the base case is when i == 0 (first matrix) or k == 0 (no more matrices to multiply).
+
+State: (i, j), representing the pair of matrices to be multiplied from index i to j.
+Transition:
+    - If j - i == 1, then there's only one matrix to multiply;
+    - Else, consider multiplying the first i matrices with k-1 matrices on their right, and then add the cost of multiplying the last j-i matrices.
+
+The minimum cost can be calculated using the memoized values.
+
+Implement memoization using a closure function that takes in the current state and returns the optimal value.
+
+Memoize the base case: when i == 0 (first matrix) or k == 0 (no more matrices to multiply).
+
+Memoize the transition:
+    - If j - i == 1, return the cost of multiplying one matrix;
+    - Else, recursively call the function with i + 1 and j-i-1, then add the cost of multiplying the last j-i matrices.
+
+Return the optimal value based on the memoized values.

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Bottom-up approach with tabulation:
+Define a table 'dp[i][j]' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+dp[i][j] is the minimum number of multiplications needed to multiply a sub-sequence of matrices.
+Define dp[i][j] as the minimum of the following two options:
+    - The minimum number of multiplications for the left sub-sequence (0 to k) plus the cost of multiplying matrix k and the remaining matrices (k+1 to j)
+    - The minimum number of multiplications for the right sub-sequence (k+1 to j) plus the cost of multiplying the first k matrices and the remaining matrices
+
+where k is the optimal split point that minimizes the total number of multiplications.
+Implement dynamic programming using a 2D array dp[][] where dp[i][j] stores the minimum number of multiplications needed to multiply matrices from i to j, and then fill this table in a bottom-up manner.
+
+Fill the table by considering all possible split points k and calculating the minimum number of multiplications for each sub-sequence.
+The final answer is stored in dp[0][n-1], which represents the minimum number of multiplications needed to multiply all matrices.
+
+===END PLAN===

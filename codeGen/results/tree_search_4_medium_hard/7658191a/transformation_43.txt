@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+The base case would be when only one element is left, in which case the maximum score is just that single element
+
+Represent states as (i, score) pairs, where i is the current index and score is the maximum achievable score at that index, considering the allowed moves up to k steps.
+
+Use a dictionary to store previously computed scores and avoid recomputing them; this approach is called memoization.
+
+For each move from left or right, update the state by taking the maximum of the current score and the sum of the value at the new position plus the maximum achievable score for the remaining elements, considering the allowed moves up to k - 1 steps, if any.
+
+Repeat this process until all possible scores are computed. The maximum score is then found by iterating over the last row of the table.
+
+===END PLAN===

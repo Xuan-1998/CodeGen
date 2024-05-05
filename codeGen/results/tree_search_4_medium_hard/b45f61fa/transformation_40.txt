@@ -1,0 +1,13 @@
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be dp[i][j] = minimum number of multiplications to multiply matrices from i to j, with dp[0][k] being the base case (matrix 1 times matrix k for all k).
+
+dp[i][j] = min(dp[i-1][k]+p[i]*p[k+1]*p[j] for k in range(i, j)); // note that this line should be adjusted based on whether i is 0 or not
+
+The transition function is correct. However, there's a missing piece: we need to initialize the base case dp[0][k]. 
+
+dp[0][k] = p[0]*p[k+1]*p[0]
+
+As for the edge cases, you should ensure that i and j are within the valid range of indices in the input array. If not, handle it accordingly.
+
+Updated plan:

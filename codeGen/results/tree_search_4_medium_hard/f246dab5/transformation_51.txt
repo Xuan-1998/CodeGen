@@ -1,0 +1,13 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+Let dp[i][j] = min_cost_till_ti_for_ticket_type_j be the minimum cost for the passenger to reach time t_i using ticket type j. 
+
+The state transition equation can be defined as follows:
+
+dp[i][0] = dp[i-1][0] + 20 if i >= 1
+dp[i][1] = min(dp[i-1][0] + 50, dp[i-90][1]) if i >= 90
+dp[i][2] = min(dp[i-1440][2], dp[i-1][0] + 120) if i >= 1440
+
+The minimum cost for the passenger to reach time t_i is then given by dp[t][j], where j is the optimal ticket type.
+
+Finally, we iterate through all trips and calculate the minimum cost for each trip using this state transition equation. 

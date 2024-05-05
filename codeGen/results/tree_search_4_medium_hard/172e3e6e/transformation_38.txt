@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the state as a tuple (i, last_divisor), where i is the length of the subsequence and last_divisor is the largest divisor of the last element in the subsequence.
+
+State: (i, last_divisor) is updated to (i-1, d) if the last element of the current subsequence is divisible by d.
+
+Use a dictionary dp to store the results of subproblems and update it accordingly as you iterate through the array. Initialize dp with an empty map for each initial state.
+
+For each number in the array:
+	* If the number is divisible by its index, update the state (i, last_divisor) in dp.
+	* Iterate over the previous states that have a last_divisor greater than or equal to i and increment their count by 1. This represents all good subsequences ending at this position.
+
+Return dp[0][1] as the total number of good subsequences modulo 10^9 + 7.
+
+===END PLAN===

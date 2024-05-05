@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n+1) = f(n) + n
+
+Let the state be s = (i, prev), where i is the current number of participants, and prev is the minimum number of comparisons required to select the most beautiful participant from the previous group. The transition relationship can then be formulated as f(i) = min(f(prev + 1) + (i - prev - 1), f(prev) + 1).
+
+Utilize memoization by defining a recursive function and storing previously computed values in a dictionary or cache.
+
+To further optimize, consider using bottom-up dynamic programming instead of top-down recursion. This can be done by initializing the DP table with base cases and then iteratively updating the values based on the transition relationship.
+
+Also, ensure that edge cases are handled correctly, such as f(1) = 0, since selecting the most beautiful participant from a single group requires no comparisons.
+
+===END PLAN===

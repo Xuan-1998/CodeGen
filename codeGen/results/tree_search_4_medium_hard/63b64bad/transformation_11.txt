@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+
+State expression: dp[i][j] = final value of y when x is j and sequence length is i. The base case is when x ≤ 0 or x > n (program terminates).
+
+dp[0][1] = -1; // initial state, program doesn't terminate
+for i from 2 to n:
+    for x from 1 to n:
+        if x <= 0 or x > n: 
+            dp[i][x] = -1;
+        else:
+            (last_x, last_y) = (x - a[x], y + a[x]);
+            dp[i][x] = dp[i-1][last_x];
+Using a recursive function with memoization
+===END PLAN===

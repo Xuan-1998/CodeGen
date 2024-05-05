@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Fill in a table dp[n+1][k+1] where dp[i][j] represents the maximum score that can be achieved with i moves and j moves allowed to the left.
+Let the current position be at index i, and let the current number of moves allowed to the left be j.
+Consider two cases:
+- Move right: If we move right from the current position, we can add the value at index i+1 to our score. This means we'll have i+1 moves remaining, and we'll allow j-1 moves to the left. We can consider this subproblem by looking up dp[i+1][j-1].
+- Move left: If we move left from the current position, we can add the value at index i-1 (if it exists) to our score. This means we'll have i-1 moves remaining, and we'll allow j-1 moves to the left. We can consider this subproblem by looking up dp[i-1][j-1].
+However, we need to ensure that we don't repeat a move to the left within the last z indices visited. To achieve this, keep track of the last z indices visited in a set called visited.
+For each index i and number of moves j:
+    - If i+1 <= n and j > 0, consider moving right: dp[i][j] = max(dp[i][j], dp[i+1][j-1] + arr[i+1])
+    - If i > 1 and j > 0 and i not in visited or size of visited is less than z:
+        * Move left and consider the subproblem: dp[i][j] = max(dp[i][j], dp[i-1][j-1] + arr[i-1])
+        * Add i to the set visited
+    - Return dp[1][k]
+===END PLAN===

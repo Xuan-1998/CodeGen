@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state is defined as a pair (city, gas) where city is an integer representing the current city and gas is the amount of gasoline left.
+
+Transition happens when we move from one city to another. The new state would be (new_city, min(total_gas + road_length, max_gas_available))
+
+We can implement a 2D dynamic programming table where each cell dp[i][j] represents the maximum amount of gasoline Nut can have at city i with j units of gasoline left.
+
+The base case is when we are at the destination city. In this case, we just need to compare the current gas with the available gas in the destination city, and take the minimum.
+
+We start from the source city, and for each city, we try all possible amount of gas that Nut can have, and see which one gives us the maximum amount of gasoline at that city. The maximum amount of gasoline would be stored in dp[i][max_gas_available].
+
+Finally, return dp[0][total_gas] as the result.
+===END PLAN===

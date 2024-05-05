@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+    Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a 2D array dp[i][j] storing the minimum number of multiplications for matrices from i to j, 
+    and the base case is when i == 0 (no matrices left) or j == n-1 (no more matrices to multiply).
+
+Consider the state dp[i][j] as the minimum number of multiplications needed when multiplying matrices from i to j, 
+    and define a transition function f(i, j) = min(f(i, k) + f(k+1, j) + p[i]*p[k+1]*p[j]) for k from i to j-1.
+
+Use a recursive function with memoization by updating a dp dictionary.
+    
+    Initialize the dp dictionary with base cases: dp[0][j] = 0 and dp[i][n-1] = 0
+    
+    Define the main function to construct the optimal parenthesization string
+        Initialize an empty string s
+        
+        For each i from 1 to n-2:
+            Find the minimum number of multiplications for matrices from i to j, 
+                by calling f(i, j)
+            
+            Append the corresponding matrix indices (i+1 and j+1) to the string s
+            
+        Return the constructed string s
+===END PLAN===

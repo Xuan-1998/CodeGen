@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state is defined as a tuple (city, gas), where city is an integer representing the city Nut is at, and gas is the amount of gasoline left.
+
+State could be (path_length, remaining_gas) where path_length is an integer representing the length of the current path and remaining_gas is the amount of gasoline left. Transition happens when we move from one city to another, and the new state would be (new_path_length, min(remaining_gas - road_length, max_gas_available))
+
+Apply memoization by using a dictionary dp where keys are tuples representing the state (city, gas) and values are the corresponding maximum amounts of gasoline.
+
+Initialization: dp[(0, w_i)] = w_i for all i
+
+Transition function: if city+1 not in visited:
+    dp[(city+1, min(remaining_gas - c, max_gas_available))] = max(dp[(city, remaining_gas)], remaining_gas)
+
+Return the maximum amount of gasoline that Nut can have at the end of the path which is dp[(n-1, 0)]
+
+===END PLAN===

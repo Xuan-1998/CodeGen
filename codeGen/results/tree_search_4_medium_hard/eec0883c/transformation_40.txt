@@ -1,0 +1,6 @@
+===BEGIN PLAN===
+We model this problem as a longest path problem on an acyclic graph, where each node represents a city and the edges represent the roads between cities, and the goal is to find the maximum amount of gasoline that Nut can have at the end of the path. The state is defined as a pair (city, gas), where city is an integer representing the current city and gas is the total amount of gasoline used so far.
+The transition happens when we move from one city to another, and the new state would be (new_city, min(gas + road_length, max_gas_available)). We use memoization to store and reuse previously computed results, where each node in the memoization graph corresponds to a state (city, gas) and the value stored is the maximum amount of gasoline that Nut can have at that state.
+We fill up the memoization table by iterating over all cities, for each city, we iterate over all possible amounts of gasoline, and for each amount, we check if it's less than or equal to max_gas_available. If it is, we update the memoization value for this state.
+Finally, we return the maximum value in the memoization table as the answer.
+===END PLAN===

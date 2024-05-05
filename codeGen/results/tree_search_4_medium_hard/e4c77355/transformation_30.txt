@@ -1,0 +1,19 @@
+Dynamic Programming:
+  Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The Problem: Given an unsorted array of integers, find the length of the longest increasing subsequence.
+
+Plan:
+
+    Initialize a table dp where dp[i] stores the length of the longest increasing subsequence ending at index i.
+    Initialize a dictionary memo to store previously computed results for faster lookups.
+    Iterate through the array from left to right:
+      For each element x at index i:
+        If the current longest increasing subsequence ending at this position is less than 1, set dp[i] to 1.
+        Otherwise:
+          Find the smallest y in memo where y >= x and increase its value by 1. Set dp[i] to this increased value.
+        Store the result of dp[i] in memo for later use.
+
+    Return the maximum value in dp as the length of the longest increasing subsequence.
+
+Note: This plan should work fine, but it may not be optimal for very large arrays due to its O(n^2) time complexity. The follow-up question asks about improving this to O(n log n) time complexity.

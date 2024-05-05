@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+DP := [0...n-1]  // Initialize DP array with all zeros
+For i from 0 to n-1:
+    DP[i] = 1       // Initialize DP[i] to 1 (length of the subsequence ending at index i is 1)
+    For j from 0 to i-1:
+        If arr[j] < arr[i]:  // Check if current element is greater than previous one
+            DP[i] = max(DP[i], DP[j] + 1)  // Update DP[i] with the maximum length of increasing subsequences that end before this element
+    End For
+End For
+
+Return max(DP)  // Return the maximum value in the DP array (length of the longest increasing subsequence)
+===END PLAN===

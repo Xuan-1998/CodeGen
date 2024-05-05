@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+We can notice that f(n) = 1 + f(n-1) because to select the most beautiful participant from n girls, we first need to select the most beautiful girl from the last group (which takes one comparison), then recursively do the same for the remaining groups until there's only one girl left.
+
+state: dp[n], transition: dp[n] = 1 + dp[n-1]
+
+However, this naive approach has a time complexity of O(n) and doesn't take into account that we're actually calculating f(m) for m < n. We can improve it by noticing that f(n) only depends on the number of groups, not on the individual girls.
+
+Let's use a recursive function with memoization to store intermediate results in a dictionary. This way, we avoid recalculating f(m) for m < n multiple times.
+
+The edge cases are handled naturally by our plan as we're calculating f(n) for 2 ≤ n ≤ 5·106.
+
+===END PLAN===

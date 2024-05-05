@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a table or array, where each cell represents the maximum score for a corresponding subproblem.
+
+Let dp[i] be the maximum score that can be achieved with i moves. Initialize dp[0] as 0, since there's no way to achieve any score with 0 moves.
+
+For each index i from 1 to n-1:
+    Calculate the maximum score that can be achieved by moving to the right or to the left from the current position.
+        If i <= k, calculate the maximum score that can be achieved by moving to the left and subtracting z from it. This is because we have at most k moves to the left, and we can't make more than z moves in a row.
+        If i > k, just consider moving to the right without any constraints.
+
+    Update dp[i] as the maximum score that can be achieved by either moving to the right or to the left from the current position.
+
+Use memoization by storing the intermediate results of subproblems in a dictionary and look up the values instead of recalculating them.
+
+Finally, return dp[n-1] as the maximum score that can be achieved with n-1 moves.
+===END PLAN===

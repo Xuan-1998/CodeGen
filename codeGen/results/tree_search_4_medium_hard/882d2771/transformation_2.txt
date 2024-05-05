@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let dp[i] be the minimum number of comparisons needed to select the most beautiful participant from i girls. Then we have:
+    1. For all even numbers n, f(n) = 0 (since there's no need for comparisons)
+    2. For odd numbers n, f(n) is the minimum of two cases: 
+        a. Comparing the beauty of one girl with others in her group
+        b. Recursively calling dp[i] for i < n/2 and combining it with dp[n-i-1]
+    dp[n] = min(dp[i] + dp[n-i-1]) for all n-i-1 from l to r
+
+Implementing dynamic programming with a bottom-up approach and using a table (dp) to store the results of subproblems. Start filling up the dp array from the smallest values of i.
+
+===END PLAN===

@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n. We can use this observation to construct an array dp where dp[i] represents the minimal total number of pairwise comparisons needed to select the most beautiful participant from i girls.
+
+base case: dp[1] = 0
+
+dp[i] = dp[j] + 1 if i > j, where j is the maximum possible value of a group. This can be calculated using the property that f(i) = f(j) + 1 when i > j and j is the maximum possible value of a group.
+
+Use bottom-up dynamic programming by iterating over the range [l, r] and maintaining an array to store the computed values.
+
+For each i in [l, r], calculate dp[i] as follows:
+
+* If i is less than or equal to 2, set dp[i] = 0 (base case)
+* Otherwise, iterate from j = l to j <= i-1
+	+ Calculate dp[i] = min(dp[i], dp[j] + 1) if i > j and j is the maximum possible value of a group
+
+Finally, calculate the result as follows:
+
+* t0·dp[l] + t1·dp[l+1] + ... + tr·dp[r] - l·dp[r]
+
+Note that we can optimize the calculation by only considering groups of size 2. This is because larger groups can be decomposed into smaller groups, and the minimal total number of pairwise comparisons needed to select the most beautiful participant from i girls will not change.
+
+===END PLAN===

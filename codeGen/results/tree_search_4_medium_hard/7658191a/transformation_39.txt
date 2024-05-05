@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with a bottom-up approach.
+
+Base Case: 
+When only one element is left (i.e., i = n), the maximum score is just that single element. So, dp[n][j] = array[n] for all j.
+
+Formulate States:
+Consider the current index i and move type (left/right). Form states as (i, move_type) pairs, where move_type can be 0 for no move, 1 for a left move, and 2 for a right move. 
+
+Dynamic Programming:
+Use dynamic programming to build up the solution by filling up a 2D table with dimensions (n, k + z + 1), where the table entry dp[i][j] represents the maximum score that can be achieved for array indices from i to n after j moves.
+
+Transitions:
+For each state (i, move_type), there are three possible transitions:
+
+- If move_type = 0 and i < n: 
+    - Move right: dp[i][j+1] += array[i+1]
+    - Move left: dp[i][j+1] += array[i-1]
+
+- If move_type = 1 and i > 1:
+    - Move right: dp[i-1][j+1] += array[i]
+    - Move left: dp[i-2][j-1] += array[i-1]
+
+- If move_type = 2 and i < n:
+    - Move right: dp[i+1][j+1] += array[i+1]
+    - Move left: dp[i][j+1] += array[i-1]
+
+Initialize the table with base cases, then fill up the rest of the table using transitions. The final answer is stored in dp[1][k].
+
+===END PLAN===

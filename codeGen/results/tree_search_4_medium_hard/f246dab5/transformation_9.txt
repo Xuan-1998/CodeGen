@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used with dynamic programming where we keep track of previously computed values and avoid redundant computation.
+
+dp[i] represents the minimum cost for i-th trip.
+
+dp[i] = min(20, dp[t - 1] + (i - t) // 60 * (50 if (i - t) % 60 < 90 else 120)) for i in range(n)
+
+Use a dictionary to store previously computed values and return the minimum cost for each trip.
+
+To avoid infinite recursion when calculating dp[i], we need to calculate it bottom-up. We start from the first trip, then update the minimum cost for subsequent trips based on the previous trips' costs.
+
+For edge cases, we should ensure that t_i + 1 > t_i holds for all 1 ≤ i < n as given in the problem statement.
+
+===END PLAN===

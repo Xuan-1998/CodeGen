@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp = [0] * (n + 1)
+for i in range(1, n+1):
+    if t_i > 1440: # one day ticket
+        dp[i] = dp[i-1] + 120
+    elif t_i > 90: # 90 minutes ticket
+        dp[i] = min(dp[i-1], dp[i-2]) + 50
+    else: # one trip ticket
+        dp[i] = min(dp[i-1], dp[i-2]) + 20
+print([dp[i] for i in range(1, n+1)])
+===END PLAN===

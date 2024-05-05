@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The state can be represented as a 2D table dp[i][j] where i is the current city and j is the maximum amount of gasoline that Nut has at the current city. The value of dp[i][j] will be the maximum amount of gasoline that Nut can have at the end of the path from the starting city to city i, considering only edges with non-zero capacity.
+The base case is when all cities have been visited (i.e., i == n-1). In this case, the value of dp[i][j] will be j.
+
+For each edge (u, v, c) where u and v are two connected cities and c is the length of the road, we need to consider only those edges with non-zero capacity, which means that the maximum amount of gasoline that Nut can buy at city u is greater than or equal to c. This can be achieved by initializing a 2D table dp[i][j] for all pairs (i, j) and filling it up based on smaller subproblems.
+
+We start from the starting city and fill up the table in a bottom-up manner. For each city i, we consider all its neighbors v and calculate the maximum amount of gasoline that Nut can have at city v. This is done by iterating over all possible amounts k of gasoline that Nut can buy at city u, where u is one of the neighbors of city i.
+
+For each neighbor v and for each possible amount k, we check if it's possible to reach city v with k units of gasoline. If yes, then we update dp[v][k-c] with max(dp[v][k-c], j-k). The maximum flow from the starting city to city v considering only edges with non-zero capacity is then updated as max(max(dp[v][k-c]), j).
+
+Finally, the answer will be the maximum amount of gasoline that Nut can have at the end of the path, which is dp[n-1][max_value], where n-1 is the last city and max_value is the maximum value in the last row of the table.
+===END PLAN===

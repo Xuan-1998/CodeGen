@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: dp[i][j] represents the minimum total number of comparisons required to select the most beautiful girl from i groups with j participants each.
+
+dp[1][j] = 0 for all j; // Base case for one group
+dp[i][j] = min(dp[i-1][k] + 1) for k in range(2, j+1); // Recurrence relation
+
+Differentiate between even and odd cases:
+    - For even groups: dp[i][j] = min(dp[i-1][k] + 1) for k in range(2, j+1);
+    - For odd groups: dp[i][j] = min(dp[i-1][k] + 1) for k in range(2, (j+1)//2);
+
+Memoization:
+    - Use a 2D array to store the calculated values of dp[i][j];
+    - Before calculating dp[i][j], check if it's already stored in the memo array;
+    - If yes, return the stored value; otherwise, calculate and store the value.
+
+===END PLAN===

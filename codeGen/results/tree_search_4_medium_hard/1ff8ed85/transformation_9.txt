@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b. We can also define a variable total_sum to store the sum of values in sequence b.
+
+We can use dynamic programming with 2D array dp[n][val] to store states (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Iterate over all possible values val from 1 to max(b_i), for each val calculate if it's possible to get this value by adding some segment lengths. If yes, mark dp[n][val] as true, otherwise false.
+
+Then check for each element in sequence b if there exists a state (n-1, prev_val) where dp[n-1][prev_val] is true and prev_val + 1 == val. If such state exists, then we can get the current value by adding some segment lengths. Otherwise, it's not possible to get the current value.
+
+Finally, iterate over all elements in sequence b and check if there exists a state (n-1, prev_val) where dp[n-1][prev_val] is true and prev_val + 1 == val. If yes for any element, print YES, otherwise NO.
+===END PLAN===

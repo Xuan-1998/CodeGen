@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+Consider that x and y can be represented by their remainders when divided by n, with 0 ≤ x ≡ y (mod n). This reduces the number of possible states from O(n^2) to O(n).
+
+The base case occurs when x ≤ 0 or x > n, or when the program reaches a point where it does not terminate.
+
+Model the following distinct states:
+
+* Node 0: x = 1 and y = 0 (initial state)
+* Node i: x ≡ i (mod n) and y ≡ i-1 (mod n), for 1 ≤ i ≤ n
+
+The program transitions from node i to node j if a_{i} is the remainder when j is divided by n.
+
+Use memoization to store the value of y at each node, so that once you've calculated it, you don't need to recalculate it again.
+
+===END PLAN===

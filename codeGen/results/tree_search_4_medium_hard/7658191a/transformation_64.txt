@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a 2D array dp where dp[i][j] represents the maximum score that can be achieved after i moves and j is less than or equal to k.
+
+The base case is when k = 0, where the maximum score is simply the sum of all values in the array. This is because we cannot perform any more moves once k reaches 0.
+
+Create a 2D array dp with dimensions (n+1) x (k+1), where n is the length of the input array and k is the number of moves allowed. Initialize the first column of the array to be equal to the values in the input array, since we cannot perform any moves when k = 0.
+
+The state also depends on whether the current move is to the right or to the left. If it's a move to the right, the score will increase by the value at index i+1. If it's a move to the left, the score will decrease by the value at index i-1. We can use this information to fill in the dp array.
+
+For each cell dp[i][j], consider two options: moving to the right or moving to the left. The maximum score that can be achieved is the maximum of these two options.
+
+To move to the right, we need to make sure that we do not exceed k moves and also do not perform more than z moves to the left in a row. If this is possible, then add the value at index i+1 to the score stored in dp[i-1][j-1] and update dp[i][j] accordingly.
+
+To move to the left, we need to make sure that we do not exceed k moves and also do not perform more than z moves to the left in a row. If this is possible, then subtract the value at index i-1 from the score stored in dp[i+1][j-1] and update dp[i][j] accordingly.
+
+Finally, return the maximum score that can be achieved after k moves, which is stored in dp[n][k].
+
+===END PLAN===

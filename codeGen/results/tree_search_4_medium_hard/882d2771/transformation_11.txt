@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let's define dp[i] as the minimum number of comparisons needed to select the most beautiful participant from i girls. Then, we have:
+
+dp[i] = 1 + min(dp[j]) for j in range(l, i)
+
+This is because we can select the most beautiful participant from each group and then compare them all at once.
+
+Formulate the problem as a bottom-up dynamic programming approach, where each state's value is calculated based on the values of its predecessor states.
+
+dp[i] = 1 + min(dp[j]) for j in range(l, i)
+
+Determine the optimal substructure by iterating through all possible combinations of groups and calculating the minimal total number of comparisons.
+
+Finally, we can calculate f(r) as dp[r]
+
+We can also use a prefix sum approach to improve the time complexity. Let's define prefix_sum[i] as the minimum number of comparisons needed to select the most beautiful participant from i girls when only considering girls with indices less than or equal to i.
+
+prefix_sum[i] = 1 + min(prefix_sum[j]) for j in range(l, i)
+
+Then, we can calculate f(r) as prefix_sum[r]
+
+This approach avoids recalculating the same subproblems multiple times, reducing the time complexity.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+DP states can be defined as (i, j) where i is the current row index and j is the current column index. Memoization can be used to store intermediate results.
+dp[i][j] = min({ max(0, dp[i-1][j]) if j > 0 else 0 }, { max(0, dp[i][j-1]) if i > 0 else 0 }) + grid[i][j]
+Define a recursive function f(i, j) that returns the minimum initial points required to reach cell (i, j).
+f(i, j) = {
+    if i == N and j == M:
+        return 0
+    elif i < N or j < M:
+        return min(f(i-1, j), f(i, j-1)) + grid[i][j]
+}
+Use this function to fill in a 2D table dp of size (N+1) x (M+1), where dp[i][j] represents the minimum initial points required to reach cell (i, j).
+===END PLAN===

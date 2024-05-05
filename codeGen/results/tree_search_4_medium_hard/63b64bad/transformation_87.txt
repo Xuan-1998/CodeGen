@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+The state is just y, as we only care about the final value of y.
+For each sequence element a_i, we need to calculate the maximum y that can be reached when the program terminates.
+Use dynamic programming to keep track of intermediate results for different initial states y and sequence elements a_2 through a_n.
+Let dp[y] be the maximum y that can be reached after processing all sequence elements up to i-1, starting from an initial state y.
+The recurrence relation is:
+    - If y + a_i > n or y < 0, terminate the program, and set dp[y] = y
+    - Otherwise, update dp[y+a_i] = max(dp[y+a_i], y+a_i)
+Use a 1D array to store the final value of y for each possible state y.
+Initialize the array with -1, indicating that the program does not terminate yet.
+For each sequence element a_i, update dp[y+a_i] as above and mark the corresponding state y+a_i as terminated.
+Finally, return the maximum value in the array, which is the final value of y when the program terminates.
+===END PLAN===

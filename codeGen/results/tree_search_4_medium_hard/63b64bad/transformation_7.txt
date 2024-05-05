@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+The state expression is x and y; the base case is when x ≤ 0 or x > n (program terminates).
+State: (x, y) where x is the current value of x, and y is the current value of y; Transition:
+    if x <= 0 or x > n:
+        return -1
+    else:
+        next_x = x + a[x]
+        next_y = y + a[x] + y - (x % a[x])
+        return dp(next_x, next_y)
+Memoize the function by storing the results in a dictionary, using (x, y) as keys to avoid redundant computation.
+===END PLAN===

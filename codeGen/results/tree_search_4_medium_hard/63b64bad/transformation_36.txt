@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x is the current index in the sequence and y is the final value of y after the program has terminated.
+
+Create a 2D table dp[n][n] where n is the length of the sequence. dp[i][j] represents the maximum value that can be obtained for sequence i up to index j.
+
+Fill the table by iterating through the sequence, updating the values according to the operations performed by the program:
+
+1. For each step:
+    - If x ≤ 0 or x > n, terminate the program and return y as the final value.
+    - Update x and y based on a_x: x += a_x; y += a_x
+    - Update x and y based on a_x: x -= a_x; y += a_x
+
+2. After each step:
+    - Update dp[i][j] with the maximum value obtained so far.
+
+3. Return dp[n-1][n-1] as the final result for sequence n.
+
+===END PLAN===

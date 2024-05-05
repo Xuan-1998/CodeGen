@@ -1,0 +1,28 @@
+State: dp[i][k] represents whether it's possible to extend a subsequence of length k with last element k to be one longer at index i.
+
+dp[i][k] = 0 if a[i] is not divisible by i, and 1 otherwise.
+Transition:
+for (int j = 1; j <= k; j++) {
+    dp[i][j] = (a[i] % j == 0) ? (dp[i-1][j-1] + dp[i-1][j]) : 0;
+}
+
+Base case: If a[i] is not divisible by i, then there are no good subsequences.
+
+Initialize:
+for (int k = 1; k <= max(a); k++) {
+    dp[0][k] = (a[0] % k == 0) ? 1 : 0;
+}
+
+State: The number of good subsequences ending at index i with the last element being a[i].
+
+Transition:
+for (int i = 1; i < n; i++) {
+    for (int k = 1; k <= max(a); k++) {
+        dp[i][k] = (a[i] % k == 0) ? (dp[i-1][k-1] + dp[i-1][k]) : 0;
+    }
+}
+
+Final answer:
+return accumulate(dp[n-1].begin(), dp[n-1].end()) + 1; // Add 1 for the empty subsequence
+
+State: The number of good subsequences ending at index i with the last element being a[i].

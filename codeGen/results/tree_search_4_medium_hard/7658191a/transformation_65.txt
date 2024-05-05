@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a table or array, where each cell represents the maximum score for a corresponding subproblem.
+The base case is when k = 0, where the maximum score is simply the sum of all values in the array.
+Consider the state transition: if it's a move to the right (i.e., i <= k), the score will increase by the value at index i+1. If it's a move to the left and we've made no more than z moves to the left recently, the score will decrease by the value at index i-1.
+Use a dictionary memo to store the results of subproblems, where the key is a tuple (i, j) representing the current move and the value is the corresponding maximum score. The state also depends on whether we've made more than z moves to the left recently, which can be tracked using an additional variable.
+Fill in the table by iterating from i = 1 to n and for each i, iterate from j = 0 to min(k, i-1) (since we can't make more than k or i-1 moves to the left).
+For each cell, consider all possible previous moves: either a move to the right or no move at all. Update the score accordingly.
+The final answer is stored in the cell corresponding to i = n and j = 0.
+===END PLAN===

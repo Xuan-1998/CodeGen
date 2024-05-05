@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+The tree structure makes me think of a recursive approach with memoization. This is because we need to consider all possible combinations of edge deletions and their resulting connected components.
+
+The state expression could be defined as the number of nodes in a sub-tree rooted at node i, with the base case being trees containing only one node (i.e., leaf nodes).
+
+State: The value assigned to each node in the tree, represented by a set or a list
+
+Implement a recursive function that takes the current node as input and returns whether it's possible to delete edges such that all connected components have the same XOR value.
+
+Let's break down the problem into smaller sub-problems:
+
+1. Base case: If the current node has only one child, then we can directly check if the values of its children are equal (after considering their XOR). If they're not, return "NO".
+
+2. Recursive case:
+   - Initialize a set to store all nodes that will be included in the same connected component as the current node.
+   - Iterate through all edges connected to the current node and recursively call the function for each child, adding its nodes to the set if it's possible to delete edges such that all connected components have the same XOR value. If any of these recursive calls return "NO", return "NO" immediately.
+
+3. Memoization:
+   - Store the results of sub-problems in a memo dictionary.
+   - Before making a recursive call, check if the result is already stored in the memo dictionary. If it is, return the stored result instead of recalculating it.
+
+By doing this, we ensure that each node is processed only once and avoid redundant calculations.
+
+===END PLAN===
