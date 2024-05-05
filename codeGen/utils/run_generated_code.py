@@ -49,7 +49,10 @@ def compare_outputs(py_file, json_file):
         accuracy = 1 if expected_output == actual_output else 0
         accuracy_rates.append(accuracy)
 
-    average_accuracy = sum(accuracy_rates) / len(accuracy_rates)
+    if accuracy_rates:
+        average_accuracy = sum(accuracy_rates) / len(accuracy_rates)
+    else:
+        average_accuracy = 0
     return average_accuracy, expected_outputs, actual_outputs, accuracy_rates
 
 
@@ -210,10 +213,11 @@ def compare_with_baseline(
         average_accuracies = save_results_to_csv(py_folder, model)
 
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
-        baseline_py_files = [
-            file for file in os.listdir(baseline_py_folder) if file.endswith(".py")
-        ]
-        baseline_average_accuracies = save_results_to_csv(baseline_py_folder, model)
+        if not os.path.isdir(baseline_py_folder):
+            baseline_average_accuracies = [0 for _ in range(len(py_files))]
+            print(f"Baseline not found for {py_folder}")
+        else:
+            baseline_average_accuracies = save_results_to_csv(baseline_py_folder, model)
 
         highest_accuracy.append(max(average_accuracies))
         baseline_high_accuracy.append(max(baseline_average_accuracies))
@@ -233,6 +237,8 @@ def analyze_csv_with_difficulty(
     baseline: str = "zero_shot",
     root_dir: str = "results",
 ):
+    model_accuracies = []
+    baseline_accuracies = []
     for prob in os.listdir(os.path.join(root_dir, method)):
         if not os.path.isdir(os.path.join(root_dir, method, prob)):
             continue
@@ -245,8 +251,12 @@ def analyze_csv_with_difficulty(
 
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
         baseline_csv_file = os.path.join(baseline_py_folder, "results.csv")
-        baseline_df = pd.read_csv(baseline_csv_file)
-        baseline_high_accuracy = baseline_df["Average Accuracy"][:max(sample_budget, 75)].max()
+        if not os.path.isfile(baseline_csv_file):
+            print(f"Baseline not found for {py_folder}")
+            baseline_high_accuracy = 0
+        else:
+            baseline_df = pd.read_csv(baseline_csv_file)
+            baseline_high_accuracy = baseline_df["Average Accuracy"][:max(sample_budget, 75)].max()
 
         prob_file = os.path.join(py_folder, "prob.json")
         with open(prob_file) as f:
@@ -259,10 +269,20 @@ def analyze_csv_with_difficulty(
         print(
             f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy:.2f}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy:.2f}"
         )
+        model_accuracies.append(highest_accuracy)
+        baseline_accuracies.append(baseline_high_accuracy)
+
+    if model_accuracies and baseline_accuracies:
+        print(
+            f"{method}: Average Accuracy = {sum(model_accuracies)}/{len(model_accuracies)} = {sum(model_accuracies)/len(model_accuracies)}"
+        )
+        print(
+            f"{baseline}: Average Accuracy = {sum(baseline_accuracies)}/{len(baseline_accuracies)} = {sum(baseline_accuracies)/len(baseline_accuracies)}"
+        )
 
 
 if __name__ == "__main__":
     # run_generated_code(model='online')
     # run_generated_code()
-    compare_with_baseline('tree_search_2', 'zero_shot')
-    analyze_csv_with_difficulty('tree_search_2')
+    # compare_with_baseline('tree_search_4_medium_hard', 'zero_shot')
+    analyze_csv_with_difficulty('tree_search_4_medium_hard')
