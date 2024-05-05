@@ -1,0 +1,28 @@
+Top-down approach with memoization:
+Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a 2D array dp[i][j] storing the minimum number of multiplications for matrices from i to j, 
+and the base case is when i == 0 (no matrices left) or j == n-1 (no more matrices to multiply).
+
+Consider the state dp[i][j] as the minimum number of multiplications needed when multiplying matrices from i to j, 
+and define a transition function f(i, j) = min(dp[i][k] + dp[k+1][j] + p[i]*p[k+1]*p[j]) for k from i to j-1.
+
+Memoize the recursive function and update the dp array with base case checks:
+    if i == 0:
+        return 0
+    elif j == n-1:
+        return 0
+    else:
+        if dp[i][j] is already computed: 
+            return memoized_value
+        else:
+            min_multiplications = float('inf')
+            for k in range(i, j):
+                multiplications = f(i, k) + f(k+1, j) + p[i]*p[k+1]*p[j]
+                if multiplications < min_multiplications:
+                    min_multiplications = multiplications
+                    best_split_index = k
+            dp[i][j] = min_multiplications
+            return min_multiplications
+
+The updated plan handles edge cases correctly and provides a clear approach for solving the problem.

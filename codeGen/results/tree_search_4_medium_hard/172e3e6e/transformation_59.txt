@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Define the state as a dictionary (i, max_divisor), where i is the current element's index and max_divisor is the maximum divisor seen so far.
+
+State: dp[i][max_divisor] = 1 if the previous elements up to the current element have at least one good subsequence ending with the current element and divisible by max_divisor; otherwise, it is 0.
+
+Create a 2D table where rows represent the current index i and columns represent the maximum divisor seen so far max_divisor.
+
+Base case: dp[0][1] = 1, because the first element can always be included in a good subsequence ending with a length of 1 (the same as itself).
+
+dp[i][max_divisor] = 0 if a is not divisible by max_divisor or there exists j < i such that dp[j][a[j]] == 0; otherwise, it is the sum of the following:
+
+- The number of good subsequences ending with a[i] and having length i (which is either 1 or the same as the previous element)
+- For each previous index k where a[k] is divisible by max_divisor: dp[k][a[k]] * (i - k)
+
+The final answer will be the sum of all dp[n][max_divisor] where n ranges from 2 to n and max_divisor ranges from 1 to a[n].
+
+===END PLAN===

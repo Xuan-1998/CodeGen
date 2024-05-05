@@ -1,0 +1,22 @@
+Begin Plan:
+Top-down approach with memoization: Define a dictionary 'dp' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+The total cost (number of multiplications) required to multiply all matrices from index i to j. 
+
+Consider a state where we have multiplied the first k matrices together, and the next step is to multiply the (k+1)th matrix with the result of multiplying the first k-1 matrices. Define dp[k] as the minimum number of multiplications needed for this state.
+
+Implement memoization by defining a recursive function that stores the results of subproblems in the dictionary 'dp', reducing redundant computations.
+
+Base case: dp[0][j] = 0, because no multiplication is required to multiply 0 matrices.
+
+Recursion: 
+dp[i][j] = min(dp[i-1][k-1] + p[i-1] * p[k] * p[j] for k in range(i)) + dp[i-1][j]
+If i=1, return the product of the first two matrices.
+Return dp[n-1][n-2]
+
+Edge cases:
+If n = 0 or n > 26, handle exceptions.
+
+Space complexity: O(n^2)
+
+Time complexity: O(n^3)

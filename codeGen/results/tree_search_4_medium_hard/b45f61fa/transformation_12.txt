@@ -1,0 +1,35 @@
+def min_multiplications(p, i, j):
+    if i == j:  # base case: no matrices left
+        return 0
+    min_cost = float('inf')
+    for k in range(i, j):  # try splitting at each possible position
+        cost = min_multiplications(p, i, k) + 
+               min_multiplications(p, k+1, j) + 
+               p[i]*p[k+1]*p[j]
+        if cost < min_cost:
+            min_cost = cost
+    return min_cost
+
+# memoize results in a 2D array dp
+dp = [[float('inf')] * (n-1) for _ in range(n-1)]
+for i in range(n):
+    for j in range(i, n-1):  # only consider splitting at the end of each subarray
+        dp[i][j] = min_multiplications(p, i, j)
+
+# construct the optimal parenthesization from the memoized results
+result = []
+i, j = 0, n-2
+while i < j:
+    min_cost = float('inf')
+    for k in range(i, j):
+        cost = dp[i][k] + dp[k+1][j]
+        if cost < min_cost:
+            min_cost = cost
+            best_split = k
+    result.append('(')
+    result.extend(['A', str(best_split+1)])
+    result.append(')')
+    i, j = best_split, j-1
+result.append(')')
+
+print(''.join(result))

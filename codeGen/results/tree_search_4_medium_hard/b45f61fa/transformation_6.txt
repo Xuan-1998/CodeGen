@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+    * Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+    * Define the state expression as a tuple (i, j) representing the range of matrices to multiply, 
+      and the base case is when i == 0 or j == n-1 (single matrix remaining).
+    * Formulate state and transition relationships by considering all possible ways to divide the matrix chain into two parts: 
+      from i to k and from k+1 to j, and choose the combination that minimizes the total number of multiplications.
+    * Create a 2D table dp where dp[i][j] stores the minimum number of multiplications needed to multiply matrices from i to j.
+    * For each cell in the table, consider all possible ways to divide the matrix chain into two parts and choose the combination that minimizes the total number of multiplications.
+    * The base case is when i == 0 or j == n-1 (single matrix remaining), in which case dp[i][j] = 0.
+    * Fill up the table row by row, starting from the top-left corner. For each cell, consider all possible ways to divide the matrix chain into two parts and choose the combination that minimizes the total number of multiplications.
+    * The final answer is stored in dp[0][n-1].
+===END PLAN===

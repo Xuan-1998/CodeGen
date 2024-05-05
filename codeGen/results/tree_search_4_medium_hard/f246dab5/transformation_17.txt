@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i] represents the minimum cost for i-th trip.
+
+if t_i < 90:
+    dp[t_i] = min(dp[t_i-1] + 20, dp[0] + 50)
+else if t_i >= 90 and t_i < 10*90+1:
+    dp[t_i] = min(dp[t_i-1] + 20, dp[t_i-90] + 120)
+else:
+    dp[t_i] = dp[t_i-1] + 20
+
+Tabulate the solution by iterating over the trips and updating the DP array
+for i in range(n):
+    t_i = trips[i]
+    dp[t_i] = dp[t_i]
+
+===END PLAN===

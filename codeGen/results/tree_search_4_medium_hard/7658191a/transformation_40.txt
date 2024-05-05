@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+The base case would be when only one element is left, in which case the maximum score is just that single element.
+
+Define state transitions based on the allowed moves: if the current score is higher than the previous one, make a right move; otherwise, try to make a left move, but not more than z times in a row.
+
+Use a 2D array with dimensions (n+1, k+1) to store the maximum score at each step and number of moves. The value at position (i, j) represents the maximum score that can be achieved after processing i elements and making j moves.
+
+For each cell in the 2D array:
+    Initialize it as the sum of the scores up to index i.
+    For each move from 0 to k:
+        If there are enough moves left (j < k), consider both right and left moves, 
+            updating the maximum score if a better score can be achieved.
+        Update the cell with the maximum score that can be achieved after processing i elements and making j moves.
+
+Return the value at position (n, k) as the maximum score that can be achieved.
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i] = (exists two sequences a1 and a2 such that their concatenation forms b[:i] and the lengths of a1, a2 are either all even or all odd) for i from 0 to n-1
+dp[0] = True // base case: sequence with length 0 can always be obtained by splitting an empty sequence
+for i from 1 to n-1:
+    if b[i] % 2 == 0 and (dp[j] or exists a3 such that a3.length + dp[j-1] is even): 
+        // try to split at position j and make the rest of the sequence even-lengthed segments
+        dp[i] = True
+    elif b[i] % 2 == 1 and (dp[j] or exists a3 such that a3.length + dp[j-1] is odd):
+        // try to split at position j and make the rest of the sequence odd-lengthed segments
+        dp[i] = True
+    else:
+        // cannot be obtained by splitting an even-lengthed segment, so it's not possible
+        dp[i] = False
+dp[n-1]
+===END PLAN===

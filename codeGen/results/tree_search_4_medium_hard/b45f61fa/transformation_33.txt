@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+The state expression could be dp[i][j] = minimum number of multiplications to multiply matrices from i to j, with dp[0][k] being the base case (matrix 1 times matrix k for all k).
+dp[i][j] = minimum number of multiplications to multiply matrices from i to j, considering the possibility of multiplying i-th matrix with the result of dp[i-1][k] for all k < i.
+For each pair of adjacent matrices (i to j), calculate the cost of multiplying them and add it to the minimum number of multiplications needed to multiply the remaining matrices.
+The optimal solution is when we choose the pair of matrices that results in the minimum number of multiplications, which will be the one with the smallest value for dp[i][j].
+Tabulate:
+for i from 1 to n-1
+    for j from i+1 to n
+        calculate minCost = infinity
+        for k from i+1 to j
+            tempCost = dp[i][k-1] + p[i]*p[k]*p[j]
+            if tempCost < minCost
+                minCost = tempCost
+        dp[i][j] = minCost
+Print the optimal parenthesization:
+for i from 2 to n
+    print '(' + char(i) + ')' if dp[0][i-1] != infinity else ''
+char(i) = uppercase letter i for all i
+===END PLAN===

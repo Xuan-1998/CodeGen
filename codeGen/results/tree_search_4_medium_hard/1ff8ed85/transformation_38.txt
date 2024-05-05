@@ -1,0 +1,47 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+The state expression could be a dictionary {val: freq} mapping each value to its frequency in sequence a, with the base case being when the input sequence contains all values.
+
+State_dict = {}
+
+def dfs(a, b):
+    n = len(a)
+    if not b:
+        return True
+    for i in range(n):
+        segment_len = 1
+        while i + segment_len <= n and a[i:i+segment_len] == str(segment_len):
+            segment_len += 1
+        if str(segment_len) not in b or segment_len > len(str(b[0])):
+            return False
+    return True
+
+memo = {}
+def dp(a, b):
+    key = (tuple(a), tuple(b))
+    if key in memo:
+        return memo[key]
+    n = len(a)
+    res = dfs(a, b)
+    memo[key] = res
+    return res
+
+state_dict = {}
+def solve(n, b):
+    for i in range(1, n+1):
+        a = [str(j) for j in range(1, i+1)]
+        state_dict[(i, 0)] = True
+        for j in range(i):
+            if str(j+1) not in b or len(str(j+1)) > len(str(b[0])):
+                state_dict[(i, j+1)] = False
+                break
+            else:
+                segment_len = 1
+                while j + segment_len <= i and a[j:j+segment_len] == str(segment_len):
+                    segment_len += 1
+                if str(segment_len) not in b or segment_len > len(str(b[0])):
+                    state_dict[(i, j+1)] = False
+                    break
+        else:
+            state_dict[(i, i)] = dp(a, b)
+    return 'YES' if any(state_dict.values()) else 'NO'

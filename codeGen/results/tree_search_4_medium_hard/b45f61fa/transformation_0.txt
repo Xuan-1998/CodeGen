@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Top-down approach with memoization: Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j) representing the range of matrices to multiply, and the base case is when i == 0 or j == n-1 (single matrix remaining).
+
+Define a dynamic programming table dp[][] with dimensions O(n^2), where dp[i][j] represents the minimum number of multiplications needed to multiply matrices from i to j.
+
+Create a 2D DP table where each cell dp[i][j] is calculated as follows:
+
+* If i == j, the multiplication is trivial (single matrix)
+	+ Return 0
+* Otherwise, consider two options:
+	1. Multiply the ith and (i+1)th matrices together, then recursively multiply the remaining matrices from (i+2) to j
+		- Calculate the cost of this option as dp[i][j] = min(dp[i][i+1]) + p[i]*p[i+1]*dp[i+2][j]
+	2. Multiply the ith and jth matrices together, then recursively multiply the remaining matrices from i to (j-1)
+		- Calculate the cost of this option as dp[i][j] = min(dp[i][j-1]) + p[i]*p[j]*dp[i][j-2]
+
+Return the minimum of these two options
+
+===END PLAN===

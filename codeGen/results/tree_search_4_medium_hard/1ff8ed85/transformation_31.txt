@@ -1,0 +1,17 @@
+===
+BEGIN PLAN
+Consider sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+state expression: {val: freq} mapping each value to its frequency in sequence a with base case when input sequence contains all values.
+
+state is (current_segment_length, segment_count) representing current length of segment in a and number of segments formed so far. Use dictionary to store frequencies of each value in sequence a as you iterate through it.
+
+state transition:
+- If current length is greater than previous segment's length + 1, start new segment.
+- For each value in sequence b, check if its frequency in sequence a is equal to the segment count * (previous_segment_length + 1) - current_segment_length. 
+  - If yes, it can be part of this segment; increment segment_count and update previous_segment_length.
+  - If not, start new segment.
+
+base case: when all values in sequence b are used up, return YES if segments are strictly increasing; otherwise, return NO.
+
+===END PLAN

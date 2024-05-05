@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Since the problem involves checking divisibility, it might be more efficient to use tabulation to store the results of subproblems and avoid redundant calculations.
+
+Consider the state as a tuple (i, last_divisor), where i is the length of the subsequence and last_divisor is the largest divisor of the last element in the subsequence.
+State: dp[i][j] = 1 if there exists a good subsequence ending at index i with the largest divisor j; otherwise, it's 0.
+
+Let's start by initializing the dp array. We can set dp[0][i] to 1 for all i, because an empty subsequence is always good.
+
+For each i from 1 to n:
+    For each j from 2 to a[i]:
+        If a[i] is divisible by j and there exists a good subsequence ending at index i-1 with the largest divisor j, then set dp[i][j] = 1.
+        Otherwise, set dp[i][j] = 0.
+
+Finally, we can calculate the number of good subsequences by summing up all dp[n][j] values for j from 2 to a[n].
+
+===END PLAN===

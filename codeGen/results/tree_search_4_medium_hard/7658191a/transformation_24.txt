@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP table dimensions: n rows and k+1 columns
+Initialize dp[0][0] = 0 (base case)
+For i from 1 to min(2, n-1):
+    For j from 0 to min(k, i):
+        if j <= z:
+            dp[i][j] = max(dp[i-1][j], dp[i][min(j+1, z)] + arr[i])
+        else:
+            dp[i][j] = dp[i-1][j]
+For i from 2 to n-1:
+    For j from 0 to min(k, i):
+        if j <= z:
+            dp[i][j] = max(dp[i-1][j], dp[i][min(j+1, z)] + arr[i])
+Return dp[n-1][k] as the maximum score that can be achieved after processing n elements with k moves
+
+===END PLAN===

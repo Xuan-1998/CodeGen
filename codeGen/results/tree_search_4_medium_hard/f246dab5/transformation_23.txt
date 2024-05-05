@@ -1,0 +1,9 @@
+state: dp[i] = min_cost_to_activate_after_trip_i
+Let state dp[i] be the minimum cost to activate tickets after trip i. We transition as follows:
+dp[i] = min(dp[j], dp[min(k | t_k <= t_j)]) + (i-t_j)*20, where the sum is over all trips j such that t_j <= t_i and k is the previous trip.
+Use a dictionary to store previously computed values and update them as needed. Initialize dp[0] to be 0.
+
+To make the plan more efficient, we can maintain two pointers, low and high, to track the range of tickets that have been activated. Initially, low = 0 and high = i-1.
+For each trip i, check if t_i is within the range [low, high]. If yes, then update dp[i] as follows: dp[i] = min(dp[j], dp[min(k | t_k <= t_j)]) + (i-t_j)*20. Then update low and high accordingly.
+
+This plan should correctly solve the problem by avoiding redundant computation and using memoization to store previously computed values.

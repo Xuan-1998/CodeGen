@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a state as a tuple (i, last_divisor), where i is the length of the subsequence and last_divisor is the largest divisor of the last element in the subsequence.
+Let dp[i][d] be 1 if there exists a good subsequence of length i with the last divisor being d. Otherwise, it's 0.
+
+State transition: 
+- If the last element of the current subsequence is divisible by d, then (i, d) transitions to (i-1, d).
+- If the last element of the current subsequence is not divisible by any previous divisor up to d, then (i, d) transitions to (i-1, 0).
+
+Base case: 
+- For i = 1, dp[1][d] is 1 if the first element is divisible by d. Otherwise, it's 0.
+
+Final answer:
+- The number of good subsequences taken modulo 10^9 + 7 is the sum of dp[i][0] for all i from 1 to n.
+===END PLAN===

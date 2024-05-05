@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Transition relationship:
+dp[i] = max(dp[i-1], len + prev_val) if i > 0
+dp[0] = 0
+
+Implement tabulation using a 1D array, where each element dp[i] stores the maximum length of sequence a that can produce the first i elements of sequence b.
+
+Iterate through the sequence and update dp values as follows:
+for i in range(1, n+1):
+    for j in range(i):
+        if b[j] == prev_val:
+            len = i - j
+            break
+    dp[i] = max(dp[i-1], len + prev_val)
+
+Return YES if dp[n] > 0 and NO otherwise.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+==BEGIN PLAN==
+DP can be solved by identifying that we need to find the minimum cost for a given time stamp, considering all possible ticket combinations from the start till now. This subproblem will have overlapping instances as we move forward in time.
+
+The state is a pair of (minutes_left_until_ticket_expires, total_cost_so_far): 
+This choice captures both the information about when the ticket expires and the cumulative cost of all previously used tickets.
+State: (minutes, tickets_used);
+Transition relationship:
+For each possible ticket, calculate the minimum cost that can be achieved using this ticket and the remaining trips. Update state by taking the minimum cost and updating the number of tickets used.
+
+Iterate over the time stamps and maintain the minimum cost seen so far by considering all possible ticket combinations.
+At each step, consider the current time stamp t, and for each previous time stamp i < t:
+Calculate the cost if a ticket was purchased at time i, that is, calculate the total cost including this ticket (i.e., 20, 50, or 120) added to the minimum cost seen so far from time i + 1 to t.
+Update the minimum cost and the number of tickets used accordingly.
+
+==END PLAN==

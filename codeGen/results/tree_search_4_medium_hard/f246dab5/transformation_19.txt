@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+dp[i] = min_cost_to_activate_at_time_t, where t is the start time of i-th trip.
+state: dp[i-1] represents the minimum cost to activate at the end of (i-1)-th trip.
+
+function min_cost_to_activate_at_ti(t):
+    if t < 0:
+        return infinity
+    if i == 0:
+        return 20 // single trip ticket
+
+    if dp[i-1] + 120 > dp[i]:
+        return dp[i]
+    else:
+        return dp[i-1] + 120
+
+memoization: dp[i] = min(min_cost_to_activate_at_ti(t) for t in range(dp[i-1], dp[i-1] + 1440))
+
+dp[0] = 20
+for i from 1 to n:
+    dp[i] = memoization(i)
+
+output the values of dp[i] for all i
+===END PLAN===

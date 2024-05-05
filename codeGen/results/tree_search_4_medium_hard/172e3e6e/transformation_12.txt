@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem involves finding the number of good subsequences, which seems to be a function of the current element and the previous subsequence lengths. This suggests that memoization could be effective.
+
+Let dp[i][j] denote the count of good subsequences that can be extended by appending a[i], given that its length is j and the last element is divisible by i.
+
+The base case handles when i is 1, where we only consider sequences with length 0. The state expression defines the count of good subsequences that can be extended by appending a[i] and considering the previous subsequence lengths.
+
+Consider defining the state as (i, j) where i is the current element and j is the count of good subsequences that can be extended by appending a[i].
+
+Define a recursive function with base cases handling when i is 1. This will handle edge cases such as length 0 sequences and subsequences ending at index 1.
+
+Use this function to populate a dictionary with memoized values, considering the current element and previous subsequence lengths.
+
+For each good subsequence ending at index j, check if its last element (a[j]) is divisible by j. If it is, update dp[a[j]][j] accordingly.
+
+Finally, return dp[n][n] as the total count of good subsequences, modulo 10^9 + 7.
+===END PLAN===

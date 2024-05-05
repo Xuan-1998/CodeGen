@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+Consider the maximum score achieved after processing i elements, with j moves performed in total (0 <= j <= k), where j <= z if i < n - 1.
+Let dp[i][j] be the maximum score that can be achieved by processing i elements and performing j moves. Then, dp[i][j] is equal to:
+    * The maximum of two possibilities: either you process the current element (i.e., i-1) with (j-1) moves or you don't process it at all (i.e., i) with j moves.
+    * If you decide to process the current element, then your new score is arr[i] + dp[i-1][j-1].
+    * If you don't process the current element, then your new score is simply dp[i-1][j].
+So, dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + arr[i]).
+Implement memoization using a dictionary where the key is a tuple (i, j) representing the subproblem state and the value is the corresponding maximum score.
+Finally, return dp[n-1][k] as it represents the maximum score that can be achieved by processing all elements with k moves.
+
+===END PLAN===

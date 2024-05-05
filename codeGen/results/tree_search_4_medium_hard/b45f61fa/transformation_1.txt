@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+	* Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+Define the state expression as a tuple (i, j) representing the range of matrices to multiply, and the base case is when i == 0 or j == n-1 (single matrix remaining).
+ Define a dynamic programming table dp[][] with dimensions O(n^2), where dp[i][j] represents the minimum number of multiplications needed to multiply matrices from i to j.
+Define the state transition:
+	* For each subproblem (i, j), consider all possible ways to partition the range [i, j] into two subproblems (k, j) and (i, k-1), where 0 <= k <= n-1.
+	* Compute the minimum number of multiplications needed for these two subproblems and add the cost of multiplying the matrices at positions i and k.
+ Memoize the solution to avoid redundant computation.
+
+===END PLAN===

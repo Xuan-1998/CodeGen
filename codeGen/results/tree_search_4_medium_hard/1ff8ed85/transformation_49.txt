@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Determine whether there exist two sequences, one with lengths that are either all even or all odd, such that their concatenation forms sequence $b$.
+
+dp[i] = min(dp[j] + (b[i] == len(a)) for j in range(i)) for i from 0 to n-1
+Consider a state where the last element of the sequence $a$ is even or odd, and determine whether it's possible to find another state that satisfies the condition.
+
+Create a memoized function with a dictionary
+
+Initialize dp array as [False] * (n + 1), set dp[0] = True, and then iterate through b from left to right. For each element in b:
+
+    If b[i] is even, check if there's a previous even length that can be concatenated with it to form the current sequence.
+        Check for all odd lengths and see if they can be added to the current sequence.
+
+If b[i] is odd, check if there's a previous odd length that can be concatenated with it to form the current sequence.
+    Check for all even lengths and see if they can be added to the current sequence.
+
+If either condition holds true, update dp[i + 1].
+
+Finally, return "YES" if dp[n] is True; otherwise, return "NO".
+
+===END PLAN===

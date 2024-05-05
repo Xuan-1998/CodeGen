@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+The base case would be when only one element is left, in which case the maximum score is just that single element.
+
+Represent states as (i, score) pairs, where i is the current index and score is the maximum achievable score at that index, considering the allowed moves up to k steps. Initialize a 2D table with n rows and k+1 columns, where the value at row i and column j represents the maximum score that can be achieved after i moves and considering up to z moves to the left; use this table to store intermediate results and build up solutions to smaller subproblems.
+
+For each cell (i, j), calculate the maximum score by considering two possibilities: 
+  * Move to the right: update the score with the value at index i+1 and consider up to k-1 moves
+  * Move to the left: update the score with the value at index i-1 and consider up to z moves
+Choose the option that results in the maximum score.
+
+Finally, return the value at cell (n-1, k) as the maximum achievable score.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][j] representing the minimum cost for a passenger to reach time t_i using j 90-minute tickets.
+
+We will iterate over all timestamps i and 0 ≤ j ≤ min(14, (t_i - t_start) // 90), where t_start is the start time of the system. 
+
+For each cell dp[i][j], we consider three cases:
+- Case 1: Use a one-trip ticket
+	+ If the current timestamp i is not multiple of 60, then add the cost of one trip to the minimum cost calculated so far.
+	+ Else, do nothing and just take the previous minimum cost.
+- Case 2: Use a 90-minute ticket 
+	+ Calculate the total cost if we use j 90-minute tickets from the start till now. This is dp[i][j - 1] + (50 * (i // 90) - 20).
+	+ Update the minimum cost for this cell if this total cost is less than what was calculated so far.
+- Case 3: Use a one-day ticket 
+	+ Calculate the total cost if we use j 14-hour tickets from the start till now. This is dp[i][j - (i // 1440)] + (120 * ((i // 1440) - 1)).
+	+ Update the minimum cost for this cell if this total cost is less than what was calculated so far.
+
+Finally, we return the value of dp[n-1][*], where n is the number of trips. This represents the minimum cost for a passenger to reach the end time using any combination of tickets.

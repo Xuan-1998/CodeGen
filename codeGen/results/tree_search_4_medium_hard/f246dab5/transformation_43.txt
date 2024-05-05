@@ -1,0 +1,20 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+dp[i][num_tickets] might represent the minimum cost for a passenger to reach time t_i, considering num_tickets 90-minute tickets and all possible ticket combinations till now. The transition can be defined as:
+
+- (i-1, num_tickets + 1) if the current ticket used is a 90-minute one, 
+- (i-1, num_tickets - 1) if the current ticket used is a 1-trip one, and the remaining time is less than or equal to 89 minutes. In this case, we can use one more 90-minute ticket.
+- (i-1, num_tickets) otherwise.
+
+Use dynamic programming with memoization to create a dictionary where the key is (timestamp, num_tickets) and the value is the minimum cost for reaching that timestamp with those tickets.
+
+Initialize the base cases: dp[0][num_tickets] = 20 * num_tickets + 50 * ceil(t[1]/90) - 120 * floor(t[1]/1440), representing the minimum cost to reach time t_1 with num_tickets tickets. 
+
+Then fill up the table in a bottom-up manner:
+
+- for i from 2 to n:
+    - for each possible number of 90-minute tickets used till now (num_tickets):
+        - if the current ticket used is a 90-minute one, update dp[i][num_tickets] with min(dp[i-1][num_tickets+1], 50), considering all possible combinations.
+        - otherwise, update dp[i][num_tickets] with min(dp[i-1][num_tickets-1], 20) if the remaining time is less than or equal to 89 minutes, and dp[i-1][num_tickets] otherwise.
+
+Finally, for each trip i from 1 to n, print dp[i][num_tickets_i] as the minimum cost charged after the ith trip.

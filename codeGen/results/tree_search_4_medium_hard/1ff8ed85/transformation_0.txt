@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Transition relationship:
+    * Initialize an array dp with size 2*10^5 + 1 and all values initialized to -1
+    * Iterate over sequence b from left to right
+        - For each element b_i, iterate over possible previous values in sequence a (from 1 to b_i)
+            - If the difference between b_i and prev_val is less than or equal to the current length of sequence a, update dp[n] = 1
+            - Else, update dp[n] = 0
+        - Update n = n + 1 and prev_val = b_i
+
+Return YES if dp[n-1] == 1; otherwise return NO.
+
+===END PLAN===

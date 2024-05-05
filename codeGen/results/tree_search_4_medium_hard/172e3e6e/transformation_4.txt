@@ -1,0 +1,15 @@
+1. The initial state should be initialized as follows:
+   dp[0][j][k] = 1 if k == j and 0 otherwise.
+
+2. Base case: If a[i] is not divisible by i, then there are no good subsequences, so set dp[i][j][k] = 0 for all k.
+3. Recursive function:
+   For each k from 1 to a[i]:
+     if a[i] % k == 0 and (i > j-1 or dp[i-1][j-1][k-1] == 1):
+       dp[i][j][k] = dp[i][j][k] + dp[i-1][j-1][k-1]
+
+4. Main function:
+   Initialize an array dp with n+1 rows and a maximum of 10^6 columns.
+   Call the recursive function to fill in the array.
+
+5. Output:
+   Return the sum of dp[n][j][a[i]] for j from 1 to a[i]. This will give us the number of good subsequences ending at each index i, with the last element being a[i].

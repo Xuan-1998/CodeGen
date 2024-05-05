@@ -1,0 +1,15 @@
+Bottom-up approach with tabulation: Define a table 'dp[i][j]' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+The total cost (number of multiplications) required to multiply all matrices from index i to j. Consider a state where we have multiplied the first k matrices together, and the next step is to multiply the (k+1)th matrix with the result of multiplying the first k-1 matrices. Define dp[k] as the minimum number of multiplications needed for this state.
+
+Consider using a 2D table to store the results where dp[i][j] represents the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+The base case is when i equals j, which means we are considering multiplying a single matrix. In this case, the cost is simply p[i]*p[i].
+
+For larger values of i and j, consider the minimum number of multiplications needed to multiply matrices from 0 to k, inclusive, and then multiply the (k+1)th matrix with the result.
+
+The recursive relation would be:
+
+dp[i][j] = min(dp[i][k] + dp[k][j]) for all 0 <= k <= j-1
+
+Finally, return dp[0][n-1], which represents the minimum number of multiplications needed to multiply all matrices.

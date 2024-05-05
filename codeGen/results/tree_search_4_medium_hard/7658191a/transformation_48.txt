@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a table or array, where each cell represents the maximum score for a corresponding subproblem.
+
+The maximum score for the first k moves is the maximum score for the first k-1 moves plus the value at index k. This can be used as the base case for our recursive dynamic programming function.
+
+Considering the current maximum score as the state, possible transitions would be adding the value of the previous element to the current maximum score if it's less than z moves ago, or adding the value at index k and moving on to the next subproblem. This can be represented by two states: dp[i][j] and dp[i-1][j-z], with corresponding transitions: dp[i][j+1] = max(dp[i][j]+a[k], dp[i-1][j-z]).
+
+Design a bottom-up dynamic programming solution using a 2D array dp where dp[i][j] represents the maximum score after i moves and j moves to the left. Initialize the base case as dp[0][0] = 0, then fill in the rest of the table based on the transitions.
+
+Use a loop to iterate over each cell in the dp array, with the outer loop representing the number of moves (i) and the inner loop representing the number of moves to the left (j). For each cell, calculate the maximum score by considering the two possible transitions: adding the value at index k and moving on to the next subproblem, or adding the value of the previous element if it's less than z moves ago.
+
+Finally, return dp[k][0] as the maximum score that can be achieved after exactly k moves.
+
+===END PLAN===

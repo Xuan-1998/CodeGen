@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a table or array, where each cell represents the maximum score for a corresponding subproblem.
+
+Let dp[i][j] be the maximum score that can be achieved with i moves and j moves to the left (z or fewer).
+
+1. For i = 0 to n-1:
+   - For j = 0 to min(k, i):
+     - If j == 0, then dp[i][j] is equal to the value at index i
+     - Else if j > 0 and i > z, then dp[i][j] is equal to the maximum of two options: 
+       - The score that can be achieved by moving one step to the right (i+1) and having j-1 moves left
+       - The score that can be achieved by moving one step to the left (i-1) and having j-1 moves left
+     - Else, dp[i][j] is equal to the maximum of two options:
+       - The score that can be achieved by moving one step to the right (i+1) and having z or fewer moves left
+       - The score that can be achieved by moving one step to the left (i-1) and having j-1 moves left
+
+Return dp[n-1][k] as the maximum score that can be achieved with k moves.
+
+===END PLAN===

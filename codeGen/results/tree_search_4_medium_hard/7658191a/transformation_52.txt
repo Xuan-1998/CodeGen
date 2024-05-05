@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Dynamic programming approach with a 2D table dp[][] where dp[i][j] represents the maximum score for i moves and j elements in the array.
+
+1. Initialize dp[0][0] = 0, as there are no moves or elements initially.
+
+2. Fill up the first row of the table: dp[i][0] = 0 for all i > 0 (as we cannot make any move with 0 elements).
+
+3. Fill up the first column of the table: dp[0][j] = 0 for all j > 0 (as we cannot make any move with 0 moves).
+
+4. For each cell dp[i][j]:
+    a. If i is less than k, consider two possible scenarios:
+        i. Make a move to the right by adding the value at index i+1.
+        ii. Make a move to the left by adding the value at index i-1 (only if it's not more than z moves away).
+
+    b. Choose the maximum score between these two scenarios and update dp[i][j] accordingly.
+
+5. Finally, return dp[k][n-1], which represents the maximum score for k moves and n elements in the array.
+
+===END PLAN===

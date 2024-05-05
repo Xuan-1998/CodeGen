@@ -1,0 +1,19 @@
+State: Whether or not the subsequence ending at index i can be extended to include a[i]. 
+Base case: If i > 1, then this state is the same as the previous one because there are no subsequences that can be extended.
+
+dp[i] = {
+    for j in range(i):
+        if a[i]%j == 0 and dp[j]:
+            dp[i] += len(range(j+1, i+1)) * dp[j]
+}
+
+Memoization:
+Store values of dp[i] as they are computed to avoid recomputation.
+Use dictionary to store the memoized values.
+
+State: dp[0] = 1 (base case), because a single element is always a good subsequence.
+
+Transition relationship: 
+dp[i] = sum(len(range(j+1, i+1)) * dp[j] for j in range(i) if a[i]%j == 0)
+
+Start with dp[0] = 1 and build up to dp[n-1]

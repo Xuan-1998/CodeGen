@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Define the state as a dictionary (i, prefix_sum) where i is the current element's index and prefix_sum is the sum of all numbers in the array up to this point.
+
+State: dp[i][j] where:
+    - i is the current index
+    - j is the current number being considered
+    dp[i][j] = 1 if the subsequence ending at this position has been checked before (i.e., it's a good subsequence)
+         = 0 otherwise
+
+Initial state: dp[0][0] = 1 (base case: an empty array is always a good subsequence)
+
+Transition rule:
+    If the current number j is divisible by i, then
+        dp[i-1][j//i] represents the number of good subsequences ending at this position without considering the current number
+        dp[i-1][j//i] + 1 represents the number of good subsequences including the current number
+    Otherwise,
+        dp[i-1][j] is the same as the previous state (no new information)
+
+Final state: dp[n-1][total_sum] where n is the length of the array and total_sum is the sum of all numbers in the array
+
+To calculate the answer, iterate over the table and count the number of good subsequences.
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization can be used with dynamic programming where we keep track of previously computed values and avoid redundant computation.
+
+dp[i] represents the minimum cost for i-th trip.
+dp[i] = min(dp[i-1], dp[i-2] + (50 if t_i > 90 else 20)) for i, t_i in enumerate(range(n))
+Use a bottom-up dynamic programming approach by filling up the dp array in order from left to right, where each entry depends only on previous ones.
+
+We can further optimize the plan by initializing dp[0] and dp[1] with base cases. Since there is no ticket used for the first trip, dp[0] should be 20. For the second trip, we need one of either the single-trip or 90-minute tickets. So, dp[1] can be calculated as min(20, 50).
+
+Finally, initialize a variable to store the total cost and iterate over the range from 2 to n (inclusive) to calculate the minimum cost for each trip. In each iteration, use the previously computed dp[i-1] and dp[i-2] values to update dp[i].
+
+This plan includes edge cases by considering the base cases of dp[0] and dp[1]. It also avoids redundant computation using dynamic programming.
+===END PLAN===
