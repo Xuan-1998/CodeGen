@@ -1,7 +1,7 @@
 from utils.chatbot import ChatCompletionAPI
 from utils.codeGen_logger import setup_logging
 from utils.problems import Problem, get_editorial
-from prompts import *
+from utils.prompts import *
 import os
 import json
 from datasets import load_dataset

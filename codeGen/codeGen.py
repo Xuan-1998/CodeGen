@@ -6,10 +6,11 @@ from typing import Callable
 import traceback
 import json
 from tenacity import RetryError
-from prompts import DYNAMIC_PROGRAMMING
+from utils.prompts import DYNAMIC_PROGRAMMING
 
 main_logger = codeGen_logger.setup_logging()
-CHAT_MODE = "llama3"
+# CHATBOT = chatbot.ChatCompletionAPI(model="gpt-4")
+CHATBOT = chatbot.OllamaAPI(model="llama3")
 
 # tree search version 1 - genreral steps
 # tree search version llama - use llama instead of gpt4
@@ -17,8 +18,8 @@ CHAT_MODE = "llama3"
 # tree search version 3 - with defined steps and evaluation steps
 # tree search version 4 - refine prompts
 def tree_search_4_medium_hard(prob: Problem)->list[str]:
+    coder = coding.Coding(prob.statement, CHATBOT)
     algorithm = "Dynamic Programming" #prob.tag.strip().split(', ')[0]
-    # general_steps, _ = coding.provide_algorithm_coder(prob.statement, algorithm)
     # general_steps, _ = coding.provide_algorithm_coder2(algorithm, CHAT_MODE)
     general_steps = DYNAMIC_PROGRAMMING
     main_logger.info(f"Algorithm: {algorithm}, General steps: {general_steps}")
@@ -38,9 +39,11 @@ def tree_search_4_medium_hard(prob: Problem)->list[str]:
             transformation = "\n".join(step)
             try:
                 main_logger.info(f"Starting transformation evaluation: Transformation: {transformation}")
-                evaluated_transformation, _ = coding.evaluation_coder(prob.statement, algorithm, transformation, CHAT_MODE)
+                evaluated_transformation, response = coder.evaluation_coder(algorithm, transformation)
                 main_logger.info(f"Starting code generation: Transformation: {evaluated_transformation}")
-                code, _ = coding.transformation_coder(prob.statement, evaluated_transformation, CHAT_MODE)
+                main_logger.debug(f"Starting code genration: Original repsonse: {response}")
+                code, response = coder.transformation_coder(evaluated_transformation)
+                main_logger.debug(f"Code generation response: {response}")
             except RetryError as e:
                 main_logger.error(f"An error occurred: {e}, {transformation}, {traceback.format_exc()}")
                 
@@ -48,10 +51,11 @@ def tree_search_4_medium_hard(prob: Problem)->list[str]:
             transformations.append(evaluated_transformation)
             continue
 
-        main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHAT_MODE}")
+        main_logger.info(f"Start following up: {steps_to_generate[0]}, Coder: {CHATBOT.__class__.__name__}")
 
         try:
-            lis, _ = coding.follow_up_coder(prob.statement, algorithm, steps_to_generate[0], step + steps_to_generate, CHAT_MODE)
+            lis, response = coder.follow_up_coder(algorithm, steps_to_generate[0], step + steps_to_generate)
+            main_logger.debug(f"Follow up response: {response}")
         except RetryError as e:
             lis = [steps_to_generate[0]]
             main_logger.error(f"An error occurred: {e}, {steps_to_generate}, {traceback.format_exc()}")
@@ -61,7 +65,6 @@ def tree_search_4_medium_hard(prob: Problem)->list[str]:
         for choice in lis:
             current_step = deepcopy(step)
             current_step_to_generate = steps_to_generate[1:]
-            # current_step.append(choice)
             current_step = current_step + [choice]
             steps_queue.append([current_step, current_step_to_generate])
 
@@ -69,9 +72,10 @@ def tree_search_4_medium_hard(prob: Problem)->list[str]:
 
 def zero_shot(prob: Problem, sample_budget: int = 10)->list[str]:
     codes = []
+    coder = coding.Coding(prob.statement, CHATBOT)
     while len(codes) < sample_budget:
         try:
-            code, _ = coding.zeroshot_coder(prob.statement, CHAT_MODE)
+            code, _ = coder.zeroshot_coder()
             codes.append(code)
             main_logger.info(f"Zero-shot length: {len(codes)}/{sample_budget}")
             main_logger.debug(f"Zero-shot code: {code}")

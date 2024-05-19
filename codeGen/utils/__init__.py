@@ -1,1 +1,1 @@
-__all__ = ['chatbot', 'coding', 'code_runner', 'oj_interactions', 'problems', 'codeGen_logger']
+__all__ = ['chatbot', 'coding', 'oj_interactions', 'problems', 'codeGen_logger', 'prompts']
