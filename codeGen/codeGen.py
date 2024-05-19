@@ -153,9 +153,7 @@ def codeGen(
             main_logger.info(f"Processing problem {prob.url}, GUID: {prob_guid}")
             # skip if already generated.
             prob_save_path = f'results/{codeGen_strategy.__name__}/{prob_guid}'
-            if os.path.exists(prob_save_path):# and prob_guid in os.listdir(
-                #f"results/{codeGen_strategy.__name__}/{prob.get_prob_guid()[:8]}"
-           # ):
+            if os.path.exists(prob_save_path):
                 continue
             codes, transformations = codeGen_strategy(prob)
             main_logger.info(f"Strategy:{codeGen_strategy.__name__}, Generated code count: {len(codes)}")

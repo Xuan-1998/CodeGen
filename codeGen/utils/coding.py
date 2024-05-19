@@ -1,8 +1,6 @@
 from .chatbot import *
 from .problems import *
 from .prompts import *
-from tqdm import tqdm
-from typing import Callable
 from tenacity import retry, stop_after_attempt, retry_if_result, retry_if_exception_type
 
 RETRY_COUNT = 15

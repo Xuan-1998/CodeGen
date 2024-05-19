@@ -42,7 +42,6 @@ class ChatCompletionAPI(ChatbotAPI):
         return parse_code_block(response), response
         
 
-
 class AzureOpenaiChatCompletionAPI(ChatbotAPI):
     def __init__(self, model="gpt-4") -> None:
         super().__init__(model)
