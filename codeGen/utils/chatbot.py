@@ -32,7 +32,7 @@ class ChatbotAPI:
 class ChatCompletionAPI(ChatbotAPI):
     def __init__(self, model="gpt-3.5-turbo") -> None:
         super().__init__(model)
-        client = openai.OpenAI(api_key=os.environ.get("OPENAI_KEY"), base_url=ENDPOINT)
+        client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url=ENDPOINT)
         self.chatbot = client.chat.completions
 
     def create(self, messages: list[dict], n=1, temperature=0.5) -> str:   
