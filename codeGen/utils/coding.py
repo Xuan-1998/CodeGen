@@ -56,6 +56,11 @@ class Coding:
             if self.should_keep_plan(code):
                 pruned_plans.append(plan)
         return pruned_plans
+    
+    def should_keep_plan(self, code: str) -> bool:
+        # TODO: I can not find where you defined accuracy etc? I think we can just prune those with zero acc?
+        return "prune_condition" not in code
+    
     def zeroshot_coder(self) -> tuple[str, str]:
         message = [
             {
