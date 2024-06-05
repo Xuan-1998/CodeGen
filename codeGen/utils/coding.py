@@ -31,6 +31,23 @@ class Coding:
         ]
 
         return self.chatbot.create(messages)
+    
+    def sample_plans(self, node: str) -> list[tuple[str, str]]:
+        plans = []
+        for _ in range(SAMPLE_COUNT):
+            message = [
+                {
+                    "role": "system",
+                    "content": CODING_SYSTEM.format(statement=self.statement),
+                },
+                {
+                    "role": "user",
+                    "content": CODING_SAMPLE_PLAN.format(node=node),
+                },
+            ]
+            plan = self.chatbot.create(message)
+            plans.append(plan)
+        return plans
 
     def zeroshot_coder(self) -> tuple[str, str]:
         message = [
