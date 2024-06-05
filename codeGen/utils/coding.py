@@ -48,7 +48,14 @@ class Coding:
             plan = self.chatbot.create(message)
             plans.append(plan)
         return plans
-
+    
+    def prune_plans(self, plans: list[tuple[str, str]]) -> list[tuple[str, str]]:
+        pruned_plans = []
+        for plan in plans:
+            code, response = plan
+            if self.should_keep_plan(code):
+                pruned_plans.append(plan)
+        return pruned_plans
     def zeroshot_coder(self) -> tuple[str, str]:
         message = [
             {
