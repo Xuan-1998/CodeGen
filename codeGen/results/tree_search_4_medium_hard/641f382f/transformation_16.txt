@@ -1,0 +1,21 @@
+Identify the minimum operations needed for each subarray to become 1, and use dynamic programming with memoization to store the results of subproblems.
+
+1. The state of the dynamic programming is represented by dp[i][g], which gives the minimum number of operations to make the first i elements equal to 1, with the last operation resulting in a GCD of g. Initialize dp with a large number to signify that it hasn't been computed yet.
+
+2. The base case is dp[0][g] = 0 for all g, since no operations are needed for an empty subarray.
+
+3. The transition function is:
+   dp[i][g] = min(dp[i][g], dp[i-1][h] + 1) for all h where GCD(h, arr[i]) = g.
+   This represents taking the best (minimum) of the previous state plus one operation to get the GCD of g with the current element.
+
+4. Use memoization to store the results of subproblems in a recursive approach, where the function checks if the answer is already computed before performing calculations.
+
+5. The final answer is the minimum value of dp[n][1], since we want the entire array to be reduced to 1. If dp[n][1] is still the large initial value, then it's not possible to make all elements equal to 1, and we return -1.
+
+6. Edge cases to consider:
+   - If any element of the array is 1, the answer is 0 because no operations are needed.
+   - If the GCD of the entire array is greater than 1, it's not possible to make all elements equal to 1, so return -1.
+   
+7. The algorithm should iterate over all possible gcd values for each element, which requires calculating the GCD of every pair of elements. This can be optimized by precomputing GCDs of all pairs or by using a sieve to find all divisors of each number in the array.
+
+8. The time complexity of the algorithm should be analyzed to ensure it meets the constraints of the problem. Since the GCD of two numbers can be computed in O(log(ai)) time, the overall complexity will depend on the number of states and transitions in the dynamic programming approach.

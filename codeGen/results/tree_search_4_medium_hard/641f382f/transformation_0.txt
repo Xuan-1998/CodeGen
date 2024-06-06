@@ -1,0 +1,9 @@
+Identify the minimum operations needed for each subarray to become 1, and use dynamic programming with memoization to store the results of subproblems.
+dp[i][j] represents the minimum number of operations required to make all elements from the i-th to the j-th (inclusive) equal to 1, with the base case dp[i][i] = 0 for all i.
+For each subarray (i, j), if the gcd of the entire subarray is 1, then dp[i][j] = 0. Otherwise, iterate over all possible splits (k) of the subarray and set dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+1][j] + 1) if the gcd of elements from i to k and k+1 to j is 1.
+To optimize the computation of gcd for subarrays, precompute the gcd of all subarrays starting from each index i to the end of the array. This precomputation can be done in O(n^2 log(max(ai))) time.
+Use a 2D array for tabulation where each cell dp[i][j] stores the minimum operations for subarray i to j. Fill the table iteratively based on previously computed subproblems.
+The final answer will be dp[0][n-1]. If dp[0][n-1] is still set to some initial sentinel value (like infinity) after the computation, then it is not possible to make all elements equal to 1 and the output should be -1.
+Consider edge cases such as:
+  - If the array already contains a 1, the answer is 0 because no operation is needed.
+  - If the gcd of the entire array is greater than 1, then it is impossible to make all elements equal to 1 and the output should be -1 immediately.

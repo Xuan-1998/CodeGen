@@ -1,0 +1,11 @@
+Identify the minimum operations needed for each subarray to become 1, and use dynamic programming with memoization to store the results of subproblems.
+Let dp[i] represent the minimum operations to make the prefix ending at i all ones by only considering operations involving the i-th element and any previous element.
+The state transition will be as follows:
+- Initialize dp[i] = -1 for all i, as we have not computed any subproblem yet.
+- Set dp[0] = 0, as no operations are needed to make a single element equal to 1 if it is already 1; otherwise, it is not possible.
+- For each element i from 1 to n-1, compute dp[i] by iterating over all previous elements j from 0 to i-1. If the gcd of element i and any element from j+1 to i-1 is 1, then dp[i] = min(dp[i], dp[j] + (i - j - 1)), where dp[j] is the minimum operations needed to make the prefix ending at j all ones, and (i - j - 1) is the number of operations needed to make elements from j+1 to i all ones.
+- The final answer will be dp[n-1] if it is not -1. Otherwise, print -1 as it is not possible to make all elements equal to 1.
+
+Implement memoization by using a top-down approach with a recursive function that computes the minimum operations for a given prefix ending at i and stores the result in a memo dictionary. 
+
+The edge case to consider is when all elements are already 1, in which case no operations are needed, and the output should be 0. Also, if there is any element in the array that is not 1 and has no common divisor with any other element, then it is not possible to make all elements equal to 1, and the output should be -1.
