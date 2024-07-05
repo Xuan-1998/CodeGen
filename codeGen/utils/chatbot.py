@@ -3,13 +3,17 @@ import re
 import os
 import requests
 import json
+from .codeGen_logger import *
 
 ENDPOINT = "https://azure-openai-api.shenmishajing.workers.dev/v1"
+logger = setup_logging()
 
 
 def parse_code_block(response) -> str:
-    code = re.findall("```\w*[^`]+```*", response)[-1]
-    return "\n".join(code.split("\n")[1:-1])
+    code_block = re.search('```(.*?)```', response, re.DOTALL)
+    if code_block:
+        return code_block.group(1)
+    return response
 
 
 def string_to_list(string):
@@ -39,6 +43,7 @@ class ChatCompletionAPI(ChatbotAPI):
         response = self.chatbot.create(
                 model=self.model, messages=messages, temperature=temperature, n=n
             ).choices[0].message.content
+        logger.debug(f"ChatCompletionAPI response: {response}")
         return parse_code_block(response), response
         
 
@@ -56,6 +61,7 @@ class AzureOpenaiChatCompletionAPI(ChatbotAPI):
         response = self.chatbot.create(
             model=self.model, messages=messages, temperature=temperature, n=n
         ).choices[0].message.content
+        logger.debug(f"AzureOpenaiChatCompletionAPI response: {response}")
         return parse_code_block(response), response
 
 
@@ -69,6 +75,7 @@ class OllamaAPI(ChatbotAPI):
             json={"model": self.model, "messages": messages, "stream": False},
         )
         response_content = json.loads(response.content)["message"]["content"]
+        logger.debug(f"OllamaAPI response: {response_content}")
         return parse_code_block(response_content), response_content
 
     def generate(self, prompt: str) -> str:

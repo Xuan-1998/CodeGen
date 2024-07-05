@@ -1,0 +1,15 @@
+The current plan you provided seems to be a general approach for dynamic programming problems. However, this problem might not need dynamic programming to solve it. 
+
+Here is an updated plan:
+
+1. For each test case, initialize two variables, `left` and `right`, to be the first integer of the sequence. These variables represent the maximum and minimum possible values that the next number in the original sequence could be.
+
+2. Iterate through the sequence from the second number to the end. For each number:
+
+    2.1. If it is smaller than `left` or larger than `right`, print "NO" and move on to the next test case.
+
+    2.2. Update `left` and `right`. The new `left` is the current number if it is larger than the old `left`, and the new `right` is the current number plus the old `left` minus 1, if it is smaller than the old `right`.
+
+3. If you have gone through the entire sequence without finding a number that is out of the `left` and `right` range, print "YES".
+
+This approach works because each number in the sequence represents a segment of the original sequence, and the next number must be within the range of 1 to the current number plus the length of the segment that is not yet counted. The `left` and `right` variables keep track of this range. If a number is found to be out of this range, it means the sequence cannot be obtained from any original sequence by following the rules.

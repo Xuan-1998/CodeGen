@@ -7,7 +7,6 @@ import json
 from datasets import load_dataset
 import traceback
 
-ds = load_dataset("BAAI/TACO", split="train")
 logger = setup_logging()
 
 MAX_SAMPLE_TC = 15
@@ -145,6 +144,7 @@ def initialize_problems(
         difficulty: str = None,
         root: str = "../data"
         ):
+    ds = load_dataset("BAAI/TACO", split="train")
     cnt = 0
     for sample in iter(ds):
         if cnt >= maxSize:

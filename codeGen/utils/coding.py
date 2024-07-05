@@ -32,6 +32,23 @@ class Coding:
 
         return self.chatbot.create(messages)
     
+    @retry( stop=stop_after_attempt(RETRY_COUNT), retry=( retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError) ))
+    def tree_bfs_coder(self, statement, instruction) -> tuple[str, str]:
+        messages = [
+            {
+                "role": "system",
+                "content": CODING_SYSTEM_TREE,
+            },
+            {
+                "role": "user",
+                "content": MOVE_NEXT.format(statement=f'{self.statement} {statement}', instruction=instruction),
+            },
+        ]
+
+        raw_list, response = self.chatbot.create(messages)
+        result_list = string_to_list(raw_list)
+        return result_list, response
+
     def sample_plans(self, node: str) -> list[tuple[str, str]]:
         plans = []
         for _ in range(SAMPLE_COUNT):
