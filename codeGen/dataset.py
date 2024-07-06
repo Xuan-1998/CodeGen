@@ -6,6 +6,9 @@ import os
 import json
 from datasets import load_dataset
 import traceback
+import requests
+from bs4 import BeautifulSoup
+import re
 
 logger = setup_logging()
 
@@ -34,7 +37,7 @@ You are a competitive programming teacher. The user has abstracted a competitive
 The original problem statement:
 %s
 The abstracted problem statement:
-%s 
+%s
 """
 
 EDITORIAL_REGULARIZATION = """
@@ -49,12 +52,12 @@ EDITORIAL_TRANSFORMATION = """
 According to the abstracted editorial you generated, what intuitions we must have to transform the abstract problem into a problem about %s so that it can be solved with relevant algorithms? How do you know we can apply these transformations? In a concise paragraph containing no more than one sentence, respond by filling in the blanks: "Due to the what special properties, we can transform the problem by what, redefining it into what". Without exceeding the sentence limit, be as specific as possible. You do not need to code.
 """
 
-def regularize_statement_3(problem: Problem):
+def regularize_statement_3(statement: str):
     chat = ChatCompletionAPI("gpt-3.5-turbo")
     summary = chat.create(
         [
             {"role": "system", "content": STATEMENT_SYSTEM},
-            {"role": "user", "content": STATEMENT_REGULARIZATION % problem.statement},
+            {"role": "user", "content": STATEMENT_REGULARIZATION % statement},
         ],
         temperature=0.3
     ).choices[0].message.content
@@ -62,7 +65,7 @@ def regularize_statement_3(problem: Problem):
     return chat.create(
         [
             {"role": "system", "content": STATEMENT_SYSTEM},
-            {"role": "user", "content": STATEMENT_REGULARIZATION % problem.statement},
+            {"role": "user", "content": STATEMENT_REGULARIZATION % statement},
             {"role": "assistant", "content": summary},
             {"role": "user", "content": STATEMENT_POTSPROCESS},
         ],
@@ -133,9 +136,77 @@ def regularize_editorial_3(
 
 Transformation: {transformation}
 
-Editorial: 
+Editorial:
 {editorial}"""
 
+def initialize_problems_from_atcoder(
+        contest_id: str,
+        testcase_root: str = "/Users/yibozhao/Downloads/ARC162",
+        root: str = "../data"
+        ):
+    def get_data(url):
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        return soup.prettify()
+
+    def get_part_with_title(html_content, h3_title):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        parts = soup.find_all('div', class_='part')
+
+        for part in parts:
+            h3 = part.find('h3')
+            if h3 and h3.text.strip() == h3_title:
+                return part
+        return None
+
+    def format_html(html_content):
+        text = BeautifulSoup.get_text(html_content).replace('\n', ' ').replace('\t', ' ')
+        new_text = re.sub(' +', ' ', text)
+        return new_text
+
+    prob_ids = ['a', 'b', 'c', 'd', 'e', 'f']
+
+    for prob_id in prob_ids:
+        url = f"https://atcoder.jp/contests/{contest_id}/tasks/{contest_id}_{prob_id}"
+        logger.info(f"Processing problem {contest_id}_{prob_id} with url {url}")
+
+        try:
+            data = get_data(url)
+            statement = format_html(get_part_with_title(data, 'Problem Statement'))
+            constraints = format_html(get_part_with_title(data, 'Constraints'))
+            input_format = format_html(get_part_with_title(data, 'Input'))
+            output_format = format_html(get_part_with_title(data, 'Output'))
+
+            test_cases = []
+            inputs_dir = f"{testcase_root}/{prob_id}/in"
+            outputs_dir = f"{testcase_root}/{prob_id}/out"
+            test_case_list = os.listdir(inputs_dir)
+            for test_case in test_case_list:
+                with open(f"{inputs_dir}/{test_case}") as f:
+                    input_data = f.read()
+                with open(f"{outputs_dir}/{test_case}") as f:
+                    output_data = f.read()
+                test_cases.append({
+                    'input': input_data,
+                    'output': output_data
+                })
+
+            whole_statement = f"Task: {statement}\nInput: {input_format}\nOutput: {output_format}\nConstraints: {constraints}"
+            # regularized_statement = regularize_statement_3(whole_statement)
+            prob = Problem(
+                statement = whole_statement,
+                editorial = get_editorial(url, "AtCoder") if 'url' in url else None,
+                tag = "AtCoder",
+                difficulties = "AtCoder",
+                source = "AtCoder",
+                url = url,
+                sample_test_cases = test_cases
+            )
+            logger.info(f"Problem: {prob.to_json()}")
+            prob.append_to_jsonl(f"{root}/atcoder/problems.jsonl")
+        except Exception as e:
+            logger.error(f"Error processing problem {contest_id}_{prob_id} with url {url}: {e}, {traceback.format_exc()}")
+            continue
 
 def initialize_problems(
         maxSize: int = 1000,
@@ -154,7 +225,7 @@ def initialize_problems(
             (prefered_sources is not None and sample['source'] not in prefered_sources) or \
             (difficulty is not None and difficulty.lower() not in (sample['difficulty']).lower()) or sample['url'] is None or len(sample['tags']) == 0:
             continue
-        
+
         difficulty_tag = sample['difficulty'].lower()
         cnt += 1
 
@@ -184,7 +255,7 @@ def initialize_problems(
 
             logger.info(f"Cnt: {cnt}, Regularizing problem {cnt} source {sample['source']}, url: {sample['url']}")
             # TODO: Improve with parallel processing like Task.WhenAll in .NET
-            regularized_statement = regularize_statement_3(prob)
+            regularized_statement = regularize_statement_3(prob.statement)
             # regularized_editorial = regularize_editorial_3(prob, regularized_statement)
 
             prob.statement = regularized_statement
@@ -198,5 +269,6 @@ def initialize_problems(
             continue
 
 if __name__ == "__main__":
-    initialize_problems(200, root="../data/balanced-probs-dp", tag="Dynamic Programming", difficulty="MEDIUM")
+    # initialize_problems(200, root="../data/balanced-probs-dp", tag="Dynamic Programming", difficulty="MEDIUM")
     # initialize_problems(1000, "Dynamic Programming")
+    initialize_problems_from_atcoder("arc162")

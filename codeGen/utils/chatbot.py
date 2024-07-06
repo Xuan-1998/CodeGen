@@ -39,13 +39,13 @@ class ChatCompletionAPI(ChatbotAPI):
         client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), base_url=ENDPOINT)
         self.chatbot = client.chat.completions
 
-    def create(self, messages: list[dict], n=1, temperature=0.5) -> str:   
+    def create(self, messages: list[dict], n=1, temperature=0.5) -> str:
         response = self.chatbot.create(
                 model=self.model, messages=messages, temperature=temperature, n=n
             ).choices[0].message.content
         logger.debug(f"ChatCompletionAPI response: {response}")
         return parse_code_block(response), response
-        
+
 
 class AzureOpenaiChatCompletionAPI(ChatbotAPI):
     def __init__(self, model="gpt-4") -> None:

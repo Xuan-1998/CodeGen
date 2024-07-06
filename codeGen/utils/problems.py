@@ -6,8 +6,8 @@ logger = logging.getLogger("__name__")
 
 class Problem:
     def __init__(
-            self, 
-            statement: str, 
+            self,
+            statement: str,
             editorial: str,
             tag: str,
             difficulties: str,
@@ -28,7 +28,7 @@ class Problem:
         token = submit_code(code, stdin, stdout, method)
         response = get_submission(token, method)
         return response['status']['description'] if response else 'Getting response failed'
-        
+
     def submit_batch(self, code: str, test_cases: list[dict], method = 'local') -> list[str]:
         from .oj_interactions import submit_code_batch, get_submission
         tokens = submit_code_batch(code, test_cases, method)
@@ -38,7 +38,7 @@ class Problem:
             description = response['status']['description'] if response else 'Getting response failed'
             responses.append(description)
         return responses
-    
+
     def to_json(self):
         return json.dumps(self.__dict__)
 
@@ -61,7 +61,7 @@ class Problem:
     def from_jsonl(cls, jsonl_str):
         problem = cls.from_json(jsonl_str)
         return problem
-    
+
 
 def get_editorial(url: str, source: str) -> str:
     editorial = ""

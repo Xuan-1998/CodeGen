@@ -31,7 +31,7 @@ class Coding:
         ]
 
         return self.chatbot.create(messages)
-    
+
     @retry( stop=stop_after_attempt(RETRY_COUNT), retry=( retry_if_result(lambda result: len(result[0]) == 0) | retry_if_exception_type(IndexError) ))
     def tree_bfs_coder(self, statement, instruction) -> tuple[str, str]:
         messages = [
