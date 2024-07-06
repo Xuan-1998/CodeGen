@@ -1,0 +1,17 @@
+
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming (DP). We will use a bottom-up approach with tabulation.
+2. Let dp[i][j] represent the number of valid sequences of length i where the last number is j.
+3. Initialize a DP table of size (N+1) x (N+1) with all values set to 0.
+4. Base case: For sequences of length 1, dp[1][j] = 1 for all 1 <= j <= N, because any number can be the last number in a sequence of length 1.
+5. Transition: For each length i from 2 to N, and each number j from 1 to N:
+   - Calculate dp[i][j] by summing up dp[i-1][k] for all k from 1 to N, ensuring the constraints are satisfied:
+     - The number of occurrences of j in the sequence should not exceed A[j].
+     - The number of occurrences of k in the sequence should not exceed A[k].
+6. Use a prefix sum array to efficiently calculate the sum of dp[i-1][k] for all k from 1 to N.
+7. The final answer will be the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+8. Implement edge case handling:
+   - If N = 1, the answer is 1 if A[1] >= 1, otherwise 0.
+   - Ensure that the constraints 1 <= N <= 500 and 1 <= A[i] <= N are respected.
+===END PLAN===
+

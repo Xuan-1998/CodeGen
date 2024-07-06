@@ -1,0 +1,12 @@
+python
+===BEGIN PLAN===
+1. Define a 2D array dp where dp[i][j] represents the number of valid sequences of length i that end with the integer j.
+2. Initialize the base case: dp[0][j] = 1 for all j from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over each integer j from 1 to N.
+5. For each dp[i][j], iterate over each integer k from 1 to N.
+    a. If the number of occurrences of k in the sequence up to i-1 is less than A[k], then add dp[i-1][k] to dp[i][j].
+6. After filling the dp table, the result will be the sum of dp[N][j] for all j from 1 to N.
+7. Return the result modulo 998244353.
+===END PLAN===
+

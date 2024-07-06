@@ -1,0 +1,15 @@
+
+1. State Definition: Let dp[i][j] represent the number of ways to construct a subtree with i vertices that contains exactly j good vertices.
+
+2. Base Case: For a single node tree, dp[1][1] = 1 (since a single node is trivially a good vertex), and dp[1][0] = 0 (since we can't have a tree with one node and zero good vertices).
+
+3. Transition: For each vertex i, we need to distribute its children among its out-degree d[i]. We iterate over all possible combinations of distributing the children among the subtrees and use the results of smaller subproblems to build the solution for larger subproblems. Specifically, we need to ensure that for each vertex v, the subtree rooted at v satisfies the given out-degree d_i.
+
+4. Calculate the number of good vertices for each subtree rooted at each vertex. A vertex v is a good vertex if the minimum vertex number in its subtree is v itself. This condition can be checked by ensuring that the subtree rooted at v does not contain any vertex with a smaller number than v.
+
+5. Use a top-down approach with memoization to avoid redundant computations. Store the results of each subproblem in a memoization table to ensure that each subproblem is solved only once.
+
+6. Iterate over all vertices and calculate the total number of good vertices for all good trees. Sum the number of good vertices for all subtrees rooted at each vertex, and take the result modulo 998244353.
+
+7. Edge Cases: Consider edge cases such as when d[i] = 0 for all i except the root, or when the tree is highly unbalanced. Ensure that the solution handles these cases correctly.
+

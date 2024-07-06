@@ -1,0 +1,26 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+
+Transition: To fill dp[i][j], we need to consider the constraints given in the problem. However, the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} for every quadruple (a, b, c, d) is too complex to handle directly in a straightforward DP approach. We need to find a simpler way to ensure the matrices satisfy the condition.
+
+Observation: If we consider the condition carefully, it implies that for any valid matrix, the ones in the matrix must be structured in a way that maintains the inequality. This suggests that the matrix should be sorted in a non-decreasing order both row-wise and column-wise.
+
+Simplified Plan:
+1. Realize that the condition implies a monotonic structure in both rows and columns.
+2. For each element in the matrix, if it is 1, then all elements to its right and below it must also be 1 to satisfy the given condition.
+3. This means that the matrix can be represented as a union of submatrices of ones, which are contiguous blocks starting from the top-left corner.
+
+Final State: The answer will be the number of ones in the largest possible monotonic submatrix of size N x M, modulo 998244353.
+
+Steps:
+1. Calculate the total number of ones in a matrix of size N x M that satisfies the condition.
+2. Since each element in the matrix can either be 0 or 1, and we need to count the number of ones, the answer will be N * M % 998244353.
+
+Edge Cases:
+- When N or M is 1, the matrix is trivially valid.
+- When N and M are both 1, the matrix has only one element which can be either 0 or 1.
+
+Final Answer: Print N * M % 998244353.
+

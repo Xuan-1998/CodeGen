@@ -1,0 +1,8 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+1. State: Let dp[i][j] represent the number of valid matrices of size i x j. Transition: To compute dp[i][j], consider extending smaller matrices by adding a row or column and ensuring the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} holds.
+2. Base Case: dp[1][1] = 2, since a 1x1 matrix with a single element (either 0 or 1) trivially satisfies the condition.
+3. Transition: For each cell dp[i][j], calculate the number of valid matrices by considering adding a row or column to the smaller subproblems dp[i-1][j] and dp[i][j-1] while ensuring the condition holds.
+4. Iterate through all possible matrix sizes from 1x1 to NxM and fill the dp table accordingly.
+5. Sum up the valid matrices and return the result modulo 998244353.
+

@@ -1,0 +1,13 @@
+
+1. Initialize a 2D array dp of size (N+1)x(N+1) with all elements set to 0. dp[i][j] will represent the number of valid sequences of length i where the last number is j.
+2. Initialize base case: dp[0][0] = 1, representing an empty sequence.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over each possible last number j from 1 to N.
+5. For each j, iterate over each possible previous number k from 1 to N.
+6. Check if the conditions are satisfied:
+   a. The number of occurrences of j in the sequence of length i must be at most A[j-1].
+   b. The number of occurrences of k in the sequence of length i-1 must be at most A[k-1].
+7. If the conditions are satisfied, update dp[i][j] by adding dp[i-1][k].
+8. After filling the dp table, sum up all dp[N][j] for j from 1 to N to get the final answer.
+9. Take the result modulo 998244353.
+

@@ -1,0 +1,10 @@
+
+1. Define a 2D DP table dp[i][j] where dp[i][j] represents the number of valid sequences of length i that end with the number j.
+2. Initialize the base case: dp[0][j] = 1 for all j from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate over the length of the sequence from 1 to N:
+   a. For each length i, iterate over each possible ending number j from 1 to N:
+      i. Calculate the value of dp[i][j] by considering all previous positions k (from 1 to N) where dp[i-1][k] is valid and the conditions are satisfied.
+      ii. Ensure that the number of occurrences of j in the sequence does not exceed A[j].
+4. To compute the final result, sum up all dp[N][j] for j from 1 to N, as these represent all valid sequences of length N.
+5. Return the result modulo 998244353.
+

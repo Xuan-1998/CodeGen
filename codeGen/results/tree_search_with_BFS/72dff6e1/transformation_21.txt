@@ -1,0 +1,17 @@
+
+1. State Expression: Let dp[i][j] represent the number of valid sequences of length i where the last element is j, and occurrences of each number up to i are within the limits specified by A.
+2. Base Case: dp[0][0] = 1, as an empty sequence is valid.
+3. State Transition: For each i from 1 to N and each j from 1 to N, calculate dp[i][j] based on the previous states dp[i-1][k] for all k from 1 to N, ensuring that the number of occurrences of each number in the sequence does not exceed the limit specified by A.
+4. Implementation Details:
+   - Use a 2D array dp of size (N+1) x (N+1) to store the number of valid sequences.
+   - Initialize dp[0][0] = 1 and all other dp[0][j] = 0 for j > 0.
+   - For each i from 1 to N:
+     - For each j from 1 to N:
+       - Initialize dp[i][j] to 0.
+       - For each k from 1 to N:
+         - If k != j and the number of occurrences of k in the sequence is within the limit specified by A, add dp[i-1][k] to dp[i][j].
+5. Final Answer: Sum up dp[N][j] for all j from 1 to N to get the total number of valid sequences of length N.
+6. Edge Cases:
+   - Handle the case when N = 1 separately, as there is only one number in the sequence.
+   - Ensure that the limits specified by A are respected for each number in the sequence.
+

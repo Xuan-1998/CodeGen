@@ -1,0 +1,12 @@
+
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming (DP). We need to count the number of valid matrices of size N x M that satisfy the given condition.
+2. Use a bottom-up strategy with tabulation. This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems.
+3. Define a DP table `dp[i][j]` where `dp[i][j]` denotes the count of valid matrices of size `i x j`.
+4. Initialize the base case: `dp[1][1] = 2`, since a 1x1 matrix can either be [0] or [1], both of which trivially satisfy the condition.
+5. Transition: To compute `dp[i][j]`, iterate over all possible values for the new row or column and ensure the condition holds with all previous rows and columns. This involves checking all quadruples `(a, b, c, d)` such that `1 <= a < c <= i` and `1 <= b < d <= j`.
+6. Update the DP table based on the valid transitions.
+7. The final answer will be `dp[N][M] % 998244353`.
+8. Consider edge cases where N or M is 1, which simplifies the problem since there are no quadruples to check.
+===END PLAN===
+

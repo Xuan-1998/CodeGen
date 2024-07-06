@@ -1,0 +1,17 @@
+
+Top-down approach with memoization: This approach involves breaking the problem into smaller subproblems, storing the results of these subproblems to avoid redundant computations. It uses recursion and memoization to store intermediate results. Time complexity: O(N*M), space complexity: O(N*M).
+
+1. State Definition: Let dp[i][j] represent the number of valid matrices of size i x j. This state helps in breaking down the problem into smaller subproblems.
+
+2. Base Case: For the base case, dp[0][0] can be initialized to 1 because a 0x0 matrix trivially satisfies the condition.
+
+3. Transition: For each cell (i, j), compute the value of dp[i][j] based on previous states. The transition will involve checking the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} for every valid quadruple (a, b, c, d).
+
+4. Memoization: Store the results of each subproblem in a memoization table to avoid redundant calculations.
+
+5. Modulo Operation: Since the result can be very large, take modulo 998244353 at each step to ensure the values do not overflow.
+
+6. Edge Cases: Consider edge cases such as when N or M is 1, which simplifies the condition as there are no valid quadruples (a, b, c, d) to check.
+
+7. Final Result: The final result will be stored in dp[N][M], representing the number of valid matrices of size N x M.
+

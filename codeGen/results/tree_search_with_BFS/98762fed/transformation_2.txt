@@ -1,0 +1,30 @@
+
+===BEGIN PLAN===
+The problem requires counting the number of valid matrices under certain conditions. Here is a detailed plan to solve the problem using Dynamic Programming:
+
+1. Define the DP state:
+   - Let `dp[i][j]` represent the number of valid matrices of size `i x j`.
+
+2. Initialize the DP table:
+   - `dp[0][0] = 1` since a 0x0 matrix is trivially valid.
+   - Initialize other necessary base cases as needed.
+
+3. Fill the DP table iteratively:
+   - Loop through each possible matrix size `(i, j)` from `(1, 1)` to `(N, M)`.
+   - For each cell `(i, j)`, determine the number of valid matrices by considering the subproblems and ensuring the given condition `A[a, b] * A[c, d] <= A[a, d] * A[c, b]` holds for all valid `(a, b, c, d)`.
+
+4. Use the conditions to update the DP table:
+   - For each cell `(i, j)`, ensure the condition is met by considering valid configurations of previous cells.
+   - Update `dp[i][j]` based on the number of valid configurations that can be extended to form a valid matrix of size `i x j`.
+
+5. Compute the result:
+   - The result will be the value in `dp[N][M]` modulo `998244353`.
+
+6. Edge cases:
+   - Handle small values of `N` and `M` explicitly.
+   - Ensure the DP table is correctly initialized to avoid index errors.
+
+Time complexity: O(N*M)
+Space complexity: O(N*M)
+===END PLAN===
+

@@ -1,0 +1,13 @@
+
+===BEGIN PLAN===
+1. **State Expression**: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+2. **Base Case**: Initialize dp[0][j] = 1 and dp[i][0] = 1 for all valid i and j, as a matrix with zero rows or zero columns is trivially valid.
+3. **Recursive Case**: Use the recursion relation:
+   dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1]
+   This relation ensures that we count all valid matrices by expanding from smaller subproblems. The subtraction of dp[i-1][j-1] avoids double-counting.
+4. **Modulo Operation**: Since the number of valid matrices can be large, take the result modulo 998244353 at each step to prevent overflow and ensure the result fits within standard integer limits.
+5. **Edge Cases**: Handle edge cases where N or M is 1 separately, as these cases are trivially valid (any matrix of size 1xM or Nx1 is valid).
+6. **Result Extraction**: The final answer will be stored in dp[N][M], representing the count of valid matrices of size NxM.
+7. **Time and Space Complexity**: The time complexity of the approach is O(N*M) due to the nested loop filling up the dp table, and the space complexity is also O(N*M) to store the dp table.
+===END PLAN===
+

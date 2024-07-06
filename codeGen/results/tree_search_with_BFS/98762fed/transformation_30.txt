@@ -1,0 +1,13 @@
+
+===BEGIN PLAN===
+1. Define the state: Let dp[i][j] represent the number of valid matrices of size i x j.
+2. Initialize the base case: dp[1][1] = 2, since a 1x1 matrix can either be [0] or [1], both of which trivially satisfy the condition.
+3. Transition: To compute dp[i][j], consider extending smaller matrices by adding a row or column. For each new element added, ensure the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} holds for all valid (a, b, c, d) quadruples.
+4. Bottom-up strategy with tabulation: Iteratively fill up the dp table based on the results of smaller subproblems.
+5. Iterate over all possible matrix sizes from 1x1 to NxM. For each size, compute the number of valid matrices by ensuring the condition holds when extending from smaller matrices.
+6. Use modulo 998244353 for all operations to avoid overflow and meet the problem's requirements.
+7. The final answer will be stored in dp[N][M].
+
+Time complexity: O(N*M), space complexity: O(N*M).
+===END PLAN===
+

@@ -1,0 +1,18 @@
+
+===BEGIN PLAN===
+1. **State Definition**: Let dp[i][j] represent the number of ways to form a tree with i nodes and j good vertices. This will help us keep track of different configurations of trees with a given number of nodes and good vertices.
+2. **Base Case**: Initialize dp[1][1] = 1 because a single node tree with one node is always a good vertex.
+3. **State Transition**: For each node, compute the number of ways to distribute the remaining nodes among its children. This involves:
+    - Iterating over all possible numbers of nodes in the left subtree.
+    - Using the remaining nodes for the right subtree.
+    - Summing these possibilities to update dp[i][j] based on how the subtrees contribute to the overall structure.
+4. **Combining Subproblems**: For each possible split of nodes into left and right subtrees, combine the results of subproblems to form the final result for dp[i][j].
+5. **Calculation of Good Vertices**: For each possible tree configuration, calculate the number of good vertices. A vertex is good if it is the smallest numbered vertex in its subtree.
+6. **Modulo Operation**: Since the result can be large, take modulo 998244353 at each step to keep the numbers manageable.
+7. **Final Sum**: Sum the number of good vertices for all good trees and print the result modulo 998244353.
+8. **Edge Cases**: Handle edge cases such as:
+    - Minimum input size (N=2).
+    - All nodes having zero out-degree except the root.
+    - Maximum input size (N=500).
+===END PLAN===
+

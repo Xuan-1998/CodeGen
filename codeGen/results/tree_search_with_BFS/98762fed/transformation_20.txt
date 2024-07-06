@@ -1,0 +1,24 @@
+python
+===BEGIN PLAN===
+1. **Understanding the Condition**: The condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} implies that for any 2x2 submatrix formed by rows a, c and columns b, d, the product of the diagonals must satisfy the inequality.
+
+2. **Matrix Constraints**: Each element of the matrix can either be 0 or 1. The condition must hold for every possible 2x2 submatrix.
+
+3. **Dynamic Programming Table**: Define dp[i][j] as the number of valid matrices of size i x j that satisfy the given condition.
+
+4. **Base Case**: Initialize the base case. For i = 1 or j = 1, any matrix will always be valid since there are no 2x2 submatrices to check. Therefore, dp[i][1] = dp[1][j] = 2^(i*j).
+
+5. **State Transition**: For each element in the matrix, we need to check if adding a new row or column to an existing valid matrix maintains the condition:
+   - Consider extending a valid (i-1)xj matrix to an ixj matrix by adding a new row.
+   - Consider extending a valid ix(j-1) matrix to an ixj matrix by adding a new column.
+   - Ensure that the new row or column maintains the condition with respect to all previous rows and columns.
+
+6. **Modulo Operation**: Since the number of matrices can be very large, take results modulo 998244353 at every step to prevent overflow and ensure the result fits within standard data types.
+
+7. **Iterative Computation**: Use nested loops to fill the dp table from smaller subproblems to larger ones.
+
+8. **Final Output**: The value dp[N][M] will give the number of valid matrices of size NxM.
+
+9. **Edge Cases**: Consider edge cases such as the smallest matrix sizes (N=1 or M=1). Ensure the base cases handle these correctly.
+===END PLAN===
+

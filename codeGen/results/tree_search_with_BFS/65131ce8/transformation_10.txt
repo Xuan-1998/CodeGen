@@ -1,0 +1,9 @@
+
+1. State Definition: Let dp[i][j] represent the number of ways to construct a subtree with i vertices that contains exactly j good vertices.
+2. Base Case: For a single node tree, dp[1][1] = 1 (since a single node is trivially a good vertex), and dp[1][0] = 0 (since we can't have a tree with one node and zero good vertices).
+3. Transition: To build the dp table, we need to consider how to add a new vertex to an existing subtree. For each vertex, we need to distribute its out-degree to its children. This can be done by iterating over all possible distributions of the out-degrees among the children.
+4. Iteration: Iterate over all possible subtree sizes and the number of good vertices. For each possible subtree size and number of good vertices, update the dp table based on the possible ways to distribute the out-degrees.
+5. Sum Calculation: After building the dp table, sum up the number of good vertices for all possible subtree sizes and configurations.
+6. Modulo Operation: Since the answer needs to be modulo 998244353, ensure that all operations involving sums and multiplications are done modulo 998244353.
+7. Edge Cases: Consider edge cases such as when all vertices have an out-degree of 0 (a star-shaped tree), or when the out-degrees are distributed evenly among all vertices.
+

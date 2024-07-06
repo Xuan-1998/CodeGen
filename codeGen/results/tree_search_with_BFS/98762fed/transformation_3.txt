@@ -1,0 +1,10 @@
+
+===BEGIN PLAN===
+1. **State Expression**: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+2. **Transition Relationship**: To compute dp[i][j], consider the possible values for the element at position (i, j). For each possible value, check the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} and update dp[i][j] based on the valid matrices formed by this value. Combine results from smaller subproblems to form the final count for dp[i][j].
+3. **Initialization**: Initialize dp[0][0] as 1 because there is only one way to have a 0x0 matrix.
+4. **Edge Cases**: Handle edge cases where N or M is 1. In such cases, any matrix will be valid since there are no quadruples (a, b, c, d) to consider.
+5. **Modulo Operation**: Since the result needs to be modulo 998244353, ensure that all operations involving dp are taken modulo 998244353.
+6. **Final Computation**: The final answer will be the value in dp[N][M], representing the number of valid matrices of size N x M.
+===END PLAN===
+

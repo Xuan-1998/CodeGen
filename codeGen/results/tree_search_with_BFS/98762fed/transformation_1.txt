@@ -1,0 +1,11 @@
+
+===BEGIN PLAN===
+1. Define the state expression: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+2. Initialize the base cases: dp[0][0] = 1, since an empty matrix is trivially valid.
+3. Transition: To fill dp[i][j], consider the addition of the i-th row and j-th column to previously computed states. Ensure that the newly added row and column maintain the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} for all valid (a, b, c, d) pairs.
+4. Iterate over all possible matrix sizes from 1x1 to NxM, updating dp[i][j] based on the previous states and ensuring the condition is met.
+5. The final answer will be dp[N][M], which gives the number of valid matrices of size NxM.
+6. Return dp[N][M] % 998244353 as the result.
+7. Consider edge cases, such as the smallest possible matrices (1x1), and ensure the initial conditions and transitions handle these correctly.
+===END PLAN===
+

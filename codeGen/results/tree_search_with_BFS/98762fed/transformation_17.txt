@@ -1,0 +1,13 @@
+
+===BEGIN PLAN===
+1. Define a function `count_matrices(N, M)` that will compute the number of valid matrices.
+2. Use a 2D list `dp` where `dp[i][j]` represents the number of valid matrices of size `i x j`.
+3. Initialize `dp[0][0]` to 1 because a 0x0 matrix trivially satisfies the condition.
+4. Iterate over all possible sizes of matrices from 1x1 up to NxM:
+   a. For each size `i x j`, consider adding a new row or a new column.
+   b. Use the results of smaller subproblems (stored in `dp`) to compute the number of valid matrices for the current size.
+5. For each matrix size `i x j`, compute the number of valid matrices by ensuring that the condition `A[a, b] * A[c, d] <= A[a, d] * A[c, b]` holds for all `1 <= a < c <= i` and `1 <= b < d <= j`.
+6. Use modulo operation `998244353` to ensure that the results do not overflow.
+7. Return `dp[N][M]` as the final result.
+===END PLAN===
+

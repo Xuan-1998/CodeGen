@@ -1,0 +1,12 @@
+
+1. Define a 2D array dp where dp[i][j] represents the number of valid sequences of length i ending with the number j.
+2. Initialize the base case: dp[0][j] = 1 for all j from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate through lengths from 1 to N:
+    a. For each length i, iterate through numbers from 1 to N for the last element of the sequence.
+    b. For each number j, calculate the number of valid sequences of length i ending with j:
+        i. Iterate through numbers from 1 to N to consider the previous element k of the sequence.
+        ii. Ensure that the conditions on the occurrences are met: count(k) <= A[k] and count(j) <= A[j].
+        iii. Update dp[i][j] by summing dp[i-1][k] for all valid k.
+4. Sum dp[N][j] for all j from 1 to N to get the final answer.
+5. Return the answer modulo 998244353.
+

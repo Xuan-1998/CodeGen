@@ -1,0 +1,11 @@
+python
+===BEGIN PLAN===
+1. State Expression: Let dp[i][j] represent the number of valid sequences of length i where the last element is j. 
+2. Base Case: Initialize dp[0][0] = 1 as the base case since an empty sequence is valid. For all other dp[0][j] where j != 0, initialize to 0 as there are no valid sequences of length 0 with non-zero elements.
+3. Transition: For each length i from 1 to N, and for each element j from 1 to N:
+   a. Calculate dp[i][j] by considering all valid sequences of length i-1 that can be extended by element j.
+   b. Ensure that the number of occurrences of j in the sequence does not exceed A[j].
+4. Result: The final answer will be the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+5. Edge Cases: Consider edge cases such as when N=1, or when all elements in A are 1, ensuring the constraints are respected.
+===END PLAN===
+

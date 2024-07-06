@@ -1,0 +1,15 @@
+
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming (DP).
+2. State Expression: Let dp[i][j] represent the number of valid sequences of length i where the maximum element is j.
+3. Base Case: dp[0][0] = 1, representing an empty sequence.
+4. Transition Relationship: 
+   - For each i from 1 to N (length of sequence):
+     - For each j from 1 to N (maximum element in the sequence):
+       - Initialize dp[i][j] = 0.
+       - For each k from 1 to j (considering all possible elements up to j):
+         - If the count of k in the sequence is less than or equal to A[k], add dp[i-1][k] to dp[i][j].
+5. The final result is the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+6. Time complexity: O(N^3), space complexity: O(N^2).
+===END PLAN===
+

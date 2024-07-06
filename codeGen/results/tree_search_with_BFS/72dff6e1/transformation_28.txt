@@ -1,0 +1,11 @@
+
+===BEGIN PLAN===
+1. Define the state expression: Let dp[i][j] be the number of valid sequences of length i where the maximum element is j.
+2. Initialize the base case: dp[0][0] = 1, representing an empty sequence.
+3. Transition relationship: For each i from 1 to N and each j from 1 to N, compute dp[i][j] as follows:
+   - dp[i][j] = sum(dp[i-1][k]) for all k such that 1 ≤ k ≤ j and the number of occurrences of k in the sequence is at most A[k].
+4. Iterate through all possible lengths and maximum elements to fill up the dp table.
+5. The final answer is the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+6. Ensure to handle edge cases such as when N = 1 or when all A_i are the same.
+===END PLAN===
+

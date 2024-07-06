@@ -1,0 +1,11 @@
+
+1. State Definition: Let dp[i][j] represent the number of ways to form a subtree with i nodes and j good vertices. The root of this subtree is considered as a good vertex if it is the smallest vertex in its subtree.
+2. Base Case: dp[1][1] = 1 because a single node tree with one node is trivially a good vertex.
+3. State Transition: For each node, consider the contribution of its subtrees:
+   a. Iterate over all possible sizes of the left subtree.
+   b. Calculate the number of good vertices in the left subtree and the right subtree.
+   c. Use combinatorial methods to distribute the remaining nodes and good vertices.
+4. Recurrence Relation: dp[i][j] can be calculated by summing over all possible distributions of nodes and good vertices among the subtrees rooted at the children of the current node.
+5. Top-down approach with memoization: Use recursion to define the state transitions and store intermediate results in a memoization table to avoid redundant computations.
+6. Edge Cases: Ensure that the constraints 2 ≤ N ≤ 500 and 0 ≤ d_i ≤ N-1 are properly handled. Also, handle the case where d_1 ≥ 1 and the sum of d_i equals N-1.
+

@@ -1,0 +1,9 @@
+
+Top-down approach with memoization: This approach involves breaking the problem into smaller subproblems, storing the results of these subproblems to avoid redundant computations. It uses recursion and memoization to store intermediate results. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+
+Transition Relationship: To compute dp[i][j], consider the possible values for the element at position (i, j). For each possible value, check the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} and update dp[i][j] based on the valid matrices formed by this value. Combine results from smaller subproblems to form the final count for dp[i][j].
+
+Edge Cases: Consider the smallest possible values for N and M (i.e., when N = 1 or M = 1). Ensure that the solution handles these cases correctly by initializing dp[0][0] properly and ensuring the transition does not access invalid indices.
+

@@ -1,0 +1,24 @@
+
+1. Define the problem in terms of Dynamic Programming (DP) where dp[i][j] represents the number of ways to form a tree with i nodes and j good vertices.
+
+2. Initialize the DP table:
+   - dp[0][0] = 1, which means there is one way to form a tree with 0 nodes and 0 good vertices (the empty tree).
+
+3. Iterate over the nodes from 1 to N. For each node i:
+   - Iterate over the possible numbers of nodes k in the subtree rooted at node i.
+   - Iterate over the possible numbers of good vertices g in the subtree rooted at node i.
+   - Update the DP table by considering the contributions of subtrees rooted at various nodes and how they combine to form larger trees.
+
+4. Use the given out-degree sequence d to ensure that the tree structure adheres to the constraints. Specifically, ensure that the sum of out-degrees equals N-1 and that the out-degree of each node matches the given sequence.
+
+5. For each possible subtree size and number of good vertices, update the DP table by adding the number of ways to form the subtree to the current state.
+
+6. After processing all nodes, the final answer will be the sum of dp[N][j] for all j, modulo 998244353, which gives the total number of good vertices for all good trees.
+
+7. Handle edge cases:
+   - Ensure that d[1] >= 1 as the root must have at least one child.
+   - Handle cases where d[i] = 0 for leaf nodes.
+   - Ensure the sum of d equals N-1.
+
+8. Output the result after computing the sum of good vertices modulo 998244353.
+

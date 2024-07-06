@@ -1,0 +1,22 @@
+
+===BEGIN PLAN===
+1. Problem Understanding: We need to count the number of matrices of size N x M with elements 0 or 1 that satisfy the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} for all 1 <= a < c <= N and 1 <= b < d <= M.
+
+2. Key Insight: The condition implies that for any 2x2 submatrix, the product of the diagonal elements should be greater than or equal to the product of the off-diagonal elements. This can be interpreted as ensuring that the matrix is "sorted" in a certain way.
+
+3. Dynamic Programming Approach:
+   a. Define dp[n][m] as the number of valid matrices of size n x m.
+   b. Use a bottom-up approach to fill the dp table.
+   c. Base Case: dp[0][0] = 1 (trivially valid matrix).
+   d. Transition: To compute dp[n][m], consider the contribution of the element at (n, m). The value of dp[n][m] can be derived from the previous states dp[n-1][m], dp[n][m-1], and dp[n-1][m-1] while ensuring the condition is satisfied.
+   e. The value of dp[n][m] should be computed modulo 998244353.
+
+4. Implementation Steps:
+   a. Initialize a 2D dp array of size (N+1) x (M+1) with all elements set to 0.
+   b. Set the base case dp[0][0] = 1.
+   c. Use nested loops to fill the dp array based on the transition relationship.
+   d. Return dp[N][M] as the final result.
+
+5. Edge Cases: Consider the smallest input sizes (N=1, M=1) and larger sizes (N=400, M=400) to ensure the solution handles all cases within the constraints.
+===END PLAN===
+

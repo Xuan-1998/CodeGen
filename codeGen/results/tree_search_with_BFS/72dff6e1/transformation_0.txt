@@ -1,0 +1,10 @@
+
+1. Define a 2D array dp where dp[i][j] represents the number of valid sequences of length i where the last number is j.
+2. Initialize the dp array. For sequences of length 1, dp[1][j] = 1 if j <= A[j], otherwise dp[1][j] = 0.
+3. Iterate over the length of the sequence from 2 to N.
+4. For each length i, iterate over the possible last number j from 1 to N.
+5. For each j, calculate the number of valid sequences by summing up dp[i-1][k] for all k from 1 to N where k is a valid number that can appear before j in the sequence.
+6. Ensure that the number of occurrences of each number in the sequence does not exceed the corresponding value in A.
+7. Use modulo 998244353 to keep the results within the required range.
+8. The final answer will be the sum of dp[N][j] for all j from 1 to N.
+

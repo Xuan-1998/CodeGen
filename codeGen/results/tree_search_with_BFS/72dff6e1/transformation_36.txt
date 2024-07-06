@@ -1,0 +1,14 @@
+python
+===BEGIN PLAN===
+1. Define the problem as a dynamic programming problem where we need to count the number of valid sequences B of length N.
+2. Use a bottom-up strategy with tabulation to build the solution by solving smaller subproblems first and using their results to solve larger subproblems.
+3. State Expression: Let dp[i][j] denote the number of valid sequences of length i where the i-th element is j.
+4. Base Case: dp[0][0] = 1, as there is exactly one way to form an empty sequence.
+5. Transition: For each i from 1 to N and each j from 1 to N, calculate dp[i][j] as follows:
+   - dp[i][j] = sum(dp[i-1][k] for k in range(1, N+1) if B[i-1] != j and A[j-1] >= i)
+     This ensures that the number of occurrences of j in B is at most A[j-1].
+6. The final answer will be the sum of dp[N][j] for all j from 1 to N.
+7. Return the result modulo 998244353.
+8. Handle edge cases where N is 1.
+===END PLAN===
+
