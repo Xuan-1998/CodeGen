@@ -1,5 +1,4 @@
-    python
-    import math
+        import math
 
     n = int(input())
 

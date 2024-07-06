@@ -1,4 +1,3 @@
-python
 def solve():
     n, k = map(int, input().split())
     s = input()

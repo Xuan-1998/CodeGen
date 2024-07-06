@@ -1,4 +1,3 @@
-python
 def calculate_similarity_score():
     # Read input strings A and B from stdin
     A = input().strip()

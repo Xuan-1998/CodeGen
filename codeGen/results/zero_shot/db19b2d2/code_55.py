@@ -1,4 +1,3 @@
-python
 import math
 
 def calculate_probability():

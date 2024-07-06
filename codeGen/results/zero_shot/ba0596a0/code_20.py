@@ -1,4 +1,3 @@
-python
 def can_cross_stones(stones):
     # Initialize the current position at 0 (the first stone)
     current_position = 0

@@ -1,4 +1,3 @@
-python
 text = input()
 n = int(input())
 strings = []

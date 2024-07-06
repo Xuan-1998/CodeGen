@@ -1,4 +1,3 @@
-python
 # Let's start by initializing a variable to store the total count.
 total_count = 0
 

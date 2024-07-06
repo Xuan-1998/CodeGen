@@ -1,4 +1,3 @@
-python
 def calculate_probability():
     n, m, h = map(int, input().split())  # read input
     s = list(map(int, input().split()))  # read input

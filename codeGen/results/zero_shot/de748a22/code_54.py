@@ -1,4 +1,3 @@
-python
 def solve():
     n, q = map(int, input().split())
     signs = list(input())

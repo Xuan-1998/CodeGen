@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the problem statement
 print("The problem is to find the maximal similarity score over all pairs of substrings.")
 

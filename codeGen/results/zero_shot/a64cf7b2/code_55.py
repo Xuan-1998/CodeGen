@@ -1,4 +1,3 @@
-python
 def solve(n, m, T):
     # Step 1: Read the input edges and construct an adjacency list representation of the graph
     edges = []

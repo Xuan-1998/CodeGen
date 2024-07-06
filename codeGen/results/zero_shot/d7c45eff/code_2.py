@@ -1,4 +1,3 @@
-python
 while True:
     s = input().strip()
     n, k = map(int, input().split())

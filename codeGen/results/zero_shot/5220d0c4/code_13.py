@@ -1,4 +1,3 @@
-python
 def get_prime_divisors(n):
     prime_divisors = []
     for i in range(2, int(n**0.5) + 1):

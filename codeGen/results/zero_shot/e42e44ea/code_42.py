@@ -1,4 +1,3 @@
-python
 def min_initial_points():
     # Read input from standard input
     N, M = map(int, input().split())

@@ -1,4 +1,3 @@
-python
 # Step 1: Read input
 n = int(input())
 s = input()

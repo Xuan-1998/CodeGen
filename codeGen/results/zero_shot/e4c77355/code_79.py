@@ -1,4 +1,3 @@
-python
 def lis_length(arr):
     n = len(arr)
     dp = [1] * n  # Initialize dp array

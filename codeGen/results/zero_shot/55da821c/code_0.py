@@ -1,4 +1,3 @@
-python
 n, m = map(int, input().split())
 plants = []
 for _ in range(n):

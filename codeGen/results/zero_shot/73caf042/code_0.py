@@ -1,4 +1,3 @@
-python
 def calculate_total_diamonds():
     T = int(input())
     total_diamonds = 0

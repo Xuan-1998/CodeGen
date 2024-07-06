@@ -1,4 +1,3 @@
-python
 def count_binary_non_consecutive_ones(n):
     # Step 1: Initialize the count of non-negative integers with no consecutive ones
     count = 0

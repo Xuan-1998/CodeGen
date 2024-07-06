@@ -1,4 +1,3 @@
-python
 def smallest_string(n, k):
     s = input().strip()
     if k <= n:

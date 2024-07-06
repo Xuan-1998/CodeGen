@@ -1,4 +1,3 @@
-python
 def count_good_vertices(N, d):
     MOD = 998244353
 

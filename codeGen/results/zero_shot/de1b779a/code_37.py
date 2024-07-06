@@ -1,4 +1,3 @@
-python
 n = int(input())
 m = int(input())
 c0, d0 = map(int, input().split())

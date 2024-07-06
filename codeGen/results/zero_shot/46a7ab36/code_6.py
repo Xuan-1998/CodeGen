@@ -1,4 +1,3 @@
-python
 import math
 
 t = int(input())

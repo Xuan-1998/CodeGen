@@ -1,4 +1,3 @@
-python
 def count_valid_matrices(N, M):
     MOD = 998244353
     # Calculate the number of valid matrices

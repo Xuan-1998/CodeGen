@@ -1,4 +1,3 @@
-python
 def count_prime_permutations(n_max, k_perms):
     # Step 1: Generate all prime numbers below n_max
     primes = []

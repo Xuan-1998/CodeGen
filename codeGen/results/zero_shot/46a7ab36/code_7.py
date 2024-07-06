@@ -1,4 +1,3 @@
-python
 def count_words(n, m):
     MOD = 10**8 + 7
     

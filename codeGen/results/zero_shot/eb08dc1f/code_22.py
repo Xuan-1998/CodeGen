@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the problem
 n = int(input())  # input integer n
 blocks = [0] * (n + 1)  # initialize count of blocks for each length

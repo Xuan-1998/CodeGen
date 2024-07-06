@@ -1,4 +1,3 @@
-python
 n = int(input())
 dp = [[-float('inf')] * (n + 1) for _ in range(n + 1)]
 

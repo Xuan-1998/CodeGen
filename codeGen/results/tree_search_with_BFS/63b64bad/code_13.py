@@ -1,4 +1,3 @@
-python
 n = int(input().strip())
 a = [0] + list(map(int, input().split()))
 

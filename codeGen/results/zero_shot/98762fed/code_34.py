@@ -1,4 +1,3 @@
-python
 def count_ones(N, M):
     MOD = 998244353
     total_elements = N * M

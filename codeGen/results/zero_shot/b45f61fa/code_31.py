@@ -1,4 +1,3 @@
-python
 def matrix_chain_order(p):
     n = len(p) - 1
     m = [[0] * (n + 1) for _ in range(n + 1)]

@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the problem
 The problem asks us to count the number of arrays where the bitwise AND operation on all elements is greater than or equal to the bitwise XOR operation on all elements.
 

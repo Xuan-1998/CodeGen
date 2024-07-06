@@ -1,4 +1,3 @@
-python
 n = int(input().strip())
 a = [0] + list(map(int, input().strip().split()))
 dp = [-2]*(n+1)

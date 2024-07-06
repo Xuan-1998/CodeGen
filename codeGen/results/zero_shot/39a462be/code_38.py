@@ -1,4 +1,3 @@
-python
 # Step 1: Read input strings A and B from standard input
 A = input().strip()
 B = input().strip()

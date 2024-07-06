@@ -1,4 +1,3 @@
-python
 def power_mod(base, exponent, mod):
     result = 1
     while exponent > 0:

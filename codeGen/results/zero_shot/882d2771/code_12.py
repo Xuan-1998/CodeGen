@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the problem
 # f(n) is the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls in a beauty contest
 # We need to calculate t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7

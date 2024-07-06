@@ -1,4 +1,3 @@
-python
 def min_perfect_squares(n):
     dp = {i: float('inf') for i in range(n+1)}
     dp[0] = 0

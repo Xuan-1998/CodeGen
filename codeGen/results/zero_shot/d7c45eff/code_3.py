@@ -1,4 +1,3 @@
-python
 # Step 1: Read input
 n, k = map(int, input().split())
 s = input()

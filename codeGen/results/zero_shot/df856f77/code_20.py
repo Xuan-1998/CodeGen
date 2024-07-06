@@ -1,4 +1,3 @@
-python
 def min_operations(arr):
     n = len(arr)
     operations = 0

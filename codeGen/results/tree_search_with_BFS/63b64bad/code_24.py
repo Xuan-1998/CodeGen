@@ -1,4 +1,3 @@
-python
 import sys
 from sys import stdin, stdout
 input = stdin.readline

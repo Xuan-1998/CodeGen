@@ -1,4 +1,3 @@
-python
 def longest_increasing_subsequence(nums):
     n = len(nums)
     dp = [1] * n

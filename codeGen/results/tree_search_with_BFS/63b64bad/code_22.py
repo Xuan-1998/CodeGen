@@ -1,4 +1,3 @@
-python
 def dfs(i, a, dp, visited):
     if i <= 0 or i > n:
         return 0

@@ -1,4 +1,3 @@
-python
 def can_cross_stones():
     stones = [int(x) for x in input().split()]
     last_stone = stones[-1]

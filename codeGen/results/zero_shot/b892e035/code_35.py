@@ -1,4 +1,3 @@
-python
 def calculate_probability():
     T = int(input())  # Number of test cases
     for _ in range(T):

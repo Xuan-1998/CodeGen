@@ -1,4 +1,3 @@
-python
 def calculate_diamonds(N):
     total_diamonds = 0
     

@@ -1,4 +1,3 @@
-python
 # Step 1: Read input
 n, m = map(int, input().split())
 edges = []

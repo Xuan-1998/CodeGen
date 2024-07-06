@@ -1,4 +1,3 @@
-python
 def count_arrays(n, k):
     # Count the number of arrays for which the result of the bitwise AND operation on all elements is greater than or equal to the result of the bitwise XOR operation on all elements.
 

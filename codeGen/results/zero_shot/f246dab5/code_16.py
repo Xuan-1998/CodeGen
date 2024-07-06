@@ -1,4 +1,3 @@
-python
 def calculate_fare():
     n = int(input())  # number of trips
     fares = []

@@ -1,4 +1,3 @@
-python
 n = int(input())
 M = list(map(int, input().split()))
 # code to implement the algorithm and generate V

@@ -1,4 +1,3 @@
-python
 def solve():
     T, n, edges, m, primes = read_input()
     for _ in range(T):

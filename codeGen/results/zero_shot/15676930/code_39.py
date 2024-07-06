@@ -1,4 +1,3 @@
-python
 import heapq
 
 def max_total_joy():

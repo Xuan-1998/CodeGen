@@ -1,4 +1,3 @@
-python
 MOD = 998244353
 
 def power_mod(base, exp, mod):

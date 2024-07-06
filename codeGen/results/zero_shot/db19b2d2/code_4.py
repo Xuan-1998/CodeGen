@@ -1,4 +1,3 @@
-python
 # Step 1: Define the variables and read input
 n, m, h = map(int, input().split())
 s = list(map(int, input().split()))

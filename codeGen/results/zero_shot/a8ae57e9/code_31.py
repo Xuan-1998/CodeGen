@@ -1,4 +1,3 @@
-python
 # Step 1: Read the input
 n, k = map(int, input().split())  # number of booking requests and tables
 requests = []

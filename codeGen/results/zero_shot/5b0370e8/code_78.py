@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the problem statement and constraints
 def count_bitwise_and_xor(t):
     for _ in range(t):

@@ -1,4 +1,3 @@
-python
 def count_ones_in_valid_matrices(N, M):
     MOD = 998244353
 

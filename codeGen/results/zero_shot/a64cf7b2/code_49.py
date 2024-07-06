@@ -1,4 +1,3 @@
-python
 n, m, T = map(int, input().split())
 edges = []
 for _ in range(m):

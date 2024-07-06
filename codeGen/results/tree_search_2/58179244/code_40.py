@@ -1,4 +1,3 @@
-python
 def min_recolors(n, colors):
     DP = {(i, c) if i == 0 else (0, False): float('inf') for i, c in enumerate(colors)}
     DP[(0, False)] = 0

@@ -1,4 +1,3 @@
-python
 import sys
 
 def solve(i):

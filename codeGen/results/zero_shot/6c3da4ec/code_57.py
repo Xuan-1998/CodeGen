@@ -1,4 +1,3 @@
-python
 def max_bitwise_or(n, s):
     # Step 1: Generate all possible substrings of binary string s
     all_substrings = set()

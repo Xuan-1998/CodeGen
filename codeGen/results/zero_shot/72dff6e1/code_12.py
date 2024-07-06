@@ -1,4 +1,3 @@
-python
 def count_valid_sequences(N, A):
     MOD = 998244353
 

@@ -1,4 +1,3 @@
-python
 # Step 1: Read input
 n, k, z = map(int, input().split())
 arr = list(map(int, input().split()))

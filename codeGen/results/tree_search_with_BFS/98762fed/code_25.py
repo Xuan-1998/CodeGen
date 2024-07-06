@@ -1,4 +1,3 @@
-python
 def modular_exponentiation(base, exponent, mod):
     result = 1
     while exponent > 0:

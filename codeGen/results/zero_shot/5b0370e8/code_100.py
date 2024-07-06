@@ -1,4 +1,3 @@
-python
 def count_and_greater_than_xor(n, k):
     total_xor = 0
     total_and = 0

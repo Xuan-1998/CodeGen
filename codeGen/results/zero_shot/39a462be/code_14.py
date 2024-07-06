@@ -1,4 +1,3 @@
-python
 # Step 1: Read the input strings A and B from standard input
 A = input()
 B = input()

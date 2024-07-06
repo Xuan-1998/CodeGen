@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 1. Understand the problem: The Infinite Zoo is represented as an infinite graph with directed edges between vertices that satisfy the condition u&v=v, where & denotes the bitwise AND operation.

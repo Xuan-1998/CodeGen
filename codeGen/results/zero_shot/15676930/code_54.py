@@ -1,4 +1,3 @@
-python
 def solve():
     n = int(input())
     a_values = list(map(int, input().split()))

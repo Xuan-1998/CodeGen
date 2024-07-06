@@ -1,4 +1,3 @@
-python
 # Step 1: Read input strings A and B from stdin
 A = input().strip()
 B = input().strip()

@@ -1,4 +1,3 @@
-python
 # Step 1: Read the input
 n = int(input())
 moods = list(map(int, input().split()))

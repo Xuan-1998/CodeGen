@@ -1,4 +1,3 @@
-python
 from sys import stdin, stdout, setrecursionlimit
 setrecursionlimit(10**6)
 

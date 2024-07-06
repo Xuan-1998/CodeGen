@@ -1,4 +1,3 @@
-python
 # Step 4: Calculate and print the result
 def calculate_length(n, m):
     while m > 0:

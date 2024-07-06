@@ -1,4 +1,3 @@
-python
 n = int(input())
 w = list(map(int, input().split()))
 dp = [[0]*100000 for _ in range(n)]

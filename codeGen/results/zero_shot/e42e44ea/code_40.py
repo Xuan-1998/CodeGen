@@ -1,4 +1,3 @@
-python
 def min_points_required(n, m):
     grid = []
     for _ in range(m):

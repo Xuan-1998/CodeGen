@@ -1,4 +1,3 @@
-python
 def min_points_required():
     N, M = map(int, input().split())
     grid = [[int(i) for i in input().split()] for _ in range(N)]

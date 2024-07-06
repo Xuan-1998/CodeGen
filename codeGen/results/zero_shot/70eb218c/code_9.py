@@ -1,4 +1,3 @@
-python
 def min_operations(n, x):
     # Step 1: Calculate the number of digits in x
     num_digits_x = len(str(x))

@@ -10,5 +10,4 @@ Step 3: Design an Algorithm
 For each query:
     Check if there's a directed edge from u to v (i.e., u & v = v). If yes, return "YES". Otherwise, return "NO".
 
-Step 4: Implement the Solution in Python
-
+Step 4: Implement the Solution in 

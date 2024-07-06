@@ -1,4 +1,3 @@
-python
 import sys
 
 # Read input from standard input
