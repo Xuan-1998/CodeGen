@@ -1,33 +1,20 @@
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    
-    N = int(data[0])
-    d = list(map(int, data[1:]))
-    
-    MOD = 998244353
-    
-    # Check constraints
-    assert 2 <= N <= 500
-    assert len(d) == N
-    assert sum(d) == N - 1
-    assert all(0 <= di <= N - 1 for di in d)
-    assert d[0] >= 1
-    
-    # Since d[0] >= 1, vertex 1 is always a good vertex
-    good_vertex_count = 1
-    
-    # To find the number of good vertices
-    for i in range(1, N):
-        if d[i] == 0:
-            good_vertex_count += 1
-    
-    # The result is the number of good vertices modulo 998244353
-    result = good_vertex_count % MOD
-    
-    print(result)
+N = int(input())
+d = list(map(int, input().split()))
+MOD = 998244353
 
-if __name__ == "__main__":
-    main()
+dp = [[0]*N for _ in range(N+1)]
+sums = [0]*(N+1)
+dp[0][0] = sums[0] = 1
+
+for i in range(1, N+1):
+    for j in range(i+1):
+        if j > 0:
+            dp[i][j] = dp[i-1][j-1]*d[j-1]
+        if j < i:
+            dp[i][j] += sums[i-1]*d[j] - (dp[i-1][j]*d[j] if j > 0 else 0)
+        dp[i][j] %= MOD
+    sums[i] = sums[i-1]*d[i] % MOD
+
+answer = sum(dp[N]) % MOD
+print(answer)
 

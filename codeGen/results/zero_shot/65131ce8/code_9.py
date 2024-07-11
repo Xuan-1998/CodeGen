@@ -1,49 +1,15 @@
-def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    
-    N = int(data[0])
-    d = list(map(int, data[1:]))
-    
-    MOD = 998244353
-    
-    # Calculate the factorial and factorial inverse modulo MOD
-    fact = [1] * (N + 1)
-    inv_fact = [1] * (N + 1)
-    
-    for i in range(2, N + 1):
-        fact[i] = fact[i - 1] * i % MOD
-    
-    inv_fact[N] = pow(fact[N], MOD - 2, MOD)
-    for i in range(N - 1, 0, -1):
-        inv_fact[i] = inv_fact[i + 1] * (i + 1) % MOD
-    
-    # Function to calculate nCk % MOD
-    def comb(n, k):
-        if k > n or k < 0:
-            return 0
-        return fact[n] * inv_fact[k] % MOD * inv_fact[n - k] % MOD
-    
-    # Calculate the number of good vertices
-    good_vertices_count = 0
-    
-    for i in range(N):
-        if d[i] == 0:
-            continue
-        
-        # Count the number of ways to arrange the children of vertex i
-        children_count = d[i]
-        remaining_vertices = N - 1 - children_count
-        
-        if remaining_vertices < 0:
-            continue
-        
-        good_vertices_count += comb(remaining_vertices, children_count)
-        good_vertices_count %= MOD
-    
-    print(good_vertices_count)
+To solve this problem, we can use dynamic programming. The main idea is to keep track of the number of good vertices for all subtrees of the tree. 
 
-if __name__ == "__main__":
-    main()
+Here are the steps to solve this problem:
 
+1. First, we need to calculate the prefix and suffix sums of the degrees. For this, we can create two lists, prefix and suffix, where prefix[i] is the sum of the first i degrees and suffix[i] is the sum of the last i degrees.
+
+2. Next, we initialize a 2D DP table dp[i][j] where dp[i][j] represents the number of good trees with i vertices and j good vertices. Initially, all values in dp are set to 0. 
+
+3. The base case for the DP table is dp[0][0] = 1, which represents the situation where there are no vertices and hence no good vertices.
+
+4. We then fill up the DP table using the following transition: for each i from 1 to N and for each j from 0 to i, we update dp[i][j] by adding dp[prefix[i-1]][k] * dp[suffix[N-i]][j-k] for all k from 0 to j. This represents the situation where we split the i vertices into two subtrees, one with prefix[i-1] vertices and the other with suffix[N-i] vertices, and distribute the j good vertices among these two subtrees.
+
+5. Finally, the answer to the problem is the sum of dp[N][j] for all j from 0 to N, modulo 998244353.
+
+Let's implement this in Python.

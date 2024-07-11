@@ -65,7 +65,7 @@ class Coding:
             plan = self.chatbot.create(message)
             plans.append(plan)
         return plans
-    
+
     def prune_plans(self, plans: list[tuple[str, str]]) -> list[tuple[str, str]]:
         pruned_plans = []
         for plan in plans:
@@ -73,11 +73,11 @@ class Coding:
             if self.should_keep_plan(code):
                 pruned_plans.append(plan)
         return pruned_plans
-    
+
     def should_keep_plan(self, code: str) -> bool:
         # TODO: I can not find where you defined accuracy etc? I think we can just prune those with zero acc?
         return "prune_condition" not in code
-    
+
     def zeroshot_coder(self) -> tuple[str, str]:
         message = [
             {
@@ -200,4 +200,12 @@ class Coding:
                 ),
             },
         ]
-        return self.chatbot.create(messages)
+
+        def extract_plan(response: str) -> str:
+            plan = re.search("===BEGIN PLAN===(.*?)===END PLAN===", response, re.DOTALL)
+            if plan:
+                return plan.group(1)
+            return response
+
+        response = self.chatbot.create(messages)
+        return extract_plan(response[0]), response[1]

@@ -1,52 +1,23 @@
-def solve():
-    import sys
-    input = sys.stdin.read
-    MOD = 998244353
-    
-    data = input().split()
-    N = int(data[0])
-    d = list(map(int, data[1:]))
-    
-    from collections import deque, defaultdict
-    
-    # Create the adjacency list for the tree
-    adj = defaultdict(list)
-    indegree = [0] * (N + 1)
-    for i in range(1, N + 1):
-        if d[i - 1] > 0:
-            for j in range(d[i - 1]):
-                adj[i].append(i + j + 1)
-                indegree[i + j + 1] += 1
-    
-    # Topological sort to process nodes in a bottom-up manner
-    topo_order = []
-    queue = deque()
-    
-    for i in range(1, N + 1):
-        if indegree[i] == 0:
-            queue.append(i)
-    
-    while queue:
-        node = queue.popleft()
-        topo_order.append(node)
-        for neighbor in adj[node]:
-            indegree[neighbor] -= 1
-            if indegree[neighbor] == 0:
-                queue.append(neighbor)
-    
-    # DP array to store the count of good vertices
-    dp = [0] * (N + 1)
-    
-    # Process nodes in reverse topological order
-    for node in reversed(topo_order):
-        dp[node] = 1  # The node itself is a good vertex
-        for neighbor in adj[node]:
-            dp[node] += dp[neighbor]
-            dp[node] %= MOD
-    
-    # The answer is the sum of dp values for all nodes
-    result = sum(dp[1:]) % MOD
-    
-    print(result)
+This problem can be solved using dynamic programming. Here are the steps to solve this problem:
 
+1. Initialize a dp array of size N+1 with all values as 0. dp[i] will represent the number of good vertices in the subtree rooted at vertex i.
+   
+2. Then, for each vertex i from N to 1, calculate the number of good vertices in the subtree rooted at i.
+   
+3. For a vertex i, it is a good vertex if it is the smallest vertex in its subtree. So, add 1 to dp[i].
+   
+4. Then, for each child j of vertex i, add dp[j] to dp[i] because all good vertices in the subtree rooted at j are also good vertices in the subtree rooted at i.
+   
+5. After calculating dp[i] for all vertices i from N to 1, dp[1] will be the total number of good vertices in the tree.
 
+The above steps will give the total number of good vertices in the tree. However, the problem asks for the sum of the numbers of good vertices for all good trees. To solve this, we need to consider all possible trees and for each tree, calculate the number of good vertices and add it to the final answer. This can be done using combinatorics.
+
+6. Initialize a variable answer as 0.
+
+7. For each vertex i from 2 to N, calculate the number of ways to form a tree with i as the root and add the number of good vertices in this tree to the answer. This can be done using the formula: 
+
+    answer += dp[i] * (number of ways to form a tree with i as the root) % 998244353
+
+8. Finally, print the answer.
+
+Let's write the Python code for this approach.

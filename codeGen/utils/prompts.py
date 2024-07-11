@@ -25,7 +25,7 @@ You are an experienced AI assistant proficient in various programming algorithms
 
 
 CODING_TRANSFORMATION = """
-I came up with an intuition on how to solve this problem. It might be the complete solution or additional steps might be needed:
+Below is my intuition on how to solve the problem. It might be the complete solution or additional steps might be needed:
 ===
 {transformation}
 ===
@@ -34,7 +34,7 @@ Analyze my intuition, how is it applicable to this problem? Please build on my i
 
 
 CODING_ZEROSHOT = """
-How can we break down this problem and arrive at a solution? Let's think step by step. 
+How can we break down this problem and arrive at a solution? Let's think step by step.
 !!!IMPORTANT!!!: Please implement your solution in Python and wrap your code in a code block. Remember to receive inputs from stdin and print your answer to stdout.
 """
 
@@ -63,7 +63,7 @@ Please list concise and general steps, no more than five, for building {algorith
 """
 
 FOLLOW_UP_ALGORITHM = """
-I came up with an intuition on how to solve this problem. I think it's a problem about "{algorithm}".
+I think this is a problem about "{algorithm}".
 You will provide me with three possible choices for "{step}". Each choice will be non-overlapping and independent, allowing me to choose the most suitable option later.
 You must return the choices in a single python list format, which should start with \"[\" and ends with \"]\". Use double quotes(\") to wrap each choice. Your response should only contain possible choices, do not include any additional information.
 YOU MUST wrap your code in a code block, which starts and ends with "```".
@@ -80,12 +80,12 @@ Below is the plan I came up with:
 ===BEGIN PLAN===
 {transformation}
 ===END PLAN===
-Please think step by step and analyze the plan and provide feedback. Is the plan correct? How can it be improved? What are the potential issues with the plan? Does it include edge cases? 
+Please think step by step and analyze the plan and provide feedback. Consider the correctness, edge cases, and completeness of the plan.
 !!!Important!!!: Please provide the updated version of the entire detailed plan only!! Do not include any comments, previous versions, or code. Use a code block to wrap the updated version of the plan.
 """
 
 CODING_TREE_BFS = """
-Please list concise and general steps for solving the problem. 
+Please list concise and general steps for solving the problem.
 !!!IMPORTANT: You should NOT write down the code!!!
 In each stage, if you can't ensure this step is the best for following stages, you should write down some possible steps to ensure a broad range of attempts. Here is an example of your response format:
 

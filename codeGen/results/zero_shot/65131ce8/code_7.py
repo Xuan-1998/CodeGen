@@ -1,31 +1,14 @@
-MOD = 998244353
+First, let's understand the problem better. We are given a sequence of non-negative integers d, which represents the out-degree of each vertex in a directed tree. We need to find the sum of the numbers of good vertices for all good trees.
 
-def main():
-    import sys
-    input = sys.stdin.read
-    data = list(map(int, input().strip().split()))
-    
-    N = data[0]
-    d = data[1:]
-    
-    # Calculate the number of good vertices
-    good_vertices_count = 0
-    
-    # We need to find the number of good vertices in all good trees
-    # For a vertex to be good, it should be the smallest in its subtree
-    # This is true if and only if it has no ancestors with a smaller number
-    
-    # The root (vertex 1) is always a good vertex
-    good_vertices_count += 1
-    
-    # For each vertex, if it has an out-degree greater than 0, it can be a good vertex
-    for i in range(1, N):
-        if d[i] > 0:
-            good_vertices_count += 1
-    
-    # Output the result modulo 998244353
-    print(good_vertices_count % MOD)
+A good tree is a tree that satisfies the following conditions:
+1. The out-degree of vertex i is d_i.
+2. A vertex v is called a good vertex if the minimum vertex number in the subtree rooted at v is v.
 
-if __name__ == "__main__":
-    main()
+To solve this problem, we can use dynamic programming. Here are the steps:
 
+1. Initialize an array dp of size N+1, where dp[i] is the number of good vertices in the subtree rooted at vertex i.
+2. Initialize an array prefix of size N+1 to store the prefix sum of dp. prefix[i] is the sum of dp[j] for all 0<=j<=i.
+3. Iterate over the sequence d from the end to the beginning. For each vertex i, calculate dp[i] = dp[i+1]*d[i] + prefix[i+d[i]] - prefix[i]. This is because each child of vertex i can be a good vertex, and each vertex in the subtree rooted at vertex i+d[i] can be a good vertex.
+4. The answer is the sum of all dp[i] modulo 998244353.
+
+Let's implement this in Python.

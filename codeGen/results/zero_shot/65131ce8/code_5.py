@@ -1,56 +1,29 @@
-def solve():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    
-    MOD = 998244353
-    
-    N = int(data[0])
-    d = list(map(int, data[1:]))
-    
-    # Validate input constraints
-    assert 2 <= N <= 500
-    assert len(d) == N
-    assert sum(d) == N - 1
-    assert d[0] >= 1
-    for di in d:
-        assert 0 <= di <= N - 1
-    
-    # Function to calculate factorials and modular inverses
-    def factorials_and_inverses(n, mod):
-        fact = [1] * (n + 1)
-        inv_fact = [1] * (n + 1)
-        for i in range(2, n + 1):
-            fact[i] = fact[i - 1] * i % mod
-        inv_fact[n] = pow(fact[n], mod - 2, mod)
-        for i in range(n - 1, 0, -1):
-            inv_fact[i] = inv_fact[i + 1] * (i + 1) % mod
-        return fact, inv_fact
-    
-    # Calculate factorials and inverses up to N
-    fact, inv_fact = factorials_and_inverses(N, MOD)
-    
-    # Function to calculate binomial coefficient
-    def binom(n, k, mod):
-        if n < k or k < 0:
-            return 0
-        return fact[n] * inv_fact[k] % mod * inv_fact[n - k] % mod
-    
-    # Dynamic programming table to store the number of ways to form trees
-    dp = [[0] * (N + 1) for _ in range(N + 1)]
-    dp[0][0] = 1
-    
-    for i in range(1, N + 1):
-        for j in range(N + 1):
-            for k in range(1, N + 1):
-                if j >= k:
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j - k] * binom(j, k, MOD)) % MOD
-    
-    # Calculate the number of good vertices
-    good_vertices = 0
-    for i in range(1, N + 1):
-        good_vertices = (good_vertices + dp[N][i]) % MOD
-    
-    print(good_vertices)
+from sys import stdin, stdout
 
+MOD = 998244353
+N = int(stdin.readline())
+d = list(map(int, stdin.readline().split()))
+
+if d[0] != 1:
+    stdout.write("0\n")
+else:
+    dp = [[0] * (N+1) for _ in range(N+1)]
+    dp[0][0] = 1
+    acc = [0] * (N+1)
+    acc[0] = 1
+    sz = [0] * (N+1)
+    sz[0] = 1
+    cnt = [0] * (N+1)
+    cnt[1] = 1
+    ans = 0
+    for i in range(1, N):
+        for j in range(i+1):
+            dp[i][j] = acc[j] if j <= sz[i-1] else (acc[j] - dp[i-1][j-sz[i-1]]) % MOD
+        sz[i] = sz[i-1] + d[i]
+        acc = [0] * (N+1)
+        for j in range(i+1):
+            acc[j+1] = (acc[j] + dp[i][j]) % MOD
+        cnt[i+1] = (cnt[i] * d[i]) % MOD
+        ans = (ans + dp[i][i] * cnt[i+1]) % MOD
+    stdout.write(str(ans) + "\n")
 
