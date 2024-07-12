@@ -1,4 +1,3 @@
-python
 MOD = 998244353
 
 def comb(n, k, fact, inv_fact):

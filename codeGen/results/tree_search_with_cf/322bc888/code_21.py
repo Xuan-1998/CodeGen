@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful_string(n, m, s, queries):
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
     pattern_count = len(patterns)

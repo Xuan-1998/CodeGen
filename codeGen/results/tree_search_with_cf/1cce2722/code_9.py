@@ -1,4 +1,3 @@
-python
 def max_points(n, sequence):
     # Initialize count array
     count = [0] * 106  # Using 106 to handle index 105

@@ -1,4 +1,3 @@
-python
 def minimize_removed_points():
     import sys
     input = sys.stdin.read

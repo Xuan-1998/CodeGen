@@ -1,5 +1,3 @@
-python
-def can_transform_sequence(n, initial_seq, k, final_seq):
     # Initialize the DP table
     dp = [[False] * (k + 1) for _ in range(n + 1)]
     dp[0][0] = True

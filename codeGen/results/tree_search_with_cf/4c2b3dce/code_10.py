@@ -1,5 +1,3 @@
-python
-def check_subsequences(s):
     n = len(s)
     found_AB = False
     found_BA = False

@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1. First, we need to understand how the joy value of each hare depends on its adjacent hares. We can see that:

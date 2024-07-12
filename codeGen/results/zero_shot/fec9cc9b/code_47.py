@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1.  **Understand what makes a segment a ladder:** A ladder is a sequence of integers that first doesn't decrease, then doesn't increase. To check if a segment is a ladder, we need to find out whether it starts with an increasing sequence and ends with a non-decreasing sequence.

@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 1. The given permutation p of length 2n is the concatenation of two arrays a and b, each of length n.

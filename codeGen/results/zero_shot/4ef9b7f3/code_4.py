@@ -1,4 +1,3 @@
-python
 def transform_sequence(n, a, k, b):
     if sum(a) != sum(b):
         print("NO")

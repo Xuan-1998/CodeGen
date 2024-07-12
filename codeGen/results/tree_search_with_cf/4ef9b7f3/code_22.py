@@ -1,4 +1,3 @@
-python
 def can_transform_sequence(n, a, k, b):
     # Sum of elements in initial and final sequences
     sum_a = sum(a)

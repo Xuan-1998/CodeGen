@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1. **Check if K is possible**: First, we need to check if it's possible to partition the array into K partitions at all. We can do this by sorting the array and then checking if the sum of the smallest (K-1) elements is less than or equal to the difference between the largest element and the K-th smallest element.

@@ -1,4 +1,3 @@
-python
 def minimize_removed_points(n, points):
     # Sort points by position in descending order (right to left)
     points.sort(reverse=True, key=lambda x: x[0])

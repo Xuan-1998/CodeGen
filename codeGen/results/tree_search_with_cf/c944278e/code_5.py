@@ -1,4 +1,3 @@
-python
 def main():
     import sys
     input = sys.stdin.read

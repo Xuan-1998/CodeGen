@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 Step 1: Understand the problem statement

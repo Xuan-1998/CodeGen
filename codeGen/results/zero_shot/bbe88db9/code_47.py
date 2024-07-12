@@ -1,4 +1,3 @@
-python
 Let's start by breaking down the problem:
 
 1. Vasya starts at room 1, so we can keep track of his current position.

@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful(s, l, r, patterns):
     min_cost = float('inf')
     for pattern in patterns:

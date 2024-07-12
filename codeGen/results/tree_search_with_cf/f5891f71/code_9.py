@@ -1,4 +1,3 @@
-python
 def max_remaining_value(n, arr):
     # Initialize the DP table
     dp = [[0] * n for _ in range(n)]

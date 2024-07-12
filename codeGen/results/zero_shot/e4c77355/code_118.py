@@ -1,4 +1,3 @@
-python
 # Step 1: Understand the Problem
 The problem is to find the length of the longest increasing subsequence (LIS) in an unsorted array of integers.
 

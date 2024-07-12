@@ -1,4 +1,3 @@
-python
 def max_remaining_value(n, arr):
     # Sort the array to facilitate the greedy approach
     arr.sort()

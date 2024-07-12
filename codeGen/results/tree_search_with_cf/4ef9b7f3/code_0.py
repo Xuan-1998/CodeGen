@@ -1,4 +1,3 @@
-python
 def can_transform_sequence(n, initial_seq, k, final_seq):
     # Check sum of initial sequence and final sequence
     if sum(initial_seq) != sum(final_seq):

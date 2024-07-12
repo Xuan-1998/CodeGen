@@ -1,5 +1,3 @@
-python
-def min_cost_to_beautiful(n, m, s, queries):
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
     costs = []
 

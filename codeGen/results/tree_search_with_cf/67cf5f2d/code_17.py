@@ -1,4 +1,3 @@
-python
 import bisect
 
 def minimize_removed_points(n, points):

@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful(n, m, s, queries):
     # Generate all possible beautiful strings of length 3
     from itertools import permutations

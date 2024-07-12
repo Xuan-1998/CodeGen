@@ -1,4 +1,3 @@
-python
 Let's start by breaking down the problem into smaller sub-problems:
 
 1. **Graph Representation**: Since we have a directed acyclic graph (DAG), we can represent it as an adjacency list where each node has a list of its neighbors and their corresponding weights.

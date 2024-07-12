@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller steps:
 
 1. First, we need to understand the structure of the directed tree. Since it's a tree, there are no cycles (i.e., a path that starts and ends at the same city). We can assume that all cities are connected to the capital in one direction.

@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful_substring(n, m, s, queries):
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
     pattern_costs = [[0] * (n + 1) for _ in range(6)]

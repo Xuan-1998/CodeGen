@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Iterate through the array from the end to the beginning
     for i in range(n - 1, 0, -1):

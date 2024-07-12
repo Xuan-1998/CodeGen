@@ -1,4 +1,3 @@
-python
 def can_transform(n, initial, k, final):
     if sum(initial) != sum(final):
         return False, []

@@ -1,5 +1,3 @@
-python
-import sys
 input = sys.stdin.read
 
 def max_points(n, sequence):

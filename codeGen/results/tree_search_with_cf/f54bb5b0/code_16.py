@@ -1,4 +1,3 @@
-python
 import sys
 input = sys.stdin.read
 sys.setrecursionlimit(100000)

@@ -1,4 +1,3 @@
-python
 To solve this problem, let's break it down into smaller steps:
 
 1. First, we need to find the minimum prime divisor for each number in the array. This can be done using the Sieve of Eratosthenes algorithm.

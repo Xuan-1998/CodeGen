@@ -1,4 +1,3 @@
-python
 def minimize_removed_points(n, points):
     # Sort points based on their positions
     points.sort()

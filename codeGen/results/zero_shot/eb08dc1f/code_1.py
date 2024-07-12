@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 Step 1: Generate all numbers from 0 to 10^n - 1, where each number is padded with leading zeroes to have length n.

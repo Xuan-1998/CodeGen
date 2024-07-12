@@ -1,4 +1,3 @@
-python
 Let's start by breaking down the problem:
 
 1. **Understand the problem**: We are given N upper hemispheres and M lower hemispheres, each with a radius between 1 and C. Our task is to find the number of different X-sequences that can be built.

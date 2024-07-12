@@ -1,4 +1,3 @@
-python
 def preprocess_costs(s, n):
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
     costs = {pattern: [0] * (n + 1) for pattern in patterns}

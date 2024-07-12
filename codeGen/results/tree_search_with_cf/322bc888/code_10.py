@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful(n, m, s, queries):
     # Define the beautiful patterns
     beautiful_patterns = [

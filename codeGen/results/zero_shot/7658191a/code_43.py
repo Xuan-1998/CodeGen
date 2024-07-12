@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1. Understand the rules of the game:

@@ -1,4 +1,3 @@
-python
 To solve this problem, let's break it down into smaller sub-problems.
 
 1.  First, we need to understand the bitwise AND (bitwise &amp; operator) and bitwise XOR (&#x25;^&#x25; operator). The bitwise &amp; operator compares each bit of the first operand to the corresponding bit of the second operand. If both bits are 1, the corresponding result bit is set to 1. Otherwise, the corresponding result bit is set to 0. The bitwise &#x25;^&#x25; operator compares each bit of the first operand to the corresponding bit of the second operand. If one bit is 0 and the other bit is 1, the corresponding result bit is set to 1.

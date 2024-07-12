@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful_string(n, m, s, queries):
     # Possible beautiful patterns
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]

@@ -1,4 +1,3 @@
-python
 def contains_AB_and_BA(s):
     n = len(s)
     if n < 2:

@@ -1,4 +1,3 @@
-python
 def transform_sequence(n, initial_seq, k, final_seq):
     # Check if the sum of initial and final sequences match
     if sum(initial_seq) != sum(final_seq):

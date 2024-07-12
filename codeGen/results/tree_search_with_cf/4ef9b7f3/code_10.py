@@ -1,5 +1,3 @@
-python
-def solve():
     import sys
     input = sys.stdin.read
     data = input().split()

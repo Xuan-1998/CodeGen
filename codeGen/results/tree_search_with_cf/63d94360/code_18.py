@@ -1,4 +1,3 @@
-python
 MOD = 1000000007
 
 def solve():

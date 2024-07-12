@@ -1,4 +1,3 @@
-python
 def check_subsequences(s):
     n = len(s)
     

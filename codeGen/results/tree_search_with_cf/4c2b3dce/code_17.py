@@ -1,4 +1,3 @@
-python
 def contains_non_overlapping_subsequences(s):
     n = len(s)
     if n < 2:

@@ -1,4 +1,3 @@
-python
 def mod_binomial(n, k, mod):
     if k > n or k < 0:
         return 0

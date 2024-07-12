@@ -1,4 +1,3 @@
-python
 Let's start by breaking down the problem into smaller sub-problems.
 
 1. **Understanding the problem**: The problem states that we have an array of positive integers, and a set of bad prime numbers. We need to find the maximum beauty of the array. Beauty is determined by the minimum prime divisor of each number in the array, and whether it's a good or bad prime.

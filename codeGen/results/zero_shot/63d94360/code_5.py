@@ -1,4 +1,3 @@
-python
 MOD = 1000000007
 
 def find_ways(N, K):

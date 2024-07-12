@@ -1,4 +1,3 @@
-python
 def max_points(n, sequence):
     max_val = 105  # Given constraint: 1 ≤ ai ≤ 105
     count = [0] * (max_val + 1)

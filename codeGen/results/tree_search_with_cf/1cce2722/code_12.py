@@ -1,4 +1,3 @@
-python
 import sys
 
 def max_points(n, sequence):

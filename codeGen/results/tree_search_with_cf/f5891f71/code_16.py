@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Initialize the dp array
     dp = [0] * n

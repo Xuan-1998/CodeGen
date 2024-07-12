@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Sort the array
     arr.sort()

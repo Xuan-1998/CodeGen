@@ -1,4 +1,3 @@
-python
 def transform_sequence(n, initial_seq, k, final_seq):
     # Check if transformation is possible
     if k > n:

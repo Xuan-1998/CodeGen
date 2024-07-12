@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Compute the sum of absolute values of all elements
     total_sum = sum(abs(x) for x in arr)

@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 1. **Understand the problem**: We are given a string of length n, and we need to find the minimum number of cuts required to partition the string into palindromic substrings.

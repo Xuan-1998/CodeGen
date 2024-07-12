@@ -1,4 +1,3 @@
-python
 def maximize_remaining_element(n, arr):
     # Sort the array
     arr.sort()

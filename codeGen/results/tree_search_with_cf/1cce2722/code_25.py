@@ -1,4 +1,3 @@
-python
 def max_points(n, sequence):
     if n == 0:
         return 0

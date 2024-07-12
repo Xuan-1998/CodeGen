@@ -1,5 +1,3 @@
-python
-def transform_sequence(n, initial_seq, k, final_seq):
     i, j = 0, 0
     operations = []
     

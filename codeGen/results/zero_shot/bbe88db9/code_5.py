@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 1. **Understand the problem**: The problem states that Vasya starts at room 1 and needs to get to room (n+1). He can use two one-way portals in each room. If the ceiling of a room contains an odd number of crosses, he uses the second portal; otherwise, he uses the first portal.

@@ -1,4 +1,3 @@
-python
 import sys
 
 def max_remaining_element(n, arr):

@@ -1,4 +1,3 @@
-python
 def max_points(n, sequence):
     # Step 1: Frequency Array Calculation
     max_val = 105

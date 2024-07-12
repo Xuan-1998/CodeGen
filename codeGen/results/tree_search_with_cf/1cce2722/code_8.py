@@ -1,4 +1,3 @@
-python
 def max_points(n, sequence):
     # Step 1: Count Frequency
     max_value = max(sequence)

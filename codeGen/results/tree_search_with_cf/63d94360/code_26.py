@@ -1,4 +1,3 @@
-python
 MOD = 1000000007
 
 def count_ways_to_pass(N, K):

@@ -1,4 +1,3 @@
-python
 Let's break down the problem step by step:
 
 1. **Understand the Problem**: The problem statement clearly defines what we need to do: determine if each subsegment of the array defined by l and r is a ladder or not.

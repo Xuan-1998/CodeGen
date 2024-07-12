@@ -1,4 +1,3 @@
-python
 def minimize_removals(n, points):
     # Sort points based on their coordinates
     points.sort()

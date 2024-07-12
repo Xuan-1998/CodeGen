@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Start with the first element
     current_value = arr[0]

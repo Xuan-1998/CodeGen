@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, arr):
     # Sort the array based on absolute values in descending order
     arr.sort(key=abs, reverse=True)

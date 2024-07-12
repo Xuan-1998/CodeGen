@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1. Check if all elements in the permutation p are distinct (i.e., no repeated elements).

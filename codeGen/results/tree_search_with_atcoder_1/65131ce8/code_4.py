@@ -1,5 +1,3 @@
-python
-MOD = 998244353
 
 def solve():
     import sys

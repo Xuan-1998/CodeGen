@@ -1,4 +1,3 @@
-python
 def max_possible_value(n, arr):
     # Sort the array
     arr.sort()

@@ -1,4 +1,3 @@
-python
 def can_transform(initial, final):
     n = len(initial)
     k = len(final)

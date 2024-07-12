@@ -1,5 +1,3 @@
-python
-import sys
 from itertools import permutations
 
 def main():

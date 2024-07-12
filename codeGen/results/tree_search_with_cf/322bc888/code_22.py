@@ -1,4 +1,3 @@
-python
 def min_cost_to_beautiful(s, l, r):
     patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
     n = len(s)

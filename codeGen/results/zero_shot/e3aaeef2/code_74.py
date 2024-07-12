@@ -1,4 +1,3 @@
-python
 Let's break down the problem into smaller sub-problems:
 
 1. **Understanding the problem**: The problem is asking us to apply m operations to an integer n, where each operation replaces every digit d of the number with the decimal representation of integer d + 1. We need to find the length of n after applying m operations and print it modulo 10^9+7.

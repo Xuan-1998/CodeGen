@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, array):
     if n == 1:
         return array[0]

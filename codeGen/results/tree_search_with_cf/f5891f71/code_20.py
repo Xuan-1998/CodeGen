@@ -1,4 +1,3 @@
-python
 def max_remaining_element(n, array):
     # Initialize the dp table with size n x n
     dp = [[0] * n for _ in range(n)]

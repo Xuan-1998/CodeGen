@@ -1,5 +1,3 @@
-python
-MOD = 998244353
 
 def count_valid_sequences(N, A):
     # Initialize the DP table

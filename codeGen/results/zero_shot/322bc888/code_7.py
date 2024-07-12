@@ -1,4 +1,3 @@
-python
 def min_operations_to_beautiful(n, m, s, queries):
     # Precompute all possible beautiful strings of length up to 3
     beautiful_patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
