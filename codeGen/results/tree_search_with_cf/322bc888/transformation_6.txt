@@ -1,0 +1,12 @@
+
+1. State Expression: Let dp[i][j] be the minimum cost to make the substring s[i:j] beautiful. This state will help us break down the problem into smaller subproblems where we can build the solution incrementally.
+2. Base Case: For a single character substring (i == j), dp[i][j] = 0 since a single character is always beautiful.
+3. Transition: To avoid palindromes of length 2 or more, we need to ensure that no two consecutive characters are the same and no three consecutive characters form a palindrome. We can use three possible patterns for a "beautiful" string:
+    - Pattern 1: "abcabcabc..."
+    - Pattern 2: "acbacbacb..."
+    - Pattern 3: "bacbacbac..."
+   For each character in the substring, we calculate the cost of transforming it to match each of these patterns and take the minimum.
+4. Precompute Costs: For each of the three patterns, precompute the cost to transform any prefix of the string to match the pattern. This allows us to quickly answer each query by comparing the costs for the relevant substring.
+5. Query Processing: For each query, calculate the cost of transforming the substring to match each of the three patterns using the precomputed costs. Return the minimum cost.
+6. Complexity: The preprocessing step takes O(n) time for each of the three patterns, resulting in O(3n) = O(n) time. Each query can be answered in O(1) time using the precomputed costs, resulting in a total query time of O(m). Thus, the overall time complexity is O(n + m).
+

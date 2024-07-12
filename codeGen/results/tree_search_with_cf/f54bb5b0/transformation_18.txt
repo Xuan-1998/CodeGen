@@ -1,0 +1,26 @@
+
+1. Top-Down Approach with Memoization:
+   - Use recursion and a memoization table to avoid redundant computations.
+   - Define dp[u][d] as the count of vertices that are exactly at distance d from vertex u.
+   - Base Case: dp[u][0] = 1 for all u, as the distance from a vertex to itself is zero.
+   - Transition: For each child v of u, update dp[u][d] by adding dp[v][d-1].
+
+2. Counting Pairs:
+   - For each vertex u, to count the number of pairs (u, v) with a path of length k, use the dp values of its children.
+   - Specifically, for each child v of u, the number of such pairs is the product of dp[v][d-1] and dp[u][k-d-1].
+   - Use a DFS to traverse the tree and compute the dp values.
+   - While computing dp values, also count the pairs by considering the paths that go through the parent.
+
+3. Implementation Steps:
+   - Read the input values n and k.
+   - Construct the tree using adjacency lists.
+   - Initialize the dp table with size n x (k+1) and set dp[u][0] = 1 for all u.
+   - Perform a DFS to fill the dp table.
+   - During the DFS, count the number of valid pairs using the dp values of children.
+   - Output the total count of valid pairs.
+
+4. Edge Cases:
+   - Smallest tree with n = 1.
+   - Trees where k is larger than the maximum possible path length.
+   - Ensure no double-counting of pairs.
+

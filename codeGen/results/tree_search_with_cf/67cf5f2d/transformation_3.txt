@@ -1,0 +1,15 @@
+
+1. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point. The base case is dp[n] = 0, as there are no points to the right of the newly added point.
+
+2. Sort the points based on their positions in ascending order. This will help in processing the points from right to left easily.
+
+3. Iterate over the points from right to left. For each point i, calculate the next point that will not be removed by the activation of point i. This can be done using binary search to find the first point whose position is greater than ai + bi.
+
+4. Update the dp[i] state by considering two cases:
+   a. If we do not add any point, then dp[i] = dp[next_point] + 1, where next_point is the index of the first point that is not removed by the activation of point i.
+   b. If we add a point to the right of all existing points, then dp[i] = dp[i+1], as the newly added point will not be removed by any activation.
+
+5. The final answer will be the minimum value between dp[0] and dp[1], as we are considering adding the new point either after the first point or after the second point.
+
+6. Return the result, which is the minimum number of points removed when activating points from right to left with an additional point added to the right of all existing points.
+

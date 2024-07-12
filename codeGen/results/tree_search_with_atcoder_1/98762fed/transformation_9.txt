@@ -1,0 +1,18 @@
+
+1. Top-down approach with memoization: This method involves solving the problem recursively and storing the results of subproblems to avoid redundant calculations. It can be efficient in terms of time complexity but may use more space due to the recursion stack and memoization table.
+
+2. State: Define dp[i][j] as the number of valid i x j submatrices. The transition will be based on adding a new row or column to a smaller valid matrix and ensuring the condition is met for the new elements.
+
+3. Base Case: The base case would be dp[1][1] = 2, as a 1x1 matrix can have either 0 or 1 and both trivially satisfy the condition.
+
+4. Transition: To derive dp[i][j], consider the following:
+    - Adding a new row to an (i-1) x j matrix.
+    - Adding a new column to an i x (j-1) matrix.
+    - Ensure the condition A[a, b] × A[c, d] ≤ A[a, d] × A[c, b] is met for the new elements.
+
+5. Iterate through all possible matrix sizes from 1x1 to NxM and compute dp[i][j] using the transition rules.
+
+6. The final answer will be dp[N][M] modulo 998244353.
+
+7. Edge Cases: Consider the smallest matrix sizes (1x1) and the largest matrix sizes (400x400) to ensure the solution handles the full range of constraints.
+

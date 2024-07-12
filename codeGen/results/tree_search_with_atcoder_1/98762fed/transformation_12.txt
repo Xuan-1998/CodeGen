@@ -1,0 +1,17 @@
+python
+===BEGIN PLAN===
+1. Define the condition: For a matrix A with elements A[a][b], A[c][d], A[a][d], and A[c][b], the condition A[a][b] * A[c][d] <= A[a][d] * A[c][b] must hold for all 1 <= a < c <= N and 1 <= b < d <= M.
+
+2. Identify the constraints: Since N and M can be as large as 400, a direct combinatorial approach might be infeasible due to the large number of possible matrices.
+
+3. Observe key properties: Notice that the condition is always satisfied when A is a matrix where each row is non-decreasing (sorted). This is because if each row is sorted, then A[a][b] <= A[a][d] and A[c][b] <= A[c][d], ensuring the condition holds.
+
+4. Count valid matrices: The task reduces to counting matrices where each row is non-decreasing.
+
+5. Use combinatorial counting: For each row, there are C(M + N - 1, N - 1) ways to distribute 1s among M columns. This is a classic "stars and bars" problem in combinatorics.
+
+6. Compute the result modulo 998244353: Use combinatorial functions to calculate the number of ways to form such matrices, and take the result modulo 998244353.
+
+7. Implement the solution: Use dynamic programming or combinatorial functions to count the valid matrices efficiently.
+===END PLAN===
+

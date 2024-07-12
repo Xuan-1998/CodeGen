@@ -1,0 +1,10 @@
+
+1. Sort the points based on their positions in ascending order. This ensures that we process points from left to right.
+2. Define a dp array where dp[i] represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point.
+3. Initialize dp[n] = 0, as there are no points to the right of the newly added point.
+4. Iterate from the n-1-th point to the 0-th point:
+   a. For each point i, determine the farthest point j that will not be removed when point i is activated. This can be found using binary search.
+   b. Update dp[i] as dp[i] = min(dp[i+1], 1 + dp[j+1]), where dp[i+1] represents not activating point i and 1 + dp[j+1] represents activating point i and removing points up to point j.
+5. The result is dp[0], which gives the minimum number of points removed when starting from the leftmost point and adding a new point to the right.
+6. Return dp[0] as the final answer.
+

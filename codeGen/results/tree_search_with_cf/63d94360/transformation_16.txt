@@ -1,0 +1,9 @@
+
+1. State Expression: Let dp[i][j] represent the number of ways to pass the ball i times such that player j has the ball at the end of the i-th pass. Initialize dp[0][0] = 1, meaning there is one way to have zero passes and player 0 (the initial player) has the ball.
+2. Transition Relationship: For each dp[i][j], calculate it as the sum of dp[i-1][m] for all m ≠ j, where m ranges from 0 to K. This represents the number of ways to reach player j after i passes, considering all players who had the ball at i-1 passes.
+3. Bottom-up Strategy with Tabulation: Build a table dp in a bottom-up manner, iteratively solving subproblems and storing the results in the table. The table will have dimensions (N+1) x (K+1) to account for all passes from 0 to N and all players from 0 to K.
+4. Initialization: Set dp[0][0] = 1, as there's only one way to start with the initial player and zero passes. Set dp[0][j] = 0 for all j ≠ 0, as no other player can have the ball without any passes.
+5. Iterative Calculation: For each i from 1 to N and each j from 0 to K, update dp[i][j] using the transition relationship.
+6. Final Answer: For each test case, the result will be dp[N][P] % 1000000007, where P is the player to receive the ball last (usually player 0 if not specified otherwise).
+7. Edge Cases: Consider the minimum values for N and K, and ensure the plan handles the smallest inputs correctly. Also, handle cases where N is large but K is small, ensuring the plan scales efficiently.
+

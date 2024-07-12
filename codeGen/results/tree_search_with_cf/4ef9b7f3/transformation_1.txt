@@ -1,0 +1,11 @@
+
+1. Define a state expression: Let dp[i][j] be a boolean value where dp[i][j] is True if the first i elements of the initial sequence can be transformed into the first j elements of the final sequence, otherwise False. Base Case: dp[0][0] = True, because an empty initial sequence can be transformed into an empty final sequence.
+2. Initialize a memoization table dp of size (n+1) x (k+1) with all values set to False.
+3. Set dp[0][0] = True.
+4. Iterate through the initial sequence from 1 to n:
+   a. For each element in the initial sequence, iterate through the final sequence from 1 to k:
+      i. If dp[i-1][j-1] is True and the current element of the initial sequence is equal to the current element of the final sequence, set dp[i][j] = True.
+      ii. If dp[i-1][j] is True and the current element of the initial sequence can be merged with the previous element to form the current element of the final sequence, set dp[i][j] = True.
+5. Check the value of dp[n][k]. If it is True, print "YES" and reconstruct the sequence of operations by backtracking through the memoization table.
+6. If dp[n][k] is False, print "NO".
+

@@ -1,0 +1,24 @@
+
+1. Bottom-up Approach with Tabulation:
+   - This approach involves solving the problem iteratively by filling up a table (array) based on the results of smaller subproblems. It avoids the overhead of recursive calls and can be more space-efficient.
+   - Time complexity: O(n), space complexity: O(n).
+   
+State Expression:
+   - Let dp[i] represent the maximum possible value of the remaining element when considering the subarray from the start to the ith element.
+   - Initialize dp[0] to the first element of the array since there are no operations to perform on a single element.
+   - For each subsequent element, update dp[i] based on the maximum possible value obtained by performing the operation on the previous element and the current element.
+   - The transition would involve choosing an element 'x' and its adjacent element 'y', updating 'x' to 'x - y', and removing 'y'. Therefore, dp[i] would be updated as dp[i-1] - a[i].
+
+Steps:
+1. Read the input values.
+2. Initialize the dp array with size n.
+3. Set dp[0] to the first element of the array.
+4. Iterate through the array from the second element to the last element.
+5. For each element, update dp[i] as dp[i-1] - a[i].
+6. The final answer will be the value in dp[n-1] after processing all elements.
+7. Print the final answer.
+
+Edge Cases:
+- If the array contains only one element, the answer is the element itself.
+- If all elements are negative or positive, the operations should still be valid and the plan should handle these scenarios correctly.
+

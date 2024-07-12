@@ -1,0 +1,17 @@
+
+1. Top-down approach with memoization: This approach involves breaking down the problem into smaller subproblems and storing the results of these subproblems to avoid redundant computations. Time complexity: O(2^n * n), space complexity: O(2^n * n).
+
+2. State Expression: Let dp[i][mask] represent the set of possible maximum values after processing the first i bits of the string s, where mask is a bitmask representing the selected elements in the sequence p. 
+
+3. Base Case: dp[0][mask] = {values corresponding to the initial elements selected by the mask}.
+
+4. Transition Relationship: 
+   - For each i-th bit in s:
+     - If s[i] is 0, then dp[i+1][new_mask] = {min(dp[i][mask]) for each pair of elements}
+     - If s[i] is 1, then dp[i+1][new_mask] = {max(dp[i][mask]) for each pair of elements}
+   - The new_mask is formed based on the results of the comparisons in the i-th phase.
+
+5. Tabulation: This approach constructs the solution iteratively by filling up a table based on the state expression and transition relationships. Time complexity: O(2^n * n), space complexity: O(2^n * n).
+
+6. Final Step: After processing all bits of the string s, the final set of possible maximum values will be in dp[n][final_mask], where final_mask corresponds to the last remaining element.
+

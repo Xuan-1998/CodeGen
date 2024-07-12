@@ -1,0 +1,9 @@
+
+===BEGIN PLAN===
+1. Define the State: Let dp[i][j] represent the number of valid sequences of length i where the last element is j, and the number of occurrences of j in the sequence is at most A[j-1].
+2. Initialization: dp[1][j] = 1 for all j from 1 to N, since a single element sequence is always valid if it satisfies the constraints.
+3. Transition: For each length i from 2 to N and each element j from 1 to N, calculate dp[i][j] by summing over all possible previous elements k from 1 to N that can lead to a valid sequence. Specifically, dp[i][j] = sum(dp[i-1][k]) for all k from 1 to N such that the number of occurrences of k in the sequence is at most A[k-1] and the number of occurrences of j in the sequence is at most A[j-1].
+4. Final Calculation: The answer is the sum of all dp[N][j] for j from 1 to N, modulo 998244353.
+5. Edge Cases: Consider cases where N = 1, the smallest possible value, and where all A[i] are equal to N, the largest possible values.
+===END PLAN===
+

@@ -1,0 +1,10 @@
+
+1. Initialize two boolean variables `found_AB` and `found_BA` to False. These variables will track whether we have found the subsequences "AB" and "BA" respectively.
+2. Iterate through the string `s` from the beginning to the second last character.
+   a. For each character at position `i`:
+      i. If `s[i] == 'A'` and `s[i+1] == 'B'` and `found_BA` is True, return "YES". This means we have previously found "BA" and now found "AB".
+      ii. If `s[i] == 'B'` and `s[i+1] == 'A'` and `found_AB` is True, return "YES". This means we have previously found "AB" and now found "BA".
+      iii. If `s[i] == 'A'` and `s[i+1] == 'B'`, set `found_AB` to True. This marks that we have found "AB".
+      iv. If `s[i] == 'B'` and `s[i+1] == 'A'`, set `found_BA` to True. This marks that we have found "BA".
+3. If the loop completes without returning "YES", return "NO". This indicates that we did not find both subsequences "AB" and "BA" in the required non-overlapping manner.
+

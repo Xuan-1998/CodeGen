@@ -1,0 +1,19 @@
+
+1. Frequency Array: Create a frequency array `count` where `count[i]` represents the number of times the integer `i` appears in the sequence. This helps in easily accessing the number of points we can earn from each integer.
+
+2. Base Case: Initialize a dp array `dp` where `dp[0] = 0` (since no points can be obtained from an empty set) and `dp[1] = count[1]` (since we can only take the integer 1 if it exists).
+
+3. State: Let `dp[i]` represent the maximum points that can be obtained using integers from 1 to `i`.
+
+4. Recurrence Relation: For each integer `i` from 2 to 105 (the maximum possible value of any integer in the sequence):
+   - `dp[i] = max(dp[i-1], dp[i-2] + i * count[i])`
+   - This means we either skip the integer `i` (hence taking the best result up to `i-1`), or we take all instances of `i` (earning `i * count[i]` points) and add this to the best result up to `i-2` (since taking `i` removes `i-1` from consideration).
+
+5. Result: The value of `dp[105]` will give the maximum points that can be obtained from the entire sequence.
+
+6. Edge Cases: Consider sequences with:
+   - A single element.
+   - All elements being the same.
+   - Elements forming a consecutive sequence.
+   - Sparse sequences with large gaps between numbers.
+

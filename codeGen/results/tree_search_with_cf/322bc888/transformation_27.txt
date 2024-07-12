@@ -1,0 +1,16 @@
+
+1. Precompute the minimum cost to make any substring "beautiful" for all substrings of length up to 3. There are only 3 characters, so there are only a few possible substrings of length 2 and 3.
+2. For substrings of length 2: 
+    - If the two characters are the same, the cost is 1 (change one character).
+    - If the two characters are different, the cost is 0 (already beautiful).
+3. For substrings of length 3:
+    - If the substring is a palindrome (e.g., "aaa", "aba"), the cost is 1 (change the middle character for "aba" or any one character for "aaa").
+    - If the substring is not a palindrome, the cost is 0 (already beautiful).
+4. Use dynamic programming to precompute the minimum cost to make any substring s[i:j] beautiful for all i and j. Define `dp[i][j]` as the minimum cost to make the substring s[i:j] beautiful.
+5. Initialize `dp[i][i] = 0` for all i since a single character is inherently beautiful.
+6. For substrings of length 2 and 3, use the precomputed costs from steps 2 and 3.
+7. For substrings of length greater than 3, use the following transition:
+    - If s[i] == s[j], then `dp[i][j] = dp[i+1][j-1] + 1` (change either s[i] or s[j] to a different character).
+    - Otherwise, `dp[i][j] = min(dp[i+1][j], dp[i][j-1], dp[i+1][j-1])`.
+8. Use the precomputed `dp` table to answer each query efficiently in O(1) time.
+

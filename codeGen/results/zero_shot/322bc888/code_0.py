@@ -1,42 +1,32 @@
-def min_operations_to_beautiful(s, queries):
-    # Function to find the next different character
-    def next_diff_char(c):
-        for char in 'abc':
-            if char != c:
-                return char
-        return None
-
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    queries = [(int(data[2*i+3])-1, int(data[2*i+4])-1) for i in range(m)]
+    
+    patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
+    costs = [[0] * (n + 1) for _ in range(6)]
+    
+    for i in range(6):
+        pattern = patterns[i]
+        for j in range(n):
+            costs[i][j + 1] = costs[i][j] + (s[j] != pattern[j % 3])
+    
     results = []
     for l, r in queries:
-        # Extract the substring for the current query
-        substring = s[l-1:r]
-        operations = 0
-
-        # Iterate over the substring and apply the rules
-        i = 0
-        while i < len(substring) - 1:
-            if substring[i] == substring[i+1]:
-                # If two consecutive characters are the same, change the second one
-                next_char = next_diff_char(substring[i])
-                substring = substring[:i+1] + next_char + substring[i+2:]
-                operations += 1
-            if i < len(substring) - 2 and substring[i] == substring[i+2]:
-                # If a character is the same as the one two positions ahead, change the middle one
-                next_char = next_diff_char(substring[i+1])
-                substring = substring[:i+1] + next_char + substring[i+2:]
-                operations += 1
-            i += 1
-
-        results.append(operations)
+        min_cost = float('inf')
+        for i in range(6):
+            current_cost = costs[i][r + 1] - costs[i][l]
+            min_cost = min(min_cost, current_cost)
+        results.append(min_cost)
     
-    return results
+    print('\n'.join(map(str, results)))
 
-# Read the input
-n, m = map(int, input().split())
-s = input()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    main()
 
-# Calculate and print the results for each query
-results = min_operations_to_beautiful(s, queries)
-for res in results:
-    print(res)

@@ -1,0 +1,8 @@
+
+1. Define the problem in terms of Dynamic Programming (DP). Use a bottom-up strategy with tabulation to fill up a table iteratively based on the results of smaller subproblems. This ensures that all subproblems are solved in a structured manner. However, considering the constraints, we need to optimize the approach to handle large inputs efficiently.
+2. State expression: Let dp[i][j] represent the minimum cost to make the substring s[i:j+1] beautiful. However, due to high space complexity, we should aim to reduce the problem to a manageable size.
+3. Precompute the minimum cost to transform any substring of length 3 into a "beautiful" string. There are only 6 possible patterns for a beautiful string of length 3: "abc", "acb", "bac", "bca", "cab", "cba". We can compute the cost to transform any substring of length 3 to each of these patterns.
+4. For each query, break down the problem into chunks of length 3 and use the precomputed costs to quickly determine the minimum cost for each chunk. If the substring length is not a multiple of 3, handle the remaining characters separately.
+5. Iterate through each query, calculate the total cost using the precomputed values, and output the result.
+6. Ensure to handle edge cases, such as very small substrings (length 1 or 2), separately.
+

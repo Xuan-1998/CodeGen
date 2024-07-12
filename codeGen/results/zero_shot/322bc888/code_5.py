@@ -1,33 +1,42 @@
-def min_operations_to_beautiful(s, queries):
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    
+    queries = []
+    for i in range(m):
+        l = int(data[3 + 2*i])
+        r = int(data[4 + 2*i])
+        queries.append((l-1, r-1))
+    
+    patterns = ["abc", "bca", "cab"]
+    costs = [[0] * n for _ in range(3)]
+    
+    for i in range(n):
+        for j in range(3):
+            costs[j][i] = (s[i] != patterns[j][i % 3])
+    
+    prefix_sums = [[0] * (n + 1) for _ in range(3)]
+    
+    for j in range(3):
+        for i in range(n):
+            prefix_sums[j][i + 1] = prefix_sums[j][i] + costs[j][i]
+    
     results = []
     for l, r in queries:
-        # Extract the substring for the current query
-        substring = s[l-1:r]
-        # Initialize the number of operations
-        operations = 0
-        
-        # Iterate through the substring to find and break palindromes
-        for i in range(1, len(substring)):
-            # If two consecutive characters are the same, we need an operation
-            if substring[i] == substring[i-1]:
-                operations += 1
-                # Change the current character to the next character in 'abc'
-                next_char = 'abc'[('abc'.index(substring[i-1]) + 1) % 3]
-                # Create a new substring with the changed character
-                substring = substring[:i] + next_char + substring[i+1:]
-        
-        results.append(operations)
+        min_cost = float('inf')
+        for j in range(3):
+            min_cost = min(min_cost, prefix_sums[j][r + 1] - prefix_sums[j][l])
+        results.append(min_cost)
     
-    return results
+    for result in results:
+        print(result)
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    main()
 
-# Calculate the number of operations for each query
-results = min_operations_to_beautiful(s, queries)
-
-# Print the results to stdout
-for result in results:
-    print(result)

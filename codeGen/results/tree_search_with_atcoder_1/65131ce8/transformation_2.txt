@@ -1,0 +1,12 @@
+
+1. Define the state dp[i][j][k] where dp[i][j][k] represents the number of ways to form a subtree with i vertices where the root has an out-degree of j and k indicates whether the root is a good vertex (k=1 if it's good, k=0 otherwise). 
+2. Initialize the base cases:
+   - dp[1][0][1] = 1, since a single vertex with no children is a valid subtree and is a good vertex.
+   - dp[1][0][0] = 0, since a single vertex with no children cannot be a non-good vertex.
+3. Define the transition relationship:
+   - For each i from 2 to N, and for each j from 0 to d[i-1], update dp[i][j][k] by considering all possible ways to distribute the vertices between the root's children and the remaining subtree. Specifically:
+     - dp[i][j][1] = sum(dp[k][j-1][1] * dp[i-k][0][0] for all valid k) + sum(dp[k][j-1][0] * dp[i-k][0][0] for all valid k)
+     - dp[i][j][0] = sum(dp[k][j-1][0] * dp[i-k][0][0] for all valid k)
+4. Calculate the final answer by summing up the values of dp[N][d_i][1] for all i from 1 to N.
+5. Return the answer modulo 998244353.
+

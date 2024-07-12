@@ -1,0 +1,15 @@
+
+1. Define the DP State: Let dp[i][j] be the number of ways to form a sequence of length i using the first j numbers.
+2. Initialize the Base Case: dp[0][j] = 1 for all j from 0 to N, representing that there is exactly one way to form an empty sequence.
+3. Transition:
+   - For each length i from 1 to N:
+     - For each number j from 1 to N:
+       - dp[i][j] = dp[i][j-1]
+       - If j-1 is a valid index and A[j-1] >= i:
+         - dp[i][j] += dp[i-1][j-1] * min(A[j-1], i)
+       - Take modulo 998244353 to avoid overflow.
+4. Final Answer: The answer will be dp[N][N], which represents the number of ways to form a sequence of length N using the first N numbers.
+5. Edge Cases:
+   - Handle the case when N = 1 separately if needed.
+   - Ensure that the modulo operation is applied correctly to prevent overflow.
+

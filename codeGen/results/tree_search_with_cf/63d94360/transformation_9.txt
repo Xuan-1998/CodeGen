@@ -1,0 +1,9 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+2. Initialization: Initialize the dp array such that dp[0][0] = 1 (assuming player 0 starts with the ball and no passes have been made yet). All other dp[0][j] = 0 for j ≠ 0.
+3. Recurrence relation: For each pass i from 1 to N, and for each player j from 0 to K, update dp[i][j] based on the previous states:
+   dp[i][j] = sum(dp[i-1][m]) for all m ≠ j, where m ranges from 0 to K.
+4. Final result: The number of ways to pass the ball exactly N times such that player P receives the ball last is dp[N][P].
+5. Output the result modulo 1000000007 (10^9+7) for each test case.
+6. Edge cases: Handle the cases where N is the minimum value (2) and K is the minimum value (1).
+

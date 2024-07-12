@@ -1,36 +1,49 @@
-from collections import deque
-
-def find_eating_order(n, initial, k, final):
-    initial_queue = deque(initial)
-    final_queue = deque(final)
+python
+def can_transform(initial, final):
+    n = len(initial)
+    k = len(final)
+    
+    if sum(initial) != sum(final):
+        return "NO"
+    
     operations = []
-
-    while final_queue:
-        current_final = final_queue.popleft()
-        current_sum = 0
-        temp_operations = []
-
-        # Try to match the current final monster's weight
-        while initial_queue and current_sum < current_final:
-            current_sum += initial_queue[0]
-            temp_operations.append(('L', initial_queue.popleft()))
-
-        if current_sum != current_final:
-            # If we can't match it, the transformation is impossible
+    current_sequence = initial[:]
+    final_index = 0
+    
+    while len(current_sequence) > k:
+        merged = False
+        for i in range(len(current_sequence) - 1):
+            if final_index < k and current_sequence[i] + current_sequence[i + 1] == final[final_index]:
+                if current_sequence[i] > current_sequence[i + 1]:
+                    operations.append((i + 1, 'R'))
+                else:
+                    operations.append((i + 2, 'L'))
+                current_sequence[i] += current_sequence[i + 1]
+                del current_sequence[i + 1]
+                final_index += 1
+                merged = True
+                break
+        if not merged:
             return "NO"
-        
-        # Record the operations in reverse, as we have recorded them from left to right
-        for i, (direction, _) in enumerate(reversed(temp_operations), 1):
-            operations.append(f"{i} {direction}")
+    
+    if current_sequence != final:
+        return "NO"
+    
+    result = ["YES"]
+    for op in operations:
+        result.append(f"{op[0]} {op[1]}")
+    
+    return "\n".join(result)
 
-    return "YES\n" + "\n".join(operations)
+import sys
+input = sys.stdin.read
+data = input().split()
 
-# Read input
-n = int(input().strip())
-initial_monsters = list(map(int, input().strip().split()))
-k = int(input().strip())
-final_monsters = list(map(int, input().strip().split()))
+n = int(data[0])
+initial = list(map(int, data[1:n+1]))
+k = int(data[n+1])
+final = list(map(int, data[n+2:n+2+k]))
 
-# Find and print the eating order
-result = find_eating_order(n, initial_monsters, k, final_monsters)
-print(result)
+output = can_transform(initial, final)
+print(output)
+

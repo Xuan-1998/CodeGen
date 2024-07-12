@@ -1,0 +1,15 @@
+
+1. Define the state expression: Let dp[i] be the minimum number of points removed if we consider the first i points and add the additional point to the right of all existing points. Base case: dp[0] = 0, since if there are no points, no points can be removed.
+
+2. Sort the points based on their positions in ascending order. This will help in processing the points from left to right.
+
+3. Initialize an array dp of size n+1 with all elements set to 0. This array will store the minimum number of points removed for each subproblem.
+
+4. Iterate through each point from right to left, updating the dp array. For each point i, determine the impact of adding the additional point and how it affects the removal of other points:
+   - Set dp[i] to the current number of points removed if the i-th point is activated.
+   - Use a nested loop to check all previous points j to determine if they fall within the range of point i. If point j falls within the range of point i, update dp[i] accordingly.
+
+5. The final answer will be the minimum value in the dp array, which represents the minimum number of points removed when considering all points and adding the additional point to the right of all existing points.
+
+6. Time complexity: O(n^2) due to the nested loops for updating the dp array. Space complexity: O(n) for storing the dp array.
+

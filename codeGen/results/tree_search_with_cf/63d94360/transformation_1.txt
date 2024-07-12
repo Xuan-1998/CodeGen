@@ -1,0 +1,11 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+2. Initialize the DP table: 
+   - dp[0][0] = 1, meaning there is 1 way to start with the ball at player 0 without any passes.
+   - dp[0][j] = 0 for all j ≠ 0, as no other player can have the ball initially without any passes.
+3. State transition: For each pass i from 1 to N, and for each player j from 0 to K:
+   - dp[i][j] = sum(dp[i-1][m]) for all m ≠ j. This means the number of ways to get to player j on the i-th pass is the sum of all ways to get to any player m (except j) on the (i-1)-th pass.
+4. Result extraction: The final result for each test case is dp[N][P] where P is the player who should receive the ball last. Since P is always the same player, we assume P = 0 (the first player) for simplicity.
+5. Return the result modulo 1000000007 (10^9+7) for each test case.
+6. Edge cases: Ensure to handle the minimum and maximum values of N and K as per the constraints.
+

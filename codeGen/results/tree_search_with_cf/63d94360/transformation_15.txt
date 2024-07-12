@@ -1,0 +1,19 @@
+
+1. Bottom-up approach with tabulation: This approach uses an iterative method to fill a table (dp array) where each entry dp[i][j] represents the number of ways to pass the ball i times such that player j has the ball. Time complexity: O(N*K), space complexity: O(N*K).
+
+2. Initialize dp array:
+   - dp[0][0] = 1: With 0 passes, the only way for the 0-th player to have the ball is the initial state.
+   - For all other players, dp[0][j] = 0 for j > 0, since no passes have been made yet.
+
+3. Transition:
+   - For each pass i from 1 to N:
+     - For each player j from 0 to K:
+       - dp[i][j] = sum(dp[i-1][m] for all m != j) % 1000000007
+       - This represents the number of ways to pass the ball i-1 times to any player m who is not player j, and then pass the ball to player j.
+
+4. To get the final answer for each test case, compute the value of dp[N][P] where P is the particular player who should receive the ball last. The result should be taken modulo 1000000007 (10^9+7).
+
+5. Repeat steps 2-4 for each test case and store the results.
+
+6. Output the results for all test cases.
+

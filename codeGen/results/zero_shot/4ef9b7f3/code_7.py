@@ -1,52 +1,54 @@
-from collections import deque
+python
+def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
 
-# Read input
-n = int(input())
-initial_queue = list(map(int, input().split()))
-k = int(input())
-final_queue = list(map(int, input().split()))
+    n = int(data[0])
+    initial_sequence = list(map(int, data[1:n+1]))
+    k = int(data[n+1])
+    final_sequence = list(map(int, data[n+2:n+2+k]))
 
-# Step 1: Verify the possibility
-def is_possible(initial_queue, final_queue):
-    i, j = 0, 0
-    while i < n and j < k:
-        sum_weights = initial_queue[i]
-        i += 1
-        while i < n and sum_weights < final_queue[j]:
-            sum_weights += initial_queue[i]
+    if sum(initial_sequence) != sum(final_sequence):
+        print("NO")
+        return
+
+    operations = []
+    i = 0
+    for target in final_sequence:
+        current_sum = 0
+        start = i
+        while i < n and current_sum < target:
+            current_sum += initial_sequence[i]
             i += 1
-        if sum_weights != final_queue[j]:
-            return False
-        j += 1
-    return j == k
 
-# Step 2: Find the sequence of actions
-def find_sequence(initial_queue, final_queue):
-    actions = []
-    i, j = 0, 0
-    initial_deque = deque(initial_queue)
-    while j < k:
-        sum_weights = initial_deque[0]
-        sequence = []
-        while sum_weights < final_queue[j]:
-            if initial_deque[-1] > initial_deque[0]:
-                sum_weights += initial_deque.pop()
-                sequence.append('R')
+        if current_sum != target:
+            print("NO")
+            return
+
+        # Now we have a subarray from start to i-1 that sums to target
+        while i - start > 1:
+            max_index = start
+            for j in range(start, i):
+                if initial_sequence[j] > initial_sequence[max_index]:
+                    max_index = j
+
+            if max_index > start and initial_sequence[max_index] > initial_sequence[max_index - 1]:
+                operations.append((max_index + 1, 'L'))
+                initial_sequence[max_index] += initial_sequence[max_index - 1]
+                del initial_sequence[max_index - 1]
+                i -= 1
+            elif max_index < i - 1 and initial_sequence[max_index] > initial_sequence[max_index + 1]:
+                operations.append((max_index + 1, 'R'))
+                initial_sequence[max_index] += initial_sequence[max_index + 1]
+                del initial_sequence[max_index + 1]
+                i -= 1
             else:
-                sum_weights += initial_deque.popleft()
-                sequence.append('L')
-        actions.append(sequence)
-        j += 1
-    return actions
+                print("NO")
+                return
 
-# Main logic
-if is_possible(initial_queue, final_queue):
     print("YES")
-    actions = find_sequence(initial_queue, final_queue)
-    idx = 1
-    for sequence in actions:
-        for action in sequence:
-            print(idx, action)
-        idx += 1
-else:
-    print("NO")
+    for op in operations:
+        print(op[0], op[1])
+
+

@@ -1,0 +1,19 @@
+
+1. Define the problem in terms of Dynamic Programming (DP): We need to count the number of valid NxM matrices where each element is either 0 or 1 and satisfies the given condition.
+
+2. Define the DP state: Let dp[i][j] represent the number of valid i x j submatrices.
+
+3. Base Case: Initialize dp[1][1] = 2. This is because a 1x1 matrix can either be [0] or [1], both of which trivially satisfy the condition.
+
+4. Transition: To build up dp[i][j], consider adding a row or a column to a smaller valid matrix. We need to ensure that the new elements added maintain the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} for all valid quadruples (a, b, c, d).
+
+5. Validity Check: For each new element added, check if it maintains the condition with all other elements in the matrix. This involves iterating over all possible quadruples (a, b, c, d) and ensuring the condition is met.
+
+6. Iterate through all possible submatrices: Use nested loops to iterate through all possible sizes of submatrices from 1x1 to NxM and compute dp[i][j] using the transition defined in step 4.
+
+7. Modulo Operation: Since the result can be very large, take modulo 998244353 at each step to prevent overflow and ensure the result fits within standard data types.
+
+8. Final Result: The final answer will be dp[N][M], which gives the number of valid NxM matrices.
+
+9. Edge Cases: Handle edge cases where N=1 or M=1 separately, as these are simpler to compute directly.
+

@@ -1,46 +1,46 @@
-def find_eating_order(initial_queue, final_queue):
-    i, j = 0, 0
-    eating_order = []
-
-    while i < len(initial_queue) and j < len(final_queue):
-        sum_weights = initial_queue[i]
-        i += 1
-        # Find the consecutive monsters in the initial queue that sum up to the current monster in the final queue
-        while i < len(initial_queue) and sum_weights < final_queue[j]:
-            sum_weights += initial_queue[i]
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    a = list(map(int, data[1:n+1]))
+    k = int(data[n+1])
+    b = list(map(int, data[n+2:n+2+k]))
+    
+    if sum(a) != sum(b):
+        print("NO")
+        return
+    
+    operations = []
+    i = 0
+    j = 0
+    while i < n and j < k:
+        current_sum = 0
+        start = i
+        while i < n and current_sum < b[j]:
+            current_sum += a[i]
             i += 1
-
-        if sum_weights != final_queue[j]:
-            return "NO", []
-
-        # Simulate the eating process and record the order
-        left = i - (sum_weights - initial_queue[i - 1])
-        right = i - 1
-        while left < right:
-            if initial_queue[left] < initial_queue[right]:
-                eating_order.append((right - left + 1, 'L'))
-                initial_queue[left] += initial_queue[left + 1]
-                left += 1
-            else:
-                eating_order.append((right - left + 1, 'R'))
-                initial_queue[right] += initial_queue[right - 1]
-                right -= 1
-
+        if current_sum != b[j]:
+            print("NO")
+            return
+        if i - start > 1:  # If we have combined elements
+            max_val = max(a[start:i])
+            max_index = start + a[start:i].index(max_val)
+            for index in range(start, max_index):
+                operations.append((max_index + 1, 'L'))
+            for index in range(max_index + 1, i):
+                operations.append((max_index + 1, 'R'))
         j += 1
+    
+    if j != k:
+        print("NO")
+    else:
+        print("YES")
+        for op in operations:
+            print(op[0], op[1])
 
-    if j != len(final_queue):
-        return "NO", []
+if __name__ == "__main__":
+    main()
 
-    return "YES", eating_order
-
-# Read input from stdin
-n = int(input())
-initial_queue = list(map(int, input().split()))
-k = int(input())
-final_queue = list(map(int, input().split()))
-
-# Process and output the result
-result, eating_order = find_eating_order(initial_queue, final_queue)
-print(result)
-for order in eating_order:
-    print(order[0], order[1])

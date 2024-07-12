@@ -1,0 +1,15 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+
+2. Base case: Initialize dp[0][0] = 1, since there is exactly one way to start with the ball at player 0 (assuming player 0 is the starting point).
+
+3. Transition relationship: For each pass i from 1 to N, and for each player j from 0 to K, update dp[i][j] as the sum of dp[i-1][m] for all m ≠ j. This means the number of ways to get to player j on the i-th pass is the sum of all ways to get to any player m (except j) on the (i-1)-th pass.
+
+4. Iterate over all test cases. For each test case, read N and K, and compute the dp table using the transition relationship defined above.
+
+5. To compute the final result for each test case, sum dp[N][j] for all j ≠ P (where P is the target player who needs to receive the ball last). This gives the number of ways to pass the ball exactly N times so that player P receives the ball last.
+
+6. Output the result modulo 1000000007 for each test case.
+
+7. Consider edge cases such as the smallest and largest values of N and K, and ensure the solution handles these cases efficiently.
+

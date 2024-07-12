@@ -1,0 +1,15 @@
+
+1. Parse the input to read the number of vertices n, the required path length k, and the edges of the tree.
+2. Construct the tree using an adjacency list representation.
+3. Initialize a 2D list dp where dp[u][d] represents the number of vertices that are at a distance d from vertex u.
+4. Define a recursive function dfs(u, parent) to perform a depth-first search (DFS) starting from vertex u and considering parent as the parent vertex of u.
+5. In the dfs function:
+    a. Set dp[u][0] = 1 since each vertex is at distance 0 from itself.
+    b. For each child v of u (excluding the parent vertex):
+        i. Recursively call dfs(v, u) to compute dp values for the subtree rooted at v.
+        ii. After returning from the recursive call, update dp[u] using the dp values of its child v. Specifically, for each distance d from 1 to k, update dp[u][d] += dp[v][d-1].
+        iii. Count valid pairs where the total distance between vertices in different subtrees rooted at u is exactly k. This can be done by iterating over all pairs of distances that sum up to k and multiplying the respective dp values.
+6. Initialize a counter to keep track of the number of valid pairs.
+7. Call the dfs function starting from any arbitrary root (e.g., vertex 1) with a parent of -1.
+8. Output the counter as the result.
+

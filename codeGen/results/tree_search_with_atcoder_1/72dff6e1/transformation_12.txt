@@ -1,0 +1,12 @@
+
+1. Define a DP table dp[i][j] where dp[i][j] represents the number of ways to form a sequence of length i using the first j numbers.
+2. Initialize the base case: dp[0][j] = 1 for all j from 0 to N, representing that there is exactly one way to form an empty sequence.
+3. Define the transition:
+   - For each i from 1 to N:
+     - For each j from 1 to N:
+       - Calculate dp[i][j] as the sum of dp[i][j-1] (the number of ways to form a sequence of length i using the first j-1 numbers) and dp[i-1][j-1] * min(A[j-1], i) (the number of ways to form a sequence of length i-1 using the first j-1 numbers, multiplied by the minimum of A[j-1] and i).
+       - Use modulo 998244353 to keep the results within bounds.
+4. The final result is stored in dp[N][N], which represents the number of ways to form a sequence of length N using the first N numbers.
+5. Return dp[N][N] % 998244353 as the answer.
+6. Ensure the plan covers edge cases such as the smallest possible input (N = 1, A = [1]) and cases where all elements in A are the same.
+

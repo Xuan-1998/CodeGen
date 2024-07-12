@@ -1,0 +1,9 @@
+
+1. Define the problem as a dynamic programming problem with a 2D array dp where dp[n][i] represents the number of ways to pass the ball exactly n times such that the i-th player has the ball at the end.
+2. Initialize the base case: dp[0][0] = 1. This signifies that with 0 passes, the only way for the 0-th player to have the ball is the initial state. For all other players, dp[0][j] = 0 for j > 0, since no passes have been made yet.
+3. Define the state transition: For each pass from 1 to N, and for each player from 0 to K, calculate dp[n][i] as the sum of dp[n-1][j] for all j != i. This means that the number of ways to end up with the ball at player i after n passes is the sum of all the ways to end up with the ball at any other player j after n-1 passes.
+4. Use a nested loop to fill the dp table based on the state transition defined. Iterate over the number of passes from 1 to N, and for each pass, iterate over each player from 0 to K. For each player, sum the number of ways to reach all other players in the previous pass.
+5. To handle large numbers, take the result modulo 1000000007 (10^9+7) at each step of the calculation to avoid overflow and ensure the result fits within standard integer limits.
+6. After filling the dp table, the result for each test case is found in dp[N][P], where P is the player who should receive the ball last (in this problem, P is always player 0).
+7. Read the input values for T, N, and K. For each test case, use the above steps to compute and print the result.
+

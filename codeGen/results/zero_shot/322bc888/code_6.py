@@ -1,32 +1,46 @@
-def min_operations_to_beautiful(s, queries):
+python
+def min_cost_to_beautiful(n, m, s, queries):
+    # Possible beautiful patterns
+    patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
+    k = len(patterns)
+    
+    # Precompute costs for each pattern
+    cost = [[0] * (n + 1) for _ in range(k)]
+    
+    for i in range(k):
+        pattern = patterns[i]
+        for j in range(n):
+            cost[i][j + 1] = cost[i][j] + (s[j] != pattern[j % 3])
+    
     results = []
     for l, r in queries:
-        # Extract the substring for the current query
-        substring = s[l-1:r]
-        # Initialize the number of operations
-        operations = 0
-        # Iterate through the substring to count the operations needed
-        for i in range(1, len(substring)):
-            # If the current character is the same as the previous one,
-            # we need to change it.
-            if substring[i] == substring[i-1]:
-                operations += 1
-                # To avoid creating a palindrome of length 3, we change the character
-                # to one that is not the same as the character two positions before.
-                if i + 1 < len(substring):
-                    next_char = 'a' if substring[i+1] == 'b' or (i > 1 and substring[i-2] == 'b') else 'b'
-                    substring = substring[:i] + next_char + substring[i+1:]
-        results.append(operations)
+        min_cost = float('inf')
+        for i in range(k):
+            current_cost = cost[i][r] - cost[i][l - 1]
+            min_cost = min(min_cost, current_cost)
+        results.append(min_cost)
+    
     return results
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input().strip()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    
+    queries = []
+    index = 3
+    for _ in range(m):
+        l = int(data[index])
+        r = int(data[index + 1])
+        queries.append((l, r))
+        index += 2
+    
+    results = min_cost_to_beautiful(n, m, s, queries)
+    
+    for result in results:
+        print(result)
 
-# Get the results for each query
-results = min_operations_to_beautiful(s, queries)
-
-# Print the results to stdout
-for result in results:
-    print(result)

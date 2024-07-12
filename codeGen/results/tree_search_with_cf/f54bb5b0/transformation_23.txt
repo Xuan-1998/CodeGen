@@ -1,0 +1,15 @@
+
+1. Initialize the DP table: Create a 2D list `dp` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`. Initialize `dp[u][0] = 1` for all vertices `u` since each vertex is at distance 0 from itself.
+
+2. Build the tree: Read the input to construct the tree using an adjacency list representation.
+
+3. Depth-First Search (DFS) Traversal: Perform a DFS traversal to populate the `dp` table. For each vertex `u` and its child `v`, update the DP table as follows:
+   - For each distance `d` from 1 to `k`, update `dp[u][d] += dp[v][d-1]`. This means that the number of vertices at distance `d` from `u` is incremented by the number of vertices at distance `d-1` from its child `v`.
+
+4. Count pairs: During the DFS traversal, maintain a count of the number of valid pairs of vertices that have a path of length `k` between them. For each vertex `u` and its child `v`, for each distance `d` from 0 to `k-1`, add `dp[u][d] * dp[v][k-d-1]` to the total count. This considers all pairs of vertices where one vertex is at distance `d` from `u` and the other is at distance `k-d-1` from `v`.
+
+5. Output the result: After completing the DFS traversal and counting all valid pairs, output the total count.
+
+Time complexity: O(n*k)
+Space complexity: O(n*k)
+

@@ -1,0 +1,8 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+2. Initialize the base case: dp[0][0] = 1, meaning there is exactly one way to start with the ball at the initial player (player 0).
+3. State transition: For each pass i from 1 to N, for each player j from 0 to K, compute dp[i][j] as the sum of dp[i-1][m] for all m ≠ j. This means the number of ways to get to player j on the i-th pass is the sum of all ways to get to any player m (except j) on the (i-1)-th pass.
+4. Use modulo operation: Since the result can be large, take each dp[i][j] modulo 1000000007.
+5. Return the result: After filling the dp table, the answer for each test case is dp[N][P], where P is the designated player who should receive the ball last.
+6. Implement the solution using a top-down approach with memoization to store results of subproblems, preventing redundant calculations.
+

@@ -1,0 +1,10 @@
+
+1. Count Frequency: First, count the frequency of each integer in the sequence. This will help in determining the total points that can be earned by selecting a particular integer.
+2. Initialize DP Array: Initialize a DP array where dp[x] represents the maximum points that can be obtained considering numbers up to x in the sequence. The size of this array should be large enough to cover the maximum possible integer value in the sequence (i.e., 105).
+3. Base Cases: Set dp[0] = 0, as no points can be earned from an empty sequence. Set dp[1] = count[1], as the only option is to take all occurrences of 1.
+4. Transition: For each number x from 2 to the maximum integer in the sequence:
+   - Either skip x and take the result from dp[x-1].
+   - Or take all occurrences of x, add x * count[x] to the result from dp[x-2] (since x-1 would be removed).
+   - Therefore, the relationship is dp[x] = max(dp[x-1], dp[x-2] + x * count[x]).
+5. Result: The final answer will be dp[max_value], where max_value is the maximum integer in the sequence.
+

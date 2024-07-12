@@ -1,0 +1,39 @@
+python
+MOD = 1000000007
+
+def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    T = int(data[0])
+    index = 1
+    results = []
+    
+    for _ in range(T):
+        N = int(data[index])
+        K = int(data[index + 1])
+        index += 2
+        
+        # Initialize the dp array
+        dp = [[0] * (K + 1) for _ in range(N + 1)]
+        
+        # Base case
+        dp[0][0] = 1
+        
+        # Fill the dp table
+        for i in range(1, N + 1):
+            for j in range(K + 1):
+                dp[i][j] = 0
+                for m in range(K + 1):
+                    if m != j:
+                        dp[i][j] = (dp[i][j] + dp[i - 1][m]) % MOD
+        
+        # The result for this test case
+        results.append(dp[N][0])
+    
+    # Print all results for each test case
+    for result in results:
+        print(result)
+
+

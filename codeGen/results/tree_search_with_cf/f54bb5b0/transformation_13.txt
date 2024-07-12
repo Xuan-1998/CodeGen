@@ -1,0 +1,26 @@
+
+1. Top-Down Approach with Memoization:
+   - This dynamic programming approach involves breaking down the problem into smaller sub-problems and storing the results of these sub-problems to avoid redundant computations. It generally uses recursion and a memoization table.
+   - Time complexity: O(n*k), space complexity: O(n*k)
+
+2. State Expression:
+   - Define dp[u][d] as the number of paths of length d that start from vertex u.
+
+3. Base Case:
+   - dp[u][0] = 1 for all u, because a path of length 0 from a vertex to itself is always possible.
+
+4. Transition:
+   - To compute dp[u][d], consider all neighbors v of u. For each neighbor v, dp[u][d] can be computed as the sum of dp[v][d-1] for all neighbors v of u. This is because a path of length d from u can be formed by extending a path of length d-1 from its neighbor v to u. Therefore, dp[u][d] = sum(dp[v][d-1] for all neighbors v of u).
+
+5. Counting Pairs:
+   - For each vertex u, count the number of paths of length k ending at u by summing dp[u][k] for all vertices u.
+   - Since each path is counted twice (once from each end), divide the total count by 2 to get the number of distinct pairs.
+
+6. Implementation Steps:
+   - Parse the input to read the number of vertices n and the required path length k.
+   - Construct the tree using adjacency lists.
+   - Initialize the dp table with dimensions n x (k+1) and set the base cases.
+   - Perform a depth-first search (DFS) to fill in the dp table using the transition relation.
+   - Count the number of distinct pairs of vertices with paths of length k using the dp table.
+   - Output the result.
+

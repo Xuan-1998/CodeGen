@@ -1,0 +1,12 @@
+
+1. Define the state: Let dp[i][j] be a boolean that indicates whether the initial subsequence of length i can be transformed into the final subsequence of length j.
+2. Initialize the DP table: Create a 2D table dp with dimensions (n+1) x (k+1). Set dp[0][0] to True because an empty initial sequence can be transformed into an empty final sequence.
+3. Transition: For each pair (i, j):
+   a. If dp[i][j] is True, consider the following transitions:
+      - If a[i] == b[j], then set dp[i+1][j+1] to True.
+      - If a[i] > a[i-1], then set dp[i][j] to True (indicating that we can combine a[i-1] into a[i]).
+      - If a[i] > a[i+1], then set dp[i][j] to True (indicating that we can combine a[i+1] into a[i]).
+4. Final check: If dp[n][k] is True, then there exists a sequence of operations that transforms the initial sequence into the final sequence. Otherwise, print "NO".
+5. Reconstruct the sequence of operations: If dp[n][k] is True, backtrack from dp[n][k] to reconstruct the sequence of operations. For each transition, record the operation and update the indices accordingly.
+6. Output the result: Print "YES" followed by the sequence of operations if possible.
+

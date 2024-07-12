@@ -1,0 +1,13 @@
+
+1. Identify the goal: We need to determine if the string s contains two distinct non-overlapping subsequences "AB" and "BA" in any order.
+2. Define the state expression: Let dp[i] be a tuple (hasAB, hasBA) where:
+   - hasAB is True if the substring s[0:i] contains the subsequence "AB".
+   - hasBA is True if the substring s[0:i] contains the subsequence "BA".
+3. Initialize the state: Start with dp[0] = (False, False) since an empty substring cannot contain "AB" or "BA".
+4. Iterate through the string and update the state:
+   - For each character in the string, update the state based on the previous state and the current character.
+   - If the current character and the previous character form "AB", update hasAB for the current position.
+   - If the current character and the previous character form "BA", update hasBA for the current position.
+5. Check the final state: After processing the string, if there exists any position i where both hasAB and hasBA are True and the subsequences do not overlap, return "YES". Otherwise, return "NO".
+6. Edge cases: Handle strings of length less than 2, where it is impossible to have both "AB" and "BA".
+

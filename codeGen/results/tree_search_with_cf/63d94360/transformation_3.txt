@@ -1,0 +1,11 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+2. Base case: Initialize dp[0][0] = 1, which means there is exactly one way to start with player 0 (assuming player 0 is the starting player) with zero passes.
+3. Transition: For each pass i from 1 to N, and for each player j from 0 to K, calculate dp[i][j] as the sum of dp[i-1][m] for all m ≠ j (i.e., the ball can come from any player other than j). This can be expressed as:
+   dp[i][j] = sum(dp[i-1][m] for all m ≠ j)
+4. Implement the above transition efficiently using a nested loop.
+5. The final answer for each test case is dp[N][P], where player P is the player who should receive the ball last.
+6. Handle multiple test cases and print the results for each test case.
+7. Use modulo 1000000007 (10^9+7) to prevent overflow and ensure results fit within standard integer limits.
+8. Constraints: Ensure the solution works efficiently within the given constraints (1 ≤ T ≤ 100, 2 ≤ N ≤ 1000, 1 ≤ K ≤ 10).
+

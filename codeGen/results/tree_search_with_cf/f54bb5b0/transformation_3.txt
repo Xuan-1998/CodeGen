@@ -1,0 +1,15 @@
+
+1. Parse the input to read the number of vertices `n`, the required path length `k`, and the edges of the tree.
+2. Represent the tree using an adjacency list.
+3. Initialize a 2D list `dp` where `dp[u][d]` will store the number of vertices that are at a distance `d` from vertex `u`.
+4. Define a recursive function `dfs(u, parent)` that will:
+   a. Mark the current node `u` as visited.
+   b. Initialize `dp[u][0] = 1` since each vertex is at distance 0 from itself.
+   c. For each child `v` of `u` (where `v` is not the parent of `u`), recursively call `dfs(v, u)`.
+   d. After returning from the recursive call, for each distance `d` from 0 to `k-1`, update `dp[u][d+1]` by adding `dp[v][d]` (since if `v` is at distance `d` from `u`, then `u` is at distance `d+1` from `v`).
+5. Calculate the number of pairs of vertices with a path length exactly `k`:
+   a. Initialize a counter `count` to 0.
+   b. For each vertex `u`, consider all pairs of distances `(d1, d2)` such that `d1 + d2 = k`. For each pair, add the product `dp[u][d1] * dp[u][d2]` to `count` (since there are `dp[u][d1]` vertices at distance `d1` from `u` and `dp[u][d2]` vertices at distance `d2` from `u`).
+   c. Ensure that each pair is counted only once by adjusting the counting logic to avoid double-counting.
+6. Output the final count.
+

@@ -1,0 +1,18 @@
+python
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming.
+2. Use a bottom-up strategy with tabulation to build the solution iteratively from the base cases up to the desired result, storing intermediate results in a table.
+3. Define the state expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+4. Initialize the base cases:
+   - dp[0][j] = 1 for all j (an empty row is trivially valid)
+   - dp[i][0] = 1 for all i (an empty column is trivially valid)
+5. Define the transition relation:
+   - To compute dp[i][j], consider the sum of valid configurations from dp[i-1][j] and dp[i][j-1] while ensuring all conditions are met.
+6. Iterate through all possible matrix sizes from 1 to N for rows and 1 to M for columns, and fill the dp table using the transition relation.
+7. Compute the final answer by summing up all dp[N][M] configurations.
+8. Ensure the final answer is taken modulo 998244353 to meet the problem's requirement.
+9. Handle edge cases:
+   - The smallest matrix sizes (1x1).
+   - Ensure the matrix dimensions do not exceed the given constraints.
+===END PLAN===
+

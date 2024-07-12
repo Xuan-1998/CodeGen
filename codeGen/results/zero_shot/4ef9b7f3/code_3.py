@@ -1,41 +1,52 @@
-def simulate_eating(initial_queue, final_queue):
-    i, j = 0, 0
-    actions = []
-    while i < len(final_queue):
+python
+def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    a = list(map(int, data[1:n+1]))
+    k = int(data[n+1])
+    b = list(map(int, data[n+2:n+2+k]))
+    
+    if sum(a) != sum(b):
+        print("NO")
+        return
+    
+    operations = []
+    i = 0
+    j = 0
+    
+    while i < n and j < k:
         current_sum = 0
-        start = j
-        # Find a subsequence in the initial queue that matches the weight of the current monster in the final queue
-        while j < len(initial_queue) and current_sum < final_queue[i]:
-            current_sum += initial_queue[j]
-            j += 1
-        # If the weights do not match, it's impossible to form the final queue
-        if current_sum != final_queue[i]:
-            return "NO", []
-        # Simulate the eating process
-        while j - start > 1:
-            if initial_queue[start] < initial_queue[j - 1]:
-                actions.append(f"{start + 1} R")
-                initial_queue[start] += initial_queue[j - 1]
-                j -= 1
-            else:
-                actions.append(f"{start + 1} L")
-                initial_queue[start + 1] += initial_queue[start]
-                start += 1
-        i += 1
-    return "YES", actions
+        start_index = i
+        
+        while i < n and current_sum < b[j]:
+            current_sum += a[i]
+            i += 1
+        
+        if current_sum != b[j]:
+            print("NO")
+            return
+        
+        # Now current_sum == b[j]
+        max_index = start_index
+        for x in range(start_index, i):
+            if a[x] > a[max_index]:
+                max_index = x
+        
+        for x in range(max_index - 1, start_index - 1, -1):
+            operations.append((max_index + 1, 'L'))
+            a[max_index] += a[x]
+        
+        for x in range(max_index + 1, i):
+            operations.append((max_index + 1, 'R'))
+            a[max_index] += a[x]
+        
+        j += 1
+    
+    print("YES")
+    for op in operations:
+        print(op[0], op[1])
 
-# Read input
-n = int(input().strip())
-initial_queue = list(map(int, input().strip().split()))
-k = int(input().strip())
-final_queue = list(map(int, input().strip().split()))
 
-# Check for immediate impossibilities
-if sum(initial_queue) != sum(final_queue):
-    print("NO")
-else:
-    result, actions = simulate_eating(initial_queue, final_queue)
-    print(result)
-    if result == "YES":
-        for action in actions:
-            print(action)

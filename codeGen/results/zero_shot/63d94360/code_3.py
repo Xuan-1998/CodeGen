@@ -1,25 +1,35 @@
+python
 MOD = 1000000007
 
-def ways(n, k, memo):
-    if (n, k) in memo:
-        return memo[(n, k)]
-    if n == 0:
-        return 1 if k == 1 else 0
-    if n == 1:
-        return k - 1
-    res = (ways(n - 1, k, memo) * (k - 1) + ways(n - 1, k - 1, memo) * (k - 1)) % MOD
-    memo[(n, k)] = res
-    return res
+def count_ways(N, K):
+    # Initialize dp array
+    dp = [[0] * (K + 1) for _ in range(N + 1)]
+    dp[0][0] = 1  # Ball starts with player 0
 
-def solve(N, K):
-    memo = {}
-    return ways(N, K, memo)
+    for i in range(1, N + 1):
+        for j in range(K + 1):
+            dp[i][j] = sum(dp[i-1][m] for m in range(K + 1) if m != j) % MOD
+
+    return dp[N][0]  # We need the ball to be with player 0 after N passes
 
 def main():
-    T = int(input())
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    T = int(data[0])
+    index = 1
+    results = []
+    
     for _ in range(T):
-        N, K = map(int, input().split())
-        print(solve(N, K))
+        N = int(data[index])
+        K = int(data[index + 1])
+        index += 2
+        results.append(count_ways(N, K))
+    
+    for result in results:
+        print(result)
 
 if __name__ == "__main__":
     main()
+

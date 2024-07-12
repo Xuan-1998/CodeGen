@@ -1,0 +1,11 @@
+
+1. Frequency Array: Create a frequency array `freq` of size 105 (since 1 ≤ ai ≤ 105) to count the occurrences of each integer in the sequence.
+2. State: Define `dp[i]` as the maximum points that can be obtained by considering integers up to `i`.
+3. Base Case: Initialize `dp[0] = 0` (no points can be earned from an empty sequence) and `dp[1] = freq[1]` (points earned by taking all `1`s in the sequence).
+4. Transition: For each integer `i` from 2 to 105:
+   - Either skip the integer `i` and take the maximum points up to `i-1` (`dp[i-1]`).
+   - Or take all occurrences of `i`, add their points, and skip the integer `i-1` (`dp[i-2] + freq[i] * i`).
+   - Hence, `dp[i] = max(dp[i-1], dp[i-2] + freq[i] * i)`.
+5. Result: The final result will be stored in `dp[105]`, which gives the maximum points that can be obtained for the entire sequence.
+6. Edge Cases: Consider sequences with only one element, sequences with all elements being the same, and sequences with consecutive elements.
+

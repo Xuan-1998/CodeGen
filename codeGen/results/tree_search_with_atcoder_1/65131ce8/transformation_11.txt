@@ -1,0 +1,13 @@
+
+1. Parse the input to retrieve the values of N and the sequence d.
+2. Initialize a dp table where dp[v][k] represents the number of ways to form a subtree rooted at vertex v with exactly k good vertices.
+3. Initialize the base case: dp[v][0] = 1 for all v, as there is exactly one way to form a subtree with zero good vertices (an empty subtree).
+4. Define a recursive function to fill the dp table:
+    a. For each vertex v, iterate through its children u.
+    b. For each possible number of good vertices j in the subtree rooted at u, update dp[v][k] using the values of dp[u][j] for all valid j.
+    c. Specifically, use the transition relation: dp[v][k] += dp[v][k-j] * dp[u][j] for all valid j.
+5. Use memoization to store intermediate results and avoid redundant calculations.
+6. Traverse the tree and compute the number of good vertices for each subtree rooted at each vertex.
+7. Sum the number of good vertices for all subtrees and take the result modulo 998244353.
+8. Output the final result.
+

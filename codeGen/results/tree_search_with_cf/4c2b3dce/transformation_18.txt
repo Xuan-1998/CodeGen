@@ -1,0 +1,11 @@
+
+2. Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively checking the string for the required subsequences. Time complexity: O(n), space complexity: O(1).
+
+1. Initialize two boolean variables, found_AB and found_BA, to False. These will track whether the subsequences 'AB' and 'BA' have been found.
+2. Iterate through the string s from the beginning to the second last character:
+    - If s[i:i+2] is 'AB' and found_BA is True, return "YES".
+    - If s[i:i+2] is 'BA' and found_AB is True, return "YES".
+    - If s[i:i+2] is 'AB' and found_AB is False, set found_AB to True and skip the next character to avoid overlap.
+    - If s[i:i+2] is 'BA' and found_BA is False, set found_BA to True and skip the next character to avoid overlap.
+3. If the loop completes without finding the required subsequences, return "NO".
+

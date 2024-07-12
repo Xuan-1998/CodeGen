@@ -1,0 +1,9 @@
+
+2. Bottom-up strategy with tabulation: This approach involves solving all subproblems iteratively and storing their results in a table. It generally requires less overhead compared to the top-down approach and is often more efficient in terms of both time and space for problems with overlapping subproblems. Time complexity: O(n log n), space complexity: O(n).
+
+Define the state expression: Let dp[i] be the minimum number of points removed if we consider the first i points and add the additional point to the right of all existing points. Base case: dp[0] = 0, since if there are no points, no points can be removed.
+
+State: Define dp[i] as the minimum number of points removed when the first i points are considered, and one additional point is added to the right. Transition: For each point i, calculate dp[i] by examining all previous points j (j < i) to see if they lie within the range of bi from point i. Update dp[i] using the relation dp[i] = min(dp[i], dp[j] + 1) if point j is within the range of bi from point i.
+
+Sort the points by their coordinates in ascending order. Iterate through each point from right to left to update the dp array based on the defined state and transition. Finally, the answer will be the minimum value in the dp array after considering all points.
+

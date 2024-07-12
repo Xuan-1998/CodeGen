@@ -1,31 +1,46 @@
-def find_eating_order(n, a, k, b):
-    i = j = 0
-    actions = []
-    while i < n and j < k:
-        weight = a[i]
-        actions_part = []
-        while weight < b[j] and i < n - 1:
+python
+def transform_sequence(n, initial_seq, k, final_seq):
+    if sum(initial_seq) != sum(final_seq):
+        print("NO")
+        return
+
+    operations = []
+    current_seq = initial_seq[:]
+    final_index = 0
+    i = 0
+    
+    while i < len(current_seq) and final_index < k:
+        if current_seq[i] == final_seq[final_index]:
+            final_index += 1
             i += 1
-            weight += a[i]
-            actions_part.append((i, 'L'))
-        if weight != b[j]:
-            return "NO", []
-        actions.extend(reversed(actions_part))
-        i += 1
-        j += 1
-    if j != k:
-        return "NO", []
-    return "YES", actions
+        elif i < len(current_seq) - 1 and current_seq[i] < current_seq[i + 1]:
+            current_seq[i + 1] += current_seq[i]
+            operations.append((i + 1, 'L'))
+            del current_seq[i]
+        elif i < len(current_seq) - 1 and current_seq[i] > current_seq[i + 1]:
+            current_seq[i] += current_seq[i + 1]
+            operations.append((i + 1, 'R'))
+            del current_seq[i + 1]
+        else:
+            print("NO")
+            return
 
-# Read input
-n = int(input().strip())
-a = list(map(int, input().strip().split()))
-k = int(input().strip())
-b = list(map(int, input().strip().split()))
+    if final_index != k or current_seq != final_seq:
+        print("NO")
+    else:
+        print("YES")
+        for op in operations:
+            print(f"{op[0]} {op[1]}")
 
-# Process and output
-result, actions = find_eating_order(n, a, k, b)
-print(result)
-if result == "YES":
-    for action in actions:
-        print(action[0], action[1])
+if __name__ == "__main__":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    initial_seq = list(map(int, data[1:n+1]))
+    k = int(data[n+1])
+    final_seq = list(map(int, data[n+2:n+2+k]))
+    
+    transform_sequence(n, initial_seq, k, final_seq)
+

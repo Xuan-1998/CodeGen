@@ -1,0 +1,16 @@
+
+1. Precompute the cost of converting any substring into a "beautiful" string by considering all possible "beautiful" patterns. Since we only have three characters, the possible patterns are limited.
+2. Generate all possible "beautiful" patterns of length up to n. There are only 3!=6 possible cyclic permutations of 'abc', 'acb', 'bac', 'bca', 'cab', and 'cba'.
+3. For each of these patterns, precompute the cost of converting any prefix of the string s to match the pattern. This can be done in O(n) time for each pattern.
+4. Use these precomputed costs to answer each query in constant time. Specifically, for each query, calculate the cost of converting the substring to each of the "beautiful" patterns and take the minimum.
+5. For each query, use the precomputed costs to determine the minimum number of operations required to make the substring "beautiful".
+
+Steps:
+1. Generate the six possible "beautiful" patterns of length n.
+2. Precompute the cost arrays for each pattern:
+   - For each pattern, create an array cost[i] that represents the cost to convert the substring s[0:i] to match the pattern.
+3. For each query, calculate the cost of converting the substring to each of the "beautiful" patterns using the precomputed cost arrays and return the minimum cost.
+
+Time Complexity: O(n) for generating patterns and precomputing costs, O(1) for each query.
+Space Complexity: O(n) for storing the precomputed costs for each pattern.
+

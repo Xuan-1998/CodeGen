@@ -1,0 +1,19 @@
+
+1. Sort the points based on their position in ascending order. This ensures that we can process points from left to right.
+2. Define the state expression: Let dp[i] be the minimum number of points removed if we consider the first i points and add the additional point to the right of all existing points.
+3. Initialize the dp array: dp[0] = 0, since if there are no points, no points can be removed.
+4. Iterate through each point i from 1 to n:
+   a. Set dp[i] to be the maximum possible value initially.
+   b. Iterate through each previous point j from 0 to i-1:
+      i. If point j lies within the range bi from point i (i.e., aj >= ai - bi), update dp[i] using the relation dp[i] = min(dp[i], dp[j] + 1).
+5. The final answer will be dp[n], which represents the minimum number of points removed when considering all n points and adding the additional point to the right.
+6. Output the value of dp[n].
+
+Edge Cases:
+- If n = 1, the answer is 0 since adding one point to the right will not affect the single point.
+- If all points have the same range bi, the solution should still correctly account for overlapping ranges.
+- Ensure that the solution handles the maximum constraints efficiently.
+
+Time Complexity: O(n^2) due to the nested loops iterating through the points.
+Space Complexity: O(n) for the dp array.
+

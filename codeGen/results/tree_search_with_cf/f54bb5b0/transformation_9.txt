@@ -1,0 +1,11 @@
+
+1. Define dp[u][d] as the number of paths of length d that start from vertex u.
+2. Initialize a memoization table dp where dp[u][0] = 1 for all u, because a path of length 0 from a vertex to itself is always possible.
+3. Use Depth-First Search (DFS) to traverse the tree and fill the dp table:
+   - For each vertex u, calculate dp[u][d] for all d from 1 to k.
+   - For each child v of u, update dp[u][d] based on the values of dp[v][d-1].
+4. Calculate the number of distinct pairs of vertices with a path of length k between them:
+   - For each vertex u, use the values in dp[u][d] to count the number of valid pairs.
+   - Ensure that each pair is counted only once.
+5. Return the total count of such pairs.
+

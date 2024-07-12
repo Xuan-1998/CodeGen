@@ -1,0 +1,12 @@
+
+1. Initialize a 2D array `dp` where `dp[i][j]` represents the number of ways to pass the ball `i` times such that player `j` has the ball at the end.
+2. Base Case: Set `dp[0][0] = 1` since there is exactly one way to have zero passes and the initial player (player 0) ends up with the ball.
+3. Transition: For each pass count `i` from 1 to N, and for each player `j` from 0 to K, compute `dp[i][j]` as the sum of `dp[i-1][m]` for all players `m` not equal to `j`. This means the number of ways to pass the ball `i` times to player `j` is the sum of the number of ways to pass the ball `i-1` times to all other players except `j`.
+4. Iterate through each test case:
+    a. Read the values of `N` and `K`.
+    b. Initialize the `dp` array with dimensions `(N+1) x (K+1)` filled with zeros.
+    c. Set the base case.
+    d. Fill the `dp` table using the transition formula.
+    e. Output `dp[N][K] % 1000000007` as the result for the test case.
+5. Ensure to handle multiple test cases efficiently.
+

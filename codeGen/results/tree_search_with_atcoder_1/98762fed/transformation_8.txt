@@ -1,0 +1,11 @@
+python
+===BEGIN PLAN===
+1. Define the state: Let dp[i][j] represent the number of valid i x j matrices that satisfy the given condition.
+2. Base Case: Initialize dp[1][1] = 1, as a 1x1 matrix with a single element (either 0 or 1) trivially satisfies the condition.
+3. Transition: To compute dp[i][j], consider the addition of a row or column to a smaller valid matrix (i.e., dp[i-1][j] or dp[i][j-1]) and ensure the condition is met for the new elements. This involves checking the condition for all relevant quadruples (a, b, c, d) in the new matrix.
+4. Recursion with memoization: Use a recursive function with memoization to compute dp[i][j] by breaking it down into smaller subproblems and storing the results to avoid redundant calculations.
+5. Modulo operation: Since the result needs to be modulo 998244353, ensure that all operations involving dp values are taken modulo 998244353.
+6. Final computation: Compute the result for dp[N][M] using the recursive function and print the result.
+7. Edge cases: Consider edge cases such as the smallest matrix (1x1) and matrices with one dimension being 1 (e.g., 1xM or Nx1), which should be handled by the base case and transition logic.
+===END PLAN===
+

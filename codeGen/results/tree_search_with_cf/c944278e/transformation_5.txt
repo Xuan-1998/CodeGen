@@ -1,0 +1,16 @@
+
+1. Top-down approach with memoization: This approach involves breaking down the problem into smaller subproblems and storing the results of these subproblems to avoid redundant computations. Time complexity: O(2^n * n), space complexity: O(2^n * n).
+
+2. State Expression: Define dp[i][mask] as the set of possible maximum values achievable after processing the first i bits of the binary string s, given the bitmask mask. Base Case: For i = 0, dp[0][mask] is initialized to the values directly determined by the initial elements in the sequence as per the bitmask.
+
+3. Transition: For each bit i in the string s:
+   - If the bit is 0, dp[i][mask] is derived from the smaller values of the pairs in dp[i-1][mask'].
+   - If the bit is 1, dp[i][mask] is derived from the larger values of the pairs in dp[i-1][mask'].
+
+4. Initialization: 
+   - For i = 0, dp[0][mask] is initialized to the values directly from the initial sequence {1, 2, ..., 2^n} as per the bitmask.
+
+5. Compute the final result by iterating over all possible masks for the final bit and collecting the possible maximum values from dp[n-1][mask].
+
+6. Output the collected maximum values in ascending order.
+

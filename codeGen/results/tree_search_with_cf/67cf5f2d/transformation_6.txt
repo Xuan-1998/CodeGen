@@ -1,0 +1,8 @@
+
+1. Sort the points based on their positions ai in ascending order. This will allow us to process the points from right to left easily.
+2. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point. The base case is dp[n] = 0, as there are no points to the right of the newly added point.
+3. For each point i from n-1 to 0, determine the first point j such that ai + bi < aj. This means the point j is not within the range of bi and can be considered next.
+4. Transition relation: dp[i] = min(dp[j]) + 1, where j is the first point to the right of i that is not within the range of bi. This accounts for activating the i-th point and then considering the next point j.
+5. To efficiently find the first point j such that ai + bi < aj, use a binary search on the sorted list of points.
+6. The answer will be dp[0], which represents the minimum number of points removed starting from the leftmost point to the newly added point.
+

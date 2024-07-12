@@ -1,0 +1,14 @@
+
+1. State: Define two boolean variables `found_AB` and `found_BA` to track if the subsequences "AB" and "BA" have been found, respectively. Also, define two more boolean variables `found_AB_first` and `found_BA_first` to track if the subsequences "AB" and "BA" have been found first, respectively.
+
+2. Iterate through the string from the beginning to the second last character:
+   - If the current character and the next character form the subsequence "AB" and `found_BA_first` is False, set `found_AB_first` to True and skip the next character by incrementing the index by 2.
+   - If the current character and the next character form the subsequence "BA" and `found_AB_first` is False, set `found_BA_first` to True and skip the next character by incrementing the index by 2.
+   - If the current character and the next character form the subsequence "AB" and `found_BA_first` is True, set `found_AB` to True.
+   - If the current character and the next character form the subsequence "BA" and `found_AB_first` is True, set `found_BA` to True.
+   - If both `found_AB` and `found_BA` are True, print "YES" and return immediately.
+
+3. After the loop, if both `found_AB` and `found_BA` are True, print "YES". Otherwise, print "NO".
+
+4. Edge Cases: Handle edge cases where the length of the string is less than 2 by directly printing "NO".
+

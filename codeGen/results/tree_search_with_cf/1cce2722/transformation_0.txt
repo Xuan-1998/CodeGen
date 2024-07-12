@@ -1,0 +1,14 @@
+
+1. Initialize an array `count` where `count[x]` keeps track of how many times the integer `x` appears in the sequence. This array should have a size of 105 (since 1 ≤ ai ≤ 105).
+2. Iterate through the given sequence and populate the `count` array.
+3. Initialize a `dp` array where `dp[x]` represents the maximum points that can be obtained considering all integers from 1 to x.
+4. Set the initial conditions for the `dp` array:
+   - `dp[0] = 0` (if there are no integers, the maximum points are zero)
+   - `dp[1] = count[1]` (if there is only one integer, the maximum points are the points obtained from that integer)
+5. Iterate through the `dp` array from 2 to 105 and update the `dp` values using the transition relationship:
+   - For each integer x, the player can either:
+     - Skip x and take the result of `dp[x-1]`
+     - Take all instances of x and add their points to the result of `dp[x-2]` (since taking x removes x-1 and x+1)
+   - Thus, `dp[x] = max(dp[x-1], dp[x-2] + x * count[x])`
+6. The final answer will be `dp[105]`, which represents the maximum points that can be obtained considering all integers from 1 to 105.
+

@@ -1,27 +1,37 @@
-def min_operations_to_beautify(s, queries):
-    # Function to calculate the cost for a single query
-    def cost_to_beautify(l, r):
-        cost = 0
-        for i in range(l, r):
-            # Check for palindrome of length 2
-            if s[i] == s[i+1]:
-                cost += 1
-            # Check for palindrome of length 3
-            elif i+2 <= r and s[i] == s[i+2]:
-                cost += 1
-        return cost
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
     
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    queries = [(int(data[i*2 + 3]) - 1, int(data[i*2 + 4]) - 1) for i in range(m)]
+    
+    patterns = [
+        "abc", "acb", "bac", "bca", "cab", "cba"
+    ]
+    
+    # Precompute the cost for each pattern
+    costs = [[0] * (n + 1) for _ in range(6)]
+    
+    for i, pattern in enumerate(patterns):
+        for j in range(n):
+            costs[i][j + 1] = costs[i][j] + (s[j] != pattern[j % 3])
+    
+    # Answer each query
     results = []
     for l, r in queries:
-        results.append(cost_to_beautify(l-1, r-1))  # Convert to 0-based index
-    return results
+        min_cost = float('inf')
+        for i in range(6):
+            min_cost = min(min_cost, costs[i][r + 1] - costs[i][l])
+        results.append(min_cost)
+    
+    # Print all results
+    for result in results:
+        print(result)
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    main()
 
-# Get the minimum operations and print the results
-results = min_operations_to_beautify(s, queries)
-for result in results:
-    print(result)

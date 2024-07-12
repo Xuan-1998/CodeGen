@@ -1,0 +1,11 @@
+
+1. Top-down approach with memoization: This approach uses recursion along with memoization to store results of subproblems, preventing redundant calculations. It can be efficient for problems with overlapping subproblems. Time complexity: O(N*K), space complexity: O(N*K).
+
+2. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+
+3. Base case: dp[0][P] = 1, which means there is exactly one way to start with player P with zero passes.
+
+4. Recurrence relation: For each pass i from 1 to N, and for each player j from 0 to K, calculate dp[i][j] as the sum of dp[i-1][m] for all m ≠ j. This means the number of ways to reach player j in i passes is the sum of the ways to reach all other players in i-1 passes.
+
+5. Result: The final answer for each test case is dp[N][0] % 1000000007, where player 0 is the designated player P who must receive the ball last.
+

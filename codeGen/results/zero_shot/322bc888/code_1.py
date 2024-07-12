@@ -1,20 +1,30 @@
-def calculate_cost(s, l, r):
-    cost = 0
-    for i in range(l, r):
-        if s[i] == s[i - 1]:  # Adjacent identical letters
-            cost += 1
-        elif i > l and s[i] == s[i - 2]:  # Pattern like "aba"
-            cost += 1
-    return cost
-
+python
 def main():
-    n, m = map(int, input().split())  # Read n and m
-    s = input()  # Read the string s
-    for _ in range(m):
-        l, r = map(int, input().split())  # Read the l_i and r_i for each query
-        l -= 1  # Convert to 0-based index
-        r -= 1  # Convert to 0-based index
-        print(calculate_cost(s, l, r))
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    queries = [(int(data[2 + 2 * i]), int(data[3 + 2 * i])) for i in range(m)]
+
+    patterns = ["abc", "bca", "cab"]
+    costs = [[0] * (n + 1) for _ in range(3)]
+
+    for i in range(n):
+        for j in range(3):
+            costs[j][i + 1] = costs[j][i] + (s[i] != patterns[j][i % 3])
+
+    results = []
+    for l, r in queries:
+        l -= 1
+        min_cost = min(costs[j][r] - costs[j][l] for j in range(3))
+        results.append(min_cost)
+
+    for result in results:
+        print(result)
 
 if __name__ == "__main__":
     main()
+

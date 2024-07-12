@@ -1,0 +1,26 @@
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. Time complexity: O(N^3), space complexity: O(N^2) due to the table used for storing intermediate results.
+
+State Expression: Let dp[i][j] be the number of valid sequences of length i where the last element of the sequence is j.
+
+Initialization: 
+- dp[1][j] = 1 for all 1 <= j <= N, because there is exactly one valid sequence of length 1 for each value of j.
+
+Transition: 
+- For each i from 2 to N:
+  - For each j from 1 to N:
+    - dp[i][j] = sum(dp[i-1][k] for all k from 1 to N if the number of occurrences of k in the sequence is at most A_k and the number of occurrences of j in the sequence is at most A_j)
+
+Result Computation:
+- The final result is the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+
+Edge Cases:
+- Handle the case when N = 1 separately.
+- Ensure that the constraints on the number of occurrences are properly checked during the transition.
+
+Overall Plan:
+1. Initialize the dp table.
+2. Populate the dp table using the defined transitions.
+3. Compute the final result by summing up appropriate values from the dp table.
+4. Return the result modulo 998244353.
+

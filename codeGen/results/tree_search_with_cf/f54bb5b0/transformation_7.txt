@@ -1,0 +1,23 @@
+
+1. Define the state expression and base case:
+   - Let dp[u][d] be the number of vertices that are at a distance d from vertex u.
+   - Base Case: dp[u][0] = 1 for all vertices u, since each vertex is at distance 0 from itself.
+
+2. Build the tree from the input:
+   - Read the input values n and k.
+   - Construct an adjacency list to represent the tree.
+
+3. Use Depth-First Search (DFS) to fill the dp table:
+   - Perform a DFS starting from any vertex (say vertex 1).
+   - For each vertex u, update dp[u][d] based on its children.
+   - Use memoization to store the results of sub-problems to avoid redundant computations.
+
+4. Calculate the number of valid pairs:
+   - For each vertex u, iterate through its dp table.
+   - For each distance d from 0 to k-1, calculate the number of pairs with a path length exactly k.
+   - Use the dp values of the child vertices to find pairs that span through the parent vertex.
+
+5. Sum up all valid pairs for each vertex u to get the total number of distinct pairs in the tree with a path length of exactly k.
+
+6. Output the result.
+

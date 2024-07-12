@@ -1,25 +1,38 @@
-def min_operations_to_beautiful(s, queries):
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    
+    queries = []
+    index = 3
+    for _ in range(m):
+        l = int(data[index]) - 1
+        r = int(data[index + 1]) - 1
+        queries.append((l, r))
+        index += 2
+    
+    patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
+    costs = {pattern: [0] * (n + 1) for pattern in patterns}
+    
+    for pattern in patterns:
+        for i in range(n):
+            costs[pattern][i + 1] = costs[pattern][i] + (s[i] != pattern[i % 3])
+    
     results = []
     for l, r in queries:
-        # Since the string only consists of 'a', 'b', 'c',
-        # any three consecutive characters that are not the same
-        # will not form a palindrome. Thus, we only need to check
-        # every two consecutive characters.
-        count = 0
-        for i in range(l - 1, r - 1):
-            if s[i] == s[i + 1]:
-                count += 1
-        results.append(count)
-    return results
+        min_cost = float('inf')
+        for pattern in patterns:
+            min_cost = min(min_cost, costs[pattern][r + 1] - costs[pattern][l])
+        results.append(min_cost)
+    
+    for result in results:
+        print(result)
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input().strip()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    main()
 
-# Get the results
-results = min_operations_to_beautiful(s, queries)
-
-# Print the results to stdout
-for result in results:
-    print(result)

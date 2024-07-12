@@ -1,0 +1,18 @@
+
+1. Top-down Approach with Memoization: This approach involves solving the problem recursively and storing the results of subproblems to avoid redundant calculations. It can be more intuitive but may have higher overhead due to recursive calls. Time complexity: O(n), space complexity: O(n).
+   - Base Case: The base case is when the array has only one element left, which means dp[0] = a[0].
+   - State: Let dp[i] represent the maximum possible value of the remaining element when considering the subarray from index 0 to i.
+   - Transition: For each element, calculate the maximum value by considering the effect of removing its adjacent element and updating the current element. The transition relation can be defined as dp[i] = max(dp[i-1], dp[i-1] - a[i]).
+
+2. Tabulation: This approach involves iteratively solving the problem using a bottom-up method, storing results in a table. Time complexity: O(n), space complexity: O(n).
+   - Initialize an array dp where dp[i] represents the maximum possible value of the remaining element when considering the subarray from index 0 to i.
+   - Set dp[0] = a[0] since the base case is when the array has only one element.
+   - Iterate through the array from index 1 to n-1.
+   - For each index i, update dp[i] using the transition relation: dp[i] = max(dp[i-1], dp[i-1] - a[i]).
+   - The final result will be stored in dp[n-1], which represents the maximum possible value of the remaining element after performing all operations.
+
+3. Edge Cases:
+   - When n = 1, the result is simply the single element in the array.
+   - When all elements are negative, the operations should minimize the absolute value of the remaining element.
+   - When all elements are positive, the operations should maximize the remaining element by carefully choosing the adjacent elements to subtract.
+

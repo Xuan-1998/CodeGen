@@ -1,0 +1,31 @@
+
+1. **Define the State**:
+   - Let `dp[u][d]` represent the number of vertices at distance `d` from vertex `u`.
+   - The base case is `dp[u][0] = 1` for all vertices `u`, as each vertex is at distance 0 from itself.
+
+2. **Initialization**:
+   - Initialize `dp[u][0] = 1` for all vertices `u`.
+   - Initialize `dp[u][d] = 0` for all `d > 0`.
+
+3. **Tree Traversal and DP Table Update**:
+   - Use Depth-First Search (DFS) to traverse the tree.
+   - For each vertex `u`, and its child `v` during the DFS traversal:
+     - Update the dp table for `u` based on the dp table of `v`.
+     - Specifically, for each distance `d` from 1 to `k`, update `dp[u][d]` using the values from `dp[v][d-1]`.
+
+4. **Count Valid Pairs**:
+   - During the DFS traversal, for each vertex `u` and its child `v`, count the number of valid pairs `(u, w)` where the distance between `u` and `w` is exactly `k`.
+   - This can be done by considering the values in `dp` tables of `u` and `v` for appropriate distances.
+
+5. **Avoid Double Counting**:
+   - Ensure that each pair `(u, v)` where `u < v` is counted only once by iterating through the vertices in a specific order during the DFS traversal.
+
+6. **Edge Cases**:
+   - Handle cases where `n = 1` (single vertex, no pairs).
+   - Handle cases where `k > n-1` (no valid pairs possible as the maximum path length in a tree with `n` vertices is `n-1`).
+
+7. **Output the Result**:
+   - Sum up all the valid pairs counted during the DFS traversal and print the result.
+
+Time complexity: O(n*k), space complexity: O(n*k)
+

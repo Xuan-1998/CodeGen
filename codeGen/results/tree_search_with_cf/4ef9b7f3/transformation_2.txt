@@ -1,0 +1,16 @@
+
+1. Initialize a 2D list `dp` of size (n+1) x (k+1) with all values set to False. This table will be used to store whether the first `i` elements of the initial sequence can be transformed into the first `j` elements of the final sequence.
+2. Set the base case: `dp[0][0] = True`, because an empty initial sequence can be transformed into an empty final sequence.
+3. Iterate through the initial sequence with index `i` from 1 to `n`:
+   a. Iterate through the final sequence with index `j` from 1 to `k`:
+      i. If the value of the initial sequence at index `i-1` is equal to the value of the final sequence at index `j-1`, set `dp[i][j] = dp[i-1][j-1]`.
+      ii. If `i > 1` and the value of the initial sequence at index `i-1` is greater than the value of the initial sequence at index `i-2`, and `dp[i-1][j]` is True, set `dp[i][j] = True`. This represents the operation of removing the smaller adjacent integer and adding its value to the larger integer.
+4. After filling the `dp` table, check the value of `dp[n][k]`. If it is True, print "YES" and reconstruct the sequence of operations from the `dp` table:
+   a. Initialize an empty list `operations` to store the sequence of operations.
+   b. Set `i = n` and `j = k`.
+   c. While `i > 0` and `j > 0`:
+      i. If `dp[i][j]` is equal to `dp[i-1][j-1]` and the value of the initial sequence at index `i-1` is equal to the value of the final sequence at index `j-1`, move to the previous element in both sequences (`i -= 1` and `j -= 1`).
+      ii. Else if `i > 1` and the value of the initial sequence at index `i-1` is greater than the value of the initial sequence at index `i-2`, and `dp[i][j]` is equal to `dp[i-1][j]`, add the operation `(i-1, 'L')` to the `operations` list (indicating that the element at index `i-2` is removed and its value is added to the element at index `i-1`), and move to the previous element in the initial sequence (`i -= 1`).
+5. If `dp[n][k]` is False, print "NO".
+6. If "YES" is printed, print each operation in the `operations` list in reverse order.
+

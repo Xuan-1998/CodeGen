@@ -1,0 +1,27 @@
+
+===BEGIN PLAN===
+1. Top-Down Approach with Memoization:
+   - Use recursion and memoization to store results of subproblems.
+   - State: Let dp[i][j] represent the number of valid sequences of length i using numbers from 1 to j.
+   - Base Case: dp[0][j] = 1 for all j in 1 to N, representing that there is exactly one way to form an empty sequence.
+   - Transition: 
+     - dp[i][j] = dp[i][j-1] + dp[i-1][j-1] * min(A[j-1], i)
+     - This accounts for sequences of length i using numbers from 1 to j, either excluding or including the j-th number up to min(A[j-1], i) times.
+   - Time complexity: O(N^2), space complexity: O(N^2) due to the memoization table.
+
+2. Bottom-Up Approach with Tabulation:
+   - Use an iterative method to fill a table based on previously computed values.
+   - State: Let dp[i][j] represent the number of valid sequences of length i using numbers from 1 to j.
+   - Base Case: dp[0][j] = 1 for all j in 1 to N.
+   - Transition: 
+     - dp[i][j] = dp[i][j-1] + dp[i-1][j-1] * min(A[j-1], i)
+     - Iterate over all lengths and numbers to fill the table.
+   - Time complexity: O(N^2), space complexity: O(N^2) due to the DP table.
+
+3. Edge Cases:
+   - N = 1: The simplest case with the smallest possible sequence.
+   - All A_i = 1: Each number can appear at most once.
+   - All A_i = N: Each number can appear up to N times.
+   - Large N close to 500 to test efficiency and performance.
+===END PLAN===
+

@@ -1,0 +1,10 @@
+
+===BEGIN PLAN===
+1. State Definition: Define dp[i][j] as the number of ways to form a subtree with i vertices and j good vertices.
+2. Base Case: dp[1][1] = 1, indicating there's one way to form a subtree with one vertex (the root itself) which is also a good vertex.
+3. Transition: To compute dp[i][j], consider all possible splits of the subtree into smaller subtrees. Specifically, for each possible out-degree k of the current root, distribute the remaining vertices among the k subtrees. Use combinatorial methods to count the ways to distribute vertices and good vertices among the subtrees.
+4. Bottom-up strategy with tabulation: Use iterative loops to fill the dp table based on the transition formula. Start with smaller subproblems and build up to the solution for the entire tree.
+5. Result Extraction: The final result will be the sum of dp[N][j] for all j from 1 to N, modulo 998244353, since we're interested in the total number of good vertices across all valid trees.
+6. Edge Cases: Handle cases where N = 2 directly, as there will be only one tree with one good vertex. Ensure that the solution respects the constraint d_1 >= 1.
+===END PLAN===
+

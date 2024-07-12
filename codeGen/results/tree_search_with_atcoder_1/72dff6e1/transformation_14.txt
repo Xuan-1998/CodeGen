@@ -1,0 +1,24 @@
+
+1. Define the problem in terms of Dynamic Programming:
+   - Use a 2D DP table `dp[i][j]` where `dp[i][j]` represents the number of ways to form a sequence of length `i` using the first `j` numbers.
+   - Initialize `dp[0][j] = 1` for all `j` from 0 to `N`, representing that there is exactly one way to form an empty sequence.
+
+2. Transition:
+   - For each `i` from 1 to `N` and for each `j` from 1 to `N`, update `dp[i][j]` as follows:
+     - `dp[i][j] = dp[i][j-1] + (dp[i-1][j-1] * min(A[j-1], i)) % 998244353`
+     - This transition ensures that we are considering the number of ways to form a sequence of length `i` using the first `j` numbers, either by not using the `j`-th number or by using it and ensuring it does not exceed the allowed occurrences.
+
+3. Base Case:
+   - Initialize `dp[0][j] = 1` for all `j` from 0 to `N` since there is exactly one way to form an empty sequence.
+
+4. Result:
+   - The result will be stored in `dp[N][N]`, representing the number of ways to form a sequence of length `N` using all `N` numbers.
+
+5. Edge Cases:
+   - Handle the case when `N = 1` separately if needed, but the general DP approach should cover it.
+   - Ensure that the modulo operation `% 998244353` is applied at each step to prevent overflow and adhere to the problem constraints.
+
+6. Complexity:
+   - Time complexity: O(N^2) due to the nested loops over `i` and `j`.
+   - Space complexity: O(N^2) due to the DP table.
+

@@ -1,0 +1,9 @@
+
+1. Sort the points based on their positions in ascending order. This will make it easier to process points from right to left.
+2. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point.
+3. Initialize dp[n] = 0, as there are no points to the right of the newly added point.
+4. Iterate from the second last point to the first point (i.e., from right to left):
+   a. For each point i, find the next point j such that ai + bi < aj using binary search for efficiency.
+   b. Update dp[i] = min(dp[j]) + 1, where j is the first point that is not within the range of bi.
+5. The result will be the minimum value in dp array.
+

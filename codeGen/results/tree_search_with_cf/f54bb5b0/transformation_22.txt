@@ -1,0 +1,24 @@
+
+1. **Initialization**: 
+   - Read the input values for n and k.
+   - Read the edges and construct the adjacency list for the tree.
+
+2. **Dynamic Programming Table Definition**:
+   - Define a DP table `dp[u][d]` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`.
+   - Initialize the base case: `dp[u][0] = 1` for all vertices `u` since each vertex is at distance 0 from itself.
+
+3. **Depth-First Search (DFS) Traversal**:
+   - Perform a DFS traversal of the tree starting from any root (e.g., vertex 1).
+   - During the DFS traversal, update the DP table for each vertex based on its children's DP values.
+
+4. **Merging DP Values**:
+   - For each vertex `u`, after processing all its children, merge the DP values of the children into the DP values of `u`.
+   - This merging step ensures that `dp[u][d]` correctly counts the number of vertices at distance `d` from `u`, considering the subtree rooted at `u`.
+
+5. **Count Valid Pairs**:
+   - For each vertex `u`, count the number of valid pairs of vertices `(u, v)` such that the distance between `u` and `v` is exactly `k`.
+   - Use the DP table to efficiently count pairs by considering the contributions from different subtrees.
+
+6. **Output the Result**:
+   - Sum up the counts of valid pairs from all vertices and print the result.
+

@@ -1,0 +1,12 @@
+
+1. Precompute Beautiful Patterns: Since the string is composed of only the first three lowercase Latin alphabets ('a', 'b', 'c'), the possible patterns for a "beautiful" string of lengths 1, 2, and 3 can be precomputed. These patterns are:
+   - Length 1: 'a', 'b', 'c'
+   - Length 2: 'ab', 'ac', 'ba', 'bc', 'ca', 'cb'
+   - Length 3: 'abc', 'acb', 'bac', 'bca', 'cab', 'cba'
+
+2. Precompute Costs: For each of the possible "beautiful" patterns, precompute the cost to transform any substring of the input string into each of these patterns. Store these costs in a 2D array `cost[i][j]` where `cost[i][j]` represents the cost to transform the substring starting at index `i` to match the j-th beautiful pattern.
+
+3. Process Queries: For each query, determine the length of the substring and use the precomputed costs to find the minimum cost to transform the substring into a "beautiful" string. This can be done by simply looking up the precomputed costs for the appropriate substring length and finding the minimum cost among the possible patterns.
+
+4. Output Results: For each query, output the minimum cost found in the previous step.
+

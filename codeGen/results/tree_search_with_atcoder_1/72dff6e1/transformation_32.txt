@@ -1,0 +1,17 @@
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. Time complexity: O(N^2), space complexity: O(N^2) due to the table used for storing intermediate results.
+
+1. Define a 2D dp array where dp[i][j] represents the number of valid sequences of length i using elements from 1 to j.
+
+2. Base Case: Initialize dp[0][0] = 1, which represents an empty sequence. For all other dp[0][j] where j > 0, initialize dp[0][j] = 0.
+
+3. For each length i from 1 to N, and for each number j from 1 to N:
+   - Calculate the number of valid sequences of length i using elements from 1 to j.
+   - Use the previous results stored in dp[i-1][j] and dp[i][j-1] to update dp[i][j].
+
+4. For each pair (i, j), ensure the number of occurrences of j in the sequence does not exceed A[j].
+
+5. The final answer will be stored in dp[N][N].
+
+6. Print the result modulo 998244353.
+

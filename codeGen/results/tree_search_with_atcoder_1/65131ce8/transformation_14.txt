@@ -1,0 +1,8 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+1. State Expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[0][0] = 1, meaning there's one way to form an empty subtree with zero vertices and zero good vertices.
+2. Transition Relationship: For each vertex count i from 1 to N and each good vertex count j from 0 to i, calculate dp[i][j] by considering all possible ways to split the vertex set into subtrees. If you add a new vertex as a root, the number of ways to form the subtree is derived from combining subtrees of the remaining vertices. Specifically, dp[i][j] can be computed using previously computed values of dp for smaller subproblems, summed over all valid splits of vertices and good vertices.
+3. Calculate the number of good vertices for each subtree configuration and sum them up. Keep track of the total sum modulo 998244353.
+4. Iterate through all possible configurations and compute the final result by summing up the count of good vertices for each valid tree configuration.
+5. Return the final result as the sum of the numbers of good vertices for all good trees, modulo 998244353.
+

@@ -1,32 +1,37 @@
-import sys
-
-# Function to preprocess the string and calculate the minimum operations for each prefix
-def preprocess(s, n):
-    operations = [0] * (n + 1)
-    for i in range(1, n):
-        operations[i + 1] = operations[i]
-        # Check for palindrome of length 2
-        if s[i] == s[i - 1]:
-            operations[i + 1] += 1
-        # Check for palindrome of length 3
-        elif i > 1 and s[i] == s[i - 2]:
-            operations[i + 1] += 1
-    return operations
-
+python
 def main():
-    # Read input
-    n, m = map(int, sys.stdin.readline().split())
-    s = sys.stdin.readline().strip()
+    import sys
+    input = sys.stdin.read
+    data = input().split()
     
-    # Preprocess the string
-    operations = preprocess(s, n)
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    queries = [(int(data[2 + 2 * i]) - 1, int(data[2 + 2 * i + 1]) - 1) for i in range(m)]
     
-    # Process each query
-    for _ in range(m):
-        l, r = map(int, sys.stdin.readline().split())
-        # Calculate the cost for the substring from l to r
-        cost = operations[r] - operations[l - 1]
-        print(cost)
+    patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
+    costs = [[0] * n for _ in range(6)]
+    
+    for i in range(6):
+        for j in range(n):
+            costs[i][j] = (0 if s[j] == patterns[i][j % 3] else 1)
+    
+    prefix_sums = [[0] * (n + 1) for _ in range(6)]
+    
+    for i in range(6):
+        for j in range(n):
+            prefix_sums[i][j + 1] = prefix_sums[i][j] + costs[i][j]
+    
+    results = []
+    for l, r in queries:
+        min_cost = float('inf')
+        for i in range(6):
+            cost = prefix_sums[i][r + 1] - prefix_sums[i][l]
+            min_cost = min(min_cost, cost)
+        results.append(min_cost)
+    
+    sys.stdout.write("\n".join(map(str, results)) + "\n")
 
 if __name__ == "__main__":
     main()
+

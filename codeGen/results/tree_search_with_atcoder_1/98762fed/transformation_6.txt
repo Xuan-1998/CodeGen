@@ -1,0 +1,14 @@
+
+1. Define a 2D array dp where dp[i][j] represents the number of valid matrices of size i x j.
+2. Initialize the base case: dp[1][1] = 2 (since a 1x1 matrix can either be [0] or [1]).
+3. Use a nested loop to fill the dp array for all sizes from 1x1 to NxM:
+   a. For each cell dp[i][j], consider the contribution from the smaller submatrices.
+   b. Ensure the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} holds when extending smaller matrices.
+4. Use dynamic programming to fill the dp table:
+   a. For each i from 1 to N:
+      i. For each j from 1 to M:
+         i. Calculate dp[i][j] by considering the valid configurations from dp[i-1][j] and dp[i][j-1].
+         ii. Ensure the condition holds when adding new elements.
+5. The final result will be stored in dp[N][M].
+6. Return dp[N][M] % 998244353 as the final answer.
+

@@ -1,0 +1,31 @@
+
+1. Top-Down Approach with Memoization:
+   - This dynamic programming approach involves breaking down the problem into smaller sub-problems and storing the results of these sub-problems to avoid redundant computations. It generally uses recursion and a memoization table.
+   - Time complexity: O(n*k), space complexity: O(n*k).
+
+2. State Expression:
+   - Define dp[u][d] as the number of paths of length d that start from vertex u.
+   - Base Case: dp[u][0] = 1 for all u, because a path of length 0 from a vertex to itself is always possible.
+
+3. Transition:
+   - To compute dp[u][d], consider all neighbors v of u. For each neighbor v, dp[u][d] can be computed as the sum of dp[v][d-1] for all neighbors v of u.
+   - This is because a path of length d from u can be formed by extending a path of length d-1 from its neighbor v to u.
+   - Therefore, dp[u][d] = sum(dp[v][d-1] for all neighbors v of u).
+
+4. Counting Pairs:
+   - To count the number of distinct pairs of vertices that have a path of length k between them, iterate over all vertices u and sum up the number of valid paths of length k starting from u.
+   - Use a nested loop where the outer loop iterates over all vertices u and the inner loop iterates over all distances d from 1 to k.
+   - For each vertex u, maintain a counter to keep track of the number of paths of length k that start from u.
+
+5. Edge Cases:
+   - If k is greater than the maximum possible path length in the tree (which is n-1), the result should be 0 since no such paths can exist.
+   - If the tree has only one vertex (n=1), the result should be 0 since no paths can exist in a single-vertex tree.
+
+6. Implementation:
+   - Read input values n and k.
+   - Construct the tree using adjacency lists.
+   - Initialize the dp table with dimensions n x (k+1) and set base cases.
+   - Use a recursive function with memoization to fill the dp table.
+   - Iterate over all vertices and count the number of valid paths of length k.
+   - Output the result.
+

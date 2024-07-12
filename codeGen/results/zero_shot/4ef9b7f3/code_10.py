@@ -1,42 +1,45 @@
-def find_eating_order(initial_queue, final_queue):
-    actions = []
+python
+def transform_sequence(n, initial_seq, k, final_seq):
+    # Check if the sum of initial and final sequences match
+    if sum(initial_seq) != sum(final_seq):
+        print("NO")
+        return
+
+    operations = []
     i, j = 0, 0
-    current_sum = 0
 
-    while j < len(final_queue):
-        if i >= len(initial_queue):
-            return "NO", []
+    while i < n and j < k:
+        current_sum = 0
+        while i < n and current_sum < final_seq[j]:
+            current_sum += initial_seq[i]
+            i += 1
 
-        current_sum += initial_queue[i]
-        i += 1
+        if current_sum != final_seq[j]:
+            print("NO")
+            return
 
-        if current_sum > final_queue[j]:
-            return "NO", []
+        # Determine the operations to merge elements
+        for l in range(i - 1, j, -1):
+            if initial_seq[l] > initial_seq[l - 1]:
+                operations.append((l + 1, 'L'))
+            else:
+                operations.append((l, 'R'))
 
-        if current_sum == final_queue[j]:
-            right_pointer = i - 1
-            left_pointer = right_pointer - 1
-            while left_pointer >= (i - (right_pointer - left_pointer) - 1):
-                actions.append(f"{left_pointer + 1} R")
-                left_pointer -= 1
-            j += 1
-            current_sum = 0
+        j += 1
 
-    return "YES", actions
+    print("YES")
+    for op in operations:
+        print(op[0], op[1])
 
-def main():
-    n = int(input().strip())
-    initial_queue = list(map(int, input().strip().split()))
-    k = int(input().strip())
-    final_queue = list(map(int, input().strip().split()))
+# Read input
+import sys
+input = sys.stdin.read
+data = input().split()
 
-    result, actions = find_eating_order(initial_queue, final_queue)
-    if result == "NO":
-        print(result)
-    else:
-        print(result)
-        for action in actions:
-            print(action)
+n = int(data[0])
+initial_seq = list(map(int, data[1:n + 1]))
+k = int(data[n + 1])
+final_seq = list(map(int, data[n + 2:n + 2 + k]))
 
-if __name__ == "__main__":
-    main()
+transform_sequence(n, initial_seq, k, final_seq)
+

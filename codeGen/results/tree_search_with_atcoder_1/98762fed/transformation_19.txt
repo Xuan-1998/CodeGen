@@ -1,0 +1,24 @@
+
+===BEGIN PLAN===
+1. **Problem Understanding**: We need to count the number of valid matrices of size N x M where each element is either 0 or 1 and the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} holds for all quadruples (a, b, c, d) such that 1 \leq a < c \leq N and 1 \leq b < d \leq M.
+
+2. **Dynamic Programming Approach**:
+   - **State Definition**: Let dp[i][j] be the number of valid matrices of size i x j.
+   - **Base Case**: dp[1][j] = 2^j for all j, and dp[i][1] = 2^i for all i, since any single row or single column matrix is trivially valid.
+   - **Transition Relationships**: To compute dp[i][j], consider matrices of size (i-1) x j and i x (j-1) and ensure that the new row or column maintains the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b}.
+
+3. **Implementation**:
+   - Initialize a 2D array dp with dimensions (N+1) x (M+1).
+   - Set base cases for dp[1][j] and dp[i][1].
+   - Iterate over i from 2 to N and j from 2 to M, updating dp[i][j] using the transition relationships.
+   - The final answer will be dp[N][M] % 998244353.
+
+4. **Edge Cases**:
+   - Smallest values for N and M (N = 1 or M = 1).
+   - Ensure the modulo operation is applied correctly to prevent overflow.
+
+5. **Complexity Consideration**:
+   - Time Complexity: O(N * M) since we are filling up a table of size N x M.
+   - Space Complexity: O(N * M) for storing the dp table.
+===END PLAN===
+

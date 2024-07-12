@@ -1,0 +1,10 @@
+
+1. Sort the points based on their positions in ascending order. This allows us to process the points from right to left easily.
+2. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point. The base case is dp[n] = 0, as there are no points to the right of the newly added point.
+3. Initialize a variable `min_removed` to keep track of the minimum points removed.
+4. Iterate from the second last point to the first point (right to left):
+    a. For each point i, find the next point j such that ai + bi < aj using binary search.
+    b. Update dp[i] = dp[j] + (j - i - 1), which accounts for the points removed between i and j.
+    c. Update `min_removed` to be the minimum of `min_removed` and dp[i].
+5. The result is stored in `min_removed` which represents the minimum number of points removed if exactly one point is added to the right of all existing points.
+

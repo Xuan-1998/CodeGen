@@ -1,31 +1,44 @@
-def is_palindrome(s):
-    return s == s[::-1]
-
-def min_operations(s, queries):
+python
+def min_cost_to_beautiful_string(n, m, s, queries):
+    # Possible beautiful patterns
+    patterns = ["abc", "acb", "bac", "bca", "cab", "cba"]
+    
+    # Precompute prefix sums for each pattern
+    prefix_sums = [[0] * (n + 1) for _ in range(6)]
+    
+    for i in range(n):
+        for p in range(6):
+            prefix_sums[p][i + 1] = prefix_sums[p][i] + (s[i] != patterns[p][i % 3])
+    
+    # Process each query
     results = []
     for l, r in queries:
-        # Extract the substring
-        substring = s[l-1:r]
-        
-        # Check for palindromes and count operations
-        operations = 0
-        for i in range(1, len(substring)):
-            if substring[i] == substring[i-1]:
-                operations += 1
-                break  # Only one change needed to break the palindrome
-
-        # Append the result for the current query
-        results.append(operations)
+        l -= 1  # Convert to 0-based index
+        min_cost = float('inf')
+        for p in range(6):
+            cost = prefix_sums[p][r] - prefix_sums[p][l]
+            min_cost = min(min_cost, cost)
+        results.append(min_cost)
+    
     return results
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input().strip()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    
+    queries = []
+    for i in range(m):
+        l = int(data[3 + 2 * i])
+        r = int(data[4 + 2 * i])
+        queries.append((l, r))
+    
+    results = min_cost_to_beautiful_string(n, m, s, queries)
+    
+    for result in results:
+        print(result)
 
-# Get the result for each query
-results = min_operations(s, queries)
-
-# Print the results to stdout
-for res in results:
-    print(res)

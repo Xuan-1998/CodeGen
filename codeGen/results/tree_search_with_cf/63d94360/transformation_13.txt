@@ -1,0 +1,10 @@
+
+1. Define a 2D list `dp` where `dp[i][j]` represents the number of ways to pass the ball exactly `i` times such that the `j`-th player receives the ball.
+2. Initialize the base case: `dp[0][0] = 1`, meaning with 0 passes, the only way for the 0-th player to have the ball is the initial state. For all other players `dp[0][j] = 0` for `j > 0`, since no passes have been made yet.
+3. Iterate over the number of passes from 1 to N.
+4. For each pass `i`, iterate over each player `j` from 0 to K.
+5. For each player `j`, update `dp[i][j]` by summing up the values from the previous pass `i-1` for all players `m` (where `m` is any player other than `j`).
+6. Use the modulo operation to ensure the results do not exceed 1000000007 (10^9+7).
+7. After filling up the `dp` table, the result for each test case will be `dp[N][0]`, which represents the number of ways to pass the ball exactly `N` times so that player `P` (the 0-th player) receives the ball last.
+8. Output the result for each test case.
+

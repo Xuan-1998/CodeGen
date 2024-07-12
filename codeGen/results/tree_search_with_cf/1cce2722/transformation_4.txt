@@ -1,0 +1,15 @@
+
+1. Count Occurrences: Use an array `count` where `count[x]` stores the frequency of integer `x` in the sequence. This helps in quickly accessing the number of times an integer appears.
+2. State Expression: Define `dp[x]` as the maximum points that can be obtained considering all integers from 1 to x.
+3. Base Cases: 
+   - `dp[0] = 0` because there are no points to be earned from an empty sequence.
+   - `dp[1] = count[1]` because if the sequence contains the integer 1, the player can only earn points from 1.
+4. State Transition: For each integer x from 2 to the maximum value in the sequence:
+   - `dp[x] = max(dp[x-1], dp[x-2] + x * count[x])`
+   - This ensures that the player either skips the integer x (thus taking the value from `dp[x-1]`) or includes x in the score (thus taking the value from `dp[x-2]` and adding the points earned from x).
+5. Result: The desired maximum points will be stored in `dp[max_val]` where `max_val` is the maximum integer present in the sequence.
+6. Edge Cases: 
+   - If the sequence contains only one integer, the result is the integer itself.
+   - If all integers are the same, the result is the integer multiplied by its frequency.
+   - If the sequence contains consecutive integers, ensure the state transition correctly handles the removal condition.
+

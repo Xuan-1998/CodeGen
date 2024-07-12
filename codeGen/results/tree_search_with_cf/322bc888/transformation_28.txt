@@ -1,0 +1,34 @@
+
+1. Identify the problem constraints and requirements:
+   - The string contains only the first three lowercase Latin alphabets ('a', 'b', 'c').
+   - We need to avoid palindromic substrings of length 2 or more.
+   - Each query specifies a substring and we need to calculate the minimum cost to make it "beautiful".
+
+2. Define the state expression:
+   - Let dp[i][j] be the minimum cost to make the substring s[i:j] beautiful.
+   - Base case: dp[i][i] = 0 since a single character substring is inherently beautiful.
+
+3. Precompute all possible beautiful patterns:
+   - There are only 3 characters ('a', 'b', 'c'), so the possible non-palindromic patterns of length up to 3 are limited.
+   - Generate all permutations of length 1 to 3 of 'a', 'b', 'c' and check which are non-palindromic.
+
+4. Build the dp table using a bottom-up strategy:
+   - Initialize a 2D dp array of size n x n, where n is the length of the string.
+   - Iterate over all possible substring lengths from 2 to n.
+   - For each substring length, iterate over all possible starting positions.
+   - For each substring, calculate the minimum cost to transform it into one of the precomputed beautiful patterns.
+
+5. Answer each query efficiently:
+   - For each query, use the precomputed dp table to get the minimum cost for the specified substring.
+   - Output the result for each query.
+
+6. Optimize the solution:
+   - Instead of storing the dp table for all substrings, use a sliding window approach to reduce space complexity.
+   - Precompute the cost for transforming each substring of length 2 and 3 and use these precomputed values to answer the queries.
+
+7. Implementation steps:
+   - Parse the input values.
+   - Precompute the beautiful patterns and their transformation costs.
+   - Build the dp table using the bottom-up approach.
+   - Answer each query using the precomputed values.
+

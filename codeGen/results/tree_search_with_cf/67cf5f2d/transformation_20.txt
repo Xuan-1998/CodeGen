@@ -1,0 +1,13 @@
+
+1. Sort the points based on their positions in ascending order. This ensures that we can process the points from right to left easily since we will be iterating from the end of the list to the beginning.
+2. Define the state expression: Let dp[i] represent the minimum number of points removed up to the i-th point when considering the activation from right to left.
+3. Initialize the dp array: Set dp[n] = 0, where n is the total number of points, since adding a point to the right of all points initially removes none.
+4. Iterate from the second last point to the first point (i.e., from n-1 to 0):
+   a. For each point i, find the farthest point j to the left that is not within the bi distance of the i-th point.
+   b. If there is no such j, then dp[i] = dp[i+1] + 1.
+   c. If such a j exists, then dp[i] = min(dp[i+1], dp[j+1] + (j - i)).
+5. The result will be dp[0], which gives the minimum number of points removed when considering the activation from right to left and adding a point to the right of all existing points.
+6. Edge cases:
+   a. If there is only one point, then adding a point to the right will result in 0 removals.
+   b. If all points have the same range, then the calculation should handle overlapping ranges correctly.
+

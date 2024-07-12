@@ -1,0 +1,10 @@
+
+1. Precompute all possible "beautiful" strings of length up to 3 using the first three lowercase Latin alphabets. There are only 6 possible permutations: "abc", "acb", "bac", "bca", "cab", "cba".
+2. For each of these 6 permutations, precompute the cost of transforming any substring of the original string `s` to match each of these permutations. This can be done using a prefix sum array for each permutation.
+3. For each query, determine the cost to transform the substring to each of the 6 "beautiful" strings. The answer for the query will be the minimum cost among these 6 transformations.
+4. Construct the prefix sum arrays for each of the 6 "beautiful" strings:
+   - For each character in the string `s`, compute the cost to change it to the corresponding character in each of the 6 permutations.
+   - Store the cumulative costs in prefix sum arrays.
+5. For each query, use the prefix sum arrays to quickly calculate the cost of transforming the substring to each of the 6 "beautiful" strings.
+6. Return the minimum cost among the 6 possible transformations for each query.
+

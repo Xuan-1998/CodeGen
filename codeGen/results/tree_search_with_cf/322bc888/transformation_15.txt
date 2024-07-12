@@ -1,0 +1,19 @@
+
+1. Precompute the cost of making each prefix of the string beautiful for all possible patterns of length 3 (i.e., "abc", "acb", "bac", "bca", "cab", "cba"). This will allow us to efficiently answer each query in constant time.
+   
+2. Define six possible beautiful patterns of length 3: ["abc", "acb", "bac", "bca", "cab", "cba"].
+
+3. For each of the six patterns, precompute the cost to transform the prefix of the string up to each position into a string that follows that pattern. Let `cost[k][i]` represent the cost to transform the prefix of length i+1 into the k-th pattern.
+
+4. Iterate over the string and fill in the cost arrays for each pattern:
+   a. For each character in the string, compare it with the corresponding character in the pattern.
+   b. If the characters are different, increment the cost by 1.
+   c. Accumulate the cost from the previous position to get the total cost up to the current position.
+
+5. For each query, use the precomputed costs to determine the minimum cost to make the substring beautiful:
+   a. For each pattern, calculate the cost to transform the substring into that pattern using the precomputed costs.
+   b. The cost for the substring from l_i to r_i can be found by subtracting the cost up to l_i-1 from the cost up to r_i for each pattern.
+   c. Take the minimum of these costs as the result for the query.
+
+6. Output the results for all queries.
+

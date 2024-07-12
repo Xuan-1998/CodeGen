@@ -1,0 +1,30 @@
+python
+===BEGIN PLAN===
+1. Define the Problem:
+   - We need to find the number of valid sequences B of length N, where each B_i is between 1 and N, and the number of occurrences of each integer i in B is at most A_i.
+   - The result must be modulo 998244353.
+
+2. Dynamic Programming Approach:
+   - Use a 2D DP table `dp` where `dp[i][j]` represents the number of valid sequences of length `i` using numbers from 1 to `j`.
+   - Initialize `dp[0][0] = 1`, which represents an empty sequence. For all other `dp[0][j]` where `j > 0`, initialize `dp[0][j] = 0`.
+
+3. State Transition:
+   - For each `i` from 1 to N:
+     - For each `j` from 1 to N:
+       - `dp[i][j] = dp[i][j-1] + dp[i-1][j-1] * A[j-1]`
+       - The term `dp[i][j-1]` represents not using the j-th number in the sequence.
+       - The term `dp[i-1][j-1] * A[j-1]` represents using the j-th number in the sequence.
+       - Apply modulo 998244353 to each update to avoid overflow.
+
+4. Final Result:
+   - The answer will be stored in `dp[N][N]`.
+
+5. Edge Cases:
+   - Ensure to handle the smallest input size where `N = 1`.
+   - Validate that all values of A_i are within the given constraints.
+
+6. Complexity:
+   - Time complexity: O(N^2) due to the nested loops for filling the DP table.
+   - Space complexity: O(N^2) due to the DP table.
+===END PLAN===
+

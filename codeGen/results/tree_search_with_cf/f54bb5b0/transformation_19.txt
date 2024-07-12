@@ -1,0 +1,13 @@
+
+1. Top-Down Approach with Memoization: Use a dynamic programming approach that involves breaking down the problem into smaller sub-problems and storing the results of these sub-problems to avoid redundant computations. This approach will use recursion and a memoization table. The time complexity will be O(n*k) and the space complexity will be O(n*k).
+
+2. State Expression: Define dp[u][d] to represent the count of vertices that are exactly at distance d from vertex u. The base case is dp[u][0] = 1 for all u, as the distance from a vertex to itself is zero.
+
+3. DFS Traversal: Perform a depth-first search (DFS) traversal to fill in the dp table. For each vertex u, recursively calculate the dp values for its children. During this traversal, propagate the dp values up the tree.
+
+4. Counting Pairs: For each vertex u, to count the number of pairs (u, v) with a path of length k, use the dp values of its children. Specifically, for each child v of u, the number of such pairs is calculated by considering the contribution of paths passing through u. Use the formula: for each d from 1 to k-1, add the product of dp[v][d-1] and dp[u][k-d-1] to the count.
+
+5. Combine Results: Sum the counts of valid pairs for all vertices to get the final result.
+
+6. Edge Cases: Handle small values of n and k, and ensure that the tree structure is correctly maintained. Consider the cases where k is greater than the height of the tree.
+

@@ -1,0 +1,12 @@
+
+1. Define the state dp[i][j] to represent the maximum possible value that can be obtained from the subarray of length 2^(n-i) starting at index j after the i-th phase.
+2. Initialize the base state: dp[0][j] = j+1 for all j from 0 to 2^n - 1, since in the 0-th phase, the sequence is just the permutation of integers from 1 to 2^n.
+3. Iterate over the phases from 1 to n:
+    a. For each phase i, iterate over all subarrays of length 2^(n-i):
+        i. For each subarray starting at index j, compare the elements in pairs according to the i-th bit of the string s:
+            - If s[i-1] is '0', keep the smaller value of each pair.
+            - If s[i-1] is '1', keep the larger value of each pair.
+4. The final answer will be the unique values in dp[n][0] after all phases are completed.
+5. Collect all unique values in dp[n][0] and sort them in ascending order.
+6. Output the sorted unique values.
+

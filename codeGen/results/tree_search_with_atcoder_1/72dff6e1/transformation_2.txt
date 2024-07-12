@@ -1,0 +1,14 @@
+python
+===BEGIN PLAN===
+1. Define a DP table dp where dp[i][j] represents the number of valid sequences of length i where the last element is j.
+2. Initialize dp[0][0] to 1, as there is one way to have a sequence of length 0.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over all possible last elements j (from 1 to N).
+5. For each j, iterate over all possible previous elements k (from 1 to N).
+6. Check the validity of adding element j to the sequence ending with k:
+   - Ensure that the number of occurrences of k in the sequence does not exceed A[k-1].
+   - Ensure that the number of occurrences of j in the sequence does not exceed A[j-1].
+7. Update dp[i][j] by adding dp[i-1][k] if the above conditions are met.
+8. The final answer is the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+===END PLAN===
+

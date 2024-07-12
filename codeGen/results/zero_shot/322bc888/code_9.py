@@ -1,25 +1,38 @@
-def min_operations_to_beautiful_substring(n, m, s, queries):
+python
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    m = int(data[1])
+    s = data[2]
+    
+    queries = []
+    index = 3
+    for _ in range(m):
+        l = int(data[index]) - 1
+        r = int(data[index + 1])
+        queries.append((l, r))
+        index += 2
+    
+    patterns = ["abc", "bca", "cab"]
+    costs = [[0] * (n + 1) for _ in range(3)]
+    
+    for i in range(3):
+        pattern = patterns[i]
+        for j in range(n):
+            costs[i][j + 1] = costs[i][j] + (s[j] != pattern[j % 3])
+    
     results = []
-    for query in queries:
-        l, r = query
-        # We'll use the modulo operator to alternate between 'a', 'b', and 'c'
-        expected_chars = ['a', 'b', 'c']
-        cost = 0
-        for i in range(l - 1, r):
-            # Check if the current character is what we expect it to be
-            if s[i] != expected_chars[(i - l + 1) % 3]:
-                cost += 1
-        results.append(cost)
-    return results
+    for l, r in queries:
+        min_cost = float('inf')
+        for i in range(3):
+            min_cost = min(min_cost, costs[i][r] - costs[i][l])
+        results.append(min_cost)
+    
+    print("\n".join(map(str, results)))
 
-# Read input from stdin
-n, m = map(int, input().split())
-s = input()
-queries = [tuple(map(int, input().split())) for _ in range(m)]
+if __name__ == "__main__":
+    main()
 
-# Get the results for all queries
-results = min_operations_to_beautiful_substring(n, m, s, queries)
-
-# Print the results to stdout
-for result in results:
-    print(result)

@@ -1,0 +1,8 @@
+
+1. Sort the points based on their positions in ascending order. This will help in efficiently finding the next point to activate.
+2. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point. Initialize dp[n] = 0, as there are no points to the right of the newly added point.
+3. Iterate from the second last point to the first point (i.e., from right to left) and use a binary search to find the next point j that is not within the range bi of the i-th point.
+4. Transition relation: For each i, find the smallest j such that ai + bi < aj. If such a j does not exist, then dp[i] = 1 (only the i-th point is removed). Otherwise, dp[i] = 1 + dp[j] (i-th point is removed and then continue with the j-th point).
+5. The final answer will be dp[0], which represents the minimum number of points removed starting from the first point.
+6. To efficiently find the next point j, maintain a list of positions and use binary search (e.g., bisect module in Python) to find the first position greater than ai + bi.
+

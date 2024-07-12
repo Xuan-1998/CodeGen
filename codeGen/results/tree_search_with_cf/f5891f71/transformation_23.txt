@@ -1,0 +1,19 @@
+
+1. Bottom-up Strategy with Tabulation: This approach involves iteratively solving subproblems and building up the solution from the base cases. It is generally more efficient in terms of both time and space as it avoids the overhead of recursion. Time complexity: O(n), space complexity: O(n).
+
+2. State: Let dp[i] be the maximum possible value of the remaining element when considering the subarray from the start up to the i-th element.
+
+3. Transition: The transition needs to account for the operation of choosing an element 'x' and its adjacent element 'y', removing 'y' from the array and updating 'x' to 'x - y'. Thus, the transition can be defined as:
+   dp[i] = max(dp[i-1] - a[i], a[i] - dp[i-1])
+   Here, dp[i-1] represents the maximum value up to the (i-1)-th element, and we need to consider removing the i-th element and updating the (i-1)-th element.
+
+4. Base Case: The base case is straightforward:
+   dp[0] = a[0] because if there's only one element, it remains as it is.
+
+5. Result: The result will be stored in dp[n-1], which represents the maximum possible value of the remaining element after performing all operations on the entire array.
+
+6. Edge Cases: Consider edge cases such as:
+   - When the array has only one element.
+   - When all elements are negative or positive.
+   - When there are alternating positive and negative values.
+

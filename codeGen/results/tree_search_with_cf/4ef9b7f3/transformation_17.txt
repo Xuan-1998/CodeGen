@@ -1,0 +1,9 @@
+
+1. Define the state: Let dp[i][j] be a boolean that indicates whether the initial subsequence of length i can be transformed into the final subsequence of length j.
+2. Initialize the DP table: Create a 2D table dp where dp[i][j] is initialized to false. Set dp[0][0] to true because an empty initial sequence can be transformed into an empty final sequence.
+3. Transition Relationship: Iterate through the initial sequence and for each valid operation that can be performed on the subsequence of length i resulting in a subsequence of length i-1, update dp[i-1][j] to true if the resulting subsequence matches the first j elements of the final sequence.
+4. Iterate through the DP table: For each i from 1 to n and each j from 1 to k, if dp[i][j] is true, check all possible operations that can be performed to reduce the length of the initial subsequence by 1. If the resulting subsequence matches the first j elements of the final sequence, update dp[i-1][j] to true.
+5. Check the final state: After filling the DP table, check the value of dp[n][k]. If it's true, then it's possible to transform the initial sequence into the final sequence. Otherwise, it's not possible.
+6. Construct the sequence of operations: If dp[n][k] is true, backtrack through the DP table to construct the sequence of operations that transform the initial sequence into the final sequence.
+7. Output the result: If dp[n][k] is true, print "YES" followed by the sequence of operations. If dp[n][k] is false, print "NO".
+

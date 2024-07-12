@@ -1,0 +1,27 @@
+
+1. Tree Representation and Input Parsing:
+   - Parse the input to get the number of vertices `n` and the required path length `k`.
+   - Construct the tree using an adjacency list representation from the given edges.
+
+2. Dynamic Programming State Definition:
+   - Define `dp[u][d]` as the number of vertices that are exactly at distance `d` from vertex `u`.
+   - Initialize the base case: `dp[u][0] = 1` for all vertices `u`, as the distance from a vertex to itself is zero.
+
+3. Depth-First Search (DFS) Traversal:
+   - Perform a DFS traversal from an arbitrary root (e.g., vertex 1) to populate the `dp` table.
+   - During the DFS, for each vertex `u`, combine the dp values of its children to update the dp values of `u`.
+
+4. Counting Pairs:
+   - For each vertex `u`, count the number of pairs `(u, v)` with a path of length `k` using the dp values.
+   - Specifically, for each child `v` of `u`, the number of such pairs is the product of `dp[v][d-1]` and `dp[u][k-d-1]` for all valid `d`.
+
+5. Edge Cases:
+   - Handle the smallest tree with `n = 1`.
+   - Ensure that the solution works efficiently within the given constraints (1 ≤ n ≤ 50000, 1 ≤ k ≤ 500).
+
+6. Output the Result:
+   - Sum the counts of all valid pairs and print the result.
+
+Time Complexity: O(n*k)
+Space Complexity: O(n*k)
+

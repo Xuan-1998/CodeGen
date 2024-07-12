@@ -1,0 +1,14 @@
+python
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming (DP). Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+2. Initialize the DP table. The base case is dp[1][1] = 1, as a 1x1 matrix with a single element is always valid.
+3. Transition: To fill dp[i][j], consider the following:
+   - A valid matrix of size i x j can be formed by extending a valid matrix of size (i-1) x j by adding a new row, or by extending a valid matrix of size i x (j-1) by adding a new column.
+   - Ensure that the new row or column maintains the given condition for all quadruples (a, b, c, d).
+4. Iterate through all possible sizes of matrices from 1x1 up to NxM, filling the DP table using the transition rule.
+5. The final answer will be the value of dp[N][M] modulo 998244353.
+6. Edge cases to consider:
+   - Smallest matrices (1x1, 1xN, Nx1).
+   - Ensure that the DP transitions correctly handle the boundaries of the matrix.
+===END PLAN===
+
