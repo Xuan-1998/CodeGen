@@ -3,6 +3,7 @@ from problems import *
 import json
 import os
 import pandas as pd
+import ast
 import subprocess
 import time
 
@@ -269,6 +270,10 @@ def analyze_csv_with_difficulty(
         df = pd.read_csv(csv_file)
         highest_accuracy = df["Average Accuracy"].max()
         sample_budget = len(df["Average Accuracy"])
+        df['Expected Output'] = df['Expected Output'].apply(ast.literal_eval)
+        df_zero_length = df[df['Expected Output'].str.len() == 0]
+        error_cases = df_zero_length.shape[0]
+        null_output_cases = df[df['Actual Output'].apply(lambda x: "''" in x)].shape[0]
 
         baseline_py_folder = os.path.join(root_dir, baseline, prob)
         baseline_csv_file = os.path.join(baseline_py_folder, "results.csv")
@@ -280,6 +285,10 @@ def analyze_csv_with_difficulty(
             baseline_high_accuracy = baseline_df["Average Accuracy"][
                 : max(sample_budget, 75)
             ].max()
+            baseline_df['Expected Output'] = baseline_df['Expected Output'].apply(ast.literal_eval)
+            baseline_df_zero_length = baseline_df[baseline_df['Expected Output'].str.len() == 0]
+            baseline_error_cases = baseline_df_zero_length.shape[0]
+            baseline_null_output_cases = baseline_df[baseline_df['Actual Output'].apply(lambda x: "''" in x)].shape[0]
 
         prob_file = os.path.join(py_folder, "prob.json")
         with open(prob_file) as f:
@@ -291,7 +300,7 @@ def analyze_csv_with_difficulty(
         prob_json = Problem.from_json(unescaped_str[1:-1])
 
         print(
-            f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy:.2f}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy:.2f}"
+            f"Problem: {prob}, Difficulty: {prob_json.difficulties}, Highest Accuracy: {highest_accuracy:.2f}, Sample Budget: {sample_budget}, Baseline Accuracy: {baseline_high_accuracy:.2f}, Test Cases: {len(df['Average Accuracy'])}, Compilation Error Cases: {error_cases}, Baseline Compilation Error Cases: {baseline_error_cases}, Null Output Cases: {null_output_cases}, Baseline Null Output Cases: {baseline_null_output_cases}"
         )
         model_accuracies.append(highest_accuracy)
         baseline_accuracies.append(baseline_high_accuracy)
