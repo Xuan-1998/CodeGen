@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming where we fill up the dp table in a bottom-up manner, starting from the smallest subproblems.
+
+dp[i][j] will represent the minimum number of operations needed to make the array strictly increasing up to index i, considering that A[i-1] <= j.
+
+To initialize the dp table, for each element A[i], set dp[i][A[i]] = 0 because the element itself is already in place. For other values of j, set dp[i][j] = infinity because we don't know how many operations are needed yet.
+
+Then, iterate from i-1 to 0 (since we start filling up from bottom-up). For each i and A[i], calculate the minimum number of operations needed to make the array strictly increasing considering that A[i-1] <= j. This can be done by finding the minimum number of operations needed for all previous elements (j < A[i]).
+
+Use memoization by defining a dictionary dp_table where dp_table[(i, j)] = min_operations for each subproblem. This way, we avoid recomputing the same subproblems multiple times and reduce time complexity.
+
+Finally, return dp[N][A[N]] as the minimum number of operations needed to make the array strictly increasing.
+
+===END PLAN===

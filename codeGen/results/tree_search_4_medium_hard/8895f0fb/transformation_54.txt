@@ -1,0 +1,12 @@
+===
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+
+1. Initialize an array dp of size N+1 with all elements set to 0.
+2. For each digit from 1 to N:
+   a. Calculate the minimum number of non-zero carries that can occur when adding two numbers with i-1 digits, which is 9 - (i-1) + dp[i-1].
+   b. The maximum number of non-zero carries that can occur when adding two numbers with i-1 digits and a new digit to be added is max(0, 10-dp[i-1]-5).
+   c. Update dp[i] as the minimum of these two values.
+
+3. Calculate the expected number of non-zero carries by summing up all elements in the array dp from index 1 to N and divide it by N.
+===
+

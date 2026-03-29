@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+Let dp[i][j] represent whether there exist arrays a and b, each of length i and with no elements in common, so that p=merge(a,b) up to the i-th element. Note that if dp[i][j] is true, then it must be true for all 1 ≤ k ≤ i, j such that dp[k][l] is also true (for some l).
+
+dp[i][j] can be true if either p[i-1] is the largest element in array a (and thus needs to be added to b), or if it's the smallest element in array b (and thus needs to be removed from b). This observation leads to the recurrence:
+
+* dp[i][0] = dp[i-1][0] || (p[i-1] > max(a)) && dp[i-1][1]
+* dp[0][j] = dp[0][j-1] || (p[0] < min(b)) && dp[1][j-1]
+
+where max(a) is the largest element in array a, and min(b) is the smallest element in array b. Note that we are using the top-down approach to solve this problem.
+
+Employ a hybrid approach combining both top-down and bottom-up methods by initializing the dp table with base cases (i.e., when i or j is 0), then filling in the rest of the dp table based on the recurrence.
+
+Finally, after filling in the entire dp table, check if dp[n][n] is true. If it is, then there exist arrays a and b that satisfy the problem's conditions; otherwise, there does not.
+
+===END PLAN===

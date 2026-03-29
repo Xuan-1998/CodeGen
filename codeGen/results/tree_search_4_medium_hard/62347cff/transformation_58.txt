@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Determine the overlapping subproblems by recognizing that the minimum path sum for each cell depends on its neighbors. 
+Use tabulation to store and reuse these calculations.
+
+Let dp[i][j] be the minimum sum of all numbers along a path from the top left corner to cell (i, j). Then the base case is when i or j equals 0, in which case the minimum sum is simply the value at cell (i, j).
+
+dp[i][j] represents the minimum sum of all numbers along a path from the top left corner to cell (i, j), considering only the cells directly above it (dp[i-1][j]) and to its left (dp[i][j-1]).
+
+Use a dictionary memo where memo[(i, j)] is the minimum sum of all numbers along a path from the top left corner to cell (i, j). Initialize the memo with base cases when i or j equals 0. Then fill up the rest of the memo by considering only the cells directly above it (memo[(i-1, j)]) and to its left (memo[(i, j-1)]).
+
+For each cell in the grid, calculate dp[i][j] as min(dp[i-1][j], dp[i][j-1]) + grid[i][j]. This ensures that the minimum sum of all numbers along a path from the top left corner to cell (i, j) is calculated.
+
+Finally, return memo[m-1][n-1] as the minimum sum of all numbers along a path from the top left corner to the bottom right corner of the grid. Here m and n represent the number of rows and columns in the grid respectively.
+
+===END PLAN===

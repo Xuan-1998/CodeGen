@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Bottom-up approach with tabulation: Define a table 'dp[i][j]' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+Initially, set all cells in the table to infinity. Then, for each cell dp[i][j], compute it as follows:
+
+- If i == j, then there's only one matrix, so no multiplication is needed (dp[i][i] = 0).
+- Otherwise, consider multiplying matrices from i to k and then from k+1 to j. The minimum number of multiplications for this sub-sequence is the sum of the product of the dimensions of the current matrix with the minimum number of multiplications for the sub-sequence (k+1 to j) plus 1.
+
+Use a 2D table to store the minimum number of multiplications needed to multiply all matrices from i to j, and compute each cell as described above.
+Finally, print out the optimal parenthesization by tracing back the path in the table that corresponds to the minimum number of multiplications.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+
+The state expression could be the number of reversed edges needed to reach each city from the capital, i.e., dp[i] = # reversed edges to reach city i.
+
+Let state s[i] be the minimum number of reversed edges to reach city i. Transitions: for each neighbor j, if there's no edge between i and j or it's directed towards j, then update s[i] = min(s[i], 1 + s[j])
+
+Use dynamic programming with a bottom-up approach by maintaining an array dp of size n+1 to store the minimum number of reversed edges needed to reach each city from the capital.
+
+Calculate the total number of reversed edges as sum of all states in the dp array, i.e., min_reversed_edges = sum(dp)
+
+Find all possible ways to choose the capital by generating all permutations of cities and for each permutation, calculate the sum of distances to all other cities. The capital that has the minimum sum is chosen.
+
+Print the total number of reversed edges as the first line, and print all possible ways to choose the capital as a sequence of indexes in the increasing order as the second line.
+===END PLAN===

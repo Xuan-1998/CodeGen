@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+The state is the count of blocks with exactly k consecutive equal digits in them.
+Let the state be a tuple (k, c) representing the number of blocks ending at each digit position with exactly k consecutive equal digits in them, and c being the current count.
+
+For each digit 0 to 9:
+    Initialize an array dp[i] for i from 1 to n, filled with zeros.
+    For each block length j from 1 to n:
+        dp[j][i] = (dp[j-1][i] + dp[j-1][i-1]) mod 998244353
+
+Return the last row of the array.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Since the problem involves checking divisibility, it might be more efficient to use tabulation to store the results of subproblems and avoid redundant calculations.
+
+Think about the state as a pair (dp[i], count), where dp[i] is 1 if the prefix ending at index i has all its elements divisible by their indices, and count is the number of elements that are divisible by their indices.
+The initial state for the first element would be (0, 1) since only this single element satisfies the condition.
+
+For each subsequent element at index j:
+- If dp[j-1] == 1 and j is divisible by its value, then we can extend the good subsequence, so update dp[j] to 1 and increment count.
+- Otherwise, we reset the state to (0, 0) since this new element breaks the divisibility condition.
+
+Finally, sum up all counts modulo 10^9 + 7 to get the total number of good subsequences.
+===END PLAN===

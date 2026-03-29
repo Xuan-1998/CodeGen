@@ -1,0 +1,26 @@
+
+1. Precompute: Generate all possible "beautiful" strings of length up to 3 for comparison. For the first three lowercase Latin alphabets ('a', 'b', 'c'), the possible "beautiful" strings are:
+   - Length 1: a, b, c
+   - Length 2: ab, ac, ba, bc, ca, cb
+   - Length 3: abc, acb, bac, bca, cab, cba
+
+2. Generate Patterns: For strings longer than 3, generate repeating patterns based on the above beautiful strings of length 3. We will have 6 patterns:
+   - Pattern 1: abcabcabc...
+   - Pattern 2: acbacbacb...
+   - Pattern 3: bacbacbac...
+   - Pattern 4: bcabcabca...
+   - Pattern 5: cabcabcab...
+   - Pattern 6: cbacbacba...
+
+3. Precompute Costs: For each character in the string `s`, precompute the cost to convert it to match each of the 6 patterns. Store these costs in a 2D list `cost`, where `cost[i][j]` represents the cost to convert the substring starting at index `i` to match the j-th pattern.
+
+4. Build Prefix Sums: For each pattern, build a prefix sum array to quickly calculate the cost of any substring to match the pattern. This will allow us to answer each query in constant time.
+
+5. Query Processing: For each query, use the precomputed prefix sums to calculate the cost of transforming the given substring to match each of the 6 patterns. The minimum cost among these will be the answer for that query.
+
+Steps:
+1. Generate the 6 repeating patterns of length up to `n`.
+2. Precompute the cost to convert each character in `s` to match each of the 6 patterns.
+3. Build prefix sum arrays for each pattern.
+4. For each query, use the prefix sum arrays to calculate and return the minimum cost to make the substring "beautiful".
+

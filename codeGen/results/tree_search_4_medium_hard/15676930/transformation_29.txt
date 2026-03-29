@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+State is represented as dp[i][left_hungry][right_hungry] which stores the maximum joy that can be obtained by feeding hares from 1 to i with their left and right neighbors being respectively left_hungry and right_hungry. 
+
+The state transitions can be described as follows:
+
+- If both left and right hares are hungry, then dp[i][true][true] = a_i + max(dp[i-1][false][false], dp[i-1][true][true], dp[i-1][true][false])
+- If only the left hare is hungry, then dp[i][true][false] = b_i + max(dp[i-1][false][false], dp[i-1][true][false])
+- If only the right hare is hungry, then dp[i][false][true] = c_i + max(dp[i-1][false][true], dp[i-1][false][false])
+- If both left and right hares are full, then dp[i][false][false] = 0
+
+The final answer would be the maximum value of dp[n][*][*]
+
+This plan seems correct in that it captures the optimal substructure and state transitions correctly. The dynamic programming approach ensures that we avoid recalculating the same subproblems multiple times.
+
+However, there is a potential issue with this plan: what if n is 1? In that case, the base cases for the dp table would be missing, which could lead to incorrect answers. To fix this, we need to add additional base cases to handle the edge case where n is 1.
+
+Here's an updated version of the plan:
+

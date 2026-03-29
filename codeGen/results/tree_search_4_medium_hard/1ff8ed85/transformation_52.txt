@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine whether there exist two sequences, one with lengths that are either all even or all odd, such that their concatenation forms sequence $b$.
+
+dp[i] = min(dp[j] + (b[i] == len(a)) for j in range(i)) for i from 0 to n-1
+Think about how the lengths of the segments in sequence $a$ relate to each other, and try to formulate a recursive relationship between these states.
+
+Using a boolean array to store whether each length can be reached
+
+dp[i] = True if b[i-1] % 2 == 0 or (b[i-1] == len(a) and dp[b[i-1]-1]) for i from 1 to n
+dp[0] = True
+
+return "YES" if dp[n-1], else "NO"
+===END PLAN===

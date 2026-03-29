@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i][j] = minimum number of reversed roads needed to reach city j from city i. Since all trees are connected, we need to consider all possible paths from 1 to any other city. The base case would be dp[0][i] = 0 for all i, as there's no need to reverse any road when starting at the capital.
+
+The transition function can be defined as: 
+dp[i][j] = min(dp[i-1][k] + (i != j)) for all k such that roads exist from city i-1 to city k
+
+We'll use a 2D DP table where dp[i][j] is the minimum number of reversed roads needed to reach city j from city i. We fill up this table in a bottom-up manner.
+
+Finally, we return the maximum value in the last column as the minimum number of roads that need to be inversed if the capital is chosen optimally. The sequence of indexes of cities in increasing order which corresponds to the optimal capital can also be calculated from the DP table.
+===END PLAN===

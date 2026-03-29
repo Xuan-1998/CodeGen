@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+Let dp[i][j] represent whether there exist arrays a and b, each of length i and with no elements in common, so that p=merge(a,b) up to the i-th element. We need to update the value of dp[i-1][k] based on the value of dp[i-2][k] for 0 ≤ k < j.
+
+dp[i][j] can be true if either p[i-1] is the largest element in array a (and thus needs to be added to b), or if it's the smallest element in array b (and thus needs to be removed from b).
+
+Initialize dp[0][0] to True, as an empty array can always be merged with itself.
+
+Use top-down dynamic programming with memoization. For each i and j, calculate dp[i][j] based on dp[i-1][k] for 0 ≤ k < j and p[i-1].
+
+Base cases: 
+- If i == 0, return True.
+- If j == 0, return False.
+
+Recursion:
+- If p[i-1] is the largest element in array a (and thus needs to be added to b), then dp[i][j] = dp[i-1][k] for some k < j and p[i-1].
+- If it's the smallest element in array b (and thus needs to be removed from b), then dp[i][j] = dp[i-1][k] for some k > j and p[i-1].
+
+Return the final value of dp[n][n] as the answer.

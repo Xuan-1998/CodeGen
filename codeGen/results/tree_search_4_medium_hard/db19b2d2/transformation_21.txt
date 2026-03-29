@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+To calculate the probability that a randomly formed team will have at least one player from the department of interest, we can use dynamic programming.
+
+Let dp[i][j] be the probability that a team of size j has at least one player from the i-th department. We want to find dp[m-1][n].
+
+The transition is as follows:
+- If there are enough players in the i-th department to form a team, then we have two options: either include no players from this department (dp[i-1][j]) or include at least one player from this department (dp[i-1][j-n_i]). We take the maximum of these two probabilities.
+- If there are not enough players in the i-th department to form a team, then we can only include no players from this department (dp[i-1][j]).
+We calculate dp[0][k] for all k and then use these values to calculate dp[i][j] for all i and j.
+
+Here is the step-by-step plan:
+

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Initialize a dictionary dp with keys (i, k) where 0 <= i < n and 1 <= k <= max(a) + 1. Set dp[0][k] = 0 for all k.
+
+Define the state as: dp[i][k] = number of ways to split the first i characters into k substrings where no character appears more than a[j-1] times in any substring, and dp[i-a[j-1]][j-1] is known for j <= k.
+
+The base case is when i < 1 or k > max(a). In this case, return 0. Otherwise, the state transition can be computed as: 
+dp[i][k] = sum(dp[i-j][j] * (a[j-1] + 1) for j from 1 to min(i, a[26]))
+
+Use memoization by storing intermediate results in dp.
+
+To find the number of ways to split the message into substrings that fulfill the conditions, compute the value of dp[n][max(a)] and return it modulo 10^9 + 7. To find the length of the longest substring over all the ways, keep track of max_length = max(dp[i][k] for i from 0 to n-1). The minimum number of substrings over all the ways is then min(k for k in range(1, dp[n][max(a)]+1)).
+
+Finally, return the results as three lines: the number of ways to split modulo 10^9 + 7, the length of the longest substring, and the minimum number of substrings.
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+The state expression is  'dp[i][j]' where dp[i][j] represents the maximum possible grade that can be obtained by rounding the decimal fraction up to i digits after the decimal point within j seconds.
+
+Consider the last digit of the decimal fraction and decide whether to round it up or not based on the remaining time. The state is  'dp[i-1][j-1]' if we don't round it, and  'dp[i][j-1]' if we do.
+
+Use a dictionary to store the memoized values with  'dp[i][j]' as keys.
+
+When updating the dp array, we need to consider the maximum possible grade that can be obtained by rounding the decimal fraction up to i digits after the decimal point within j seconds. This involves considering all possible ways of rounding the last digit of the decimal fraction and choosing the one that results in the highest grade.
+
+We also need to handle edge cases such as when the remaining time is less than the time required to round a single digit, in which case we cannot round any digits and our maximum possible grade is simply the maximum possible grade for the integer part of the decimal fraction.
+
+Finally, we initialize the dp array with base cases where i=0 or j=0. This allows us to compute the values for larger values of i and j by combining the results of smaller subproblems.
+===END PLAN===

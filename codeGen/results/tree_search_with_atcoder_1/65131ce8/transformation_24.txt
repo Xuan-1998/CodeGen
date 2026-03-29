@@ -1,0 +1,11 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+3. State Expression: Define dp[i][j] as the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[1][1] = 1, indicating there's one way to form a subtree with one vertex (the root itself) which is also a good vertex.
+4. Transition: For each vertex i, calculate the number of ways to distribute its out-degree d_i among its children. Use combinatorial methods to determine the number of ways to partition the remaining vertices into the required subtrees.
+5. Ensure that the sum of out-degrees of all subtrees rooted at each vertex matches the given sequence d.
+6. Accumulate the number of good vertices for each subtree configuration that matches the given out-degree sequence.
+7. Use modular arithmetic with modulus 998244353 to handle large numbers and avoid overflow.
+8. Iterate through all possible subtree sizes and good vertex counts to fill the dp table.
+9. Sum the values in the dp table that correspond to valid subtree configurations to get the final answer.
+10. Output the sum of the numbers of good vertices for all good trees, modulo 998244353.
+

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+
+The state expression could be the number of reversed edges needed to reach each city from the capital, i.e., dp[i] = # reversed edges to reach city i.
+
+Let state s[i] be the minimum number of reversed edges to reach city i. Transitions:
+for each neighbor j, if there's no edge between i and j or it's directed towards j, then update s[i] = min(s[i], 1 + s[j])
+
+Use memoization with recursive function calls to calculate the shortest distance from the capital to each city and return the minimum number of reversed edges needed.
+
+The plan seems correct. To improve it:
+- Use topological sorting to process nodes in a order that ensures no backtracking is required.
+- Instead of using DFS/BFS, use dynamic programming where dp[i] represents the minimum number of reversed edges to reach city i from the capital.
+
+Potential issues with the plan include:
+- Edge cases: Make sure the capital city is chosen optimally. If not, it might lead to incorrect results.
+
+The updated version of the entire detailed plan:
+

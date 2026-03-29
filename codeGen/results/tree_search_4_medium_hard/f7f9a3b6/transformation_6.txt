@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. 
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+Create a table dp with dimensions n+1 by 26+1. Initialize all entries in the table as 0.
+For each character 'c' in the message (from left to right), iterate through the table and find the maximum number of consecutive appearances of 'c'.
+Let this maximum be k, and let the position where it ends be i. Then, for each position j from i+1 to n:
+    dp[i][j] = 0
+    If j-i <= a[ord('a'+c-97)], // check if the condition is satisfied 
+        For each possible split between i and j (inclusive):
+            dp[i][j] = max(dp[i][j], dp[i-1][k-1])
+    Return dp[n][26]
+===END PLAN===

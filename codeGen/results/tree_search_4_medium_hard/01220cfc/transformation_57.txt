@@ -1,0 +1,15 @@
+def can_reach(index):
+    if index >= len(arr) - 1:  # base case: last index reached
+        return True
+
+    if index in memo:
+        return memo[index]
+
+    max_reachable = False
+    for i in range(min(index + arr[index] + 1, len(arr)), 0, -1):
+        if can_reach(i) and i <= index + arr[index]:
+            max_reachable = True
+            break
+
+    memo[index] = max_reachable
+    return max_reachable

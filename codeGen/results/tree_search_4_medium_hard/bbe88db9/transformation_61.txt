@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i][j]: number of ways to reach room j from room i, considering whether Vasya has already used a portal in room i or not; dp[1][_]=1, since Vasya can always start the maze.
+
+Let f_i be the number of ways to reach room i. Then f_0 = 1 and for all i > 0: f_i = (f_{p_(i)} if ceiling contains odd crosses, f_{p_(i) - 1} if ceiling contains even crosses).
+
+Define a recursive function with memoization to store and reuse solutions for overlapping subproblems.
+
+For each room i, we need to consider whether Vasya has already used a portal in this room or not. If he hasn't, we can simply use the second portal (leading to p_i) and mark it as visited. Then, we update dp[i][p_(i)] with f_p(i). If he has, we can use either of the two portals.
+
+The base case would be when i = n + 1, in which case we return dp[n+1][n+1].
+
+The recursive function would look like this:
+
+code block goes here

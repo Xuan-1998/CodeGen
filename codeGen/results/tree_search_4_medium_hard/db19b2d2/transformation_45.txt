@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The initial idea is to model this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This involves calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+To do this, let's define PMF(p) as the probability that a randomly formed team with p players will have at least one player from the department of interest. The goal is to find PMF(n).
+
+Let's use dynamic programming to build up PMF(p) recursively. Initialize an array pmf[1...n] with all zeros, where n is the total number of players.
+
+For each possible team size p from 1 to n:
+    For each department i (from 1 to m):
+        Calculate the probability that the current team has at least one player from department i, given that we have chosen k = p - 1 players and are currently considering the i-th department. This can be calculated as s_i / sum(s_j for j in range(m)), where si is the number of basketball players in the i-th department.
+        Update pmf[p] by adding the probability that a team with size p has at least one player from department i, given that we already have k players.
+
+Finally, calculate the desired probability PMF(n) as the sum of all probabilities greater than or equal to 1: sum(pmf[k] for k in range(1...n+1)).
+
+===END PLAN===

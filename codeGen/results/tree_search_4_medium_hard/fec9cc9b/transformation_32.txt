@@ -1,0 +1,14 @@
+Determine if there are any increasing or decreasing elements within the subsegment by maintaining a boolean array "direction" where direction[i] represents whether the sequence from 1 to i is non-decreasing or not.
+
+bottom-up approach with tabulation:
+dp[i][j] = (i == 0 or array[i-1] <= array[j]) and j == r - 1, False otherwise
+Initialize dp table with size n+1 and m+1.
+Fill the first row of the dp table as follows: dp[0][j] = True for all j because an empty sequence is a ladder.
+
+Consider using a boolean array to track if the current segment is increasing or decreasing. 
+dp[l][r] = (direction[r-1] == False and r == r) or dp[l-1][r-1], False otherwise
+Fill the first column of the dp table as follows: dp[i][0] = True for all i because a single element sequence is a ladder.
+
+Now fill the rest of the dp table by considering increasing/decreasing segments.
+dp[i][j] = (direction[j-1] == direction[j-2] and j > 1) or (dp[i-1][j-1] and array[i-1] <= array[j]) or (dp[i-1][j-1] and direction[j-1]), False otherwise
+Print "Yes" for dp[0][m-1], "No" otherwise.

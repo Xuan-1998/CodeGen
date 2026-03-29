@@ -1,0 +1,31 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build a sequence with exactly i spheres having radii up to i, where 1 ≤ i ≤ C.
+dp[i] = (dp[i-1] + sum(binomial(C-i, k) * (k+1) ** (C-k) for k in range(0, min(i, C)))) % (10**9+7), 
+where the transition depends on the number of ways to select k spheres with radii up to i.
+
+To use a recursive function with memoization to avoid redundant computation:
+dp[0] = 1; // base case: one way to build a sequence with no spheres
+memo = {0: 1}; // initialize memoization dictionary
+
+def dfs(i):
+    if i in memo: return memo[i]
+    res = (res + binomial(C-i, k) * (k+1) ** (C-k)) % (10**9+7)
+    for k in range(0, min(i, C)):
+        res = (res + binomial(C-i, k) * (k+1) ** (C-k)) % (10**9+7)
+    memo[i] = res; 
+    return res;
+
+for _ in range(T):
+    N, M, C = map(int, input().split())
+    U = list(map(int, input().split()))
+    L = list(map(int, input().split()))
+    dp = [0]*(C+1);
+    for i in range(C+1):
+        if i == 0: 
+            dp[i] = 1; // base case: one way to build a sequence with no spheres
+        else:
+            dp[i] = dfs(i); 
+    print(*dp, sep=' ')
+===END PLAN===

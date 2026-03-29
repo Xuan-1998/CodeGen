@@ -1,0 +1,10 @@
+
+1. Define a 2D DP table `dp[i][j]` where `dp[i][j]` represents the number of valid sequences of length `i` ending with the integer `j`.
+2. Initialize the base case: `dp[0][j] = 1` for all `j` from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate through the lengths of sequences from 1 to N.
+4. For each length `i`, iterate through all possible ending integers `j` from 1 to N.
+5. For each `j`, calculate `dp[i][j]` by considering all possible previous integers `k` from 1 to N such that the sequence of length `i-1` ends with `k` and adding `j` to the sequence is valid (i.e., the number of occurrences of `j` in the sequence does not exceed `A[j-1]`).
+6. Use a cumulative sum array to efficiently compute the sum of valid `dp[i-1][k]` values.
+7. To compute the final result, sum up all `dp[N][j]` for `j` from 1 to N, as these represent all valid sequences of length N.
+8. Return the result modulo 998244353.
+

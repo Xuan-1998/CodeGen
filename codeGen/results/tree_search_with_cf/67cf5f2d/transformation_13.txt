@@ -1,0 +1,10 @@
+
+1. Sort the points based on their positions in ascending order.
+2. Define a dp array where dp[i] represents the minimum number of points removed if considering the first i points and adding the additional point to the right of all existing points.
+3. Initialize dp[0] = 0 since if there are no points, no points can be removed.
+4. For each point i from 1 to n, perform the following steps:
+    a. Initialize dp[i] to be the worst case, which is i (removing all previous points).
+    b. Use a binary search or linear scan to find the farthest point j that is not within the range of point i (i.e., ai - bi).
+    c. Update dp[i] as the minimum of the current dp[i] and dp[j] + (i - j - 1), where (i - j - 1) is the number of points between j and i that would be removed by point i.
+5. Return dp[n] as the final result, which represents the minimum number of points removed if considering all n points and adding the additional point to the right of all existing points.
+

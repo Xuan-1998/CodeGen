@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up approach and a 2D table.
+
+Define dp[i][j] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing, considering the last element is A[j].
+dp[i][j] = 
+    if j == i:
+        return 0 (base case: single element)
+    else:
+        min(dp[k][j-1] for k in range(j) if A[k] <= A[j]) + 
+        (A[j] - A[prev_index]) if prev_index != -1 else 0
+prev_index = max(k for k in range(j) if A[k] <= A[j])
+
+The final answer is the minimum value of dp[i][i] for all i.
+Implementing this plan using a 2D table and iterating through each element to fill up the table, then reading off the last row as the solution.
+
+===END PLAN===

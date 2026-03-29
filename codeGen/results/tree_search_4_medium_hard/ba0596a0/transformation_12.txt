@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+dp[i][j] = True if i is the last stone and j is its position
+dp[i][j] = dp[k-1][j] and (stones[k]- stones[k-1]) % 3 == (i-j) % 3 if i > 0
+dp[i][j] = max(dp[k-1][j], dp[k][j]+(i-k), dp[k+1][j]+(i-k-1)) if k in {j-1, j, j+1}
+dp[0][j] = True for any j
+Tabulate the problem by creating a 3D array where dp[i][j][k] represents whether the frog can reach stone i using j as its previous jump length and k as the distance of the last jump.
+===END PLAN===

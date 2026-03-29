@@ -1,0 +1,16 @@
+The optimal solution is to use dynamic programming with bottom-up approach and memoization.
+
+Let dp[i] be the minimum number of operations needed to make the subarray A[0..i] strictly increasing.
+
+Define transition relationships based on the comparison between adjacent elements:
+- If Ai > Ai+1, then dp[i] = dp[i-1] + 1 (since one operation is required to move Ai to its correct position)
+- If Ai <= Ai+1, then dp[i] can take the value of either dp[i-1] or dp[i-2], depending on whether Ai+1 is greater than any previous element in A
+
+Employ a bottom-up dynamic programming approach with memoization to store the results of subproblems:
+- Initialize an array dp of size N+1, where dp[0] = 0
+- For each i from 1 to N:
+    - If Ai > Ai+1, then update dp[i] as dp[i-1] + 1
+    - Otherwise, update dp[i] as the minimum of dp[i-1] and dp[i-2]
+- The final answer is stored in dp[N]
+
+This plan avoids potential issues by considering all possible cases and edge cases.

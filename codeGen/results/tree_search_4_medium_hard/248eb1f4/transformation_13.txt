@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoization can be used to avoid redundant computation in this problem.
+The state expression dp[i] = last_winner if we're considering i players, 
+and the dynamic programming array stores the winners for each number of players from 1 to X.
+
+dp[i] = 1 + dp[i-1] - ((i-1)//M)*M. This choice considers the previous winner and how many times the coin has been passed.
+
+A recursive function can be created that uses the same problem size as its arguments, 
+like this: func winner(int i, int M) returns int.
+
+The base case is when i == 1, in which case we just return 1. 
+Otherwise, we call winner(i-1, M) and subtract ((i-1)//M)*M to get the previous winner and adjust for the coin being passed.
+Finally, we add 1 to get the current winner.
+
+This plan seems correct and should work well for solving this problem. 
+It includes edge cases as it handles the base case correctly. 
+
+One possible improvement is to use an iterative approach instead of a recursive one, 
+which can be more efficient and avoid stack overflow issues for large values of X.
+===END PLAN===

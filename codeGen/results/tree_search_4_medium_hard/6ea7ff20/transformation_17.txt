@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+Let's define dp[i][j] as a boolean indicating whether there exist arrays a and b such that p[:i]=merge(a,b) and |a|=j. We'll use memoization to store the results of subproblems in a dictionary to avoid redundant computations.
+
+Base case: When j=0, meaning we're considering an empty array. In this case, check if the remaining elements in the permutation match array b.
+For each i from 1 to n-1:
+    If p[i] > p[0], consider two subproblems: 
+        - p[:i]=merge(a,b) and |a|=j (considering a element as the first element of the new array)
+        - p[:i]=merge(a,b) and |b|=(n-j-1) (considering b element as the first element of the new array)
+    Otherwise, consider only one subproblem: 
+        - p[:i]=merge(a,b) and |a|=j
+Memoize the results and update dp[i][j] accordingly.
+
+To check if there exist arrays a and b that satisfy the condition, return True if dp[n-1][n-1] is True. Otherwise, return False.
+===END PLAN===

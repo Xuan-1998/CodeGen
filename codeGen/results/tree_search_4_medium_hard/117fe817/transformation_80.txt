@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Use a bottom-up approach with tabulation to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider each integer as a sequence of digits from most significant bit to least significant bit, where the state is the current digit (0-9) and the transition relationship is that for each subsequent digit:
+
+* if the current digit is 1, add 1 to the total count
+* if the current digit is not 1, do nothing
+
+Use a table dp[] of size n+1, initialized with zeros. Iterate through the range of non-negative integers from 0 to n.
+
+For each integer i in [0, n]:
+    If i < 10: // single-digit number
+        dp[i] = (i % 10 == 1) ? 1 : 0
+    else: // multi-digit number
+        last_digit = i % 10
+        for d in range(10):
+            if d == 1 or d == 0:
+                dp[i] += dp[i // 10]
+            elif d != last_digit:
+                dp[i] += 9 * (dp[i // 10])
+
+Return dp[n]
+
+===END PLAN===

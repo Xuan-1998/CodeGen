@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = j % (M-1) + 1 if i is 1, else 
+    dp[i-1][((j+M-2)%X)+1];
+
+You can implement this problem by creating a 2D table of size (X+1) * X where the state is dp[i][j] = winner_index if we're considering i players with j people having coins.
+
+The base case is when i is 1, and then dp[1][j] = j % (M-1) + 1 because there's only one player left after M-1 turns.
+
+To fill up the table, for each cell dp[i][j], we need to consider the last person who got eliminated. The person who gets the coin is the winner.
+
+The loop should be from i = X down to 1, and for each i, j should range from 0 to X-1. The final answer will be stored in dp[X][j] where j ranges from 0 to X-1.
+
+This plan correctly captures the essence of the problem, but it's not clear whether it is correct or how it can be improved.

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Define the state expression as X = A - Y and B = X ^ Y. Then use memoization to store the results so we don't have to recompute them.
+
+Create a 2D array dp where dp[i][j] represents whether there is a solution for A=i and B=j, and initialize it with false.
+Set up base cases: if A=0 or B=0, then return X = 0 and Y = A or X = B and Y = 0 respectively.
+
+Define a function to fill the dp array. For each state (i, j), check if there is a solution for A=i and B=j by checking all possible values of X (from 0 to i) and Y (such that A-X=Y and B=X^Y).
+If there is a solution, update the dp array accordingly.
+
+Finally, return the minimum value of X that satisfies the condition, which can be found by iterating over the dp array in reverse order.
+Return -1 if no such X exists.
+
+===END PLAN===

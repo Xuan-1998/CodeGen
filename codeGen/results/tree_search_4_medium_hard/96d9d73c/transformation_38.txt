@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries called memo1 and memo2 where:
+    - memo1[(i, j)] stores whether it is possible to partition the subarray A[0..i-1] into j partitions with maximum difference 0 (since we don't care about the difference when k = 1).
+    - memo2[(i, k, m)] stores whether it is possible to partition the subarray A[0..i] into k partitions with a maximum allowed difference of m.
+Define the state as (i, k) where i is the current index and k is the number of partitions required.
+Use a combination of both indices i and j for the state, representing whether it's possible to partition A[0..i-1] into j partitions and maintain a maximum difference 0 when k = 1.
+Update memo2[(i, k, m)] as follows:
+    - If i < K or A[i] - A[i-K+1] > M, return False (since we need at least K elements in each partition and the difference should not exceed M).
+    - For j from 1 to min(i // K + 1, m):
+        * If memo1[(i-j*K, j)] is True, update memo2[(i, k, m)] as True.
+        * If memo2[(i-j*K, k-1, max(m, A[i] - A[i-j*K]))] is True and memo1[(j*K, 1)] is True, update memo2[(i, k, m)] as True.
+    Return memo2[(N, K, M)]
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n) = 2*f(n)
+
+Consider f(n) as a function of the form f(n) = min(g(k, n - 1)) for k from l to r
+
+Maintain a memoization table of size (r-l+1)*109+7 using a dictionary
+Create a dictionary dp where dp[i] will store the minimum comparisons required to select the most beautiful participant from i girls
+For each girl i in the range [l, r], calculate f(i) = min(dp[k] + k for k in range(l-1, i)) and update dp[i]
+Return f(r)
+===END PLAN===

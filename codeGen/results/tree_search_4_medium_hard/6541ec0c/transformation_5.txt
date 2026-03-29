@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Since we are looking for a condition that can be met after deleting at most k-1 edges, it seems more natural to use dynamic programming with bottom-up approach (tabulation) as we build up the solutions from smaller subproblems.
+
+Let dp[i][j] represent whether it is possible to delete at most j-1 edges from the tree rooted at node i, considering all previous nodes.
+dp[i][j] = True if there are no children;
+dp[i][j] = dp[children[i]][max(0, j-1)] for every child node k of i;
+
+Implement memoization by using a dictionary to store previously computed values of dp[i][j] to avoid redundant computations.
+
+For each test case:
+    1. Initialize an empty dictionary dp and a variable ans.
+    2. Iterate over the edges in the tree, updating dp according to the plan above.
+    3. Check if it is possible to delete at most k-1 edges from the tree by checking dp[0][k-1].
+    4. If possible, set ans = "YES", otherwise set ans = "NO".
+    5. Print ans.
+
+===END PLAN===

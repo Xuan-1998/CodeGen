@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Consider f(2n) = f(n) + 1 (since you need one more comparison to decide between two groups of n girls)
+
+f(n) as a function of the form f(n) = min(g(k, n - 1)) for k from l to r
+
+The base case would be when n = 1, f(1) is 0 because there's only one girl left.
+
+Implement memoization by storing and reusing previously computed values
+
+Iterate through the range [l, r] and calculate f(n) for each value of n
+At each step, iterate through k from l to r, and update the minimum number of comparisons needed to select the most beautiful participant from n girls in a beauty contest
+
+Update the plan as follows:
+f(2n) = f(n) + 1
+f(n) = min(g(k, n - 1)) for k from l to r
+
+Memoize previously computed values and update accordingly
+
+Edge cases: 1. Base case when n = 1; 2. When t is 0 or less than 0 (should be handled with modulo operation)
+
+===END PLAN===

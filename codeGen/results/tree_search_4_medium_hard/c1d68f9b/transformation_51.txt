@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+You can also think of a bottom-up tabulation solution where you build up the table row by row, considering the current polygon configuration and the next knight's mood.
+
+State: dp[i][j] represents whether it is possible to form a regular polygon with i knights and j good-mooded knights seen so far.
+Transition:
+- If the next knight's mood is 1 (good), update dp[i+1][j+1] if necessary;
+- if the next knight's mood is 0 (bad), keep dp[i+1][j] unchanged.
+
+Base case: 
+- When there is only one knight, the answer is YES;
+- When there are no knights, the answer is NO.
+Final Answer:
+- Return "YES" if dp[n][k] is true where n is the total number of knights and k is the maximum number of good-mooded knights seen so far; 
+- otherwise return "NO".
+===END PLAN===

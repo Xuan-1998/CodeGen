@@ -1,0 +1,13 @@
+python
+===BEGIN PLAN===
+1. Define the problem as finding the number of valid matrices of size N x M where each element is either 0 or 1, satisfying the given condition.
+2. Use a bottom-up dynamic programming approach to iteratively fill up a table based on the results of smaller subproblems.
+3. Define the state expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+4. Initialize the base case: dp[0][0] = 1, as a 0x0 matrix trivially satisfies the condition.
+5. For each matrix size (i, j) from (1, 1) to (N, M):
+    a. Calculate dp[i][j] based on the values of dp for smaller subproblems.
+    b. Ensure that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is met for all valid (a, b, c, d).
+6. The final answer will be dp[N][M] % 998244353, representing the number of valid matrices of size N x M.
+7. Return the final answer.
+===END PLAN===
+

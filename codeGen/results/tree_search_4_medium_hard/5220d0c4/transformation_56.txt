@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays.
+
+Consider all possible combinations of good and bad primes for each subarray, where the beauty value is determined by whether it contains a bad prime. This can be achieved by iterating over each element in the array, deciding whether to include it or not based on its prime nature (good or bad), and recursively calculating the maximum beauty value for the remaining subarrays.
+
+The state expression is indeed a 3-tuple (i, j, f) representing the current window [i, j] with a flag f indicating whether to consider bad primes or not. This allows us to memoize and reuse previously calculated beauty values when needed.
+
+Define a recursive function solve(state) that calculates the maximum beauty value for the given state and stores it in dp for future reference. The base case would be when the window size is 0, returning 0 as there are no elements to consider. When the window contains only good primes or no primes at all, return the sum of the good prime values (or 0 if no primes). If the window contains bad primes, subtract their total value from the sum of good primes.
+
+===END PLAN===

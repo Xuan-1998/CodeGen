@@ -1,0 +1,9 @@
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively.
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+Define a state s = (i, j) as the minimum points required to reach the cell at row i and column j.
+The transition relationship is that if we can reach the cell at row i-1 and column j with k points, then we can also reach the cell at row i and column j with k+grid[i][j] points. Similarly, if we can reach the cell at row i and column j-1 with l points, then we can also reach the cell at row i and column j with l+grid[i][j] points.
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+Create a bottom-up dynamic programming solution by filling the 2D array in row-major order, ensuring that each cell's value depends only on its previous cells.

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The state can be defined as dp[i], which is an integer representing the minimum number of roads that need to be reversed in order to reach city i from the capital.
+
+The base case would be dp[0] = 0, since we are starting at the capital and do not need to reverse any roads.
+
+Define the state update rule: for all i > 0, dp[i] is the minimum of:
+
+* The value of dp[prev] + 1 (where prev is the parent city of i) if city i can be reached by reversing one edge from the capital to city prev.
+* The value of dp[j] + 1 (where j is an adjacent city of i that has not been reached yet) if city i can be reached by reversing one edge from city j to city i.
+
+The final answer would be dp[n-1], where n is the number of cities, representing the minimum number of roads that need to be reversed in order to reach any other city from the capital.
+
+To find all possible ways to choose the capital, we can maintain a set or array of visited cities and update it accordingly as we calculate dp[i].
+
+The time complexity would be O(n) since we are processing each city once. The space complexity would be also O(n) for storing the dp array.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be viewed as finding the maximum value in a prefix sum array, which can be solved using binary search or segmented tree
+State: dp[i] represents the minimum number of beacons that would remain if all beacons with power levels less than or equal to b_i were added to the right of the i-th beacon.
+dp[i] also represents the maximum power level of a beacon that can be added to the right of the i-th beam without destroying any existing beacons.
+
+Let dp[i][j] be the minimum number of beacons that would remain if all beacons with power levels less than or equal to j were added to the right of the i-th beacon. Then, dp[i][b_i] is the minimum number of beacons that would remain after adding all beacons with power levels less than or equal to b_i to the right of the i-th beam.
+
+Define a function f(i, j) as the minimum number of beacons that would remain if all beacons with power levels less than or equal to j were added to the right of the i-th beam. Then,
+
+f(i, 0) = i+1 (all beacons are destroyed)
+f(i, j) = min(f(k, j-1) + 1 for k in range(i, -1, -1)) (if a beacon with power level j is added to the right of the i-th beam)
+
+The answer will be f(0, max_beacon_power).
+===END PLAN===

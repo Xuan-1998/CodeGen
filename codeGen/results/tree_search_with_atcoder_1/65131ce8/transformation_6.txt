@@ -1,0 +1,12 @@
+
+1. Parse the input to extract the number of vertices N and the out-degree sequence d.
+2. Initialize a 2D list dp where dp[v][k] represents the number of ways to form a subtree rooted at vertex v with exactly k good vertices.
+3. Define the base case: dp[v][0] = 1 for all v, since there is exactly one way to form a subtree with zero good vertices (an empty subtree).
+4. Define a recursive function to compute dp[v][k] using memoization:
+   - For each vertex v, iterate through its possible children.
+   - For each child, recursively compute the number of ways to form subtrees with various numbers of good vertices.
+   - Use the results to update dp[v][k] by considering the combinations of good vertices in the subtrees of v's children.
+5. To handle the constraint that the sum of out-degrees equals N-1, ensure that the tree is valid by checking that the total number of edges is N-1.
+6. Compute the sum of good vertices for all good trees by summing the values of dp[v][k] for all v and k.
+7. Return the result modulo 998244353.
+

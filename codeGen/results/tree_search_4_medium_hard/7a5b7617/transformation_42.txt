@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i][j] = number of ways to fill the current cell with a non-negative integer such that the sums of elements in rows up to i are all less than or equal to M.
+
+1. Initialize dp[0][m] = 1 for m from 0 to M (base case: only one way to fill the first row)
+2. For each row i from 1 to N:
+    a) For each column j from 0 to M:
+        i. If the sum of elements in rows up to i-1 is less than or equal to j, then dp[i][j] = dp[i-1][j-1] + dp[i-1][j] (add ways to fill previous row and current cell)
+        ii. Else, dp[i][j] = 0 (no way to fill the current cell without exceeding M)
+3. Return dp[N][M]

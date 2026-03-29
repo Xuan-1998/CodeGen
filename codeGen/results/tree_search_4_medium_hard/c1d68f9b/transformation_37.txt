@@ -1,0 +1,16 @@
+def can_form_polygon(mood, prev_knight, memo):
+    if (mood, prev_knight) in memo:
+        return memo[(mood, prev_knight)]
+
+    if len(set(range(prev_knight + 1))) != n - 1:  # Check if there are at least two knights left
+        return False
+
+    if mood == 0:  # If the current knight is not in good mood
+        return False
+
+    for i in range(n):
+        if i != prev_knight and (mood ^ moods[i]):  # Check if another knight with different mood exists
+            memo[(mood, prev_knight)] = can_form_polygon(mood ^ moods[i], i, memo)  # Recursively call the function for the next state
+            return memo[(mood, prev_knight)]
+
+    return "YES"  # If all knights are in good mood and there's no way to form a regular polygon, return "YES"

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+A bottom-up approach using tabulation could be implemented by defining a function that takes the current cell and direction (East) as inputs. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East.
+
+State relationships can be defined as follows:
+
+* dp[i][j] = 1 if there are no rocks to the East at cell (i, j) and all cells to the East have a mirror that can be placed without any rocks blocking the line of sight.
+* If the current cell is empty, then dp[i][j] = dp[i-1][j] since we don't need to look up or down.
+
+The updated state transition function would be:
+
+dp[i][j] = 0 if there are rocks to the East at cell (i, j) or all cells to the East have a mirror that can not be placed without any rocks blocking the line of sight.
+dp[i][j] = dp[i-1][j] + 1 if there are no rocks to the East at cell (i, j) and all cells to the East have a mirror that can be placed without any rocks blocking the line of sight.
+
+The final answer would be the sum of the values in the last row of the table, which represents the number of possible options where the mirror can be placed to see on the East side.
+===END PLAN===

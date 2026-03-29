@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val) where col is the column being checked and max_val is the maximum value seen in that column so far
+State: (col, max_val), Transition: (new_col, new_max_val) -> check if sorted for new_cols
+
+Dynamic Programming with Bottom-Up Approach:
+    Implement a 2D table where each cell represents the maximum value seen in a column up to that point and consider whether the current row is sorted according to that maximum value.
+    Initialize dp_table with all -1s
+    Iterate over columns (0 to m-1) 
+        For each column, check if there are any duplicate rows 
+            If yes, sort them independently without considering other columns
+            Else, proceed with dynamic programming
+    After initializing dp_table, iterate over tasks and update the table accordingly
+    Check for sorted subtable in at least one column by iterating over rows (0 to n-1) and checking if all elements in a row are non-decreasing in at least one column
+
+===END PLAN===

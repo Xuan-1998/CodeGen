@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far.
+
+dp[i][j] represents the lexicographically smallest string that can be formed from the first i strings if we reverse at most j characters, and its cost. We will use top-down dynamic programming with memoization to store the results of subproblems and avoid redundant computation.
+
+To fill up the dp table, for each pair (i, j), we need to find the minimum total cost to sort the first i strings in lexicographical order if we are allowed to reverse at most j characters. We can do this by iterating through all strings from 1 to i, and for each string k, check if its length is less than or equal to j, then update dp[i][j] with min(dp[i][j], dp[k-1][str_len(k)-1]+c[k]) where str_len(k) is the length of string k and c[k] is the cost to reverse string k.
+
+To handle edge cases, we need to make sure that dp[0][0] is initialized as 0 (base case), because there are no strings to sort. Also, when i > j, it means all strings have been processed and the remaining characters in each string don't matter for sorting, so dp[i][j] should be updated as min(dp[k-1][j]+c[k]) where k is the maximum length of all strings.
+
+Finally, after filling up the dp table, we can return dp[n][max_j] as the minimum total cost required to sort the strings in lexicographical order. If it is impossible to sort the strings in lexicographical order (i.e., dp[n][max_j] equals to -1), output -1.
+
+===END PLAN===

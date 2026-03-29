@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use a dynamic programming approach with memoization to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Initialize an array dp with length n+1, where dp[i] represents the total number of '1's in numbers from 0 to i-1.
+
+For each integer i from 0 to n:
+  - If i is divisible by 10 (i.e., it ends with zero), then dp[i] = dp[i//10] because there are no '1's in the representation of such a number.
+  - Otherwise, calculate the total number of '1's in the representation of i using the formula: dp[i] = 1 + dp[i-1] if i contains at least one '1', or dp[i-1] otherwise.
+
+The total number of digit 1's can be counted by iterating through all numbers less than or equal to n, and then returning dp[n].
+
+===END PLAN===

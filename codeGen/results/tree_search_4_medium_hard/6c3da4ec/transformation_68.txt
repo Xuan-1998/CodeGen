@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i] represents the maximum bitwise OR value that can be obtained by splitting the original string s at some position j, where 0 <= j < i and the total length of the two substrings is i.
+
+1. Initialize a table dp with n+1 entries, where dp[i] will store the maximum bitwise OR value for substrings of length i.
+2. Iterate over the binary string from left to right, and for each position i:
+    - Calculate the maximum bitwise OR value that can be obtained by splitting s at position j, where 0 <= j < i, and the total length of the two substrings is i. This will involve considering all possible splits at positions j such that 0 <= j < i.
+    - Store this value in dp[i].
+3. Iterate over the table in reverse order (from n to 1), and for each entry dp[i]:
+    - If i is odd, calculate the maximum bitwise OR value that can be obtained by splitting s at position i-1, considering only the rightmost substring of length i-1.
+    - Store this value back in dp[i].
+4. The maximum bitwise OR value without leading zeroes will be stored in dp[n].
+
+===END PLAN===

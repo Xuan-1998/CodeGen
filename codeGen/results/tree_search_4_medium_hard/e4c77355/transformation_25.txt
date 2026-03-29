@@ -1,0 +1,14 @@
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The number of elements less than x in the array up to index i
+Consider the longest increasing subsequence ending at each position, and how this relates to the longest increasing subsequences ending at previous positions.
+To implement a bottom-up dynamic programming approach by defining a recursive relation between the lengths of the longest increasing subsequences ending at different positions.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i. Then:
+- If there is no element in the array less than the one at index i, then dp[i] = 1 (a single element is an increasing subsequence)
+- Otherwise, consider all elements j < i such that arr[j] < arr[i]. The maximum length of the longest increasing subsequences ending at these positions is one more than the length of the longest increasing subsequence ending just before j.
+- This gives us the recursive relation: dp[i] = 1 + max(dp[j]) where j < i and arr[j] < arr[i]
+
+We can use this recursive relation to compute the lengths of all longest increasing subsequences, then return the maximum length.
+
+Note that we need to keep track of which elements are part of the longest increasing subsequence ending at each position. This can be done by maintaining an additional array of the same size as dp, where each element i stores the last index j such that arr[j] < arr[i]. Then, for any given index i, we can find the longest increasing subsequence ending at it by following this chain of elements.

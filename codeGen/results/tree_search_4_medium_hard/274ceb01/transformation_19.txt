@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly above the water level at the beginning of day i.
+
+Define prev_marks as the sum of marks strictly above the water on all previous days. The state transition is based on the minimum number of marks strictly below the water level for the previous days.
+
+For day i, calculate dp[i] by considering two possibilities: either add m_i (marks strictly above the water on day i) to prev_marks or start a new "above" prefix with m_i marks. Choose the option that minimizes dp[i].
+
+Use memoization to store the intermediate results and avoid recomputation when calculating dp[i] for subsequent days.
+
+The minimum possible sum of marks strictly below the water level is then dp[n], where n is the total number of days.
+===END PLAN===

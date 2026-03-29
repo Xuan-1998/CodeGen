@@ -1,0 +1,11 @@
+
+1. Frequency Count: Create an array `count` where `count[i]` represents the frequency of integer `i` in the sequence. This helps in calculating the points for each integer quickly.
+2. Initialize DP Array: Create an array `dp` where `dp[i]` represents the maximum points that can be obtained considering integers from 1 to i.
+3. Base Cases: 
+   - dp[0] = 0 (since no points can be obtained from an empty set).
+   - dp[1] = count[1] (since we can only take the integer 1 if it exists).
+4. Transition: For each integer i from 2 to the maximum integer in the sequence (let's call it `max_val`), update the dp array using the relation:
+   - dp[i] = max(dp[i-1], dp[i-2] + count[i] * i)
+   This relation ensures that we either skip the current integer i (dp[i-1]) or take all instances of i (dp[i-2] + count[i] * i) while removing instances of i-1.
+5. Result: The value dp[max_val] will contain the maximum points that can be obtained from the sequence.
+

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+Let's define p_i as the probability that exactly i players are chosen from the department of interest, where i ranges from h to min(h+n-1, n).
+
+The base case is when there are no more players to choose from (k = n-1), in which case we just need to check if there are any players from the department of interest. So, p_n is either 0 or 1 depending on whether h <= n.
+
+Model the problem as a recursive formula: p_k = Σ (p_i * (s_i / (n-i+1))) where i ranges from h to min(h+k-1, n)
+
+Tabulate the probabilities for each possible team size, then calculate the probability that at least one player is from the department of interest. This can be done by summing up p_k for all k >= 1.
+
+===END PLAN===

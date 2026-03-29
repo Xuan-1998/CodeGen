@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i] represents the minimum cost for i-th trip.
+Create a dictionary memo as a cache: 
+memo = {0: 20} for initialization
+for each t in range(10**9+1):
+    if t < 90:
+        dp[t] = dp[0] + 20
+    elif t < 10**9:
+        dp[t] = min(dp[max(0, t-90)] + 50, dp[t-1440] + 120)
+Use dictionary comprehension to create a memoization cache
+===END PLAN===

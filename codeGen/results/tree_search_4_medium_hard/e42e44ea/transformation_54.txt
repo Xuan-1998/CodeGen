@@ -1,0 +1,11 @@
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Bottom-up dynamic programming with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ (i > 0) ? dp[i-1][j][grid[i][j]] : grid[0][j], (j > 0) ? dp[i][j-1][grid[i][j]] : grid[i][0] })
+
+Define the state as (i, j, points) where points is the current sum of points. The transition relation can be defined as: if i > 0 and j > 0, then dp[i][j][points] = min({ dp[i-1][j][points-grid[i][j]], dp[i][j-1][points-grid[i][j]] }) + grid[i][j];
+
+Use a 3D DP array to store the minimum initial points required to reach each cell (i, j) with a given sum of points.
+
+The base case can be defined as: if i == M-1 and j == N-1, then return 0; else if i > M-1 or j > N-1, then return -10^9;
+
+To initialize the DP array, set dp[0][j] = grid[0][j] for all j and dp[i][0] = grid[i][0] for all i.

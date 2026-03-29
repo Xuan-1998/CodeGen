@@ -1,0 +1,20 @@
+
+1. Define the state expression: Let dp[i][j] represent the number of ways to pass the ball exactly i times such that player j has the ball at the end of the i-th pass.
+
+2. Initialize the base case: At the 0th pass, only player P has the ball.
+   - dp[0][P] = 1
+   - dp[0][j] = 0 for all j ≠ P
+
+3. Transition relationship: For each pass count i from 1 to N and each player j from 0 to K (excluding j = P), update the dp table.
+   - dp[i][j] = sum(dp[i-1][m]) for all m ≠ j, where m ranges from 0 to K.
+
+4. Ensure the final pass is made to player P:
+   - The result for each test case will be dp[N][P].
+
+5. Compute the result for each test case modulo 1000000007 (10^9+7).
+
+6. Iterate through the test cases, apply the above steps, and output the results.
+
+Time complexity: O(N*K^2)
+Space complexity: O(N*K)
+

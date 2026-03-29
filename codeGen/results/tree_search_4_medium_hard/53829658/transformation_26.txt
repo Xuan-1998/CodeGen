@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+The state expression could be the number of reversed edges needed to reach each city from the capital, i.e., dp[i] = # reversed edges to reach city i.
+'State' could be the distance from capital to each city (or in this case, the number of reversed edges needed), where state[i] is updated by considering all its neighbors with a BFS/DFS approach
+Initialize an array dp with n elements, all set to infinity except dp[0], which is 0. This represents the initial assumption that it takes infinite reversed edges to reach any city from the capital.
+Perform DFS/BFS from each city i in order, updating state[i] as the minimum of state[i-1] + 1 (if reversing edge (i-1,i) makes sense), and considering all its neighbors. This is because for each city, we want to know the number of reversed edges needed to reach it.
+After visiting all cities, the value in dp array represents the minimum number of reversed edges needed to reach any other city from the capital.
+To find all possible ways to choose the capital, iterate over the array and print indices with values equal to 0 (since they represent the capital), then iterate backwards to keep printing until reaching the first non-zero index. This ensures that we are not counting the same city twice as a capital.
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use a top-down approach with memoization and a bottom-up dynamic programming approach to solve this problem by recursively exploring all possible routes from vertex 1 to vertex n.
+
+'Base case: if i == n, then the maximum number of vertices that can be visited is 1, because we have already reached vertex n.'
+
+Represent a tuple (i, time) as the state, where i represents the current vertex and time is the remaining time after traversing all edges from vertex 1 to vertex i.
+
+The transition relationship can be formulated as:
+- If there is an edge from vertex i to vertex j with weight t, then we can visit vertex j if it has not been visited before and we have enough time left after traversing the edge. In this case, update the time by subtracting t and increment the visited count.
+- If the time is less than or equal to 0, then the maximum number of vertices that can be visited is 0.
+
+Use a combination of memoization and dynamic programming by recursively exploring all possible routes from vertex 1 to vertex n, but with memoized values for subproblems to avoid repeated computations. Update the memo dictionary as we solve each subproblem.
+
+===END PLAN===

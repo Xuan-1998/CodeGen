@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider each integer as a sequence of digits from most significant bit to least significant bit, where the state is the current digit (0-9) and the transition relationship is that for each subsequent digit, count all integers with the same most significant bits and different least significant bits.
+
+Create a dynamic programming array dp such that dp[i] represents the total number of digit 1's in all non-negative integers less than or equal to i.
+
+Initialize dp[0] to 0 (since there is no digit 1 in the integer 0).
+
+For each integer i from 1 to n, calculate dp[i] as follows:
+
+- If i has a leading digit 1, add the total number of digit 1's in all integers less than or equal to i - 10^k (where k is the number of digits in i) and add the number of times digit 1 appears in the integer i - 10^(k-1).
+- If i does not have a leading digit 1, just set dp[i] as the value of dp[i-1].
+
+Finally, return the total count of digit 1's in all non-negative integers less than or equal to n, which is dp[n].
+
+===END PLAN===

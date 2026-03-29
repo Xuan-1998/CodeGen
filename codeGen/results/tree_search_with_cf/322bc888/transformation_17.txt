@@ -1,0 +1,11 @@
+
+1. Define a function to check if a substring is beautiful.
+2. Use a bottom-up strategy with tabulation to fill a table iteratively based on the results of smaller subproblems.
+3. State expression: Let dp[i][j] represent the minimum cost to make the substring s[i:j+1] beautiful.
+4. Initialize the dp table: 
+   - Base case: dp[i][i] = 0 for any i, as a single character is always beautiful.
+   - For substrings of length 2, if s[i] == s[i+1], then dp[i][i+1] = 1; otherwise dp[i][i+1] = 0.
+5. Transition relation: For longer substrings (length > 2), dp[i][j] = min(dp[i+1][j], dp[i][j-1], dp[i+1][j-1] + (1 if s[i] == s[j] else 0)).
+6. Precompute all possible substrings and store the results in the dp table.
+7. For each query, retrieve the precomputed result from the dp table.
+

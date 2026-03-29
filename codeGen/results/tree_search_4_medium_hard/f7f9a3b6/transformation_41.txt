@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][k] = maximum length of the k-th longest substring in all possible splits of s[0..i].
+
+dp[i][k] = number of ways to split the first i characters into k substrings where no character appears more than a[j-1] times in any substring, and dp[i-a[j-1]][j-1] is known for j <= k.
+
+Use dynamic programming to create a 2D table where each cell represents the maximum length of the k-th longest substring in all possible splits of s[0..i].
+
+Initialize dp[0][0] = 1 as there's only one way to split an empty string, which is into no substrings. For each i and k, calculate dp[i][k] using the following recurrence relation:
+dp[i][k] = (sum from j=1 to k of dp[i-a[j-1]][j-1]) * dp[a[0]-1][k-1]
+
+The final answer will be the sum of dp[n][i] for all i. Calculate this and take modulo 10^9 + 7.
+
+To find the length of the longest substring over all ways, iterate through the dp table and keep track of the maximum value. This represents the length of the k-th longest substring in all possible splits of s[0..i].
+
+To find the minimum number of substrings over all ways, initialize min as n+1. Iterate through the dp table from bottom to top (from larger i to smaller i) and update min whenever you see a new minimum.
+
+===END PLAN===

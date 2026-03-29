@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+The base case would be when there's only one hare or no hares, in which case we don't have any choices to make.
+
+Consider states as (index of hare being fed, whether previous hare is full, whether next hare is full). State transitions can be defined based on the three different cases: feeding a hungry hare, feeding a partially full hare, and not feeding a full hare. The value function could calculate the total joy given these state variables.
+
+Tabulation using a 2D array to store cumulative maximum joy, where dp[i][j][k] represents the maximum joy we can get by feeding hares from index 0 to i, considering previous hare is full (j=1) or not (j=0), and next hare is full (k=1) or not (k=0).
+
+The transition equations would be:
+
+dp[i][0][0] = max(dp[i-1][1][1], dp[i-1][0][1]) + c_i, 
+    if i > 0;
+dp[i][0][1] = max(dp[i-1][1][1], dp[i-1][0][1]) + b_i, 
+    if i > 0;
+dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][0][0]) + a_i, 
+    if i > 0;
+dp[i][1][1] = dp[i-1][1][1] + c_i, 
+    if i > 0;
+
+The final answer would be dp[n-1][j][k].
+
+===END PLAN===

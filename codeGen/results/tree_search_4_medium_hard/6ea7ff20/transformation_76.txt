@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Decide whether to use tabulation (bottom-up approach) where you start with the base case and work your way up, or top-down approach with memoization where you recursively break down the problem into smaller ones.
+
+state dp[i][j] = {
+    1 if there exist arrays a and b such that merge(a,b) equals permutation up to index i, 
+    with array a having length j; else 0
+};
+
+State: dp[i][j] = {
+    1 if there exist two non-empty arrays a and b, each of length min(i+1,j), 
+    such that merge(a,b) equals permutation from index 0 to i, 
+    with array a having length j; else 0
+};
+
+Use dynamic programming with a bottom-up approach by initializing and filling up a 2D table where dp[i][j] represents whether there exist arrays a and b, each of length min(i+1,j), such that merge(a,b) equals permutation from index 0 to i.
+
+Fill the base case: dp[0][j] = { 1 if j == 0; else 0 }, for all j.
+For each i from 1 to n:
+    For each j from 0 to min(i+1,n):
+        If pi-1 > pj-1, then dp[i][j] = { dp[i-1][min(j+1,n)] and a single element from the permutation; else
+            If pi-1 < pj-1, then dp[i][j] = { dp[min(i,j)-1][0] and a single element from the permutation; else
+                For each k from 0 to min(j,n):
+                    If there exist arrays a and b such that merge(a,b) equals permutation from index 0 to i-1, with array a having length k and array b having length j-k, then dp[i][j] = { 1; else 0 }.
+
+Return the answer: if dp[n][n] is equal to 1, return "YES"; otherwise, return "NO".
+===END PLAN===

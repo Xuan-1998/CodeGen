@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers, then iterate over each number below n_max to count its permutations.
+
+Let the state be a boolean value indicating whether the current number is prime, and the base case would be when the number is less than 2.
+
+Maintain two dynamic arrays dp1 and dp2 where:
+dp1[i] represents whether i is a prime number
+dp2[i] stores the count of permutations for the prime number i
+
+Iterate over each number below n_max to fill up dp1 and dp2:
+
+    For each number i, check if it's prime by iterating from 2 to sqrt(i) and checking if i is divisible.
+    If not, mark i as a prime number in dp1.
+
+    Then, calculate the permutations of i:
+        Convert i to string
+        Count the frequency of each digit using a dictionary
+        Check if all frequencies are less than k_perms (i.e., the number has exactly k_perms unique digits)
+        If yes, increment dp2[i]
+
+Finally, count the prime numbers with exactly k_perms permutations by summing up the values in dp2.
+
+Return the count of such prime numbers, the smallest and largest prime numbers among them. If no such prime numbers are found, return [0, 0, 0].
+
+===END PLAN===

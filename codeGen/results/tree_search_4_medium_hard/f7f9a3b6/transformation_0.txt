@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Identify that each substring can be split into two parts: one containing only unique characters, and another part with at most a[i] repeated occurrences of the same character. Then, use dynamic programming to count the number of ways to split the message.
+
+Define the state as a tuple (i, prev_char), where i is the current character index and prev_char is the previous character seen in the substring.
+Use a 3D DP table to store the number of ways to split the message up to each index i with the last seen character being prev_char:
+    * Initialize dp[0][c] = 1 for all c, since there's only one way to split the empty string
+    * For each i from 1 to n, and each previous character c:
+        + If the current character is unique (not equal to c), update dp[i][c] = dp[i-1][c] + dp[i-1][c]
+        + If the current character is repeated, update dp[i][c] = dp[i-a[c]][c]
+    * The answer is the sum of all values in dp[n][-1], which represents the number of ways to split the entire string
+===END PLAN===

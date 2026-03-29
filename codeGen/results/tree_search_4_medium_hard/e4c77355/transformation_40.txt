@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i. Then:
+
+- Initialize dp[0] = 1 (base case)
+- For each i from 1 to n:
+	+ Initialize max_val = 0 and max_length = 0
+	+ Iterate through all indices j < i:
+		- If arr[j] < arr[i]:
+			- Update max_val = arr[i]
+			- Update max_length = dp[j] + 1 if max_length is not updated yet
+	+ Set dp[i] = max_length
+
+Construct the longest increasing subsequence by tracing back from the maximum value index.
+
+Use a bottom-up dynamic programming approach to compute dp[] in O(n^2) time complexity.
+===END PLAN===

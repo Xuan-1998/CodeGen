@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly above the water level at the beginning of day i.
+
+Let m_i be the number of marks strictly above the water level on day i. The state is dp[i-1] + (i - m_i), where dp[i-1] is the minimum number of marks strictly below the water level by the end of day i-1, and i - m_i represents the number of marks that will be strictly above the water level at the beginning of day i.
+
+Apply bottom-up dynamic programming by initializing a table dp[0..n-1] with n values. For each day i from 1 to n-1:
+    Calculate dp[i] as the minimum value between dp[i-1] + (i - m_i) and min(m_i, i), where min(m_i, i) represents the number of marks that will be strictly below the water level at the beginning of day i.
+Return dp[n-1], which represents the minimum possible sum of the number of marks strictly below the water level among all days.
+
+===END PLAN===

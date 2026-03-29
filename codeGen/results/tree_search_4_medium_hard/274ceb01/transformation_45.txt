@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Create a 2D array dp[n][n] where each cell represents the minimum number of marks below water level on day i with water level at height k.
+dp[i][k] = min(dp[i-1][j] + (i-k)*k) for j from 0 to k-1
+The base case is when i == 0, then dp[0][k] = 0 for all k because there are no marks below the water level initially.
+Let's iterate through each day and height of the water level:
+For each day i from 1 to n:
+  For each height k from 0 to i-1:
+    Calculate dp[i][k] as the minimum number of marks below the water level with water level at height k
+      - Iterate through all previous heights j from 0 to k-1 and calculate dp[i-1][j] + (i-k)*k, then take the minimum
+Return dp[n][n] as the minimum possible sum of the number of marks strictly below the water level among all days.
+===END PLAN===

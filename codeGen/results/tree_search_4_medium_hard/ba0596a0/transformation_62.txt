@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp = {}
+def dp_frog(stones):
+    def helper(i, d):
+        if i == 0:
+            return True
+        if i > len(stones) - 1 or (i-1, d) in dp:
+            return False
+        for k in range(1, 3):
+            if abs(stones[i] - stones[i-k]) <= d + k and helper(i-k, k):
+                return True
+        return False
+    result = helper(len(stones)-1, 0)
+    return result
+
+===END PLAN===

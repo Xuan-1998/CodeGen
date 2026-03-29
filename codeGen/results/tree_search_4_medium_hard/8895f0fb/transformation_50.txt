@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 2D array to keep track of the expected number of non-zero carries when adding A and B with i digits in total.
+
+state: dp[i][j] = expected number of non-zero carries when adding A and B with i digits in total, considering all possible pairs where A has j digits and B has i-j digits.
+
+dp[0][0] = 0 (no carries when adding single-digit numbers)
+
+for i from 1 to N:
+    for j from 0 to i:
+        if j == 0: # case where A is a single digit
+            dp[i][j] = sum(dp[k][k-1] * dp[i-k-1][i-j-1], for k from 0 to i-j)
+        elif j == i: # case where B is a single digit
+            dp[i][j] = sum(dp[k][i-k-1] * dp[i-k-1][0], for k from 0 to i-j)
+        else:
+            dp[i][j] = sum(dp[k][k-1] * dp[i-k-1][j-k-1], for k from 0 to j)
+
+Expected number of non-zero carries when adding A and B with N digits in total is the average of all dp[N][j], where 0 <= j <= N
+===END PLAN===

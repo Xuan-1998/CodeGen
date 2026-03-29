@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i][j] = maximum prefix sum where array[k] <= array[j]
+    - Initialize dp and prefix sums
+        - Iterate through array from left to right
+            - For each element, update the longest non-decreasing subsequence and prefix sums
+                - If current element is greater than or equal to previous element, increment the length of the subsequence and update the prefix sum
+                    - If this subsequence is longer than the previously longest one, update it as the new longest one
+            - At each step, calculate the number of elements in the subsegment that are less than or equal to the current element (suffix sum)
+                - Subtract the maximum of these suffix sums from the total length of array minus j plus 1
+                    - This gives the longest non-decreasing subsequence within this subsegment
+            - Store the results for each i, j in dp as you calculate them
+    - Solve queries using stored values in dp
+        - For each query l and r, check if there exists a k such that dp[l-1][k] = dp[r][k]
+            - If yes, then it's a ladder; otherwise, it isn't
+===END PLAN===

@@ -1,0 +1,19 @@
+Define a bottom-up dynamic programming approach:
+Create a 2D table dp where dp[i][j] represents whether the substring s[i...j] is palindromic.
+
+Base case: A single character is always a palindrome, so set dp[0][0] to True.
+
+Fill the table from top to bottom and left to right:
+For each position i in the string:
+    For each previous position j less than or equal to i:
+        If s[i] == s[j] (characters match) and the substring s[j+1...i-1] is also palindromic, then update dp[i][j] to True.
+        Otherwise, backtrack to find the optimal partitioning.
+
+To minimize cuts, initialize a variable min_cuts to n - 1. 
+Iterate over the table from bottom to top:
+    For each position i in the string:
+        Find the previous position j such that dp[i][j] is True and the number of cuts is minimized.
+        Update min_cuts accordingly.
+
+Return min_cuts as the minimum number of cuts needed for palindrome partitioning of the given string.
+

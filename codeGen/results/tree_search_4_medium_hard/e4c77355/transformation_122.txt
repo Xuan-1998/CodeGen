@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP Solution:
+Base case: If the array is empty, return 0; otherwise, consider only the first k elements.
+The longest increasing subsequence's length for each prefix is the key state.
+Use memoization by storing the lengths of longest increasing subsequences for prefixes in a dictionary and look up the values as needed during computation.
+
+For each element in the array:
+    - Initialize a dynamic programming table (dp) with size equal to the maximum possible length of the longest increasing subsequence (e.g., the length of the input array).
+    - For each prefix of the array:
+        - Find the minimum value in that prefix.
+        - If this minimum value is greater than or equal to dp[i-1], then there exists a longer increasing subsequence ending at that element. 
+            - Update dp[i] with i + 1 (i.e., the length of the longest increasing subsequence ending at that element).
+        - Else, update dp[i] with dp[i-1].
+    - Return the maximum value in dp as the length of the longest increasing subsequence.
+
+===END PLAN===

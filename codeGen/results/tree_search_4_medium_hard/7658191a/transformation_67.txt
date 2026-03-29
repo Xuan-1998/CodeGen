@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a 2D table or array, where each cell dp[i][j] represents the maximum score that can be achieved after i steps with at most j moves being to the left.
+
+The base case is when k = 0, where the maximum score is simply the sum of all values in the array.
+
+Consider the minimum number of moves that can be achieved after i steps, with at most z moves being to the left. This state depends on two previous states: 
+- dp[i-1][j] represents the minimum number of moves that can be achieved after i-1 steps (without considering the last move).
+- dp[i-z][z] represents the minimum number of moves that can be achieved after i-z steps (with the last z moves being to the left).
+
+Use a 2D array to store the maximum score for each subproblem, where dp[i][j] = max(dp[i-1][j], dp[i-z][z]) + scores[i]. This choice is made by considering whether it's better to move to the right (dp[i-1][j]) or to the left (dp[i-z][z]), and then add the value at index i.
+
+Finally, return dp[k][0] as the maximum score that can be achieved after k steps with no moves being to the left.
+
+===END PLAN===

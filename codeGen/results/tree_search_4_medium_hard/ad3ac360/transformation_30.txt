@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Define a recursive function is_palindrome(s) that checks if a substring s is a palindrome. Since it has overlapping subproblems, consider using memoization to store the results of expensive function calls and avoid redundant computation.
+
+Let dp be a boolean array where dp[i] represents whether the substring from index 0 to i can be palindrome-partitioned into smaller palindromic substrings.
+
+1. Initialize dp[0] = True for empty string.
+2. For each i from 1 to n-1:
+    * If s[i-1] == s[i], then check if the substring s[0:i-1] is a palindrome and store it in memo.
+    * Then, update dp[i] based on the following conditions:
+        - If s[i-1] == s[i] and s[0:i-1] can be palindrome-partitioned, set dp[i] = True.
+        - Otherwise, set dp[i] = False.
+
+Store the state of palindromic substrings in a boolean array and use it for memoization.
+
+3. Finally, return the minimum number of cuts required to partition the string into palindromic substrings by iterating over the dp array and finding the first index where dp[i] is False. This will be the last palindrome-partitioned substring that needs to be cut to form a new palindrome-partitioned substring.
+
+===END PLAN===

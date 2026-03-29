@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use bottom-up tabulation approach with dynamic programming to update this state and determine if the current subsegment is a ladder.
+
+state[i][j] = max(state[i-1][k] for k in range(l, r+1) if a[k-1] <= a[k])  // correct the condition
+state[0][i] = 1 for all i (base case)
+
+dp[i][j] represents whether the subsegment from l to j in the original array is a ladder.
+
+For each query [l, r]:
+    if dp[l-1][r]:  // check if the subsegment [l, r] is a ladder
+        print "Yes"
+    else:
+        print "No"
+
+===END PLAN===

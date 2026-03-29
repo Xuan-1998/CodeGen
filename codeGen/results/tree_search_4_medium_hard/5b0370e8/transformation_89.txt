@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if all numbers less than or equal to 2^k have a bitwise AND of at least i and bitwise XOR of at most j, else dp[i][j] = 0;
+
+let dp[k][i] be the number of ways to make bitwise AND k and bitwise XOR i. Then, we can compute the transition relationship by:
+dp[k][i + 1] += dp[k - 1][i] * (2^k - i)
+dp[k][i - 1] -= 2 * dp[k - 1][i]
+For k = 0 to k_max (where k_max is the maximum possible bitwise AND value), for i = 0 to i_max (where i_max is the maximum possible bitwise XOR value), calculate dp[k][i].
+
+Using a bottom-up dynamic programming approach to fill up a 2D table dp[k][i] where dp[k][i] represents the number of ways to make bitwise AND k and bitwise XOR i.
+Initialize dp[0][i] = 1 for all i (base case). 
+For each test case, calculate the count by summing up dp[k_max][i] for all possible bitwise XOR values i. Print this count modulo 10^9 + 7.
+
+===END PLAN===

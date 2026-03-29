@@ -1,0 +1,29 @@
+// State represents the minimum mana required to kill all monsters as of a given second,
+// considering the previous seconds' mana usage and time until the next monster's appearance.
+
+dp[monster][second] = min(mana) // Initialize the dynamic programming table
+
+// Base case: when there are no more monsters to kill
+if (!monsters) {
+    dp[0][0] = 0; // No mana required if no monsters
+}
+
+// Priority queue for keeping track of monsters and their appearance times
+pq.push({monster, time})
+
+// Iterate over each second
+for (second := 1; pq.size(); second++) {
+    // Extract the monster with the earliest appearance time from the priority queue
+    {monster, time} = pq.pop()
+
+    // Calculate the minimum mana required to kill all monsters as of this moment
+    // dp[monster][second] = min(mana) // Update the dynamic programming table
+
+    // Push back the next monster's appearance time and its health into the priority queue
+    for (nextMonster := 1; nextMonster <= monster; nextMonster++) {
+        pq.push({nextMonster, nextTime})
+    }
+}
+
+// Return the minimum mana required to kill all monsters
+return dp[monster][second]

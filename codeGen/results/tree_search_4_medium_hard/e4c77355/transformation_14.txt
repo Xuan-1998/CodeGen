@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i in the array. We can define the recurrence relation as follows:
+dp[i] = 1 if i is the first element in the array
+dp[i] = max(dp[j]) + 1 for j < i and arr[j] < arr[i]
+
+Use a nested loop structure to tabulate the dynamic programming state transition:
+for i from 0 to n-1
+    dp[i] = 1
+    for j from 0 to i-1
+        if arr[j] < arr[i]
+            dp[i] = max(dp[i], dp[j] + 1)
+
+You can use both memoization and tabulation together, by defining a function that takes an index as input and uses memoization to store computed results, while also implementing tabulation using a nested loop structure:
+function LIS(arr):
+    n = len(arr)
+    dp = [0] * n
+    for i from 0 to n-1
+        dp[i] = 1
+        for j from 0 to i-1
+            if arr[j] < arr[i]
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+
+===END PLAN===

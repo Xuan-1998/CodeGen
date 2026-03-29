@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+The base case is when the length of the string is 1, since a single character is always a palindrome.
+
+To define the state as a set of all possible palindromic partitions for each substring of the input string. This can be represented by a dictionary where dp[i] represents the list of palindromic partitions for the substring S[0..i].
+
+Use dynamic programming to iteratively update this dictionary based on the state of its substrings. The recursive formula can be defined as follows:
+
+* If the length of the current substring is 1, there is only one partition, which is the substring itself.
+* If the length of the current substring is even and it's a palindrome, then we have two partitions: the first half and the second half.
+* If the length of the current substring is odd, then we have three partitions: the first half, the middle character (which can be considered as one partition), and the second half.
+
+Implement memoization using a dictionary where memo[key] represents the list of palindromic partitions for the substring S[0..key].
+
+Finally, construct the result by iterating through the dictionary in reverse order and appending each partition to the result. This ensures that longer partitions are considered before shorter ones.
+
+===END PLAN===

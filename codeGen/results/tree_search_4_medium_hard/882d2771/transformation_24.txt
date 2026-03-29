@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+dp[i] = min(dp[j] + t * (f(k))) for all j, k such that 1 <= j < i and l <= k < r, where dp[i] represents the minimum total number of pairwise comparisons needed to select the most beautiful participant from i girls
+
+The choice is to use both tabulation and memoization to store intermediate results and reuse them.
+
+Let's define a new array f2[n] such that f2[n] = f(n) for n in {l, l+1, ..., r} and initialize it with f(l)
+
+dp[i] = min(dp[j] + t * (f2[k])) for all j, k such that 1 <= j < i and l <= k < r
+
+We can fill up dp array from bottom to top by iterating over the range [l, r] and then use this dp array to calculate the final answer.
+
+===END PLAN===

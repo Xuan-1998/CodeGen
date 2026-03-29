@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Define the state as a dictionary (i, max_divisor) where i is the current element's index and max_divisor is the maximum divisor seen so far.
+
+State: dp[i][max_divisor] = 1 if the subsequence ending at index i and having maximum divisor max_divisor is good; otherwise, it's 0.
+Initialize dp[0][1] = 1 since a sequence with only one element (and its maximum divisor being 1) is always good.
+
+For each element i in array a:
+    For each possible maximum divisor max_divisor up to a[i]:
+        If the subsequence ending at index i-1 and having maximum divisor max_divisor-1 is good, 
+            Then dp[i][max_divisor] = (dp[i-1][max_divisor-1] + 1) % (10^9 + 7);
+        Otherwise, dp[i][max_divisor] = 0;
+
+Return the sum of all values in dp array modulo (10^9 + 7).
+===END PLAN===

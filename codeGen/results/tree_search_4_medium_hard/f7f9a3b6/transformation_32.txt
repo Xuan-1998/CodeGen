@@ -1,0 +1,33 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Initialize an array dp[n+1][n+1] where dp[i][j] represents the number of ways to split the message s[0..i-1] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+
+dp[i][0] = 1 for i > 0 (base case: one way to split an empty string)
+
+For i from 2 to n:
+    For c in s[i-2:i-1].unique():
+        For k from min(1, a[ord(c)-97]) to i//a[ord(c)-97]:
+            dp[i][k] = (dp[i-1][k-1] * a[ord(c)-97] + k) % (10^9+7)
+
+Return dp[n][1], the number of ways to split the message into one substring, as the final answer.
+
+To find the length of the longest substring over all the ways:
+    Initialize max_len = 0
+    For i from 2 to n:
+        For c in s[i-2:i-1].unique():
+            For k from min(1, a[ord(c)-97]) to i//a[ord(c)-97]:
+                if dp[i][k] > max_len:
+                    max_len = dp[i][k]
+
+Return max_len as the length of the longest substring over all the ways.
+
+To find the minimum number of substrings over all the ways:
+    Initialize min_substrings = n
+    For i from 2 to n:
+        For c in s[i-2:i-1].unique():
+            For k from min(1, a[ord(c)-97]) to i//a[ord(c)-97]:
+                if dp[i][k] < min_substrings:
+                    min_substrings = dp[i][k]
+
+Return min_substrings as the minimum number of substrings over all the ways.
+
+===END PLAN===

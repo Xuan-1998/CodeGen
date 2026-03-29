@@ -1,0 +1,15 @@
+
+1. Top-Down Approach with Memoization: This dynamic programming approach involves breaking down the problem into smaller sub-problems and storing the results of these sub-problems to avoid redundant computations. It generally uses recursion and a memoization table.
+
+State Expression: Let dp[u][d] be the number of vertices that are at a distance d from vertex u. Base Case: dp[u][0] = 1 for all vertices u, since each vertex is at distance 0 from itself.
+
+State Transition: The state dp[u][d] can be derived from the states of its child vertices. For each vertex u, if v is a child of u, then dp[u][d] can be updated using dp[v][d-1]. Specifically, dp[u][d] += dp[v][d-1] for all children v of u.
+
+2. Count Pairs: For each vertex u, we need to count the number of pairs (u, v) such that the distance between u and v is exactly k. This can be done by iterating over all pairs of distances (i, j) such that i + j = k. Specifically, for each pair of distances (i, j), we add dp[u][i] * dp[v][j] to the result, where v is a child of u.
+
+3. DFS Traversal: Perform a Depth-First Search (DFS) traversal of the tree to populate the dp table and count the pairs. During the DFS traversal, for each vertex u, we calculate the dp values for its child vertices and update the dp values for u accordingly. We also count the pairs as described in the previous step.
+
+4. Handle Edge Cases: Consider edge cases such as the smallest tree with n = 1 and k = 1, which should return 0 since there are no pairs of distinct vertices. Also, handle cases where k is larger than the maximum possible distance in the tree (which is n-1).
+
+5. Output the Result: After completing the DFS traversal and counting the pairs, output the final result, which is the total number of pairs of vertices with a path of length exactly k between them.
+

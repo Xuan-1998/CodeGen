@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using dynamic programming with memoization instead of a greedy approach.
+
+The state could be a tuple (d, n), where d is the current department and n is the total number of basketball players from that department already selected. This represents the subproblem: Given the number of departments processed so far (d) and the total number of players selected from those departments (n), what is the probability that at least one player from the department of interest will be in a randomly formed team?
+
+The recurrence relation could be as follows:
+
+- If d == h, it means we have processed all departments. In this case, the probability is 1 if n >= n and -1 otherwise.
+- If d < h, we can consider two possibilities: either the department of interest has not been processed yet (d < h), or it has been processed but no players from that department were selected (n < s_h).
+In both cases, the probability is the sum of the probabilities for each possibility. This represents the recurrence relation.
+
+Implement memoization using a dictionary to store the results of subproblems.
+
+===END PLAN===

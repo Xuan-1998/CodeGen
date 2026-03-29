@@ -1,0 +1,9 @@
+
+1. Initialize a 2D list `dp` where `dp[i][j]` represents the number of ways to pass the ball `i` times such that player `j` receives the ball last. The size of `dp` will be `(N+1) x (K+1)`.
+2. Base case: Set `dp[0][0] = 1`, representing that with 0 passes, the only way for the 0-th player to have the ball is the initial state. Set `dp[0][j] = 0` for all `j > 0`, since no passes have been made yet.
+3. Transition: For each pass `i` from 1 to N, and for each player `j` from 0 to K, update `dp[i][j]` as follows:
+   - `dp[i][j] = sum(dp[i-1][m] for all m != j) % 1000000007`, where `m` ranges from 0 to K.
+   - This means that the number of ways for player `j` to receive the ball on the `i`-th pass is the sum of the ways any other player `m` could have had the ball on the `(i-1)`-th pass.
+4. For each test case, compute the value of `dp[N][P]` where `P` is the particular player who should receive the ball last. Take the result modulo 1000000007 (10^9+7).
+5. Output the results for all test cases.
+

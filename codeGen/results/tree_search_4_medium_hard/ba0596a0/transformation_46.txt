@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. To combine these subproblems and form the solution, we'll use dynamic programming.
+
+The state expression could be defined as: dp[i] = whether the frog can reach stone i given the position of all previous stones.
+The base case would be dp[1] = True since there is no previous stone to consider.
+
+dp[i] = whether the frog can reach stone i given the position of all previous stones, considering if it's possible to reach the ith stone by jumping from the (i-k-2)th stone to the ith stone with a jump distance of k - 1, k, or k + 1 units.
+The transition equation would be: dp[i] = any dp[j] where i - j in {k - 1, k, k + 1} and j < i
+This means that the frog can reach stone i if there's a previous stone j such that the distance between i and j is either k - 1, k, or k + 1 units.
+Use bottom-up dynamic programming with a tabular approach
+The table would be initialized with False for all stones except the first one (dp[0] = True), since the frog starts on the first stone.
+
+===END PLAN===

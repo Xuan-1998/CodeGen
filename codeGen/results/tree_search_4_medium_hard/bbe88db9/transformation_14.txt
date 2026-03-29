@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+We can define a state that captures the current room and whether it's been visited before. This will allow us to avoid revisiting rooms unnecessarily.
+The state expression could be a pair of (room, portals) where room is the current room number and portals are two lists representing the one-way portals.
+
+The state can be represented by (room, visited), where room is the current room number and visited is a boolean indicating whether the room has been visited before.
+Using a dictionary to store and retrieve states as key-value pairs based on the state expression (room, visited), where the value would be the minimum number of portal moves needed to reach that state.
+
+We can initialize the dictionary with a default value for the initial state (1, False) representing the start room. Then we iterate through all rooms and use dynamic programming to find the minimum number of portal moves to reach each state.
+To calculate the minimum number of portal moves for a given state, we can iterate through both portals in that state and recursively calculate the minimum number of portal moves needed to reach each of those states. 
+Finally, we print out the value stored in the dictionary for the target room (n+1), which represents the minimum number of portal moves Vasya needs to get out of the maze.
+===END PLAN===

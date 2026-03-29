@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][k] represents the probability that we get at least one player from the department of interest after choosing k players from i departments.
+
+dp[0][0] = 1 (base case: there are no departments, so the team is guaranteed to have at least one player from the department of interest)
+
+For i > 0:
+    For k from 0 to min(i-1, n) (bound by number of players on the team):
+        dp[i][k] = 1 - (1 - (s_i / total_players)) ** (n-k) * dp[i-1][k-1]
+
+Maintain a memoization dictionary to store the calculated probabilities and avoid redundant calculations
+
+Calculate the final answer as dp[m][0]
+===END PLAN===

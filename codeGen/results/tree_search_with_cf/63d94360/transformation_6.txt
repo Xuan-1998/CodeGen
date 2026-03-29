@@ -1,0 +1,21 @@
+
+1. Top-down approach with memoization: This approach uses recursion along with memoization to store results of subproblems, preventing redundant calculations. It can be efficient for problems with overlapping subproblems. Time complexity: O(N*K), space complexity: O(N*K).
+
+2. Define the state expression: Let dp[i][j] represent the number of ways to make exactly i passes such that the j-th player receives the ball on the i-th pass.
+
+3. Base case: dp[0][P] = 1, which means there is exactly one way to start with player P with zero passes.
+
+4. Transition: dp[i][j] = sum(dp[i-1][m] for all m != j) % 1000000007, where dp[i][j] is the sum of all ways to reach the j-th player on the i-th pass from any other player m.
+
+5. For each test case, initialize the dp array with dimensions (N+1) x (K+1) filled with 0.
+
+6. Set the base case: dp[0][0] = 1, assuming player P is indexed as 0.
+
+7. Iterate over the number of passes from 1 to N.
+
+8. For each pass i and each player j, update dp[i][j] using the transition formula.
+
+9. The result for each test case is dp[N][0], as we want the number of ways for player P (indexed as 0) to receive the ball on the N-th pass.
+
+10. Output the result for each test case.
+

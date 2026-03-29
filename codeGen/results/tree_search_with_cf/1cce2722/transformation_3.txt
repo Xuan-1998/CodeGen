@@ -1,0 +1,7 @@
+
+1. Frequency Array Calculation: First, calculate the frequency of each integer in the sequence. This can be done in O(n) time by iterating through the sequence once.
+2. State Expression: Define dp[x] as the maximum points achievable using integers up to x. The recurrence relation can be formulated as dp[x] = max(dp[x-1], dp[x-2] + freq[x] * x), where freq[x] is the frequency of integer x in the sequence. This ensures that we either take the current integer x and add its points, or skip it to maximize the total points.
+3. Base Cases: Initialize dp[0] = 0 (since we can't earn any points from non-existent integers) and dp[1] = freq[1] (since the only integer we can take is 1).
+4. Bottom-Up Calculation: Iterate from 2 to the maximum integer value in the sequence (105) and fill the dp array using the recurrence relation. This ensures that each subproblem is solved only once, leading to an overall time complexity of O(n).
+5. Result Extraction: The maximum points that can be obtained is stored in dp[max_value], where max_value is the largest integer present in the sequence.
+

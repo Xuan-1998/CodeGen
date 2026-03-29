@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i] = 1 + sum(dp[j] for j in range(h-1, i) if s[j] >= n-j) for i in range(1, n+1)
+The state represents the number of ways to form a team with exactly i players.
+The transition corresponds to adding one more player to the team. For each possible team size i, we sum up the number of ways to form teams of size j (j < i) such that the department of interest contributes at least one player and there are enough players in total.
+
+For example, if there are 2 departments with 3 and 4 basketball players respectively, and the department of interest has 3 players. Then dp[5] = dp[1] + dp[2], because we can form a team of size 5 by choosing any combination of 1 or 2 players from the department of interest.
+
+For edge cases, if there are not enough basketball players in the university to form a team, return -1 instead.
+===END PLAN===

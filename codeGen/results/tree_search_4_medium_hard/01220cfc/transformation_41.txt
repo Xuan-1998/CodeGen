@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Incorporate optimal substructure: Think about how the solution to one subproblem can be used to solve another related subproblem.
+
+The state is dp[i], which represents whether the i-th element can be reached. The base case is dp[0] = True, since we start at the beginning and the maximum reachable index from there is always 0.
+
+dp[i] represents whether the i-th element can be reached if dp[j] is True for all j < i - arr[i], meaning that we have reached the (i-1)-th index.
+
+Use a 2D array to store the dynamic programming states, where dp[i][j] represents whether it is possible to reach index j from index i. For each cell in the 2D array, iterate through all indices k such that 0 <= k < i - arr[i], and set dp[i][j] to True if there exists a k for which dp[k][j-arr[i]] is True.
+
+The final answer is whether dp[n-1][n-1] is True, where n is the length of the array.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a 2D DP table dp[i][j] representing the maximum score that can be achieved with j moves after processing the first i elements.
+
+The base case is when j = 0, where we have not performed any moves and the maximum score is just the sum of scores up to index i. This can be calculated as a prefix sum: dp[i][0] = sum(a[1..i]).
+
+For j > 0, consider the last move. If it was moving left (j-1 < z), then we have two options: either continue moving left or move right and update the score. If it was not moving left (j-1 >= z), then we can only move right. This gives us the transition relationship:
+
+dp[i][j] = max(dp[i-1][min(j-1, z)] + a[i], dp[i-1][j-1] + a[i])
+
+The final answer is dp[n][k].
+
+===END PLAN===

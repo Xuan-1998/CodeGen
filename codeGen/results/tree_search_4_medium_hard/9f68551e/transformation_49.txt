@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The state represents the minimum mana required to kill all monsters as of a given second, considering the previous seconds' mana usage.
+
+1. State: (time, min_mana)
+   - time: The number of seconds from the start
+   - min_mana: The minimum mana required to kill all monsters as of that moment
+
+2. Base case:
+   - When there are no more monsters to kill (i.e., time is greater than or equal to the total appearance times), the minimum mana required is 0.
+
+3. Tabulation by creating a 2D array dp of size (n, max_time+1) where n is the number of monsters and max_time is the maximum monster appearance time.
+   - Initialize dp[0][i] = 0 for all i in range(max_time+1)
+   - For each monster from 1 to n
+       - Calculate the minimum mana required to kill all monsters as of the monster's appearance time
+         + If there are no previous monsters or the current monster is not killed, update dp[k][i] = min(dp[k-1][i], 1) where k is the monster's appearance time
+         + If the current monster is killed, update dp[k][k] = max(h, dp[k-1][k-1]+1)
+
+4. The minimum mana required to kill all monsters is stored in dp[n-1][max_time]
+
+===END PLAN===

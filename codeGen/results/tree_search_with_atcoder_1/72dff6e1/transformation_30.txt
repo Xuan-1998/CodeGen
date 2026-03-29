@@ -1,0 +1,21 @@
+
+1. Define the problem in terms of Dynamic Programming (DP). Let dp[i][j] represent the number of valid sequences of length i using the first j elements of A.
+
+2. Initialize the DP table:
+   - dp[0][0] = 1, representing an empty sequence.
+   - For all other dp[0][j] where j > 0, initialize dp[0][j] = 1, as an empty sequence is valid for any j.
+
+3. Iterate over the length of sequences (i) from 1 to N.
+   - For each i, iterate over the elements of A (j) from 1 to N.
+   - Use a nested loop to count the occurrences of each element in the sequence.
+   - Update dp[i][j] using the relation:
+     dp[i][j] = (dp[i][j-1] + dp[i-1][j-1] * A[j-1]) % 998244353.
+   - Ensure that the number of occurrences of each element does not exceed A[j-1].
+
+4. The final answer will be the value of dp[N][N], which represents the number of valid sequences of length N using all N elements of A.
+
+5. Consider edge cases such as:
+   - N = 1, where the sequence consists of a single element.
+   - A[i] = N for all i, where each element can appear N times.
+   - A[i] = 1 for all i, where each element can appear at most once.
+

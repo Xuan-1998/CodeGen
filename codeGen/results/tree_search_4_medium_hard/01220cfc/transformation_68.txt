@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use memoization for top-down approach: Implement a dictionary or cache to store and reuse previously computed solutions for overlapping subproblems.
+
+1. Define the state as (i, reachable): where i is the current index and reachable indicates whether it's possible to reach that index from the previous maximum reachable index.
+2. The transition relationship could be based on whether the current index is within the jump range of the previous maximum reachable index: 
+   - If the current index is within the jump range, then it's possible to reach it (reachable = True).
+   - If the current index is not within the jump range and it's not the last index, then it's not possible to reach it (reachable = False).
+
+3. Implement memoization within a recursive function by storing previously computed values to avoid redundant computation and reduce the time complexity.
+
+4. The base case for the recursion would be when the current index is the last index, in which case it's always possible to reach it (reachable = True).
+
+5. During the recursive calls, check if the state has been memoized before. If yes, return the previously computed result. Otherwise, compute the new result and store it in the memoization dictionary.
+
+6. The final result would be whether it's possible to reach the last index (the state when i is the length of the array).
+
+===END PLAN===

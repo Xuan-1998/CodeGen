@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment, and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder.
+
+dp[i][j] = True if array[i-1] <= array[j] and j == r - 1, False otherwise
+
+Consider a subsegment as a valid ladder if it is non-decreasing up to the first decreasing element, and then non-increasing from that point onward.
+
+To use tabulation by initializing an array of size n+1, where each element at index i represents whether the subsegment ending at i is a valid ladder. 
+
+dp[i] = True if array[j-1] <= array[j] for all j in range(i), False otherwise
+
+For each query l and r:
+
+    Calculate dp[r] - dp[l-1] to check if the subsegment defined by l and r is a ladder.
+
+    If it is, print "Yes", else print "No".
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[i] = whether there's a path from i to 0 (since all vertices are connected by edges). Base case: dp[0] is always true.
+
+dp[i] = dp[u & v] OR (u < v) AND dp[v - u];
+
+Memoize the dynamic programming function by storing the intermediate results in a dictionary and reusing them when needed.
+
+For each query, calculate the bitwise AND of the query vertices u_i and v_i. Check if there's a path from this bitwise AND to 0. If yes, return "YES". Otherwise, return "NO".
+
+===END PLAN===

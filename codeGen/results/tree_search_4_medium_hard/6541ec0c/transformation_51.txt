@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+Given the constraints that 2 ≤ k ≤ n ≤ 10^5, I'm thinking that a bottom-up dynamic programming approach might be faster than a top-down approach due to reduced time complexity for larger inputs.
+
+State: dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+
+dp[i][j] = 1 if there are at least k edges deleted from the tree such that for every connected component in the remaining subtree rooted at node i, the bitwise XOR of its nodes is the same with dp[prev_node][j-1], else 0.
+
+Use a bitwise operator to update the DP values based on the XOR value of the current node and its neighbors
+
+For each node i:
+  For j from k down to 1:
+    For each possible xor_val (2^(n-1)):
+      If dp[i-1][j-1][xor_val] is 1:
+        Then dp[i][j][xor_val] = 1
+      Else:
+        Check if the node i has a neighbor with value xor_val XOR node i's value. If found, set dp[i][j][xor_val] to 1.
+    End for
+
+For each node i:
+  For j from k down to 1:
+    For each possible xor_val (2^(n-1)):
+      If dp[i][j][xor_val] is 1:
+        Output "YES"
+      Else:
+        Output "NO"
+
+===END PLAN===

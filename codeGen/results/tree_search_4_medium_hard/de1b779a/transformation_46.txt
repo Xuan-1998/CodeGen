@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type or without it, considering the remaining dough and stuffings left. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (stuffing_type, remaining_dough) as the state expression.
+State: (stuffing_type, remaining_dough), Transition:
+  - If no stuffing types are left or no dough is left, don't make a bun and return 0
+  - If enough dough is left to make a bun with the current stuffing type, decide whether to make it or not
+    * Make a bun: calculate the profit from selling the bun (di) minus the cost of making it (bi + ci), add this to the maximum profit from the previous state without the current stuffing type
+    * Don't make a bun: return the maximum profit from the previous state without the current stuffing type
+  - If not enough dough is left to make a bun with the current stuffing type, don't make it and return the maximum profit from the previous state without the current stuffing type
+
+Implement memoization by defining a recursive function with memoization dictionary, where the key is (stuffing_type, remaining_dough) and the value is the maximum profit.
+===END PLAN===

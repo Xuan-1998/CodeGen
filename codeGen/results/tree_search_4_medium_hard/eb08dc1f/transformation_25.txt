@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Let dp[i][k] be the count of blocks ending at i-th digit position with exactly k consecutive equal digits in them. The state is a tuple (i, k) representing the count.
+
+1. Initialize dp[0][k] for all 0 <= k <= n to 0, since there are no blocks of any length ending at the first digit position.
+2. Iterate over each i from 1 to 10^n - 1:
+   a. For each i, iterate over each k from 1 to min(n, ceil(log10(i))):
+      i. Count the number of blocks ending at i-th digit position with exactly k consecutive equal digits in them by iterating over all possible combinations of digits that can form such blocks.
+      ii. Store this count in dp[i][k].
+   b. For each i and for all 0 <= j < n:
+      i. Update dp[i][j] as the sum of counts from dp[i-1][j-1], dp[i-1][j], ... , dp[i-1][n-1].
+3. Initialize res[] to store the total count of blocks for each length.
+4. Iterate over each k from 0 to n:
+   a. For each i from 10^(k-1) - 1 to 10^k - 2:
+      i. Add dp[i][k] to res[k].
+5. Return the sum of all elements in res[] modulo 998244353.
+
+===END PLAN===

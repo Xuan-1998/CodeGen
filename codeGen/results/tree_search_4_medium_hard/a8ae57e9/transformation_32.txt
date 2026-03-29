@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+We define dp[i][j] as the maximum amount of money earned with i tables remaining and j total amount to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+The recurrence relation can be written as:
+
+- If j < ci * k for some table i, then we cannot seat any group at that table. In this case, dp[i][j] = 0.
+- Otherwise, consider the maximum amount of money earned by seating a group of size ri at one of the tables, and not spending pi. This can be done in k ways. Add this to the maximum amount of money earned by not seating any groups and not spending j-pi. This gives us dp[i][j] = max(0, ri * min(k, j/ri) + dp[i-1][j-pi]).
+
+Use a dictionary to store memoized values for subproblems, mapping (i, j) tuples to their computed results.
+
+The final answer is the maximum amount of money earned by seating all groups and not spending any money. This can be done in one way. Add this to the maximum amount of money earned by not seating any groups and not spending n. This gives us dp[0][n] as the answer.
+
+===END PLAN===

@@ -1,0 +1,11 @@
+
+1. Sort the points based on their positions in ascending order. This ensures that we process points from left to right, which will make the state transitions easier to manage.
+2. Define the state expression: Let dp[i] be the minimum number of points removed if we consider the first i points and add the additional point to the right of all existing points. Initialize dp[0] = 0, since if there are no points, no points can be removed.
+3. Iterate over each point i from 1 to n. For each point i, determine the impact of adding the additional point and how it affects the removal of other points:
+   a. Let j be the rightmost point that will not be removed when point i is activated. This can be determined by finding the largest index j such that the position of point j is greater than the position of point i minus the range of point i.
+   b. Update dp[i] as the minimum of dp[i-1] (not activating point i) or dp[j] + (i - j - 1) (activating point i and removing points between j and i).
+4. The final answer will be the minimum number of points removed when considering all points and adding the additional point to the right, which is dp[n].
+
+Time complexity: O(n log n) due to sorting and O(n) for the DP transitions, resulting in an overall complexity of O(n log n).
+Space complexity: O(n) for storing the dp array.
+

@@ -1,0 +1,10 @@
+def solution(b):
+    n = len(b)
+    dp = [[False] * (max(b) + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for prev_val in range(max(b) + 1):
+            if b[i - 1] <= prev_val:
+                dp[i][prev_val] = True
+                for j in range(prev_val, max(b) + 1):
+                    dp[i][j] = or(dp[i][j], dp[i - 1][j - 1])
+    return "YES" if any(dp[n][i]) else "NO"

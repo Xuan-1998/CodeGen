@@ -1,0 +1,20 @@
+
+1. Precompute Costs for All Possible Patterns:
+    a. Since there are only three lowercase Latin alphabets ('a', 'b', 'c'), we can generate all possible "beautiful" strings of length up to n using these characters.
+    b. There are 6 possible patterns of length 3 that do not contain palindromes of length 2 or more: "abc", "acb", "bac", "bca", "cab", "cba".
+    c. For each pattern, compute the cost to transform any substring of s into this pattern.
+
+2. Precompute Cost Arrays:
+    a. Create an array `costs` of size 6 x (n+1), where `costs[p][i]` represents the cost to transform the first i characters of s into the pattern p.
+    b. Initialize `costs` array to 0.
+    c. Iterate through each character of s and update the `costs` array for each pattern based on the previous values.
+
+3. Answer Queries Efficiently:
+    a. For each query (l_i, r_i), determine the cost to transform the substring s[l_i-1:r_i] into each of the 6 patterns.
+    b. Use the precomputed `costs` array to get the cost for each pattern in constant time.
+    c. Return the minimum cost among the 6 patterns for each query.
+
+4. Edge Cases:
+    a. If n or m is 1, handle it directly since a single character is already beautiful.
+    b. Ensure the indices are correctly adjusted for 1-based to 0-based indexing.
+

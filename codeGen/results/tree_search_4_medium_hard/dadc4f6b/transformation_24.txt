@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view by iterating over all stars within the view and summing up their initial brightnesses if they are not hidden by other stars.
+
+A state consists of three indices i, j, and k indicating which stars are currently within the rectangular view. The state is updated as a star enters or exits the current view.
+
+State: (i, j, k), where:
+    - i is the number of stars within the current view
+    - j is the maximum brightness of these stars
+    - k is the total initial brightness of these stars
+
+Transition relationship:
+    - When a star enters the current view and its brightness is less than or equal to c, increment i, update j with the maximum brightness of the entering star if it's greater than j, and add the entering star's initial brightness to k
+    - When a star exits the current view, decrement i
+    - When a star enters the current view and its brightness is greater than c, do nothing
+
+Use dynamic programming by iterating over all possible states. For each state, calculate the total brightness based on the number of stars and their maximum brightness.
+
+Store the calculated values in a memoized table to avoid recalculating the same value multiple times.
+===END PLAN===

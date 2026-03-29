@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with memoization by defining a recursive function that calculates the maximum score for each subproblem, then apply memoization to avoid redundant calculations.
+
+Define dp[i][j] as the maximum score that can be achieved by the end of the ith element if we have made j moves so far, with no more than z moves to the left in a row and the current index is i. 
+
+Consider defining dp[i][0] = arr[i], where arr[i] is the value at the ith index, representing the maximum score achievable from the initial position by not making any moves.
+
+For the transition relationship, consider the following:
+- If j > 0 and we have made more than z moves to the left in a row, then dp[i][j] = dp[i-1][z], because we cannot make more moves to the left.
+- Otherwise, dp[i][j] is the maximum of dp[i-1][j-1] + arr[i] (moving right) and dp[i+1][j-1] + arr[i-1] (moving left).
+
+Apply memoization by defining a recursive function max_score(i, j) that calculates the maximum score for each subproblem, then use a dictionary or cache to store and retrieve previously computed values.
+
+===END PLAN===

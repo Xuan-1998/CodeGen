@@ -1,0 +1,18 @@
+Dynamic programming approach:
+Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+The state is dp[i][j] where i represents the number of beacons to the left of the newly added one and j represents the power level of the newly added one.
+For each position i, iterate from right to left:
+    For each power level j:
+        If there are no active beacons to the left (i.e., i == 0), dp[i][j] is simply the number of beacons with power less than or equal to j.
+        Otherwise, consider the last activated beacon's position and power. 
+            If the newly added beacon has a power level greater than the last activated one, it will destroy all beacons to its left within its power range; thus, dp[i][j] is the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j plus 1 (for the last activated one).
+            If the newly added beacon has a power level less than or equal to the last activated one's power level, it will not destroy any beacons; thus, dp[i][j] is simply the minimum number of beacons that could be destroyed if exactly one beacon is added at position i-1 with power j.
+Initialize the DP table as follows: 
+    For each row i in the DP table:
+        For each column j in the DP table (from left to right):
+            If there are no active beacons to the left (i.e., i == 0), dp[i][j] is simply the number of beacons with power less than or equal to j.
+    Then, iterate from top to bottom:
+        For each position i:
+            For each power level j:
+                Calculate dp[i][j] using the above rules and store it in the DP table.
+The minimum number of beacons that could be destroyed is stored in the last cell of the DP table (dp[n-1][-1]).

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment.
+
+dp[i][j] = True if array[i-1] <= array[j] and j == r - 1, False otherwise
+
+Use a bottom-up approach to generate all possible combinations of increasing/decreasing elements within the subsegment and check if they form a valid ladder.
+Iterate over each element in the subsegment.
+If an element is less than the previous one (decreasing), mark it as a potential start of a decreasing sequence.
+If an element is greater than the previous one (increasing), mark it as a potential start of an increasing sequence.
+
+Then, check if there are any valid ladders starting from each marked position. 
+For each marked position:
+  If it's the start of a decreasing sequence:
+    Check if all elements after this position are decreasing.
+  If it's the start of an increasing sequence:
+    Check if all elements after this position are increasing.
+
+Return "Yes" for each query where there is at least one valid ladder, and "No" otherwise.
+===END PLAN===

@@ -1,0 +1,18 @@
+
+1. State Expression: Let dp[x] be the maximum points that can be obtained considering all integers from 1 to x. The transition relation will be dp[x] = max(dp[x-1], dp[x-2] + count[x] * x), where count[x] is the frequency of the integer x in the sequence.
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution iteratively from the base cases using a table to store results of subproblems. The time complexity is O(n) and space complexity is O(n) due to the table used for storing results.
+
+3. Detailed Steps:
+   a. Initialize an array `count` of size 105 (since the maximum value of ai is 105) to store the frequency of each integer in the sequence.
+   b. Populate the `count` array by iterating through the input sequence and incrementing the count of each integer.
+   c. Initialize a dp array of size 105 to store the maximum points for each integer up to 105.
+   d. Set dp[0] = 0 and dp[1] = count[1] * 1.
+   e. Iterate from 2 to 105 to fill the dp array using the relation dp[x] = max(dp[x-1], dp[x-2] + count[x] * x).
+   f. The final answer will be dp[105], which contains the maximum points that can be obtained.
+
+4. Edge Cases:
+   a. If n = 1, the answer is simply the value of the single integer in the sequence.
+   b. If all integers in the sequence are the same, the strategy should correctly identify that removing all instances of that integer is optimal.
+   c. If the sequence contains a mix of integers with no consecutive values, the strategy should correctly sum the values of all integers.
+

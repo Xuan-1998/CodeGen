@@ -1,0 +1,6 @@
+===BEGIN PLAN===
+dp[i][j] = max bitwise OR value for all pairs of substrings (s[k], s[l]) with k in [0, i) and l in [i, j)
+Initialize an n x n table dp where dp[i][j] represents the maximum bitwise OR value for all pairs of non-empty substrings (s[0..i], s[j..n])
+dp[i][j] can be calculated as max(dp[i-1][k] | s[i].to_int() | dp[k+1][j]) for k in range(i, j)
+dp[n-1][n-1] will store the maximum bitwise OR value for all possible pairs of non-empty substrings (s[0..n-1], s[n-1..n-1])
+Return dp[n-1][n-1]

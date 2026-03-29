@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up approach and recursion.
+Define dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing.
+dp[i] = min(1 + dp[j-1] for j in range(i) if A[j] < A[i]) if all elements from 0 to i are not in increasing order, otherwise dp[i] = 0
+Create a 1D table where each cell represents the minimum number of operations needed to make the subarray strictly increasing.
+Initialize dp[0] = 0 for base case
+For each element A[i], calculate dp[i] by considering all previous elements A[j] such that j < i and A[j] < A[i]
+Finally, return dp[N-1] as the minimum number of operations needed to make the entire array strictly increasing.
+===END PLAN===

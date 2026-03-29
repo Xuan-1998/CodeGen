@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+\
+The state can be defined as (i, t) where i is the current monster index and t is the time until the next monster appearance; 
+The base case is when there are no more monsters to cast spells on. If i == n, return 0.
+
+Memoization can be achieved by defining a function dp(i, t) that takes (i, t) as input and returns the minimum mana required to kill the first i monsters at time t. 
+
+For each subproblem dp(i, t), calculate the minimum mana in two ways:
+1. Don't cast a spell at time t, so we need dp(i-1, k_i - 1) mana to kill the first i-1 monsters at time k_i - 1.
+2. Cast a spell with damage h_i at time t, so we need t mana to cast the spell and dp(i-1, k_i - t - 1) mana to kill the rest of the monsters.
+
+Choose the minimum between these two cases.
+
+The final answer is dp(n, n), which represents the minimum mana required to kill all monsters.
+===END PLAN===

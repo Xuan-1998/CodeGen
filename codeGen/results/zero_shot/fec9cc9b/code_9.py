@@ -1,0 +1,12 @@
+import sys
+n, m = map(int, sys.stdin.readline().split())
+arr = list(map(int, sys.stdin.readline().split()))
+for _ in range(m):
+    l, r = map(int, sys.stdin.readline().split())
+    segment = arr[l-1:r]
+    is_ladder = True
+    for i in range(1, len(segment)):
+        if (segment[i] < segment[i-1]) or (segment[i] > segment[i-1]):
+            is_ladder = False
+            break
+    print("Yes" if is_ladder else "No")

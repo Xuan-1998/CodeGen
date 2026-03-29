@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, meaning the solution to a larger instance can be constructed from solutions of smaller instances, making it amenable to bottom-up tabulation.
+
+Consider a state representing the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i, where 1 ≤ i ≤ n.
+
+State: dp[i] = the maximum beauty that can be achieved by the hedgehog with its tail ending at vertex i, where 1 ≤ i ≤ n. It depends on whether we extend the current tail or start a new spine.
+
+A tabulation approach using iteration:
+
+    Initialize a table dp[] of size n+1 to store the maximum beauty and iterate over all vertices i, computing the maximum beauty in O(n) time.
+    For each vertex i, consider extending the current tail by one edge (if possible), which adds 1 to the length of the tail and potentially adds new spines. The number of new spines is at most equal to the degree of vertex i.
+    Alternatively, start a new spine from vertex i, which adds 1 to the number of spines but does not change the length of the tail. The maximum beauty in this case is the product of the current length of the tail and the number of spines.
+    Take the maximum of these two cases as the updated value for dp[i].
+
+    Continue this iteration until i = n, and return the final value of dp[n] as the maximum possible beauty.
+
+===END PLAN===

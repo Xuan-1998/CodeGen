@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's define the state as (i, j), where i represents the current stuffing type, and j represents the remaining dough grams.
+
+State:
+dp[i][j] = maximum profit that can be earned with i-1 types of stuffings and j-1 grams of dough
+
+Memoization using Python's built-in lru_cache decorator or a custom memoization function. This is necessary because the same subproblem may be solved multiple times, which would lead to inefficient computation.
+
+For a given state (i, j), we have two options:
+
+* Make a bun with the current stuffing type: We can make a bun with the i-th stuffing and then consider the remaining dough grams j-ci. This will give us a profit of di.
+* Don't make a bun with the current stuffing type: We don't use any stuffings or dough, so we just add d0 to our previous maximum profit.
+
+So, the recursive formula is:
+
+dp[i][j] = max(dp[i-1][j], dp[i][j-ci]+di)
+
+Base cases:
+* If i=0 (no stuffing), then we can't make any buns.
+* If j<ci (not enough dough to make a bun with the current stuffing type), then we have to skip making a bun with this stuffing type.
+
+Edge cases:
+* If there is no dough left, then we can only sell buns without any stuffing. So, our maximum profit is just d0.
+* If all the dough has been used up and there are still stuffings left, then we should not make any more buns because we won't have enough dough.
+
+===END PLAN===

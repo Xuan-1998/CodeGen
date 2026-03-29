@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Define two states:
+state[i][0] = max(state[k][0] for k in range(1, i+1) if state[k-1][1] > 0 or (state[k-1][1] == 0 and a[k-1] <= a[k]))  # maximum length of non-increasing sequence
+state[i][1] = max(state[k][1] for k in range(1, i+1) if state[k-1][0] > 0 or (state[k-1][0] == 0 and a[k-1] >= a[k]))  # maximum length of non-decreasing sequence
+
+Use memoization by defining a dictionary that stores the states:
+dp = {(i, 0): state[i][0], (i, 1): state[i][1]} for i in range(n+1)
+
+Update the states and determine if the current subsegment is a ladder:
+state[i][2] = "No" if not ((state[i-1][0] > 0 and state[i-1][1] == 0) or (state[i-1][0] == 0 and state[i-1][1] > 0)) else ("Yes" if state[i-1][0] + state[i-1][1] >= r-l+1 else "No")
+
+Return the result for each query:
+for _ in range(m):
+    l, r = map(int, input().split())
+    print("Yes" if dp[(r, 2)] == "Yes" and dp[(l-1, 2)] != "Yes" else "No")
+===END PLAN===

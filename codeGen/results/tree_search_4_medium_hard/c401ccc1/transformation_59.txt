@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others.
+The state is a binary vector indicating whether each vertex is reachable or not, and the base case is when v has no outgoing edges.
+
+State: A boolean array dp[][], where dp[i][j] represents whether there's a path from i to j.
+Transition: Update the reachable status based on the edges and the current status:
+    - If u & v = v, then there's a path from u to v.
+    - If there's no edge between u and v, then there's no path.
+
+Iterate over vertices in topological order to fill up the 2D DP table. For each vertex u, iterate over all vertices v reachable from u, update dp[u][v] based on the edges and the current status.
+===END PLAN===

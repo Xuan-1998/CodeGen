@@ -1,0 +1,14 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][0] = True, since one partition can always be made.
+dp[i][j] = False if i < K or j > (i // K) + 1, because at least K elements are required and we cannot have more than (i // K) + 1 partitions of size at least K.
+
+For dp[i][j], check all possible partition points p in range [0, i-1]. For each p:
+    If the difference between max(A[0..p]) and min(A[p+1..i]) is less than or equal to M, then it's possible to partition the subarray A[0..i-1] into j partitions.
+    Update dp[i][j] = (dp[i][j] or (dp[p][j-1] and (p >= K) and all(p+K-1 <= k < i: abs(A[k]-A[min(i-k, k-1)])))))
+
+For each i in range [0, N-1]:
+    For j from 1 to min(N // K + 1, M):
+        Update dp[i][j]
+
+Return dp[N-1][-1] as the result.

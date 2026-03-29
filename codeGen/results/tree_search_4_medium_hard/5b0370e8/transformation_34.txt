@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+The state is a boolean indicating whether the current bit of the bitwise AND operation is set and the base case is when all bits are unset.
+
+DP on bit position: for each bit, if it's 0 in the AND result, then it can only be 0 in at least one element; if it's 1 in the AND result, then it must be 1 in at least one element. This means we need to consider two possibilities - whether this bit is set in any element and whether it's not.
+
+Consider a fixed number of bits, k, where the highest bit is the most significant bit (MSB). Initialize a table dp[k][2] with all values being 0, where dp[i][j] represents the count of arrays that satisfy the condition for i bits and jth bit set in the AND result.
+
+Fill up the table using the following recurrence:
+- If the MSB is 0, then only one possibility remains: all bits must be 0. So, dp[k][0] = 1.
+- For each bit position from k-1 down to 0:
+    - If the current bit is 0 in the AND result, then it can only be 0 in at least one element. So, consider two possibilities: whether this bit is set in any element and whether it's not.
+    - Calculate dp[i][j] as the sum of the counts for all possible combinations of sets and unset bits.
+
+Memoization using a dictionary to store computed subproblems
+
+Fill up the table row by row from left to right. When calculating dp[i][j], use memoization to avoid redundant computation.
+
+The final answer is the sum of all entries in the last row (kth row) modulo 10^9+7.
+===END PLAN===

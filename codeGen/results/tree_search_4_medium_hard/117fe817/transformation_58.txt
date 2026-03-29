@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Use a bottom-up approach with tabulation to count the total number of digit 1's in all non-negative integers less than or equal to n.
+Formulate a state that represents the total number of ones in all integers up to i, where the transition occurs when you increment the most significant bit (MSB) and update dp[i] accordingly.
+Create an array dp[10^9+1] where dp[i] stores the total number of ones in all integers up to i. Initialize dp[0] = 0.
+Iterate from i=1 to n, for each integer j from 0 to log(i), 
+    update dp[i] += (i-j) // 10^j * (dp[j*10^(log(i)-j)]+1);
+This approach ensures that the number of ones in integers up to i is correctly counted.
+Finally, return dp[n].
+===END PLAN===

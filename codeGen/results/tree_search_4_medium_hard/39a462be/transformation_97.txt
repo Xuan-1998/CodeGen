@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 3D table where each cell represents the similarity score between two substrings A[0..i-1] and B[0..j-1]. The state expression is dp[i][j], and the base case is when one or both strings are empty.
+The state expression is updated as follows:
+- Initialize dp[0][j] and dp[i][0] to be the sum of lengths minus 4 times the length of the shorter string, since there's no common substring when one string is empty.
+- For i > 0 and j > 0, calculate the similarity score between A[0..i-1] and B[0..j-1], which is the maximum of:
+	+ dp[i-1][j-1] plus 1 (if the last characters match)
+	+ dp[i-1][j]
+	+ dp[i][j-1]
+- The final answer is stored in dp[n][m].
+
+===END PLAN===

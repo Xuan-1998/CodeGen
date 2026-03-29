@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The key insight is that the optimal solution for a given length j can be computed from the optimal solutions for lengths j-1 and j-2. Specifically, if s[:k] is the optimal string of length k, then either s[:k+1] (by adding one more character) or s[:k-1] (by removing the last character) could be the optimal solution for length k+1.
+
+State expression: dp[i][j] represents the lexicographically smallest string of length j that can be obtained by doing operations on the first i characters of s.
+
+dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]) if j <= k
+    - dp[i-1][j-1] is the optimal solution for length j-1, which can be extended to a string of length j by either duplicating or deleting the last character of s[:i]
+    - dp[i-1][j] is the optimal solution for length j, which can be obtained by doing operations on the first i-1 characters of s
+
+dp[0][j] = "" if j < k
+    - The base case: if j is less than the desired length k, then the lexicographically smallest string of length j is an empty string
+dp[n][k] = min(dp[i][k-1], s[:i] + s[:i])
+    - This is the final answer, which can be obtained by either deleting characters from the first n characters of s or duplicating it
+
+Initialize the dp array with zeros for i > 0 and j > 0
+Fill in the dp array row by row starting from dp[0][0] to dp[n][k]
+Return dp[n][k]
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, considering only elements up to index i-1.
+
+dp[i][j] = (A[i]-A[i-1]) <= M and dp[i-1][min(j-1, ceil((i-1)/M)+1)]
+
+Tabulate the solution by using dynamic programming with a time complexity of O(N*M) and space complexity of O(N*M).
+
+Initialize dp[0][j] for all j to true.
+
+For each i from 1 to N:
+    For each j from 1 to min(i/M+1, K):
+        if (A[i-1]-A[i-2]) > M or i < K:
+            dp[i][j] = false
+        else:
+            dp[i][j] = dp[i-1][min(j-1, ceil((i-1)/M)+1)]
+
+Return dp[N][K]
+===END PLAN===

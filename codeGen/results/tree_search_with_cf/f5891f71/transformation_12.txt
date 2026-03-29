@@ -1,0 +1,9 @@
+
+1. State Expression: Let dp[i] be the maximum possible value of the remaining element when considering the subarray from the start up to the i-th element. The transition would involve considering the effect of removing the i-th element and updating the (i-1)-th element.
+2. Bottom-up Strategy with Tabulation: This approach involves iteratively solving subproblems and building up the solution from the base cases. It is generally more efficient in terms of both time and space as it avoids the overhead of recursion. Time complexity: O(n), space complexity: O(n).
+3. Initialization: Initialize dp[0] to the first element of the array since no operations can be performed on a single element.
+4. Transition: For each element from the second to the last element of the array, update dp[i] as follows:
+   - dp[i] = max(dp[i-1] - a[i], dp[i-1] + a[i]) if considering both addition and subtraction.
+5. Final Answer: The maximum possible value of the remaining element after all operations will be the last element of the dp array.
+6. Edge Cases: Consider arrays of size 1 where no operations can be performed. The result should be the single element itself.
+

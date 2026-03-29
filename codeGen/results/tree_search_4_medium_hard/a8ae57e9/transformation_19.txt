@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size.
+
+Let's define dp[i][j] as the maximum amount of money earned considering only requests of size i or less and using j tables. We can fill in the states in bottom-up manner.
+
+For each request of size i, we have two options:
+1) Accept it and use one table for this request.
+2) Decline it and keep using the same number of tables as before.
+
+Let's calculate dp[i][j] based on these two options:
+
+dp[i][j] = max(dp[i-1][min(j, c[i])] + p[i]*c[j], dp[i-1][j])
+
+where c[i] is the capacity of the i-th table.
+
+Memoization can be used to store and retrieve previously computed values. A dictionary d can be defined that maps each state (i, j) to its corresponding value k, where (i, j) is the group size and k is the corresponding table number.
+
+dp[i][j] = max(dp[i-1][min(j, c[i])] + p[i]*c[j], dp[i-1][d[(i-1), min(j, c[i])]])
+
+Finally, we can find the maximum amount of money earned by using a similar dynamic programming approach. Let's define another state dmax as the maximum amount of money earned using k tables:
+
+dmax[k] = max(dp[n][k], dmax[k-1])
+
+The total amount of money earned is then given by dp[n][k].
+
+===END PLAN===

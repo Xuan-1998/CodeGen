@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+DP state: (n, m) where n and m are the current digits from A and B respectively.
+Create a 2D table dp of size (N+1) x (N+1) to store the expected number of non-zero carries for each pair of digits.
+
+Base case:
+dp[0][0] = 0 (no carry when adding two empty numbers)
+
+Fill up the table from bottom to top:
+for n from N-1 down to 0:
+    for m from N-1 down to 0:
+        if n > 0 and m > 0:  // both digits are not zero
+            dp[n][m] = (dp[n-1][m-1] + (n >= 10 or m >= 10)) / ((N-n) * (N-m))
+        elif n == 0:
+            dp[n][m] = (dp[0][m-1] + (m >= 10)) / (N-m)
+        elif m == 0:
+            dp[n][m] = (dp[n-1][0] + (n >= 10)) / (N-n)
+
+Return the expected number of non-zero carries: 
+return dp[N][N]
+
+===END PLAN===

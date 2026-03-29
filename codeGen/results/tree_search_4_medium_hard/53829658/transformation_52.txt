@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Let dp[i][j] be the minimum number of roads to be inversed to reach city i from the capital by reversing at most j roads.
+
+The base case is when all cities have been reached (i.e., j = n - 1), in which case we can simply return the number of reversed roads needed to reach the last city.
+Otherwise, let k be the smallest index such that there's an edge from city i to city k. If this edge is oriented from i to k, then we know the minimum number of reversed roads to reach k is dp[k][j - 1] + 1. Otherwise, it's dp[k][j] + 1.
+
+Update dp[i][j] with the minimum value between these two cases.
+Finally, return dp[0][n - 1], which is the minimum number of roads to be inversed to reach any other city from the capital by reversing at most n - 1 roads.
+
+The possible ways to choose the capital can be obtained by backtracking from the last city (i.e., city n) to the first city, keeping track of the cities visited along the way and the number of reversed roads used.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+The state is a tuple (i, k-j) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j.
+Consider the recurrence relation:
+- If i = 0, there is only one way: an empty array. Store this in memo[0, k].
+- For each possible j from k-1 down to 0, calculate the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j.
+	+ If j = 0, there is only one way: all elements being 0. Store this in memo[i, 0].
+	+ For each possible last bit from (k-1) down to 0:
+		- Calculate the number of ways to form an array with i-1 elements where all bitwise AND operations are greater than or equal to k-(j+1).
+		- Add the product of this and the number of possible last bits to memo[i, j].
+- The answer is the sum of memo[n, k] for each k from 0 to k.
+===END PLAN===

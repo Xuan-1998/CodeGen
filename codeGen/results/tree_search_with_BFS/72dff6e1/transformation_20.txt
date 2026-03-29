@@ -1,0 +1,15 @@
+python
+===BEGIN PLAN===
+1. State Expression: Let dp[i][j] represent the number of valid sequences of length i where the last element is j. Base Case: dp[0][0] = 1, as an empty sequence is valid.
+2. State Transition: For each i from 1 to N and each j from 1 to N:
+   - dp[i][j] = sum(dp[i-1][k] for all k such that k != j and occurrences of k in the sequence are within limits).
+3. Bottom-up strategy with tabulation: This approach builds up the solution by solving smaller subproblems first and using their results to solve larger subproblems, typically using a table to store intermediate results. Time complexity: O(N^2), space complexity: O(N^2).
+4. Initialize dp[0][0] = 1, and other dp[0][j] = 0 for j != 0.
+5. Iterate over the length of the sequence from 1 to N.
+6. For each length, iterate over each possible last element from 1 to N.
+7. For each last element, calculate the number of valid sequences by summing up the valid sequences of length (i-1) with different last elements.
+8. Ensure that the occurrences of each element in the sequence are within the limits specified by the array A.
+9. Sum up the values of dp[N][j] for all j from 1 to N to get the final result.
+10. Print the result modulo 998244353.
+===END PLAN===
+

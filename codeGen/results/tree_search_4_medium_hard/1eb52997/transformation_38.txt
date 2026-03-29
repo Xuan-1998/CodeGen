@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+A top-down approach using memoization could be implemented by defining a function that takes the current cell and direction (East) as inputs. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East.
+
+The state dp[(i, j)] can be defined as whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight. The base case is when i or j reaches N - 1, meaning we've reached the edge of the grid.
+
+The problem can be viewed as a grid where each cell has two states: it's either an empty cell that can be seen by a mirror (state 0) or a rock that cannot (state 1). Then formulate the state and transition relationships based on these states:
+
+- If the current cell is an empty cell (state 0), then a mirror can be placed at this position if there are no rocks to its East.
+- If the current cell is a rock (state 1), then a mirror cannot be placed at this position, regardless of what's to its East.
+
+Create a bottom-up dynamic programming approach where you fill up a 2D table with values, starting from the edge of the grid and moving inward. You can use the state dp[i][j] to store whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight.
+
+The transition relationships would be:
+
+- If the current cell is an empty cell (state 0), then dp[i][j] = 1 if there are no rocks to its East.
+- If the current cell is a rock (state 1), then dp[i][j] = 0, regardless of what's to its East.
+
+Finally, calculate the total number of empty cells where a mirror can be placed by summing up the values in the bottom-right corner of the grid (excluding any edge cases).
+
+===END PLAN===

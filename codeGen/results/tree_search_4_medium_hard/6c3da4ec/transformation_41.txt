@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp = {}
+def dpfn(i):
+    if i <= 2:
+        return s[:i].count('1') << (i-1)
+    else:
+        res = 0
+        for j in range(1, i):
+            or_val = (s[j-1] == '1') << (j-1) | dpfn(j-1)
+            if or_val > res:
+                res = or_val
+        return res
+dpfn(n)
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The number of possible options to place a mirror at 45 degrees can be computed by iterating over each cell in the grid, considering its East side visibility. Overlapping subproblems arise when multiple cells have the same East side visibility pattern. Optimize with dynamic programming.
+
+The state expression is dp[row][col], where row and col are integers representing the coordinates of a cell. The base case is when there is no rock in the cell, and we recursively check for rocks to the right.
+dp[row][col] is True if the cell is empty or the rightmost rock has been reached; otherwise, check the states of the cells to the right.
+
+Use a 2D array to store the state of each cell as you iterate over the grid from top to bottom and left to right. For the first row (top), dp[0][col] is True for all columns because there are no rocks above them.
+For subsequent rows, check if the current rock's East side is visible by checking the status of the cells in the previous row.
+
+The transition function is:
+dp[row][col] = 
+    - If the cell is empty (.) or the rightmost rock has been reached (#), then dp[row][col] is True.
+    - Otherwise, check the states of the cells to the right and return True if they are all visible; False otherwise.
+
+Edge cases: Ensure that the base case for the first row is handled correctly. Also, consider the edge case where there are no rocks at all (the entire grid is empty).
+
+===END PLAN===

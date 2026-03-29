@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp = {}
+def dp_function(i, s_set):
+    if (i, s_set) in dp:
+        return dp[(i, s_set)]
+    min_steps = float('inf')
+    for string in s_set:
+        if t[i:i+len(string)] == string and string not in dp_function(i-len(string), set()):
+            min_steps = min(min_steps, 1 + dp_function(i-len(string), s_set))
+    dp[(i, s_set)] = min_steps
+    return min_steps
+
+used_strings = set()
+for i in range(len(t)):
+    for j in range(n):
+        if t[i:i+len(s[j])] == s[j]:
+            used_strings.add(s[j])
+            break
+print(dp_function(len(t), used_strings))

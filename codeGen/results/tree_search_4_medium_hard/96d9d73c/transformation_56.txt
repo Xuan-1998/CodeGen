@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = 0 if i < K or j == 0
+dp[i][j] = True if max(A[i-K:i])-min(A[i-K:i]) <= M and dp[i-K][j]
+Update dp[i][j] based on the values of dp[i-K][j] and dp[i-1][j-1], considering whether the current element can be added to the same partition as the previous elements.
+For i >= K, check if there is a j such that dp[i][j] = True
+Return False if no such j exists, else return True
+
+===END PLAN===

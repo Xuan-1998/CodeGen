@@ -1,0 +1,11 @@
+state dp[i][j] represents the minimum number of operations needed to make the array strictly increasing up to index i with value j.
+
+dp[i][j] = min(dp[k][A[k-1]] for k in range(1, i)) + (A[i] - A[min(k for k in range(i) if A[k] <= A[i])) if A[i] > A[min(k for k in range(i) if A[k] <= A[i])), else 0;
+
+memo = {}
+for i in range(2, n):
+    for j in range(1, a[i]):
+        dp[i][j] = min(dp[k][A[k-1]] for k in range(1, i)) + (A[i] - j) if j < A[min(k for k in range(i) if A[k] <= j)] else 0;
+memo[dp[i][j]] = j
+
+return max(memo)

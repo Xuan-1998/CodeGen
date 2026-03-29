@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[0] = 1, because there is only one number (0) that does not have consecutive ones.
+
+The state is the current number i, and the transition relationship can be formulated as:
+    - if the binary representation of i does not contain consecutive ones, then dp[i] = dp[i-1] + 1, 
+      because we can increment the counter by 1 for each such number.
+    - if the binary representation of i contains consecutive ones, then dp[i] = dp[i-1], 
+      because there is no new number to add to the count.
+
+Create a dynamic programming table dp where each index dp[i] represents the count of numbers less than or equal to i that do not have consecutive ones in their binary representation.
+For i from 1 to n:
+    - if the binary representation of i does not contain consecutive ones, then 
+      dp[i] = dp[i-1] + 1
+    - else 
+      dp[i] = dp[i-1]
+Return dp[n]
+
+===END PLAN===

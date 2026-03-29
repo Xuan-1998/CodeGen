@@ -1,0 +1,9 @@
+
+1. State Expression: Let dp[i][j] represent the number of valid matrices of size i x j. The state transition will depend on the previous states, ensuring that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is satisfied.
+2. State Formulation: Initialize dp[0][0] = 1 because there is only one 0x0 matrix (trivially satisfying the condition). For any i and j, compute dp[i][j] by considering each possible value (0 or 1) for the element at position (i, j) and ensuring it satisfies the condition with respect to previously computed values.
+3. Transition: For each matrix size (i, j), consider placing either 0 or 1 at position (i, j). If placing 1, ensure it does not violate the given condition with any previously placed elements. Use a nested loop to check all quadruples (a, b, c, d) and ensure A_{a, b} \times A_{c, d} <= A_{a, d} \times A_{c, b}.
+4. Base Case: dp[1][1] = 2, representing the two possible 1x1 matrices (either 0 or 1).
+5. Iteration: Iterate through all possible matrix sizes from 1x1 to NxM, updating the dp table based on valid placements of 0s and 1s.
+6. Result: The final answer will be the sum of all valid matrices of size NxM, modulo 998244353.
+7. Edge Cases: Consider the smallest (1x1) and largest (400x400) matrices, ensuring the solution handles these efficiently. Ensure the solution does not exceed memory limits by carefully managing the dp table's size.
+

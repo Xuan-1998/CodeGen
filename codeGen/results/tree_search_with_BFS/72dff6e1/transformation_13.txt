@@ -1,0 +1,16 @@
+
+1. Define a 2D DP array dp[i][j] where dp[i][j] represents the number of valid sequences of length i ending with the integer j.
+2. Initialize the DP array:
+   - dp[0][j] = 1 for all j from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Use a prefix sum array to optimize the sum calculations:
+   - Let prefix_sum[i][j] be the sum of dp[i][k] for all k from 1 to j.
+   - prefix_sum[i][j] = prefix_sum[i][j-1] + dp[i][j]
+4. Transition:
+   - For each i from 1 to N and for each j from 1 to N:
+     - Initialize dp[i][j] to 0.
+     - If the number of occurrences of j in the sequence is less than or equal to A[j], update dp[i][j] using the prefix sum array:
+       - dp[i][j] = prefix_sum[i-1][N] - prefix_sum[i-1][j-1]
+     - Ensure that the result is taken modulo 998244353.
+5. The final answer is the sum of dp[N][j] for all j from 1 to N.
+6. Implement edge cases such as when N = 1.
+

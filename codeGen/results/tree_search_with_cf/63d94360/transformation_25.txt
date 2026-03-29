@@ -1,0 +1,10 @@
+
+1. Define a 2D list `dp` where `dp[i][j]` represents the number of ways to pass the ball exactly `i` times such that player `j` receives the ball last.
+2. Initialize the base case: `dp[0][0] = 1`, which means there is exactly one way to have zero passes and player 0 (initial player) ends up with the ball.
+3. Iterate over the number of passes `i` from 1 to N.
+4. For each pass `i`, iterate over each player `j` from 0 to K.
+5. For each player `j`, calculate `dp[i][j]` as the sum of `dp[i-1][m]` for all players `m` where `m != j`. This means the number of ways to pass the ball `i` times to player `j` is the sum of the number of ways to pass the ball `i-1` times to all other players except `j`.
+6. Since the result can be large, take modulo 1000000007 for each update to avoid overflow.
+7. After filling the `dp` table, the result for each test case is `dp[N][P]`, where `P` is the specific player who should receive the ball last.
+8. Output the result for each test case.
+

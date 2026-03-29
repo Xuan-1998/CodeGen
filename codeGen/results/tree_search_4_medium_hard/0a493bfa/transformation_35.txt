@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+State: for each number i in the array, define a tuple (i, beauty) where beauty is the maximum beauty that can be achieved after applying all possible operations starting from number i. State could represent the number of operations applied so far, and the total beauty gained until that point.
+
+Consider using dynamic programming with two variables to store the maximum beauty for each pivot: dp[i] represents the maximum beauty that can be achieved by performing all possible operations starting from number i, and op[i] represents the minimum number of operations required to achieve this beauty. Then update these variables iteratively as you consider each new operation.
+
+For each pivot, calculate its GCD with all other numbers in the array. For each such GCD, recursively or iteratively solve the subproblem for the remaining numbers (i.e., excluding the current GCD). This will give us the maximum beauty that can be achieved by performing operations on these remaining numbers.
+
+Finally, update dp[i] and op[i] with the maximum beauty and minimum number of operations required to achieve this beauty. If the current operation is good (i.e., the GCD is not in the set of bad prime numbers), then add the beauty gained from this operation to dp[i]. Otherwise, subtract the beauty gained from this operation from dp[i].
+
+===END PLAN===

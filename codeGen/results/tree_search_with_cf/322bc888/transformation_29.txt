@@ -1,0 +1,11 @@
+
+1. Define a "beautiful" string as one that does not contain a palindrome substring of length 2 or more.
+2. Create three possible patterns for a beautiful string using the first three lowercase Latin alphabets:
+    - Pattern 1: "abcabcabc..."
+    - Pattern 2: "bcabca..."
+    - Pattern 3: "cabca..."
+3. Precompute the cost to convert each prefix of the given string into each of the three patterns. Let `cost1[i]`, `cost2[i]`, and `cost3[i]` be the cost to convert the prefix of length `i` to the first, second, and third patterns, respectively.
+4. For each query, compute the cost to convert the specified substring to each of the three patterns using the precomputed costs. The cost for the substring `s[l:r]` to match pattern `p` can be calculated as `cost_p[r] - cost_p[l-1]`.
+5. The result for each query is the minimum cost among the three patterns.
+6. Iterate over all queries and compute the results using the precomputed costs.
+

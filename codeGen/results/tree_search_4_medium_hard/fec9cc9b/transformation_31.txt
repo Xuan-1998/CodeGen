@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i][j] = dp[i-1][k] for some k in range(l, j+1) such that array[k-1] <= array[k] and array[k] <= array[j]
+    if this condition is true for all i, then return "Yes" as it forms a valid ladder
+    else, check if there are any decreasing or increasing elements within the subsegment and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder
+dp[i][j] = True if all elements from l to j are in non-decreasing order, otherwise False
+    base case: dp[0][l-1] = True if array[l-1] is the smallest value
+Employ a bottom-up approach by iterating over the query range and updating the dp state accordingly
+for each query (l, r):
+    for i from l to r:
+        check if there are any decreasing or increasing elements within this subsegment
+            if yes, use tabulation to generate all possible combinations of such elements and check if they form a valid ladder
+                if true, return "Yes"
+                else, continue with the next query
+            else, return "No" as it doesn't contain any decreasing or increasing elements
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D array dp as follows:
+dp[i][j] represents the maximum score that can be achieved by the end of the ith element after j moves, considering that no more than z moves to the left are allowed in this process.
+
+Initially set all values of dp to negative infinity. Then fill up the dp array using the following recurrence relation:
+
+For each i from 1 to n and for each j from 0 to k:
+    If j == 0, then dp[i][j] is equal to the value at index i.
+    Otherwise, consider two cases: either make a move to the right (score += arr[i+1]) or make a move to the left (score += arr[i-1]).
+        For each of these two cases:
+            If this is not the first move and we have made no more than z moves to the left in a row, then consider making another move to the left.
+                dp[i][j] is equal to the maximum score between these two cases.
+
+Finally, return dp[n][k].
+===END PLAN===

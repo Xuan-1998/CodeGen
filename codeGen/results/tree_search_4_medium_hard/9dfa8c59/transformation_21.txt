@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers, then iterate over each number below n_max to count its permutations.
+Let the state be a boolean value indicating whether the current number is prime, and the base case would be when the number is less than 2.
+
+Maintain two dictionaries: 
+- one to store the count of permutations for each prime number (key being the number itself, and value being the count of permutations)
+- another to store the smallest and largest prime numbers with k_perms prime permutations
+
+Using a dynamic programming table to store the counts of prime permutations
+Initialize the DP table with 0s, where the size is n_max + 1
+Iterate over each number from 2 to n_max:
+    Check if it's a prime number (state)
+    If it's prime, iterate over its digits to count its permutations
+    Update the permutation count dictionary and DP table accordingly
+
+In the final iteration, iterate over the DP table from left to right:
+    For each cell in the DP table, check if it equals k_perms
+    If it does, update the smallest and largest prime numbers with k_perms prime permutations
+Return the count of such prime numbers, the smallest and largest prime numbers among them
+
+===END PLAN===

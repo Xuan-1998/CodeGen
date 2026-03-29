@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+State: for each number i in the array, define a tuple (i, beauty) where beauty is the maximum beauty that can be achieved after applying all possible operations starting from number i.
+
+The state could represent the array of numbers up to index 'i', with the corresponding beauty value. 
+
+Create a 2D DP table where each cell represents the maximum beauty achievable after applying operations starting from the pivot at that row and column. For edge cases, consider initializing the first row and column as (0, 0), since no operations can be applied starting from index 0.
+
+For each cell in the DP table, calculate the beauty by considering all possible GCDs with respect to the current number i:
+
+1. Initialize a variable 'max_beauty' as the maximum beauty achievable for the subproblem.
+2. Iterate through all numbers j less than or equal to i:
+   - Calculate the GCD of the current number i and j, and find its corresponding beauty value from the DP table.
+   - Add this beauty value to the max_beauty variable.
+3. Return 'max_beauty' as the maximum beauty achievable for the subproblem.
+
+Finally, return the last cell in the DP table (i.e., the maximum beauty achievable after applying operations starting from the last number in the array) as the solution.
+
+===END PLAN===

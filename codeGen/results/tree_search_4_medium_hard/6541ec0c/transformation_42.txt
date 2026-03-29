@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[node_val][edge_count] = 1 if it is possible to make all connected components in the tree with edge_count edges and node_val as the value of every node in those components have the same XOR, else 0.
+
+dp[node_val][edge_count] = {
+    for i in range(2 ** (k + 1)): 
+        {j: 
+            if edge_count == j:
+                dp[i][j-1]
+            elif edge_count > j and not any(dp[k][j-1] and k != i for k in range(2 ** (k+1))):
+                dp[i][j-1]
+            else: 
+                0
+        } for j in range(edge_count + 1)
+}
+
+===END PLAN===

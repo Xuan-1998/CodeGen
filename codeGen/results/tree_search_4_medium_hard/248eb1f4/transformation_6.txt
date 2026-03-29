@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = (j % M) + 1 if i is odd, else ((X-j+1) % M) + 1
+
+Implementing a bottom-up approach with two loops: one for the number of players and another for the remaining people with coins.
+
+For each number of players from 1 to X:
+  Initialize dp[0][j] = 1 (base case)
+  For each player from 2 to i:
+    For each remaining people with coins j from M-1 down to 1:
+      If i is odd, then the winner is ((X-j+1) % M) + 1
+      Else if i is even, then the winner is (j % M) + 1
+      dp[i][j] = min(dp[i-1][k] for k in range(M))
+    Calculate the result as (dp[i][M-1] - 1) + 1
+===END PLAN===

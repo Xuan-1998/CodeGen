@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequence and then count the number of maximum length subsequences.
+
+1. Initialize a list dp of size n+1 to 0.
+2. Iterate through the given array from left to right:
+    - For each element at index i, find the last element j in the previous subarray (dp[0] to dp[i-1]) that is smaller than the current element.
+    - If no such element is found, set dp[i] = 1. Otherwise, set dp[i] = dp[j] + 1.
+3. Initialize a variable max_length to 0 and a counter count to 0.
+4. Iterate through the list dp from right to left:
+    - For each element at index i, if it is equal to max_length, increment the counter count.
+5. Return the count as the number of longest increasing subsequences.
+
+===END PLAN===

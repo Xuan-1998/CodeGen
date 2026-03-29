@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] = count arrays ending at i with bitwise AND result j
+if j == 0:
+    dp[0][0] = 1
+for i from 1 to n:
+    for j from 0 to k-1:
+        if j & (k-1) == 0: # all elements in the range [i-m, i) have a bitwise AND with j
+            dp[i][j] += sum(dp[m][j-1] for m from 0 to i)
+        else:
+            dp[i][j] = 0
+===END PLAN===

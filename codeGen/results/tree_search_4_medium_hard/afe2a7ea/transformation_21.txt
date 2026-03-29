@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a bottom-up approach with dynamic programming is suitable.
+
+Let dp[i] represent whether it's possible to set signal powers for all towns up to i, given that radio towers are built in exactly i - 1 towns.
+
+dp[0] = True, as there are no towns to consider.
+For i > 0:
+    dp[i] = False if i is even, because an odd number of towers can't cover the middle town.
+    dp[i] = (or) {True for j from 1 to i - 1} and (j - 1) % 2 == 1, because each tower serves exactly one town that is not covered by any other tower.
+Use a dictionary to store previously computed values and update them recursively.
+
+===END PLAN===

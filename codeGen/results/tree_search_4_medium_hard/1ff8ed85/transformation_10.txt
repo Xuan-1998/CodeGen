@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+We can define the state as (n, val) where n is the current length of sequence b and val is the last value added to sequence b. We could also add a variable for the total sum of sequence b.
+
+Apply memoization using dictionary to store states as tuples (n, val) where n is the current length of sequence b and val is the last value added to sequence b.
+
+Define base cases: 
+- If sequence $b$ has only one element, it can be obtained from some sequence $a$.
+- If the first value in sequence $b$ is not equal to the sum of lengths of segments in sequence $a$, then it's impossible to obtain sequence $b$ from sequence $a$. 
+
+Iterate through sequence $b$ and use memoization to check if each segment can be obtained from some sequence $a$.
+
+For each state (n, val), iterate through possible values that could have been added previously. Check if adding these values to the current value in sequence $b$ would result in a valid sequence $a$. If it does, mark this state as true in the memoization dictionary. 
+
+Finally, check the last state and return "YES" if it's marked as true, or "NO" otherwise.
+
+===END PLAN===

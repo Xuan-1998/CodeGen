@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or without it. This would lead to a recursive formula, which can then be memoized.
+
+The state is (dough_left, stuffings_used), where dough_left is the amount of dough left and stuffings_used is a boolean indicating whether any stuffing has been used yet.
+
+The subproblem could be to decide which stuffing type to use for the next bun, considering the remaining dough and each stuffing's availability. The state would be (dough_left, available_stuffs), where dough_left is the amount of dough left and available_stuffs is a list indicating which stuffings are still available.
+
+Create a recursive function dp(dough_left, stuffings_used) that returns the maximum profit that can be earned with the given amount of dough and whether any stuffing has been used yet. The base case would be when there's no more dough or all stuffings have been used.
+
+The recursive formula could be:
+
+- If there's no more dough, return 0
+- If all stuffings have been used, consider making a bun without stuffing (dp(d0, True)) and the maximum profit that can be earned with the remaining dough (max(0, dp(dough_left - c0, False)))
+- Otherwise, for each available stuffing type:
+    + Calculate the profit if this stuffing is used (ai + bi - ci)
+    + Recursively call dp with the updated state (dough_left - ci, True) and add the calculated profit
+    + Consider not using any stuffing and recursively call dp with the same state (dough_left - c0, False) and add the maximum of the two profits
+
+Memoize the function to avoid redundant calculations.
+
+===END PLAN===

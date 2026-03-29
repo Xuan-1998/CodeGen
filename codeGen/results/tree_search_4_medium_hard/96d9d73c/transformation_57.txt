@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][0] = true, because an empty partition can always be created (base case).
+For i > 0 and 1 ≤ j ≤ K:
+    - dp[i][j] = true if there exists a partition of A[0..i-1] into j-1 partitions such that the maximum element in the last partition is at most max(A[0..i-1]) - M, and all elements in this partition are at least min(A[0..i-1]) + M.
+    - Otherwise, dp[i][j] = false.
+
+For i > 0 and j > K:
+    - dp[i][j] = true if there exists a partition of A[0..i-1] into K partitions such that the maximum element in the last partition is at most max(A[0..i-1]) - M, and all elements in this partition are at least min(A[0..i-1]) + M.
+    - Otherwise, dp[i][j] = false.
+
+Return dp[N][K].
+===END PLAN===

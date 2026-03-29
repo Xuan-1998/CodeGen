@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+Let's define two states:
+- dp[i][j] represents the number of different steady tables that can be formed with i rows and j columns modulo 1 000 000 000.
+- sum[k] represents the sum of elements in the kth row.
+
+The base case is when the sums of all rows except the first one are equal to or greater than 1. This means we only need to consider rows that start with a sum less than 1, since adding an element to any such row will make its sum at least 1, and thus it can't be part of a steady table.
+
+The dynamic programming approach starts by initializing the dp table where each cell [i][j] represents the number of different steady tables that can be formed with i rows and j columns modulo 1 000 000 000. We fill up the dp table by iterating over each cell from [1][j] to [N][M] based on the sum of elements in each row.
+
+For each cell [i][j], we consider all possible ways to fill it:
+- If the sum of the (i-1)th row is less than or equal to j, we can either copy the sum from the (i-1)th row or set it to be less than or equal to j. This gives us dp[i-1][sum[k]] + 1 and (j - sum[k-1]) * dp[i-1][k] possibilities respectively, where k is the sum of elements in the (i-1)th row.
+- If the sum of the (i-1)th row is greater than j, we can either set it to be equal to j or make it less than or equal to j. This gives us dp[i-1][j] and (j - sum[k-1]) * dp[i-1][k] possibilities respectively.
+
+Finally, we add the number of different steady tables that can be formed with i rows and j columns modulo 1 000 000 000 to the dp table: dp[i][j] = (dp[i-1][sum[k]] + 1) % 1000000000 + (j - sum[k-1]) * dp[i-1][k] % 1000000000.
+
+The final answer is the value of dp[N][M].
+
+===END PLAN===

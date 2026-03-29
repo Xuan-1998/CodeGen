@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Given the constraints that 2 ≤ k ≤ n ≤ 10^5, I'm thinking that a bottom-up dynamic programming approach might be faster than a top-down approach due to reduced time complexity for larger inputs.
+
+State: dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+dp[i][j][xor_val] = min(dp[min(i-1, j-1)][min(j-1, k-1)][xor_val^(a[i-1] ^ xor_val)] for k in range(1, min(j, i)+1)
+
+for i from n down to 2:
+    for j from i down to max(1, k+1):
+        for xor_val from 0 up to (1<<20) (or the maximum possible XOR value):
+            dp[i][j][xor_val] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+
+for i from n down to 2:
+    for j from i down to max(1, k+1):
+        if dp[i][j][xor_val] == 1:
+            return "YES"
+return "NO"
+
+===END PLAN===

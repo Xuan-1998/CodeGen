@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Define dp as a 2D array where dp[i][p] represents the minimum number of roads that need to be inverted in order to reach city i from the capital with p roads already inverted.
+
+State transitions:
+- If city i is the capital, then dp[i][p] = p
+- Otherwise, consider all adjacent cities j. For each j, if there's a road from j to i, then it means that we need to invert this road to reach i from the capital with p roads already inverted. The number of roads that need to be inverted in order to reach i from the capital is dp[j][0] + 1.
+- If there's no edge between city i and any other city, then we can only consider the roads that were already inverted to reach i, so dp[i][p] = p
+
+Base case:
+dp[1][0] = 0 (no roads need to be inverted in order to reach city 2 from city 1)
+
+Memoization:
+Create a dictionary memo where memo[(i, p)] = dp[i][p]
+
+Function:
+def get_min_inverted_roads(n, roads):
+    memo = {(1, 0): 0}
+    for i in range(2, n+1):
+        dp_i = float('inf')
+        for j in range(1, i):
+            if (j, i) in memo and (i, 0) in memo:
+                dp_i = min(dp_i, memo[(j, i)] + memo[(i, 0)] + 1)
+        memo[(i, 0)] = dp_i
+    return memo[(n, 0)]
+
+===END PLAN===

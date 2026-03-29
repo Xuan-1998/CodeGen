@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+dp = {}
+def dpUpdate(i):
+    for j in range(i+1, n+1):
+        bitwiseOR = 0
+        for k in range(j-1, i-1, -1):
+            bitwiseOR |= (1 << int(s[k]))
+        dp[(i, j)] = bitwiseOR
+
+n = int(input())
+s = input()
+dpUpdate(0)
+maxValue = 0
+for i in range(n+1):
+    for j in range(i+1, n+1):
+        maxValue = max(maxValue, dp.get((i, j), 0))
+
+print(format(bin(maxValue)[2:]).zfill(n))
+===END PLAN===

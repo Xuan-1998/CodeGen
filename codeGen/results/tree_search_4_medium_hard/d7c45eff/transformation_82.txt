@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string. To avoid re-computing the same subproblems multiple times, use dynamic programming.
+
+Let dp[i][j] represent the lexicographically smallest string of length j that can be obtained from the first i characters of the original string.
+For each possible string of length j that can be formed by either deleting the last character or duplicating the original string:
+    If j is 0, return an empty string as the lexicographically smallest one.
+    Otherwise, consider two possibilities:
+        1. Delete the last character: dp[i-1][j-1] (the lexicographically smallest string of length j-1 formed by deleting the last character from the first i-1 characters)
+        2. Duplicate the original string: dp[n][k-j+1] (the lexicographically smallest string of length k-j+1 formed by duplicating the remaining n-i characters)
+    Choose the one with smaller lexicographic order.
+
+Use a memo dictionary to store the results of subproblems and look up their solutions as needed.
+
+===END PLAN===

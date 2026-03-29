@@ -1,0 +1,9 @@
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State: the number of arrays with bitwise AND greater than or equal to bitwise XOR up to index i, with k-1 bits; Base Case: 0 when i < 0
+For each possible value less than 2^k, calculate the total number of arrays that satisfy the condition considering all numbers up to this point.
+Update a dynamic programming table dp with dimensions n*k, where each cell dp[i][j] stores the result of the recursive function call for the current state.
+Iterate over the input array and update the dynamic programming table based on the bitwise operations (AND and XOR) between the current number and previously considered numbers.
+To improve the plan:
+- Consider the properties of bitwise operations: AND is 0 if there's a mismatch in any bit position, while XOR will be 0 only when all bits match. This can help to reduce the complexity of the problem by simplifying the base cases and recursive function calls.
+- Instead of using a dictionary for memoization, consider using a 2D array dp with dimensions n*k to store intermediate results. This can reduce memory usage and make the code more efficient.
+- Add edge cases: what happens when i = 0 or j = 0? The base case should be updated accordingly.

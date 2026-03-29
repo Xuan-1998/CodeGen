@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, we can model it as a recursive function where the state is represented by the number of players chosen so far and the transition relationship is based on the probability of choosing a player from the current department.
+
+1. Initialize a 2D array dp with dimensions (n + 1) x m, where dp[i][j] represents the probability that we have at least one player from the j-th department given that we have chosen i players.
+2. Set dp[0][j] to 1 for all j, since it is impossible to form a team with zero players.
+3. Iterate over each department i = 1 to m:
+    - For each department i, iterate over each number of players k = 1 to n:
+        - If the number of players in department i is less than or equal to k, then we have at least one player from this department with probability s_i / (n + h - 1).
+        - Otherwise, there is no guarantee that we will get a player from this department.
+    - Calculate dp[k][i] as the maximum of dp[k-1][j] * s_i / (n + h - 1) and dp[k-1][i], where j varies over all departments except i.
+4. The probability that a randomly formed team will have at least one player from the department of interest is given by dp[n][h].
+5. If there are not enough basketball players in the university to form a team, return -1 instead.
+
+===END PLAN===

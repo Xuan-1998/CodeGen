@@ -1,0 +1,38 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = maximum length of substring required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+dp[i][j] = max(dp[k][m] + 1 for k in range(i) for m in range(j) if sum(s[m] == chr(m+96) for m in range(k, i)) <= a[ord(s[i-1])-97])
+
+Define recursive function to calculate the maximum number of ways to split s[0..i] into j substrings.
+maxWays(i, j) = 
+    if i < 0: 
+        return 0
+    elif dp[i][j] > 0:
+        return 1
+    else:
+        ans = 0
+        for k in range(j):
+            for m in range(26):
+                if sum(s[m] == chr(m+96) for m in range(i)) <= a[m]:
+                    ans += maxWays(k, m)
+        return ans
+
+Define base case: the maximum number of ways to split an empty string is 1.
+maxWays(-1, j) = 1
+
+Iterative improvement: use memoization to store the results of subproblems and avoid redundant calculations.
+
+Calculate the number of ways to split s into non-overlapping substrings such that each substring satisfies the given condition, the sum of their lengths is n, and they don't overlap.
+ways = maxWays(n-1, 26)
+
+Calculate the length of the longest substring over all the ways.
+longestSubstr = max(k for k in range(n) if dp[k][26] > 0)
+
+Calculate the minimum number of substrings over all the ways.
+minSubstrs = min(dp[i][j] for i in range(n) for j in range(26))
+
+Print the results modulo 10^9 + 7.
+print((ways % (10**9+7)), (longestSubstr % (10**9+7)), (minSubstrs % (10**9+7)))
+
+===END PLAN===

@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Use a dynamic programming approach with memoization to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider the number of times '1' appears as an intermediate digit (not leading or not trailing). For each position in which '1' can appear, count how many integers less than or equal to n contain it.
+
+Initialize a memoization array dp with size 10 (since we're dealing with single-digit numbers) and set all values to -1. This will be used to store the total number of digit 1's for each integer up to n.
+
+Define a recursive function count_ones(n, k) that takes an integer n and a position k as input. If n is less than 0 or if k is out of bounds (i.e., k < 0 or k >= len(str(n))), return 0.
+
+Otherwise, calculate the number of integers up to n that have '1' at position k by multiplying the count for the previous position (k-1) by the number of multiples of 10^k less than or equal to n. This is because we're essentially counting the number of times '1' can appear as an intermediate digit.
+
+Store the result in dp[k] and return it.
+
+Base case: when k == 0, count the total number of integers up to n that contain '1' at the leading position by summing over all multiples of 10^k less than or equal to n. This is because we're effectively counting the number of times '1' appears as a leading digit.
+
+Use memoization to optimize the recursive function and avoid redundant calculations. Start by initializing dp[0] to 0, since there's no leading '1' in single-digit numbers.
+
+Update the plan as follows:
+
+For each position k in which '1' can appear (i.e., k < len(str(n))), calculate count_ones(n, k) using memoization and add it to the running total.
+
+Return the total number of digit 1's counted.
+
+===END PLAN===

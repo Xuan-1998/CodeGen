@@ -1,0 +1,15 @@
+
+Top-down approach with memoization: This approach involves breaking the problem into smaller subproblems, storing the results of these subproblems to avoid redundant computations. It uses recursion and memoization to store intermediate results. 
+
+1. Base Case: For the base case, dp[0][0] can be initialized to 1 because a 0x0 matrix trivially satisfies the condition.
+
+2. Transition Relationship: To construct dp[i][j], consider the contribution of the (i, j) element. The transition can be defined using the previously computed states. Specifically, dp[i][j] can be derived from dp[i-1][j], dp[i][j-1], and dp[i-1][j-1] by ensuring the condition A_{a, b} \\times A_{c, d} \\leq A_{a, d} \\times A_{c, b} is satisfied for all valid (a, b, c, d).
+
+3. Memoization: Store the results of subproblems in a 2D array dp where dp[i][j] represents the number of valid matrices considering the first i rows and j columns.
+
+4. Edge Cases: Consider edge cases where N or M is 1. In such cases, the condition is trivially satisfied as there are no valid (a, b, c, d) quadruples.
+
+5. Final Computation: Sum up the values in the dp array to get the total number of valid matrices and take the result modulo 998244353.
+
+Time complexity: O(N*M), space complexity: O(N*M).
+

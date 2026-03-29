@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define a state dp[i][j] as the maximum length of non-decreasing sequence seen so far in the current subsegment [i..j].
+Use bottom-up tabulation approach to update dp array:
+dp[0][j] = 1 for all j, because the initial subsegment is always increasing.
+For each i from 1 to n and each j from l to r (inclusive):
+    If a[i-1] <= a[j], then update dp[i][j] as max(dp[i-1][k-1] for k in range(l, j+1) if a[k-1] <= a[k]) + 1
+    Otherwise, dp[i][j] = 0, because the current subsegment is not increasing.
+For each query (l, r):
+    Check if dp[r][r] - dp[l-1][l-1] > 0. If yes, then print "Yes", otherwise print "No".
+===END PLAN===

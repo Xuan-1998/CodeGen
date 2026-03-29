@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+State expression could be dp[i][j] = number of ways to build an i-sequence using j upper and M-lower hemispheres.
+dp[i][j] = number of ways to build a sequence with i-1 spheres in total, using exactly j upper hemispheres and the current sphere is an upper hemisphere.
+
+Create a 2D table dp[N+1][C+1] where dp[i][j] represents the number of ways to build a sequence with i spheres in total, using exactly j radii.
+For each cell dp[i][j], consider two cases:
+    - The current sphere is an upper hemisphere: Then we need to use one more upper hemisphere and M-lower hemispheres. This gives us dp[i-1][j+1] possibilities for building the rest of the sequence.
+    - The current sphere is a lower hemisphere: Then we can use either an upper or a lower hemisphere, giving us dp[i-1][k] (where k varies from 0 to j) possibilities.
+
+Base case: For i=0 and any j, there are no ways to build a sequence with 0 spheres. So, set all dp[0][j] to 0.
+Base case: For any i and j=0 or j=C, we can't use any/any more hemispheres. So, set all dp[i][0] and dp[i][C] to 1.
+
+Fill up the table in a systematic way using these base cases and recurrence relation.
+Finally, return the value of dp[N][j] for each test case j.
+===END PLAN===

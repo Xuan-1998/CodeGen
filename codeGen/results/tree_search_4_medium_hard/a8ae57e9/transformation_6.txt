@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a 3D array dp[i][j][k] where dp[i][j][k] represents the maximum amount of money earned by accepting the first i booking requests with group sizes less than or equal to j and seating all groups up to size j on k tables. The third dimension accounts for the number of tables.
+
+Define a state that keeps track of the number of tables required, the total amount of money earned, and the remaining capacity of each table, with transitions based on whether to accept or decline a request.
+
+Use dynamic programming with a 3D array to implement bottom-up tabulation. Start by initializing dp[0][j][k] for all j and k, since no requests are accepted initially. Then, iterate over booking requests in order from smallest group size to largest:
+
+1. For each request, iterate over the number of tables (k) from 1 to k:
+   - For each table (i), calculate the remaining capacity after accommodating this request.
+   - If the remaining capacity is sufficient, update dp[i][j][k] by considering two options: 
+     a) Accept this request and seat it on this table. In this case, the maximum amount of money earned is the sum of the current maximum and the money spent by this group.
+     b) Decline this request because there are not enough tables to accommodate it. In this case, do nothing.
+
+2. Finally, return dp[n-1][j][k] for the maximum amount of money earned after processing all booking requests on k tables.
+
+===END PLAN===

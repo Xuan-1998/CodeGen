@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+For each node $i$, maintain a state $(a_i, b_i)$ where $a_i$ is the number of ones that can be distributed to its children and $b_i$ is the number of ones that can be distributed along edges incident on node $i$ itself.
+There exists a base case when processing nodes that have no children ($n=1$), as there's only one way to distribute ones among their edges $(a_0, b_0) = (0, 1)$.
+state is a 2D table representing the distribution of ones among edges in the subtree rooted at each node; the state transition occurs by aggregating information from child nodes and considering the current node's contribution;
+For an internal node $i$ with children $j_1$, $j_2$, ..., $j_k$, compute $(a_i, b_i)$ as follows: 
+- Let $(a_{j_1}, b_{j_1}), (a_{j_2}, b_{j_2}), ..., (a_{j_k}, b_{j_k})$ be the states of its children. 
+- Then $a_i = a_{j_1} + a_{j_2} + ... + a_{j_k}$ and $b_i = 1 + \sum_{l=1}^k b_{j_l}$. 
+This approach ensures that the maximum possible distribution index is correctly calculated.
+Finally, compute the maximum possible distribution index of the tree by summing over all $(a_i, b_i)$ for $i$ ranging from 1 to $n-1$, and print it modulo $10^9 + 7$.
+
+===END PLAN===

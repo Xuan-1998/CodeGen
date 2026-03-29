@@ -1,0 +1,12 @@
+Define dp[n] as the number of different ways to create a collection V such that merging V into a sorted array results in array M.
+
+Base case: When n = 0, dp[0] = 1 (since there's only one way to create an empty array).
+
+Transition rule: For i from 1 to n-1,
+    - Calculate the number of multisets with i elements that have the same elements as the input multiset but with some repetitions allowed. Let this be num_multisets.
+    - Calculate dp[i] = sum(dp[j] * (num_multisets choose j)) for j from 0 to i-1.
+
+To calculate the sum, use the fact that the number of multisets with k elements that can be formed by choosing elements from a set of n elements is given by the formula (n+k-1) choose k.
+Edge cases:
+    - When n = 0, dp[0] = 1.
+    - When n = 1, dp[i] = 1 for all i.

@@ -1,0 +1,25 @@
+Plan:
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+A pair (k, c) representing the k-th string's cost to reverse and its current reversed or original status
+
+Consider the state as a tuple (i, rev) where i is the index of the current string and rev is a boolean indicating whether the string has been reversed or not.
+
+Implement memoization using a dictionary to store the results of subproblems, by defining a function that takes the state (i, rev) as input and returns the minimum cost to sort the strings up to the i-th string with its reversal status rev.
+
+Memoize the base case: If the current string is the first one or all previous strings have been reversed, the cost will be 0 (or c if the current string needs to be reversed).
+
+For the recursive case:
+    - Calculate the minimum cost for the subproblem where the current string has not been reversed yet.
+    - Calculate the minimum cost for the subproblem where the current string has been reversed.
+    - Return the minimum between these two costs.
+
+Memoize the results of all possible subproblems and return the result for the initial state (0, False).
+
+This plan is correct. It correctly identifies the problem as having optimal substructure and suitable for top-down approach with memoization.
+
+Potential issues:
+- The plan does not handle the case where it's impossible to sort the strings in lexicographical order. This could be added by checking if the current string has been reversed but still cannot be sorted lexicographically.
+- Edge cases: n=1, n=2, n=3 are trivially solved as 0, c and 2c respectively.
+
+This plan does not include edge cases directly. However, the memoization approach will correctly handle these cases as well.

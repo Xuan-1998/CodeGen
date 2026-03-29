@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][j] represents the maximum score that can be achieved after i moves, with at most j moves to the left.
+
+1. Initialize dp[0][0] = 0 and fill in the base case: when k = 0, the maximum score is simply the sum of all values in the array.
+2. Iterate through each subproblem (i, j) where 1 <= i <= k and 0 <= j <= min(z, i):
+    a. If j = 0, the maximum score depends on only one previous state: dp[i-1][j] without considering the last move.
+    b. Otherwise, consider two previous states:
+        i. The maximum score that can be achieved after i-1 moves (without considering the last move): dp[i-1][0].
+        ii. The maximum score that can be achieved after i-z moves (with the last z moves being to the left): dp[i-z][z].
+    c. Update dp[i][j] with the maximum score between these two states.
+3. Return dp[k][min(z, k)] as the final answer.
+
+===END PLAN===

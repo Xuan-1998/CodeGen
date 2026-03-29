@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Dynamic Programming:
+    1. Define a recursive relation between subproblems,
+    then use memoization to store computed results.
+    2. The length of the longest increasing subsequence ending
+    at index i in the array is the maximum length of the
+    longest increasing subsequences ending at indices j < i,
+    such that arr[i] > arr[j].
+Iterate over each element in the input array, considering its relationship with previous elements:
+    1. Initialize a table dp of size n + 1 with all values initialized to 1.
+    2. Iterate over each index i from 0 to n - 1:
+        a) For each previous index j < i, check if arr[i] > arr[j].
+        b) If the condition is met and dp[j] + 1 is greater than dp[i],
+            update dp[i] with the maximum length of the longest increasing subsequences
+            ending at indices j < i.
+    Use a bottom-up approach to build up the solution from scratch:
+    1. Initialize the result as the minimum value in dp array (the length of the longest increasing subsequence).
+    2. Return the result.
+
+===END PLAN===

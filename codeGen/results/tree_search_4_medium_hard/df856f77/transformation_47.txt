@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with memoization and bottom-up tabulation.
+
+Consider dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing, given that A[i-1] is in its correct position. 
+
+Let dp[i] be the minimum number of operations needed to make the subarray A[0..i] strictly increasing. Define transition relationships based on the comparison between adjacent elements: if Ai > Ai+1, then dp[i] = dp[i-1] + 1; otherwise, dp[i] can take the value of either dp[i-1] or dp[i-2], depending on whether Ai+1 is greater than any previous element in A.
+
+To avoid redundant computation and improve efficiency, use bottom-up tabulation to populate the dp array from left to right. This approach ensures that each subproblem is solved only once, reducing the time complexity to O(n^2).
+
+The base case for the recursion is when i = 0 or i = 1, in which case dp[i] is simply 0.
+
+To handle edge cases, consider the scenario where A[0] > A[1], indicating that the first element needs to be increased. In this case, the minimum number of operations required is 1, and dp[0] would be initialized with a value of 1.
+
+===END PLAN===

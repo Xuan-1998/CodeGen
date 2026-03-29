@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+State is defined as (city, gas), where city is an integer representing the city Nut is at, and gas is the amount of gasoline left.
+
+Transition happens when we move from one city to another. The new state would be (new_city, min(remaining_gas - road_length, max_gas_available)).
+
+Use a 2D DP table where rows represent cities and columns represent remaining gas amounts. The goal is to fill in the maximum amount of gasoline that Nut can have at the end of each path.
+
+For every cell dp[i][j], calculate the maximum amount of gasoline that Nut can have when arriving at city i with j units of gasoline left, by considering all possible paths ending at city i and the corresponding remaining gas amounts.
+
+Then, return the value in dp[n-1][max_gas_available] as the maximum amount of gasoline that Nut can have at the end of a simple path between two cities.
+===END PLAN===

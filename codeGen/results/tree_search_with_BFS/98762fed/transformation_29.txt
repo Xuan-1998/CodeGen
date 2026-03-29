@@ -1,0 +1,22 @@
+
+===BEGIN PLAN===
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+
+Transition: To fill the dp table, we need to consider the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b}. This condition implies that if we know the number of valid matrices of smaller sizes, we can build up to the size i x j.
+
+Initialization: 
+- dp[1][1] = 2, since a 1x1 matrix can have either 0 or 1.
+
+Filling the table:
+- For each size (i, j), we need to ensure that the condition holds for all possible (a, b, c, d) where 1 <= a < c <= i and 1 <= b < d <= j.
+
+Final State: The answer will be dp[N][M] % 998244353, representing the number of valid matrices of size N x M.
+
+Edge Cases:
+- When N = 1 or M = 1, the condition trivially holds, so all matrices are valid.
+- Ensure that the modulo operation is applied to avoid overflow.
+
+===END PLAN===
+

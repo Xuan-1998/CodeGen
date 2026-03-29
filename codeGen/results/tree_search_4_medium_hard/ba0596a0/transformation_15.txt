@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+state = (i, k)
+transition = min(state), for all valid moves of the frog
+dp[i] = True if there is a previous jump that can lead to this state, False otherwise
+Let's define two functions:
+can_reach(i) = dp[i]
+can_hop(j, k) = True if it's possible to reach the stone at index j with a hop length of k, False otherwise
+
+dp[0] = True (start from the first stone)
+for i in range(1, len(stones)):
+    for k in range(min(3, stones[i]-stones[i-1]), 2):
+        if can_reach(i-1) and can_hop(i-1, k) and (stones[i]- stones[i-1]) % 3 == (k-1)%3:
+            dp[i] = True
+            break
+    else:
+        dp[i] = False
+
+can_reach(len(stones)-1)
+===END PLAN===

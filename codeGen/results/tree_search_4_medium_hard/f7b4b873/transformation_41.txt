@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can also be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+Define the state expression as whether the current character matches with its corresponding previous character in the partition. The state is a combination of the characters in the current palindromic substring and their corresponding positions within the original string, and the next state is determined by updating this information accordingly.
+
+Use a 2D table where dp[i][j] represents whether the substring S[i...j] is a palindrome.
+
+Start with initializing the base case: for each single character in the string, mark it as a palindrome. This can be done by setting dp[i][i] to True for all i.
+
+Then, iterate over the characters in the string and update the dp table accordingly:
+
+* For each substring S[i...j], check if the first and last characters match (S[i] == S[j]). If they do, then the substring is a palindrome if and only if the substring without the first and last characters (S[i+1...j-1]) is also a palindrome. This can be done by setting dp[i][j] to True if and only if dp[i+1][j-1] is True.
+
+Finally, iterate over the 2D table in reverse order (from bottom-right to top-left) and construct all possible palindromic partitions of the input string by backtracking through the dp table. For each partition, add it to the result list.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Incorporate optimal substructure: Think about how the solution to one subproblem can be used to solve another related subproblem.
+
+The state is dp[i], which represents whether the i-th element can be reached. The base case is dp[0] = True, since we start at the beginning and the maximum reachable index from there is always 0.
+
+dp[i] represents whether the i-th element can be reached if dp[j] is True for all j < i - arr[i], meaning that we have reached the (i-1)-th index.
+
+Initialize an array of size n+1 with all values set to False (representing unreachable indices) and then fill up the dp array iteratively, starting from the first element:
+
+for i in range(1, n):
+    for j in range(i - arr[i], 0, -1):
+        if dp[j]:
+            dp[i] = True
+            break
+
+Finally, return dp[n-1], which represents whether we can reach the last index.
+
+===END PLAN===

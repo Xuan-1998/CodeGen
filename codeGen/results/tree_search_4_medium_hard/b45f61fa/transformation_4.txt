@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Top-down approach with memoization: Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j) representing the range of matrices to multiply, and the base case is when i == 0 or j == n-1 (single matrix remaining).
+
+Identify the state as (i, j) representing the range of matrices to multiply and define the transition relationship as:
+    dp[i][j] = min(dp[i][k-1] + p[k-1]*p[k]*dp[k+1][j]) for k in range(i+1,j)
+    with base case when i == 0 or j == n-1.
+
+Use a table dp to store the minimum number of operations required to multiply matrices from i to j, and initialize the table by setting:
+    dp[0][j] = 0 for all j
+    dp[i][0] = 0 for all i
+
+Construct the optimal parenthesization string by tracing back the optimal solution from dp[n-2][n-1] and recursively multiplying sub-matrices.
+
+===END PLAN===

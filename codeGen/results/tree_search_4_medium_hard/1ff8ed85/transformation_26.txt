@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+State: dp[i][j] = True if sequence b[1..i] can be obtained from sequence a[1..j].
+
+Transition relationship:
+    - If i == 0, then dp[i][j] = True for all j.
+    - If prev_val not in a[1..j], then dp[i][j] = False for all j.
+    - For all k such that 0 <= k <= i and a[k] == prev_val:
+        -> If j-k+1 == b[i], then dp[i][j] = dp[k][j-1].
+        -> Otherwise, dp[i][j] = False.
+
+Implement memoization using a dictionary to store the results of subproblems.
+
+Edge cases: Handle n == 0 separately.
+===END PLAN===

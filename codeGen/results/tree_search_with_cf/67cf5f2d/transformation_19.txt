@@ -1,0 +1,10 @@
+
+2. Bottom-up strategy with tabulation: This approach involves solving all subproblems iteratively and storing their results in a table. It generally requires less overhead compared to the top-down approach and is often more efficient in terms of both time and space for problems with overlapping subproblems. Time complexity: O(n log n), space complexity: O(n).
+Define the state expression: Let dp[i] represent the minimum number of points removed up to the i-th point when considering the activation from right to left. Base case: dp[n] = 0, where n is the total number of points, since adding a point to the right of all points initially removes none.
+
+1. State definition: Let dp[i] represent the minimum number of points removed up to the i-th point when considering the activation from right to left. Transition relationship: dp[i] = min(dp[i+1], dp[j+1] + (j - i)), where j is the farthest point to the left that is not within the bi distance of the i-th point.
+
+3. Iterate from the second-to-last point to the first point, computing the dp values based on the transition relationship. Use binary search to find the farthest point j to the left that is not within the bi distance of the i-th point for efficient computation.
+
+4. The final answer will be dp[0], which represents the minimum number of points removed when considering all points from right to left.
+

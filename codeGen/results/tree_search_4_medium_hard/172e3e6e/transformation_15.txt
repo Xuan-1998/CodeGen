@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem involves finding the number of good subsequences, which seems to be a function of the current element and the previous subsequence lengths. This suggests that memoization could be effective.
+
+The state expression defines the count of good subsequences that can be extended by appending a[i], given that it's divisible by i. The base case handles when i is 1 and we only consider sequences with length 0.
+
+Define the state as (k, prev) where k is the current element, and prev is the number of good subsequences found in the previous subsequence. This allows us to keep track of the previous good subsequences that can be extended by appending the current element.
+
+Memoization could be implemented by defining a function f(k, prev) that returns the count of good subsequences that can be extended by appending k, given that it's divisible by i. The base case handles when k is 1 and we only consider sequences with length 0.
+
+Initialize an array dp of size n+1 where dp[i] represents the number of good subsequences ending at index i. Initialize all elements to 0.
+
+Fill up the dp array using a loop from i = 2 to n. For each element k, check if it's divisible by i. If yes, then for each previous good subsequence prev, add f(k, prev) to dp[i]. Update dp[i] with the result.
+
+Finally, return dp[n]%10^9+7 as the answer.
+
+===END PLAN===

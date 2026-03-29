@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+To achieve this, we'll use dynamic programming with a dictionary where keys are the digit positions from 0 to n and values are the counts of ones at each position.
+
+Let dp[i] be the count of ones in all numbers up to i. Then:
+
+- For i = 0, there's only one number (i.e., 0), which contains no ones, so dp[0] = 0.
+- For i > 0:
+    + We can consider two cases: whether the current digit is a 1 or not.
+        - If it's not a 1, then the count of ones doesn't change; it remains the same as in the previous number (i.e., dp[i-1]).
+        - If it is a 1, then we need to consider the number of times '1' appears at this digit position across all numbers from 0 to i.
+            * This can be done by adding 1 for each power of 10 less than or equal to i (since these powers represent distinct digits), and subtracting the count of ones in the previous power of 10 (since we've already counted those ones).
+    + So, dp[i] = dp[i-1] + (i // 10**(i.bit_length()-1)) - (dp[i//10**(i.bit_length()-1)])
+- Finally, the total count of ones is the sum of all dp[i] from i=0 to n.
+
+===END PLAN===

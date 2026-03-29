@@ -1,19 +1,12 @@
-# Read the input
 n = int(input().strip())
-marks_above_water = list(map(int, input().strip().split()))
+counts = list(map(int, input().strip().split()))
 
-# Initialize variables
-below_water_total = 0
-current_level = 0
+elements = [10**6] * n
 
-# Process each day
-for i in range(n):
-    # If current level is greater than the marks above water, adjust the level
-    if current_level > marks_above_water[i]:
-        below_water_total += current_level - marks_above_water[i]
-        current_level = marks_above_water[i]
-    # Increase the current level for the next day
-    current_level += 1
+for i in reversed(range(n)):
+    elements[i] = min(elements[i], counts[i])
+    if i > 0:
+        elements[i-1] = min(elements[i-1], elements[i]-1)
 
-# Output the result
-print(below_water_total)
+print(sum(elements))
+

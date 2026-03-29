@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming and greedy strategy.
+
+Define dp[i] as the minimum number of operations needed to make the subarray A[0..i] strictly increasing.
+
+dp[i] = 1 + min(dp[j-1] for j in range(i) if A[j] < A[i]) if i > 0
+      = 0 if i == 0
+
+The dynamic programming solution starts by initializing an array dp with length N+1, where dp[i] represents the minimum number of operations needed to make the subarray A[0..i] strictly increasing.
+
+A greedy strategy is used to fill in the dp table. For each i, find the maximum j such that A[j] < A[i], and set dp[i] = 1 + dp[max_j]. This ensures that the array is strictly increasing up to index i.
+
+Finally, the minimum number of operations needed to make the entire array strictly increasing is dp[N].
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is (i, j), where (i, j) represents the minimum number of perfect squares that sum up to i with the last square being j^2.
+The choice of j in the transition relationship would represent the last perfect square used in the sum.
+Design a dynamic programming table with rows representing the possible values of i from 0 to n and columns representing the possible values of j, where dp[i][j] represents the minimum number of perfect squares that sum up to i with the last square being j^2.
+
+Let's fill the first row of the table, dp[0][j], for all possible values of j. Since there are no perfect squares that sum up to 0, we initialize this row with a value greater than the minimum number of perfect squares (which is 1), say, infinity.
+For each subsequent row i, fill the column corresponding to the square root of i (since it's the largest possible value for j) and then iterate from j = sqrt(i) down to j = 1. For each j, calculate the minimum number of perfect squares that sum up to i - j^2 with the last square being (j-1)^2. This is the transition relationship.
+The final answer would be dp[n][j] for some j, which represents the minimum number of perfect squares that sum up to n with the last square being j^2.
+
+===END PLAN===

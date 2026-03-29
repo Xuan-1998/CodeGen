@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them.
+
+Let dp[i][j] represent the lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+
+dp[0][0] is an empty string, which is the lexicographically smallest.
+
+For i > 0 and j > 0:
+    If j > 1, consider two options: 
+        1. Delete the last character of s[:i]. The resulting string will be dp[i-1][j-1].
+        2. Duplicate s[:i-1], which results in dp[i-1][j].
+
+Choose the lexicographically smallest one.
+
+If j == 1, it means we need to decide whether to delete or not.
+    If i > 0, then dp[i][1] is simply the last character of s[:i].
+    If i == 0, then there are no characters left to consider. In this case, return an empty string.
+
+Return dp[n][k].
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+base case: f(1) = 0
+The state is the current number of girls, and the transition is when we select one girl from each group. 
+Another option is to use memoization within a recursive function that calculates f(n). This approach relies on storing the intermediate results of smaller instances to avoid redundant calculations.
+When selecting one girl from each group, the problem size decreases by 1, so we can calculate f(m) for m < n and then add the result.
+We can maintain an array dp where dp[i] represents the minimum number of comparisons needed to select the most beautiful participant from i girls. 
+The recurrence relation is: dp[i] = min(dp[j] + (i - j)) for all j in range(1, i).
+To avoid redundant calculations and improve efficiency, we can use dynamic programming with memoization.
+===END PLAN===

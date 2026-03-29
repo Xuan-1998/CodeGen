@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) is the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls, and s[i] = f(i) for 1 ≤ i ≤ r.
+Consider the state as a tuple (i, k), where i is the number of girls remaining and k is the current girl's position in the beauty contest.
+
+Memoize the function calls to avoid redundant computation and reduce the time complexity.
+
+Base cases: f(1) = 0, since only one participant remains. For 2 ≤ n ≤ r, compute s[n] as follows:
+    - If all girls are equally beautiful, s[n] = (n-1).
+    - Otherwise, find the most beautiful girl and split the remaining participants into two groups. The number of comparisons needed to select the most beautiful participant from each group is s[k-1] + 2s[k+1]. Add this value to the comparison needed for the current girl, which is 1.
+
+Updated expression: t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7.
+Use memoization to store and reuse previously computed values of f(n) to avoid redundant computation and reduce the time complexity.
+
+===END PLAN===

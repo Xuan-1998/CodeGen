@@ -1,0 +1,17 @@
+state: (i, S[:i+1], partition)
+where i is the current index in the string and 
+partition is a list of strings representing the palindromic partition so far
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+statespace = {(0, S[0], []): [[]]}
+for i in range(len(S)):
+    for j in range(i+1):
+        if S[j:i+1] == S[j:i+1][::-1]: # check if substring is palindrome
+            statespace[(i, S[:i+1], [])].add((partition + [S[j:i+1]],))
+for i in range(len(S)):
+    for (j, remaining, partition) in list(statespace.items()):
+        if j < len(S):
+            for k in range(j+1):
+                if S[k:j+1] == S[k:j+1][::-1]: # check if substring is palindrome
+                    statespace[(j, remaining, partition)].add((partition + [S[k:j+1]],))
+return {state[2] for state in statespace.values()}

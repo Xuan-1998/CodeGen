@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Since we need to maximize the grade, consider using a bottom-up dynamic programming approach with memoization. We can define a state as the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+Let dp[i] denote the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+DP state: dp[i] = max(dp[j] + round(grade) if rounded at position j, 0 for j < i
+
+Define a recursive function that calculates the maximum possible grade for a given decimal fraction, and use memoization to store intermediate results.
+
+We can start by initializing the dp array with base cases. For example, dp[1] would be the maximum possible grade when we round the first digit after the decimal point.
+
+Then, we iterate from i = 2 to n (the length of the decimal fraction), and for each i, we calculate the maximum possible grade that can be obtained by rounding at position i-1 or not rounding at all. We use memoization to store intermediate results.
+
+Finally, we return dp[n] as the maximum possible grade that can be obtained within time limit t.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+1. Initialize an empty dictionary memo for storing previously computed solutions.
+2. Define a function dp(tail_length, number_of_spines) that calculates the maximum possible beauty from the current state (tail_length, number_of_spines).
+   - If the base case is reached (i.e., the tail reaches its maximum allowed length), return the product of the tail's length and the number of spines.
+   - For each unvisited vertex v:
+     1. Calculate the new beauty value if we include v in the current hedgehog's tail: dp(tail_length + 1, number_of_spines) * (n - tail_length).
+     2. Calculate the new beauty value if we don't include v in the current hedgehog's tail: memo.get((tail_length, number_of_spines), 0).
+     3. Return the maximum of these two values.
+   - Memoize this function by storing its results for each state in the dictionary memo.
+3. Initialize max_beaauty to 0 and traverse all vertices as potential starting points for the current hedgehog's tail.
+4. For each vertex, calculate the maximum possible beauty from there using dp(1, 0) * (n - 1).
+5. Return the maximum of these values.
+

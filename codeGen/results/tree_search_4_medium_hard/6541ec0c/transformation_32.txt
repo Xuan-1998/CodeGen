@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+State: dp[i][j] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes have the same XOR, else 0.
+
+dp[i][j] = (1 if the subtree rooted at i has an even number of nodes and all values are the same in the XOR, else 0);
+
+Fill up dp table by iterating over the tree. For each node i:
+    If i is a leaf node: 
+        dp[i][1] = 1 if value of node i can be made equal to every other node's value.
+    Else:
+        Iterate over all children c of node i, and recursively fill up dp[c][j] for j from 1 to k-1. Then calculate dp[i][j] as the maximum of these values.
+
+The final answer will be the maximum j such that dp[root][j] is 1.
+===END PLAN===

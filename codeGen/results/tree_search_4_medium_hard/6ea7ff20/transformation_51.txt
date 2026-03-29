@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if (i == j or dp[i-1][j-1]) and the elements at indices i and j in p are swapped without changing the overall order
+Consider defining dp[i][j] as a pair of arrays (a, b) such that a and b have no common elements, p[:i+1] = merge(a, b)
+Implement memoization by storing the results of subproblems in a dictionary for later reference
+Define base cases: dp[0][n-1] = (empty array, permutation[:n]) since initially we start with an empty array and the first n elements of the permutation
+For 0 <= i < j < n, consider two cases:
+	* If p[i] > p[j], then dp[i][j] = dp[i+1][j-1] if (p[i], p[j]) are swapped without changing the overall order; otherwise, dp[i][j] = 0
+	* If p[i] < p[j], then dp[i][j] = dp[i+1][j-1] regardless of whether (p[i], p[j]) are swapped or not
+The final answer is dp[0][n-1][0] if the permutation can be rearranged into two arrays a and b, otherwise it's "NO"
+===END PLAN===

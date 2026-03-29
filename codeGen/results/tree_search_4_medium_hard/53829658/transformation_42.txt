@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Let's use a bottom-up approach with dynamic programming.
+Define dp[i][p] as the minimum number of roads that need to be inverted in order to reach city i from the capital with p roads already inverted.
+
+The state transition could be defined as follows: 
+- For each city i, if there is no edge between city i and any other city, then dp[i][p] = 1 + min(dp[j][0] for j in adjacent_cities)
+- If there are edges between city i and some cities, let's consider the city with the minimum distance from the capital. 
+    - Let k be this city.
+    - Then dp[i][p] = 1 + min(dp[k][p - 1] for k in adjacent_cities)
+
+The base case would be dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+Finally, we print all possible ways to choose the capital — a sequence of indexes of cities in the increasing order. We can do this by iterating through all cities and for each city, if it is not the current capital, then we invert one road and update the minimum number of roads.

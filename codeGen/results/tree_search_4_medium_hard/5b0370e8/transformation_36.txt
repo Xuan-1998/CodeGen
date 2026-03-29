@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+The state is a boolean indicating whether the current bit of the bitwise AND operation is set and the base case is when all bits are unset.
+DP on bit value: for each bit position, we can have 0 or 1 as the value; if the AND result has this bit set, then all elements must have this bit set; if the XOR result has this bit set, then at least one element must have this bit set. We need to consider these two possibilities.
+DP solutions can be implemented by using a 2D table where each entry represents the count of arrays satisfying certain conditions, with state variables for the current AND and XOR results.
+
+For each bit position:
+1. Initialize DP table with zeros
+2. Iterate through all possible values (0 or 1) for this bit position
+3. If the AND result has this bit set (i.e., AND_result & (1 << i)):
+    a. All elements must have this bit set, so XOR_result must not have this bit set
+    b. Count arrays that satisfy these conditions and update DP table
+4. If the XOR result has this bit set:
+    a. At least one element must have this bit set, so AND_result must not have this bit set
+    b. Count arrays that satisfy these conditions and update DP table
+
+Base case: when all bits are unset (AND_result == 0)
+1. Initialize count to 0
+2. Iterate through all possible values for the last bit position
+3. If XOR_result is also 0, then all elements must be 0, so increment count
+4. Update DP table with this count
+
+Return the value in the DP table that corresponds to the final result of the bitwise AND and XOR operations.
+===END PLAN===

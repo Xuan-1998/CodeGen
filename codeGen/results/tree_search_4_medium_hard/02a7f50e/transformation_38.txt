@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j]: The minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+
+1. Initialize dp with zeros: dp[0][i] = 0 for all i (since there are no beacons to destroy initially)
+
+2. For each i from 1 to n:
+    a. Initialize dp[i][j] = dp[i-1][k] + (number of beacons destroyed by the j-th beacon) 
+       where k is such that j > k
+    b. Find the rightmost beacon (say p) whose power range does not cover the newly added j-th beacon
+
+    c. Update dp[i][j] to be the minimum between its current value and dp[i-1][p-1]
+
+3. Finally, return dp[n][j] where j is the position of the last activated beacon
+===END PLAN===

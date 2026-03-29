@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. 
+To solve this problem using Dynamic Programming, we'll fill up a table dp where dp[i] represents whether the frog can reach stone i given the position of all previous stones.
+
+The state expression could be defined as: dp[i] = whether the frog can reach stone i given the position of all previous stones.
+The base case would be dp[0] = True since there is no previous stone to consider, meaning we can always start on the first stone.
+
+dp[i] = whether the frog can reach stone i given the position of all previous stones, considering if it's possible to jump from the (i-1)th stone to the ith stone with a jump distance of k - 1, k, or k + 1 units.
+We'll iterate over each stone and check if we can reach it by jumping from any of the previous stones. 
+If dp[i] is true for some i, then there's at least one possible way to reach that stone.
+
+Employ memoization within an iterative loop to fill up the dp table.
+The final answer will be dp[n-1], where n is the total number of stones, which represents whether or not we can reach the last stone without jumping into the water.
+===END PLAN===

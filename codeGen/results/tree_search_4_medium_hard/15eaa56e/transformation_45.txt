@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+The state is a dictionary where keys are column indices and values are sorted lists of elements from that column up to the current row i.
+
+State:
+    {
+        col1: [row1[col1], row2[col1], ..., rowi[col1]],
+        col2: [row1[col2], row2[col2], ..., rowi[col2]],
+        ...
+        colj: [row1[colj], row2[colj], ..., rowi[colj]]
+    }
+
+The base case is when all rows have been processed (i = n).
+
+Transition:
+    For each column j, update the state by:
+        1. Creating a new list with the value from the current row i and appending it to the existing sorted list.
+        2. Sorting this new list.
+
+Use a bottom-up approach where the base case is when all rows have been processed (i = n), and then recursively fill in the table from top to bottom (i = 1).
+
+After processing each row, for each column j, check if the subtable (rows l to r) is sorted. If any column j is sorted, return "Yes". If no column is sorted after processing all rows, return "No".
+
+===END PLAN===

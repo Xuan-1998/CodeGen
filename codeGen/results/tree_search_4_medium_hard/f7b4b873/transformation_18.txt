@@ -1,0 +1,24 @@
+state: (i, j, partition) where i and j are the start and end indices of the substring to be checked for palindromeness and partition is the current partition, base case: if j-i < 1, then return [partition]
+
+function dp(i, j, s):
+    if j - i < 1:
+        return [[s]]
+    
+    result = []
+    for k in range(i, j + 1):
+        prefix = s[i:k]
+        suffix = s[k:j+1]
+        
+        if is_palindrome(prefix + suffix):
+            for p in dp(k, k, s):
+                result.append([prefix] + p)
+    
+    return result
+
+function is_palindrome(s):
+    return s == s[::-1]
+
+main():
+    s = input()
+    n = len(s)
+    print(dp(0, n - 1, s))

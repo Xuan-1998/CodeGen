@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider each integer as a sequence of digits from most significant bit to least significant bit, where the state is the current digit (0-9) and the transition relationship is that for each subsequent digit:
+  * Count all integers with the same most significant bits and different least significant bits.
+Apply dynamic programming by defining a state transition function that counts the total number of digit 1's for each integer in the given range.
+
+Define the base case: count digit 1's for single-digit numbers from 0 to n.
+
+Recursively define the state transition function:
+  * For each digit i (0-9), count the total number of digit 1's in all integers that start with i and have less than or equal to k as their most significant bits.
+  * Add this count to the total count of digit 1's for k.
+
+Initialize the memoization table dp with zeros, where dp[k] represents the total count of digit 1's for all integers from 0 to k-1.
+
+Fill up the dp table by iterating through each possible value i (0-9) and calculating the state transition recursively.
+Return the final total count of digit 1's in all non-negative integers less than or equal to n, which is stored in the memoization table at index n.
+
+===END PLAN===

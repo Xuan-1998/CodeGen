@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if p[2*i-1] < p[2*j-1] and there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise
+dp[i][j] = 1 if exists k such that p[2*i:2*(i+1)] is equal to the leftmost part of some p, and p[2*j:2*(j+1)] is equal to the rightmost part of some p, dp[i][j] = 0 otherwise
+dp[i][j] = True if there exist k such that the left and right parts of p are equal to some p, False otherwise
+for i from 1 to n:
+    for j from 1 to n:
+        if p[2*i-1] < p[2*j-1]:
+            dp[i][j] = 1
+        else:
+            dp[i][j] = 0
+if exists i such that dp[i][n] == True:
+    print "YES"
+else:
+    print "NO"
+===END PLAN===

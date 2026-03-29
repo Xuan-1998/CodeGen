@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem involves finding the minimal number of elements that can be removed from a given range of an array so that the sign-variable sum of the remaining elements is zero.
+
+Define the state expression as dp[l, r] = k if at most k elements in the range [l, r] can be removed to make the sign-variable sum zero. Otherwise, dp[l, r] = -1.
+
+The dynamic programming table dp will have dimensions n x q, where n is the length of the array and q is the number of queries.
+
+Fill the table by iterating over all queries in order. For each query [l_i, r_i], calculate dp[l_i, r_i] as follows:
+
+- Initialize k to 0.
+- Iterate from i = l_i to r_i. For each i:
+    - If the sign of the ith element is positive, increment k by 1.
+    - If the sign of the ith element is negative, decrement k by 1 if it's possible (i.e., k >= 0).
+- If k is non-negative or zero, set dp[l_i, r_i] to k. Otherwise, set dp[l_i, r_i] to -1.
+
+The final answer for a query [l_i, r_i] will be the value of dp[l_i, r_i].
+===END PLAN===

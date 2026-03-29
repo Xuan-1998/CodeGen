@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with a 2D array dp where each cell dp[i][j] represents the length of the longest increasing subsequence ending at index i and having j elements.
+
+dp: [[-1 for _ in range(len(arr) + 1)] for _ in range(len(arr) + 1)]
+For each element arr[i], consider all previous elements j < i. If arr[j] < arr[i], then we can extend the longest increasing subsequence ending at index j by one to get a longest increasing subsequence ending at index i.
+Update dp[i][j] with max(dp[i - 1][k] + 1 for k in range(j)).
+
+To find the number of longest increasing subsequences, iterate over all elements arr[i], and check if the length of the longest increasing subsequence ending at that index is equal to the maximum length found so far. If it is, increment a counter for this length.
+Finally, return the count of the maximum length found.
+
+===END PLAN===

@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+The problem can be viewed as finding the maximum value in a prefix sum array, which can be solved using binary search or segmented tree
+State: dp[i] represents the maximum power level that can be added to the right of the i-th beacon without destroying any existing beacons.
+dp[i] is the maximum power level that can be added to the right of the i-th beacon without destroying any existing beacons. 
+Create a 2D table dp where dp[i][j] represents the maximum power level that can be added to the right of the i-th beacon with j units of power.
+For each beacon, iterate from right to left and update dp[i] based on the maximum power level that can be added without destroying any existing beacons. This is done by iterating over all previous beacons and finding the maximum power level that can be added such that the total power level does not exceed the current beacon's power level.
+The final answer will be the minimum number of beacons that need to be destroyed, which is calculated as the difference between the total power level and the maximum power level that can be added without destroying any existing beacons. This is done by iterating over the dp array from right to left and finding the first index where the power level exceeds the current beacon's power level.
+===END PLAN===

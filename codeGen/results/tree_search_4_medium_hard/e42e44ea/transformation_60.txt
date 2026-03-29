@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+dp states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+
+Define a 2D array dp of size M x N, where dp[i][j] represents the minimum initial points required to reach the cell at position (i, j). The base case is dp[0][0], which is equal to grid[0][0]. 
+
+For i > 0 and j = 0, dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+For i = 0 and j > 0, dp[i][j] = min({ dp[i][j-1] }) + grid[i][j]
+
+The transition relationship is dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j] if and only if i > 0 or j > 0, otherwise it's the same as before.
+
+Use a nested loop to fill up the dp table from top-left to bottom-right with initialization of first row and column values. 
+
+dp[0][0] = grid[0][0]
+for i in range(1, M):
+    dp[i][0] = dp[i-1][0] + grid[i][0]
+for j in range(1, N):
+    dp[0][j] = dp[0][j-1] + grid[0][j]
+
+Then return dp[M-1][N-1] as the minimum initial points required.
+===END PLAN===

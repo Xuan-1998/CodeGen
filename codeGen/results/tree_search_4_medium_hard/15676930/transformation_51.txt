@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use tabulation by creating a 1D array dp where each cell i represents the maximum total joy that can be achieved by feeding the first i hares. The state expression is dp[i] = max(0 <= k < i ? dp[k-1] + (a[k-1] if both are hungry, b[k-1] if one is full and one is hungry, c[k-1] if both are full) : 0).
+The base case is dp[0] = 0. The state transition is monotonically increasing in i.
+
+Let dp[i] be the maximum total joy that can be achieved by feeding the first i hares. This allows us to transition from dp[k-1] + (a[k-1] if both are hungry, b[k-1] if one is full and one is hungry, c[k-1] if both are full) for some k.
+
+Edge cases: 
+* When there's only one hare left, we can just feed it the maximum possible joy.
+* If all hares have been fed, return 0 because no more feeding is needed.
+
+===END PLAN===

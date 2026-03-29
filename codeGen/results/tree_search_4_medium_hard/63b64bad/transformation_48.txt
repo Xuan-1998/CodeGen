@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+The base case occurs when x ≤ 0 or x > n, or when the program reaches a point where it does not terminate. This means that if at any point x ≤ 0 or x > n, we can immediately return -1 as the program will terminate.
+
+View each step as a transition from one state to another, and define the states based on whether the program terminates or not. The states are then (x, y) where x is the current value of x and y is the current value of y.
+
+Define a 2D table dp[i][j] where dp[i][j] is the final value of y when x = i and y = j, then fill it in bottom-up manner by considering all possible transitions. For each cell, we check if x ≤ 0 or x > n, if so return -1. Otherwise, calculate the new values of x and y based on a_i, and update dp[i][j] accordingly.
+
+===END PLAN===

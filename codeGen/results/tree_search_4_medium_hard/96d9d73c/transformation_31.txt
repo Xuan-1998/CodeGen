@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries called memo1 and memo2 where 
+memo1[(i, j)] stores whether it is possible to partition the subarray A[0..i] into j partitions
+and memo2[(i, j, k)] stores whether it's possible to partition the subarray A[0..i] into j partitions 
+where the last element in each partition has value at most k.
+
+Define the state as (i, j) where i is the current index and j is the number of partitions so far, 
+and the state represents whether it's possible to partition A[0..i] into j partitions.
+Use dynamic programming to find the minimum index i such that for all 0 ≤ j < i, 
+it is not possible to partition A[0..j] into j partitions according to the given condition.
+
+To check if a partitioning of the subarray A[0..i-1] into j partitions is possible,
+iterate over the array from left to right and whenever you see an element that does not fit
+the current partition, increment the number of partitions. If at any point during this iteration 
+you have more than j partitions, return false because it's impossible to partition A[0..i-1] into j partitions.
+If all elements in the array are processed without exceeding j partitions, return true.
+
+Use memoization by maintaining a dictionary called memo where 
+memo[(i, j)] stores whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+===END PLAN===

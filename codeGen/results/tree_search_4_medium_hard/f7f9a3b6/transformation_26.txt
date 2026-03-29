@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. 
+
+dp[i][j] = sum(dp[k][l] for k in range(i, j) for l in range(k+1, j+1) 
+    if s[k:l].isalpha() and all(c <= max(a) for c in set(s[k:l])))
+Let dp[i][j] be 1 if there exists a valid split of the substring s[i:j], otherwise it's 0.
+
+DP with Two-Dimensional Table
+dp[0][n] = 1 (base case: one way to split an empty string)
+for i from n-1 down to 0:
+    for j from i+1 up to n:
+        dp[i][j] = sum(dp[k][l] for k in range(i, j) for l in range(k+1, j+1) 
+            if s[k:l].isalpha() and all(c <= max(a) for c in set(s[k:l])))
+res = dp[0][n]
+print(res % (10**9 + 7))
+Let res be the number of ways to split the message into substrings that fulfill the conditions mentioned in the problem, modulo 10^9 + 7.
+
+===END PLAN===

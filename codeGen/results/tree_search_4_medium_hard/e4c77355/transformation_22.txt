@@ -1,0 +1,13 @@
+Dynamic Programming:
+Define a recursive relation between subproblems, then use memoization to store computed results.
+The length of the longest increasing subsequence ending at index i in the array
+    dp[i] = max(1 + dp[j - 1]) for all j < i and arr[i] > arr[j]
+Compute the maximum value from all subsequences as the final answer, taking into account the current state of the dynamic programming transition
+    return max(dp)
+Define a dynamic programming state variable to keep track of the current maximum value and use it to compute the next step
+    dp = [1] * n (initializing dp array with 1's)
+
+This plan is correct. It uses dynamic programming to solve the problem by breaking it down into smaller subproblems and solving each one only once.
+The main potential issue is that this solution assumes all elements in the array are distinct, which might not be true in practice. In that case, you would need to modify the code to handle duplicates.
+
+This plan does include edge cases: The initial condition dp = [1] * n (initializing dp array with 1's) handles the base case of an empty sequence. The recursive relation dp[i] = max(1 + dp[j - 1]) for all j < i and arr[i] > arr[j] correctly handles the edge cases where the longest increasing subsequence ends at index i.

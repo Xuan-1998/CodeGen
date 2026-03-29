@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Code block wrapping:
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a top-down approach with memoization.
+
+The state could be defined as dp[i][p], where p is an integer representing the number of roads that have been inverted so far in order to reach city i from the capital. The base case would be dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+dp[i][p] = min(dp[adjacent_city][p-1] + 1 for adjacent_city in adjacent_cities) if there's an edge between city i and city j
+
+Use a dictionary to store the memoized values, with keys being tuples of (city_index, number_of_roads_inverted) and values being the shortest distance from capital.
+
+===END PLAN===

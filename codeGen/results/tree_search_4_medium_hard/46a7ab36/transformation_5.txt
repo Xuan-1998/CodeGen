@@ -1,0 +1,8 @@
+], [
+state: (k, j) where k is the number of remaining letters that can appear at the beginning, and j is the current position in the alphabet.
+dp[k][j] = 0 if k or j exceeds the limits, else:
+    dp[k][j] = sum(dp[k-1][i] for i in range(j+1) if 2*i <= n or i == j)
+    if j > 0 and 2*j > n: 
+        dp[k][j] += sum(dp[k][i] for i in range(j)) 
+base case: when all letters have been placed or the alphabet is exhausted.
+return sum(sum(dp[i][n-1] for i in range(m+1))) % (10**8 + 7)

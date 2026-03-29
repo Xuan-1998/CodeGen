@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far; The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Transition:
+1. Initialize a dynamic programming table (dp) of size (n+1)*(m+1), where n and m are the lengths of strings A and B respectively.
+2. Fill dp[i][j] for i=0 to n-1 and j=0 to m-1 as follows:
+   - For i=0 or j=0, set dp[0][j] = 0 (for string A) and dp[i][0] = 0 (for string B).
+   - Otherwise, if the current characters in both strings match, then consider two cases: 
+     - If the last common character is repeated k times, then add the length of this repeated sequence to the similarity score.
+     - If not, update the similarity score with the maximum value between considering the last common character and not considering it.
+   - For i=n-1 or j=m-1, set dp[i][j] = 0 (for string A) and dp[i][m-1] = 0 (for string B), because there are no more characters to compare.
+
+===END PLAN===

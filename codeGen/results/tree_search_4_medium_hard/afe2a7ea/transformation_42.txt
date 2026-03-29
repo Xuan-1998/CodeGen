@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems that are mutually independent. This suggests that a bottom-up approach with tabulation could be effective.
+
+Let's define the state as (used_towers, signals_left) where used_towers represents the number of towers used and signals_left is the number of signals left for each town.
+
+The base case is when all towers are unused, which has a probability of C(n+2, 0) = 1. This can be represented as dp[0, n+2] = 1.
+
+For any other state (used_towers, signals_left), we can transition to the next state by either using an available tower or not using it. The transition relationship would then be based on whether it's possible to use a new tower with a new signal without violating any constraints.
+
+If we don't use a tower and have enough signals left for each town, we can simply move to the next state (used_towers, signals_left-1). If we do use a tower, we need to make sure that there are enough signals left for each town after using it. We can then transition to the state (used_towers+1, signals_left-1).
+
+Using a dictionary dp to store the intermediate results and update them accordingly as we iterate over the states
+
+dp[0, n+2] = 1
+for used_towers in range(1, n+1):
+    for signals_left in range(n+1, 0, -1):
+        dp[(used_towers, signals_left)] = (dp.get((used_towers-1, signals_left), 0) + dp.get((used_towers, signals_left-1), 0)) % (998244353)
+return dp[(n, 0)]
+
+===END PLAN===

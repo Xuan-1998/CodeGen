@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+
+The state expression could be the shortest distance of each city from the capital, i.e., dp[i] = min distance from city i to the capital.
+
+dp[i] is the minimum number of edges that need to be reversed such that city i can be reached from the capital, which is updated by considering all possible previous cities j.
+
+Initialize a memo table memo[i][j] where memo[i][j] represents the minimum number of edges that need to be reversed to reach city j from city i.
+
+Iterate over all cities i and for each city i, iterate over all cities j connected to city i. Update dp[j] by considering all possible previous cities k. The new value of dp[j] is the minimum between its current value and dp[k] + 1.
+
+In the end, return dp[i] where i is any arbitrary city (since we're looking for the minimum number of edges that need to be reversed).
+
+===END PLAN===

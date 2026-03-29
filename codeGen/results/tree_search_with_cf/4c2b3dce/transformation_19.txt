@@ -1,0 +1,8 @@
+
+2. Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively checking the string for the required subsequences. It avoids recursion and builds up the solution from the base cases. Time complexity: O(n), space complexity: O(1).
+Base Case: Initialize two boolean variables `found_AB` and `found_BA` to False, indicating whether the subsequences "AB" and "BA" have been found.
+
+2. State: Iterate through the string and check for the subsequences. If "AB" is found and `found_BA` is True, return "YES". If "BA" is found and `found_AB` is True, return "YES". If "AB" is found and `found_BA` is False, set `found_AB` to True and skip the next character to ensure non-overlapping. If "BA" is found and `found_AB` is False, set `found_BA` to True and skip the next character to ensure non-overlapping.
+
+3. Edge Cases: If the string length is less than 4, it is impossible to have both "AB" and "BA" as non-overlapping subsequences, so return "NO". If neither "AB" nor "BA" is found by the end of the iteration, return "NO".
+

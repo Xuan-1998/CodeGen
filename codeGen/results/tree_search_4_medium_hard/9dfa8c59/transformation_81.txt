@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+
+The base case is when k_perms exceeds 3 (since it's the maximum value). The state then becomes None.
+
+Determine the state as the count of prime numbers with k_perms prime permutations below n_max, and update the state by iterating over all prime numbers less than or equal to n_max.
+
+Implement memoization using a dictionary to store the calculated results for each prime number.
+
+For edge cases: If n_max is less than 2, return [0, 0, 0]. If k_perms is greater than 3, return [0, 0, 0].
+
+The state will be updated as follows:
+- Initialize count = 0
+- For each prime number p in the range [2, n_max]:
+    - Calculate permutations for p using its digits.
+    - Compare the calculated permutations with k_perms. If they match, increment count.
+
+Finally, return [count, smallest prime number among them, largest prime number among them].
+
+===END PLAN===

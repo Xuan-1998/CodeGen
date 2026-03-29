@@ -1,0 +1,10 @@
+
+1. Define a 2D list dp where dp[i][j] represents the maximum possible value that can be obtained from the subarray of length 2^i starting at index j.
+2. Initialize the base case: dp[0][j] = j + 1 for all j from 0 to 2^n - 1. This is because the initial sequence is simply the numbers from 1 to 2^n.
+3. Iterate through the levels from 1 to n (inclusive). For each level i:
+   a. Iterate through the starting indices j from 0 to 2^(n-i) - 1.
+   b. If s[i-1] == '0', then dp[i][j] = min(dp[i-1][2*j], dp[i-1][2*j+1]).
+   c. If s[i-1] == '1', then dp[i][j] = max(dp[i-1][2*j], dp[i-1][2*j+1]).
+4. The final answer will be found in dp[n][0], but we need to collect all unique values from dp[n][0] to dp[n][2^n-1].
+5. Sort the collected values in ascending order and print them.
+

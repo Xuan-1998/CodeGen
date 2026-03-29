@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Choose a dynamic programming approach: Bottom-Up Approach with Tabulation:
+
+The state expression could be dp[i] = max(dp[i-1] + (A[i]-X) ^ A[i+1]) if i > 0, else 0. This approach focuses on the maximum sum of XOR operations considering the addition of X to a subsequence.
+
+For each test case:
+    Initialize an array dp with N+1 elements and set all values to -10^9.
+    Set dp[0] = 0.
+    Iterate over the array A from left to right, updating dp[i] for i > 0 as follows:
+        If i > 0, update dp[i] = max(dp[i-1] + (A[i]-X) ^ A[i+1], dp[i-1])
+    Return dp[N]
+
+This approach ensures that we consider all possible subsequences and their corresponding XOR operations.
+
+===END PLAN===

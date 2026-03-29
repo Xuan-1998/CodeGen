@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+State: For a given digit position i, consider the total count of ones in all numbers from 0 to n having exactly i digits. This state depends on the previous states for lower digit positions (i-1) and the base case would be considering only single-digit numbers (i=1).
+
+Base Case: For a single-digit number (i=1), count the occurrences of '1' in all such numbers from 0 to n.
+
+Inductive Step:
+For each i > 1, calculate the total count of ones in all numbers from 0 to n having exactly i digits as follows:
+
+- Count the number of times '1' appears at the most significant digit position (i.e., in the hundreds place) for all numbers from 10^(i-1) to n.
+- Add this count to the sum of counts calculated for the lower digit positions (j<i).
+- Store this result in a memoization dictionary and reuse it when calculating the total count of ones for higher digit positions.
+
+Memoization: Use a dictionary to store intermediate results and avoid redundant calculations. This approach ensures that the algorithm has a time complexity of O(n log n) because it only needs to calculate each state once.
+
+Edge Cases:
+- Handle the case where n is 0 or less.
+- Count '1' occurrences in single-digit numbers (i=1) for all n values.
+
+===END PLAN===

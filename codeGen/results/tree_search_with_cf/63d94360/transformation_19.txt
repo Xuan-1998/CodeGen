@@ -1,0 +1,21 @@
+
+2. Bottom-up strategy with tabulation: This approach builds a table in a bottom-up manner, iteratively solving subproblems and storing the results in a table. It avoids recursion overhead and is typically easier to implement iteratively. Time complexity: O(N*K), space complexity: O(N*K).
+
+State Expression: Let dp[i][j] represent the number of ways to pass the ball i times such that player j has the ball at the end of the i-th pass.
+
+Transition Relationship: 
+dp[i][j] = sum(dp[i-1][m]) for all m ≠ j
+
+Base Case: 
+dp[0][P] = 1 (since the ball starts with player P)
+dp[0][j] = 0 for all j ≠ P
+
+Final Computation: 
+The answer will be dp[N][P], which represents the number of ways to pass the ball exactly N times such that player P receives the ball last.
+
+Edge Cases to Consider:
+1. Minimum values of N and K (N=2, K=1).
+2. Maximum values of N and K (N=1000, K=10).
+3. Cases where the number of passes is less than the number of players.
+4. Ensure modulo operation is applied to prevent overflow.
+

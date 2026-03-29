@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Determine the overlapping subproblems by recognizing that the minimum path sum for each cell depends on its neighbors.
+Use tabulation to store and reuse these calculations.
+
+The state expression is:
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+Use nested for loops to fill up the dp table row by row, updating each cell's value as you iterate from top left to bottom right.
+
+    for i in range(m):
+        for j in range(n):
+            if i == 0 and j == 0:
+                # base case: top-left corner
+                dp[i][j] = grid[i][j]
+            else:
+                if i > 0:
+                    # consider the cell above
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+                elif j > 0:
+                    # consider the cell to the left
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+    return dp[m-1][n-1]
+===END PLAN===

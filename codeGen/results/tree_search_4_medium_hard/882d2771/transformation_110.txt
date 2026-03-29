@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: dp[i][j] represents the minimum total number of comparisons required to select the most beautiful girl from i groups with j participants each.
+
+dp[0][j] = 1 for all j (base case, no girls left)
+dp[i][1] = i for all i (only one participant in each group)
+
+for l in range(2, r + 1):
+    for k in range(l - 1):
+        dp[l][k+1] = min(dp[l-1][j] + dp[0][l-k-1]) for j in range(k);
+
+Dynamically build a trie data structure to store the partial solutions and avoid redundant computations.
+
+for t in range(t):
+    res += dp[t][r-t]
+res %= (10**9 + 7)
+===END PLAN===

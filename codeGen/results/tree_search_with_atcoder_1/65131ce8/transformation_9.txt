@@ -1,0 +1,9 @@
+
+===BEGIN PLAN===
+1. Initialize a DP table: Let dp[v][k] be the number of ways to form a subtree rooted at vertex v with exactly k good vertices. Initialize this DP table for all vertices and possible number of good vertices.
+2. Base case: For each vertex v, set dp[v][0] = 1, since there is exactly one way to form a subtree with zero good vertices (an empty subtree).
+3. Transition relation: For each vertex v, and its child u, update dp[v][k] using the values of dp[u][j] for all possible j. Specifically, dp[v][k] += dp[v][k-j] * dp[u][j] for all valid j.
+4. Calculate the sum of good vertices: For each vertex v, calculate the number of good vertices in its subtree and sum them up. This can be done by iterating over the DP table and checking the condition for good vertices.
+5. Return the result modulo 998244353.
+===END PLAN===
+

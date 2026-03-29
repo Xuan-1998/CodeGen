@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+Define dp[i][j] as the minimum total cost required to sort the first i strings in lexicographical order and the last string is the jth string that can be made smaller than any of the previous strings by reversing it.
+
+dp[i][j] is equal to the minimum cost of not reversing the jth string, plus the minimum total cost required to sort the first i-1 strings without considering the jth string. This is because we either don't reverse the jth string and continue sorting the remaining strings or we do reverse the jth string and consider it as a new smallest string.
+
+Create a 2D array dp with dimensions (n+1) x (n+1) and initialize all elements as infinity, except for the diagonal elements which are set to 0. The reason is that there's no cost if we don't reverse any strings, so the base case is to return 0.
+
+Iterate over the 2D array dp from bottom up, using a variable k to represent the current number of strings considered. For each string j in lexicographical order, consider reversing it and add the cost of reversing this string to the minimum total cost required to sort the remaining strings (k-1). This is stored in dp[k][j]. 
+
+Finally, return dp[n][0] which represents the minimum total cost required to sort all n strings.
+
+===END PLAN===

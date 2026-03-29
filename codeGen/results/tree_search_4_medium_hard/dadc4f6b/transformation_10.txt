@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view by iterating over all stars within the rectangle and updating their brightness based on the time. 
+Store these values in a memoized table to avoid recalculating the same value multiple times.
+
+The state is (x1, y1, x2, y2, t): the coordinates of the lower left corner and upper right corner of the rectangle, as well as the time.
+The transition relationship would be to update the total brightness at the next time step by iterating over all stars within the rectangle and updating their brightness.
+
+Create a 2D table where each cell represents the total brightness at time t and coordinates (x, y) within the rectangle. The size of the table should be c x 101, where c is the maximum brightness.
+Use a recursive function with memoization to store the results of subproblems and avoid redundant calculations.
+
+The base case would be when there are no stars in the rectangle or when all stars have already been updated to their final brightness. In this case, simply return the total brightness at that time.
+
+For the recursive case, calculate the total brightness by iterating over all stars within the rectangle, updating their brightness based on the time, and summing up their new brightnesses.
+Store the calculated value in the memoized table and return it if the same state has already been visited.
+
+===END PLAN===

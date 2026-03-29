@@ -1,0 +1,18 @@
+
+1. Linear Scan Approach: This approach involves scanning the string from left to right to check for the presence of "AB" and "BA" subsequences. We need to ensure that these subsequences do not overlap.
+
+2. Initialize two boolean variables `found_AB` and `found_BA` to False. These will track whether we have found the "AB" and "BA" subsequences, respectively.
+
+3. Traverse the string from left to right:
+   - If we find the substring "AB" and `found_BA` is False, set `found_AB` to True and skip the next character to avoid overlapping subsequences.
+   - If we find the substring "BA" and `found_AB` is False, set `found_BA` to True and skip the next character to avoid overlapping subsequences.
+
+4. Traverse the string again from left to right, starting from the first character after the previously found subsequence:
+   - If `found_AB` was set to True in the first pass, check for the substring "BA" in the remaining part of the string.
+   - If `found_BA` was set to True in the first pass, check for the substring "AB" in the remaining part of the string.
+
+5. If both `found_AB` and `found_BA` are True after the second pass, print "YES". Otherwise, print "NO".
+
+6. Edge Cases:
+   - If the string length is less than 4, it is impossible to find both "AB" and "BA" as non-overlapping subsequences. In this case, directly print "NO".
+

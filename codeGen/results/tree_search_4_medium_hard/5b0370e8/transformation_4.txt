@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State: the number of arrays with bitwise AND greater than or equal to bitwise XOR up to index i, with k-1 bits; Base Case: 0 when i < 0
+
+Consider pairs of integers with bitwise AND greater than or equal to bitwise XOR and count their combinations.
+
+Maintain a dynamic programming table dp[i][j] that stores the number of arrays with bitwise AND greater than or equal to bitwise XOR up to index i with k-1 bits.
+For each pair (x, y) with bitwise AND >= bitwise XOR:
+    Check if there's any j such that x & (2^j - 1) and y & (2^j - 1) are both true
+    If yes, update dp[i][j] by adding the combinations of arrays ending at i-1 and having bitwise AND >= bitwise XOR
+
+===END PLAN===

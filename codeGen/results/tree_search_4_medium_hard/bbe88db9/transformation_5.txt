@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Let dp[i][s] be the minimum number of portal moves required to reach room i and state s (where s is either 0 or 1, representing whether the second portal was used or not).
+For each room i from 2 to n+1:
+    For each possible state s in {0, 1}:
+        If i == 1:
+            dp[i][s] = 0
+        Else:
+            If s == 0: // First portal used
+                dp[i][s] = 1 + min(dp[j][0] for j in range(1, i) if p[j] == i-1)
+            Else: // Second portal used
+                dp[i][s] = 1 + min(dp[j][1] for j in range(i+1, n+2) if p[j-1] == i)
+    Return dp[n+1][0]
+===END PLAN===

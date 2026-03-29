@@ -1,0 +1,11 @@
+
+===BEGIN PLAN===
+1. Define the problem using Dynamic Programming (DP) with a bottom-up strategy and tabulation.
+2. State Expression: Let dp[i][j] be the number of ways to form a good tree with i vertices and j good vertices.
+3. Base Case: dp[1][1] = 1, since a single vertex tree with vertex 1 as the root is trivially a good tree with one good vertex.
+4. Transition Relationship: For each i from 2 to N, dp[i][j] = sum(dp[k][j-1] * ways to distribute remaining vertices among subtrees) for all valid k, where k is the number of vertices in a subtree rooted at a child of the root. This ensures that the out-degree constraints are met and the new vertex is considered in the count of good vertices if it satisfies the conditions.
+5. Iterate from 2 to N to fill the dp table using the transition relationship.
+6. Compute the final answer by summing up dp[N][j] for all valid j, and take the result modulo 998244353.
+7. Implement edge case handling, such as when N is the minimum value.
+===END PLAN===
+

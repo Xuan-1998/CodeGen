@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The state expression is dp[i][j], where i is the current position in the board and j is the length of the currently removable sequence of balls on the board.
+
+State transition: 
+- If there are 3 or more consecutive balls with the same color, they can be removed. We need to check if there are at least 3 consecutive 'R', 'Y', 'B', 'G', or 'W' characters in the board.
+- The state expression is updated by considering all possible moves: 
+    - Insert a ball of any color at position i (1 move).
+    - If we have balls in hand, try to match them with the current sequence. This could involve inserting more balls of the same color as the last ball on the table.
+
+Base case:
+- The base case is when this sequence has 0 or 1 elements. In this case, no moves are needed.
+
+Initialization: 
+- Initialize dp[0][i] for all i, where i is the length of the removable sequence.
+    - If there are balls in hand that can match with the current sequence on the board, we can remove them immediately (0 moves).
+    - If there are no matching balls, then 1 move is needed to insert a ball that matches the last ball on the table.
+
+State transition for j > 0:
+- For each position i from left to right, 
+    - Update dp[i][j] by considering all possible moves.
+        + Insert a ball of any color at position i (1 move).
+        + If we have balls in hand that match with the current sequence on the board, try to remove them immediately (0 moves).
+
+Final answer: 
+- The final answer is the minimum number of moves needed to remove all balls on the table. This can be found by considering dp[n][j] for all j.
+
+===END PLAN===

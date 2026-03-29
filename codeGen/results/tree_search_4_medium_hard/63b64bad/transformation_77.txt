@@ -1,0 +1,13 @@
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+The state is a pair (x, y), where x is the current position in the sequence and y is the value of y at that position.
+
+Define states as tuples of (x, y) and transitions based on whether x <= 0 or x > n, considering sequence values and updating both x and y accordingly.
+
+Create a 2D array dp[n][max_y] to store intermediate results, where max_y is the maximum value in the sequence. Initialize all cells to -1 (indicating non-termination).
+
+Fill up the dp table row by row. For each cell dp[x][y], if x > n, set it to y; otherwise, calculate the next state (x', y') based on the transition rules and update the cell with the maximum value.
+
+Backtrack from the bottom-right cell of the dp table to find the final value of y for each sequence. If a cell has -1, return -1; otherwise, return the stored value.
+
+Consider edge cases: n <= 2 or max_y > 10^9

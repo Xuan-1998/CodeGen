@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with a 2D array dp where each cell dp[i][j] represents the length of the longest increasing subsequence ending at index i and having j elements.
+
+Initialization:
+    Initialize a 2D array dp of size n x (max_val + 1) where n is the length of the input array. Set all values in dp to -1.
+    Initialize a dictionary memo with key-value pairs {i: longest_increasing_subsequence[i]: None} for each i in range(n).
+
+Tabulation:
+    For each index i from 0 to n-1:
+        For each value val in the subarray arr[i..n-1]:
+            If there is no increasing subsequence ending at index i with the current value, set dp[i][val] = 1.
+            Else:
+                Update dp[i][val] to be the maximum length of any increasing subsequence ending at index i and having val elements.
+
+Memoization:
+    For each index i from 0 to n-1:
+        Set memo[i] to be the value at dp[i][length_of_longest_increasing_subsequence[i]].
+    
+Finding longest increasing subsequences:
+    Initialize a variable count = 0.
+    For each index i from 0 to n-1:
+        If the value at memo[i] is greater than or equal to 1, increment count by 1.
+
+Return count as the number of longest increasing subsequences in the given array.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+Consider the state as dp[i][t]: maximum number of vertices that can be visited within t time units, considering only edges with weight less than or equal to t, and ending at vertex i (starting from vertex 1).
+
+To fill up the table, iterate over each edge in non-decreasing order of its weight. For each edge (u, v, w) such that dp[v][t-w] is already calculated, update dp[u][t] with the maximum value between its current value and dp[v][t-w]+1.
+
+Implementing memoization using a dictionary where each key is a subproblem state (i, t) and its value is the result of solving that subproblem. This ensures that no subproblem is solved more than once, reducing the overall time complexity.
+
+Finally, return the maximum value in dp[1][T] as the answer, which represents the maximum number of vertices that can be visited within T time units starting from vertex 1 and ending at vertex n.
+
+===END PLAN===

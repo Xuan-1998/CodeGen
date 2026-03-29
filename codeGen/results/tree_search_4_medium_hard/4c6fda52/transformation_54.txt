@@ -1,0 +1,12 @@
+A dynamic programming approach can be used to solve this problem by solving it bottom-up. The state dp[i][j] represents whether the substring s[i..i+j-1] (or its rotation) appears in the infinite string 'RGBRGB...'. 
+
+The base case is when j = 0, and the answer is always 0 because an empty string can be obtained by rotating any string.
+
+For larger values of j, we can use the following recurrence relation:
+
+dp[i][j] = dp[i-1][j] if s[i-1..i+j-2] (or its rotation) appears in the infinite string 'RGBRGB...' 
+         = 1 + min(dp[i-1][j-1], dp[i-1][j-2]) if s[i-1..i+j-2] does not appear in the infinite string 'RGBRGB...'
+
+The last step is to iterate over the first row of the table and return the minimum number of changes needed, which is 1 + min(dp[0][k-1], dp[0][k-2]).
+
+This solution works because it considers all possible rotations of the substring s[i..i+j-1] in the infinite string 'RGBRGB...', and keeps track of the minimum number of changes needed to obtain a valid substring.

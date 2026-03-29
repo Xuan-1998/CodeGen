@@ -1,0 +1,22 @@
+
+===BEGIN PLAN===
+1. Understand the Condition: For every quadruple (a, b, c, d) such that 1 ≤ a < c ≤ N and 1 ≤ b < d ≤ M, the matrix must satisfy A[a, b] * A[c, d] ≤ A[a, d] * A[c, b]. This implies that the matrix has a specific structure where certain elements are constrained by others.
+
+2. Dynamic Programming Table Definition: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+
+3. Base Case: Initialize dp[1][1] = 2, as a 1x1 matrix can be either 0 or 1.
+
+4. Transition: To build the solution for dp[i][j]:
+   - Consider the valid matrices of size (i-1) x j and i x (j-1).
+   - Ensure that adding a new row or column does not violate the matrix condition.
+   - Use the previously computed values in dp[i-1][j] and dp[i][j-1] to update dp[i][j].
+
+5. Iterative Computation: Use a nested loop to fill the dp table from the base case up to dp[N][M].
+
+6. Modulo Operation: Since the result can be very large, take results modulo 998244353 at each step to avoid overflow.
+
+7. Final Result: The value of dp[N][M] will give the number of valid matrices of size N x M.
+
+8. Edge Cases: Consider the smallest matrices (e.g., 1x1, 1x2, 2x1) and ensure the base cases and transitions handle these correctly.
+===END PLAN===
+

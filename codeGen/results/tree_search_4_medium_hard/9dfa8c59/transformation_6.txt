@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers below n_max and iterate over each number in the hash set to count its permutations. 
+Let the state be a tuple (num, k) where num is a prime number below n_max and k is the count of its permutations that are also prime numbers below n_max.
+Define two states: one for 'prime' and another for 'permutation'.
+Transition from 'prime' to 'permutation' when a permutation is found to be prime.
+
+Using dynamic programming with a bottom-up approach, fill up a table where the recursive relation between the state variables is used. The base case would be 0-permutations (which are just the original number) and then build up to k-permutations.
+To improve this plan, consider using memoization to avoid redundant calculations.
+The potential issues with this plan include:
+- It might not handle edge cases properly. For example, it doesn't check if n_max is less than 2 or k_perms is greater than the number of prime numbers below n_max.
+- The time complexity could be high due to the iteration over each number in the hash set and counting its permutations.
+
+To solve these issues, consider adding pre-processing steps to handle edge cases and optimize the plan by reducing the number of calculations.
+
+Here's an example of how the plan could look like:
+

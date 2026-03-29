@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider implementing a dynamic programming approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Let dp[i] be the maximum bitwise OR value of all substrings ending at index i. 
+
+Initially set dp[0] = s[0], since there's only one way to form a single-character substring.
+
+For each subsequent dp[i], calculate the maximum bitwise OR value considering two possibilities:
+
+- The current substring ends here (which would be dp[i-1]).
+- It continues one more step to the right. In this case, consider all possible substrings ending at i that have their first character being 0 or 1.
+
+Update dp[i] as the maximum between these two cases.
+Finally, return dp[n-1] as the maximum bitwise OR value for the entire string.
+
+This approach ensures we explore all possible substrings and their corresponding maximum bitwise OR values in a bottom-up manner.
+===END PLAN===

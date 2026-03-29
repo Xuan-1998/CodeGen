@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp = {}
+
+def dp_solve(appearance_times, healths):
+    n = len(appearance_times)
+    dp[0] = 0
+    for i in range(n):
+        if i == 0:
+            dp[i + 1] = healths[i]
+        else:
+            dp[i + 1] = min(dp[i], appearance_times[i] - appearance_times[i - 1]) + max(healths[i] - dp[i], 0)
+    return dp[n]
+
+print(dp_solve(n, k, h))
+===END PLAN===

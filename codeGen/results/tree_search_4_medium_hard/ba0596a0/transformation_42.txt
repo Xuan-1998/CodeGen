@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. To combine these subproblems and form the solution, we can use dynamic programming.
+
+The state expression could be defined as: dp[i] = True if there is a valid sequence of jumps that allows the frog to jump from the 0th stone (the starting point) to the ith stone.
+
+The base case would be dp[1] = True because the frog can simply stay on the first stone. For i > 1, we have a choice: either the frog stays on the ith stone or it jumps to some j < i from one of the previous stones.
+
+If the frog jumps to the ith stone from the (i-1)th stone, then dp[i] = dp[i-1]. If there's no valid sequence that allows the frog to jump from the 0th stone to the (i-1)th stone, then dp[i] should be False. Otherwise, it can also stay on the ith stone and reach i.
+
+So, we have a recursive formula: dp[i] = or for some j < i, dp[j].
+
+The dynamic programming approach would involve initializing dp[0] = True (since there's no jump needed to get from 0 to 0), then iteratively filling up the DP table in a bottom-to-top manner. The final answer would be dp[n-1], where n is the number of stones.
+
+===END PLAN===

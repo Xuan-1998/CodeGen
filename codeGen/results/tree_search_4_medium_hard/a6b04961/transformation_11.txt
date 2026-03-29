@@ -1,0 +1,21 @@
+===
+The problem can be broken down into smaller subproblems that share common information, making it suitable for a dynamic programming approach with top-down memoization. This allows you to avoid redundant computation and efficiently store intermediate results.
+
+State: Define the state as the maximum beauty that can be achieved by forming a hedgehog given a certain tail, with the last vertex of the tail as the 'pivot'.
+
+Transition: When adding an edge to the tail, update the state based on whether it results in a longer tail or not. This can be done by considering all possible edges connected to the pivot and recursively calculating the maximum beauty that can be achieved for each new tail.
+
+Create a 3D table where each cell represents the maximum beauty that can be achieved by forming a hedgehog given a certain tail, with the last vertex as the 'pivot', and the number of spines formed so far. This allows you to keep track of the number of spines and update it accordingly when adding an edge to the tail.
+
+For example, for each cell (i, j, k) in the table:
+
+- If the current pivot is the i-th vertex, and the last 'k' edges were added to the tail, then the maximum beauty that can be achieved is the product of the length of the tail (i+1) and the number of spines formed so far (j).
+
+Transition function: When adding an edge from the pivot to a new vertex, update the state by considering all possible edges connected to this new vertex. For each edge:
+
+* If the new vertex is not in the current tail, consider it as a new spine.
+* If the new vertex is already in the current tail, consider it as part of the longer tail.
+
+This approach ensures that you don't count the same edge twice and avoid redundant computation.
+
+=== 

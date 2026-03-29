@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i][p_i]: number of ways to reach room p_i from room i, considering whether Vasya uses first or second portal in room i; dp[n+1][_] = 0, since there is no way to exit the maze.
+
+memo = { } ; def dfs(i):
+    if i == n+1: return 1;
+    if i not in memo:
+        p_i_odd = sum(dfs(p_0) | (p_0 % 2)) + sum(dfs(p_1) | ~ (p_1 % 2));
+        p_i_even = sum(dfs(p_0) & ~(p_0 % 2)) + sum(dfs(p_1) & ~ (p_1 % 2));
+        memo[i] = (p_i_odd + p_i_even) % 1000000007;
+    return memo[i];
+
+return dfs(1);
+===END PLAN===

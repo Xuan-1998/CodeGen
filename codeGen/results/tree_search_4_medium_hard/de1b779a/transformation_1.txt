@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+Base case: when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types when making buns with different stuffings or without any stuffing.
+
+Transition relationship:
+- Calculate dp[i][0] by considering using no stuffing type, which would be the maximum profit that can be achieved with i grams of dough.
+- For each stuffing type (j from 1 to m):
+    - Calculate the maximum profit when using the j-th stuffing type: ci + max(0, ai - bi) * di.
+    - Update dp[i][j] as the maximum between this and the current value.
+
+Memoization with dictionary:
+Store the calculated values in a dictionary to avoid redundant calculations.
+
+===END PLAN===

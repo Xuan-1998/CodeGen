@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i][j]: the number of ways to build a sequence with exactly j spheres having radii up to i, where 1 ≤ i ≤ C and 0 ≤ j ≤ min(N, M).
+
+dp[i][j] = sum(dp[k][max(0, j-m)] for k in range(C, 0, -1) if k <= i and find_lower_hemisphere(k) >= m)
+
+The base case is dp[0][j] = 1 for all 0 ≤ j ≤ min(N, M), as there's only one way to build a sequence with no spheres.
+
+To avoid redundant computations, create a cache called memo with the results of subproblems and use it to store and retrieve values.
+
+The main loop iterates over i from C down to 1 and for each i, calculate dp[i][j] using the recursive formula and update the memo accordingly. Finally, print the result in modulo 10^9+7.
+
+===END PLAN===

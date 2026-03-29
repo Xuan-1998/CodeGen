@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The optimal solution is to use dynamic programming with bottom-up approach and two pointers technique, identifying the longest increasing subsequence first.
+
+Let dp[i] represent the minimum number of operations required to make the array strictly increasing up to index i.
+Let prev[i] represent the previous element in the longest increasing subsequence ending at index i.
+
+The base case is when the array has only one element, in which case dp[i] = 0 and prev[i] = -1 (not defined).
+
+For each element A[i], we iterate through the array to find the maximum element that is smaller than or equal to A[i]. This gives us the previous element in the longest increasing subsequence ending at index i. We then update dp[i] as the minimum of its current value and the sum of dp[j] + 1, where j is the index of the found maximum element.
+
+We use two pointers technique to find the maximum element that is smaller than or equal to A[i]. The first pointer starts from the beginning of the array and moves towards A[i], while the second pointer starts from the end of the array and moves towards A[i].
+
+The recurrence relation is:
+dp[i] = min(dp[j] + 1, dp[i-1]) for j such that A[j] <= A[i]
+
+Finally, we return dp[n-1] as the minimum number of operations required to make the array strictly increasing.
+
+===END PLAN===

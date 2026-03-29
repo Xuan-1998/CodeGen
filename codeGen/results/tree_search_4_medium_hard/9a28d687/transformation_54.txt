@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost required to sort the first i strings in lexicographical order with the last string's suffix having j characters, considering only the length and cost of the last string.
+dp[0][0] is initialized to 0 because there are no operations needed to sort an empty sequence. 
+For each string s, calculate the minimum total cost to sort all strings ending with a suffix of s as follows:
+1. For each character c in s from left to right, find the first i such that the last i characters in s (from left) is smaller than or equal to c.
+2. The minimum total cost for this string s and its suffix is the sum of the costs of all strings ending with a suffix less than or equal to c plus the cost of reversing the rest of the string.
+3. Update dp[i][j] as the minimum of the current value and the calculated value from step 2.
+
+The final answer would be dp[n][k] where n is the total number of strings, k is the maximum length of all strings.
+===END PLAN===

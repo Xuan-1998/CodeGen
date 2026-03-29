@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Create a 1D array dp of size |t|+1 to represent the minimum number of steps needed to color all letters up to each position.
+Initialize an additional 2D array state_dp of size |t|+1 x n, where each cell represents the last string used and its corresponding last covered position.
+dp[0] = 0; // base case when no string has been used
+for i in range(1, |t|+1):
+    dp[i] = -1;
+    for j in range(n):
+        if t[i-|s_j|...i-1] contains s_j:
+            last_covered_position = i-1;
+            state_dp[i][j] = (last_covered_position, j);
+            break;
+    if dp[i] == -1:
+        dp[i] = dp[i-1];
+    else:
+        dp[i] = min(dp[i])
+===END PLAN===

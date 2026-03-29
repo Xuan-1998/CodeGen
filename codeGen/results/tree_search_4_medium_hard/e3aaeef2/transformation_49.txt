@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming with a bottom-up approach by tabulating the intermediate results for each length and number of operations.
+
+The base case is dp[0][j] = 1 for all j, since there are no digits initially.
+
+Let dp[i][j-1] represent the length of number i after applying j-1 operations. Then:
+
+    dp[i][j] = max(dp[int(str(i)[0]) + 1], dp[int(str(i)[1:]) + (10*(int(str(i)[0])) % 10) + 1])
+
+Memoization using recursion with memo dictionary:
+dp(i, j) = min(9, len(str(i))) if j == 0 else 
+    min(dp(math.floor(i/10), j-1), dp((i%10)+1, j-1))
+
+===END PLAN===

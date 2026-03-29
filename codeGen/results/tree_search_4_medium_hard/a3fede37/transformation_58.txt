@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, considering its children and their subtrees.
+
+The state expression is dp[i][1] = tree[i-1], and dp[i][j] = max(dp[k][l-1] + tree[k-1] for k in range(i) for l in range(2)) where i represents the current node and j represents its child. The base case is when there are no more children.
+
+dp[i] = max(sumPathLeft, sumPathRight) where sumPathLeft and sumPathRight are the maximum sums of paths through node's children
+
+Use a recursive function with memoization to store the maximum sum of paths for each node and its children.
+Memoize dp[i][j] as soon as it is calculated, to avoid redundant computation.
+
+Recursively explore all subtrees rooted at i until no more child nodes exist. This is to calculate maxPathLeft and maxPathRight.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Is there a way to partition the strings into overlapping subproblems, making memoization more effective.
+
+To define the state as (i, j) where i is the length of the longest common prefix of s1 and s2 and check if the remaining parts of both strings are scrambled.
+State: (i, j) represents the scrambled status of the substring from index 0 to i in both strings;
+Transition: 
+    - if s1[i] == s2[j], return True; 
+    - otherwise, partition the remaining parts and recursively check if they are scrambled.
+
+Use a memoization dictionary to store whether two substrings are scrambled or not, then check if the current substrings have been processed before.
+Recursively check for all possible partitions of the strings until it reaches the base case where the lengths of both strings become 0, which means the strings are fully processed and their scrambled status can be determined.
+
+===END PLAN===

@@ -1,0 +1,9 @@
+def minMult(i, j):
+    if i == j:
+        return 0
+    dp[i][j] = float('inf')
+    for k in range(i, j+1):
+        cost_left = minMult(i, k) + minMult(k+1, j)
+        if cost_left < dp[i][j]:
+            dp[i][j] = cost_left
+    return dp[i][j]

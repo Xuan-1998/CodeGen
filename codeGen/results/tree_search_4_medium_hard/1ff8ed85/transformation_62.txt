@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+dp[i] = (any previous state that is consistent with the current prefix of sequence b) and 
+    (all lengths in b[:i] are even or all are odd) for i from 1 to n
+Define a function check_even_odd(lengths):
+    if all(length % 2 == 0 for length in lengths):
+        return 'even'
+    elif all(length % 2 != 0 for length in lengths):
+        return 'odd'
+    else:
+        return None
+
+dp[0] = True, because an empty sequence is always consistent with itself
+for i from 1 to n:
+    if dp[i-1]:
+        if check_even_odd(b[:i]) == 'even' or check_even_odd(b[:i]) == 'odd':
+            dp[i] = True
+        else:
+            dp[i] = False
+    else:
+        dp[i] = False
+
+result = any(dp[i] for i in range(n))
+print('YES' if result else 'NO')
+===END PLAN===

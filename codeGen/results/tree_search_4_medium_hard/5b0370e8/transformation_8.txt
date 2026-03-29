@@ -1,0 +1,16 @@
+===
+Memoize recursive function calls by storing intermediate results in a dictionary. The state represents the number of arrays with bitwise AND greater than or equal to bitwise XOR up to index i, with k-1 bits; Base Case: 0 when i < 0
+Dynamic Programming Iteration:
+    Initialize a dictionary dp such that dp[i] is initialized as 0 for all i in range(k+1)
+    For each i from 0 to k-1:
+        If the bitwise AND operation on the i-th element is greater than or equal to the bitwise XOR operation, update state accordingly
+        Update dp[i+1] based on the current state and the number of arrays with bitwise AND greater than or equal to bitwise XOR up to index i
+    Return dp[k]
+Base Case:
+    The plan assumes that bitwise AND greater than or equal to bitwise XOR will occur for some array if k is large enough. This ensures that the base case is handled correctly.
+Edge Cases:
+    For all edge cases such as k=0, n=1, etc., update the state accordingly
+Final Step: 
+    Return dp[k] modulo 10^9+7 to ensure the output is within bounds.
+===
+

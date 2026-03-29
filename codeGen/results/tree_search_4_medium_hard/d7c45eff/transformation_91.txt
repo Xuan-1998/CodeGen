@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i][j] represents the lexicographically smallest string of length j that can be obtained by doing operations on the first i characters of s.
+
+If i == 0 and j > 0, then dp[0][j] is the lexicographically smallest string of length j that can be obtained by duplicating strings. This is because we start with an empty string and duplicate it k times to get a string of length k.
+
+State transition: For i > 0, there are two possibilities:
+- If the last character of s[:i] is smaller than the lexicographically smallest character in dp[i][j], then we can append this character to the optimal string of length j - 1. This is because appending a character smaller than all previous characters will not change the lexicographical order.
+- Otherwise, we cannot append the last character and must remove it from the optimal string of length j.
+
+dp[i][j] = min(dp[i-1][j], dp[i-1][j-1] + s[i-1])
+
+Base case: If i > 0 and j == 0, then dp[i][j] is the lexicographically smallest character in s[:i]. This is because we have reduced the problem to finding the lexicographically smallest character.
+
+Return statement: The final answer is dp[n][k], which represents the lexicographically smallest string of length k that can be obtained by doing operations on the first n characters of s.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+Let's define a 2D table dp where dp[i][j] represents the number of steady tables that can be formed given a sum of i in the first j rows.
+
+Base case: When the sums of all rows except the first one are equal to or greater than 1, there is only one way to form a steady table, which is by setting the entire table to be a matrix of 1's. So dp[0][j] = 1 for all j.
+
+Inductive step: To use tabulation, we can initialize a 2D table to store the number of steady tables with sums up to M, then update the table iteratively based on previously computed values. The recurrence relation is:
+dp[i][j] = sum(dp[k][j-1] for k in range(i+1)) modulo 1 000 000 000
+
+Here, we are considering all possible sums from i+1 down to 0 and adding the number of steady tables that can be formed given each sum in the first j-1 rows.
+
+Finally, the answer is the sum of dp[i][M] for all i from 0 to N-1 modulo 1 000 000 000
+
+===END PLAN===

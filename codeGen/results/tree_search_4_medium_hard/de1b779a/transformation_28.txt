@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+Create a dictionary memo to store the memoized values, where the key is a tuple containing the remaining grams of dough and the number of remaining stuffing types.
+
+dp[0][j] = dp[0][j-1] + d0 for j > 0
+This represents the maximum profit that can be achieved with no dough and j-1 stuffing types (or without any stuffing type).
+
+For i > 0, consider two cases:
+Case 1: Make a bun using the current amount of dough and stuffing. This gives a profit of di.
+Case 2: Don't make a bun this time, but instead use some dough for later buns. This reduces the remaining dough by ci.
+
+Consider the maximum profit that can be achieved with i-ci grams of dough and j-1 stuffing types (or without any stuffing type). Add this to the maximum profit that can be achieved with no dough and j stuffing types. Take the maximum between these two cases.
+dp[i][j] = max(dp[i-ci][j-1] + di, dp[i][j-1])
+This ensures that we consider both making a bun and not making a bun at each step.
+
+Return memo[0][m]
+This represents the maximum profit that can be achieved with no dough and m stuffing types.
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Think about applying memoization to a bottom-up dynamic programming function that solves the problem
+The state is a pair of integers (i, s) where i is the current index and s is the current sum. The base case is when i reaches n.
+Create a table dp where each cell [n][s] stores the minimum value of F for the subproblem ending at index n and sum s
+
+dp[n][s] = min(F(i, s) + dp[i-1][s-a_i]) for all i from 1 to n
+where F(i, s) = a_i * x_{i+1} + y_{i+1} * (s - a_i)
+
+Fill in the table by iterating over all possible sums and indices. The final answer is stored in dp[0][s]
+
+===END PLAN===

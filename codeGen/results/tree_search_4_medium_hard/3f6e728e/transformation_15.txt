@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+
+dp[i] = sum(dp[j]*binom(U_count[U_index][j], U_count[U_index].index(j)) for j in range(1, i+1))
+
+Use a 2D array to store the results of subproblems and fill it in from bottom-up. 
+
+For each i, calculate dp[i] only once when needed.
+
+Update U_index and U_count accordingly after calculating dp[i].
+
+Fill up the dp table row by row, starting from the last row (C) back to the first row (1).
+
+Return dp[C] as the final answer.
+
+===END PLAN===

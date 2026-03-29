@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Choose a state for each digit position, i.e., the number of blocks that end at that position with length 1 to n. The state for each digit position is the number of blocks that end at that position with length 1 to n.
+
+Use a 2D array dp[i][j] to store the count of blocks ending at the ith digit position with length j, where i ranges from 0 to 10^n-1 and j ranges from 1 to n. The base case is when j=1, in which case dp[i][1] = 1 for all i because a block of length 1 ends at each digit position.
+
+For blocks of lengths greater than 1, consider the following:
+- If the current digit is the same as the previous one, then it belongs to the same block. In this case, update dp[i][j] by adding the count of blocks ending at the (i-1)th digit position with length j-1.
+- If the current digit is different from the previous one, then a new block starts. In this case, update dp[i][j] by adding the count of blocks ending at the (i-1)th digit position with length 1.
+
+The final answer would be the sum of all counts in the last column of the dp array, i.e., dp[10^n-1][n].
+
+===END PLAN===

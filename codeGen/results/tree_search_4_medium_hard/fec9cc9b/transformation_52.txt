@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Define states as (l, r) representing the current subsegment [l, r]. Maintain a dynamic programming table dp[n+1][n+1] where dp[i][j] represents whether the subsegment [1, i] contains a non-decreasing sequence ending at index j.
+
+Transition relationship:
+dp[l][r] = (a[r-1] >= a[l-1]) ? 1 : 0
+
+Base case: Initialize dp[1][n] to 1 if array is non-increasing and 0 otherwise. For each query, check if the subsegment [l, r] contains a non-decreasing sequence of length r-l+1. If found, return "Yes"; otherwise, return "No".
+
+===END PLAN===

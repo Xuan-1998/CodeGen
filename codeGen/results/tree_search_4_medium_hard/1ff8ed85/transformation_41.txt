@@ -1,0 +1,15 @@
+dp = [False] * (n + 1)
+even_odd = [False, False]
+for i in range(n):
+    if b[i] % 2 == 0:
+        even_odd[1] = True
+    else:
+        even_odd[0] = True
+    for j in range(i):
+        if even_odd[0]:
+            dp[i] |= not dp[j]
+            even_odd[0] = False
+        elif even_odd[1]:
+            dp[i] |= not dp[j]
+            even_odd[1] = False
+print('YES' if dp[n - 1] else 'NO')

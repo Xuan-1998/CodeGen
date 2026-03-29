@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+A bottom-up dynamic programming approach with a 2D table can be used to solve this problem.
+
+State: The last character seen in the current palindrome found so far.
+Let dp[i][j] represent whether the substring S[i...j] is a palindrome or not.
+The base case is when i > j, and dp[i][j] = True if S[i...j] is an empty string.
+For each pair of indices i and j such that 0 <= i <= j < N,
+dp[i][j] = True if the substring S[i...j] is a palindrome, 
+and False otherwise.
+
+The idea is to fill up this dp table in a bottom-up manner. 
+For each character at index k from left to right:
+- If the character at index k is the same as the character at index N-k-1 (the mirrored position), 
+then there are two possibilities: either the substring S[0...k-1] and S[k+1...N] are both palindromes, 
+or the entire string S[0...N] forms a palindrome. 
+We recursively call ourselves to fill up this dp table.
+
+The time complexity of this approach is O(N^2), where N is the length of the input string.
+The space complexity is also O(N^2) for storing the dp table.
+===END PLAN===

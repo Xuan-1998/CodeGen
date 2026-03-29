@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem involves finding all possible palindromic partitions of a string, which can be solved using dynamic programming with memoization. The top-down approach with memoization is suitable for this problem because it allows us to break down the problem into smaller subproblems and store their solutions in a memory table.
+
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far.
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+The state can be formulated as (i, S[:i+1], partition) where i is the current index in the string, S[:i+1] represents the remaining part of the string to be processed, and partition is a list of strings representing the palindromic partition so far.
+
+Utilize memoization by defining a recursive function that stores its intermediate results in a dictionary
+
+state transition: for each possible partitioning of the remaining part of the string (i.e., S[:i+1]), recursively call the function with the updated state and add the current partition to the result if it's a palindrome
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+potential issues: 
+- edge cases: what if the input string is empty or contains special characters?
+- optimization: can we prune the search space by considering only substrings that are likely to be palindromes?
+
+===END PLAN===

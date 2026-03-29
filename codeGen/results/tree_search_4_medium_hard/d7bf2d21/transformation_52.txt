@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i] = max(dp[j] for j in range(i)) + 1
+    # Initialize dp array with -∞ and update it iteratively as we traverse the array from left to right
+    for i in range(len(array)):
+        dp[i] = max(0, dp[j] + 1 if array[j] < array[i] else -∞ for j in range(i))
+    # Count the number of maximum length subsequences
+    return len([i for i in range(len(dp)) if dp[i] == max(dp)])
+===END PLAN===

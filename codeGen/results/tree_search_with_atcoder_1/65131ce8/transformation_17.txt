@@ -1,0 +1,8 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+1. State Expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[0][0] = 1, meaning there's one way to form an empty subtree with zero vertices and zero good vertices.
+3. Transition Formula: dp[i][j] = sum(dp[k][m] * dp[i-1-k][j-1-m] for all valid k, m) where k is the number of vertices in one subtree and m is the number of good vertices in that subtree. This accounts for all possible ways to distribute the vertices and good vertices among the subtrees.
+4. Ensure the sum of out-degrees matches N-1 at each step to maintain tree properties.
+5. Iterate through all vertices and accumulate the number of good vertices for the final result.
+6. Handle edge cases such as minimum N (N=2) and maximum out-degree constraints.
+

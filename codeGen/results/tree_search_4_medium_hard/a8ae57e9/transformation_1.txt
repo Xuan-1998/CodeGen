@@ -1,0 +1,16 @@
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size, and the minimum number of tables required to accommodate all groups with sizes up to the current group size.
+
+The state expression is a 2D array dp[i][k] where dp[i][j] represents the maximum amount of money earned by accepting the first i booking requests with group sizes less than or equal to j. The state update can be done as follows:
+
+* For each request (group size c, and total amount p), calculate the maximum amount of money earned if this request is accepted:
+  - If there are enough tables (j >= c) to accommodate this request, then the maximum amount of money earned is the sum of the current maximum amount and the amount spent by this request.
+  - Otherwise, no more requests can be accepted after this one, so the maximum amount of money earned is just the amount spent by this request.
+
+* Update the state dp[i][j] with the maximum amount of money earned if this request is accepted. This will ensure that the maximum amount of money earned for each group size is updated correctly.
+
+Then, use a memoization approach to store the intermediate results and avoid recomputing the same subproblems multiple times.
+
+Finally, return the maximum amount of money earned by accepting all booking requests (i.e., dp[n][k]) as well as the number of accepted requests (i.e., count the number of requests where the group size is less than or equal to the minimum table capacity).
+
+Note: It's possible that some requests will not be accommodated due to a lack of tables, so we also need to keep track of how many requests are actually accepted.
+

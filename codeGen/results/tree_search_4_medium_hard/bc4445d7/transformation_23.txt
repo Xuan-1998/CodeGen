@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+The state is defined as dp[i][j] = maximum possible distribution index for nodes i to j, considering all edges between them. 
+
+dp[i][j] should represent the maximum possible distribution index that can be achieved by labeling all edges from node i to j, considering all possible labelings for nodes in this range.
+
+Use dynamic programming to fill up the table bottom-up, starting from smaller subproblems and combining them to solve larger subproblems.
+
+For each edge (u, v), calculate dp[u][v] as the sum of the numbers on the simple path from node u to node v.
+
+For each node i, initialize dp[i][i] = 0. 
+
+For each node j > i, calculate dp[i][j] by considering all possible labelings for edges between nodes i and j, and updating the minimum possible number of ones among these labelings.
+
+Finally, return dp[1][n-1] as the maximum possible distribution index of the tree, modulo 10^9 + 7. 
+
+===END PLAN===

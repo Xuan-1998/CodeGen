@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = 1 if s[i:j].isalpha() and all(c <= max(a) for c in set(s[i:j])) else 0
+
+Consider the number of ways each character can appear consecutively within a substring, dp[i][j] = sum(dp[k][k+1] for k in range(i-1, j)) + (s[j].isalpha() and all(c <= max(a) for c in set(s[i:j]))), where i and j are the start and end indices of the current substring.
+
+Use a prefix sum array to store the maximum number of times each character can appear consecutively within a substring, and use this array to iterate through all possible splits of the message.
+
+dp[i][j] = min(dp[i-1][k-1] + 1 for k in range(i+1, j+1) | c <= max(a) for c in set(s[i:j]))
+
+Find the number of ways to split the message into non-overlapping substrings such that each substring satisfies the given condition, the sum of their lengths is n, and they don't overlap.
+
+total_ways = dp[0][n-1]
+
+Find the length of the longest substring over all the ways and the minimum number of substrings over all the ways.
+
+max_length = max(dp[i][j] for i in range(n) for j in range(i+1, n))
+
+min_substrings = min(dp[i][j] + 1 for i in range(n) for j in range(i+1, n))
+
+Output the results modulo 10^9 + 7.
+
+print(total_ways % (10**9 + 7))
+print(max_length)
+print(min_substrings)
+
+===END PLAN===

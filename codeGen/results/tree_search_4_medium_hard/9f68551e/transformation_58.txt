@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp = {}
+def dp_func(i):
+    if i == 0:
+        return 1
+    if i in dp:
+        return dp[i]
+    min_mana = float('inf')
+    for j in range(1, i+1):
+        mana = max(j, dp_func(j-1))
+        if mana >= monsters[i][1]:
+            min_mana = min(min_mana, mana + 1)
+    dp[i] = min_mana
+    return dp[i]
+===END PLAN===

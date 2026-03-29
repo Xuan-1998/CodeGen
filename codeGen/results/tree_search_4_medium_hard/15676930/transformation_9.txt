@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: The dynamic programming solution can be viewed as a 2D array, where each cell [i][j] represents the maximum joy that can be obtained by feeding the first i hares and having j hares full.
+
+The state expression could be dp[i][j] = maximum total joy obtained by feeding the first i hares, considering whether hare i has adjacent full hares or not.
+dp[i][j] = max(a_i + dp[i-1][k-1] + dp[i-1][k]) for k in range(min(j, i)), where a_i is the value of joy from hare i when both its adjacent hares are hungry.
+
+To avoid double counting and ensure that we only consider each subproblem once, we need to consider the following:
+- If we feed hare i, then we should not feed any of the previous hares. So, dp[i][j] = a_i + dp[i-1][0]. 
+- If we do not feed hare i, then we can either choose not to feed any of the previous hares (dp[i-1][j]) or choose one of them to be full and the rest to be hungry. So, dp[i][j] = max(dp[i-1][j], a_i + dp[i-2][k-1] + dp[i-2][k]) for k in range(min(j-1, i-1)).
+
+Memoization using a dictionary to store and reuse previously computed values can be used to speed up the process.
+===END PLAN===

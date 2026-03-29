@@ -1,0 +1,13 @@
+
+1. Define the state dp[u][d] where dp[u][d] represents the number of paths of length d that start from vertex u.
+2. Initialize the base case: dp[u][0] = 1 for all u, because a path of length 0 from a vertex to itself is always possible.
+3. Perform a Depth-First Search (DFS) to fill the dp table:
+   a. For each vertex u, calculate dp[u][d] for all d from 1 to k.
+   b. For each neighbor v of u, update dp[u][d] using dp[v][d-1] because extending a path of length d-1 from v to u forms a path of length d.
+4. Use a secondary array to store intermediate results to avoid double-counting paths.
+5. During the DFS traversal, count the number of valid pairs of vertices that have a path of exactly length k between them:
+   a. For each vertex u, consider all pairs (u, v) such that the path length between them is exactly k.
+   b. Use the dp table to count these pairs efficiently.
+6. Ensure that each pair is counted only once by maintaining a visited set or using properties of the tree structure.
+7. Return the total count of valid pairs.
+

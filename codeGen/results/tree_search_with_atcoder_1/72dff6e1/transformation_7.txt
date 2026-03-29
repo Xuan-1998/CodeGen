@@ -1,0 +1,9 @@
+
+1. Define a dynamic programming table dp[i][j] where dp[i][j] represents the number of valid sequences of length i where the last element is j.
+2. Initialize the table: dp[1][j] = 1 for all j from 1 to N, since a single element sequence is always valid if it satisfies the constraints.
+3. Define the recurrence relation: For each length i from 2 to N and each element j from 1 to N, dp[i][j] is the sum of dp[i-1][k] for all k from 1 to N where the sequence remains valid under the given constraints.
+4. Ensure that the constraints are satisfied: For each element j, the number of occurrences in the sequence should not exceed A[j]. Maintain an additional array count[j] to keep track of occurrences of each element in the sequence.
+5. Use a nested loop to iterate over the lengths and elements, updating the dp table according to the recurrence relation and constraints.
+6. After filling the dp table, the result will be the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+7. Handle edge cases where N is 1 or all A[i] are 1.
+

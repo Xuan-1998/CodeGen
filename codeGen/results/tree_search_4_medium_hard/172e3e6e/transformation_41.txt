@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the state as a tuple (i, j), where i is the length of the subsequence and j is the largest divisor of the last element in the subsequence.
+
+State: dp[i][j] = 1 if there exists a good subsequence ending at index i with the largest divisor j; otherwise, it's 0. 
+
+dp[i][j] = (a[i-1] % j == 0) && 
+          (i > 1 ? dp[i-1][j] : 1)
+
+The base case is when the length of the subsequence is 1. In this case, there is only one way to form a good subsequence, which is to include the single element.
+
+The transition state is when we extend the current subsequence by adding the current element. We need to check if the current element is divisible by j and update dp[i][j] accordingly.
+
+We can use memoization to store the results of checking divisibility for each number and avoid redundant calculations.
+===END PLAN===

@@ -1,0 +1,9 @@
+dp = {i: {} for i in range(10**9+7)}
+for n in range(1, 10**9+1):
+    dp[n][0] = len(str(n)) % (10**9+7)
+    for m in range(1, 2*10**5+1):
+        if m == 1:
+            continue
+        for d in str(n):
+            new_len = len(str(int(d) + 1))
+            dp[n][m] = min(dp[n][m], dp[int(d) + 1][m-1])

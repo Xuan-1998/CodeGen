@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 2D table where each cell represents the similarity score between two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 2D array dp[i][j] where dp[i][j] represents the similarity score between the substrings A[0..i-1] and B[0..j-1]. The base case is when one or both strings are empty, in which case the similarity score is calculated as the sum of lengths minus 4 times the length of the shorter string.
+
+Represent the state as a pair of integers (i, j) where i and j are the lengths of substrings A[0..i-1] and B[0..j-1]. State: (i, j).
+
+Transition:
+    if i == 0 or j == 0:
+        dp[i][j] = 4 * min(i, j) - i - j
+    else:
+        common_length = min(i, j)
+        for k in range(common_length):
+            if A[i-1-k] == B[j-1-k]:
+                dp[i][j] = max(dp[i][j], dp[i-1][j-1] + 4 * common_length - i - j)
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    return max(max(row) for row in dp)
+
+dp[i][j] = [[4 * min(i, j) - i - j for j in range(m+1)] for i in range(n+1)]
+===END PLAN===

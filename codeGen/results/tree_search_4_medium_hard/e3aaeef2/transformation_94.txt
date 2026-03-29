@@ -1,0 +1,12 @@
+dp = [[0 for _ in range(m+1)] for _ in range(10**9+7)];
+dp[0][0] = 1;
+for i in range(1, 10**9+7):
+    for k in range(1, m+1):
+        if i < 10:
+            dp[i][k] = min(dp[i][k-1], dp[i*10 + (i+1)%10][k-1]) + 1;
+        else:
+            last_digit = int(str(i)[-1]);
+            dp[i][k] = min(dp[last_digit*10+(last_digit+1)%10][k-1], dp[i//10][k-1]) + 1;
+for t in range(int(input())):
+    n, m = map(int, input().split());
+    print((dp[n][m]) % (10**9+7));

@@ -1,0 +1,19 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+Let's define a state dp[i] = min_cost_till_ti, where min_cost_till_ti is the minimum cost for the passenger to reach time t_i.
+
+Consider a 2D array dp[][] where dp[i][j] represents the minimum cost up to timestamp i after using j tickets.
+
+The tabulation can be done by initializing a 2D array with zeros, then filling it up row by row from left to right and top to bottom. Each cell is computed based on its previous cells.
+
+We start by setting dp[0][0] = 20 (cost of the first ticket) as this is the minimum cost till time 0 after using 1 ticket.
+
+For each row i, we iterate over all j tickets from 1 to min(i+1, 3), and for each cell dp[i][j], compute it based on its previous cells:
+
+- If the current timestamp t_i is less than or equal to the activation time of the jth ticket (t_j = j * x - 1 where x is the time interval for the jth ticket), then we can use this ticket, so we update dp[i][j] with the minimum cost till ti after using j tickets.
+
+- If not, we can't use this ticket, so dp[i][j] remains the same as its previous value (dp[i-1][j]).
+
+Finally, for each cell dp[i][j], if it's the first ticket or the time t_i is more than the activation time of the last ticket used, then we update dp[i][j] with the cost of the jth ticket and add it to the minimum cost till ti after using j-1 tickets (dp[i-1][j-1]).
+
+The answer for each trip will be the value in the cell corresponding to that timestamp and number of tickets used. This is because this is the minimum cost up to that time point and considering all possible ticket combinations from the start till now.

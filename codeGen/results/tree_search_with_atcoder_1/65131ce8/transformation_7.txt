@@ -1,0 +1,9 @@
+
+1. Define the problem using Dynamic Programming: We need to calculate the number of good vertices in all good trees with given out-degrees.
+2. Define state: Let dp[v][k] be the number of ways to form a subtree rooted at vertex v with exactly k good vertices.
+3. Base case: Initialize dp[v][0] = 1 for all v, since there is exactly one way to form a subtree with zero good vertices (an empty subtree).
+4. Transition: For each vertex v, we need to calculate dp[v][k] based on its children. Let c1, c2, ..., cm be the children of v. Use a combination of dp states from children to form the dp state for v.
+5. Use the out-degrees to determine the children of each vertex. For each vertex v, iterate over its children and update dp[v][k] accordingly.
+6. Sum up the number of good vertices in all good trees. For each vertex v, if v is a good vertex, contribute to the final sum.
+7. Return the sum modulo 998244353.
+

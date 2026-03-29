@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment. Initialize an array dp with n+1 rows and m+1 columns to store whether each subsegment is a valid ladder.
+
+dp[i][j] = True if array[i-1] <= array[j] and j == r - 1, False otherwise
+Consider a subsegment as a valid ladder if it is non-decreasing up to the first decreasing element, and then non-increasing from that point onward. This can be achieved by iterating over each element in the array and checking if the current element forms a valid ladder with the previous one.
+
+To implement memoization, define a function get_ladder(i, j) that returns whether the subsegment [i, j] is a valid ladder. Cache its results using dictionary to avoid redundant calculations.
+
+For queries, iterate over each query (l, r), and for each query, check if array[l-1] <= array[r-1]. If true, it's possible to form a valid ladder; otherwise, the subsegment is not a ladder.
+
+===END PLAN===

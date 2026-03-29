@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+
+State: The number of ways to choose k-bit integers for the first i elements, 
+       such that bitwise AND is greater than or equal to bitwise XOR; 
+Base Case: 1 when i = 0 
+
+Use a state variable that represents the maximum value that can be achieved in the bitwise AND operation for the first i elements, 
+and use this value to determine the next possible states.
+
+Store function calls by creating a dictionary with function arguments as keys and results as values. 
+In each recursive call, calculate the maximum value of AND and XOR operations based on the previous state.
+For every bit from k-1 to 0, for i-th element: 
+    - Calculate AND operation result using all previous bits up to the current bit.
+    - If this AND result is less than the XOR result (which is stored in the previous state), 
+      recursively call the function with the updated state and add it to the dictionary. 
+
+When calculating XOR, check if the number of 1s in the i-th element is even or odd.
+If even, consider all possible combinations of AND results that are less than the XOR result.
+If odd, only consider combinations where the last bit is 0 (since the XOR operation flips this bit).
+Finally, return the sum of all stored values in the dictionary modulo 10^9 + 7.
+
+===END PLAN===

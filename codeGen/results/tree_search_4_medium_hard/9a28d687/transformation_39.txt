@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Both optimal substructure and overlapping subproblems exist in the problem. The minimum total cost required to sort the strings in lexicographical order has both properties, making it suitable for either top-down approach with memoization or bottom-up approach with tabulation.
+
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far. However, this state definition does not guarantee that it's possible to sort the strings in lexicographical order with a maximum length of j characters.
+
+A correct approach could be:
+
+The state could be defined as dp[i][k] representing whether it's possible to sort the first i strings in lexicographical order with the kth string being at its original position. This ensures that all strings are either sorted or reversed according to their cost.
+
+Create a 3D table dp where each cell dp[i][k][j] represents whether it's possible to sort the first i strings in lexicographical order, considering the kth string as the current position and the maximum length of all seen strings is j characters. 
+
+For example, if we are given three strings "abc", "abcd" and "defg" where 'c' in the middle string can be reversed to get "abz". Here, "abc" should come before "abz" in lexicographical order, so this approach will correctly determine that it's possible to sort these strings.
+
+The base case could be when i = 0 or k = 0. In this case, dp[i][k][j] is always true as there are no strings to sort.
+
+To fill up the dp table, iterate over all strings and for each string, check if its cost of reversal can be included in the minimum total cost required to sort the first i strings. This could be done by comparing it with the strings already sorted (i.e., up to k-1) in lexicographical order.
+
+Finally, return -1 if it's impossible to sort all strings in lexicographical order and otherwise return dp[n][n][max_length] where n is the total number of strings and max_length is the maximum length of all the strings.
+
+===END PLAN===

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+\
+
+The state can be defined as dp[j] = minimum mana required to kill the monster that appears at time j, where 1 <= j <= k_n.
+
+let prev_damage be the minimum mana required to kill the previous monster;
+dp[i] = min(prev_damage + 1, h_i) if i != max(k), else infinity
+
+The dynamic programming approach could involve initializing a table with size k_n+1. The base case can be handled by setting dp[k_n+1] to infinity, as there are no more monsters after that.
+
+Then, for each j from k_n down to 1:
+    - Calculate dp[j] as the minimum between prev_damage + 1 and h_i, where i is the index of the monster that appears at time j.
+    - Update prev_damage with the value of dp[i]
+
+This plan looks good! It correctly captures the dynamic programming approach for this problem. However, there's one edge case to consider: what if all monsters have health less than or equal to 1? In this case, we can kill each monster with a spell that costs 1 mana.
+
+One potential issue is when there are no more monsters after time j. In this case, dp[j] should be set to 0, as the wizard apprentice doesn't need to use any mana.
+
+To handle edge cases, we should make sure that our base case (dp[k_n+1] = infinity) and initialization of prev_damage are correct. We also should consider handling the special case where all monsters have health less than or equal to 1.
+===END PLAN===

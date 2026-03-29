@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (r, k), where f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from r girls with at most k pairs of identical clothes.
+
+Let state S = (r, k), where f(S) represents the minimum total number of comparisons needed to select the most beautiful participant from r girls with at most k pairs of identical clothes.
+
+Use dynamic programming to create a table dp where dp[i][k] is the minimum total number of comparisons needed to select the most beautiful participant from i girls with at most k pairs of identical clothes, and iterate through all possible values of i and k to fill the table.
+
+Let's say we have already computed f(r) for r = 0 to R-1. Now, consider f(R). We can write it as the sum of the minimum total number of comparisons needed to select the most beautiful participant from the girls in groups R-i, where i is the number of identical pairs, and the remaining R-i girls.
+
+This can be written as:
+
+f(R) = min(f(R-1), f(R-2), ..., f(0)) + 1
+
+This is a recursive formula that we can use to compute f(r) for r = 0 to R. We just need to make sure that we don't repeat any computations by storing the results in a table.
+
+===END PLAN===

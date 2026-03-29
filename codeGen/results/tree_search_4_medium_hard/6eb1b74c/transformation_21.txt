@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp = [[float('inf')] * (len(t) + 1) for _ in range(n + 1)]
+
+for j in range(1, n + 1):
+    for i in range(len(t) - s_j + 1):
+        if t[i:i+len(s_j)] == s_j:
+            dp[j][i] = min(dp[j-1][i], 1 + dp[0][i+len(s_j)])
+        else:
+            dp[j][i] = dp[j-1][i]
+
+m = dp[-1][-1]
+print(m)
+
+for j in range(1, m+1):
+    for i in range(len(t) - s_[:j].join('').length + 1):
+        if t[i:i+len(s_[:j].join='')]) == s_[:j].join(''):
+            print(j, i)

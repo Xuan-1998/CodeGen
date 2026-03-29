@@ -1,0 +1,12 @@
+Dynamic programming approach:
+Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+dp[i][j] = min(dp[k][min(j, b_k)] + 1 for k in range(i))
+
+Initialize dp[0][0] to 0 (no beacons have been activated yet)
+
+Fill up the DP table row by row, considering only previously computed values
+
+Return dp[n-1][max(b)]
+
+Memoization is not necessary as the table can be filled in a single pass from right to left

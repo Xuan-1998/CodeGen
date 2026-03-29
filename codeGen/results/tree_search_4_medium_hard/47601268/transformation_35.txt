@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Dynamic Programming:
+Initialize a list dp with n+1 elements and set all initial values to 0.
+
+Let dp[i] be the count of numbers j such that 0 <= j <= i and the binary representation of j does not contain consecutive ones.
+Base case: For any i, if the binary representation of i does not contain consecutive ones, then dp[i] = i + 1 (because all numbers less than or equal to i do not have consecutive ones in their binary representation).
+Inductive step:
+For each i, consider the binary representation bi of i. If it contains consecutive ones, then dp[i] = dp[j - 1], where j is the number such that bi of j does not contain consecutive ones and j < i.
+If bi does not contain consecutive ones, then dp[i] = dp[i-1] + 1 (because all numbers less than or equal to i do not have consecutive ones in their binary representation).
+
+Iterate from 0 to n and update the value of dp[i] accordingly.
+
+===END PLAN===

@@ -1,0 +1,8 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = False if i < K or j > M, because we need at least K elements in each partition and at most M partitions.
+dp[i][j] = (all elements in A[0..i-1] are within M units of each other) or 
+         (there exists a partition point p such that all elements from 0 to p are within M units of each other, 
+          and the remaining elements (from p+1 to i) can be partitioned into k partitions of size at least K, 
+          and dp[i-p][k] is True)
+memo = {(i, j): False for i in range(N+1) for j in range(M+1)};

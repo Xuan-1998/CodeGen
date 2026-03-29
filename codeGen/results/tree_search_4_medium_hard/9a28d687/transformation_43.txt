@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far.
+
+dp[i][j] is the minimum total cost required to sort the first i strings in lexicographical order with a maximum length of j characters.
+
+To fill dp[i][j], consider two cases:
+- If the last string has a length less than or equal to j, then we can either include it in our sorted sequence (if it's already in lexicographical order) or reverse it and add it to our sequence.
+- If the last string has a length greater than j, then we cannot include it in our sequence as it would break the lexicographical order. In this case, we need to sort all strings of length up to j first before considering the rest.
+
+Use dictionary memoization where memo[(i,j)] stores the minimum total cost required to sort the first i strings in lexicographical order with a maximum length of j characters.
+
+The final answer would be dp[n][max_length], where n is the number of strings and max_length is the maximum length of all the strings.
+
+===END PLAN===

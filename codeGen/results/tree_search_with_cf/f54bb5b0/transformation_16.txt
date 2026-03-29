@@ -1,0 +1,11 @@
+
+1. Top-Down Approach with Memoization: This dynamic programming approach involves breaking down the problem into smaller sub-problems and storing the results of these sub-problems to avoid redundant computations. It generally uses recursion and a memoization table. Time complexity: O(n*k), space complexity: O(n*k).
+
+2. State Expression: dp[u][d] represents the count of vertices that are exactly at distance d from vertex u. Base Case: dp[u][0] = 1 for all u, as the distance from a vertex to itself is zero.
+
+3. State Transition: For each vertex u, calculate dp[u][d] using the values of dp from its child vertices. Transition relation: dp[u][d] = sum(dp[v][d-1] for each child v of u). This means that the number of vertices at distance d from u can be found by summing the number of vertices at distance d-1 from each of u's children.
+
+4. Combine Results: To find the number of distinct pairs of vertices that have a path of exactly length k between them, consider each vertex u and for each distance d from 1 to k-1, count the pairs formed by vertices at distance d from u and vertices at distance k-d from u's children. This can be done efficiently using a two-pointer technique or a similar approach to avoid double counting.
+
+5. Ensure Correctness: Handle edge cases such as small values of n and k, and validate that the tree structure (acyclic and connected) is maintained throughout the computation.
+

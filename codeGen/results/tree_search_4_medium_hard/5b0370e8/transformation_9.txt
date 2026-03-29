@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State: the number of ways to choose k-bit integers for the first i elements, such that bitwise AND is greater than or equal to bitwise XOR; Base Case: 1 when i = 0
+Memoize each possible bitwise AND result as a state variable, where the state transition is determined by whether the current bit of the number can be set to 1 without changing the bitwise AND result.
+Implement a bottom-up dynamic programming approach, where you build up the solution from small subproblems to larger ones.
+
+State transition:
+- If the current bit is 0, it doesn't affect the bitwise AND or XOR results. So, add the memoized value for i - 1 to the current state.
+- If the current bit is 1 and it can be set without changing the bitwise AND result (i.e., the bitwise AND of all previous elements remains the same), increment the memoized value by the number of ways to choose k-bit integers for the first i - 1 elements, such that bitwise AND is greater than or equal to bitwise XOR.
+
+Memoize possible bitwise AND results:
+- Initialize a dictionary dp with default value 0.
+- Iterate from 2^k - 1 down to 0. For each possible bitwise AND result, calculate the state transition and update the memoized value.
+
+Calculate the final answer:
+- Initialize a variable res = 0.
+- Iterate through the memoized values in reverse order (from i = n down to i = 0).
+- For each memoized value, add it to res if the bitwise AND result is greater than or equal to the bitwise XOR result. Update res modulo 10^9 + 7.
+
+===END PLAN===

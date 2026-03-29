@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+The state is the current index in the string S and the set of all possible palindromic partitions found so far. The base case is when the current index exceeds the length of the input string, indicating that we have processed the entire string.
+
+Transition relationship: Given the current index i and the set of all possible palindromic partitions P, consider the character at index i as the center of a potential palindrome. For each character c in S[i...], check if the substring from i to i + 2*len(c) - 1 forms a palindrome with c as its center. If it does, add the partition P + [c] to the set of all possible palindromic partitions.
+
+Employ dynamic programming by storing and retrieving previously computed values for overlapping subproblems in a hash map dp, thereby avoiding redundant computation. The value at dp[i] represents the set of all possible palindromic partitions that can be formed up to index i.
+
+Edge cases: Handle the base case when i exceeds the length of the input string.
+===END PLAN===

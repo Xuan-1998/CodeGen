@@ -1,0 +1,13 @@
+
+1. Define the problem using a Dynamic Programming (DP) approach.
+2. Create a DP table `dp[i][j]` where `dp[i][j]` represents the number of ways to construct a tree with `i` nodes and `j` good vertices.
+3. Initialize the base cases:
+   a. `dp[1][1] = 1` (a single node tree with one good vertex).
+   b. `dp[1][0] = 0` (a single node tree cannot have zero good vertices).
+4. Iterate over the number of nodes from 2 to N:
+   a. For each node count `i`, iterate over the number of good vertices `j` from 1 to i:
+      i. Calculate the possible number of good vertices in the subtree rooted at the current node.
+      ii. Use the memoized results to build the current solution.
+5. Ensure the constraints are respected, particularly the sum of out-degrees being N-1.
+6. Calculate and return the sum of the numbers of good vertices for all good trees modulo 998244353.
+

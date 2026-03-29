@@ -1,0 +1,13 @@
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be dp[i] = minimum number of multiplications needed to multiply matrix i with all matrices after it, and dp[0] is the base case.
+
+dp[i] = min(dp[j] + p[i-1]*p[i]*p[j+1]) for j in range(i); dp[0] is the base case
+
+Construct a 1D array dp where dp[i] is the minimum number of multiplications needed to multiply the ith matrix with all subsequent matrices.
+
+For each pair of adjacent matrices (i to j), calculate the minimum number of multiplications needed by iterating over possible positions k in range(i, j) and adding the cost of multiplying i-th matrix with the result of the multiplication of matrices from k+1 to j.
+
+dp[i] = min(dp[k] + p[i-1]*p[i]*p[k+1]) for k in range(i-1)
+
+Return the minimum number of multiplications needed to multiply all matrices, which is dp[-1]

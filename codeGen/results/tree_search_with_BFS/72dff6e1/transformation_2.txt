@@ -1,0 +1,13 @@
+
+1. Define a 2D DP table dp[i][j] where dp[i][j] represents the number of valid sequences of length i where the last number is j.
+2. Initialize the dp table:
+   - dp[1][j] = 1 for all j from 1 to N, since any number from 1 to N can be the last number in a sequence of length 1.
+3. Iterate over the length of the sequences from 2 to N.
+4. For each length i, iterate over each possible last number j from 1 to N.
+5. For each j, consider all possible previous numbers k from 1 to N:
+   - If adding j to the sequence ending with k results in a valid sequence (i.e., the number of occurrences of j in the sequence does not exceed A[j]), update dp[i][j] by adding dp[i-1][k] to it.
+   - Ensure that the number of occurrences of k in the sequence does not exceed A[k].
+6. Use a nested loop to count the occurrences of each number in the sequence and ensure the conditions are met.
+7. The final answer is the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+8. Consider edge cases such as N=1 or when all A_i are 1.
+

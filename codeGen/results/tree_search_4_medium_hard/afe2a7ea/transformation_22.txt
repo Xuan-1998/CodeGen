@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a bottom-up approach with dynamic programming is suitable.
+
+Create a 2D array dp where dp[i][j] represents whether it's possible to set signal powers for all towns up to i, given that radio towers are built in exactly j - 1 towns.
+
+dp[i][0] = False for all i, as no radio tower can be built when there are no radio towers.
+For i > 0, dp[i][j] is equal to the sum of:
+    dp[k][j-1] for all k where 1 <= k < i and town k gets signal from exactly one tower j.
+Initialize dp with all False values.
+
+Update dp accordingly by iterating over all towns i and radio towers j. For each town i, calculate the possible combinations of signal powers that can be set on the radio towers up to i, given that i - 1 radio towers have been built.
+
+For each combination, check if it's a valid configuration (i.e., no town gets signal from two or more towers) and update dp[i][j] accordingly.
+
+Finally, return the value of dp[n][n], which represents whether there exists a way to set signal powers for all towns.
+===END PLAN===

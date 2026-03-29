@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let's define two variables: dp[n] = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls in a beauty contest. This variable will be used to calculate f(n).
+
+f(2n+1) = f(n) + 1
+This means that when we have an odd number of participants, the minimum number of comparisons is one more than the minimum number of comparisons for half the number of participants.
+
+f(2n) = f(n) + n
+This means that when we have an even number of participants, the minimum number of comparisons is equal to the minimum number of comparisons for half the number of participants plus the number of participants itself.
+
+Apply memoization with a recursive function that calculates dp[n], using the previously computed values of dp[m] for m < n.
+
+The base case would be when n = 2. In this case, we need one comparison to select the most beautiful participant from two girls in a beauty contest.
+
+Initialize an array dp[0..5*10^6] with all elements initially set to -1 (or any value that is not equal to the minimum number of comparisons for n > 1).
+
+The recursive function would calculate f(n) by calling itself with n/2 if n is even, or n-1 if n is odd. This way, we avoid recalculating the same values multiple times.
+
+Finally, return dp[r] - l*dp[l] as our answer.
+
+===END PLAN===

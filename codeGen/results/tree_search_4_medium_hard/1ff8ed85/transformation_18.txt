@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+State
+Using a 1D table dp and maintaining the current maximum value max_len in sequence b.
+dp[i] = true if it's possible to form sequence b up to index i in sequence a, false otherwise.
+max_len = n-1
+
+Algorithm:
+For each segment in sequence b:
+    If the length of the segment is greater than the previous one (i.e., prev_val + 1), update dp[prev_val] = true and max_len = prev_val
+    Otherwise, check if there's a previous segment with the same value as this segment; if yes, update dp[i] = true where i is the length of that segment.
+For each index i in sequence b:
+    If dp[i-1] == true and abs(b[i]-b[i-1]) == 1, then it's possible to form sequence b
+If dp[n-1] == true, print YES; otherwise, print NO
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Consider the maximum score that can be achieved by processing i elements (1 ≤ i ≤ n) with j moves performed (0 ≤ j ≤ k).
+
+Let memo[i][j] represent the maximum score that can be achieved by processing i elements with j moves. 
+
+Initialize a 2D array dp of size n × k to store the memoized values.
+
+dp[i][j] = max(dp[i-1][j-1] + arr[i-1], dp[i-1][j] + (i > 1 ? arr[i-2] : 0)) if j <= z, else dp[i-1][j]
+
+The base case for the recurrence is when i = 0 or j = 0. In this case, the maximum score that can be achieved is 0.
+
+Compute the maximum score by iterating over all elements and moves: max(dp[n][k], dp[n-1][k-1] + arr[n-1])
+
+===END PLAN===

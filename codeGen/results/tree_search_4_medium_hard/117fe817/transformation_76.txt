@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with tabulation to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider the binary representation of numbers and the fact that each bit represents a power of 2. For example, the binary representation of 5 is 101, which means it has a 1 in the 3rd position (0-based indexing), a 0 in the 2nd position, and a 1 in the 1st position.
+
+Let dp[i] be the total number of digit 1's in all non-negative integers less than or equal to 2^i - 1. We can compute dp[i] as follows:
+
+- For i = 0, dp[0] = 0 because there are no digits in 0.
+- For i > 0, dp[i] = (dp[i-1] + (2^(i-1)) * 1) % MOD, where MOD is a large prime number to prevent overflow. This is because for each bit at position i, we add 2^(i-1) times the digit '1' if it exists.
+
+Finally, the total count of digit 1's in all non-negative integers less than or equal to n is the sum of dp[i] for all i such that 2^i - 1 <= n. This can be computed as follows:
+
+- Initialize the total count to 0.
+- For each i such that 2^i - 1 <= n, add dp[i] to the total count.
+
+The time complexity is O(log(n)) because we need to iterate from i = 0 to i = log2(n), and the space complexity is O(log(n)) for storing the dp array. This approach ensures that we do not count any digit '1' more than once, which would be the case if we used a top-down approach.
+===END PLAN===

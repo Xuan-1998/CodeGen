@@ -1,0 +1,30 @@
+
+===BEGIN PLAN===
+1. Problem Understanding: Given a matrix A of size N x M with elements either 0 or 1, we need to count the number of valid matrices modulo 998244353. A matrix is valid if for all quadruples (a, b, c, d) such that 1 ≤ a < c ≤ N and 1 ≤ b < d ≤ M, the condition A[a, b] * A[c, d] ≤ A[a, d] * A[c, b] holds.
+
+2. Observation: The condition essentially ensures that certain submatrix products are ordered in a specific way. This can be interpreted in terms of the structure of the matrix, where the placement of 1s and 0s must follow specific patterns.
+
+3. Dynamic Programming Approach:
+   - Use a 3D DP array `dp[i][j][k]` where `i` represents the number of rows, `j` represents the number of columns, and `k` represents the count of 1s in the matrix.
+   - The state `dp[i][j][k]` will store the number of valid matrices of size `i x j` with exactly `k` ones.
+
+4. Base Case:
+   - Initialize `dp[0][j][0] = 1` and `dp[i][0][0] = 1` for all valid `i` and `j`, as a matrix with zero rows or zero columns is trivially valid with zero ones.
+
+5. State Transition:
+   - For each cell in the matrix, decide whether to place a 0 or a 1.
+   - Update the DP state accordingly by considering all possible placements and ensuring that the number of ones is correctly counted.
+
+6. Final Computation:
+   - Sum up all `dp[N][M][k]` for `k` from 0 to N*M to get the total number of valid matrices.
+   - Return the result modulo 998244353.
+
+7. Edge Cases:
+   - Smallest matrices (N=1 or M=1).
+   - All zeros or all ones matrices.
+   - Ensure the modulo operation is applied correctly to avoid overflow.
+
+8. Time Complexity: The approach should be efficient enough to handle the maximum constraints (N, M ≤ 400) with a time complexity of O(N*M*N*M).
+9. Space Complexity: The space complexity is O(N*M*N*M) to store the DP states.
+===END PLAN===
+

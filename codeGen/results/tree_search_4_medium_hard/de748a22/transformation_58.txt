@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The dynamic programming problem involves finding the minimal number of elements that can be removed from a given range of the array so that the sign-variable sum of the remaining elements is zero.
+
+The state expression is dp[l][r] = minimum number of elements to remove from the subarray [l..r] such that the sign-variable sum of the remaining elements is zero. 
+
+dp[l][r] is calculated by considering all possible splits in the range [l..r]. For each split at position i, we have two cases: 
+- dp[i][r] (remove element at position i)
+- dp[l][i-1] + 1 (keep element at position i and remove all elements to its right)
+
+We choose the case that results in a smaller value of sign-variable sum.
+
+Dynamically build an array to efficiently query and update the dp values. 
+
+Initialize dp[0][r] = r+1 for all r, since we need to remove r+1 elements to make the sign-variable sum zero for an empty range [0..r].
+
+Query: Given a query range [l..r], return dp[l-1][r].
+===END PLAN===

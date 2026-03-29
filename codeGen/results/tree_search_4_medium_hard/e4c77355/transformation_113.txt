@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+DP Table:
+Create a 2D table dp of size n x k, where n is the length of the input array and k is the maximum difference between two elements in the array.
+
+State Expression:
+dp[i][k] = max(dp[i-1][k], 1 + dp[j][k-k_i]) if the last element i is larger than some element j that's at least k_i away from it, else 0.
+This represents the length of the longest increasing subsequence ending at index i, considering the last increase happened k steps ago.
+
+Initialization:
+dp[0][j] = 1 for all j. This means a single-element sequence is always an increasing subsequence.
+
+Transition:
+For each element i in the array and each difference k from the maximum possible to 1:
+    - If there's no previous element j such that the difference between elements i and j is less than or equal to k, then dp[i][k] = 1.
+    - Otherwise, consider all such j. For the maximum such j (i.e., the one with the smallest difference), update dp[i][k] to be max(dp[i-1][k], 1 + dp[j][k-k_i]).
+
+Answer:
+The answer is the maximum value in the last row of the table, i.e., the length of the longest increasing subsequence.

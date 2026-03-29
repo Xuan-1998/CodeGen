@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+The state is a boolean value indicating whether there's a path from v to any other vertex, and the base case is when v has no outgoing edges. If there are no outgoing edges, then there's no path from v to any other vertex.
+
+State: A boolean value indicating whether there's a path from v to any other vertex
+Transition: dp[v] = True if there's an edge from u to v and dp[u] is True for any u
+
+Bottom-up dynamic programming using a loop with memoization
+For each vertex v:
+    Initialize dp[v] to False
+    For each vertex u:
+        If there's an edge from u to v and dp[u] is True, set dp[v] to True
+
+The final answer can be obtained by checking the value of dp[v] for all vertices.
+
+===END PLAN===

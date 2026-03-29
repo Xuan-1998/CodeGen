@@ -1,0 +1,13 @@
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+The state expression could be dp[i] = minimum number of multiplications needed to multiply matrix i with all matrices after it, and dp[0] is the base case.
+Create a 2D table dp where dp[i][j] represents the minimum number of multiplications needed to multiply matrices i to j.
+
+For each cell in the dp table, calculate the value as follows:
+dp[i][j] = min(dp[k][j-1] + p[i-1]*p[i]*p[j]) for k from 0 to i-1
+
+The base case is dp[0][j] = 0, since multiplying no matrices requires zero multiplications.
+
+To construct the optimal parenthesization of the matrix chain, start at the bottom-right cell and work your way up.
+For each cell (i, j), choose the value that corresponds to the minimum number of multiplications needed to multiply matrices i to j.
+This choice determines the placement of the parentheses in the optimal parenthesization.
+

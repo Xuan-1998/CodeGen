@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To use top-down approach with memoization, define a function that recursively counts blocks for smaller inputs.
+
+The state expression is a pair (i, j) where i is the current digit and j is the number of consecutive equal digits found so far.
+
+Create a 2D list dp where each entry stores the count of blocks for a given length and position.
+dp[i][j] will store the count of blocks of length j up to index i in the given range from 0 to 10^n-1
+
+Function will take three parameters: n, pos, and last_digit. It will return the total number of blocks for the given range.
+
+Base case: if n is less than or equal to 0, then it means that we have counted all digits and there are no more blocks left. So, return 0.
+If pos is greater than 10^n-1, then it means that we have gone beyond the given range. So, return 0.
+
+Recursive case:
+If last_digit == (pos % 10), then it means that the current digit is same as the last digit seen so far. In this case, count the number of blocks for the remaining n-1 digits and add to the result.
+Else, reset the count and start counting new blocks.
+Store the result in dp[i][j] and update i.
+
+===END PLAN===

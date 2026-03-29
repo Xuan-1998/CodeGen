@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+The base case would be when there are no more tables or no more money to spend, then return 0. Then, use memoization to fill in the states in bottom-up manner. This is because dynamic programming typically involves a bottom-up approach where smaller problems are solved first before combining them to solve larger ones.
+
+dp[i][j] = max(dp[i-1][j-c*s] + c*pi, dp[i][j-1]) for all 0 ≤ i < k, 0 ≤ j ≤ m, where c is the group size, s is the total amount of money spent by the group, and pi is the maximum capacity of each table.
+
+To fill in the states, start from the base case (no more tables or no more money to spend) and work your way up. For each state dp[i][j], calculate the maximum amount of money earned by either accepting the current group or declining it. The recursive formula dp[i][j] = max(dp[i-1][j-c*s] + c*pi, dp[i][j-1]) ensures that all possible combinations of accepted and declined groups are considered.
+
+Once all states are filled in, iterate through the table to find the maximum amount of money earned. This can be done by tracing back the optimal solution from the last state.
+
+Finally, output the number of accepted requests and the total amount of money earned, as well as which tables were assigned to each group.
+
+===END PLAN===

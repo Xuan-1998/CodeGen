@@ -1,0 +1,7 @@
+state: dp[i] = min_cost_to_activate_after_trip_i
+
+0. Initialize memoization array dp with n+1 elements set to infinity (or a large number)
+1. Iterate over each trip i from 1 to n:
+    - for each trip, calculate the minimum cost to activate tickets after this trip
+    - transition: dp[i] = min(dp[i-1], dp[min(j | t_j <= t_i)]) + (i-t_j)*20
+2. Return dp[n]

@@ -1,0 +1,8 @@
+
+1. Bottom-up strategy with tabulation: This approach involves filling up a table iteratively based on the results of smaller subproblems. It can be more intuitive and straightforward to implement, ensuring that all subproblems are solved in a structured manner. Time complexity: O(n * m), space complexity: O(n * m).
+2. State expression: Let dp[i][j] be the minimum cost to make the substring s[i:j] beautiful. Base case: dp[i][i] = 0 since a single character substring is inherently beautiful.
+3. Transition: For each substring s[i:j], if s[i] == s[j], then dp[i][j] = dp[i+1][j-1] + 1 (change either s[i] or s[j] to a different character). Otherwise, dp[i][j] = min(dp[i+1][j], dp[i][j-1], dp[i+1][j-1]) (choose the minimum cost from possible transitions).
+4. Precompute the dp table for all substrings of s.
+5. For each query (l_i, r_i), directly retrieve the result from the precomputed dp table.
+6. Output the results for all queries.
+

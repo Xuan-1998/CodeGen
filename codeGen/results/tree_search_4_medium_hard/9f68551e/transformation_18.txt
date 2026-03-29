@@ -1,0 +1,10 @@
+===
+The state can be defined as dp[i][j] = minimum mana required to kill i monsters with j seconds left, where 1 <= i <= n and 0 <= j <= k_n. The base case is when i == n, meaning all monsters are killed, so dp[i][j] = 0 for all j.
+
+dp[i][j] = min(dp[i][j-1], j) + h_i if j >= k_i
+else:
+    dp[i][j] = min(dp[i][j-1], dp[i][j]) + 1
+
+Implement a priority queue to efficiently explore the states and update the dynamic programming table.
+Sort the monsters based on their appearance time. Then for each monster, try all possible mana values from 0 to k_i (since we can cast the spell with damage x at most k_i times). For each mana value, calculate the minimum mana required to kill i-1 monsters with j-k_i seconds left and add the current mana value. The answer will be dp[n][k_n]
+===

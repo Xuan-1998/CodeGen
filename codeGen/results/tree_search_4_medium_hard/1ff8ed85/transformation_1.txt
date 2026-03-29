@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Transition relationship:
+- If the current length of sequence b is less than or equal to the current value, it's possible to split sequence a into segments and write the length of each segment to the left of it. 
+- If the current length of sequence b is greater than the current value, it's not possible because the lengths would be written on the right.
+
+Memoization:
+Use a dictionary dp to memoize the results of previously computed subproblems and avoid redundant computation.
+The key in the dictionary will be (n, prev_val) and the value will be True or False based on whether it's possible to split sequence a into segments and write the lengths to the left or right.
+
+Main function:
+- Initialize dp with default values as False.
+- Iterate over each element in sequence b.
+- For each element, check if it's possible to split sequence a into segments and write the length of each segment to the left or right based on the transition relationship.
+- If it's possible, update the value in dp for the corresponding state.
+
+===END PLAN===

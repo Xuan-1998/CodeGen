@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][j] representing the minimum cost for a passenger to reach time t_i using j 90-minute tickets. This would allow us to track the optimal combination of tickets for each timestamp and total cost.
+
+To fill up the dp table, we iterate over each trip (i) from left to right, and for each trip, we consider all possible combinations of tickets that could be used to reach this timestamp. Specifically, we can either use one 90-minute ticket or one day ticket, as these are the only two tickets that cover at least 90 minutes.
+
+We memoize the function to store previously computed results and avoid redundant calculations, ensuring that each cell in the dp table is filled only once.
+
+Finally, the answer for each trip (i) would be the sum of the minimum cost to reach time t_i using j 90-minute tickets and the total number of tickets used. This would give us the total cost charged after each trip.
+
+===END PLAN===

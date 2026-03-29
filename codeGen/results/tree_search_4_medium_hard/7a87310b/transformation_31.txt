@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation, as this problem has an optimal substructure.
+
+The base case is when the trace is 0 or negative, in which case there are no matrices that meet the condition. This can be represented as dp[0][j] = 0 for all j.
+
+Define a recursive formula for the number of positive invertible integer matrices with trace N. The base case is when N is 0 or negative, in which case there are no such matrices. This can be represented as dp[N][j] = 0 for all N <= 0 and all j.
+
+Use dynamic programming to solve this problem by creating a 2D table where each cell [i][j] represents the number of positive invertible integer matrices with trace i and determinant j.
+
+For the recursive formula, consider that a matrix is invertible if its determinant is non-zero. For a matrix to have a positive determinant, its trace must be even (because the determinant of a 2x2 matrix is equal to its trace minus twice the product of its elements). This can be represented as dp[i][j] = dp[i-2][j-1] + dp[i-2][j+1] for i >= 2 and j != 0.
+
+To count the number of positive invertible integer matrices with trace N and determinant j, iterate over all possible values of k such that N - 2k is even and j - k^2 > 0. For each k, calculate the number of matrices that can be formed using the recursive formula.
+
+Initialize a 2D table dp with size (N+1) x (j+1), where dp[i][j] represents the number of positive invertible integer matrices with trace i and determinant j.
+Fill up the table using the recursive formula, starting from the base case.
+
+The final answer is stored in dp[N][*].
+===END PLAN===

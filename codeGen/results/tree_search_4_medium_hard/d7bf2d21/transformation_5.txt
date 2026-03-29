@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider a top-down approach using dynamic programming with memoization, where you recursively explore all possible subsequences and store previously computed results in a memo dictionary to avoid redundant computations.
+
+DP[i]: number of longest increasing subsequences ending at index i
+
+Define a state as a tuple (i, prev), where i is the current index and prev is the previous element in the subsequence, then transition to the next state by considering all possible next elements that are greater than prev.
+
+Top-Down Memoization:
+    - Initialize memo dictionary dp with default value 0.
+    - Define recursive function dfs(i, prev) that calculates number of longest increasing subsequences ending at index i and previous element is prev.
+        * Base case: If i is out of bounds or arr[i] < prev, return 1 (since it's the first element in a new subsequence).
+        * Recursively explore all possible next elements that are greater than prev:
+            + For each next element j:
+                - Calculate number of longest increasing subsequences ending at index j and previous element is arr[j].
+                - If j > i, update dp[i] to max(dp[i], dfs(j, arr[j])).
+        * Return dp[i].
+
+Main Function:
+    - Initialize memo dictionary with default value 0.
+    - For each index i in the array:
+        + Call dfs(i, -1) (since we start from the first element).
+        + Update answer with maximum number of longest increasing subsequences ending at index i.
+
+===END PLAN===

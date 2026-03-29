@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: s[n] is the minimum number of comparisons required to determine the most beautiful girl among n participants, and f(n) = s[1] + 2s[2] + ... + ns[n-1].
+
+Consider the state as a tuple (i, k), where i is the number of girls remaining and k is the current girl's position in the beauty contest.
+
+State transition: If we have already determined the most beautiful girl among the first k participants, then to determine the most beautiful girl among the next n-k participants, we need to compare them with the current girl. So, s[i] = min(s[j-1] + 2 * (i-j+1)) for i > j.
+
+Base case: If there is only one participant left, then s[1] = 0 because no comparisons are needed to determine her beauty.
+
+Implement a bottom-up approach using a 2D table to store the intermediate results and tabulate the values as you go.
+
+f(n) = sum(s[i] * i^t for i in range(1, n+1)) - l * s[r]
+
+===END PLAN===

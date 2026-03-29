@@ -1,0 +1,12 @@
+Define the dynamic programming table as a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, each with at least K elements and absolute difference not exceeding M.
+
+dp = [[False]*(K+1) for _ in range(N+1)]
+
+For i from 2 to N:
+    For j from 1 to min(i, K):
+        If A[i-1]-M ≤ A[k] ≤ A[i-1]+M for some k, j-1 ≤ k < i and dp[k][j-1]:
+            dp[i][j] = True
+        Else:
+            dp[i][j] = False
+
+Return dp[N][K]

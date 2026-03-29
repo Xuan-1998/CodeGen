@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them. Consider the state as (i, k) where i is the current digit and k is the length of the block. Let the transition relationship be updating the state based on whether the current digit matches with the last digit of the previous block.
+
+Consider a 2D table dp where dp[i][k] represents the count of blocks ending at position i with k consecutive equal digits.
+
+Let's fill in dp[i][0] for each i, since this is the base case. For dp[i][1], update it based on whether the current digit matches with the previous one.
+For higher values of k, use the transition relationship to calculate dp[i][k]. This will ensure that we don't count overlapping blocks.
+
+Finally, return dp[n][0] as our answer, since this represents the total number of blocks ending at position n.
+
+===END PLAN===

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp[0] = 1, because there is only one number (0) that does not have consecutive ones.
+
+The state is the current number i, and the transition relationship can be formulated as: if the binary representation of i does not contain consecutive ones, then dp[i] = dp[i-1] + 1, because we can increment the counter by 1 for each such number. If the binary representation of i contains consecutive ones, then dp[i] = dp[i-1], because there is no new number to add to the count.
+
+We can use a dictionary to store the intermediate results and update the values as needed. 
+
+dp[i] = dp[0] if i < 2
+else: 
+    prev_zero_index = bin(i-1).index('0') # find the index of the last '0' in the binary representation of (i-1)
+    if prev_zero_index == -1: # if there is no '0', it means (i-1) has consecutive ones
+        dp[i] = dp[i-1]
+    else:
+        next_one_index = prev_zero_index + 2 # find the index of the first '1' after the last '0'
+        if bin(i)[next_one_index:] == '1'*len(bin(i)[next_one_index:]): # check if there are consecutive ones
+            dp[i] = dp[i-1]
+        else:
+            dp[i] = dp[i-1] + 1
+
+dp[n] is the answer.
+===END PLAN===

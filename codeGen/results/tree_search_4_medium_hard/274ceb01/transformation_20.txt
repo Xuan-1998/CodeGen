@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly above the water level at the beginning of day i.
+dp[0] is 0 since there are no marks initially.
+
+The state transition is based on the minimum number of marks strictly above the water level at the beginning of previous days. Let's say we're trying to find dp[i]. We can do this by considering two cases:
+
+- If m_i (marks on day i) is greater than or equal to i, then there are no marks strictly below the water level. So, dp[i] = 0.
+- If m_i < i, then we need to consider the minimum number of marks strictly above the water level at the beginning of day i - 1 (dp[i - 1]) and add the difference between i and m_i to it.
+
+Implement tabulation by initializing an array with n+1 zeros and filling it up iteratively from left to right, using the minimum number of marks strictly above the water level at the beginning of previous days.
+dp[0] = 0
+for i from 1 to n:
+    if m[i] >= i: dp[i] = 0
+    else: dp[i] = dp[i - 1] + (i - m[i])
+return dp[n]
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be min[i][j] = minimum number of multiplications needed to multiply matrices from i to j, and min[0][i] is the base case. The state could be dp[i][j] = minimum number of multiplications needed to multiply matrices from i to j, with a transition relation dp[i][j] = min(dp[i-1][k-1] + p[i-1]*p[k]*p[j], k from i+1 to j) for the base case set dp[0][i] = 0.
+
+Implement memoization using a dictionary to store the results of subproblems and avoid redundant computations. The dynamic programming table could be initialized with zeros or negative infinity, whichever is more suitable.
+
+The solution would iterate over all possible pairs of matrices (i to j), calculate the minimum number of multiplications needed for each pair, and store it in the dp[i][j] state. Then, find the minimum number of multiplications needed to multiply all matrices by iterating through the dp[0][n-1] row and returning the smallest value.
+
+The final result would be the optimal parenthesization order, which can be constructed from the dynamic programming table by tracing back the parenthesization order for each pair of matrices.
+===END PLAN===

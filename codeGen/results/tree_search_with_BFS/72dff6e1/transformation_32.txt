@@ -1,0 +1,12 @@
+
+===BEGIN PLAN===
+1. Define dp[i][j] as the number of valid sequences of length i where the maximum element is j.
+2. Initialize the base case: dp[0][0] = 1, representing an empty sequence.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over the possible maximum elements j from 1 to N.
+5. For each maximum element j, compute dp[i][j] by summing dp[i-1][k] for all k from 1 to j, and multiply by the number of ways to add element j to the sequence satisfying the constraints.
+6. Specifically, dp[i][j] = sum(dp[i-1][k] * (A[k] - count of k in the sequence)) for all k such that 1 ≤ k ≤ j.
+7. Use a modulo operation with 998244353 to ensure the results fit within standard integer limits.
+8. The final answer is the sum of dp[N][j] for all j from 1 to N.
+===END PLAN===
+

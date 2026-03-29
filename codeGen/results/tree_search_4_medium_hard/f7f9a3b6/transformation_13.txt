@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp = {}
+dp[0] = 1
+for i in range(1, n+1):
+    dp[i] = {}
+    for j in range(i):
+        if all(ord(c) - 97 <= a[ord(c) - 97] for c in s[j:i]):
+            dp[i][j] = (dp.get(j, 0) or 0) * a[ord(s[j].lower()) - 97]
+    if dp[i]:
+        dp[i]['min_length'] = min(k - j for k, v in dp[i].items() for j in range(len(v)))
+        dp[i]['max_length'] = max(k - j for k, v in dp[i].items() for j in range(len(v)))
+        dp[i]['ways'] = sum(dp[k].get(j, 0) or 0 for k in range(j+1, i)) % (10**9 + 7)
+===END PLAN===

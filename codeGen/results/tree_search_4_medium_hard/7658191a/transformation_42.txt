@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+The base case would be when only one element is left, in which case the maximum score is just that single element.
+
+Define state transitions based on the allowed moves: if the current score is higher than the previous one, make a right move; otherwise, try to make a left move, but not more than z times in a row. This ensures we don't exceed k moves and respect the no-more-than-z-moves-to-the-left constraint.
+
+Represent the dynamic programming table as a list of lists (n+1) x (k+1), where the outer list represents the array indices and the inner list represents the move count. The cell at position [i][j] stores the maximum score that can be obtained after processing i elements and making j moves.
+
+In each cell, consider the two possible moves: right and left. If we made a right move in the previous step (i.e., j > 0), then the current cell is influenced by the cell above it (i-1)[j-1]. If we made a left move previously (i.e., j < k), then the current cell is influenced by the cell below it (i+1)[j+1], but only up to z consecutive left moves. This ensures we don't exceed the allowed number of left moves.
+
+Initialize the first row and column with 0, as there are no previous elements to consider when starting from scratch. Then, fill in the rest of the table by iterating through each cell [i][j].
+
+Finally, return the maximum score stored in the bottom-right cell (n)[k], which represents the maximum score that can be achieved after processing all elements and making k moves.
+
+===END PLAN===

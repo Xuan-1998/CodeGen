@@ -1,0 +1,6 @@
+===BEGIN PLAN===
+\
+The state can be defined as dp[i][j] = minimum mana required to kill i monsters with j seconds left, where 1 <= i <= n and 0 <= j <= k_n. The base case is when i == n, meaning all monsters are killed, so dp[i][j] = 0 for all j.
+dp[i][j] = min(dp[i-1][k[i-1]-1] + (h[i-1]-1), dp[i-1][max(0, j-1)] + 1) if j >= k[i-1]
+Use a dictionary to memoize the function and calculate the values in any order.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Represent the state using a 2D array dp where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as:
+dp[i][j] = max(
+    (i >= c0) ? di[0] : -1, // base case when there's not enough dough to make any buns
+    (j > 0) ? dp[i-c0][j-1] + di[j-1] : -1 // transition relation: use the current stuffing type or not
+)
+dp[0][j] is the base case when there's not enough dough to make any buns, regardless of the number of stuffing types available.
+
+Use memoization by defining a function max_profit(i, j) that returns the maximum profit that can be achieved with i grams of dough and j stuffing types.
+The state could represent the total amount of dough used, i.e., dp[i] is the maximum profit that can be achieved by using i grams of dough
+
+===END PLAN===

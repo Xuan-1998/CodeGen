@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The goal is to minimize the function F = a1*x2+y2*x3+y3*x4+...+yn-2*xn-1+yn*an
+where xi and yi are non-negative integers that satisfy the conditions xi+yi=ai and (xi-s)*(yi-s) >= 0
+
+The plan is to use memoization on a top-down recursive function that solves the problem
+
+State: (i, s) where i is the current index and s is the current sum
+Base case: when i reaches n
+
+Memoize computed values in a dictionary and return them if they are already in the dictionary
+This ensures that we don't repeat computation for the same subproblem
+
+Top-down approach:
+For each pair (i, s), compute F(i, s) as the minimum of two possibilities:
+1. xi*s + F(i+1, s+ai)
+   - This represents choosing xi as the value to be used in the function
+2. yi*(s-ai) + F(i+1, s-ai)
+   - This represents choosing yi as the value to be used in the function
+
+Choose the minimum of these two possibilities and memoize it for future use
+Return the base case when i reaches n
+The result is the minimized value of F
+===END PLAN===

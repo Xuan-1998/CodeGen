@@ -1,0 +1,19 @@
+Define the state expression as (n, prev_reduced) where n is the subarray's length and prev_reduced is a boolean indicating if the subarray has been reduced by at least one bad prime number earlier.
+
+Create a dictionary memo to store the maximum beauty of each subarray.
+
+Function f(n, prev_reduced):
+    If n == 1, return 0
+    If prev_reduced:
+        Let p be the minimum good prime divisor of n. 
+        If p is a good prime, return f(n/p, True) + n; otherwise, return f(n/p, False) - n
+    Else:
+        Find the maximum beauty of the two halves (n/2, True) and (n/2, False)
+        Calculate the number of operations needed to combine these two halves
+        Return the minimum value between combining them as one big subarray or performing separate operations on each half
+
+Iterate through all possible lengths n from 1 to N. For each length, iterate from 0 to n and fill up the memo table with f(n, prev_reduced) for each (n, prev_reduced)
+
+Return the maximum beauty of the array as stored in memo[(N, False)]
+
+===END PLAN===

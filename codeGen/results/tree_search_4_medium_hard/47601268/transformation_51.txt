@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[0] = 1, because there is only one number (0) that does not have consecutive ones.
+
+Define dp[i][j] as the count of numbers less than or equal to i that do not have consecutive ones in their binary representation up to j bits.
+The transition relation can be formulated as:
+dp[i+1][k+1] = sum(dp[m][l] for m in range(i) for l in range(k)) if bin(i)[2:].endswith('0' * k), else 0.
+
+To initialize the dp array, we need to handle the case where i has consecutive ones in its binary representation.
+dp[i] = dp[0] + sum(1 for j in range(1, i+1) if not (bin(j)[2:]).zfill(len(bin(i-1)[2:].lstrip('0'))).endswith('0' * len(bin(i-1)[2:].lstrip('0')))
+
+===END PLAN===

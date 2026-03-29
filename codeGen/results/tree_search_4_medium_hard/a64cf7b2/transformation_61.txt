@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Design a bottom-up dynamic programming approach using a 2D array dp[][] where dp[i][j] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+Define the base case as dp[0][T] = 0, since we cannot visit any vertices with no time left.
+
+For each edge (u, v) with weight t:
+	* For each possible remaining time k in [0, T]:
+		+ Calculate dp[v][k-t] using previously computed values
+		+ Update dp[i][k] = max(dp[i][k], 1 + dp[v][k-t]), if i == n (i.e., we've reached the end vertex) or t <= T
+
+Use a dictionary to store the results of subproblems, with keys as tuples (i, j) and values as integers representing the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+===END PLAN===

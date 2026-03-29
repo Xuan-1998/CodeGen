@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+Define the state expression as dp[i][j] = minimum possible product of integers on path from node i to node j when the sum of integers equals j-i+1 and number of 1s is at most j-i.
+
+dp[i][0] = 1 (base case)
+For each edge (u, v) in the tree:
+    dp[u][v] = min(dp[u][k] * (v-k+1) for k in range(i+1, v+1))
+Consider using a bottom-up dynamic programming approach where you fill up a table in a row-by-row manner, starting from the base case and gradually moving towards the final answer.
+
+To calculate the maximum possible distribution index of the tree, iterate through all edges and calculate the sum of the numbers on each edge. Add these sums to the total distribution index.
+
+===END PLAN===

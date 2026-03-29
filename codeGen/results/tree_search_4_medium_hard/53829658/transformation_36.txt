@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][p], where p is an integer representing the number of roads that have been inverted so far in order to reach city i from the capital. However, this approach would require a 2D array with n rows and p+1 columns, which might exceed the memory limit.
+
+Instead, consider using a priority queue (heap) to keep track of cities that are one edge shorter than the current city. This way, you can avoid storing all intermediate results and only store the minimum number of roads that need to be inverted for each city.
+
+The base case would still be dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+dp[i][p] is the minimum number of roads that need to be inverted to reach city i from the capital, given p roads have been inverted so far.
+
+Consider using a dictionary to store intermediate results and reuse them as needed. This can help reduce the time complexity by avoiding redundant calculations.
+
+To find the optimal way to choose the capital, you can iterate through all cities and for each city, calculate the minimum number of roads that need to be inverted in order to reach it from the capital. The city with the minimum number of roads that need to be inverted is the optimal choice as the capital.
+
+===END PLAN===

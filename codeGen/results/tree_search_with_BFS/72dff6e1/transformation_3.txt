@@ -1,0 +1,12 @@
+
+1. Define the state dp[i][j] as the number of valid sequences of length i where the last number is j.
+2. Initialize the base cases: dp[1][j] = 1 for all j from 1 to N, since there is only one way to have a sequence of length 1 ending in any number j.
+3. Define the transition: for each length i from 2 to N, and for each number j from 1 to N:
+   - Calculate dp[i][j] as the sum of dp[i-1][k] for all k from 1 to N, where both the following conditions are satisfied:
+     a. The number of occurrences of k in the sequence so far is at most A[k].
+     b. The number of occurrences of j in the sequence so far (including the current position i) is at most A[j].
+4. Use a helper function to check the validity of the conditions.
+5. The final answer will be the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+6. Consider edge cases such as the smallest and largest possible values of N and A_i.
+7. Implement the solution using a top-down approach with memoization to store intermediate results and avoid redundant calculations.
+

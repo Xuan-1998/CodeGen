@@ -1,0 +1,13 @@
+
+1. Count Frequencies: Create an array `count` where `count[i]` represents the number of times integer `i` appears in the sequence. This can be done in O(n) time.
+2. Initialize DP Array: Create a dp array where `dp[i]` represents the maximum points that can be obtained using integers from 1 to i.
+3. Base Cases: 
+   - dp[0] = 0 (since no points can be obtained from an empty set)
+   - dp[1] = count[1] (since we can only take the integer 1 if it exists)
+4. Fill DP Array:
+   - Iterate through integers from 2 to the maximum integer in the sequence (let's call it `max_val`).
+   - For each integer `i`, update the dp array as follows:
+     - dp[i] = max(dp[i-1], dp[i-2] + i * count[i])
+     - This represents the choice of either not taking the integer `i` (thus taking the best score up to `i-1`) or taking the integer `i` (thus adding the points from `i` and the best score up to `i-2`).
+5. Result: The value at dp[max_val] will be the maximum points that can be obtained.
+

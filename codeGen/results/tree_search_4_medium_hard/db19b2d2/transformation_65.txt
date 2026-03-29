@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using a greedy algorithm, where you start by selecting the most promising department and then iteratively add players until the team is complete. However, since there are no specific rules on how to form the team (e.g., all departments should have at least one player), dynamic programming seems more suitable.
+
+Base case: If the total number of players from all departments is less than n, then there's no way to form a team with at least one player from the department of interest. This ensures that we handle the edge case where there are not enough players in the university to form a team.
+
+State: Define dp as a 2D array where dp[i][j] represents the probability that the team formed with i players will have at least one player from the j-th department. Since the problem only asks for the probability of having at least one player, we can simply count the number of ways to form the team and divide by the total number of possible teams.
+
+Transition: To fill up the table in a bottom-up manner, start by calculating dp[0][j] as 1 if j is equal to h (the department of interest), and 0 otherwise. This represents the base case where we have no players yet. Then, for each i from 1 to n-1, calculate dp[i][j] as the sum of dp[i-1][k]*s_k/s, where s is the total number of players in all departments except the j-th one. This represents the probability of having at least one player from the j-th department when we have i players.
+
+Return: The answer will be the value of dp[n-1][h].
+
+===END PLAN===

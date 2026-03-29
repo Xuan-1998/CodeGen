@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with tabulation to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Let dp[i] represent the total count of 1's in all non-negative integers less than or equal to i.
+The transition relationship is that the total count for i+1 is the same as the total count for i plus the count of 1's in the integer i.
+Fill up a table based on smaller problems:
+dp[0] = 0
+For each i from 1 to n:
+    For j from i down to 1:
+        If (i-1) // 10 == j, then dp[i] is incremented by 1
+        dp[i] += dp[j]
+Return dp[n]
+===END PLAN===

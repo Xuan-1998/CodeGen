@@ -1,0 +1,15 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+1. Base Case: dp[1][1] = 1, since a 1x1 matrix with a single element (either 0 or 1) trivially satisfies the condition.
+
+2. State: Define dp[i][j] as the number of valid matrices of size i x j.
+
+3. Transition: dp[i][j] can be derived from dp[i-1][j] and dp[i][j-1] by adding a new row or column and checking the condition for all quadruples (a, b, c, d).
+
+4. Iterate through all possible sizes of the matrix from 1x1 up to NxM, filling the dp table based on the transitions defined.
+
+5. The final answer will be the sum of all dp[N][M] matrices, modulo 998244353.
+
+6. Edge Cases: Handle the smallest case where N=1 and M=1 separately. Ensure that the modulo operation is applied at each step to avoid overflow.
+

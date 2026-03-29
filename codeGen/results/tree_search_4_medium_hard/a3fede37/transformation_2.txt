@@ -1,0 +1,18 @@
+def maxPathSum(val):
+    if val < 0: return -1  # edge case: invalid tree structure
+
+    memo = [[-1 for _ in range(10001)] for _ in range(10001)]
+
+    def dp(val):
+        if memo[val][val]: return memo[val][val]  # memoized result
+        if val < 0: return -1  # edge case: invalid tree structure
+
+        leftMax = max(0, dp(arr[2*val+1]) if arr[2*val+1] else -1)
+        rightMax = max(0, dp(arr[2*val+2]) if arr[2*val+2] else -1)
+
+        pathSum = val + max(leftMax, rightMax)
+        memo[val][val] = pathSum
+
+        return pathSum
+
+    return dp(val)

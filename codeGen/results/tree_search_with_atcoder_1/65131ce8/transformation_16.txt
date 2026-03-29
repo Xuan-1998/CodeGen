@@ -1,0 +1,13 @@
+
+===BEGIN PLAN===
+1. State Expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[0][0] = 1, meaning there's one way to form an empty subtree with zero vertices and zero good vertices.
+2. Transition Formula: dp[i][j] = sum(dp[k][m] * dp[i-1-k][j-1-m] for all valid k, m) where k is the number of vertices in one subtree and m is the number of good vertices in that subtree. This accounts for all possible ways to distribute the vertices and good vertices among the subtrees.
+3. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+4. Initialize the dp table with zeros and set the base case dp[0][0] = 1.
+5. Iterate through all possible numbers of vertices from 1 to N.
+6. For each number of vertices, iterate through all possible numbers of good vertices.
+7. For each combination of vertices and good vertices, apply the transition formula to update the dp table.
+8. The final answer is the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+9. Consider edge cases such as the minimum and maximum values of N and d_i.
+===END PLAN===
+

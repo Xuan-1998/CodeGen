@@ -1,0 +1,16 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+Base Case: dp[1][1] = 2, since a 1x1 matrix can have either 0 or 1, and both trivially satisfy the condition.
+
+1. State: Let dp[i][j] represent the number of valid matrices of size i x j.
+2. Transition: To compute dp[i][j], consider extending smaller matrices by adding a row or column and ensuring the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} holds. Specifically, for each new cell added, ensure that it does not violate the condition with any previously existing cells.
+3. Iterate over all possible sizes of submatrices from 1x1 to NxM, updating the dp table based on the valid extensions.
+4. Use modulo 998244353 to keep the numbers manageable.
+
+Edge Cases:
+- When N or M is 1, the matrices are trivially valid as there are no quadruples (a, b, c, d) to consider.
+- Large values of N and M (close to 400) should be handled efficiently within the constraints.
+
+Final Output: The value of dp[N][M] will give the number of valid matrices of size N x M.
+

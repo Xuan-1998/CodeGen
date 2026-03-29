@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider using a bottom-up dynamic programming approach with tabulation. We can initialize a table dp of size n+1 and fill it up iteratively based on the problem constraints, where dp[i] represents the maximum possible grade that can be obtained for a decimal fraction of length i within time limit t.
+dp[0] = 0
+for i from 1 to n:
+    max_grade = 0
+    for j from 0 to i-1:
+        max_grade = max(max_grade, dp[j] + round(fractional_part[i-j]))
+    dp[i] = max_grade
+return dp[n]
+===END PLAN===

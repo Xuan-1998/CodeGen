@@ -1,0 +1,8 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+Base Case: dp[1][1] = 2, since a 1x1 matrix can either be [0] or [1].
+Transition Relationship: To formulate the transition, consider how adding a row or a column affects the number of valid matrices. The value of dp[i][j] can be derived from dp[i-1][j] and dp[i][j-1] by ensuring that the new row or column maintains the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b}.
+Final Calculation: The answer is the value of dp[N][M] modulo 998244353.
+Edge Cases: Consider the smallest matrix sizes, such as 1x1, 1x2, and 2x1, to ensure the base case and transitions are correct.
+

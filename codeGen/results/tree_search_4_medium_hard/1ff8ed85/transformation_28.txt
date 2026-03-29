@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+State: dp[j] = True if the last j elements of sequence a can be sent over the network to get sequence b.
+Transition relationship: dp[j] = or (dp[j-1] and a[j-1] == b[k]) for some k, where k ranges from 0 to j-1.
+
+Use a 2D table to store whether the subsequence ending at each position can be sent over the network. Initialize dp[][] with False values.
+For i = 1 to n:
+    For j = 1 to i:
+        If j == 1 or (dp[j-1] and a[i-1] == b[i]):
+            dp[i][j] = True
+        Else:
+            dp[i][j] = False
+
+In the end, return dp[n][n] as the final answer.
+
+===END PLAN===

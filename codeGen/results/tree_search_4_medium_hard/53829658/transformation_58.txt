@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+From city i to an arbitrary capital, we want to find the minimum number of reversed roads. We can use dynamic programming for this.
+
+Let dp[i] be the maximum number of reversed roads from an arbitrary capital to reach city i. The base case is that we start at city 1 and don't need to reverse any roads (dp[1] = 0).
+
+We iterate through each city i and calculate dp[i]. For city i, consider reversing edges from cities j where j in range(i+1, n). This gives us the minimum number of reversed roads to reach city i.
+
+To optimize this process, we use memoization. Create a dictionary called memo that stores the maximum in-degree as the optimal capital. Initialize it with dp[1] = 0.
+
+We want to minimize the number of reversed roads, so consider each city i's in-degree. The optimal capital is the one with the maximum in-degree (max in-degree). This means if city j has a higher in-degree than city i, we can reach city i from city j by reversing edges from cities k where k in range(j+1, n).
+
+The plan looks like this:

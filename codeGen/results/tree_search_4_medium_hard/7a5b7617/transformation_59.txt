@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved by dynamic programming with memoization.
+Let's define the state dp[i][j] as the number of different steady tables of size i x j, where 1 ≤ i ≤ N and 1 ≤ j ≤ M.
+
+Base case: When i = 1 (i.e., there is only one row), we have dp[1][j] = 1 for all 1 ≤ j ≤ M, since we can create a steady table with any sum of elements in the first row.
+
+Transition relationship: For i > 1 and 1 ≤ j ≤ M, consider two cases:
+
+- If the sum of elements in the ith row is less than or equal to j, then dp[i][j] = dp[i-1][sum - (j - 1)] + dp[i-1][j], where sum is the sum of elements in the first i-1 rows.
+- If the sum of elements in the ith row is greater than j, then dp[i][j] = dp[i-1][j].
+
+To avoid redundant calculations, use a hash map or dictionary to store the previously calculated values.
+
+===END PLAN===

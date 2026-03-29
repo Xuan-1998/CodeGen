@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x represents the remaining values in the sequence and y is the final value of y after the program has terminated.
+A state can be defined as the maximum value reached so far for x, along with the corresponding final value of y. The transitions would be based on updating this maximum value and the final value of y.
+
+Create a dictionary to store the intermediate results and use it to avoid recalculating the same values multiple times.
+
+State transition rules:
+- If x > 0, update x -= a_x and y += a_x
+- If x <= 0 or x > n, terminate
+
+Memoization strategy:
+- Initialize an empty dictionary dp
+- For each state (x, y), check if it's already in dp. If yes, return the cached result
+- Calculate the new state by applying the transition rules and update dp with the new state and its corresponding y value
+
+===END PLAN===

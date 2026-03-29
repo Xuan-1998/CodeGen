@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The problem can be modeled as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest.
+
+Base case: When there are no more players to choose from (k = n-1), we need to check if there are any players from the department of interest. This is represented by the probability P[n-1] being greater than or equal to 1.
+
+Transition relationship: The probability P[k] is the sum of probabilities for all possible outcomes greater than or equal to 1, where k is the number of players chosen so far. This can be calculated as:
+
+P[k] = sum(P[i]) for i in range(k+1, n) and s_i >= 1
+
+where si is the number of basketball players in the i-th department.
+
+Memoization: We apply memoization to the recursive function by storing intermediate results in a dictionary and checking for their existence before recalculating them. This can be represented as:
+
+memo = {}
+
+def P(k):
+    if k in memo:
+        return memo[k]
+    if k == n-1:
+        return sum(1 if s_h >= 1 else 0) / n
+    result = sum(P(i) for i in range(k+1, n) if si >= 1)
+    memo[k] = result
+    return result
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array by representing each number as a binary string, where 1 represents an element is included and 0 represents it's not. This allows us to define states based on these bit strings and formulate transition relationships between them.
+
+Let dp[i][j] be the maximum beauty of the array after performing operations up to index i with the first j elements included in the subset. We can use top-down approach with memoization to solve this problem.
+
+dp[i][j] = max( 
+    (1 << (i-j)) | dp[k][l-1] * f(gcd(...)) ) 
+for k from 0 to i and l from j down to 0
+
+Here, gcd is the greatest common divisor of all elements in the subset. We use bitwise operations to efficiently generate all possible subsets.
+
+Create a dynamic programming table (2D array) with memoization to store intermediate results.
+===END PLAN===

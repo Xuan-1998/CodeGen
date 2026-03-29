@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in bottom-up manner:
+
+dp[0][j] = 0 for all j (base case: when there are no more tables)
+dp[i][0] = 0 for all i (base case: when there are no more money to spend)
+
+for i from k-1 down to 1 and j from m down to 0:
+    dp[i][j] = max(
+        sum(spi * cpi, pi in range(min(c, j), -1, -1)) + s,
+        dp[i-1][j-c]
+    ) for all c
+
+return dp[k-1][m]
+
+===END PLAN===

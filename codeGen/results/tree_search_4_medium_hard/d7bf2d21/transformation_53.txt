@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequence and then count the number of maximum length subsequences
+
+dp[i] = max(0, dp[j] + 1 for j in range(i) if array[j] < array[i]) # update dp[i] as the maximum length of increasing subsequence ending at index i
+max_length = [0] * len(array) # initialize an array to store the maximum lengths
+
+# bottom-up approach
+for i in range(len(array)):
+    for j in range(i):
+        if array[j] < array[i]:
+            dp[i] = max(dp[i], dp[j] + 1)
+    max_length[i] = dp[i]
+
+max_length_count = [0] * (max(max_length) + 1) # initialize an array to store the count of maximum length subsequences
+for i in range(len(array)):
+    max_length_count[max_length[i]] += 1
+
+# return the count of longest increasing subsequences
+return sum([count for count in max_length_count if count > 0]) - 1 # subtract 1 because there is at least one subsequence of length 0 (the entire array)
+
+===END PLAN===

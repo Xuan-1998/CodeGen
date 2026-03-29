@@ -1,0 +1,17 @@
+markdown
+===BEGIN PLAN===
+Dynamic Programming Approach: This approach involves breaking the problem into smaller subproblems, storing the results of these subproblems to avoid redundant computations. It uses a bottom-up DP table to store intermediate results. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+
+1. Initialization: Initialize dp[0][0] = 1 since a 0x0 matrix is trivially valid.
+
+2. Transition Relationship: To compute dp[i][j], consider the possible values for the element at position (i, j). For each possible value (either 0 or 1), check the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} for all valid (a, b, c, d) quadruples. Update dp[i][j] based on the valid matrices formed by this value. Combine results from smaller subproblems to form the final count for dp[i][j].
+
+3. Iterate through all positions in the matrix from (1, 1) to (N, M) and apply the transition relationship to fill up the dp table.
+
+4. The final answer will be the sum of all dp[i][j] values for 1 <= i <= N and 1 <= j <= M, modulo 998244353.
+
+Edge Cases: Ensure that edge cases such as matrices with only one row or one column are handled correctly by the DP transitions.
+===END PLAN===
+

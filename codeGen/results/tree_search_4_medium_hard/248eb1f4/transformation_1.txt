@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = (j + M - 2) % X + 1 if i is 1, else dp[i-1][((j+M-2)%X)+1];
+
+Create a memoization dictionary to store intermediate results and use it to avoid redundant computation.
+
+For the base case of i being 1, we don't need any additional processing as the winner will always be the person holding the coin.
+
+===END PLAN===

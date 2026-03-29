@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively build up the solution by considering all possible subsequences and store previously computed results in a memo dictionary to avoid redundant computations.
+
+DP[i]: number of longest increasing subsequences ending at index i
+Define a state as a tuple (i, prev), where i is the current index and prev is the previous element in the subsequence, then transition to the next state by considering all possible next elements that are greater than prev.
+
+Dynamic Programming with Memoization: Implement an iterative function with memoization to store previously computed results and avoid redundant computations. Initialize a dictionary dp to store the number of longest increasing subsequences ending at each index. Iterate through the array from left to right, updating dp[i] for each element i.
+
+Transition rules:
+- If prev is None, then there's only one way to extend the subsequence (by adding the current element), so set dp[i] = 1
+- Otherwise, consider all possible next elements that are greater than prev, and update dp[i] by taking the maximum of the lengths of subsequences ending at those indices
+
+Edge cases:
+- Handle the case where the array is empty or contains only one element. In this case, return 0 or 1 respectively.
+- Handle the case where the array contains a single increasing subsequence. In this case, return 1.
+
+===END PLAN===

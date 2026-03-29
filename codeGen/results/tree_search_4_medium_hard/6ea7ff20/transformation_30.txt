@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when i=n and j=0, meaning we've reached the end of both arrays. In this case, return true if p is empty; otherwise, false.
+
+State: (i, j) = indices of the last elements used from a and b respectively;
+Transition relationship: dp[i][j] = dp[i-1][j-1] if p[i+j-1] is in either a or b, otherwise False;
+
+Employ top-down dynamic programming using recursion and a dictionary to memoize the function calls.
+
+We need to keep track of which elements have been used from both arrays. We can do this by maintaining a set for each array to store its remaining elements.
+
+To ensure we don't use an element more than once, we'll check if p[i+j-1] is in either of the sets before considering it for the next recursive call.
+
+The base case is when i=0 or j=0, which means we've exhausted one of the arrays. In this case, return true if the other array is empty; otherwise, false.
+
+Updated plan:

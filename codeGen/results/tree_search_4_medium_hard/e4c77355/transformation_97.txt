@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider an array A[1..n] and let dp[i] be the length of the longest increasing subsequence ending at index i.
+
+Base case: If the array is empty (i.e., n=0), or if the current element A[i] is smaller than the previous one (i.e., A[i-1]), reset the state by setting dp[i]=1, as there is no longer increasing subsequence ending at this point.
+
+For i from 2 to n, consider the dynamic programming state that captures the length of the longest increasing subsequence ending at index i. Let j be the maximum index such that A[j] < A[i]. If no such j exists (i.e., all elements in A[1..i-1] are less than or equal to A[i]), set dp[i]=1, as there is no longer increasing subsequence ending at this point.
+
+For each j from 1 to i-1, if A[j] < A[i], update dp[i] as follows: If A[j] is the last element in an increasing sequence of length k, where k = dp[j-1] (if j > 1) or k=1 (if j=1), then update dp[i]=max(dp[i],k+1).
+
+Finally, return the maximum value in dp[1..n], which represents the length of the longest increasing subsequence.
+
+===END PLAN===

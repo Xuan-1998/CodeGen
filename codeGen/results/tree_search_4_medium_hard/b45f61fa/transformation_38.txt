@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be dp[i][j] = minimum number of multiplications to multiply matrices from i to j, with dp[0][k] being the base case (matrix 1 times matrix k for all k).
+
+dp[i][j] = min(minimum number of multiplications to multiply matrices from i-1 to j) + cost of multiplying i-th matrix with the result.
+
+Combine tabulation and memoization by creating a 2D array dp[][] and using it to store the results of subproblems, while also utilizing memoization for overlapping subproblems. The base case is when i or j is 0, at which point we simply return the cost of multiplying the matrices.
+
+The final result would be the minimum number of multiplications required to multiply all n matrices together, which can be found by looking up dp[1][n-1].
+
+===END PLAN===

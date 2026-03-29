@@ -1,0 +1,11 @@
+The problem can be broken down into smaller subproblems, such as calculating the number of ways to fill a sub-table. This suggests using dynamic programming with top-down approach and memoization.
+
+The state is a set of rows, where each row is represented as a list of integers and the base case is when all rows are filled.
+
+If m_cols > 0, then there are (sum of all previous elements in the row) + 1 ways to choose next element. We also need to consider that sum must be less than or equal to M, so we subtract min(sum of all previous elements in the row, M) from total number of ways.
+
+If n_rows > 0 and m_cols > 0, then there are (n_rows * (sum of all previous elements in the row)) + 1 ways to choose next element. We also need to consider that sum must be less than or equal to M and the sum of this row must not be less than the sum of previous rows, so we subtract min(sum of all previous elements in the row, M) from total number of ways.
+
+We create a dynamic programming table where each cell represents the number of ways to fill a sub-table. The initial state is (0, 0), and the final result is the value at cell (N, M).
+
+Finally, we return the value at cell (N, M) modulo 1 000 000 000.

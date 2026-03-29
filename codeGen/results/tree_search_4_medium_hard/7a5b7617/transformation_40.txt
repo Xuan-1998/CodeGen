@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider solving smaller subproblems first and combining them to solve larger problems. This could involve building up from base cases.
+
+Let's define dp[i][j] as the number of ways to fill the current cell (i, j) with a non-negative integer such that:
+- The sums of elements in rows 1 to i are all less than or equal to M.
+- The sum of elements in the ith row is not less than the sum of elements in the (i-1)th row.
+
+Dynamic programming with bottom-up approach: start from the base case and fill in the table row by row. For each cell (i, j), we have two options:
+- We can leave the current cell empty (dp[i-1][j]), or
+- We can fill it with a value from 0 to M - sum of elements in rows 1 to i-1 (dp[i-1][M-sum...]).
+
+We need to add these two cases together and take modulo 1,000,000,000 at each step. This will give us the number of different steady tables of size N x M.
+===END PLAN===

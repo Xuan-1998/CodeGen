@@ -1,0 +1,21 @@
+memo = {}
+
+def color_text(text_left: str, strings_used: int) -> (int, list):
+    if not text_left:
+        return 0, []
+    
+    if (text_left, strings_used) in memo:
+        return memo[(text_left, strings_used)]
+    
+    min_steps = float('inf')
+    used_strings = []
+    
+    for i in range(len(s)):
+        if text_left.startswith(s[i]):
+            steps, _ = color_text(text_left[len(s[i]):], strings_used + 1)
+            if steps + 1 < min_steps:
+                min_steps = steps + 1
+                used_strings = [(i + 1, len(s[i]))] + used_strings
+    
+    memo[(text_left, strings_used)] = (min_steps, used_strings)
+    return memo[(text_left, strings_used)]

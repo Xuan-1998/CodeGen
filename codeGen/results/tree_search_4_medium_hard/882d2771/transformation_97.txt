@@ -1,0 +1,33 @@
+===BEGIN PLAN===
+Tabulate the values in a bottom-up manner using dynamic programming to build up the solution from base cases.
+
+State: f(n) = minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+
+Consider a recursive relationship where f(n) is the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls, where each girl is represented by a unique integer in range [1, n].
+
+Use a dictionary memo to store the results of expensive function calls and avoid redundant computations. 
+
+For l <= 2: 
+    f(l) = l - 1
+
+Iterate over all possible values of n from l to r:
+   For each n:
+       If n not in memo:
+           Calculate f(n) recursively as the minimal total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+           Store result in memo
+       Return memo[n] for the value
+
+For t = 0: 
+    Initialize result = 0
+    Iterate over all possible values of i from l to r:
+        Calculate t0·f(i) and add it to the result
+    Return result modulo 109 + 7
+
+Otherwise (t > 0): 
+    Initialize result = 0
+    Iterate over all possible values of i from l to r:
+        Calculate ti·f(i) and add it to the result
+    Subtract l·f(r) from the result
+    Return result modulo 109 + 7
+
+===END PLAN===

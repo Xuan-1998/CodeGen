@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+dp[i] = sum(binom(N_count[N_index].index(i), N_count[N_index][i]) * (dp[j] - dp[j-1]) for j in range(1, i)) + 
+        sum(binom(M_count[M_index].index(i), M_count[M_index][i]) * (dp[k] - dp[k-1]) for k in range(1, i))
+
+A 2D dynamic programming approach can be used where the state is dp[i][j]: the number of ways to build an i-sequence using the first j hemispheres.
+Initialize dp[0][0] = 1 and dp[0][i] = 0 for all i.
+
+===END PLAN===

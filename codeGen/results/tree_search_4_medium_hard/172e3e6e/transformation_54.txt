@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp = {(0, []): 1}
+for i in range(1, n):
+    for prev_divisors in list(dp.keys()):
+        prev_max_divisor = max(prev_divisors)
+        if a[i] % prev_max_divisor == 0:
+            new_divisors = set(prev_divisors) | {i}
+            dp[(i, new_divisors)] = (dp.get((i-1, new_divisors), 0) or 1) + dp[prev_divisors]
+    del list(dp.keys())[0]
+    del dp[(0, [])]
+
+res = sum(val for key, val in dp.items()) % (10**9 + 7)
+===END PLAN===

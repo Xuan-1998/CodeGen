@@ -1,0 +1,16 @@
+
+1. Identify Patterns: Since the string is composed of only three characters ('a', 'b', 'c'), and we need to avoid palindromes of length 2 or more, we can precompute the costs for three possible beautiful patterns: "abc", "acb", and "bac".
+
+2. Precompute Costs: For each of the three patterns, compute the cost to transform the original string into each of these patterns. Create a 2D list `costs` where `costs[i][j]` represents the cost to transform the substring `s[0:j+1]` to match the pattern starting from the i-th character.
+
+3. Query Processing: For each query, use the precomputed costs to calculate the minimum cost to transform the substring into a beautiful string. This can be achieved by comparing the costs for the three patterns.
+
+4. Complexity: Precomputing the costs takes O(n) time for each pattern, resulting in O(3*n) = O(n) total time for preprocessing. Each query can be answered in O(1) time using the precomputed costs, resulting in O(m) time for all queries. Overall, the approach has a time complexity of O(n + m) and space complexity of O(n).
+
+5. Implementation Steps:
+   a. Read input values.
+   b. Define the three possible beautiful patterns.
+   c. Precompute the costs for transforming the string into each of the three patterns.
+   d. For each query, calculate the minimum cost using the precomputed costs.
+   e. Output the results for each query.
+

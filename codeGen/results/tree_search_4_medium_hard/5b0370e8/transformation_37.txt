@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+The state is a boolean indicating whether the current bit of the bitwise AND operation is set and the base case is when all bits are unset.
+
+DP on bit value: for each bit position, we can have 0 or 1 as the value; if the AND result has this bit set, then all elements must have this bit set; if the XOR result has this bit set, then at least one element must have this bit set. We need to consider these two possibilities.
+
+We can iterate through each bit position and for each bit, there are three cases:
+1. Both AND and XOR results don't have this bit set.
+2. The AND result has this bit set but the XOR result doesn't.
+3. The XOR result has this bit set but the AND result doesn't.
+
+For case 1, we can directly add up the counts from previous iterations (since all elements will be 0 at this bit position).
+For cases 2 and 3, we need to consider how many elements can have this bit set.
+We can use a dictionary to memoize these intermediate results for faster computation.
+The final answer is the sum of counts from each bit position.
+
+===END PLAN===

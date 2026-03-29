@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its length and value, and use memoization to store the results for each operation.
+
+State expression: Define the state as the decimal representation of the current number. Initialize an empty dictionary dp where dp[i][j] will store the length of the resulting number after i operations when the initial number has j digits.
+
+Define a function update_state(n): Calculate the new length and value of the number after applying one operation to n, and return them as a tuple (length, value).
+
+Iterate over all test cases:
+
+    Read the initial number n and the number of operations m.
+    Initialize dp[0][j] = j for all 1 ≤ j ≤ log10(n).
+    For each operation i:
+        Iterate over all possible lengths j of the current number from max(1, log10(n) - i) to min(log10(n), log10(m + n)):
+            If j is in dp[i-1], update dp[i][j] = dp[i-1][dp[i-1][j][0]] + 1.
+        Update dp[m][max(dp[0])].
+    Print the length of the resulting number modulo 10^9+7.
+
+===END PLAN===

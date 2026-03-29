@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Define a function dp(n, k) that returns the maximum possible distribution index for a tree with n nodes and product k.
+
+1. Base case: If n == 2, return 0 because there is only one edge in a tree with two nodes.
+
+2. Recursive case:
+    - For each prime factor p of k, consider placing it on an edge between node u and node v.
+    - Calculate the maximum possible distribution index for the subtrees rooted at u and v (using dp(v, k/p) if n > 2).
+    - Add the sum of the numbers on the simple path from u to v to the maximum possible distribution indices of the two subtrees.
+    - Repeat this process for all prime factors p of k.
+
+3. Memoization: Store the results of subproblems in a memo array dp[] and use it to avoid redundant computations.
+
+4. Main function:
+    - Read the input n, m, and k.
+    - Calculate the maximum possible distribution index using the recursive formula.
+    - Print the result modulo 10^9 + 7.
+
+===END PLAN===

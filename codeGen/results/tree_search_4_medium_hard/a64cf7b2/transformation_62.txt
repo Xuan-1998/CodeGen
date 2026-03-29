@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Design a dynamic programming function that builds a 2D array dp of size (n+1) x T, where dp[i][t] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of t.
+Define the state as a tuple (i, t), where i is the current vertex and t is the remaining time; define the state expression as dp[i][t], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of t.
+Formulate state as (i, t): 
+    if i == n:
+        return 1
+    else:
+        max_vertices = 0
+        for edge in edges:
+            u, v, time_taken = edge
+            if u == i and time_taken <= t:
+                for neighbor in range(1, n+1):
+                    if (neighbor, v) not in edges:
+                        break
+                vertices_visitted = dp[neighbor][t-time_taken] + 1
+                max_vertices = max(max_vertices, vertices_visitted)
+        return max_vertices
+
+Implement memoization using a dictionary to store the results of subproblems, with keys as tuples (i, t) and values as integers representing the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of t.
+Fill dp array by initializing dp[0][T] = 0 for all T and then iteratively fill up the array using above state expression.
+
+===END PLAN===

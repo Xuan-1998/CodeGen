@@ -1,0 +1,8 @@
+
+1. Initialize a frequency array `count` of size 105 (since the maximum value of ai is 105) to store the frequency of each integer in the sequence.
+2. Populate the `count` array by iterating through the input sequence and updating the frequency of each integer.
+3. Initialize a dp array `dp` of size 106 (to handle up to the maximum value 105) to store the maximum points that can be obtained up to each integer.
+4. Base Case: Set dp[0] = 0 (since no points can be obtained from an empty set) and dp[1] = count[1] (since we can only take the integer 1 if it exists).
+5. Transition: For each integer i from 2 to 105, update dp[i] using the relation dp[i] = max(dp[i-1], dp[i-2] + count[i] * i). This relation considers whether to take the integer i (and thus add its points and skip the adjacent integers) or to skip it.
+6. The final answer will be stored in dp[105], which contains the maximum points that can be obtained from the entire sequence.
+

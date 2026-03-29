@@ -1,0 +1,7 @@
+
+1. Define the state expression: Let dp[i][j] be a boolean value that represents whether the substring s[0:i] contains the subsequences 'AB' and 'BA' in any order up to position j. Here, i is the length of the substring considered, and j indicates the specific subsequence found so far.
+2. Transition: If dp[i][0] is True and s[i:i+2] is 'AB', then dp[i+2][1] should be True. Similarly, if dp[i][0] is True and s[i:i+2] is 'BA', then dp[i+2][2] should be True. If dp[i][1] is True and s[i:i+2] is 'BA', then dp[i+2][3] should be True. If dp[i][2] is True and s[i:i+2] is 'AB', then dp[i+2][3] should be True.
+3. Initialize dp: Create a dp array of size n+1 with all values set to False. Set dp[0][0] to True, indicating that an empty substring trivially satisfies the condition of having no subsequences.
+4. Iterate through the string: Use a loop to iterate through each character in the string and update the dp array based on the transitions defined.
+5. Check the result: After processing the entire string, check the value of dp[n][3]. If it is True, print "YES", otherwise print "NO".
+

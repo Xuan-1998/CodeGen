@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i] = dp[i-1] and (all lengths of b[:i] are even or all are odd) for i from 1 to n
+If there is no sequence $a$ that can be obtained by splitting, then it's not possible to satisfy the condition. So, we only need to check if it's possible.
+
+dp[i][j] = dp[i-1][k] and (all lengths of b[:i] are even or all are odd) for i from 1 to n, j in {0, 1}, k in {0, 1} (considering only the case where we split the sequence at index i)
+
+Consider a 2D table dp[][] where dp[i][j] = true if and only if the subsequence b[:i+1] can be partitioned into segments of lengths j0, ..., ji, such that |j0 - j1| + |j1 - j2| + ... + |ji-1 - ji| is minimized. Initialize dp[0][0] = true and for i from 1 to n and j in {0, 1} update dp[i][j] as follows: if there exists k in [0, i) such that j == (dp[k][0] ? 0 : 1) then set dp[i][j] = true.
+
+If the minimum absolute difference is less than or equal to the last element of b, then we can satisfy the condition. Otherwise, it's not possible.
+
+===END PLAN===

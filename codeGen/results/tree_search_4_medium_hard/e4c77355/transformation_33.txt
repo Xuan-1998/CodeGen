@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The maximum value seen so far in the array up to index i
+Consider the length of the longest increasing subsequence ending at each position in the array.
+Let dp[i] be the length of the longest increasing subsequence ending at index i.
+Base case: If the array is empty or only contains one element, return 1.
+
+For the rest of the indices:
+   Initialize dp[i] as 1 (base case).
+   For j from 0 to i-1:
+       If arr[j] < arr[i]:
+           Update dp[i] with max(dp[i], dp[j] + 1) if dp[j] is not -1.
+   Return dp[i]
+
+Memoization: Implement a dictionary memo where keys are tuples (i, j) and values are the lengths of the longest increasing subsequences.
+
+===END PLAN===

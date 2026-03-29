@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+A pair (k, c) representing the k-th string's cost to reverse and its current reversed or original status
+
+The state can be represented by a tuple (i, prev_str, rev) where i is the index of the current string, prev_str is the previously sorted string, and rev is a boolean indicating whether the string has been reversed or not.
+
+Define a memo dictionary where the keys are tuples representing the state of the problem and the values are the corresponding minimum costs. Initialize it with default value -1 for impossible cases.
+
+For each string in the input:
+  If the string is empty, add its cost to the total cost.
+  Else, iterate over all possible previous strings and their reversal status (prev_str, rev):
+    Calculate the new state by considering reversing or not reversing the current string.
+    Look up the memo dictionary for the minimum cost required to sort the previously sorted string in lexicographical order.
+    Add the cost of reversing the current string to the minimum cost found from the memo dictionary. If it's impossible to sort, return -1.
+
+Return the total cost as the minimum cost required to sort the strings in lexicographical order.
+===END PLAN===

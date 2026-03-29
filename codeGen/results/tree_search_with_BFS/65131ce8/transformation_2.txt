@@ -1,0 +1,20 @@
+
+1. Define the State: Let dp[i][j] represent the number of ways to form a tree with i nodes and j good vertices.
+
+2. Initialize the Base Case: 
+   - dp[1][1] = 1, since a single node tree with vertex 1 as the root is trivially a good tree with one good vertex.
+
+3. State Transition:
+   - For each node, consider the contribution of its subtrees. If node k is a child of node i, then dp[i][j] can be calculated by summing over all possible distributions of nodes and good vertices among the subtrees rooted at the children of node i.
+   - For each subtree size s (1 <= s <= i-1) and number of good vertices g (1 <= g <= j), update dp[i][j] by considering the ways to distribute the remaining nodes and good vertices.
+
+4. Iterate Over All Nodes:
+   - For each node count i from 2 to N, and each possible number of good vertices j from 1 to i, compute dp[i][j] using the state transition relationship defined above.
+
+5. Sum the Results:
+   - The final result is the sum of dp[N][j] for all j from 1 to N, modulo 998244353, since we need the total number of good vertices across all good trees.
+
+6. Handle Edge Cases:
+   - Ensure the constraints d1 >= 1 and sum(di) = N-1 are satisfied.
+   - Consider small values of N (e.g., N=2) to verify the correctness of the base case and transitions.
+

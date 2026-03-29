@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a top-down approach with memoization.
+
+The state could be defined as dp[i], representing the minimum number of roads that need to be inverted in order to reach city i from the capital. The base case would be dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+Define a function dfs(i) that calculates the shortest distance to reach city i from the capital by recursively exploring all adjacent cities. This function would return dp[i].
+
+The transition relationship could be formulated as: 
+    for j in adjacent Cities(i):
+        if parent[j] == -1:
+            parent[j] = i
+        dp[i] = min(dp[i], dp[j] + 1)
+
+Employ a recursive function with memoization using a cache to store previously computed values. This would prevent redundant calculations.
+
+===END PLAN===

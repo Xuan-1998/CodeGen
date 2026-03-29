@@ -1,0 +1,11 @@
+
+1. Top-Down Approach with Memoization: This approach involves recursively solving subproblems and storing the results to avoid redundant calculations. The time complexity is O(n) and space complexity is O(n) due to the storage of intermediate results.
+2. Base Case: dp[0] = 0, as no points can be earned from an empty sequence.
+3. State: Let dp[x] represent the maximum points that can be obtained considering numbers up to x in the sequence.
+4. Transition: For each number x, the player has two choices: either take all occurrences of x and add x * count[x] to the result (then skip x-1), or skip x and take the result from dp[x-1]. Therefore, the relationship is dp[x] = max(dp[x-1], dp[x-2] + x * count[x]).
+5. Initialize a count array where count[i] represents the frequency of the integer i in the sequence.
+6. Iterate through the sequence to populate the count array.
+7. Create a dp array to store the maximum points up to each integer.
+8. Iterate through the dp array from 1 to the maximum number in the sequence and apply the transition formula.
+9. The result will be stored in dp[max_num], where max_num is the maximum integer in the sequence.
+

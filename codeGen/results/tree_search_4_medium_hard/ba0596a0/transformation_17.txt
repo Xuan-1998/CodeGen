@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i] = dp[j] and k == (stones[i]- stones[j-1]) % 3
+dp[i] should be defined as a tuple of the frog's current position, previous jump length, and the remaining stones to be crossed.
+
+Maintain a dictionary memo where keys are tuples representing the state of the frog and values are boolean indicating whether the frog can cross the river at that position. 
+
+Update dp[i] based on dp[j] if the frog can reach i from j with valid jumps (k-1, k, or k+1). 
+The base case is when the frog reaches the last stone.
+
+Edge cases: handle the first stone and the last stone separately.
+For the first stone, there are no previous stones to jump from. So, dp[0] = (0, 0, len(stones) - 1). 
+For the last stone, the condition becomes dp[i-1][1] == (stones[i]-stones[i-1]) % 3.
+
+===END PLAN===

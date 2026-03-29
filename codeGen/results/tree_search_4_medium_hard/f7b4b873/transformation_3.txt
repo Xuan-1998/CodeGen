@@ -1,0 +1,28 @@
+state: (i, partition) where i is the current index in the string and partition is a list of strings representing the palindromic partition so far,
+base case: if i >= len(S), then return [partition] as it's the only possible palindromic partition
+
+for i from 0 to len(S)-1:
+    for j from i to len(S)-1:
+        if S[i:j+1] is a palindrome:
+            dp[i][j] = True
+        else:
+            dp[i][j] = False
+
+function find_palindromic_partitions(S):
+    dp = [[False for _ in range(len(S))] for _ in range(len(S))]
+    
+    partitions = []
+    def partition(i, partition):
+        if i >= len(S):
+            partitions.append(list(partition))
+            return
+        
+        for j from i to len(S)-1:
+            if S[i:j+1] is a palindrome and dp[i][j]:
+                partition.append(S[i:j+1])
+                partition(j+1, partition)
+                partition.pop()
+                
+    partition(0, [])
+    
+    return partitions

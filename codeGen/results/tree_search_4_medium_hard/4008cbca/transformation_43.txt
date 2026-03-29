@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+State expression is the length of the currently removable sequence of balls on the board and dynamic programming table stores the minimum number of moves needed to remove all balls starting from that position.
+The state expression is the index of the last removable ball on the board, and dynamic programming table stores the minimum number of moves needed to make this ball removable using bottom-up tabulation.
+Dynamic programming table initialized with values for removing 0 and 1 balls from the start of the row (base cases).
+For each ball in the hand:
+    For each possible position to insert the ball in the board (from the left):
+        Calculate the minimum number of moves needed to remove all balls starting from this position.
+        Update the dynamic programming table with the minimum value found.
+Use memoization to store and reuse values for subproblems, improving efficiency.
+Once the dynamic programming table is filled:
+    Find the minimum value in the table representing the minimum number of moves to remove all balls.
+    If the minimum value is 0, return 0 as it means no more moves are needed (all balls removed).
+    Otherwise, return -1 as it's not possible to remove all balls.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+3. State Expression: Define dp[i][j] as the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[1][1] = 1, indicating there's one way to form a subtree with one vertex (the root itself) which is also a good vertex.
+4. Recurrence Relation: dp[i][j] = sum(dp[k][l] * dp[i-1-k][j-l] for all valid k, l), where k and l represent the number of vertices and good vertices in one of the subtrees.
+5. Constraints and Edge Cases:
+   - Ensure that the sum of out-degrees equals N-1.
+   - Handle cases where d[i] = 0, ensuring no vertices are added.
+   - Ensure that d[1] >= 1 as per the problem constraints.
+6. Implementation:
+   - Initialize a dp table of size (N+1) x (N+1) with zeros.
+   - Set dp[1][1] = 1.
+   - Iterate through all possible numbers of vertices and good vertices, updating the dp table based on the recurrence relation.
+   - The final answer will be the sum of dp[N][j] for all j.
+7. Output the answer modulo 998244353.
+

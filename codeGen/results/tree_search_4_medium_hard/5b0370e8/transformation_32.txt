@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+The state is a tuple (i, k-j) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j. The base case is when i = 0.
+
+Consider the recurrence relation:
+
+dp[i][k-j] = sum(dp[m][k-j-1] for m in range(i)) if i > 0
+             else 1
+
+This is because if we have i elements, and each element has a certain number of bits (less than k), then the number of ways to form an array is the sum of the number of ways to form arrays with i-1 elements where all bitwise AND operations are greater than or equal to k-j-1.
+
+Use memoization to store the values in the table as they are computed. This way, we avoid recomputing the same subproblem multiple times.
+
+The final answer is dp[n][k], which represents the number of ways to form an array with n elements where all bitwise AND operations are greater than or equal to 0.
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = 1 if s[i:j].isalpha() and all(c <= max(a) for c in set(s[i:j]))
+        else dp[i-1][k-1] + dp[k][j] for k in range(i+1, j+1)
+dp[0][n-1] is the answer.
+
+Consider the length of the longest substring over all the ways: 
+longest = max(len(s[i:j]) for i in range(n) for j in range(i+1, n))
+
+The minimum number of substrings over all the ways: 
+min_substrings = min(len(s[i:j]) for i in range(n) for j in range(i+1, n))
+===END PLAN===

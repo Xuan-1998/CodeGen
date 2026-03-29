@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] = True if array[i...j] is a ladder, False otherwise
+Initialize dp[0][n-1] to be True as the base case
+For each query (l, r):
+    If l > 0:
+        Check if array[l-1..r] is a ladder by checking dp[l-1][r]
+    Else:
+        Initialize j = r
+        While j >= l and array[j] <= array[j-1]:
+            j--
+        If j >= l:
+            dp[l][r] = True
+        Else:
+            Check if array[l..j] is a non-decreasing sequence, then check the reverse of this sequence to see if it's a non-increasing sequence. 
+            If both sequences are valid, dp[l][r] = True
+    Print "Yes" if dp[l][r], "No" otherwise
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure can be defined as the minimum sum of a single cell being either from above (top-down) or from left (bottom-up).
+
+dp[i][j] represents the minimum sum of all numbers along a path ending at cell [i][j]. The base case is when i or j is 0, meaning we've reached the top or left boundary.
+
+The state expression is dp[i-1][j] + grid[i][j] for moving down, and dp[i][j-1] + grid[i][j] for moving right. However, this approach would lead to duplicate computations, as it doesn't account for the fact that we can only move either down or right at any point in time.
+
+A corrected version of the state expression is:
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+Use memoization to optimize the recursive function calls by avoiding redundant computations and storing the results in a dictionary.
+
+===END PLAN===

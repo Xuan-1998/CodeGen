@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identify overlapping subproblems: The number of possible options to place a mirror at 45 degrees can be computed by iterating over each cell in the grid, considering its East side visibility. Overlapping subproblems arise when multiple cells have the same East side visibility pattern. Optimize with dynamic programming.
+
+The state expression is dp[i][j], where i represents the row number (0-indexed) and j represents the column number (0-indexed). The value of dp[i][j] is 1 if the cell at position (i, j) can see an empty cell to its East, and 0 otherwise.
+
+dp[i][j] = 
+    1 if grid[i][j] == '.' and all cells in row i from column j+1 to N-1 are empty
+    0 if grid[i][j] == '#'
+
+Implement top-down dynamic programming by recursively computing the values for each cell, using base cases for the first row or column.
+
+Initialize dp with zeros. For the base case, set dp[0][j] = 1 for all j since the first row has no obstruction.
+For the rest of the rows, use a bottom-up approach to fill up the dp table. For each cell (i, j), consider its left and top neighbors. If both are empty, then dp[i][j] = dp[i-1][j-1] + 1.
+If either is obstructed by rock or there is no top neighbor, then dp[i][j] = 0.
+
+Finally, return the sum of all dp[N-1][j] values to get the total number of possible options for placing a mirror at 45 degrees to see on the East side without any rocks blocking the line of sight.
+===END PLAN===

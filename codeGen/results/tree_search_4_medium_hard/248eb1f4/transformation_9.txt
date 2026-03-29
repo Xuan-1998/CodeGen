@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i] = last_winner if we're considering i players, and the dynamic programming array stores the winners for each number of players from 1 to X.
+
+dp[i] = dp[i-1] if i is not a multiple of M, otherwise dp[(i-M) % (X+1)]. This choice assumes that the winner does not depend on whether it's M people or not.
+
+Memoize intermediate results by storing them in a dictionary or list. This will help avoid redundant computation as the function calls itself recursively in each step.
+
+dp[0] = 0, since there are no players initially, so we consider the first player as the winner (index 1).
+
+For every i from 1 to X:
+    if i is not a multiple of M, then dp[i] = dp[i-1], because the winner does not depend on whether it's M people or not.
+    otherwise dp[i] = dp[(i-M) % (X+1)], considering that the game starts again after M players are removed.
+
+Print out the winners for each number of players from 1 to X.
+===END PLAN===

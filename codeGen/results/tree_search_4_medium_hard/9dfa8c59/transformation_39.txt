@@ -1,0 +1,23 @@
+===
+Consider using a hash set to store prime numbers.
+Then iterate over each number below n_max to count its permutations.
+
+Base case: When the input number is less than or equal to 1.
+Determine whether a number is prime by checking if it has any divisors other than 1 and itself, then count the prime numbers that have k_perms prime permutations below n_max.
+
+Using dynamic programming to store intermediate results for each number:
+
+    - Initialize an empty hash set primes.
+    - Iterate over all numbers from 2 to n_max:
+        * Check if the number is prime by iterating from 2 to sqrt(n) and checking divisibility.
+        * If it's prime, add it to the primes set.
+    - For each prime p in the primes set:
+        * Count the permutations of p that have k_perms prime permutations below n_max.
+        * Update the count of prime numbers with k_perms prime permutations below n_max.
+    - Return the count of prime numbers with k_perms prime permutations, the smallest and largest such prime number.
+
+This plan seems correct. It's a good approach to use dynamic programming to store intermediate results for each number. However, there are some potential issues that need to be addressed:
+
+    * Edge case: When n_max is 1 or less, the function should return [0, 0, 0] since there are no prime numbers with permutations below this value.
+    * Optimization: You can skip checking primality for even numbers greater than 2 because they're not prime. This will reduce the number of primality checks.
+    * Error handling: The function should handle cases where k_perms or n_max is out of range (i.e., greater than 3 or more than 10000).

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another.
+
+Define the state as: dp[i] = whether there's a path from i to 0 (since all vertices are connected by edges). Base case: dp[0] is always true.
+
+For each integer i, compute dp[i] as:
+dp[i] = dp[i >> 1] if i % 2 == 0
+dp[i] = not dp[(i - 1) & i] if i % 2 == 1
+
+Create a function memoize that wraps the recursive solution, which updates the dynamic programming state dp[i] for each value of i.
+
+Memoize the function to avoid redundant computation.
+Call the memoized function for all queries (u_i, v_i).
+
+For each query (u_i, v_i), output "YES" if there's a path from u_i to v_i and "NO" otherwise.
+
+===END PLAN===

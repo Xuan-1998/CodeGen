@@ -1,0 +1,12 @@
+
+1. Define the problem in terms of dynamic programming, using a top-down approach with memoization. The goal is to count the number of ways to form valid subtrees and eventually the entire tree while keeping track of "good vertices".
+2. State expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices where the root has an out-degree of j. Base case: dp[1][0] = 1, since a single vertex with no children is a valid subtree.
+3. Transition relationship: dp[i][j] = sum(dp[k][j-1] * dp[i-k][0] for all valid k), where we are distributing the vertices between the root's children and the remaining subtree. This ensures we count all possible configurations of subtrees that satisfy the out-degree requirements.
+4. Iterate over all possible subtree sizes and out-degrees to populate the dp table. For each subtree size i and out-degree j, compute the number of valid configurations using the transition relationship.
+5. Define another state expression to count "good vertices". Let good_count[i][j] represent the number of good vertices in a subtree with i vertices and root out-degree j.
+6. Base case for good_count: good_count[1][0] = 1, since a single vertex is trivially a good vertex.
+7. Transition relationship for good_count: good_count[i][j] = sum(good_count[k][j-1] + good_count[i-k][0] for all valid k), ensuring that we count good vertices in all possible subtree configurations.
+8. Sum the values in good_count for all possible subtree sizes and out-degrees to get the total number of good vertices for the entire tree.
+9. Return the result modulo 998244353.
+10. Ensure that edge cases such as minimum and maximum values of N and d_i are handled correctly by the base cases and transitions.
+

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][j] representing the minimum cost for a passenger to reach time t_i using j 90-minute tickets.
+
+state is dp[t][k] where k is the number of 1-day tickets and t is the current timestamp. The transition relationship is based on deciding whether to use a 1-day ticket or a 90-minute ticket to reach time t.
+
+The base case for this problem can be when there are no trips, i.e., i = 0. In that case, the cost will be 0.
+
+Now let's consider the general case where i > 0. We can use dynamic programming by considering all possible ways to reach time t_i using tickets of different types:
+
+- If we don't have any ticket for this trip (i.e., we are starting from t_0), then our cost will be dp[i-1][0] + 20.
+- If we have a 90-minute ticket, then our cost will be min(dp[i-1][j-1] + 50, dp[i-1][j] + 20) because we can either use the existing 90-minute ticket or buy a new one.
+- If we have a 1-day ticket, then our cost will be min(dp[i-1][0] + 120, dp[i-1][k-1] + 50 + 70) because we can either use the existing 1-day ticket or buy a new one.
+
+This gives us the following recurrence relation: dp[i][j] = min(min(dp[i-1][j-1] + 50, dp[i-1][j] + 20), dp[i-1][0] + 120)
+
+Finally, to calculate the cost for each trip, we just need to find the minimum cost at that time using the following recurrence relation: dp[i][k] = min(min(dp[i-1][j-1] + 50, dp[i-1][j] + 20), dp[i-1][0] + 120)
+
+===END PLAN===

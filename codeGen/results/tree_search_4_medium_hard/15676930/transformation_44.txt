@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use tabulation by creating a 2D array where each cell [i][j] represents the maximum joy for i hares and j full hares.
+
+The state expression could be dp[i][j] = max(dp[i-1][k-1] + (a[i-1] if k == 0 else b[i-1]) if j > 0 else c[i-1]), where the base case is dp[0][*] = 0 and dp[*][0] = c[0], with dp[i][j] being monotonically increasing in i.
+
+Consider defining the state as (i, j) where i is the number of hares and j is the number of full hares, with dp[i][j] representing the maximum joy for this state. Use a dictionary to store the results of subproblems, with the key being a tuple of (i, j) and the value being the maximum joy for this state.
+
+We can initialize the dp array by setting dp[0][j] = c[j] for 0 <= j < n, and then fill up the rest of the dp array based on the recurrence relation. Finally, return dp[n-1][0] as the maximum possible total joy.
+
+===END PLAN===

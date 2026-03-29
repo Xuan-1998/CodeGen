@@ -1,0 +1,6 @@
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. Time complexity: O(N^2), space complexity: O(N^2) due to the table used for storing intermediate results.
+Base Case: Initialize dp[0][j] = 1 for all j from 0 to N, which represents the number of ways to form an empty sequence with the first j numbers. For all other dp[i][j] where i > 0, initialize dp[i][0] = 0.
+Let dp[i][j] be the number of valid sequences of length i using numbers from 1 to j. The state transition relationship can be formulated as follows: dp[i][j] = dp[i][j-1] + dp[i-1][j] * (A[j-1] - (i-1)) modulo 998244353, where dp[i][j-1] represents not using the j-th number in the sequence and dp[i-1][j] * (A[j-1] - (i-1)) represents using the j-th number in the sequence.
+Edge Cases: Consider edge cases where N = 1, all A[i] = 1, and maximum values for N and A[i].
+

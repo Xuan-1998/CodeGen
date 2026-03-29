@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider an iterative approach to find the minimum number of beacons that could be destroyed. Start from the rightmost beacon and iteratively try to add new beacons to the left.
+
+Let dp[i][j] represent the minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+
+dp[i][j] is equal to:
+  - min(dp[k][j-1] + 1 for k in range(i+1)) if the j-th beacon has no power to destroy any of the previous beacons.
+  - dp[i-1][min(j, max_power)] + 1 otherwise.
+
+Use a 2D array with size (n+1) x (max_power + 1), where:
+  - dp[0][j] represents the minimum number of beacons that could be destroyed after activating the j-th beacon without considering any previous beacons.
+  - For i > 0, dp[i][j] represents the minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+
+Initialize dp[0][j] to 1 for all j in range(max_power + 1), as there is no previous beacon to consider when starting from the rightmost one.
+
+===END PLAN===

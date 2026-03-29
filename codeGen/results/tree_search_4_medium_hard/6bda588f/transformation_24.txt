@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+To solve this problem, we can apply memoization to a top-down recursive function that calculates the minimum possible value of F.
+
+The state is defined as (i, s) where i is the current index and s is the current sum. The base case is when i reaches n.
+
+We define a function dp(i, s) that returns the minimum possible value of F given the current index i and the current sum s.
+
+dp(i, s) = min(F(x, y)) for all (x, y) such that x + y = a_i and (x - s) * (y - s) >= 0
+
+We can calculate dp(i, s) by considering two possibilities:
+
+1. If s <= a_i, then the minimum value of F is when x = s and y = a_i - s. In this case, dp(i, s) = dp(i-1, s-a_i + a_i-1)
+
+2. If s > a_i, then the minimum value of F is when x = 0 and y = a_i. In this case, dp(i, s) = dp(i-1, s-a_i)
+
+We use memoization to store the results of dp(i, s) for all possible values of i and s, so that we don't need to recalculate them multiple times.
+
+Finally, we return dp(n, sum(a)) as the minimum possible value of F.
+
+===END PLAN===

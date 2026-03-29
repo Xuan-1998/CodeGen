@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved by building a suffix tree for both strings and then calculating the similarity score based on the number of nodes at the same level in the suffix trees.
+
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far; The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+State
+
+* Initialize a 2D array dp with size (n+1) x (m+1), where n and m are the lengths of strings A and B respectively.
+* For each cell dp[i][j], calculate the maximum similarity score for substrings ending at indices i and j in strings A and B as follows:
+	+ If i > 0 and j > 0, then there are two cases:
+		- If characters at positions i and j match, then recursively call the function with reduced lengths (i-1) and (j-1), and increment k.
+		- Else, set k to 0 and move on.
+	+ If i == 0 or j == 0, then there are no more characters left in either string. In this case, calculate the maximum similarity score as 4 times k minus the sum of lengths of strings A and B.
+
+The base case is when there are no more common characters to find, at which point the maximum similarity score is 4 times the length of the common characters minus the total lengths of the strings.
+
+Return dp[n][m] as the maximum similarity score for substrings of strings A and B.
+===END PLAN===

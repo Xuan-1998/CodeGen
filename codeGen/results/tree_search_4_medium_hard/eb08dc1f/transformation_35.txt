@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+The base case would be that for any i, there is only one block ending at position i with 1 digit (which is just the digit itself).
+
+Consider a state where you store the count of blocks that end at each position, considering all possible blocks of lengths 1 to n.
+Let dp[i] denote the number of blocks that end at position i.
+
+We can use dynamic programming with a 1D array to store the cumulative count of blocks that end at each position, considering all possible lengths. The recurrence relation would be:
+dp[i] = (sum from j=0 to i-1) (number of ways to form a block of length i-j starting from position j)
+
+At each step, we iterate over all positions up to i and for each position j, calculate the number of blocks that end at position i using the base case.
+
+To calculate this, we can use the idea that a block of length k ending at position i can be extended as long as the digit at position i-k is the same as the last digit of the block. This would mean we need to consider all blocks of lengths 1 to k that end at position j and have the same last digit.
+
+The final answer would be dp[n], which gives us the total number of blocks for each length from 1 to n.
+
+===END PLAN===

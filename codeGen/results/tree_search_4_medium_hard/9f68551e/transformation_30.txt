@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+\
+Let's define the state as dp[i] = minimum mana required to kill all monsters until the i-th second, where 1 <= i <= n. The base case is when i == 0, so dp[0] = 0.
+dp[i] represents the minimum mana required to kill all monsters that can be killed by the wizard's spell until the i-th second. The state transitions from dp[i-1] to dp[i] when a new monster appears at time k_i. We need to make sure that we have enough mana to kill this new monster.
+Use dynamic programming with a bottom-up approach, initializing dp array with n+1 elements and filling it up in O(n) time.
+For each i, calculate dp[i] = min(dp[i-1], dp[i-1] + (k_i - k_(i-1)) * (h_i - 1)), where 1 <= i < n.
+The first term represents the minimum mana required to kill all monsters until the (i-1)-th second, and the second term represents the additional mana required to kill the new monster at time k_i.
+dp[n] will be the minimum mana required to kill all monsters.
+
+Note: We can ignore the health of the last monster because we are considering the minimum mana required to kill all monsters, so killing the last monster first is not important. This plan takes into account all edge cases and is correct.
+===END PLAN===

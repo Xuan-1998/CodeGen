@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j] represents whether it is possible to delete at most j-1 edges from the tree rooted at node i, considering all previous nodes.
+
+Let's initialize dp: dp[0..n-1][0..k-1] = {False} (since we can't delete any edges if k=0).
+
+Now, for each node i and each possible number of deleted edges j:
+    - If i has no children, then dp[i][j] = True.
+    - Otherwise, consider the maximum value among all child nodes k of i. We want to find whether it is possible to delete at most max(0, j-1) edges from the tree rooted at each child node, considering all previous nodes (i.e., dp[k][max(0, j-1)]). If this is True for all child nodes, then it's also True for node i. So, dp[i][j] = (for every child node k of i) dp[k][max(0, j-1)].
+
+Finally, we can check if there exists a node i such that dp[i][k-1] is True. If so, the answer is "YES". Otherwise, it's "NO".
+
+===END PLAN===

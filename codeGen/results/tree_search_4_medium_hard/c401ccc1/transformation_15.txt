@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[u][v] = whether there's a directed path from u to v.
+Base case: for any vertex, there's no path to itself.
+
+dp[k][u][v] represents whether there's a path from vertex u to vertex v with exactly k bits set in common between the two vertices. Transition relationship:
+
+dp[u][v][k] = OR of all possible paths from vertex u to vertex v with k bits set, considering each neighbor w such that (u & w) == w.
+
+Start by initializing a 3D table dp with size 2^{30} x 2^{30} x 20, filled with False values. Then, iterate over all possible edges in the graph and update the dp table accordingly.
+
+For each edge (u, w), where w is a neighbor of u such that (u & w) == w:
+    For each bit k such that k is set in both u and w:
+        Update dp[u][w][k] = OR of dp[u][w][k] and dp[u][v][k-1]
+        
+Initialize the base case: for any vertex, there's no path to itself.
+dp[i][i] = False for all i
+
+Finally, iterate over all queries and output "YES" if dp[u][v][0] is True; otherwise, output "NO".
+===END PLAN===

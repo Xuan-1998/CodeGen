@@ -1,0 +1,19 @@
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+
+dp[i] = expected number of non-zero carries when adding A and B with i digits in total, considering only the last digit (i.e., dp[i-1] - 9*(i-1))
+
+state: We can use dynamic programming to solve this problem by maintaining a cumulative sum of carries for each digit count.
+
+dp[0] = expected number of non-zero carries when adding A and B with 0 digits in total, which is 0 (since there are no digits)
+
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total. For i > 0, we consider the last digit.
+
+dp[i] = min(1 + dp[i-1], 9*(i-1)) // for each of the 9 possible last digits (0 to 8), there's a non-zero carry
+
+state: We also need to handle edge cases where one or both numbers are single-digit. For these cases, we can simply add their digits and count the number of carries.
+
+dp[0] = expected number of non-zero carries when adding A and B with 0 digits in total, which is 0 (since there are no digits)
+
+state: The final answer will be the average carry for each pair of i-digit numbers. We can calculate this by dividing the cumulative sum of carries by the total number of pairs.
+
+Output: For each test case, output a single line containing a floating-point number, denoting the expected number of non-zero carries when adding A and B.

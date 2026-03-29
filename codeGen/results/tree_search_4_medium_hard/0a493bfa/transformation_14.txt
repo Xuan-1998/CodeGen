@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. Use top-down approach with memoization to solve this problem.
+
+dp[i][j] = max( 
+    dp[k][l-1] * f(gcd(a[k+1...i], b[0...j]))
+) for k from 0 to i and l from j down to 0
+
+Represent the array as a sequence of bit strings, where each bit corresponds to whether an element is included in the current subset or not. Define states based on these bit strings and formulate transition relationships between them.
+
+Let dp_bit[i][j] = max( 
+    dp[k][l-1] * f(gcd(...)) 
+) for k from 0 to i and l from j down to 0
+
+Transition relationship: 
+dp_bit[i][j] = 
+max( 
+    dp_bit[k][j-1] * f(gcd(a[0...k], b[0...j]))
+, 
+    dp_bit[k][j-1] * (1 - f(gcd(a[0...k], b[0...j])))
+) for k from 0 to i and j from 1 to j
+
+Initialize dp_bit array with zeros.
+
+Use a dictionary-based approach with memoization to store and reuse previously computed values. This is essential to avoid redundant computations and reduce the time complexity.
+
+For each query, calculate the maximum beauty by iterating over all possible subsets of numbers in the given range, considering the bad prime numbers, and compute the maximum beauty accordingly.
+
+Store the intermediate results in a dictionary for future reference.
+===END PLAN===

@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Represent the state using a 2D array dp where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as: dp[i][j] = max(dp[i-1][0], dp[i-ci[j]][j-1]) + di[j].
+dp[i][0] is the base case when there are no more stuffing types to consider, and it's equal to the maximum profit that can be achieved with i grams of dough without any stuffing.
+
+The state could be represented using a 2D array dp where dp[i][j] is the maximum number of buns Lavrenty can make with i grams of dough and j stuffing types left. The transition relationship could be formulated as: for each i from n down to c0, for each j from m-1 down to 0, if ci[j] > i, dp[i][j] = dp[c0][0]; else dp[i][j] = max(dp[i-ci[j]][j], dp[i][j-1]).
+
+Implement memoization using a dictionary to store the values of dp[i][j], so that the same subproblem is not solved multiple times.
+The plan seems correct, but it could be improved by considering edge cases. For example, what if ci[j] > i? In this case, we should update dp[i][j] to dp[c0][0].
+===END PLAN===

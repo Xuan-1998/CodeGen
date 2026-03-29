@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Bottom-up dynamic programming with DFS can be used to explore all possible paths.
+
+Use a 2D table dp[N][M] where dp[i][j] represents the minimum points required to reach cell (i, j). Fill the table in a bottom-up manner by iterating through each cell in the grid from top-left to bottom-right. For each cell, consider all possible movements (right and down) and choose the path that requires the minimum points.
+
+dp[0][0] = 0 // Initialize the DP table with the starting point
+
+for i in range(1, N):
+    for j in range(1, M):
+        if grid[i][j] > 0:
+            dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+        else:
+            dp[i][j] = float('inf') // Handle the case where the cell has negative points
+
+return dp[N-1][M-1] // Return the minimum points required to reach the bottom-right cell
+===END PLAN===

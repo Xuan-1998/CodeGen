@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem's structure lends itself well to dynamic programming with memoization, where we store and reuse previously computed values to avoid redundant computation.
+
+Let dp[i][k] be the minimum number of marks below water level on day i when the water level is at height k. We'll use a 2D array to store these values.
+
+dp[0][k] = 0 for all k (base case: no days, so no marks below water)
+dp[n][0] = n * (n + 1) / 2 for all n (base case: all marks above water)
+
+For the general case, let's consider the situation where we're considering day i and a given water level height k. If there are no marks above water (k == 0), then the minimum number of marks below water is simply the total number of marks on that day.
+
+dp[i][k] = dp[k-1][0] + k * (i - k) if k != 0 else i
+
+To avoid redundant computation, we can use memoization by storing previously computed values in a dictionary. We'll iterate over each day and water level height, computing the minimum number of marks below water for that combination and storing it in the dictionary.
+
+===END PLAN===

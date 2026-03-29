@@ -1,0 +1,10 @@
+
+1. Define a 2D DP table `dp[i][j]` where `dp[i][j]` represents the number of valid sequences of length `i` ending with the number `j`.
+2. Initialize the DP table: for `i = 1` to `N`, set `dp[1][i] = 1` if `A[i-1] >= 1`, otherwise `dp[1][i] = 0` because a sequence of length 1 can only have one occurrence of any number.
+3. Transition: For each length `i` from 2 to `N`, and for each number `j` from 1 to `N`, compute `dp[i][j]` as the sum of `dp[i-1][k]` for all `k` from 1 to `N` where the number of occurrences of `j` and `k` in the sequence does not exceed `A[j-1]` and `A[k-1]` respectively.
+4. To ensure the conditions are satisfied, maintain a count array to keep track of the occurrences of each number up to the current length `i`.
+5. The final answer will be the sum of `dp[N][j]` for all `j` from 1 to `N` taken modulo 998244353.
+6. Edge cases to consider:
+   - If `N = 1`, the result is simply 1 if `A[1] >= 1` otherwise 0.
+   - Ensure the DP table is correctly initialized and transitions are correctly handled to avoid out-of-bound errors.
+

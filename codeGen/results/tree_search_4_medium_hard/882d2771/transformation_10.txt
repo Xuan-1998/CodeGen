@@ -1,0 +1,8 @@
+f(n) = 1 + min(f(i)) for i in range(l, r+1)
+
+dp = {0: 0}  # base case
+
+for n in range(1, r-l+2):
+    dp[n] = 1 + min(dp[i] for i in range(l, n))
+
+print((t0*dp[l]) + (t1*dp[l+1]) + ... + (tr*dp[r]) - l*dp[r])

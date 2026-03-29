@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+\
+
+The state can be defined as dp[j] = minimum mana required to kill the monster that appears at time j, where 1 <= j <= k_n. The base case is when there are no more monsters, so dp[j] = infinity for all j >= k_n.
+
+let prev_damage = min(dp[i-1], h_i) if i != 1 else 0;
+dp[i] = min(prev_damage + 1, h_i)
+
+The problem can be solved using memoization by defining a function that takes the current time step j and returns the minimum mana required to kill all monsters up to that point. The function can then call itself recursively for each previous time step until it reaches the base case, where there are no more monsters left to kill. This approach would involve initializing a dictionary to store the memoized values.
+
+The plan is correct, but it should be improved by considering edge cases and optimizing the recursive function. A potential issue with the plan is that it assumes all monsters appear at different times, which is not explicitly stated in the problem. However, this assumption can be made since k_i are given in increasing order and they do not exceed 10^9.
+
+The updated version of the plan includes edge cases by initializing dp[i] to infinity for i >= k_n. This way, when there are no more monsters left to kill, the function will return infinity as expected.

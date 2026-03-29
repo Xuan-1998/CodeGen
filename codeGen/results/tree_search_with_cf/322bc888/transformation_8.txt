@@ -1,0 +1,22 @@
+
+1. Precompute Costs for All Possible Patterns:
+   - There are only 6 possible patterns for a string of length 3 without palindromic substrings: "abc", "acb", "bac", "bca", "cab", "cba".
+   - For each pattern, precompute the cost to convert any substring of length up to 3 to match this pattern.
+
+2. Dynamic Programming Preparation:
+   - Create a 2D array `cost` where `cost[i][j]` will store the minimum cost to convert the substring `s[i:j+1]` to a beautiful pattern.
+
+3. Fill the Cost Array:
+   - For each possible pattern, calculate the cost to convert each substring of `s` to this pattern.
+   - Store the minimum cost for each substring in the `cost` array.
+
+4. Answer Queries:
+   - For each query, use the precomputed `cost` array to quickly determine the cost to convert the specified substring to a beautiful string.
+
+Constraints:
+- Ensure that the solution handles the constraints efficiently, particularly the large values of `n` and `m`.
+- Use a sliding window or similar technique to efficiently compute costs for substrings of length up to 3.
+
+Time Complexity: O(n * 6) for precomputing costs + O(m) for answering queries.
+Space Complexity: O(n) for storing costs.
+

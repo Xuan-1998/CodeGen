@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+dp[0][j] = 1 (no sphere) and dp[C+1][j] = 0 (sequences longer than C are not possible).
+The state is dp[i][j], where i is the number of spheres in the sequence, and j is the maximum radius of the spheres.
+The transition relationship is that for each sphere, we either add a new sphere with its radius or reuse an existing sphere with a smaller radius.
+dp[i][j] can be calculated as the sum of dp[k][i-1] for all k such that U_k <= j and L_1 <= j <= C. This is because for each sequence, we either add a new sphere with its radius or reuse an existing sphere with a smaller radius.
+
+We need to ensure that our dynamic programming table is filled in correctly by iterating over the spheres of upper hemispheres first, and then the lower hemispheres.
+To avoid calculating the same subproblem multiple times, we can sort the upper and lower hemisphere radii first.
+
+===END PLAN===

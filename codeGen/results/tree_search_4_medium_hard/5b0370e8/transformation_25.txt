@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem. 
+The state is a tuple (i, j) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j. The base case is when i = 0.
+Consider the state as (i, j, k) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to j and less than k. The base case is when i = 0.
+Memoize the function f(i, k-j) = sum(f(i-1, m) for all m such that m & (k-1) >= j and m < 2^k) using a dictionary. 
+For each test case, calculate the total number of arrays with n elements where bitwise AND operation on all elements is greater than or equal to k-j. The answer is then f(n, 0) % (10^9+7).
+Update the memoized function based on previously computed values.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+state = {val: freq} mapping each value to its frequency in sequence $a$, with base case being when input sequence contains all values. 
+
+transition relationship: 
+    - if next value in $b$ matches current_segment_length + 1, update segment_count by incrementing it; 
+    - otherwise, start new segment and reset current_segment_length to 1.
+
+Maintain dictionary to store cumulative sum of frequencies at each position in sequence $a$. 
+
+For each possible length of segment in sequence $a$, calculate cumulative sum of frequencies up to that point. If cumulative sum equals or exceeds length of segment, update answer if it's a valid segment; else, reset the cumulative sum.
+
+Iterate over all possible lengths of segments until either the end of segment is reached (i.e., cumulative sum >= current_segment_length) or no more segments can be made from $a$ (i.e., cumulative sum < current_segment_length).
+
+Check each cumulative sum against the values in sequence $b$. If a valid segment exists for every value in $b$, then YES; otherwise, NO.
+
+===END PLAN===

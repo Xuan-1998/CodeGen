@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The base case could be when A or B is 0, in which case X would just be the other value.
+
+State: (A, B), dp[(i, j)] represents whether there exists a solution for A - i and B - j.
+
+Transition relationship:
+    if i > 0 or j > min(A, B):
+        return False
+    else:
+        return True
+
+dp[A][B] = 
+    if (min(A, B) % 2 == 0): 
+        dp[min(A, B) // 2][max(0, B - min(A, B))] or not
+    else: 
+        dp[(min(A, B) + 1) // 2][max(0, B - (min(A, B) + 1))]
+===END PLAN===

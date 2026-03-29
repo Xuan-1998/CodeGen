@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a bottom-up approach with memoization.
+
+The state could be defined as dp[i][p], where p is an integer representing the number of roads that have been inverted so far in order to reach city i from the capital. The base case would be dp[1][0] = 1, since one road needs to be inverted in order to reach city 2 from city 1.
+
+dp[i][p] is the minimum number of roads that need to be inverted to reach city i from the capital, given p roads have been inverted so far. Explore using a 3D array dp where dp[i][p][c] represents the minimum number of roads that need to be inverted to reach city i from city c, given p roads have been inverted so far.
+
+For each road, update dp[i][p][c] for all cities j that can be reached by inverting this road. This is done by taking the minimum of the current value and the value of the next city, plus one if it's the first time we reach this city (i.e., c != i).
+
+At the end, find the minimum dp[n-1][p][c] for all cities c to get the optimal capital.
+
+Finally, print out all possible ways to choose the capital by iterating over the range from 1 to n and printing all c such that dp[n-1][p][c] is minimal.
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+
+Let's define dp[i-1][k]: minimum sum of marks below water level after k marks above water on day i-1, considering the current day i. Then, we can write:
+
+dp[i] = min(dp[j-1][m-1] + m * (i - j) for all 0 <= m <= i and j < i)
+
+This is because for each day i, we can consider the marks above water on previous days up to day j, and then add the marks above water on day i minus the marks below water level on those previous days.
+
+The base case would be dp[1][k] = k * (n - 1) for all 0 <= k <= n-1, since there are no marks strictly below water level until we have at least one mark strictly above water level.
+
+Tabulation by initializing a 2D array with the base case and filling it up iteratively from bottom to top. The final answer would be dp[n-1][k] for some k.
+
+===END PLAN===

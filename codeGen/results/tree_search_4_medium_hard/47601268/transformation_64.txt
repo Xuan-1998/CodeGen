@@ -1,0 +1,11 @@
+let dp = [0] * (n + 1);
+dp[0] = 1;
+for i from 1 to n:
+    hasOneConsecutive = false;
+    for j from 0 to i-1:
+        if dp[j] > 0 and not hasOneConsecutive:
+            hasOneConsecutive = binaryRepresentation(j+1).contains("11");
+        if not hasOneConsecutive:
+            dp[i] += dp[j];
+    dp[i] = (not hasOneConsecutive) ? dp[i-1] + 1 : 0;
+return dp[n];

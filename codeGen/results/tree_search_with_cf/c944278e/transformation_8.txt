@@ -1,0 +1,11 @@
+
+1. Define the problem in terms of Dynamic Programming with memoization. The goal is to determine all possible maximum values in the sequence p after processing all bits in the binary string s.
+2. State Definition: Let dp[i][mask] represent the set of possible maximum values after processing the first i bits of the binary string s, where mask is a bitmask representing the subset of elements being considered.
+3. Base Case: Initialize dp[0][mask] for all masks. For i = 0, each mask corresponds to a subset of elements from 1 to 2^n. The initial values will be the elements themselves.
+4. Transition: For each bit i in s:
+   a. If s[i] is 0, update dp[i][mask] by taking the minimum of each pair of elements from dp[i-1][mask].
+   b. If s[i] is 1, update dp[i][mask] by taking the maximum of each pair of elements from dp[i-1][mask].
+5. For each mask, iterate through all pairs of elements and update dp[i][mask] accordingly based on the value of s[i].
+6. After processing all bits, extract the possible maximum values from dp[n][full_mask], where full_mask represents the entire set of elements (all bits set to 1).
+7. Output the possible maximum values in ascending order.
+

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment.
+
+dp[i][j] = (i == 1 or array[i-1] <= array[j]) and j == r - 1, False otherwise
+This condition checks for non-decreasing sequence. If it's not the first element in the segment, check if the current element is less than or equal to the previous one.
+
+Determine the minimum and maximum values in the subsegment.
+Use this information to check if they are increasing/decreasing within that range.
+
+Implement tabulation by creating a 2D array dp where dp[i][j] is True if the subsegment from i to j is a ladder, and False otherwise.
+
+Check for edge cases:
+- If r - l + 1 == 1, it's a single element. It's a ladder if array[l] is not greater than array[r].
+- If there are any increasing or decreasing elements within the subsegment.
+- If the minimum value in the subsegment is less than or equal to the maximum value.
+
+Initialize dp with False values for all indices.
+
+dp[i][j] = (array[j] <= array[prev]) and j == r - 1, False otherwise
+prev = i + 1 if i < r - 1 else None
+
+Check dp[r-1][r-1].
+If True, then the entire segment is a ladder. If False, then it's not.
+
+Print "Yes" or "No" based on whether the subsegment is a ladder.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+
+Let dp[i] be the minimum sum of marks below water level among the first i days. Then, we have:
+
+dp[i] = min(dp[j] + (i - j) * m_{j+1}) for all j < i
+
+where m_{j+1} is the number of marks strictly above the water level on day j+1.
+
+This expression is based on the intuition that the minimum sum of marks below water level among the first i days can be achieved by considering the minimum sum of marks below water level among the first j days, and then adding the number of marks strictly above the water level on day j+1.
+
+We initialize dp[0] to 0, since there are no marks below water level when there are no days yet.
+
+Finally, we return dp[n], which is the minimum sum of marks below water level among all n days.
+
+===END PLAN===

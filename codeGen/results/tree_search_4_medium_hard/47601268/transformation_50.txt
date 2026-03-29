@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[0] = 1
+Recognize that dp[i] can be computed using information from dp[j] where j < i and the binary representation of i has no consecutive ones at its last log2(i) bits.
+
+Initialize a variable count as 1, representing the number of integers less than or equal to n that do not have consecutive ones in their binary representation. 
+Then iterate over all numbers m from 0 to n.
+For each m, calculate the length k of the binary representation of m.
+If the binary representation of m does not contain consecutive ones at its last log2(k) bits, then update count by adding dp[k-1].
+Finally, return count.
+
+dp[i] = 1 if i has no consecutive ones in its binary representation else sum(dp[m][l] for m in range(i) for l in range(log2(i)))
+===END PLAN===

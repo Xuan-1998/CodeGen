@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[0][j] would represent the maximum profit that can be achieved without using any dough, considering the different stuffing types.
+
+The state transition relationship would depend on whether it's more profitable to use a new stuffing type or not. For each amount of dough i and number of stuffing types j:
+
+- If j > 0, then dp[i][j] = max(dp[i][j-1], dp[max(0, i-ci)] + di)
+
+This means that if we have some dough left (i >= ci), we can make a bun with the current stuffing type. The maximum profit would be either not using this stuffing type at all (dp[i][j-1]) or making a bun and selling it for price di.
+
+- If j = 0, then dp[i][j] = d0
+
+This is the base case when there's no stuffing types left. In this case, we can only make plain buns and earn a maximum profit of d0 per bun.
+
+Use a separate array to store the maximum profit for each amount of dough, and then iterate over the stuffing types within each dough quantity.
+===END PLAN===

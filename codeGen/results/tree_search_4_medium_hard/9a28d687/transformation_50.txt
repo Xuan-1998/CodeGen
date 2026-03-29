@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, considering only the last string's reversal cost and its position in lexicographical order.
+
+For example, dp[1][0] would represent the minimum total cost to sort only one string, which is 0 because there are no strings to be sorted.
+dp[i][j] represents the minimum total cost required to sort the first i strings, considering the last string's reversal cost and its position in lexicographical order. This state considers both the substructure (optimal substructure) and overlapping subproblems.
+
+The transition function could be defined as follows:
+- If the current string is less than the previous string, then we consider two cases: 
+  1. Reversing the current string to make it greater than or equal to the previous string.
+  2. Not reversing the current string (i.e., keep its original order).
+
+The minimum total cost in this case would be the sum of the reversal cost of the current string and the minimum total cost to sort the remaining strings.
+
+- If the current string is not less than the previous string, then we consider one case: 
+  1. Not reversing the current string (i.e., keep its original order).
+
+The minimum total cost in this case would be the sum of the reversal cost of the previous string and the minimum total cost to sort the remaining strings.
+
+The base case for the transition function could be dp[0][j] = 0 for all j, since there are no strings to be sorted, so the minimum total cost is 0.
+
+The final answer would be dp[n-1][-1], where n is the number of strings.
+===END PLAN===

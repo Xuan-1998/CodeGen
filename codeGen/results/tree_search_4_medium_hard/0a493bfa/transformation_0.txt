@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i][j] = max( 
+    beauty(a[:i], b[:j]) + 
+    f(gcd(...)) 
+) for all possible subsets of a[:i] and b[:j]
+Consider the current subset of good prime numbers and calculate the maximum beauty that can be achieved by performing operations on this subset.
+Use a dictionary to store calculated values for faster lookups
+Store the base case (dp[0][0]) as the initial value of 0, since there are no operations performed initially
+dp[i][j] = 
+    if i == j:
+        dp[i-1][j-1] + f(gcd(...)) # when the subset is only one element, simply add to the previous maximum beauty
+    else:
+        for k in range(i):
+            good_primes = [p for p in b[:j] if gcd(a[k], p) > 1]
+            dp[i][j] = max(dp[i-1][j] + f(gcd(...)), dp[k][j-1] + beauty(a[k+1:i], b[0:j-1]))
+dp[n][m] will store the maximum beauty that can be achieved by performing operations on a[:n] and b[:m]
+===END PLAN===

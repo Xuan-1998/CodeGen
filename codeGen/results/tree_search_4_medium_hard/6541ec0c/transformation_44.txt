@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Given the constraints that 2 ≤ k ≤ n ≤ 10^5, I'm thinking that a bottom-up dynamic programming approach might be faster than a top-down approach due to reduced time complexity for larger inputs.
+
+State: dp[node_val][edge_count] = 1 if it is possible to make all connected components in the tree with edge_count edges and node_val as the value of every node in those components have the same XOR, else 0.
+dp[prev_node][curr_edge_count] = 1 if there is a valid configuration for nodes with values up to prev_node, with curr_edge_count edges remaining, else 0.
+
+Create a 2D table dp[node_val][edge_count] where node_val ranges from 1 to 10^9 and edge_count ranges from k-1 to 0.
+Enumerate all possible edges: iterate over all edges in the tree, and for each edge (u, v), consider both cases:
+    - Remove this edge: recursively check if it's possible to make all connected components in the remaining graph with edge_count - 1 edges have the same XOR.
+    - Keep this edge: check if there is a valid configuration for nodes with values up to min(u, v) (since u and v are in the same connected component), with curr_edge_count edges remaining. If it's possible, recursively check if it's possible to make all connected components in the remaining graph with edge_count - 1 edges have the same XOR.
+
+Return "YES" if dp[n][k-1] is 1, else return "NO".
+===END PLAN===

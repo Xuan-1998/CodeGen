@@ -1,0 +1,10 @@
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be dp[i] = minimum number of multiplications needed to multiply matrix i with all matrices after it, and dp[0] is the base case.
+dp[i] = min(dp[j] + p[i-1]*p[i]*p[j+1]) for j in range(i) from 1 to n
+The transition function should be optimized by taking into account that we only need to consider multiplications with previous matrices, not subsequent ones. This can be achieved by using a bottom-up approach.
+
+Use a dictionary-based approach where dp[i] stores the result of multiplying matrix i with all subsequent matrices.
+dp[i] = 0 if i is the last matrix in the chain; otherwise, it's min(dp[j] + p[i-1]*p[i]*p[j+1]) for j in range(i) from 1 to n
+
+The optimal order of multiplication can be obtained by backtracking through the dp table.

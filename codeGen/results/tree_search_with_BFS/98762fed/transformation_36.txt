@@ -1,0 +1,19 @@
+python
+===BEGIN PLAN===
+1. **Understanding the Condition**: The condition given in the problem is that for every quadruple of integers (a, b, c, d) such that 1 ≤ a < c ≤ N and 1 ≤ b < d ≤ M, the matrix A must satisfy A[a, b] * A[c, d] ≤ A[a, d] * A[c, b]. This condition essentially means that the product of elements in the diagonally opposite corners of any 2x2 submatrix should be less than or equal to the product of elements on the other diagonal.
+
+2. **Base Case**: For a 1x1 matrix, the condition trivially holds because there are no quadruples (a, b, c, d) to consider. Therefore, dp[1][1] = 1.
+
+3. **State Definition**: Let dp[i][j] denote the number of valid matrices of size i x j. This means we need to find a way to build larger matrices from smaller ones while ensuring the condition is maintained.
+
+4. **Transition**: To build dp[i][j], consider adding a new row or a new column to the existing matrices of size (i-1)xj or ix(j-1). For each possible new row or column, ensure that the condition holds with all previous rows and columns.
+
+5. **Iterative Computation**: Use a nested loop to fill the dp table in a bottom-up manner. For each cell dp[i][j], compute the number of valid matrices by considering all possible ways to add a new row or column to the matrices of size (i-1)xj or ix(j-1).
+
+6. **Modulo Operation**: Since the result needs to be taken modulo 998244353, ensure that all computations are performed modulo 998244353 to avoid overflow and maintain correctness.
+
+7. **Edge Cases**: Consider edge cases where N=1 or M=1 separately, as these cases do not have any quadruples to check and should trivially satisfy the condition.
+
+8. **Final Output**: The value in dp[N][M] will be the desired number of valid matrices of size NxM.
+===END PLAN===
+

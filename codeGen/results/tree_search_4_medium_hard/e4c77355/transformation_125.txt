@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Difference of Two Sequences: Identify the longest increasing subsequence's differences from an optimal solution.
+
+Base case: If the array is empty, return 0; otherwise, consider only the first k elements.
+
+DP array initialization: Create a dynamic programming (DP) array dp of size n+1, where n is the length of the input array. Initialize all values in dp to 1, since the longest increasing subsequence for any single element is itself with a length of 1.
+
+ Iterate over the input array:
+
+    For each element x at index i:
+        Find the maximum value seen so far (max_seen) that is less than or equal to x.
+        Update max_seen accordingly. If no such value exists, set it to -∞.
+        Calculate the length of the longest increasing subsequence ending at x as dp[i] = 1 + max(dp[j]) where j < i and arr[j] < x.
+        Update dp[i] with this calculated length.
+
+Return the maximum value in the DP array (not necessarily the last one) as the length of the longest increasing subsequence.
+
+===END PLAN===

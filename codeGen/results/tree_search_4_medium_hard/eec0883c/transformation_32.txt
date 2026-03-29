@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+If we look at it from a purely graph-theoretic perspective, this problem can be modelled as an optimization problem on an acyclic graph, where each node represents a city and the edges represent the roads between cities. We want to find the longest path that does not exceed the maximum amount of gasoline.
+We introduce two state variables: Nut's current location and the remaining cities to visit.
+Dynamically maintain a set of possible next locations that Nut can visit given his current location and the remaining gasoline, using a priority queue to efficiently select the most promising options. Specifically:
+* Initialize a priority queue with all cities as starting points
+* While the queue is not empty:
+	+ Dequeue the city with the most gasoline
+	+ If there's still enough gasoline to reach the next city along the path, add it to the queue
+	+ Update the maximum amount of gasoline that Nut can have at the end of the path
+===END PLAN===

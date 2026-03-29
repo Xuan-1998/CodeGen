@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in top-down manner.
+dp[i][j] represents the maximum amount of money earned with i tables remaining and j total amount to spend
+dp[i][j] represents the maximum amount of money earned by either accepting or declining a request with size c, pi and total money spent ri
+
+Instead of using bottom-up dynamic programming, we can use a more efficient approach: sort the requests in descending order of total money spent per group. Then, iterate over the requests and for each one:
+    - If there are enough tables to seat all groups, accept the request and update dp[i][j]
+    - Otherwise, decline the request
+
+This plan takes care of edge cases where there are no more tables or no more money to spend.
+===END PLAN===

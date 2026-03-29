@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B; The state represents the similarity score up to the current indices.
+
+Let state be a dictionary d where key is the pair of substrings and value is their similarity score. The transition relationship would be: for each substring of A and B, calculate the LCS (Longest Common Subsequence) and update the dictionary with the new similarity score.
+
+Use a 2D table dp to store the state (i, j) where i is the current index for string A and j is the current index for string B; The state represents the similarity score up to the current indices. Initialize dp[0][0] as the base case: when both strings are empty, the similarity score is 0.
+
+The dynamic programming equation would be:
+
+dp[i][j] = max(dp[i-1][j-1] + 4 * len(lcs), dp[i-1][j] + dp[i][j-1])
+
+where lcs is the LCS of substrings A[0..i) and B[0..j). This equation represents the maximum similarity score up to indices i and j.
+
+Finally, return dp[n-1][m-1], which represents the maximum similarity score over all pairs of substrings.
+
+===END PLAN===

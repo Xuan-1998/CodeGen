@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To use top-down approach with memoization, define a function that recursively counts blocks for smaller inputs.
+
+The state expression is a tuple (i, j) where i is the current digit and j is the number of consecutive equal digits found so far. This ensures that we only count each block once, as two blocks ending at the same position will have different values for i.
+
+The transition function should increment pos for each digit, and update l if a new sequence of equal digits starts. This way, we correctly count the length of each block.
+
+Create a 2D table dp where each cell (i, j) stores the count of blocks ending at position i with length j. Initialize all cells to -1 initially, as we will only update them when their corresponding block is counted for the first time.
+
+The base case should be when i equals n, meaning we have processed all digits in the number. In this case, return 0 because there are no more blocks left to count.
+
+For each cell (i, j), check if it has been processed before by checking dp[i][j]. If not, calculate its value recursively by counting all blocks ending at position i with length j and add that to the current cell's value. Finally, return the total count modulo 998244353.
+
+===END PLAN===

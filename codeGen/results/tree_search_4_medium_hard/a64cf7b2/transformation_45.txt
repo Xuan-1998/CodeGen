@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation and memoization to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+Let dp[i][t] represent the maximum number of vertices that can be visited from vertex i to the end vertex n within t time units, considering all possible edges. The base case is when t = 0, in which case we return 0 because we cannot visit any vertices within 0 time units.
+
+State:
+    - dp[i][t]: maximum number of vertices that can be visited from vertex i to the end vertex n within t time units
+    - memo: dictionary to store intermediate results for memoization
+
+Approach:
+    1. Initialize dp[0][0] = 1 (since we can visit at least one vertex from the starting vertex)
+    2. Iterate over each edge (u, v, t) in the graph:
+        a. If u is not visited yet, update dp[u-1][t] to be max(dp[u-1][t], dp[v-1][t-t']) + 1
+        b. Store intermediate results in memo for memoization
+    3. Return dp[n-1][T]
+
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries called memo and dp where 
+memo[(i, j)] stores whether it is possible to partition the subarray A[0..i-1] into j partitions
+dp[(i, j)] is true if it's possible to partition the subarray A[0..i] into j partitions.
+
+Define the state as (i, j, M) where i is the current index, j is the number of partitions so far, and M is the maximum allowed difference between elements in the same partition.
+The state represents whether it's possible to partition A[0..i] into j partitions with maximum difference M.
+
+Maintain a dictionary dp where dp[(i, j)] is true if it's possible to partition the subarray A[0..i] into j partitions.
+Maintain another 2D array same as dp, but store its complement i.e., (not dp[i][j]) for easier lookup.
+
+For each state (i, j, M), check two possibilities: 
+1. If it is possible to partition the subarray A[0..i-1] into j-1 partitions with maximum difference M, then consider adding an element at index i.
+2. If it's not possible to partition the subarray A[0..i-1] into j partitions with maximum difference M, then consider reducing the number of partitions by 1.
+
+Return dp[(N, K)] as the final answer which represents whether it is possible to partition the array A into K partitions.
+===END PLAN===

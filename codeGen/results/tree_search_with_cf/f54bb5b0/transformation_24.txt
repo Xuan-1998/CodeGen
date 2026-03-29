@@ -1,0 +1,20 @@
+
+2. Bottom-Up Strategy with Tabulation:
+   - This approach builds the solution iteratively from the base cases up to the desired solution, using a table to store intermediate results. It avoids recursion and can be more space-efficient.
+   - Time complexity: O(n*k), space complexity: O(n*k).
+   
+   Plan:
+   1. Initialize a 2D list `dp` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`. 
+   2. Set the base case: for each vertex `u`, `dp[u][0] = 1` because each vertex is at distance 0 from itself.
+   3. Perform a Depth-First Search (DFS) to traverse the tree and populate the `dp` table:
+      - For each vertex `u` and its child `v`, for each distance `d` from 1 to `k`, update `dp[u][d]` as `dp[u][d] += dp[v][d-1]`. This means that the number of vertices at distance `d` from `u` is incremented by the number of vertices at distance `d-1` from its child `v`.
+   4. Count the number of distinct pairs of vertices that have a path of exactly length `k`:
+      - For each vertex `u`, sum the values of `dp[u][k]` to get the total number of vertices at distance `k` from `u`.
+      - To avoid double-counting pairs, ensure each pair is counted only once by considering the symmetry of the tree.
+   5. Output the total number of distinct pairs.
+
+Edge cases to consider:
+- Smallest tree with n = 1 and k = 1.
+- Trees where k is larger than the diameter of the tree (no valid pairs).
+- Trees with varying structures (balanced, skewed, etc.).
+

@@ -1,0 +1,14 @@
+
+1. Frequency Count: Create an array `count` where `count[x]` represents the frequency of the integer `x` in the sequence. This array will have a size of 105 (since 1 ≤ ai ≤ 105).
+
+2. State Initialization: Initialize a `dp` array where `dp[x]` represents the maximum points that can be obtained considering all integers from 1 to x. The size of the `dp` array will also be 105.
+
+3. Base Cases: Set `dp[0] = 0` (since no points can be obtained from zero elements) and `dp[1] = count[1]` (since the only option is to take all 1s).
+
+4. State Transition: For each integer `x` from 2 to the maximum integer in the sequence:
+   - Update `dp[x]` using the relation `dp[x] = max(dp[x-1], dp[x-2] + count[x] * x)`.
+
+5. Result: The value of `dp[max_value]` (where `max_value` is the maximum integer in the sequence) will be the maximum points that can be obtained through the operations.
+
+6. Edge Cases: Consider edge cases where the sequence length is 1 or all elements are the same. The plan should handle these cases naturally due to the initialization and state transition logic.
+

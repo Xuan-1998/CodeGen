@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+If we have a valid transition from the previous state, it means we found a way to split the previous segment into segments with lengths in sequence b, so we can recursively call the function on the previous state.
+
+Tabulation using Bottom-Up Approach: Initialize a table with size (n+1) * 10^9, fill it up based on the previous state, and then check if the target sequence is achievable from the initial state.
+
+For each state in the table, iterate through all possible values in sequence b to see if there's a valid transition. If there is, mark that state as reachable.
+
+Finally, start from the initial state (0, -1) and check if the target sequence is reachable. If it is, print "YES", otherwise "NO".
+
+===END PLAN===

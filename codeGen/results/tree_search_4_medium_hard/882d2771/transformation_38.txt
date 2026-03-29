@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+base case: f(1) = 0
+Consider the process of selecting the most beautiful participant from a group of girls as a binary tree. Each node represents a comparison, and each leaf node represents a girl.
+Then, we can formulate state and transition relationships as:
+f(n) = min(f(l+1) + 1 + f(r)) for all l, r in range(2, n), where l+r=n.
+
+Use a 2D DP table to store the minimal total number of pairwise comparisons needed to select the most beautiful participant from girls in a beauty contest.
+Iterate over the DP table rows and columns:
+    For each cell (i, j) in the table,
+        Calculate f(i+j-1) as min(f(l+1) + 1 + f(r)) for all l, r in range(2, i+j-1), where l+r=i+j-1.
+    Store the calculated value in the DP table.
+
+To calculate the final answer:
+    Initialize t0·f(l) = 0
+    Iterate over the values of t from 0 to t-1:
+        Add t0·f(l) + t1·f(l+1) + ... + tr - l·f(r) to the total.
+    Return the calculated total modulo 109+7.
+
+===END PLAN===

@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Given the constraints that 2 ≤ k ≤ n ≤ 10^5, I'm thinking that a bottom-up dynamic programming approach might be faster than a top-down approach due to reduced time complexity for larger inputs.
+
+State: dp[i][j] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes have the same XOR, else 0.
+dp[i][j] = (1 if the subtree rooted at i has an even number of nodes and all values are the same in the XOR, else 0);
+
+Create a dp table with dimensions n+1 x k+1, where dp[i][j] represents whether it's possible to make all connected components in the sub-tree rooted at node i have exactly j nodes and the same XOR.
+
+Initialize dp[0][0] = 1 since we can always delete all edges from an empty graph.
+
+For each node i from 1 to n:
+    For each number of nodes j from 0 to k:
+        If the current node has value v_i, calculate the XOR of the values in its left subtree and store it as x.
+        If j == 0, set dp[i][j] = 1 if and only if x is the same as v_i (since we can't delete edges from a single node).
+        Else:
+            Initialize the maximum possible XOR for this sub-tree to -1.
+            For each node in the left subtree of i:
+                If the node has an even number of children, update the maximum possible XOR with the XOR of the node's value and the current max XOR.
+                Otherwise, check if the node's value is the same as the XOR of its children; if so, update the maximum possible XOR.
+            Set dp[i][j] = 1 if the maximum possible XOR for this sub-tree matches x.
+
+For each test case:
+    If there exists a j such that dp[n][j] == 1 and j <= k-1, output "YES".
+    Else, output "NO".
+
+===END PLAN===

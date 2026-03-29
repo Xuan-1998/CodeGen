@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using a bottom-up dynamic programming approach by initializing a 2D table to store the minimum height of the bookcase for each subproblem, where the rows represent the books and the columns represent the maximum shelf width.
+
+State expression is dp[i][j] = the minimum possible height of the bookcase after placing the first i books, where each shelf has a maximum width j.
+
+dp[i][j] represents the minimum possible height of the bookcase after placing the first i books on shelves with a maximum width j, considering only books up to index i and shelf width j.
+
+Use 2D array to store state values and iterate from bottom-up:
+
+1. Initialize dp[0][j] = 0 for all j (since no books are placed)
+2. Iterate over each book (i):
+	* For each shelf width j:
+		+ If the current book can be placed on a shelf with maximum width j, update dp[i][j] to be the minimum of the current value and dp[k][j - t_i + 1] + h_i (where k is the index of the previous book that could fit on this shelf)
+		+ Otherwise, set dp[i][j] = dp[i - 1][j]
+3. The answer will be dp[n][w] (where n is the total number of books and w is the maximum shelf width)
+
+This plan seems to correctly identify the dynamic programming approach for the problem.

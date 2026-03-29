@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Partition the strings into overlapping subproblems by considering all possible splits of s1 and s2 into two non-empty substrings. 
+To define the state as (i, j) where i is the length of the longest common prefix of s1[:i] and s2[:j] and check if the remaining parts of both strings are scrambled.
+State: (i, j) represents the indices of the current overlapping subproblem; Transition: recursively partition s1[:i] and s2[:j] into two non-empty substrings at indices i-1 and j or i and j-1.
+Use a 3D array to store the dp states as (i, j, k) where i is the length of the longest common prefix of s1[:i] and s2[:j], and check if the remaining parts of both strings are scrambled for each character k.
+To determine if two substrings are scrambled, consider all possible ways to partition them into non-empty substrings and check if one can be obtained from another by swapping the children of any non-leaf node. 
+If we have found a way to scramble s1[:i] and s2[:j], return True; otherwise, return False.
+===END PLAN===

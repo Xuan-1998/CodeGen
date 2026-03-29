@@ -1,0 +1,23 @@
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+
+Initial State: 
+1. dp[1][j] = 2^j for all 1 ≤ j ≤ M since any 1xj matrix with elements either 0 or 1 always satisfies the condition.
+2. dp[i][1] = 2^i for all 1 ≤ i ≤ N since any ix1 matrix with elements either 0 or 1 always satisfies the condition.
+
+Transition:
+1. For each cell (i, j), compute dp[i][j] based on the values of dp[i-1][j], dp[i][j-1], and dp[i-1][j-1].
+2. Ensure that the condition A_{a, b} × A_{c, d} ≤ A_{a, d} × A_{c, b} is satisfied for every quadruple (a, b, c, d).
+
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+Edge Cases:
+1. N = 1 or M = 1, where the matrix is essentially a single row or column.
+2. Smallest possible matrix (1x1) which should always satisfy the condition.
+
+Final Computation:
+1. Sum up the values in dp[N][M] to get the total number of valid matrices.
+2. Take modulo 998244353 to get the result.
+

@@ -1,0 +1,17 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+Define the state as dp[i] which represents the minimum number of moves needed to remove all balls up to position i. The base case would be when i is 0, and there are no balls to consider.
+
+The state could be a tuple containing two values: (1) the current minimum number of moves and (2) a flag indicating whether the current position is 'clean' or not. A position is considered 'clean' if it does not contain three or more consecutive balls with the same color.
+
+Create a 1D array to store the dynamic programming table with dimensions len(board)+1, where dp[i] represents the minimum number of moves needed to remove all balls up to position i. The extra element at the beginning is for the base case when i is 0.
+
+Initialize the first element of the dp array as (0, True), indicating that no moves are needed and the initial position is 'clean'.
+
+Iterate through the board from left to right. For each position i:
+
+* If the current position is not 'clean', increment the minimum number of moves by 1.
+* Update the flag to indicate whether the current position is 'clean' or not based on the colors of the balls at positions i-2, i-1 and i.
+
+The final answer would be the value in dp[len(board)], which represents the minimum number of moves needed to remove all balls from the board.
+

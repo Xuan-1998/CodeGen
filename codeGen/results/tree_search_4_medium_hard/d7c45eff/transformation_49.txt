@@ -1,0 +1,9 @@
+{
+DP transition: Initialize dp[0][j] with the lexicographically smallest string of length j that can be formed by duplicating the empty string.
+Update dp[i][j] for each string of length i based on the DP states of strings of lengths i-1 and i-2, considering all possible operations (deletion or duplication) that can be applied to form a lexicographically smaller string:
+    - If i is 1, set dp[i][j] to the lexicographically smallest string of length j that can be formed by duplicating the first character of s.
+    - If i-1 is less than k and j > 0, update dp[i][j] based on memo[i-2][j-1] and s[i-1], considering deletion or duplication to form a lexicographically smaller string.
+Use a dictionary memo to store and reuse previously computed values of dp[i][j].
+Update dp[i][j] for each i up to n, considering all possible operations (deletion or duplication) that can be applied to form a lexicographically smaller string.
+Return the lexicographically smallest string of length k as the solution.
+}

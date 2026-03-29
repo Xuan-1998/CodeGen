@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+The base case could be when n == 0 or prev_val is not present in sequence a.
+
+State: dp[i][j] = True if sequence b[1..i] can be obtained from sequence a[1..j].
+
+Transition relationship:
+    for k from i downto 0 do
+        if j-k+1 equals to b[i]
+            then dp[i][j] = (dp[k-1][j-1] and True)
+            else dp[i][j] = False
+
+Use a 2D array to store the dynamic programming table, where dp[i][j] represents whether sequence b[1..i] can be obtained from sequence a[1..j].
+
+If we are not at the end of the current segment (b[i]), then it is not possible to get this segment in a and thus set dp[i][j] = False.
+
+If there are any remaining elements in the current segment, continue processing them recursively.
+
+===END PLAN===

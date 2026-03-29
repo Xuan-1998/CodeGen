@@ -1,0 +1,7 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] = False if i < K; otherwise, it's True if for some p in [0..i-1], all elements from 0 to p are within M units of each other, and the remaining elements (from p+1 to i) can be partitioned into k partitions of size at least K, and dp[i-p][k] is True.
+
+Create a 2D array dp with dimensions N*K where dp[i][j] represents the minimum number of partitions required to partition the subarray A[0..i-1] into j partitions, and initialize all values to False.
+
+dp[i][j] = min{dp[i-p][k] + (p >= K) | p in [0..i-1], k in [0..K-1]}

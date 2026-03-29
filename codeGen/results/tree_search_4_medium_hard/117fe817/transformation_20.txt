@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+// Define state variable dp[i] as the count of ones in numbers from 0 to i
+dp[0] = 0
+
+// Base case: for single-digit numbers (0-9), the count is either 1 (if the digit is 1) or 0
+for i in range(10):
+    if i == 1:
+        dp[i] = 1
+    else:
+        dp[i] = 0
+
+// Transition relationship: for each additional digit added to an existing number, the total count of ones increases by the number of ones in the next available digit (i.e., the remaining digits from 1 to 9)
+for i in range(10, n+1):
+    if i % 10 == 1:
+        dp[i] += dp[i // 10]
+    elif i % 10 >= 2:
+        dp[i] += dp[i // 10]
+
+// Sum up the counts of ones for all numbers from 0 to n
+total_count = sum(dp[:n+1])
+
+===END PLAN===

@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider the strings that can be obtained by deleting the last character of s, which are all substrings of s. The lexicographically smallest string among these is either the original string or the string obtained by deleting its last character.
+
+The state expression could be dp[i][j] = the lexicographically smallest string that can be obtained from s[:i] with exactly j characters.
+
+dp[i][0] = s[:i]
+dp[0][j] = s[:n] if j >= n, duplicated string
+dp[i][j] = min(dp[i-1][j], dp[n][max(0, j-len(s)+n)]) if i < n and j <= len(s)
+===END PLAN===

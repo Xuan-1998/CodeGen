@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+State:
+    dp[i][j][xor_val] = 
+        1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes and having xor_val as the XOR value of each component have the same XOR, else 0.
+    dp[i][j][xor_val] = 
+        1 if all subtrees rooted at node i with exactly j nodes and having xor_val as their XOR value can be made to have the same XOR after at most k edge deletions, else 0.
+
+Function: recursive_function(i, j, xor_val)
+
+    If dp[i][j][xor_val] is already computed, return its value
+    Else:
+        Initialize all possible subtrees rooted at node i with j nodes and having xor_val as their XOR value
+        For each subtree, recursively compute the value for each sub-subtree (with less nodes) until base case (single node)
+        If any of these recursive calls return 1, set dp[i][j][xor_val] = 1
+        Else, set dp[i][j][xor_val] = 0
+
+    Initialize the answer as YES
+    For each node i from n-1 to 0:
+        For each possible number j of nodes in the subtree rooted at node i:
+            For each possible XOR value xor_val for this subtree:
+                If dp[i][j][xor_val] == 1, set the answer as NO and break the loop
+    Return the answer
+
+===END PLAN===

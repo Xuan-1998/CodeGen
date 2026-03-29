@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Create a 2D table dp of size (n+1) x (k+1), where n is the number of nodes in the tree and k is the given product of prime factors. Initialize all values in the table to -1.
+
+Fill up the table in a bottom-to-top manner. Start from nodes with no children, then move on to nodes with one child, and finally, process nodes with two or more children.
+
+For each node i, if it has no children (i.e., it's a leaf), set dp[i][j] = 1 for all j satisfying 1 <= j <= k. This represents the base case where there's only one way to distribute ones among edges in the subtree rooted at this node.
+
+If node i has exactly one child, let its child be node j. Then, update dp[i][j] as follows: 
+- If j has no children, set dp[i][j] = 1.
+- If j has one child, consider all possible ways to distribute ones among edges in the subtree rooted at this node i. For each such way, add the number of ones distributed among edges in the subtree rooted at its child j and store it in dp[i][j].
+
+If node i has two or more children, let its children be nodes j1, j2, ..., jm (in order from left to right). Then, update dp[i][k] as follows: 
+- For each ki satisfying 0 <= ki < k, consider all possible ways to distribute ones among edges in the subtree rooted at this node i. For each such way, add the number of ones distributed among edges in the subtrees rooted at j1, j2, ..., jm and store it in dp[i][k].
+
+Finally, calculate the maximum possible distribution index for the tree by summing up all values in the last row (i.e., dp[n][k]) of the table.
+
+===END PLAN===

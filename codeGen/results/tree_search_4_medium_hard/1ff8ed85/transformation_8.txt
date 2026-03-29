@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+State
+Use a 2D array with size (10^5 + 1) * (10^9 + 1) where each cell [i][j] represents whether there exists a way to get the subsequence of length i ending at value j from sequence a.
+
+If the current segment in sequence b is less than or equal to the previous value, it means we can simply copy the previous segment into the current one.
+Use dynamic programming to fill up the 2D array. For each cell [i][j], check if there exists a way to get the subsequence of length i-1 ending at value j-prev_val (or j if prev_val is 0).
+If yes, then we can add the previous segment to the current one and increment the length by 1.
+If not, then it's impossible to get this subsequence from sequence a.
+
+Return YES if the cell [n][b_n] in the array is True, otherwise return NO.
+===END PLAN===

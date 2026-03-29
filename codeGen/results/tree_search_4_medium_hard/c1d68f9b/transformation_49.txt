@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+The state could be a boolean indicating whether the current polygon is regular, with the base case being when there is only one knight (YES) or no knights (NO). 
+State: dp[n] = {regular, not regular} for 1 ≤ n ≤ total_knights; Transition: If the next knight's mood is 1 (good), update dp[n+1] to be {regular if the current polygon with n+1 vertices can be formed, else dp[n]}; if the next knight's mood is 0 (bad), update dp[n+1] to be {not regular}.
+Initialize dp[0] = NO and dp[1] = YES. 
+Iterate over each knight's mood. For each good-mooded knight, check whether the current polygon with n vertices can be formed by checking if the number of good knights is a multiple of (n+1). 
+If not, update dp[n+1] to NO; else update it to {regular if the next knight's mood is 1, else dp[n]}.
+===END PLAN===

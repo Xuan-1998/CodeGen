@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+Define dp[i] to represent the number of times 1 appears in all non-negative integers less than i. The base case is when i = 0, since there are no integers.
+
+dp[i] represents the number of times 1 appears in all non-negative integers less than i. Transition relationship: 
+dp[i] = dp[i - 1] + sum(1 appears in each integer from i-1 to i), where sum is calculated based on the binary representation of numbers.
+
+To implement dynamic programming using a 2D array dp[i][j] where dp[i][j] represents the number of times 1 appears in all non-negative integers less than i whose binary representation has j ones, you can iterate through each integer from 0 to n and for each integer k, calculate its binary representation, count the number of 1's (which is equal to the number of trailing zeros), add this value to dp[k-1][j], where j is the number of 1's in the binary representation of k.
+
+The edge cases are when i = 0 and n > 0. In this case, the answer is 0 because there are no integers less than or equal to n.
+
+===END PLAN===

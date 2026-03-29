@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider using a 1D DP table to store the bitwise OR values for all possible suffixes of s, with dimensions n+1 where each cell dp[j] represents the maximum bitwise OR value for the suffix s[0:j]. The base case would be when j is n.
+Let dp[j] be the maximum bitwise OR value that can be obtained by taking two non-empty substrings of s that end at index j. The transition relation would be dp[j] = max(OR(dp[k],s[k+1:j]) for k in range(j-1,-1,-1))
+Initialize the DP table with 0.
+Use memoization to store the bitwise OR values of all possible suffixes of s in a dictionary.
+Let's consider two cases: 
+1. When j-i is even, we can simply take the bitwise OR of the two substrings and update dp[j].
+2. When j-i is odd, we need to consider taking one more bit from the left or right side of the middle index k=(j+i)/2.
+Let's calculate the maximum bitwise OR value that can be obtained by taking two non-empty substrings of s that end at index j in O(n) time complexity.
+===END PLAN===

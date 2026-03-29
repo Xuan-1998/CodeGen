@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = number of ways to split the string s[0..i-1] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+
+dp[i][j] = sum((k==0 and 1 or dp[i-k][0]) * comb(i-k-1, a[ord(s[i-k-1])-97]-1) for k in range(1, i+1))
+
+Split the message into two parts: one with unique characters and another part where each character appears at most a[i] times.
+
+dp[i][j] = dp[i-1][j] + (s[i-1] is unique or s[i-1] appears at most a[ord(s[i-1])-97]-1 times) * dp[i-1-j][j]
+
+To count the number of ways to split the message in each part, calculate the total number of unique characters and repeated occurrences.
+
+For each character in the string, decide whether it's unique or appears at most a[i] times. 
+
+If the current character is unique, increment j by 1; otherwise, decrement i by the maximum allowed repeated occurrences of the same character.
+
+Finally, return dp[n][0].
+===END PLAN===

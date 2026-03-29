@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider modeling the problem as a directed acyclic graph (DAG) and applying dynamic programming with memoization to find the minimum number of operations needed.
+
+Let dp[i][l][r] be the minimum number of operations required to make all vertices in subtree rooted at i within range [l, r].
+
+Base case: When i is equal to n, there are no more vertices to process, so dp[n][l][r] = 0 for all l and r.
+
+State: The state represents the current vertex being processed. It consists of three components:
+
+- i: The current vertex.
+- l: The lower bound of the range.
+- r: The upper bound of the range.
+
+Transition relationship: Update the state based on the values required for the current vertex's range, as well as recursively processing child nodes.
+
+Create a recursive function that takes a vertex i, and use memoization to store the results of subproblems to avoid repeated calculations. The function can be written as follows:
+

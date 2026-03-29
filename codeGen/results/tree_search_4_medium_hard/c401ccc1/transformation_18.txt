@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[i] = 1 if and only if it is possible to reach i by performing bitwise AND operations on vertices. Base case: True for all vertices (since every vertex can reach itself).
+
+The dynamic programming approach involves implementing a 2D DP table where dp[u][v] represents whether it is possible to transform u into v by performing bitwise AND operations.
+
+Initialize the DP table with base case values and fill up the table using transitions based on graph properties. Specifically, for each edge (u, v) in the graph, update dp[u][v] as follows:
+    1. If u & v == v, then it is possible to transform u into v by performing one bitwise AND operation.
+    2. For any vertex w that has an edge to u, if dp[u][w] is True and u & v == v, then dp[v][w] should also be True.
+
+Finally, for each query (u, v), check if dp[u][v] is True. If it is, output "YES", otherwise, output "NO".
+
+===END PLAN===

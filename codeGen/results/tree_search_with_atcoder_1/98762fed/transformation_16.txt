@@ -1,0 +1,10 @@
+
+1. Define the state dp[i][j] to represent the count of valid matrices of size i x j.
+2. Initialize the base case: dp[1][1] = 2, as a 1x1 matrix can have either 0 or 1 and both trivially satisfy the condition.
+3. Transition: To compute dp[i][j], iterate over all possible placements of elements in the (i, j) position and ensure all conditions are satisfied with respect to previous elements:
+   - For each possible value of A[i][j] (either 0 or 1), check if placing this value maintains the condition A[a, b] * A[c, d] <= A[a, d] * A[c, b] for all valid (a, b, c, d) pairs.
+   - Use previously computed dp values to build up to the current dp[i][j] while ensuring the condition is satisfied.
+4. Iterate from dp[2][2] up to dp[N][M], filling the dp table by considering the valid placements of elements.
+5. The final answer will be the value of dp[N][M] modulo 998244353.
+6. Consider edge cases such as minimum values of N and M (i.e., N = 1 or M = 1), ensuring the base case and transitions handle these scenarios correctly.
+

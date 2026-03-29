@@ -1,0 +1,14 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+Initialize dp[0][j] = 0 for all j, since an empty array cannot be partitioned.
+
+For each element i from 1 to N:
+    For each possible number of partitions j from K to 1 (since we need at least K partitions):
+        Initialize p to i-1.
+        While p >= 0 and the elements in A[0..p] are all within M distance from each other, decrement p.
+        If p is non-negative, set dp[i][j] = 1 if and only if there exists a partition point p such that:
+            All elements from 0 to p are less than or equal to M away from each other,
+            And the remaining elements (from p+1 to i-1) can be partitioned into j-1 partitions of size at least K.
+        Otherwise, set dp[i][j] = dp[k][j-1] * (the number of ways to partition A[0..k-1] into j-1 partitions) + dp[i-k][j-1] for some 0 ≤ k < i, if and only if the elements from 0 to k are all less than or equal to M away from each other.
+
+Return dp[N][K].

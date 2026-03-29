@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming with tabulation. Here's the updated plan:
+
+dp = [0] * (n + 1)  # dp[i] stores the least number of perfect squares that add up to i
+for i in range(1, n + 1):
+    dp[i] = float('inf')  # Initialize dp[i] as infinity
+    for j in range(1, int(i ** 0.5) + 1):  # Iterate through all possible combinations of perfect squares
+        if i >= j * j:  # Check if i is greater than or equal to the square of j
+            dp[i] = min(dp[i], dp[i - j * j] + 1)  # Update dp[i] as the minimum of its current value and dp[i - j * j] + 1
+    if i == n:  # Edge case: If we've reached the target sum, return the number of perfect squares needed
+        break
+
+return dp[n]
+===END PLAN===

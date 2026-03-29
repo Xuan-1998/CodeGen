@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Dynamic Programming:
+  Define a recursive relation between subproblems,
+  then use memoization to store computed results.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i in the array.
+
+The base case: When there is only one element left, its length is considered as 1 (as it's itself).
+
+Compute the maximum value from all subsequences as the final answer,
+taking into account the current state of the dynamic programming transition.
+
+Use a 2D table to store the lengths of longest increasing subsequences ending at each index and previous maximum value:
+dp[i][j] represents the length of the longest increasing subsequence ending at index i with its last element being j.
+  Initialize dp[0][j] = 1 for all j, since there's only one element in the beginning.
+
+Transition from dp[i-1][j] to dp[i][k]:
+If arr[i] > arr[k], it means that arr[i] is greater than the ending point of the subsequence.
+Update dp[i][k] as the maximum between its current value and 1 + dp[i-1][j], where j is the position in previous array for which arr[j] < arr[i].
+
+The final answer will be max(dp[n-1][]), considering all possible ending points.
+
+===END PLAN===

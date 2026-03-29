@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+if i > 0 and j > 0:
+    dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+
+Implement recursive DFS function that explores all possible paths from the top-left cell to the bottom-right cell, with memoization using a dictionary to store intermediate results.
+
+def dfs(i, j):
+    if (i, j) in dp:
+        return dp[(i, j)]
+    if i < 0 or j < 0 or i >= M or j >= N:
+        return float('inf')
+    if grid[i][j] <= 0:
+        return float('inf')
+
+    result = min({ dfs(i-1, j), dfs(i, j-1) }) + grid[i][j]
+    dp[(i, j)] = result
+    return result
+
+return min({ dfs(M-1, N-1) })
+===END PLAN===

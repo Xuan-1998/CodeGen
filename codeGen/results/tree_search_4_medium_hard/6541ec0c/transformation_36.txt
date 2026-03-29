@@ -1,0 +1,15 @@
+State: dp[i][j] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes have the same XOR, else 0.
+
+dp[i][0] = 1 for all i (base case)
+
+dp[i][j] = 1 if and only if 
+    - All children of i have dp[ui][j-1] = 1
+    - AND all parents of i have dp[vi][j-1] = 1
+
+if the above condition is met, then it's possible to make all connected components in the subtree rooted at node i with exactly j nodes have the same XOR.
+
+This plan can be improved by iterating over children and parents first and then update dp[i][j]. This way we reduce unnecessary calculations.
+
+Potential issues:
+- The base case should include checking for single node trees.
+- Edge cases: If k = 1, then it's always possible to delete at most k-1 edges. 

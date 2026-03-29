@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i]: number of ways to reach room i from room 1; dp[0] = 1, since Vasya starts at room 1.
+dp[n+1] = 0, since Vasya does not need to move out of the maze when already in it.
+
+For each room i (1 ≤ i ≤ n+1), consider two cases: 
+- Use the first portal and reach room p_i
+- Use the second portal and reach room p_i
+
+Calculate dp[i] as the minimum number of moves between these two options, considering if the ceiling contains an odd number of crosses.
+
+dp[i] = min(dp[p_i], 1 + dp[p_i]) if i is even; 
+else dp[i] = min(dp[p_i], 1 + dp[ceil(i/2)])
+
+This way, we ensure that Vasya uses the correct portal based on the parity of the number of crosses.
+
+Finally, return dp[n+1].
+
+===END PLAN===

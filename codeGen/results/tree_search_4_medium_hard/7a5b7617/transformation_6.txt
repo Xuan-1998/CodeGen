@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, such as calculating the number of ways to fill a sub-table. This suggests using dynamic programming with top-down approach and memoization.
+
+The state is a tuple (n_rows, prev_row_sum) where n_rows represents the current row and prev_row_sum is the sum of elements in the previous row.
+
+If all rows are filled (n_rows == N), then there is only one way to fill the table. The base case is when all rows are filled.
+
+The recursive formula is as follows: 
+If prev_row_sum <= M and n_rows < N, then there are M + prev_row_sum + 1 ways to choose next row sum, and recursively call with updated state (n_rows + 1, new_row_sum).
+
+To employ an iterative solution with a hash map to store intermediate results.
+
+We can use memoization to avoid redundant calculations by storing the results in a hashmap dp.
+
+The base case is when all rows are filled (n_rows == N), then there is only one way to fill the table. We start filling from row 0, and for each row, we calculate the number of ways to fill it based on the sum of elements in the previous row.
+
+We use the hashmap dp to store the results of subproblems. The key is the tuple (n_rows, prev_row_sum) and the value is the number of ways to fill the table with n_rows rows and prev_row_sum as the sum of the last row.
+
+Finally, we return dp[(N, 0)] which represents the number of different steady tables of size N x M modulo 1 000 000 000.
+
+===END PLAN===

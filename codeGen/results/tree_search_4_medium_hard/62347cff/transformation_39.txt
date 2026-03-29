@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure can be defined as the minimum sum of a single cell being either from above (top-down) or from left (bottom-up).
+
+Let dp[i][j] be the minimum sum of all numbers along a path ending at cell [i][j]. The base case is when i is 0 or j is 0, which means we've reached the top or left boundary.
+
+For each cell, there are two possibilities: either come from above (dp[i-1][j]) or from left (dp[i][j-1]), and the state expression is the minimum of these two values plus the value at the current cell.
+
+The state can be formulated as dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+
+Use a 2D array to store the dynamic programming table, initializing all values to infinity and updating them as you iterate through the grid. Initialize dp[0][j] and dp[i][0] to their respective row or column sums.
+
+The final answer is stored at dp[m-1][n-1].
+
+===END PLAN===

@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-decreasing sequence seen so far in the current subsegment.
+
+dp[i][j] = max(dp[i-1][k-1] for k in range(l, r+1) if a[k-1] <= a[k]) + 1
+Let s be the last number that didn't decrease, and let t be the first number that didn't increase. Then use memoization to determine if a ladder exists from s+1 to t-1.
+
+Apply bottom-up approach using a tabulation-based solution where dp[i][j] is updated based on previously computed values.
+
+dp[0][0] = 0
+for i in range(1, n):
+    for j in range(i+1):
+        if a[j] <= a[j+1]:
+            dp[i][j] = max(dp[i-1][k-1] for k in range(j+1, i+1) if a[k-1] <= a[k]) + 1
+        else:
+            dp[i][j] = dp[i-1][j]
+
+for q in range(m):
+    l, r = map(int, input().split())
+    if dp[r][l-1] == r - l + 1:
+        print("Yes")
+    else:
+        print("No")
+===END PLAN===

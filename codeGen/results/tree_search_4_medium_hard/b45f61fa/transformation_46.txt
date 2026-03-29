@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+
+The state expression could be min[i][j] = minimum number of multiplications needed to multiply matrices from i to j, and min[0][i] is the base case.
+The state could be dp[i][j] = minimum number of multiplications needed to multiply matrices from i to j, with a transition relation dp[i][j] = min(dp[i-1][k-1] + p[i-1]*p[k]*p[j], k from i+1 to j) for the base case set dp[0][i] = 0.
+
+Use a dictionary dp to store the minimum number of multiplications needed to multiply matrices from i to j, with dp[0][i] as the base case. Initialize dp with all values as infinity.
+
+Fill in the table row by row, starting from i=1 and j=n-1. For each cell dp[i][j], calculate the minimum number of multiplications needed to multiply matrices from i to j using the transition relation.
+
+Finally, return the value at dp[0][n-1] as the overall minimum number of multiplications needed to multiply all matrices together.
+===END PLAN===

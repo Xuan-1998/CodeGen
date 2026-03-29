@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if p[2i-1]<p[2j-1] and there exist a, b such that merge(a,b) = p[:2i]+p[2i:2j], dp[i][j] = 0 otherwise
+dp[i][j] = 1 if exists k such that p[2*i:2*(i+1)] is equal to the leftmost part of some p, and p[2*j:2*(j+1)] is equal to the rightmost part of some p, dp[i][j] = 0 otherwise
+dp[i][j] = 1 if a set of rules about p[2*i:2*i+n] and p[2*j:2*j+n] is satisfied, dp[i][j] = 0 otherwise
+for i from n to 1 do
+    for j from i to 1 do
+        if dp[i-1][j-1] == 1 then
+            dp[i][j] = 1
+        else
+            for k from 1 to min(i, j) do
+                if p[2*i-1]<p[2*j-1] and merge(p[2*k-1:2*(k+1)-1], p[2*j-1:2*(j+1)-1]) == p[:2i]+p[2i:2j] then
+                    dp[i][j] = 1
+                    break
+                end if
+            end for
+        end if
+    end for
+if exists i such that dp[n][i] == 1 then
+    print "YES"
+else
+    print "NO"
+end if
+===END PLAN===

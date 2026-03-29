@@ -1,0 +1,13 @@
+for i in range(len(S)):
+    dp[i][i] = [[S[i]]]
+    for j in range(i+1, len(S)):
+        dp[i][j] = []
+        for k in range(i, j):
+            if S[k] == S[j]:
+                left_partition = dp[i][k-1] if i > 0 else []
+                right_partition = dp[k+1][j]
+                partitions = [left_partition + [''] + right_partition]
+                dp[i][j].extend([p for p in partitions])
+            else:
+                dp[i][j].extend(dp[i][k] + [['', S[k]]] + dp[k+1][j])
+return dp

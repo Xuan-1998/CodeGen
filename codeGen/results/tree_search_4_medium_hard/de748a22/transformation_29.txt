@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+State: For each query, consider a set of variables that represent the minimum number of elements to be removed from subarrays within the given range.
+
+Formulate state as the minimum number of elements that need to be removed from the current window, considering the previous window's state and the new elements that have been added or removed. The transition relationship would involve updating this state based on whether the signs within the current window sum to zero or not.
+
+DP array for each query, where dp[i][j] represents the minimum number of elements that need to be removed from the subarray [i...j]. Initialize dp[0][j] = 0 for all j.
+
+Transition relationship: For the range [i...j], if the signs sum to zero, then dp[i][j] is the same as dp[i+1][j-1]. If the signs don't sum to zero, then we need to find the minimum number of elements that need to be removed from either the left or right side. This can be done by considering the smallest index k such that the signs within [i...k] sum to zero and finding dp[i+1][k-1]. Similarly, for [k...j], find dp[k+1][j].
+
+Base case: dp[n][n] = 0, where n is the length of the array.
+
+===END PLAN===

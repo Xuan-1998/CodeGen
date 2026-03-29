@@ -1,0 +1,12 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+
+base_case = if there are no more common characters to find:
+    maximum_similarity_score = 4 * k - (n + m)
+
+transition = 
+    for each character in both strings that matches:
+        new_state = (i+1, j+1, k+1)
+        add_to_memoization(new_state, maximum_similarity_score)
+        recursive_call(new_state)
+    else:
+        no_more_common_characters

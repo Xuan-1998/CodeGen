@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Design a bottom-up dynamic programming approach that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+
+Define the state as a tuple (i, time_left), where i is the current vertex and time_left is the remaining time; define the state expression as dp[i][time_left], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of T.
+
+Formulate state transitions: 
+- If there are no more edges to traverse (i.e., i == n), then dp[i][t] = 1, because we've reached the end.
+- Otherwise, consider all possible edges from the current vertex i. For each edge (u, v) with weight w and t' < T:
+    - If u is reachable within time limit T, then update dp[v][t-w] to max(dp[v][t-w], dp[u][t-w]+1), considering the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex v.
+- Store the results in a dictionary dp, where dp[i][time_left] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of T.
+
+Construct the optimal route by tracing back the maximum number of vertices that can be visited for each vertex from n to 1. 
+===END PLAN===

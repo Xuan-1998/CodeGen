@@ -1,0 +1,31 @@
+
+1. Top-down approach with memoization:
+   - This approach involves breaking down the problem into smaller subproblems and storing the results of these subproblems to avoid redundant computations.
+   - Time complexity: O(2^n * n), space complexity: O(2^n * n).
+
+   State Expression:
+   - Let dp[i][mask] represent the set of possible maximum values after processing the first i bits of the string s, where mask is a bitmask representing the selected elements in the sequence p.
+
+   Base Case:
+   - dp[0][mask] = {values corresponding to the initial elements selected by the mask}.
+
+   Transition:
+   - For each bit i in the string s:
+     - If s[i] is 0, then dp[i+1][new_mask] = min(dp[i][mask]) for the pairs considered.
+     - If s[i] is 1, then dp[i+1][new_mask] = max(dp[i][mask]) for the pairs considered.
+
+2. Bottom-up approach with tabulation:
+   - This approach iteratively builds up the solution from the base cases using a table to store intermediate results.
+   - Time complexity: O(2^n * n), space complexity: O(2^n * n).
+
+   State Expression:
+   - Let dp[i][mask] represent the set of possible maximum values after processing the first i bits of the string s, where mask is a bitmask representing the selected elements in the sequence p.
+
+   Base Case:
+   - dp[0][mask] = {values corresponding to the initial elements selected by the mask}.
+
+   Transition:
+   - For each bit i in the string s:
+     - If s[i] is 0, then dp[i+1][new_mask] = min(dp[i][mask]) for the pairs considered.
+     - If s[i] is 1, then dp[i+1][new_mask] = max(dp[i][mask]) for the pairs considered.
+

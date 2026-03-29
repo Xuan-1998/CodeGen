@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp = [0] * len(array)
+max_length = 0
+for i in range(len(array)):
+    dp[i] = 1
+    for j in range(i):
+        if array[i] > array[j]:
+            dp[i] = max(dp[i], dp[j] + 1)
+    max_length = max(max_length, dp[i])
+count = sum(1 for i in range(len(array)) if dp[i] == max_length)
+===END PLAN===

@@ -1,0 +1,12 @@
+
+1. Define the problem in terms of Dynamic Programming (DP) where we need to calculate the minimum cost to transform a substring into a "beautiful" string.
+2. State expression: Let dp[i][j] represent the minimum cost to make the substring s[i:j+1] beautiful.
+3. Base case: dp[i][i] = 0 for any i, as a single character is always beautiful.
+4. Transition relation:
+   - For each substring s[i:j+1] of length 2, if s[i] == s[i+1], then dp[i][i+1] = 1; otherwise dp[i][i+1] = 0.
+   - For longer substrings, we need to consider all possible ways to split the substring into smaller parts and combine their results. Specifically, dp[i][j] = min(dp[i+1][j], dp[i][j-1], dp[i+1][j-1] + (1 if s[i] == s[j] else 0)).
+5. Precompute the dp table for all possible substrings of the given string s.
+6. For each query, extract the precomputed result from the dp table.
+7. Ensure the solution handles edge cases such as very short strings and queries that span the entire string.
+8. Optimize the solution to handle the constraints efficiently by using appropriate data structures and minimizing redundant calculations.
+

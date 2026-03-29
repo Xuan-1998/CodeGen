@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider a table dp[n][m] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i == 0) or no stuffing types left (j == m).
+
+// Base cases
+dp[0][j] = 0 for all j, since we can't make any buns if we have no dough.
+dp[i][0] = d0 * min(c0 // bi, n / ci) for all i, since we can only make buns with the first type of stuffing.
+
+// Fill the table in bottom-up manner
+for i from 1 to n:
+    for j from 1 to m:
+        if ai[j] > 0 and i >= bi[j]:
+            // Make a bun with the j-th stuffing type, or don't make any buns at all.
+            dp[i][j] = max(dp[i - bi[j]][j - 1] + di[j], d0 * min(c0 // bi[j], n / ci[j]))
+        else:
+            // We can't make a bun with the j-th stuffing type, so we don't make any buns.
+            dp[i][j] = dp[i][j - 1]
+
+// The maximum profit is stored in dp[n][m].
+===END PLAN===

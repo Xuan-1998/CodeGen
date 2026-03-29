@@ -1,0 +1,10 @@
+{
+    Consider all possible strings that can be formed by either deleting the last character or duplicating the original string. This can be done by considering all strings from length 1 to k.
+    Initialize the dynamic programming table as a 2D array with size (n+1) * 2, where each cell dp[i][j] represents the lexicographically smallest string of length i that can be obtained by either deleting the last character or duplicating the original string when j is the number of operations used.
+    Fill in the dynamic programming table bottom-up order. For strings of length i:
+        If i is 0, then the only possible string is an empty string and no operations are needed, so dp[0][0] = "".
+        If i is greater than 0, consider all possible strings that can be formed by either deleting the last character or duplicating the original string. For each string of length i:
+            Calculate the lexicographically smallest string of length i-1 using the dynamic programming table. This represents the lexicographically smallest string that can be obtained by either deleting the last character or duplicating the original string when the number of operations used is j-1.
+            If deleting the last character does not change the lexicographically smallest string, then dp[i][j] = dp[i-1][j-1]. Otherwise, if duplicating the string results in a lexicographically smaller string than deleting the last character, then dp[i][j] = s[:i-1] + s[-2].
+            If j is equal to k, return the lexicographically smallest string of length i as the result.
+}

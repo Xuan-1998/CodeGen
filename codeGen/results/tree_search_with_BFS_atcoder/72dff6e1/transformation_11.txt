@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+1. State: The state dp[i][j][k] represents the number of valid sequences of length i that have j distinct elements and k elements that appear exactly once. Here, i ranges from 0 to N, j ranges from 0 to N, and k ranges from 0 to j.
+2. Base Case: The base case will be dp[0][0][0] = 1, which represents that there is one valid sequence (an empty sequence) when there are no elements.
+3. Transition: The transition from dp[i][j][k] to dp[i+1][j][k] will be done as follows:
+   - If the next element is a new element that appears exactly once, then it can be added in Ai - k ways. So, dp[i+1][j+1][k+1] += dp[i][j][k] * (Ai - k).
+   - If the next element is a new element that appears more than once, then it can be added in k ways. So, dp[i+1][j+1][k] += dp[i][j][k] * k.
+   - If the next element is an existing element that appears exactly once, then it can be added in j ways. So, dp[i+1][j][k] += dp[i][j][k] * j.
+   - If the next element is an existing element that appears more than once, then it can be added in (j - k) ways. So, dp[i+1][j][k+1] += dp[i][j][k] * (j - k).
+4. After the iterations, the final answer will be the sum of all dp[N][j][k] for all valid j and k, modulo 998244353.
+5. The time complexity of this approach will be O(N^3), which is acceptable as N ≤ 500.
+===END PLAN===

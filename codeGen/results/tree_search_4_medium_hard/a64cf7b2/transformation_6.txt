@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by iteratively building up solutions for subproblems.
+Initialize a table dp with n+1 rows and T columns, where each cell [i][t] represents the maximum number of vertices that can be visited starting from vertex i within time t.
+
+Let's define our transition relationship:
+- If there is an edge from vertex i to vertex j with weight w, and we have enough time left (t >= w), then we can visit vertex j if it has not been visited before. In this case, update the dp table by setting dp[j][min(T, t-w)] = max(dp[j][min(T, t-w)], dp[i][t-w]+1).
+
+The base case is when i == 1, then the maximum number of vertices that can be visited is 1.
+
+To find the maximum number of vertices that can be visited starting from vertex n and ending at vertex n within a time limit of T, we need to iterate over all possible edges from vertex n back to vertex 1.
+- For each edge (u, v, w) where u != v, update the dp table by setting dp[v][t-w] = max(dp[v][t-w], dp[u][t-w]+1).
+
+Finally, return dp[n][T]-1 as our answer.
+
+===END PLAN===

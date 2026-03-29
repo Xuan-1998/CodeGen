@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+The base case is when j=0, meaning we're considering an empty array. In this case, check if the remaining elements in the permutation match array b.
+
+Define state s as a pair (i, j), where i represents the current position in the permutation and j represents the number of elements in array a. The transition relationship is by trying all possible splits of the permutation at position i, updating s accordingly.
+
+Use dynamic programming with memoization to store subproblem solutions in a 2D array dp.
+
+For each cell dp[i][j], try all possible splits of the permutation at position i and update j accordingly. If j=0, check if the remaining elements match array b. If true, return "YES". Otherwise, recursively call dp for the remaining elements and update j.
+
+The final answer is stored in the top-right corner of the dp array. Check this cell to determine if there exist arrays a and b that satisfy the conditions.
+
+===END PLAN===

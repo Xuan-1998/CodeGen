@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+The state can be defined as dp[k][n], where k is the digit place (0-indexed) and n is the integer value. The base case is when n < 10^(k-1), since all integers less than that do not have a kth digit.
+
+dp[k][n] = sum(1 for digit in str(n) if int(digit) == 1)
+
+Use a dictionary to store the intermediate results and update them accordingly as you iterate through the range [0, n].
+
+To avoid unnecessary computations, consider initializing dp[0][0] to be the total number of 1's in all integers less than or equal to n.
+
+Then, for each k from 1 to num_digits(n), where num_digits is a function that returns the number of digits in an integer:
+
+- For each n from 0 to n:
+    + Update dp[k][n] based on the values of dp[k-1][m] and m < 10^(k-1)
+    + Store the updated value in the dictionary
+
+Finally, return the value stored in dp[num_digits(n)][n]
+
+This plan avoids redundant computation by storing the intermediate results in a dictionary. It also considers edge cases (e.g., n = 0) by initializing dp[0][0] accordingly.
+
+===END PLAN===

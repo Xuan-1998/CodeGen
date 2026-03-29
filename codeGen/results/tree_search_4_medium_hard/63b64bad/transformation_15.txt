@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+
+The state expression is a combination of x, y, and some intermediate value. The base case is when the sequence becomes repetitive.
+
+state: (x, y, cycle_length), where cycle_length is the length of the current repetitive pattern
+
+Using a 3D table to store the state values and iteratively fill it up from bottom to top:
+
+* Initialize dp[0][1][cycle_length] = (1, 0, cycle_length) as the base case
+* For each sequence length i from n-1 down to 2:
+    * For each x in range(1, i+1):
+        * For each y in range(0, a_x+a_x):
+            * Calculate the next state: (x+a_x, y+a_x, cycle_length)
+            * Store this state in dp[i][x][y]
+* To find the final value of y for each run, simply iterate through the table and return the maximum y
+===END PLAN===

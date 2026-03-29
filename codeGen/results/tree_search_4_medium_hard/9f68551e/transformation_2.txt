@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+{
+    dp[i][t] = min(dp[i-1][max(0, t-k_i+1)] + h_i, dp[i-1][k_i-1])
+    i: 0 to n
+    t: 0 to max(k)
+}
+The state can be defined as (i, t) where i is the current monster index and t is the time until the next monster appearance; The base case is when there are no more monsters to cast spells on.
+The dynamic programming table dp[i][t] represents the minimum amount of mana required to kill all monsters up to the i-th one at time t.
+You can use a dictionary to store the results of subproblems to avoid redundant calculations, which is equivalent to memoization.
+The transition equation calculates the minimum amount of mana required to kill all monsters up to the i-th one at time t as the minimum between two possibilities: 
+1. Kill the current monster with damage equal to its health and use the remaining mana for the next monster; 
+2. Skip the current monster and use the remaining mana for the next monster.
+The base case is when there are no more monsters to cast spells on, which means the minimum amount of mana required is 0.
+You can fill in the dynamic programming table by iterating through all possible states (i, t) from top to bottom and left to right. 
+Then you can read off the answer as dp[n][max(k)]
+===END PLAN===

@@ -1,0 +1,13 @@
+
+1. Define a 2D DP table `dp[i][j]` where `dp[i][j]` represents the number of valid sequences of length `i` ending with the number `j`.
+2. Initialize the base case: `dp[0][j] = 1` for all `j` from 1 to N. This represents the empty sequence.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length `i`, iterate over all possible ending numbers `j` from 1 to N.
+5. For each `j`, compute `dp[i][j]` by summing up `dp[i-1][k]` for all `k` from 1 to N that satisfy the conditions:
+   - `k != j`
+   - The number of occurrences of `k` in the sequence is less than or equal to `A[k]`
+   - The number of occurrences of `j` in the sequence is less than or equal to `A[j]`
+6. Use a frequency array to keep track of the occurrences of each number in the sequence.
+7. The final answer is the sum of `dp[N][j]` for all `j` from 1 to N, modulo 998244353.
+8. Ensure to handle edge cases where `N` is very small or when `A` contains the minimum or maximum values allowed by the constraints.
+

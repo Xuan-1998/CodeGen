@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider the state as the last digit of an integer and formulate a recurrence relation based on this state. Let dp[i] be the total number of digit 1's in all non-negative integers less than or equal to i.
+
+The recurrence relation can be formulated as:
+dp[i] = sum of 1's in all integers from 0 to i-1 that end with digit 'i' (the last digit) + dp[i-1]
+
+This is because the total number of 1's in integers ending with the current digit 'i' is independent of the previous digits and can be summed up separately.
+
+Initialize the base case as dp[0] = 0, since there are no integers less than or equal to 0 that end with digit '0'.
+
+The dynamic programming approach ensures that each subproblem (the count of 1's in a specific range) is solved only once and its solution is stored for future reference.
+
+Finally, return the total count of 1's as dp[n].
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 2D array dp where dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals.
+State: dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order, considering only the current string has been reversed j times, where i = 0..n-1 and j = 0..m for some constant m.
+
+Maintain a dynamic programming table that stores the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals.
+Initialize dp[0][j] to 0 for all j, since the base case is an empty string sequence.
+Fill up the dp table by iterating over the strings and their corresponding costs. For each string, consider two possibilities: either it's reversed or not. If it's reversed, add its cost to the total cost of the previous i-1 strings (dp[i-1][j-1]) plus the minimum total cost of reversing the current string (dp[0][k] for some k). If it's not reversed, just consider the dp table values from the previous row. Choose the option that results in a lower total cost.
+To fill up the last row (i = n-1), consider only the first string sequence and calculate its minimum total cost using at most j reversals.
+
+Return dp[n-1][m] as the minimum total cost required to sort all strings in lexicographical order. If it's impossible to sort the strings, return -1.
+===END PLAN===

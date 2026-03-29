@@ -1,0 +1,8 @@
+], [
+The state could be represented by (n, m) where n is the remaining size of the alphabet and m is the remaining length of the word. The base case would be when there are no more characters left to place in the word.
+
+dp[i][j] = (m == 0 ? 1 : sum(dp[k][min(j-1, (n+k+2)/2)] * (k < i/2 + n // 2) for k in range(i+1))), 
+for 0 <= i < n, 0 <= j <= m
+
+This plan is correct and can be improved by using a prefix sum array to reduce the time complexity. The potential issue with this plan is that it does not handle edge cases where m > n. To fix this, we need to consider a case where there are more letters left in the alphabet than words of the given length.
+

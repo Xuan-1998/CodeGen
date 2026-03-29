@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequences and then count the number of maximum length subsequences
+dp[i] = len([j for j in range(i) if arr[j] < arr[i]]) + 1, where i is the index of the array element
+
+Maintain an auxiliary array, say cnt[i], that stores the number of sequences ending at index i and having the same maximum length as the longest one found so far
+dp[i] = max(dp[j] for j in range(i) if arr[j] < arr[i]) + 1
+
+Fill up a second array with this value to determine the number of longest increasing subsequences
+max_length = 0
+for i in range(len(arr)):
+    dp[i] = max(dp[j] for j in range(i) if arr[j] < arr[i]) + 1
+    max_length = max(max_length, dp[i])
+
+Count the number of sequences having the maximum length found so far
+count = sum(1 for i in range(len(arr)) if dp[i] == max_length)
+
+===END PLAN===

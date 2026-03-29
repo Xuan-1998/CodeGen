@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp = {(i, 0): True for i in range(len(stones))}
+for j in range(1, len(stones)):
+    dp[(j, 0)] = any(abs(stones[j] - stones[i]) in [k-1, k, k+1] and dp[(i, 1)] for i in range(j))
+    for prev_jump_len in range(min(k, j), max(k, j)+1):
+        if (j, prev_jump_len) not in dp:
+            dp[(j, prev_jump_len)] = False
+            for i in range(j-1, -1, -1):
+                if abs(stones[j] - stones[i]) in [prev_jump_len-1, prev_jump_len, prev_jump_len+1] and dp[(i, prev_jump_len-1)]:
+                    dp[(j, prev_jump_len)] = True
+                    break
+    print(any(dp[(len(stones)-1, j)] for j in range(min(k, len(stones)), max(k, len(stones))+1))))
+===END PLAN===

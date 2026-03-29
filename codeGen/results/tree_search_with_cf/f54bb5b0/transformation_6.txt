@@ -1,0 +1,14 @@
+
+1. Convert the tree into an adjacency list representation for efficient traversal.
+2. Use Depth-First Search (DFS) to explore the tree and compute the number of vertices at each distance from each vertex using a dynamic programming table.
+3. Define a dp table: dp[u][d] will represent the number of vertices that are exactly at distance d from vertex u.
+4. Initialization: dp[u][0] = 1 for all vertices u, since each vertex is at distance 0 from itself.
+5. Use DFS to populate the dp table:
+   a. For each vertex u, traverse its children v.
+   b. Use the dp table to combine results from the subtrees rooted at each child.
+   c. For each distance d from 1 to k, update dp[u][d] based on the dp values of its children.
+6. Calculate the number of valid pairs:
+   a. For each vertex u, sum up the pairs of vertices that are exactly k distance apart using the dp table.
+   b. Ensure that each pair is counted only once by considering pairs (u, v) where u < v.
+7. Output the total count of such pairs.
+

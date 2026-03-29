@@ -1,0 +1,13 @@
+
+1. Define a 2D DP array `dp` where `dp[i][j]` represents the number of valid sequences of length `i` that end with the integer `j`.
+2. Initialize the base case: `dp[0][j] = 1` for all `j` from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate over the length of the sequence from 1 to N:
+   a. For each length `i`, iterate over each possible integer `j` from 1 to N.
+   b. For each `j`, iterate over each possible previous integer `k` from 1 to N.
+   c. Check if adding `j` to the sequence ending with `k` is valid:
+      i. Ensure that the number of occurrences of `j` in the sequence does not exceed `A[j]`.
+      ii. Ensure that the number of occurrences of `k` in the sequence does not exceed `A[k]`.
+   d. If the conditions are satisfied, update `dp[i][j]` by adding `dp[i-1][k]` to it.
+4. The final answer is the sum of `dp[N][j]` for all `j` from 1 to N, modulo 998244353.
+5. Print the final answer.
+

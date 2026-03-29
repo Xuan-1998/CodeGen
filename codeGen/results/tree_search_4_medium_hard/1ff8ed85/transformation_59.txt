@@ -1,0 +1,29 @@
+dp = {}
+
+for i from 1 to n:
+    dp[i] = True
+    odd_lengths = sum(l % 2 for l in b[:i]) % 2
+    even_lengths = sum(l // 2 for l in b[:i]) % 2
+    if odd_lengths and even_lengths:
+        dp[i] = False
+
+memo = {}
+
+def can_obtain_b(i):
+    if i in memo:
+        return memo[i]
+    if i < 1:
+        return True
+    if not dp[i]:
+        return False
+    for j from 0 to 1:
+        for k from 0 to 1:
+            if j and k: continue
+            new_i = i - 1
+            if can_obtain_b(new_i):
+                memo[i] = True
+                return True
+    memo[i] = False
+    return False
+
+print("YES" if can_obtain_b(n) else "NO")

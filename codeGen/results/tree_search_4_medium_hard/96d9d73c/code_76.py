@@ -1,0 +1,16 @@
+def isPossiblePartition(A):
+    N, K, M = len(A), K, M
+
+    dp = [[False] * (M + 1) for _ in range(N + 1)]
+
+    for p in range(1, N):
+        for k in range(min(p // K, M + 1)):
+            if all(A[i] - A[0] <= M for i in range(p)):
+                if dp[p - 1][k]:
+                    dp[p][k] = True
+
+    for j in range(M + 1):
+        if dp[N - 1][j]:
+            return True
+
+    return False

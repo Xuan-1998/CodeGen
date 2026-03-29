@@ -1,0 +1,12 @@
+Define dp[i] as the maximum bitwise OR value of two non-empty substrings that have a total length of i and can be obtained by splitting the original string s at some position j, where 0 <= j < i.
+
+Initialize an array dp with size n+1 to store the maximum bitwise OR values for each suffix of the substring.
+Set dp[0] as 0 because there are no substrings of length 0.
+
+Iterate over the binary string from left to right and calculate the maximum bitwise OR value for each suffix of the substring, storing these values in the array.
+For each position i, consider splitting the current suffix at some position j, where 0 <= j < i.
+Calculate the maximum bitwise OR value for two non-empty substrings that have a total length of i-j and can be obtained by splitting the remaining suffix s[j:i] at some position k, where 0 <= k < i-j.
+Update dp[i] with the maximum bitwise OR value between the calculated value and the previously stored value dp[i-1].
+Implement memoization using Python's built-in functools.lru_cache decorator to store and reuse calculated values.
+
+Return dp[n] as the maximum possible value in binary representation without leading zeroes.

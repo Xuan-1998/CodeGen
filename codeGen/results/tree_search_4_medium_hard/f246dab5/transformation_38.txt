@@ -1,0 +1,19 @@
+A bottom-up approach with tabulation can be used where we fill up a 3D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+dp[i][k][c] might represent the minimum cost for a passenger to reach time t_i, considering all possible ticket combinations till now. 
+The state can be defined as (i, k, c), where i represents the current timestamp, k represents the number of 90-minute tickets used so far, and c represents the current timestamp modulo 90.
+Using a 3D table with dynamic programming to store dp[i][k][c] = min_cost for all possible ticket combinations till t_i, considering k 90-minute tickets.
+
+For each cell in the table (i, k, c), we can calculate the minimum cost by considering three options: 
+- Use no new ticket
+- Use a one-trip ticket
+- Use a 90-minute or daily ticket
+
+The base case for the dynamic programming would be dp[0][k][c] = 0, as there is no charge if there are no trips.
+
+The updated state and transition can be calculated as follows:
+
+dp[i][k][c] = min(dp[i-1][k][c], dp[i-1][k+1][c % 90 != c/90 ? c - (c % 90) : c + (90 - c % 90)] + 50, 
+                     dp[i-1][0][c] + 20)
+
+This plan considers all possible combinations of tickets and ensures that the minimum cost is calculated for each trip.

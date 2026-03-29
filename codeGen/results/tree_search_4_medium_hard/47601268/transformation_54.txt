@@ -1,0 +1,10 @@
+dp_state = {}
+def solve(n):
+    for i in range(0, n+1):
+        bin_i = bin(i)[2:]
+        dp[i] = 'false'
+        for j in range(len(bin_i)):
+            if j > 0 and bin_i[j] == '1' and bin_i[j-1] == '1':
+                dp[i] = 'true'
+                break
+    return sum(1 for i in range(n+1) if not dp[i])

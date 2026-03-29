@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Might consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Define dp[i] as the maximum bitwise OR value of two non-empty substrings that have a total length of i and can be obtained by splitting the original string s at some position j, where 0 <= j < i.
+Initialize dp with zeros.
+
+Consider initializing dp[1] = s[0], since the maximum bitwise OR value for a single-character substring is just the value itself.
+
+For each suffix of the string (from i to n), calculate the maximum bitwise OR value by considering all possible splits at position j, where 0 <= j < i:
+    Calculate the maximum bitwise OR values for left and right substrings: 
+        dp_left = dp[j-1] if j > 0 else s[:j]
+        dp_right = dp[i-j] if i > j else s[j:]
+    Update dp[i] as the maximum of bitwise OR value of (dp_left, dp_right) and s[j:i]
+
+Consider handling edge cases:
+    If n == 1, return s[0] since there's only one character.
+    If n <= 2, return s, since we can't split the string into two non-empty substrings.
+
+===END PLAN===

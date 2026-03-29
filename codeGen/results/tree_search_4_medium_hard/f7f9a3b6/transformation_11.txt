@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. We use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+
+Consider the current position i and the previous last split position k. If all characters from k+1 to i are the same, then there exists a valid split at this position. Otherwise, we can only consider the cases where the first character after the last split is different from the previous one.
+
+To fill up the dp table, we initialize dp[0][n-1] to 1 (since we have no splits initially), then iteratively fill up the dp table based on previous calculations:
+
+for i in range(n-2):
+    for j in range(i+1, n):
+        if all(s[k:j].count(c) <= a[ord(c)-97] for c in set(s[k:j])):  # Check if substring from k to j satisfies the condition
+            dp[i][j] = (dp[i][k-1] if i > 0 else 1) + sum(dp[k-1][j-1] for k in range(j, i-1, -1))
+        else:
+            dp[i][j] = sum(dp[k-1][j-1] for k in range(j, i-1, -1))
+
+for i in range(n):
+    if dp[i][n-1]:
+        break
+max_length = max(len(s[:i]) for i in range(n) if dp[i][n-1])
+min_split = min(i for i in range(n) if dp[i][n-1])
+
+===END PLAN===

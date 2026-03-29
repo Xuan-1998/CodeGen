@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(1) = 0, since we need no comparisons to select the most beautiful participant from a single girl.
+
+f(n) = min(f(n-1) + 1, n - f(n-1)) for n > 1
+
+Implement dynamic programming by creating a bottom-up approach where you fill the dp array in a reverse manner, starting from f(5·106) to f(2). This is because the value of f(m) depends on the values of f(k) for k < m.
+
+For each index i in the range [l, r], calculate the minimum number of comparisons needed to select the most beautiful participant from i girls by combining the results of smaller instances.
+
+Finally, calculate the result t0·f(l) + t1·f(l+1) + ... + tr - l·f(r) modulo 109 + 7 and return it as the output.
+
+===END PLAN===

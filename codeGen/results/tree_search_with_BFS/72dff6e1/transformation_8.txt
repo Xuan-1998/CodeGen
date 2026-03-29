@@ -1,0 +1,11 @@
+
+1. Define the state dp[i][j] as the number of valid sequences of length i where the last number is j.
+2. Initialize the dp array:
+   - dp[0][j] = 1 for all valid j, since any single element sequence is valid if it satisfies the given conditions.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over all possible last elements j.
+5. For each j, iterate over all possible previous elements k.
+   - If k is a valid previous element (i.e., the number of occurrences of k in the sequence is at most A_k and the number of occurrences of j in the sequence is at most A_j), update dp[i][j] by adding dp[i-1][k].
+6. The final answer will be the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+7. Handle edge cases where N = 1 or all A_i are 1.
+

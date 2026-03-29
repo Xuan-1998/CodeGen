@@ -1,0 +1,17 @@
+
+1. Frequency Array: Create a frequency array count where count[i] represents the number of times integer i appears in the sequence. This helps in calculating the total points for each integer efficiently.
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution iteratively from the base cases using a table to store results of subproblems. The time complexity is O(n) and space complexity is O(n) due to the table used for storing results.
+   - State Expression: Let dp[x] be the maximum points that can be obtained considering all integers from 1 to x. The transition relation will be dp[x] = max(dp[x-1], dp[x-2] + count[x] * x), where count[x] is the frequency of the integer x in the sequence.
+   - Base Cases: Initialize dp[0] = 0 (since no points can be earned from zero elements) and dp[1] = count[1] (since the only option is to take all 1s).
+
+3. Iteration: Iterate from 2 to the maximum integer value present in the sequence and apply the transition relation to fill up the dp array.
+
+4. Result: The result will be stored in dp[max_value], where max_value is the maximum integer present in the sequence.
+
+Edge Cases:
+- If the sequence length is 1, the maximum points will be the single integer itself.
+- If all integers in the sequence are the same, the maximum points will be the sum of all integers.
+- If the sequence contains consecutive integers, the solution should handle the removal of ak ± 1 correctly.
+
+

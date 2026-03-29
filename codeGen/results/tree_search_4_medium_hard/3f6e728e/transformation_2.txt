@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+The state expression could be dp[i] = number of ways to build an i-sequence, where 1 ≤ i ≤ C. 
+dp[i] represents the number of ways to build a sequence of spheres with radii from 1 to i.
+We can use dynamic programming arrays dp_upper and dp_lower to store the intermediate results for upper and lower hemispheres respectively.
+
+For each possible radius r in [1, C], we can calculate dp[r] as follows:
+- If there is no upper hemisphere with radius r, then dp[r] = dp[r - 1]
+- If there are k upper hemispheres with radius r, then dp[r] = (dp[r - 1] * (C - r + 1)) % MOD + k
+
+Similarly, we can calculate dp_lower[r] as follows:
+- If there is no lower hemisphere with radius r, then dp_lower[r] = dp_lower[r - 1]
+- If there are k lower hemispheres with radius r, then dp_lower[r] = (dp_lower[r - 1] * (C - r + 1)) % MOD + k
+
+Finally, the answer for each test case would be the sum of all values in dp_upper and dp_lower arrays.
+
+===END PLAN===

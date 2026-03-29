@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D array dp where dp[i][j] represents the maximum score that can be achieved after processing the first i elements and making j moves, considering that no more than z moves to the left are allowed in this process.
+
+Define the base case: dp[1][0] = arr[1], as there is only one element initially, so the maximum score is just the value of the initial element.
+
+For 2 <= i <= n and 0 <= j <= k:
+    If j < z, then consider two options: move to the left or right.
+        dp[i][j] = max(dp[i-1][j-1] + arr[i-1], dp[i-1][j] + arr[i])
+    Else (j >= z), do not allow any moves to the left, so only one option remains:
+        dp[i][j] = dp[i-1][j-1] + arr[i]
+
+Finally, return dp[n][k] as the maximum score that can be achieved after processing all elements and making k moves.
+
+===END PLAN===

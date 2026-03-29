@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+A pair (k, c) representing the k-th string's cost to reverse and its current reversed or original status
+
+Formulate the state as a pair (i, s) where i is the index of the current string and s is the lexicographical order of the strings seen so far. The possible values for s are all binary numbers from 0 to (1 << k).
+
+Maintain a 2D DP table with dimensions n x (1 << k), where k is the maximum length of the strings, and use bitwise operations to efficiently traverse the different possible orders of the strings.
+
+The base case: When i is n, the minimum cost required to sort the strings in lexicographical order is the total cost of all strings if they are already sorted. This can be calculated as the sum of costs of reversing each string from its original reversed status.
+
+The recursive case: Given a string at index i and an order s, the minimum cost required to sort the strings in lexicographical order considering this string and the order s is either:
+- The minimum cost required to sort the remaining (n - 1) strings in the same order s if the current string can be inserted into this order without reversing it. This cost can be calculated by looking up the DP value for the state (i + 1, s).
+- The minimum cost required to sort the remaining (n - 1) strings in an order obtained by inserting the current string into the order s and then reversing it. This cost is equal to the sum of the cost of reversing the current string and the minimum cost required to sort the remaining (n - 2) strings in the same order.
+
+The optimal substructure property ensures that the minimum cost required to sort the strings in lexicographical order can be calculated by solving smaller instances of the problem. The memoization approach allows us to avoid recalculating these solutions multiple times, making the algorithm more efficient.
+
+===END PLAN===

@@ -1,0 +1,6 @@
+1. Think about how you can use dynamic programming to solve this problem. You can consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them. This way, you can avoid re-computing the same subproblems multiple times.
+2. dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+3. Consider dp[i][j] as the minimum of two options: either delete the last character of s[:i] and get dp[i-1][j-1], or duplicate s[:i-1] to get dp[i-1][j].
+4. Use a 2D DP table where dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+
+Note: This plan seems correct and it does include edge cases. The only potential issue is if we have a string with n characters, then for every i from 0 to n, we should consider both deleting the last character and duplicating the string.

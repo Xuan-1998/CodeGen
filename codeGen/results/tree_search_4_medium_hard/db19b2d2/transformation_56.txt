@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming. The state could be a pair (i, k) representing the current department i and the number of players from that department already selected k.
+
+The transition relationship could be based on the idea of adding a new player to the team or stopping when the team size reaches n. We need to consider the probability that the newly added player is from the department of interest, given that we have already selected k players.
+
+Dynamic programming can be applied by creating a 2D array where each cell dp[i][k] represents the probability that after selecting k players from i departments, there is at least one player from the department of interest. The base case would be when k = 0, which means the team is not yet formed.
+
+For the transition from state (i-1, k) to state (i, k+1), we need to calculate the probability that the newly added player is from the department of interest, given that we have already selected k players. This can be done by summing up the probabilities for all departments j such that si > 0 and j ≠ h, and then subtracting this value from 1.
+
+This process continues until i = m (i.e., we have considered all departments) or k = n (i.e., we have formed a team of size n). The final result is the probability stored in dp[m][n].
+
+===END PLAN===

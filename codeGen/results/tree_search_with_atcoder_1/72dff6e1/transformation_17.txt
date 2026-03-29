@@ -1,0 +1,17 @@
+
+1. Bottom-Up Approach with Tabulation:
+   - Initialize a DP table dp where dp[i][j] represents the number of valid sequences of length i ending with number j.
+   - Base Case: dp[0][j] = 1 for all j in 1 to N, representing that there is exactly one way to form an empty sequence.
+   - State Transition: 
+     - For each length i from 1 to N:
+       - For each number j from 1 to N:
+         - dp[i][j] = sum(dp[i-1][k] for all k from 1 to N such that k != j and k <= A[j-1]).
+   - The final answer will be the sum of dp[N][j] for all j from 1 to N.
+
+2. Edge Cases:
+   - When N = 1, ensure that the solution handles the smallest input size correctly.
+   - When all A_i are equal to N, ensure that the solution handles cases where all elements can appear N times.
+
+3. Time Complexity: O(N^3), due to the nested loops for filling the DP table.
+4. Space Complexity: O(N^2), due to the storage required for the DP table.
+

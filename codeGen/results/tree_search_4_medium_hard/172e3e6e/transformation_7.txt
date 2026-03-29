@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem involves finding the number of good subsequences, which seems to be a function of the current element and the previous subsequence lengths. This suggests that dynamic programming with memoization could be effective.
+
+State Expression: 
+Let dp[(i, pre)] be the count of good subsequences that can be extended by appending i, given that it's divisible by i, with the previous longest length being pre.
+Base Case: 
+When i is 1, we only consider sequences with length 0. So, dp[(1, 0)] = 1 and for any other (i, pre), dp[(i, pre)] = 0.
+
+Define the state as ((i, pre)) where i is the current element and pre is the previous subsequence length.
+Use a dictionary-based memoization approach, defining each key-value pair as ((i, pre), count) and using get() to handle non-existent keys. The initial values should be set for (1, 0) = 1 and any other ((i, pre)) to 0.
+
+For each i from 2 to n:
+    For each pre from 0 to i-1:
+        if a[i] is divisible by i:
+            dp[(i, pre)] = sum(dp[(j, k)] for j in range(1, i) for k in range(pre+1)) + (pre == 0)
+        else:
+            dp[(i, pre)] = 0
+
+The answer is the value of dp[(n, n-1)]
+===END PLAN===

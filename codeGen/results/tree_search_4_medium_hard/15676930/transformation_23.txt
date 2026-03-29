@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: The dynamic programming solution can be viewed as a 2D array, where each cell [i][j] represents the maximum joy that can be obtained by feeding the first i hares and having j hares full.
+
+The state expression could be dp[i][j] = sum of joys for each possible ordering of the last two hares.
+
+dp[i][j] = max(dp[i-1][j-1] + a_i, dp[i-1][j] + b_i, dp[i-1][j+1] + c_i)
+
+To implement dynamic programming using the tabulation method:
+
+* Initialize a 2D array dp of size (n+1) x (n+1) with all values initially set to -INF.
+* Set dp[0][j] = 0 for all j. This represents the base case where there are no hares left to feed.
+* Iterate over i from 1 to n and for each i, iterate over j from 0 to i:
+	+ Calculate dp[i][j] as described in the state expression.
+	+ Update dp[i][j] with the maximum value found.
+* The maximum total joy that can be obtained is stored in dp[n][k], where k is the number of hares full.
+
+===END PLAN===

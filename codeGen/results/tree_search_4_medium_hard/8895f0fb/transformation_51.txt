@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+
+dp[0] = 0 (base case)
+for i from 1 to N:
+    for j from 0 to i:
+        k = i - j
+        if j == 0 or k == 0: dp[i] += dp[j-1] * dp[k-1]
+        else: dp[i] += dp[j-1] * dp[k-1] + (j >= 1 and k >= 1) * (1 / (i+1))
+    dp[i] /= (2*i)
+===END PLAN===

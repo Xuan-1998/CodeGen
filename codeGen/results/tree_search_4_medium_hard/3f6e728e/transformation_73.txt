@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+We can use recursion with memoization to break down the problem into smaller subproblems and avoid redundant computations.
+
+State: (n, m, k) where n is the number of upper hemispheres left, m is the number of lower hemispheres left, and k is the count of different radii used so far. 
+Base case: when i is 0, we return 1 as there's only one way to build an empty sequence.
+
+Transition relationship: dp[n][m][k] = sum(dp[n-1][m][j][k-1] * (U_n == U_j)) for j from 0 to N. This represents the number of ways to choose the next upper hemisphere radius, given the current count k of different radii used.
+
+We use a dictionary dp to store the intermediate results as we compute them. We update the final answer using these stored values.
+
+Initialisation: dp[0][m][k] = 1 for all m and k.
+
+Transition relationship: dp[n][m][k] = sum(dp[n-1][j][k-1] * (U_n == U_j)) for j from 0 to N. This represents the number of ways to choose the next upper hemisphere radius, given the current count k of different radii used.
+
+Final answer: return dp[N][M][C]
+===END PLAN===

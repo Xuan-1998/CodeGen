@@ -1,0 +1,18 @@
+Plan:
+
+Think about how you can use dynamic programming to solve this problem. You can consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them. This way, you can avoid re-computing the same subproblems multiple times.
+
+:  State: dp[i][j] - whether the lexicographically smallest string of length j can be formed by deleting or duplicating the last character of the original string of length i; Transition: Update dp[i][j] by either deleting or duplicating the last character of dp[i-1][j-1]. If j == 0, consider only the case where the last character is deleted.
+
+Implement memoization using a dictionary to store the previously computed states and their corresponding lexicographically smallest strings.
+
+For the output string, iterate through the dp table from bottom to top (i.e., from shorter lengths to longer ones) until you find the first state where j == k. Then, construct the lexicographically smallest string of length k based on this state.
+
+Let's illustrate this plan with an example:
+
+Given s = "abc" and k = 3.
+- dp[2][1] represents whether the lexicographically smallest string of length 1 can be formed by deleting or duplicating the last character of the original string of length 2. This is true because either 'b' can be deleted, leaving an empty string, or 'bc' can be duplicated to get 'bcc'.
+- dp[2][2] represents whether the lexicographically smallest string of length 2 can be formed by deleting or duplicating the last character of the original string of length 2. This is true because either 'b' can be deleted, leaving 'ac', or 'bc' can be duplicated to get 'bcc'.
+- dp[3][3] represents whether the lexicographically smallest string of length 3 can be formed by deleting or duplicating the last character of the original string of length 3. This is true because either 'c' can be deleted, leaving 'ab', or 'abc' can be duplicated to get 'abcabc'.
+
+We start with i = 2 and j = k (i.e., i = 2, j = 3). Since dp[2][3] is True, we consider only the case where 'c' is duplicated. This gives us 'abcabc'. Therefore, our answer is 'abcabc'.

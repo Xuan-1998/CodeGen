@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation, as this problem has an optimal substructure.
+
+Define the state as dp[i], which represents the maximum number of matrices that can be formed with a trace of i and a positive determinant, for all 1 ≤ i ≤ N.
+
+The base case is when i = 1. In this case, we can only form one matrix with a trace of 1 and a positive determinant, so dp[1] = 1.
+
+For the recursive case, consider two matrices A and B that have a trace of i-1 and a positive determinant. We can combine these two matrices to form a new matrix C with a trace of i and a positive determinant.
+
+The number of ways to choose A and B is dp[i-1] * (i-1) / 2, since there are (i-1) / 2 possible values for the top-left element of A, and we can choose any two matrices that have the same trace and a positive determinant.
+
+However, this count includes duplicate cases, so we need to divide by 2 to avoid double-counting. Therefore, the recurrence relation is:
+
+dp[i] = sum(dp[j] * (i-j) / 2 for j from 1 to i-1)
+
+The final answer is dp[N].
+
+===END PLAN===

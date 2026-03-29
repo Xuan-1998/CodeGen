@@ -1,0 +1,22 @@
+
+2. Bottom-up strategy with tabulation: This approach builds a table in a bottom-up manner, iteratively solving subproblems and storing the results in a table. It avoids recursion overhead and is typically easier to implement iteratively. Time complexity: O(N*K), space complexity: O(N*K).
+
+Base Case: 
+- dp[0][0] = 1, which means there is exactly one way to have zero passes and player 0 (initial player) ends up with the ball.
+- dp[0][j] = 0 for all j != 0, meaning there are no ways to have zero passes and any player other than player 0 ends up with the ball.
+
+Transition:
+- dp[i][j] = sum(dp[i-1][m] for all m != j), which means the number of ways to pass the ball i times to player j is the sum of the number of ways to pass the ball i-1 times to all other players except j.
+
+Final Calculation:
+- The result for each test case is dp[N][P] % 1000000007, where P is the particular player who should receive the ball last (P = 0 in this case since the problem specifies a particular player without loss of generality).
+
+Steps:
+1. Initialize a 2D list `dp` of size (N+1) x (K+1) with all elements set to 0.
+2. Set dp[0][0] = 1.
+3. Iterate over the number of passes from 1 to N.
+4. For each pass count, iterate over each player from 0 to K.
+5. For each player, compute the number of ways to pass the ball to that player by summing the ways from all other players.
+6. Store the result in dp[i][j].
+7. After filling the table, the result for each test case is dp[N][0] % 1000000007.
+

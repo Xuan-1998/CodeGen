@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. Use memoization to store the beauty values for previously computed subproblems.
+
+The state expression is a pair (k, v) where k is the index of the last considered element in the array, and v is its beauty value. The base case is when k = n-1.
+
+state: (k, v) where k is the index of the last considered element in the array, and v is its beauty value; transition relation:
+  if the current number is a good prime, update the state as (k+1, v + min_prime);
+  if it's a bad prime, update the state as (k+1, max(0, v - 2));
+
+Create a dynamic programming table dp of size n+1 where dp[i] is the maximum beauty for the subarray ending at index i.
+
+The final answer will be the maximum value in the dp array, which corresponds to the maximum beauty for the entire array.
+
+===END PLAN===

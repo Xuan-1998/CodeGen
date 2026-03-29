@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use dynamic programming with a bottom-up approach by tabulating the intermediate results for each length and number of operations.
+
+Create a 2D array dp where dp[i][j] represents the maximum number of digits that can be obtained after applying j operations to an integer of i digits.
+The base case is dp[0][j] = 1 for all j, since there are no digits initially.
+
+dp[i][j] is equal to dp[i-1][j-1] * (i-1) if i contains only one digit, regardless of j. This is because a single-digit number remains the same after applying operations.
+For general cases, calculate dp[i][j] as the maximum value between:
+* dp[i-1][j] + 1: incrementing the last digit
+* dp[i-1][j-1] * (i-1) if i contains only one digit
+
+Use a 1D array max_length where max_length[j] is the maximum number of digits that can be obtained after applying j operations.
+Initialize max_length[0] = 0, and then calculate each subsequent value as the maximum between:
+* max_length[j-1]: no operation
+* dp[i][j] + 1: apply one more operation
+
+The answer is max_length[m] modulo 10^9+7.
+
+===END PLAN===

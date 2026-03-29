@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use dynamic programming with a bottom-up approach by tabulating the intermediate results for each length and number of operations.
+
+Let dp[i][j] be the maximum possible length after j operations on a number of i digits. The base case is dp[0][j] = 1 for all j, since there are no digits initially.
+
+dp[i][j] is equal to min(10 * (i-1) + 2, 10^9+7) if i contains only one digit, regardless of j.
+
+Utilize a set s to keep track of the unique lengths of numbers that have been processed so far, with the aim of minimizing repeated computations.
+
+For each number length i and operation count j:
+    If i is in s, skip this iteration since the result has already been computed.
+    Otherwise:
+        dp[i][j] = 1 if i contains only one digit.
+        For k from 0 to i-1:
+            dp[k][j-1] times (k+1) is added to dp[i][j].
+        Add dp[i-1][j] to dp[i][j].
+    Update s with the new unique lengths.
+
+===END PLAN===

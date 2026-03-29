@@ -1,0 +1,25 @@
+
+1. **State Representation and Initialization**:
+    - Define `dp[u][d]` as the number of vertices that are exactly at distance `d` from vertex `u`.
+    - Initialize `dp[u][0] = 1` for all `u`, as the distance from a vertex to itself is zero.
+    - Initialize `dp[u][d] = 0` for all other distances `d > 0`.
+
+2. **Tree Traversal**:
+    - Perform a Depth-First Search (DFS) starting from an arbitrary root (say vertex 1) to populate the `dp` table. This will help in computing the number of vertices at each distance `d` from each vertex `u`.
+
+3. **State Transition**:
+    - For each vertex `u`, calculate `dp[u][d]` using the values of `dp` from its child vertices.
+    - Transition relation: `dp[u][d] = sum(dp[v][d-1] for each child v of u)`. This means that the number of vertices at distance `d` from `u` can be found by summing the number of vertices at distance `d-1` from each of `u`'s children.
+
+4. **Counting Pairs**:
+    - After populating the `dp` table, count the number of valid pairs `(u, v)` such that the path length between `u` and `v` is exactly `k`.
+    - For each vertex `u`, for each child `v`, use the precomputed `dp` values to count pairs where the path length is exactly `k`.
+
+5. **Edge Cases**:
+    - Consider the case when `n = 1`, the answer should be `0` since there are no edges.
+    - Consider the case when `k = 1`, the answer should be the number of edges in the tree, which is `n - 1`.
+
+6. **Complexity**:
+    - Time complexity: O(n * k) due to the DFS traversal and the state transition calculations for each vertex and each distance.
+    - Space complexity: O(n * k) for storing the `dp` table.
+

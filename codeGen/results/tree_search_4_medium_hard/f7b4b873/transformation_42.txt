@@ -1,0 +1,15 @@
+dp = [[False] * len(s) for _ in range(len(s))]
+start = [0] * (len(s) + 1)
+memo = {}
+
+for length in range(1, len(s) + 1):
+    for start_index in range(len(s) - length + 1):
+        end_index = start_index + length
+        if length == 1 or s[start_index:end_index].lower() == s[start_index:end_index][::-1]:
+            dp[start_index][end_index] = True
+            memo[(start_index, end_index)] = True
+
+for i in range(len(s)):
+    for j in range(i, len(s)):
+        if dp[i][j]:
+            print(list(range(i, j + 1)))

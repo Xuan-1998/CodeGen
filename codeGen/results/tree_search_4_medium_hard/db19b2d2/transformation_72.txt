@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming (DP) instead of greedy algorithm. This is because the problem requires us to consider all possible combinations of players from different departments, not just selecting the most promising one.
+
+The state could be a 2D array dp[i][j] where i represents the number of departments seen and j represents whether or not we have seen the department of interest (true if we have seen it, false otherwise). The value dp[i][j] would represent the probability that there are at least i players from the department of interest among a team of size j.
+
+The transition relationship would involve updating this probability based on whether or not we select a player from the department of interest. If we do, then the next state would be dp[i+1][j+1] and if we don't, then it would be dp[i+1][j]. We also need to update the total number of combinations for each team size.
+
+Implement memoization using a dictionary where the key is the current state (i.e., the number of departments seen and whether or not we have seen the department of interest) and the value is the corresponding probability. This would help us avoid recomputing the same subproblems multiple times.
+
+Finally, calculate the answer by summing up the probabilities for each team size from 1 to n.
+
+===END PLAN===

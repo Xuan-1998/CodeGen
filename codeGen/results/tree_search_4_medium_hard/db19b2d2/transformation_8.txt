@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if sum(s[k] for k in range(m) if k!=h and s[k]>=i-j+1) + dp[i-1][j-1] if i>0 and j>0 else 0
+
+For the top-down approach, we can use a dictionary to store the intermediate results.
+dp = {}
+def calculate_probability(i, j):
+    if (i, j) in dp:
+        return dp[(i, j)]
+    if i == 0 or j == 0:
+        return 1
+    probability = 0
+    for k in range(m):
+        if k != h and s[k] >= i-j+1:
+            probability += 1
+    dp[(i, j)] = probability + calculate_probability(i-1, j-1) if i>0 and j>0 else 0
+    return dp[(i, j)]
+
+For the bottom-up approach, we can initialize a 2D table with zeros, then iteratively fill this table based on the transitions.
+dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
+for i in range(1, m+1):
+    for j in range(1, n+1):
+        dp[i][j] = 1
+        for k in range(m):
+            if k != h and s[k] >= i-j+1:
+                dp[i][j] += dp[i-1][j-1]
+return dp[m][n]
+
+The plan does consider edge cases, such as when there are not enough basketball players in the university to form a team.
+===END PLAN===

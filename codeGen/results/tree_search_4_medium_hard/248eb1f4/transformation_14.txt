@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i] = last_winner if we're considering i players, and the dynamic programming array stores the winners for each number of players from 1 to X.
+
+dp[i] = (i-1) % (X+1) if i is a multiple of M, otherwise dp[(i-1)-M] % (X+1). This choice uses the remainder operator to determine the next winner.
+
+The base case is when i = 1, in which case we consider it as a special case where there's only one player and that person is always the winner. So, dp[1] = 0 for all values of X.
+
+We start by initializing the dynamic programming array with the base case value for each number of players from 1 to X.
+Then, we fill up the dynamic programming array iteratively from i = M-1 to X. In this process, we consider each number of players and calculate its winner based on the previously calculated winners.
+
+Finally, we can simply return dp[X] as it represents the winner if there are X players.
+
+===END PLAN===

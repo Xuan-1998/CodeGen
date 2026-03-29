@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Create a 2D table dp where dp[i][j] represents the minimum number of steps needed to color all letters in the substring t[i...j] red.
+
+1. Initialize dp[0][0] = 0 and dp[i][0] = -1 for i > 0.
+2. Iterate over the text from left to right:
+    For each index i, iterate from j = 1 to |t| - i + 1:
+        If t[i...j] is in the set of strings s_*, then update dp[i][j] with the minimum number of steps needed to color all letters in the substring t[i...j] red.
+        Otherwise, dp[i][j] = -1.
+3. Initialize m = |t| and w = 0.
+4. Iterate over the table from bottom up:
+    For each i, iterate from j = |t|-i+1 to 0:
+        If dp[i][j] > m then update m = dp[i][j] and w = i.
+5. Print m and w.
+
+===END PLAN===

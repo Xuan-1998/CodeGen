@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+To solve this problem using dynamic programming with memoization:
+For each query, calculate the total brightness for the given rectangular view and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+A state consists of two indices i and j indicating which stars are currently within the rectangular view.
+
+State: (i, j), where:
+  - i is the index of the leftmost star that has not been covered by the current view
+  - j is the index of the topmost star that has not been covered by the current view
+
+Transition relationship:
+  - The state transitions when a new line segment is added to the view. This can be done by checking if any stars in the new line segment are within the current view.
+
+Calculate the total brightness for each query using dynamic programming with memoization, where:
+  - The state is (i, j) representing which stars are currently within the rectangular view
+  - The transition relationship is the addition of new line segments to the view
+
+Memoize the total brightness values in a table dp[][].
+For each query:
+  - Initialize i and j as the indices of the leftmost and topmost stars that are initially within the view.
+  - Calculate the total brightness by iterating through all stars within the view, updating i and j accordingly.
+  - Store the calculated total brightness value in dp[i][j].
+  - Return the stored value.
+
+===END PLAN===

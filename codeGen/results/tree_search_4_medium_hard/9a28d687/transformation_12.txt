@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+A pair (k, c) representing the k-th string's cost to reverse and its current reversed or original status
+
+Formulate the state as a pair (i, s) where i is the index of the current string and s is the lexicographical order of the strings seen so far.
+
+Create a 2D DP table with dimensions n x (1 << k), where k is the maximum length of the strings, and initialize all values to infinity.
+
+To fill in the DP table, iterate through each pair (i, s). For the base case, if i equals n, return the cost for the current state. If not, calculate the minimum total cost required to sort the strings in lexicographical order by considering two options:
+
+1.  Reverse the i-th string at a cost of c[i], and recursively solve the problem with the current reversed or original status.
+2.  Do not reverse the i-th string, and recursively solve the problem with the current state.
+
+Choose the option with the minimum total cost, and update the DP table accordingly.
+
+To find the minimum total cost required to sort all strings in lexicographical order, return the value at position (n, 0) in the DP table.
+
+===END PLAN===

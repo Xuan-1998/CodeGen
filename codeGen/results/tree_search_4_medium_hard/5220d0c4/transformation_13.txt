@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: For each element in the array, consider the minimum prime divisor of that element. If two elements have the same minimum prime divisor, they can be combined into a single subproblem.
+
+Let dp[i] represent the maximum beauty value for the subset {arr[0], ..., arr[i]}.
+The base case could be the beauty value for an empty array or when all elements in the array are bad primes. In this case, the beauty value would be the number of good primes in the array.
+
+For i > 0, dp[i] = max(dp[j] + (good_primes(arr[j+1..i]) - bad_primes(arr[j+1..i])), where j is such that arr[j] has the same minimum prime divisor as arr[i].
+Use a dictionary to store the beauty values for previously computed subproblems, and update the dictionary as you iterate through the array.
+===END PLAN===

@@ -1,0 +1,19 @@
+
+1. State Definition: Let dp[i][j] represent the number of valid sequences of length i using numbers from 1 to j, where the number of occurrences of j in the sequence is at most A[j-1]. 
+
+2. Base Case: dp[0][j] = 1 for all j from 1 to N. This represents that there is exactly one way to form an empty sequence.
+
+3. Transition: 
+   - For each i from 1 to N:
+     - For each j from 1 to N:
+       - dp[i][j] = dp[i][j-1] + dp[i-1][j-1] * min(A[j-1], i)
+       - Here, dp[i][j-1] represents the number of valid sequences of length i using numbers from 1 to j-1.
+       - dp[i-1][j-1] * min(A[j-1], i) represents adding the number j to the sequence, considering the constraint on the number of occurrences of j.
+
+4. Result: The answer will be the value of dp[N][N] modulo 998244353.
+
+5. Edge Cases:
+   - When N = 1, the sequence will have only one element, and the number of valid sequences will be determined by A[1].
+   - When all A[i] are 1, the sequence must be a permutation of 1 to N.
+   - When A[i] are large enough, the constraints become less restrictive.
+

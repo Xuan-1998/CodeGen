@@ -1,0 +1,28 @@
+state_expression = (i, j, k) where i is the current index for string A, j is the current index for string B, and k is the number of common characters found so far;
+
+base_case = (0, 0, 0)
+
+transition_function = 
+    if suffix_A[i-1] == suffix_B[j-1]:
+        return ((i-1, j-1, k+1), 4 * k - i - j)
+    else:
+        max_score = 0
+        for a in range(2):
+            for b in range(2):
+                if a and i > 0: (A[i-1], B[j-1])
+                elif b and j > 0: (B[j-1], A[i-1])
+                score = ((i-a, j-b, k), max_score)
+                return score
+    return base_case
+
+max_similarity = 0
+for i in range(len(A)):
+    for j in range(len(B)):
+        state = (i, j, 0)
+        while True:
+            state, score = transition_function(state)
+            if state == base_case:
+                max_similarity = max(max_similarity, score)
+                break
+
+return max_similarity

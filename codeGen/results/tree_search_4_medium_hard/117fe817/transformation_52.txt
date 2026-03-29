@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+For each integer i from 0 to n, consider it as a binary number and count the number of '1's in its representation.
+
+Let dp[i] be the number of '1's in the binary representation of integers from 0 to i. Initialize dp[0] = 0.
+
+Then, for each integer j from 1 to i:
+    If j is divisible by 2, then the binary representation of j will have one less '1' than the binary representation of (j / 2).
+    If j is not divisible by 2, then the binary representation of j will be identical to the binary representation of (j - 1) with an additional '1'.
+
+So, dp[j] = dp[j / 2] + (j % 2 == 1 ? 1 : 0)
+
+Finally, return dp[n]
+===END PLAN===

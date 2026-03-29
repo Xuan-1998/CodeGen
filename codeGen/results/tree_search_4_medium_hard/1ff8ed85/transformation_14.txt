@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b. We can use this state to store the information about whether it's possible to split the previous segment into segments with lengths in sequence b.
+
+If we have a valid transition from the previous state, it means we found a way to split the previous segment into segments with lengths in sequence b, so we can recursively call the function on the previous state. We will store the result of this recursive call in our dictionary to avoid repeated computations.
+
+The base case for the recursion will be when the length of sequence $a$ is 0, at which point we can return YES if it's possible to obtain sequence b from some sequence a, and NO otherwise.
+
+To handle edge cases, we should check that sequence b does not contain duplicate values and has a length greater than 1. If either of these conditions is not met, we can immediately return NO.
+
+===END PLAN===

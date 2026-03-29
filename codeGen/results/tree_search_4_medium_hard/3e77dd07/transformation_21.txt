@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+To determine if s2 is a scrambled string of s1, we can use Dynamic Programming and memoization.
+
+State: (i, j) represents the indices of the current overlapping subproblem;
+Transition:
+    - If i == 0 or j == 0, return whether the remaining parts of both strings are scrambled.
+    - Else, partition s1 and s2 into two non-empty substrings at indices i-1 and j-1.
+    - Recursively check if the left and right subtrees of the current node are scrambled.
+    - If they are, then the current node is also scrambled.
+
+Memoization:
+    - Store the result for each subproblem in a 2D array memo[i][j].
+    - Before making any recursive calls, check if the result for the current subproblem is already stored in memo[i][j].
+    - If it is, return the cached result.
+    - If not, recursively partition s1 and s2 into two non-empty substrings at indices i-1 and j-1, and store the result in memo[i][j].
+
+Edge cases:
+    - Handle strings of length 0 by returning True (since an empty string is scrambled with itself).
+    - Handle strings of different lengths by returning False.
+===END PLAN===

@@ -1,0 +1,23 @@
+
+1. Top-down Approach with Memoization: This approach involves solving the problem recursively and storing the results of subproblems to avoid redundant calculations. It can be more intuitive but may have higher overhead due to recursive calls. Time complexity: O(n), space complexity: O(n).
+    - Base Case: The base case is when the array has only one element left, which means dp[0] = a[0].
+
+2. State: Define dp[i][j] as the maximum possible value of the remaining element when considering the subarray from index i to j.
+    - Transition: For each subarray, choose an element and its adjacent element, remove the adjacent element and update the chosen element. The transition relation can be:
+        dp[i][j] = max(dp[i][k] - a[k+1], dp[k+1][j] - a[k]) for all k from i to j-1.
+
+3. Tabulation: This approach involves iteratively solving the problem and storing results in a table.
+    - Initialization: Initialize dp[i][i] = a[i] for all i from 0 to n-1.
+    - Iteration: Fill the dp table for increasing lengths of subarrays. For each length l from 2 to n:
+        - For each subarray starting at index i and ending at index j = i + l - 1:
+            - Compute dp[i][j] using the transition relation.
+    - Final Result: The answer will be stored in dp[0][n-1].
+
+4. Edge Cases:
+    - If the array has only one element, the result is the element itself.
+    - Handle cases with negative and large values appropriately to ensure no overflow or underflow.
+
+5. Complexity:
+    - Time complexity: O(n^2)
+    - Space complexity: O(n^2)
+

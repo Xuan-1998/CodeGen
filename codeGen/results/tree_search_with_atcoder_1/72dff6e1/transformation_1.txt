@@ -1,0 +1,14 @@
+
+1. Define a 2D DP table, dp[i][j], where dp[i][j] represents the number of valid sequences of length i where the last element is j.
+2. Initialize the base cases:
+   - dp[1][j] = 1 for all j from 1 to N, since any single element sequence is valid if it satisfies the A array constraints.
+3. Iterate over the length of the sequence from 2 to N:
+   - For each length i, iterate over each possible last element j from 1 to N:
+     - Sum up the values of dp[i-1][k] for all k from 1 to N, where k is a valid previous element that can lead to a valid sequence ending in j, considering the constraints given by the A array.
+     - Ensure that the number of occurrences of each element in the sequence remains within the limits specified by the A array.
+4. Compute the final result by summing up dp[N][j] for all j from 1 to N, since the sequences of length N can end in any element from 1 to N.
+5. Return the final result modulo 998244353.
+6. Handle edge cases:
+   - When N = 1, the result should be 1 if A[1] >= 1, otherwise 0.
+   - Ensure that all elements in the A array are within the given constraints (1 <= A_i <= N).
+

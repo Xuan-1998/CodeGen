@@ -1,0 +1,17 @@
+
+1. Define the state: Let dp[i][j] represent the number of valid matrices of size i x j.
+
+2. Base Case: Initialize dp[1][1] = 2, since a 1x1 matrix can have either a 0 or a 1, both of which trivially satisfy the condition.
+
+3. Transition: To compute dp[i][j], iterate over all possible values for the (i, j) position (either 0 or 1). For each choice, ensure that the condition A_{a, b} * A_{c, d} ≤ A_{a, d} * A_{c, b} is satisfied for all 1 ≤ a < c ≤ i and 1 ≤ b < d ≤ j. This involves checking all quadruples (a, b, c, d) and ensuring the condition holds.
+
+4. Use memoization to store the results of subproblems to avoid redundant calculations. This involves creating a table to store the values of dp[i][j] as they are computed.
+
+5. Iterate over all matrix sizes from 1x1 up to NxM, filling in the dp table using the transitions defined.
+
+6. Final answer: The value dp[N][M] will give the number of valid matrices of size NxM.
+
+7. Return the result modulo 998244353.
+
+8. Edge cases: Consider cases where N or M is 1, as these will have simpler conditions to check.
+

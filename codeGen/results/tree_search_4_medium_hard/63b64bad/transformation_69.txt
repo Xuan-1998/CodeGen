@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+To refine this idea, consider the following steps:
+
+1. **Model the state**: Define what constitutes a state in this problem. You can think of it as (x, y) - the current values of x and y.
+2. **Determine the edges**: For each transition from one state to another, determine how the values of x and y change. In particular:
+	* If x ≤ 0 or x > n, terminate the program
+	* Otherwise, increase both x and y by a_x simultaneously
+	* Then, increase y by a_x while decreasing x by a_x
+3. **Use memoization**: Store the values of y for each state in a dictionary to avoid recalculating them.
+4. **Base case**: The base case occurs when there are no more values left in the sequence, i.e., x = 0. In this case, the final value of y is simply returned.
+5. **Loop invariant technique**: Use the loop invariant technique to ensure that you're not recalculating anything unnecessarily.
+
+===END PLAN===

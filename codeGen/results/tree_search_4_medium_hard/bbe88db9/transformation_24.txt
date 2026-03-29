@@ -1,0 +1,9 @@
+Transition:
+  (next_room, next_visited, next_crosses) = 
+    ((room + 1, not visited, 0) if !visited and room < n+1,
+     (p[room], not visited, 1) if visited and crosses % 2 == 1,
+     (room + 1, visited, 1) if visited and crosses % 2 == 0)
+
+State transition:
+  dp[next_room][next_visited][next_crosses] = min(dp[room][visited][crosses] + 1
+    for (next_room, next_visited, next_crosses) in Transition)

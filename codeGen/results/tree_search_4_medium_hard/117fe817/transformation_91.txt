@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Initialize an array dp of size (n+1) and set dp[0] = 0, since there are no '1's in base 10 representation of 0.
+Iterate from i=1 to n:
+    For each i, calculate the total number of digit 1's for all numbers less than or equal to i by considering two cases: 
+    1. The most significant bit is 0 (i.e., i can be represented as a k-digit number where k < log(n+1)). In this case, the total number of '1's in numbers less than or equal to i is the same as for (n-i). 
+    2. The most significant bit is 1 (i.e., i can be represented as a k-digit number where k = log(n+1)). In this case, consider all numbers with leading 1 and add their total '1's to dp[i-1]. 
+
+Update dp[i] = dp[i-1] + sum of '1's for numbers with leading 1.
+Return dp[n].
+===END PLAN===

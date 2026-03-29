@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+The base case occurs when x ≤ 0 or x > n, indicating that the program has terminated.
+
+In each step, consider the current state (x, y) as a node in a graph. Nodes with x ≤ 0 or x > n are terminal nodes representing termination. Edges represent transitions from one state to another based on the sequence values.
+
+Use dynamic programming to build up solutions for smaller subproblems and use them to solve larger problems.
+
+Create a 2D table dp where dp[i][j] represents the maximum value of y that can be reached in the ith iteration with x = j. Initialize dp[0][1] = 0 since we start from (x, y) = (1, 0).
+
+For each iteration i and state (x, y), calculate the next state by increasing both x and y by a_{x} simultaneously, then increasing y by a_{x} while decreasing x by a_{x}. Update dp[i+1][j] accordingly.
+
+Use a variable terminated to track whether the program has terminated. If at any point x ≤ 0 or x > n, set terminated = True.
+
+Finally, return dp[n-1][y] as the maximum value of y that can be reached in the last iteration if the program didn't terminate; otherwise, return -1.
+
+===END PLAN===

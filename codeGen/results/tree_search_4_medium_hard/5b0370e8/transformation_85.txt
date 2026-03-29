@@ -1,0 +1,32 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if and only if there exists an array A such that bitwise AND(A) >= i and bitwise XOR(A) == j.
+
+dp[0][0] = 1, because we can choose an array with all elements equal to 0.
+
+For j < 2^k-1, let's assume that dp[i][j] is already computed. Then for all 0 <= m < 2^k and i + m >= 2^k:
+dp[i+m][j] = 1 if and only if there exists an array A such that bitwise AND(A) >= i+m and bitwise XOR(A) == j.
+
+This means we can construct such an array by taking the array with bitwise AND equal to i, bitwise XOR equal to j, and appending m elements which are all equal to 0. This will give us bitwise AND equal to i+m and bitwise XOR equal to j.
+
+For dp[i][j] where 0 <= i < 2^k-1, let's consider the cases when j is even or odd.
+If j is even:
+dp[i][j] = 1 if and only if there exists an array A such that bitwise AND(A) >= i and bitwise XOR(A) == j.
+
+We can construct such an array by taking the array with bitwise AND equal to i, bitwise XOR equal to j, and appending any element k where bitwise OR(k,2^(k-1)) equals 0. This will give us bitwise AND equal to i and bitwise XOR equal to j.
+
+If j is odd:
+dp[i][j] = 1 if and only if there exists an array A such that bitwise AND(A) >= i and bitwise XOR(A) == j+1.
+
+We can construct such an array by taking the array with bitwise AND equal to i, bitwise XOR equal to j+1, and appending any element k where bitwise OR(k,2^(k-1)) equals 0. This will give us bitwise AND equal to i and bitwise XOR equal to j+1.
+
+For all i >= 2^k:
+dp[i][j] = 1 if and only if there exists an array A such that bitwise AND(A) >= i and bitwise XOR(A) == j.
+
+This is because we can choose any element k where bitwise OR(k,2^(k-1)) equals 0. This will give us bitwise AND equal to i and bitwise XOR equal to j.
+
+For all j >= 2^k:
+dp[i][j] = 0 for all i.
+
+This is because there does not exist an array with bitwise AND equal to i and bitwise XOR equal to j where i >= 2^k or j >= 2^k.
+
+===END PLAN===

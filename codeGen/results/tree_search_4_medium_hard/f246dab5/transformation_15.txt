@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i] represents the minimum cost for i-th trip.
+
+dp = [float('inf')] * (10**9 + 1) # Initialize DP table with infinity values
+for t in range(1, 10**9 + 1):
+    if t <= 90:
+        dp[t] = min(dp[t-1] + 20, dp[0] + 50)
+    else:
+        dp[t] = min(dp[t-1] + 20, dp[t-90] + 120)
+
+# Calculate the minimum cost for each trip
+res = []
+for i in range(n):
+    t_i = trips[i]
+    res.append(dp[t_i])
+
+===END PLAN===

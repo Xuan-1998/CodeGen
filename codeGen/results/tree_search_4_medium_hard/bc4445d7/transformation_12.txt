@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array dp[i][k] to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][k] = 1 if there exists a subtree rooted at i with product of labels equal to k, otherwise 0.
+
+dp[i][k] = 1 if and only if for each prime factor p in the product k, there exists an edge (u, v) such that u < i, v > i, and p * (product of labels in subtree rooted at u) == k, where product of labels in subtree rooted at u is calculated recursively.
+
+Use a dictionary to store previously computed values and update the state expression as dp[i][k] = [i for i in range(n) if any(j != i and p * q == k for j in edges)], where edges is the list of all edges.
+
+Update the edge cases by checking that the product of labels is 1 when there's only one node, which means it should return True. Also, when checking the edge case of no prime factors (k = 1), we can just check if any label is equal to 1.
+
+===END PLAN===

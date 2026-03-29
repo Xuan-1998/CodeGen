@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with a 2D array dp where each cell dp[i][j] represents the length of the longest increasing subsequence ending at index i and having j elements.
+
+Initialize dp with zeros, where dp[i][0] = 1 for all i (base case: single-element subsequences are always increasing).
+
+For each element in the input array:
+
+1. Iterate over possible lengths of increasing subsequences (j) from 2 to the length of the longest increasing subsequence ending at the previous position.
+2. For each j:
+   a. Check if the current element is greater than or equal to the last element in the subsequence of length j-1.
+   b. If true, update dp[i][j] with max(dp[i-1][j-1], 1) + 1 (the length of the longest increasing subsequence ending at index i and having j elements).
+3. Update memo dictionary to store previously computed results for overlapping subproblems.
+
+To find the number of longest increasing subsequences, iterate over dp array and count the occurrences of the maximum value.
+
+===END PLAN===

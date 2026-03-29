@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+Define the state as a tuple (col, max_val, is_sorted) where col is the column being checked, max_val is the maximum value seen in that column so far, and is_sorted is a boolean indicating whether the column is sorted or not
+
+State: (col, max_val, is_sorted), Transition: (new_row, new_max_val, new_is_sorted) -> update max_val, check if sorted, and set is_sorted accordingly
+
+Create a dictionary to store the maximum values seen for each column. Iterate over each row in the subtable, update the maximum value for each column, and store it in the dictionary.
+
+Final step: Iterate over the columns and check if any of them are sorted in non-decreasing order.
+    If all columns are sorted, then return "Yes". Otherwise, return "No".

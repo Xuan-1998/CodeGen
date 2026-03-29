@@ -1,0 +1,10 @@
+
+1. Sort the points based on their positions in ascending order. This ensures that we process points from left to right.
+2. Define the state as dp[i], which represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point. Initialize an array dp of size n+1 with all elements set to 0.
+3. Initialize a variable `min_removed` to store the minimum number of points removed.
+4. Iterate from the second last point to the first point (i from n-1 to 0):
+    a. For each point i, find the farthest point j that will be removed when point i is activated. This can be done using binary search or a linear scan.
+    b. Update dp[i] as the number of points removed when point i is activated plus dp[j+1], where j is the index of the farthest point removed.
+    c. Update `min_removed` with the minimum value of dp[i].
+5. The final answer is stored in `min_removed`.
+

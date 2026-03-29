@@ -1,0 +1,14 @@
+
+1. Precompute the cost for all possible substrings to be "beautiful" for the given string. This can be done by considering all possible "beautiful" patterns of length up to 3 (since there are only 3 characters).
+2. Generate all possible beautiful patterns of length up to 3 using the characters 'a', 'b', and 'c'. There are 6 permutations: "abc", "acb", "bac", "bca", "cab", "cba".
+3. For each of these patterns, precompute the cost of transforming each prefix of the string into that pattern. This will result in a 2D array `cost` where `cost[p][i]` represents the cost to transform the prefix of length `i` into the pattern `p`.
+4. For each query, determine the cost to transform the substring into a "beautiful" pattern by using the precomputed costs. Specifically, for a query (l_i, r_i), compute the cost for each of the 6 patterns and take the minimum.
+5. Output the minimum cost for each query.
+
+Steps:
+1. Generate all 6 permutations of "abc".
+2. Initialize a 2D array `cost` of size 6 x (n+1) to store the transformation costs.
+3. For each pattern, iterate over the string and compute the cost to transform each prefix into the pattern.
+4. For each query, compute the minimum cost to transform the substring into any of the 6 patterns using the precomputed costs.
+5. Output the results for each query.
+

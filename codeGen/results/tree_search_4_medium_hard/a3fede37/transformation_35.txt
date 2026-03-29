@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+state_expression = dp[i] = max_sum_of_path_ending_at_node_i
+where state dp[i] represents the maximum sum of a path ending at node i
+
+Consider a tree node as having three states:
+1. its value: val[i]
+2. the maximum sum of a path ending at its left child: dp[2i+1] 
+3. the maximum sum of a path ending at its right child: dp[2i+2]
+
+Develop a recursive approach with memoization, using a dictionary to store the results of subproblems as you solve them.
+
+For each node i:
+    1. Calculate dp[i] = val[i] + max(dp[2i+1], dp[2i+2])
+
+Memoize the results for later use
+
+Return the maximum sum of a path ending at the root (0th index)
+
+===END PLAN===

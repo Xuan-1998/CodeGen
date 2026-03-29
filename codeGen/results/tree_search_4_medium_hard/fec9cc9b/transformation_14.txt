@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Identify the longest non-decreasing subsequence in the array as the base case, then use top-down approach with memoization to determine if a given subsegment is a ladder by checking if it's equal to the longest non-decreasing subsequence found so far.
+
+Let's define dp[i] = True if array[0:i] is a non-decreasing subsequence, False otherwise. Choose dp[i] as the length of the longest non-decreasing subsequence ending at index i.
+
+Transition: dp[i] = max(dp[j]) for all j such that 0 <= j < i and array[j] <= array[i].
+
+Implement a recursive function with memoization to solve the problem by breaking it down into smaller subproblems. This will allow us to avoid redundant calculations and improve performance.
+
+To implement this plan, we can start by initializing an empty dictionary dp for memoization.
+
+Then, define a recursive function isLadder that takes two parameters i and j, representing the start and end indices of the subsegment.
+
+ Inside the function, check if the subsegment array[i:j+1] is a ladder. If it's not, return False.
+
+ Otherwise, initialize max_length to 0, then iterate over all indices k from i to j-1 such that array[k] <= array[j]. For each k, update max_length as the maximum of its current value and dp[k].
+
+Finally, update dp[i] with the calculated max_length and return True if the subsegment is a ladder, False otherwise.
+
+To solve the problem for m queries, iterate over all queries and call isLadder function to determine if each query is a ladder or not. If it's a ladder, print "Yes", otherwise print "No".
+
+===END PLAN===

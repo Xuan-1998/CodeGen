@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+Define dp[i] as the minimum number of marks strictly above the water level at the beginning of day i.
+The state is dp[i-1] + (i - m), where m is the number of marks strictly above the water level on day i, and dp[i-1] is the minimum number of marks strictly below the water level by the end of day i-1.
+Employ iterative tabulation using two pointers, one at the start and one at the end of an array, where each element in the array represents the minimum number of marks strictly above the water level for a prefix of days.
+For each day from 2 to n, update dp[i] as min(dp[i-1], i - m_i) + m_i, where m_i is the number of marks strictly above the water level on day i.
+The final answer is dp[n].
+===END PLAN===

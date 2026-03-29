@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The state is the current stone index i and the maximum jump distance k. The base case is when i is equal to the number of stones - 1, indicating that the frog has reached the end of the river.
+
+The dynamic programming function dp(i, k) returns a boolean value indicating whether it's possible for the frog to reach the last stone with the given state (i, k). If k is within the bounds of the previous jump distances (k - 1, k, or k + 1), then consider the three possibilities: jumping k - 1 units, k units, or k + 1 units.
+
+The base case remains the same: when i is equal to the number of stones - 1. In this case, return True if the current stone index matches the last stone's position, and False otherwise.
+
+If k is out of bounds (i.e., it's not a valid previous jump distance), then the frog cannot reach the last stone with that state, so return False.
+
+The recursive function would be:
+
+dp(i, k) = 
+    if i == number_of_stones - 1: 
+        # base case: reached the end of the river
+        return True 
+    elif k not in (k - 1, k, k + 1): 
+        # k is out of bounds, cannot reach the last stone with this state
+        return False 
+    else:
+        # consider three possibilities for jumping
+        return dp(i + 1, k - 1) or dp(i + 1, k) or dp(i + 1, k + 1)
+===END PLAN===

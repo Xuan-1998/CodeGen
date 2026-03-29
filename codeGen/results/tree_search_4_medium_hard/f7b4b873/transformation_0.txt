@@ -1,0 +1,23 @@
+state: (i, S[:i+1], partition) where i is the current index in the string, S[:i+1] represents the remaining part of the string to be processed, and partition is a list of strings representing the palindromic partition so far.
+if i >= len(S):
+    return [partition]
+
+current_char = S[i]
+if current_char == S[i-1]:
+    # if the current character matches with the previous character, then consider this as a palindrome
+    new_partition = partition + [S[i]]  # add the current character to the palindromic partition
+else:
+    new_partition = partition
+
+memoization = {}
+for i in range(len(S)):
+    for j in range(i+1):
+        state = (j, S[j:i+1], [])
+        if S[j:i+1] == S[j:i+1][::-1]:  # check if the substring is a palindrome
+            memoization[state] = [(state[2] + [S[j:i+1]])]
+        else:
+            for partition in memoization.get((i, S[i+1:], []), [[]]):
+                memoization.setdefault(state, []).extend([partition + [S[j:i+1]]])
+memoization[(0, S, [])].pop(0)  # remove the base case
+for i, j in enumerate(memoization.keys()):
+    print(j[2])  # print each palindromic partition

@@ -1,0 +1,8 @@
+
+1. Top-down approach with memoization: This method involves breaking down the problem into smaller subproblems and storing the solutions to these subproblems to avoid redundant computations. It is typically implemented using recursion with a cache to store intermediate results.
+2. State expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices where the root has an out-degree of j. Base case: dp[1][0] = 1, since a single vertex with no children is a valid subtree.
+3. Transition relationship: dp[i][j] = sum(dp[k][j-1] * dp[i-k][0] for all valid k), where we are distributing the vertices between the root's children and the remaining subtree. This ensures we count all possible configurations of subtrees that satisfy the out-degree requirements.
+4. Use the dp array to calculate the number of good vertices. A vertex v is good if it satisfies f(v) = v, where f(v) is the minimum vertex number in the subtree rooted at v.
+5. Calculate the sum of the numbers of good vertices for all good trees. Use the modulo operation with 998244353 to ensure the result fits within the required constraints.
+6. Implement the solution using the above steps and handle edge cases such as when N = 2 or when all d_i are zeros except d_1.
+

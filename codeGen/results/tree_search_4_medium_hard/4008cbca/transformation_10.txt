@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The state expression could be the length of the current window being considered, with the dynamic programming table storing the minimum number of moves needed to remove all balls up to that point. This would allow for more flexibility in the transition relationships.
+
+To fill in the dynamic programming table, we can iterate over the board from left to right, considering each ball and deciding whether to insert a ball or not based on the state expression. For each position, we calculate the minimum number of moves needed to remove all balls up to that point by considering three cases:
+* If the current ball is the same color as the previous one, we don't need to do anything.
+* If the current ball is different from the previous one and there's a match (three or more consecutive balls with the same color) in the window being considered, we can remove all those balls and move on.
+* Otherwise, we need to insert a ball of the correct color to create a match.
+
+The base case would be when the board is empty. In this case, no moves are needed to remove all balls.
+
+Memoization can be used with a recursive function that keeps track of previously computed values using a dictionary.
+
+To handle edge cases:
+* The plan should work for boards of any length up to 20.
+* If it's not possible to remove all the balls, we return -1.
+===END PLAN===

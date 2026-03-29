@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively build up solutions for smaller subproblems and store previously computed results in a memo dictionary to avoid redundant computations.
+
+dp[i][j]: length of the longest increasing subsequence ending at index i with j elements
+
+Initialize a memo dictionary dp where keys are tuples (i, j) representing the subsequence length and its increasing status, and values are the corresponding lengths of longest increasing subsequences. Set dp[0][j] to 1 for all j, since an empty subsequence is considered as an increasing subsequence.
+
+Iterate over each element in the array from right to left:
+    For each element i at index k:
+        For each possible length of increasing subsequence j from 1 to k+1:
+            Calculate dp[k][j] by considering two cases:
+                1. If the current element is not greater than the previous element, then the longest increasing subsequence ending at this element has the same length as the longest increasing subsequence ending at the previous element.
+                2. Otherwise, consider the length of the longest increasing subsequence ending at the previous element and add 1 to it.
+
+Return the maximum value in dp for all i and j that represent an increasing subsequence.
+
+===END PLAN===

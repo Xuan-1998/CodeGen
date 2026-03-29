@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[i] = number of vertices reachable by i. Base case: 1 for all vertices (since every vertex can reach itself).
+
+dp[u][v] is not well-defined, since it represents a minimum number of AND operations needed to transform u into v, which doesn't make sense in this context.
+
+Instead, define the state as: dp[i] = 1 if i-th bit can be reached from the initial vertex (0), otherwise dp[i] = 0. This means we're counting the number of vertices that can be reached by applying AND operations starting from the initial vertex.
+
+The dynamic programming equation would be:
+dp[i] = min(dp[j]) for all j such that u & j = i, where u is the initial vertex.
+
+Base case: dp[0] = 1 (since we start with the initial vertex).
+
+Tabulate the number of reachable vertices for each vertex after applying AND operations. Then, use this table to determine whether there's a path between two given vertices.
+
+To check if there's a path from u to v, simply check if dp[v] is 1 or not.
+===END PLAN===

@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Fill in a 2D table dp[][] where dp[i][j] represents the maximum score that can be achieved with j moves and considering only the first i elements of the array.
+
+1. Initialize the base case: dp[0][k] = sum of all values in the array for k = 0.
+2. The state also depends on whether the current move is to the right or to the left:
+    * If it's a move to the right, the score will increase by the value at index i+1 and the remaining moves are j-1: dp[i][j] = max(dp[i-1][j-1] + array[i+1], dp[i-1][j]) for k > 0.
+    * If it's a move to the left, the score will decrease by the value at index i-1 and the remaining moves are j-1: dp[i][j] = max(dp[i-1][j-1] - array[i-1], dp[i-1][j]) for k > 0.
+3. The final answer is dp[n-1][k].
+===END PLAN===

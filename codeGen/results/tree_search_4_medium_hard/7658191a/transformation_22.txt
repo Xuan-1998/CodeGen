@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider the maximum score achieved after processing i elements, with j moves performed in total (0 <= j <= k), where j <= z if i < n - 1.
+Think of a 2D DP table where each cell represents the maximum score that can be achieved after processing i elements, with j moves performed in total. Formulate a relation between adjacent cells in the table to capture the idea of moving either to the right or to the left.
+
+For example, dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + arr[i]), where i is the number of elements processed, j is the total number of moves performed.
+However, there's a missing detail: you should also consider the case where you make no move. This means updating the dp table accordingly.
+
+Use a 2D DP table with dimensions (n+1) x (k+1) to store the maximum score achievable after processing i elements and performing j moves.
+
+Initialize the DP table by setting all values to -inf, except for dp[0][j] = 0 for 0 <= j <= k.
+Then, fill in the DP table row by row from top to bottom:
+    For each cell dp[i][j]:
+        If i == 1 or j == 0, set the value to arr[i-1].
+        Otherwise, consider two cases: moving right (dp[i-1][j]) and moving left (dp[i-1][j-1] + arr[i]).
+        Update dp[i][j] with the maximum score achievable in these two cases.
+
+Finally, return dp[n][k] as the maximum score that can be achieved after processing n elements and performing k moves.
+===END PLAN===

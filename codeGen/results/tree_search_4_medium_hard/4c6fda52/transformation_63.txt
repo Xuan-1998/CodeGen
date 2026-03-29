@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] be the number of changes needed to find a substring of length j in s[0...i].
+Transition relationship: dp[i][j] = min(dp[i-1][j], dp[i-1][j-1]) + (s[i-1] != 'RGB'[j%3]).
+Using a 2D array to store the dynamic programming table, with n rows and k columns.
+For each query, compute the minimum number of changes needed by iterating over all substrings of length k in s and using the dp table.
+Let's initialize the dp table as follows:
+dp[0][j] = 0 for j = 1 to k-1
+dp[i][0] = i for i = 1 to n-1
+Fill up the dp table row by row from left to right, ensuring that each cell value is computed using its predecessor values.
+Finally, return the minimum value in the last column of the dp table, which represents the minimum number of changes needed.
+===END PLAN===

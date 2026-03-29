@@ -1,0 +1,6 @@
+===BEGIN PLAN===
+let dp[i] be the count of numbers k such that 0 <= k < i and the binary representation of k does not contain consecutive ones.
+let f(x) be a function that returns True if x's binary representation does not have consecutive ones, False otherwise. Then dp[i] = sum(f(j) for j in range(i)) 
+for i from 1 to n:
+    dp[i] = sum(1 for k in range(i) if not any(int('1' * (k+1).zfill(i+1)) & int(k.zfill(i+1)) >= 2**(j+1) for j in range(i.bit_length())))
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+state: dp[i] = min_cost_to_activate_at_time_t, where t is the start time of i-th trip.
+The cost is minimized when we start using the longest possible ticket, which in this case would be the day-long ticket.
+
+DP approach:
+    Initialize a table dp[i] to store the minimum fare up to time t_i.
+    The recurrence relation is dp[i] = min(dp[i-1], 50 + dp[j]), where j is the last trip for which we can use a 90-minute ticket, or dp[i] = min(dp[i-1], 120 + dp[k]), where k is the last trip for which we can use a day-long ticket.
+    The base case is dp[0] = 0.
+
+===END PLAN===

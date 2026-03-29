@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+dp[i] = sum(dp[j]*binom(C_count[C_index].index(j), C_count[C_index][j]) for j in range(1, i+1))
+for t in range(T):
+    N, M, C = map(int, input().split())
+    U = list(map(int, input().split()))
+    L = list(map(int, input().split()))
+    
+    # initialize dp array
+    dp = [0]*(C+1)
+    dp[1] = 1
+    
+    for i in range(C):
+        C_count = {}
+        for j in range(N+M):
+            if U[j] <= i:
+                C_count[U[j]] = C_count.get(U[j], 0) + 1
+            if L[j] <= i:
+                C_index = 1
+            else:
+                C_index = 2
+            C_count[C_index] = C_count.get(C_index, 0) + 1
+        
+        for j in range(1, i+1):
+            dp[i+1] += (dp[j]*binom(C_count[C_index].get(j, 0), C_count[C_index].get(j, 0))) % 10**9 + 7
+    
+    print(*[str(dp[i]) for i in range(2, C+1)], sep=' ')
+===END PLAN===

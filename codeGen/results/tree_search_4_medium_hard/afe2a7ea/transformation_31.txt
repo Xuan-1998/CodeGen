@@ -1,0 +1,10 @@
+dp[i][j] = 1 if i == 0 and j < n
+dp[i][j] = sum(dp[i-1][k] for k in range(j)) % m if i > 0
+state transitions:
+(0, j) -> (1, j+1)
+(1, j) -> (1, 1) or (2, 2), ..., (n, n)
+
+dp[0][j] = 1 if j < n
+dp[i][j] = sum(dp[i-1][k] for k in range(n)) % m if i > 0
+
+dp[n][j]

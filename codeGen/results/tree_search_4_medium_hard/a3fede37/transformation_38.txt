@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+dp = {}
+
+def max_sum(node):
+    if node is None:
+        return 0
+    
+    left_max_sum = max_sum(left_child) if left_child else 0
+    right_max_sum = max_sum(right_child) if right_child else 0
+
+    dp[node] = max(node, left_max_sum + node, right_max_sum + node)
+
+max_sum(root_node)
+return max(dp.values())
+
+===END PLAN===

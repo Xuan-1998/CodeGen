@@ -1,0 +1,12 @@
+], [
+The state could be represented by (n, m) where n is the remaining size of the alphabet and m is the remaining length of the word. The base case would be when there are no more characters left to place in the word.
+
+dp[n][m] = 
+    (
+        m == 0 
+        ? 1
+        : sum(
+            dp[min(2*k + m - 1, n-1)][m-1] * min(min(2*k + m, n), k/2 + m) - k/2 for k in range(n)
+        )
+    ), 
+    for 0 <= n <= 10^5, m >= 0

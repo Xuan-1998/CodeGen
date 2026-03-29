@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+For each query, calculate the total brightness for the given rectangular view, and store these values in a memoized table. This allows you to avoid recalculating the same value multiple times.
+
+A state consists of three indices: i, j, and t, indicating which stars are currently within the rectangular view at time t.
+State: (i, j, t), where t is the time at which the rectangular view is observed. Transition relationship:
+	* If the current star does not move or crosses the boundary of the rectangle, update the state by incrementing i and j accordingly.
+	* If the current star moves outside the rectangle, update the state by decrementing i and j until it leaves the rectangle.
+
+Use dynamic programming with a 3D table to store the total brightness for each query. Initialize the first row (t = 0) to represent the initial conditions.
+
+===END PLAN===

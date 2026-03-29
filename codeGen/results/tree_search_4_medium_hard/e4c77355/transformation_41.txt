@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+DP[i] represents the length of the longest increasing subsequence ending at each position i.
+
+Initialize DP: Set DP[0] = 1, since an empty sequence is considered an increasing subsequence with a length of 1. For all other positions i, set DP[i] = 1.
+
+For each element a[j] in the array:
+    Update DP[i][j] as follows:
+        If a[j] > a[j-1], then update DP[i][j] to be 1 + max(DP[k][j-1] for k in range(i)). This means we are considering all possible increasing subsequences ending at index i and the last element being j.
+        Else, set DP[i][j] = 0.
+
+Return DP[n-1], where n is the length of the array. This represents the length of the longest increasing subsequence.
+
+===END PLAN===

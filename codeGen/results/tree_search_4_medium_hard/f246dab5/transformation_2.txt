@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+DP can be solved by identifying that we need to find the minimum cost for a given time stamp, considering all possible ticket combinations from the start till now. This subproblem will have overlapping instances as we move forward in time.
+
+The state is a tuple (minutes_left_until_ticket_expires, total_cost_so_far): This choice captures both the information about when the ticket expires and the cumulative cost of all previously used tickets.
+State: (minutes_left_until_ticket_expires, total_cost_so_far);
+Transition relationship: Use a ticket if the time left until it expires is greater than or equal to the time remaining for the current trip. Update state by subtracting the time used from minutes_left_until_ticket_expires and adding the cost of the used ticket to total_cost_so_far.
+
+The transition relation can be improved by introducing a priority queue to keep track of available tickets, always choosing the one that expires the earliest, which would allow us to avoid recomputing subproblems. This is because the optimal policy is to use the ticket with the earliest expiration time.
+
+The plan does not include edge cases, specifically what happens when there are no more tickets or when all tickets have expired. It is important to consider these edge cases and decide how to handle them in the final solution.
+===END PLAN===

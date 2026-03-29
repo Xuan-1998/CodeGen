@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-decreasing sequence seen so far in the current subsegment and the last value that ended this non-decreasing sequence. Then use top-down approach with memoization to update this state and determine if the current subsegment is a ladder.
+dp[i][j] = { (a[j-1]>=a[last]) ? dp[i-1][last]+1 : 0 
+Formulate state as (i,j) and transition relationship as
+    - If the current segment is non-decreasing, update last value to j-1 and increment the length of non-decreasing sequence
+    - If the current segment is decreasing, reset the last value to j-1 and set the length of non-decreasing sequence to 0
+If the length of non-decreasing sequence seen so far in the current subsegment is greater than or equal to r-l+1, then the current subsegment is a ladder.
+===END PLAN===

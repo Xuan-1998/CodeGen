@@ -1,0 +1,30 @@
+STATE = 0;
+PRE_FIX_SUM = 0;
+SUFFIX_SUM = 0;
+
+for i from 1 to n:
+    if sign[i] == "+":
+        STATE += 1;
+    else:
+        STATE -= 1;
+    PRE_FIX_SUM += sign[i];
+    SUFFIX_SUM += sign[n-i+1];
+
+for query in queries:
+    l, r = query;
+    for i from 0 to l-1:
+        if sign[i] == "+":
+            STATE -= 1;
+        else:
+            STATE += 1;
+    PRE_FIX_SUM -= sum(sign[i] for i in range(l));
+    SUFFIX_SUM -= sum(sign[n-i+1] for i in range(r, n));
+
+    total_removed = STATE;
+    for i from l to r:
+        if sign[i] == "+":
+            STATE -= 1;
+        else:
+            STATE += 1;
+
+    PRINT(total_removed);

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using a dynamic programming approach, where you build up solutions to smaller subproblems and combine them to solve larger problems.
+
+The state could be a tuple (i, j), representing the current team size i and the number of departments seen j. The transition relationship would involve updating this probability based on whether or not we have selected a player from each department in the last iteration.
+
+Create a 2D DP table where dp[i][j] represents the probability that a team of size i will contain at least one player from the first j departments.
+
+To avoid overcounting, add a base case to handle teams with fewer players than the number of departments. Initialize this base case to false (i.e., no department has been seen yet).
+
+For larger teams, iterate through each department and update the probability based on whether or not we have selected a player from that department.
+
+Finally, return dp[n][m], where n is the total team size and m is the number of departments. If there are not enough basketball players in the university to form a team, output -1 instead.
+===END PLAN===

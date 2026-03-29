@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp[i] depends on whether it's possible to reach index i from the previous indices (0 to i-1). 
+For each index i, we consider all reachable indices j (j < i) and calculate dp[i] as follows: 
+dp[i] = True if there exists a j such that dp[j] is True and the distance between i and j is less than or equal to arr[j], where arr[j] represents the maximum jump length from index j. 
+Otherwise, dp[i] = False.
+We fill up the dp array row by row, starting from the first row (dp[0]) which is always True because we can reach index 0. 
+For each subsequent row i, we consider all reachable indices j < i and update dp[i] accordingly. 
+Finally, we check whether dp[n-1] is True, where n is the length of the array. If it's True, then we can reach the last index; otherwise, we cannot.
+===END PLAN===

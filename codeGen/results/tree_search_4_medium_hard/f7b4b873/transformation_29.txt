@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+Create a 2D array dp where dp[i][j] represents whether the substring S[i..j] is palindromic, initialized with False for all i and j.
+
+For each character in the string, iterate from left to right:
+    For each pair of characters (S[i], S[j]), check if they are equal.
+    If they are, set dp[i][j] to True only if the substring S[i+1..j-1] is also palindromic.
+
+Iterate over all possible partitions of the string using a helper function:
+    For each partition, check if it is palindromic by checking if the first and last characters are equal and the middle characters form a palindrome.
+    If the partition is palindromic, add it to the result list.
+
+Return the list of all palindromic partitions found.
+===END PLAN===

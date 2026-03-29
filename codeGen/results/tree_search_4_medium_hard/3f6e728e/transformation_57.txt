@@ -1,0 +1,7 @@
+dp = [0] * (C + 1)
+dp[0] = 1
+for i in range(1, C + 1):
+    for r in range(min(i, N), -1, -1):  # Update upper hemispheres
+        dp[i] += dp[r]
+    for r in range(min(i, M), -1, -1):  # Update lower hemispheres
+        dp[i] = (dp[i] + dp[r]) % (10**9 + 7)

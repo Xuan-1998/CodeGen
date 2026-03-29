@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let dp[i] be the minimum number of comparisons needed to select the most beautiful participant from i girls, then we have:
+dp[n] = 0 if n is even
+dp[n] = min(dp[i] + dp[n-i-1]) for all n-i-1 from l to r
+
+Applying tabulation by iteratively building up the solution from the base case and storing the results in an array.
+
+For each i from l to r, calculate:
+dp[i] = 0 if i is even
+dp[i] = min(dp[j] + dp[i-j-1]) for all j from l to (i-l)
+
+The final answer is dp[r]
+===END PLAN===

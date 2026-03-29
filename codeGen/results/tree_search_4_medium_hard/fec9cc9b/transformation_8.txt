@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define dp[i][j] as true if and only if the subsegment [i..j] is a ladder.
+
+For each query (l, r), check if dp[l-1][r-1] is true. If it's true, then the subsegment [l..r] is a ladder.
+If not, iterate from l to r and find the maximum k such that array[k] <= array[j], where j ranges from l to r. Then check if dp[i-1][k] is true for some i such that l ≤ i ≤ r.
+
+Fill in the table by iterating over all possible lengths of the non-decreasing subsequence and checking if it's equal to the longest one found so far.
+
+For each query, use the filled-in table to determine if the subsegment [l..r] is a ladder.
+===END PLAN===

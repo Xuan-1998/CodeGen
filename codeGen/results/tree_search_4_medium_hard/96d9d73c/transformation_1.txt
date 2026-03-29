@@ -1,0 +1,14 @@
+Define the dynamic programming table as a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, each with at least K elements and absolute difference not exceeding M.
+
+Initialise dp with False values for all i and j. Set dp[0][0] = True as a base case since an empty array can always be partitioned into 0 partitions.
+
+For each i from 1 to N-1:
+    For each j from 0 to min(i, K-1):
+        If it's possible to add the current element A[i-1] to the last partition of the subarray A[0..i-2], then set dp[i][j] = dp[i-1][min(j, i//K)] or (if j < i//K) and dp[i-1][j].
+        If it's not possible to add the current element A[i-1] to the last partition of the subarray A[0..i-2], then set dp[i][j] = False.
+
+For each i from 1 to N:
+    For each j from K to min(i, (N-K+1)//K):
+        If it's possible to add the current element A[i-1] to a new partition of the subarray A[0..i-2], then set dp[i][j] = or (if j < i//K) and dp[i-1][j].
+
+Return dp[N][K-1].

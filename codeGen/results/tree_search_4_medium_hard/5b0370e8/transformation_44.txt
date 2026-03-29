@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+// Initialize dp array with base case values
+dp.resize(n+1);
+for (int i = 0; i <= n; i++) {
+    dp[i].resize(k + 1, 0); // Initialize all values to 0
+}
+
+// Recursive function to calculate the number of ways
+void dfs(int i, int mask) {
+    if (i == 0) return;
+    for (int j = k; j >= 0; j--) { // Iterate over possible last bits
+        int new_mask = mask | (1 << j); // New mask with last bit set
+        dp[i][j] = (dp[i-1][new_mask >> 1]) + dp[i-1][new_mask >> 1];
+    }
+}
+
+// Main loop to calculate the final answer
+int main() {
+    for (int i = n; i >= 0; i--) { // Iterate over possible array lengths
+        int and_result = 0;
+        for (int j = 0; j < k; j++) { // Iterate over possible last bits
+            if ((a[i-1] >> j) & 1) {
+                and_result |= (1 << j);
+            }
+        }
+        ans += dp[i][and_result];
+    }
+}

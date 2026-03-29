@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by iteratively calculating the maximum number of vertices that can be visited from each vertex i to vertex n within time T.
+
+'Base case: for each vertex i, if there are no edges leaving vertex i, then the maximum number of vertices that can be visited is 1, because we cannot visit any more vertices starting from vertex i.'
+
+Store a dictionary dp to memoize the results of subproblems, where the key is the current vertex i and the value is the maximum number of vertices that can be visited starting from vertex i.
+
+Transition relationship: for each edge (i, j) with weight t, update dp[j] by considering two options:
+
+- If we do not traverse the edge, then we are still in vertex i, so dp[j] = dp[i]
+- If we traverse the edge and have enough time left, then we visit vertex j and update dp[j] = max(dp[j], 1 + dp[i - 1]) if i > 1
+
+Store a dictionary res to store the maximum number of vertices that can be visited starting from each vertex.
+
+Initialize dp[0] = 1 and for each edge (i, j) with weight t, update dp[j] by considering the above two options. Then, calculate the maximum number of vertices that can be visited starting from vertex n as res[n].
+
+Return the maximum number of vertices that can be visited starting from vertex 1 to vertex n within time T as res[0].
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Define dp[i][k] as the minimum number of marks below water level on day i when the water level is at height k.
+
+dp[0][k] = k * (k + 1) / 2 if k > 0 else None
+Base cases for the water level being 0 or the total number of marks. If there are no days, then marks below water level will be 0, otherwise it will be the sum of all marks above water.
+
+dp[i][k] = min(dp[i-1][j] + (i-j) * k) for j from 0 to k
+The minimum number of marks below water level on day i when the water level is at height k is the minimum sum of marks below water level on previous days plus the new marks that will be below water level due to the increase in water level.
+
+dp[n][k] = min(dp[i][k]) for i from 1 to n
+The final answer is the minimum sum of marks below water level over all possible water levels.
+
+Return dp[n][0]
+The answer is the minimum number of marks below water level when the water level is at height 0.
+===END PLAN===

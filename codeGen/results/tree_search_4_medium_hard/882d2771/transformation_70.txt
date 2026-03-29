@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (l, r), where f(l) + f(l+1) + ... + f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls.
+Store only the necessary intermediate results in a 2D table, where each cell represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls for a given value of t.
+
+To improve this plan:
+
+* Initialize the 2D table with a base case (l == r) and fill it up recursively.
+* The state can be further broken down into two sub-states: (l, r-1) and (l+1, r). This is because f(l) + f(l+1) + ... + f(r) can be decomposed as f(l) + min(f(l+1) + ... + f(r-1)) + min(f(l+2) + ... + f(r)).
+* Use the fact that t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) is the sum of the values in the row corresponding to l and column corresponding to r.
+* Calculate the value modulo 109+7 for each cell in the table.
+
+===END PLAN===

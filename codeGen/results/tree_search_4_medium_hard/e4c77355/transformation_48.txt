@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+DP[i][j] represents the length of the longest increasing subsequence ending at index i with the last element being j.
+The transition relationship is to update DP[i] by considering all previous elements (up to i), finding the maximum increase, and adding 1.
+
+Initialize a 2D array DP of size n x n where n is the length of the input array. Fill the first row with zeros.
+
+For each index i from the second row to the last row:
+    For each element j in the range [0, i]:
+        If j is greater than or equal to the last element of the previous subsequence (DP[i-1][j-1]), update DP[i][j] by considering all previous elements up to i, finding the maximum increase, and adding 1.
+    Update the maximum length of the longest increasing subsequence ending at index i with the last element being j.
+
+Return the maximum value in the last row as the length of the longest increasing subsequence.
+
+===END PLAN===

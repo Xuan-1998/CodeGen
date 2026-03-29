@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+    Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j) representing the range of matrices to multiply,
+    and the base case is when i == 0 or j == n-1 (single matrix remaining).
+
+Identify the state as (i, j) representing the range of matrices to multiply
+    and define the transition relationship as:
+        dp[i][j] = min(dp[i][k-1] + p[k-1]*p[k]*dp[k+1][j]) 
+            for k in range(i+1,j), with base case when i == 0 or j == n-1.
+
+Memoize the function with a dictionary to store previously computed solutions.
+    Store previously computed solutions as {i: {j: min_value}}.
+
+===END PLAN===

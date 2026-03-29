@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+The base case would be that for any i, there is only one block ending at position i with 1 digit (which is just the digit itself).
+
+Consider a state where you store the count of blocks that end at each position, considering all possible blocks of lengths 1 to n.
+Use dynamic programming with a 2D table to store the count of blocks that end at each position for each length.
+
+ Initialize the table dp[i][j] where i is the position and j is the length. 
+Base case: dp[i][1] = 1 for all i, since there's only one block ending at position i with 1 digit.
+For longer lengths, consider two cases:
+- The last digit is the same as the previous one (dp[i-1][j-1]).
+- The last digit is different from the previous one (dp[i-1][j] - count of blocks that end at position i-1 with length j).
+Update dp[i][j] accordingly.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+
+1. Top-down approach with memoization: This method involves solving the problem recursively and storing the results of subproblems to avoid redundant calculations. It can be efficient in terms of time complexity but may use more space due to the recursion stack and memoization table.
+
+2. State Expression: Let dp[i][j] represent the number of valid matrices of size i x j. The state transition will depend on the previous states, ensuring that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is satisfied.
+
+3. Initial State: Initialize dp[1][1] to 2 because there are two 1x1 matrices (either 0 or 1) that trivially satisfy the condition.
+
+4. State Transition: Iterate over all possible sizes of matrices from 1x1 to NxM. For each size, compute the number of valid matrices by ensuring that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is satisfied for all possible quadruples (a, b, c, d).
+
+5. Modulo Operation: Since the number of valid matrices can be very large, take the result modulo 998244353 at each step to avoid overflow and ensure the result fits within standard integer limits.
+
+6. Edge Cases: Consider the smallest and largest possible values for N and M. Ensure that the solution handles these cases efficiently without running into performance issues or incorrect results.
+
+7. Output the Result: After computing the number of valid matrices for the given N and M, print the result.
+

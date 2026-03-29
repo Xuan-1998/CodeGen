@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+We can solve this problem using Dynamic Programming with memoization.
+
+Define the state expression as dp[A][B] = min(X) where A - B = 2 * X and base case is when A = 0. This will help us to calculate all possible combinations of X and Y.
+
+Initialize a table dp where dp[i][j] represents the smallest possible value of X when A = i and B = j. Fill up the table in a bottom-up manner using the recurrence relation dp[i][j] = min(dp[k][i - k] + k, dp[2*i - k][k]) for all i from 1 to A and j from 0 to B.
+
+Finally, return dp[A][B] if it's not equal to infinity, otherwise return -1.
+
+Note: We should handle edge cases where A or B is even. In this case, we can set the smallest possible value of X as -1 since there is no solution for these values.
+
+===END PLAN===

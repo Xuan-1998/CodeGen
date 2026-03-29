@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n. We can use this observation to build a dynamic programming solution.
+
+base case: f(1) = 0
+This is the initial state where there is only one girl left, and we need no comparisons to select her as the most beautiful participant.
+
+The problem can be viewed as a sequence of comparisons, each comparison reducing the number of girls by half. Then, we can formulate state and transition relationships as:
+
+f(n) = min(f(n/2) + 1) for all n > 1
+This is because at each step, we are reducing the number of girls to half the original amount, and adding one comparison. We need to keep track of the minimum number of comparisons needed.
+
+To apply memoization to a recursive solution:
+
+- Create an array dp of size 5*10^6 + 7 to store the results of subproblems.
+- Initialize dp[1] = 0 as the base case.
+- For each state n from 2 to r, calculate f(n) using the transition relationship and store it in dp[n].
+- Finally, return dp[l] * t0 + dp[l+1] * t1 + ... + dp[r] * tr - l * f(r) modulo 109 + 7 as the result.
+
+===END PLAN===

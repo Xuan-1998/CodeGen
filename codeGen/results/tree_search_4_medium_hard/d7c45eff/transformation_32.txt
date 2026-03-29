@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+state
+Define the transition function based on whether the last character of the current string should be deleted or duplicated to get the next lexicographically smallest string.
+
+Transition Function: 
+- If the last character is a, duplicate the string (to keep it in order)
+- If the last character is z, delete the last character (because the smallest you can make this character is 'z')
+- If the last character is between a and z, consider both options:
+  - Duplicate the string if the next lexicographically smallest character after deleting is greater than or equal to the last character
+  - Delete the last character otherwise
+
+memoization
+Implement memoization using a dictionary to store the computed values and avoid re-computation.
+
+Memoization Dictionary: 
+- Key: current string, k (length of string)
+- Value: lexicographically smallest string that can be formed by deleting or duplicating the current string to get a string of length k
+
+main function
+Write a main function that takes as input n (length of original string) and k (desired length), constructs all possible strings by either deleting or duplicating the last character, applies the transition function recursively until k is reached, and returns the lexicographically smallest one among them.
+
+Memoization Dictionary: 
+- Key: current string, k (length of string)
+- Value: lexicographically smallest string that can be formed by deleting or duplicating the current string to get a string of length k
+
+===END PLAN===

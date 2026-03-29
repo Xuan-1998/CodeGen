@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] equals 1 if and only if there exists a partition point p such that all elements from 0 to p are less than or equal to M away from each other, and the remaining elements (from p+1 to i-1) can be partitioned into j-1 partitions of size at least K.
+
+To fill in dp[i][j], iterate over possible partition points p from 0 to i-1. For each p, calculate the maximum value in A[0..p] and check if it is within M distance from any element in A[0..p]. If not, set dp[i][j] to False for this j.
+
+Then, for each j from K to min(K, i//K), recursively fill in dp[i-j][j-1]. If all such recursive calls return True and the maximum value in A[p+1..i-1] is within M distance from any element in A[0..p], set dp[i][j] to True.
+
+Finally, iterate over possible j from K to i//K. If dp[i-j][j-1] is True for all i-j > 0 and the maximum value in A[p+1..i-1] is within M distance from any element in A[0..p], set dp[i][j] to True.
+
+The final answer is dp[N][K].
+
+===END PLAN===

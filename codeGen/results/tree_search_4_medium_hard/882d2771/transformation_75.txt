@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+The state is (l, r), where f(l) + f(l+1) + ... + f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls.
+
+Calculate f(2) using the formula: t0·f(1) + t1·f(2) - 1·f(2) modulo 109 + 7, where t is an array of coefficients and f(n) represents the minimum total number of comparisons needed to select the most beautiful participant from n girls.
+
+Use memoization with a dictionary to store values as you compute them, allowing you to quickly look up previously computed values.
+
+For each l from 2 to r:
+    Calculate f(l+1) using the formula: t0·f(l) + t1·f(l+1) - l·f(r) modulo 109 + 7.
+    Store f(l+1) in the memoization dictionary.
+    If l == r, break the loop.
+
+For each l from 2 to r:
+    Return f(r-l+1), which represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls modulo 109 + 7.
+
+===END PLAN===

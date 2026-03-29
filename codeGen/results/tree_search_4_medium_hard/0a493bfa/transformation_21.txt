@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Identify a recursive relationship between the maximum beauty of an array and its subarrays. Define a state expression based on the subarrays' lengths and their corresponding maximum beauties.
+
+Consider the maximum beauty of an array as a function of its length, whether it has been reduced by at least one bad prime number previously, and the maximum beauty of its two halves. The state expression could be (n, prev_reduced, left_beauty, right_beauty) where n is the subarray's length, prev_reduced is a boolean indicating if the subarray has been reduced by at least one bad prime number earlier, left_beauty and right_beauty represent the maximum beauties of the two halves.
+
+Use bottom-up approach with tabulation to fill up a 3D table, where each cell represents the maximum beauty of a subarray. The base case is when n = 0 or m = 0 (no more operations).
+
+The recursive relationship could be:
+- If prev_reduced is true, the maximum beauty is f(n) = left_beauty + right_beauty
+- If prev_reduced is false and the two halves have different numbers of bad prime reductions, choose the maximum between these two cases.
+- If prev_reduced is false and both halves have the same number of bad prime reductions, consider reducing one half by at least one bad prime number. The maximum beauty would be f(n) = min(f(left), f(right)) + (n % 2 == 0 ? n : -n)
+
+Implementing dynamic programming using nested loops for filling up the table.
+
+===END PLAN===

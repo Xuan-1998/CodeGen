@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+Base Case:
+When the length of the string is 1, since a single character is always a palindrome. We consider this as our base case, where we return the input string itself as the only partition.
+
+ Recursive Case:
+To view the problem as finding all possible ways to partition the input string into palindromes, and then use memoization to store and reuse previously computed results for overlapping subproblems.
+For each character in the string, consider it as the center of a potential palindrome. If the characters on either side are also the same (ignoring any spaces or special characters), we can add this palindrome partition to our solution.
+
+Memoization:
+We use a 2D array dp where dp[i][j] is true if the substring from index i to j (inclusive) is a palindrome.
+This way, when we encounter an overlapping subproblem, we can simply check the corresponding entry in the dp array instead of recomputing it. This significantly reduces the time complexity.
+
+Edge Cases:
+We need to handle edge cases such as empty strings and strings with odd lengths. For the former, we return an empty list since there are no partitions possible. For the latter, we add the middle character to its own partition.
+===END PLAN===

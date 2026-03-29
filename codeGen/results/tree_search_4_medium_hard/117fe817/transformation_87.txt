@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Let dp[i] be the total number of digit 1's in all non-negative integers less than i. We can then use the following recurrence relation:
+
+dp[i] = dp[i // 2] + (i % 2 == 0 ? 0 : 1) for even i, and
+dp[i] = dp[(i - 1) // 2] + (i % 2 == 1 ? 1 : 0) for odd i.
+
+This is because we can think of the binary representation of an integer as a sequence of '0's and '1's. For even integers, the rightmost bit will always be '0', so we only need to consider the bits to the left. Similarly, for odd integers, the rightmost bit will be '1', so we add 1 to the count from the previous integer.
+
+Use a list or array dp of size n+1 to store and update memoized values.
+
+===END PLAN===

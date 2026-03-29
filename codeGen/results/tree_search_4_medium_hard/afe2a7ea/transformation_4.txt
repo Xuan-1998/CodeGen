@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a top-down approach with memoization is suitable.
+
+The state expression could be dp[i][j] where dp[i][j] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+dp[i][j] = or_(0 <= j <= i, and_(dp[i-1][min(j+1, i)], not_(any_(k in range(min(j+1, i)), dp[i-1][k]))))
+
+To use dynamic programming with a 2D array dp where dp[i][j] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+The base case would be when there are no more towns left (i.e., i = n+1), then the probability is 1 if the number of radio towers built is 0, and 0 otherwise.
+
+The final answer would be dp[n+1][n].
+
+===END PLAN===

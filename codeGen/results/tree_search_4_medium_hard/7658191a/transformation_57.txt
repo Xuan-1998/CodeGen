@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Create a 3D array dp[n][k+1][z+1] where:
+	- n is the size of the array
+	- k is the number of moves left
+	- z is the number of consecutive left moves allowed
+dp[i][j][z] represents the maximum score that can be achieved at index i with j moves left and z consecutive left moves allowed.
+Initialize dp[0][k][z] to 0, since no moves have been made yet.
+For each cell in the array:
+	- If i is 1, then dp[i][j][z] = a[i]
+	- For i > 1:
+		+ Calculate two possible maximum scores: 
+			* one by moving right and adding a[i+1] to the score
+			* one by moving left and adding a[i-1] to the score, if z is greater than 0
+		+ Choose the maximum of these two options
+		+ If j > 1, then dp[i][j][z] = max(dp[i-1][j-1][z-1] + a[i], dp[i-1][j][z] + a[i])
+		+ Otherwise, if j is 0, then dp[i][0][z] = a[i]
+Fill in the table row by row and column by column.
+Return dp[n-1][k][z]
+===END PLAN===

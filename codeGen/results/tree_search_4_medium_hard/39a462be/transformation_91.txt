@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 3D table where each cell represents the similarity score between two substrings A[0..i] and B[0..j]. The state expression is the pair of prefixes (A[0..i], B[0..j]), and the base case is when one or both strings are empty.
+
+The state transition function can be calculated as follows:
+
+- If i == 0 or j == 0, then dp[i][j][k] = |A| + |B| - 4 * min(|A|, |B|) (base case)
+- Else if A[i-k] == B[j-k], then dp[i][j][k] = dp[i-1][j-1][k] + 4
+- Else, dp[i][j][k] = max(dp[i-1][j][k], dp[i][j-1][k])
+
+Implement memoization by storing the similarity scores for each pair of prefixes (A[0..i], B[0..j]) in a dictionary. Then, use this dictionary to look up and update the similarity scores.
+
+To find the maximum similarity score over all pairs of substrings, iterate through the table from top-right to bottom-left, keeping track of the maximum score seen so far.
+
+===END PLAN===

@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+The state expression could be min[i][j] = minimum number of multiplications needed to multiply matrices from i to j, and min[0][i] is the base case.
+The state transition relation dp[i][j] = min(dp[i-1][k-1] + p[i-1]*p[k]*p[j], k from i+1 to j) for the base case set dp[0][i] = 0.
+Use dynamic programming with a 2D table (min[i][j]) where min[i][j] represents the minimum number of multiplications needed to multiply matrices from i to j.
+Fill the table in a bottom-up manner by initializing it with infinity values, then for each cell dp[i][j], calculate its value as the minimum over all possible ways to split the matrices at k (from i+1 to j-1) and add the cost of multiplying the current matrix with the result of the subproblem.
+The final answer is min[n-1][n-2], representing the minimum number of multiplications needed to multiply all matrices.
+===END PLAN===

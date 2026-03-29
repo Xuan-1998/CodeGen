@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+dp = {}
+def andor(i):
+    if i < 0:
+        return 1
+    key = (i, k-1)
+    if key in dp:
+        return dp[key]
+    and_or_greater = andor(i-1) * (2**k - 1)
+    and_or_smaller = andor(i-1) * (2**(k-1) + 1)
+    or_smaller = or(i-1, k-2)
+    dp[key] = and_or_greater + and_or_smaller
+    return dp[key]
+
+def main():
+    t = int(input())
+    for _ in range(t):
+        n, k = map(int, input().split())
+        count = 0
+        for i in range(n):
+            a = int(input())
+            if a & (1 << k-1):  # Check if the most significant bit is set
+                continue
+            andor(i)
+        print(count % (10**9 + 7))
+
+main()

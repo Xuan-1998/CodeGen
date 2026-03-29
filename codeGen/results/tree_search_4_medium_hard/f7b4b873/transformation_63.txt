@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state is a tuple (remaining_substr, prev_partition) and base case is when remaining_substr is empty.
+1. Initialize an empty dictionary memo to store the results of subproblems.
+2. Define a recursive function partition that takes a string s and returns all possible palindromic partitions.
+3. For each character c in the string:
+    3.1 If c is the first or last character, add c as its own palindrome into prev_partition.
+    3.2 Otherwise, check if the substring from the start to the current position is a palindrome.
+        3.2.1 If it's not a palindrome, skip this part of the string.
+        3.2.2 If it is a palindrome, add it as its own palindrome into prev_partition.
+    4. If remaining_substr is empty, return prev_partition as the final partition.
+    5. Otherwise, recursively call partition on the substring from the next character to the end.
+6. Update memo with the result of the recursive call and return the updated result.
+7. Call partition on the original string s and update it in the memo dictionary before returning.
+
+===END PLAN===

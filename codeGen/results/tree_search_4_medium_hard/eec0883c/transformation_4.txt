@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Since there is a tree structure, one possible choice for identifying overlapping subproblems could be to use DFS (Depth-First Search) to traverse the graph, where each node represents the maximum amount of gasoline that Nut can have at the end of the path. This approach would allow us to identify and store intermediate results to avoid redundant computation.
+
+State: dp[i][j] represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+To use a top-down approach with memoization, consider defining dp(i) as the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i. The state transition relationship could be based on recursively exploring all possible paths from city 0 to city i and storing the results in a memo dictionary to avoid redundant computation.
+
+Define a memo dictionary, memo, to store the results of subproblems and use a recursive function call to fill up the memo dictionary. Initialize the base case for leaf nodes (cities with no outgoing edges) by setting dp(i) = w[i] if i is not the root node, where w[i] represents the maximum amount of gasoline that Nut can buy at city i.
+
+For non-leaf nodes, recursively explore all possible paths from the current city to its children. For each child, compute the maximum amount of gasoline that Nut can have at the end of the path by considering the minimum gas remaining after traveling along the edge and subtracting the edge length from the total gas.
+
+Store the result in memo[i] and update dp(i) with the maximum value found. To avoid overcounting, only explore paths that lead to unvisited nodes (i.e., nodes whose values are not yet computed).
+
+The final answer is the maximum amount of gasoline that Nut can have at the end of the path from city 0 to any other city.
+===END PLAN===

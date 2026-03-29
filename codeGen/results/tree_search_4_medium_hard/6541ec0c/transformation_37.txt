@@ -1,0 +1,19 @@
+State: dp[i][j] = 1 if it is possible to make all connected components in the sub-tree rooted at node i with exactly j nodes have the same XOR, else 0.
+
+dp[0][0] = 1 (base case: empty tree)
+
+for i from 1 to n:
+    for j from 0 to min(i, k):
+        dp[i][j] = 
+            if there is a child node with value xor_value that has a subtree rooted at it
+                and the size of this subtree + 1 <= j
+                and the XOR of values in this subtree equals xor_value
+                    then dp[i-1][j-1] or (xor_value == 0 and dp[i-1][j]) 
+            else 0
+
+for i from n to 1:
+    for j from 0 to min(i, k):
+        if dp[i][j] = 1: 
+            print "YES"
+        else: 
+            print "NO"

@@ -1,0 +1,24 @@
+1. State Definition:
+   - Define the state as (total_beauty, current_path) where total_beauty is the sum of the beauty contributed by all spines found so far and current_path is the current path being considered for extension.
+
+2. Transition Relationships:
+   - For each edge that has one endpoint in the current path, update the state by incrementing the number of spines.
+   - If the current path can be extended to include the vertex at the other end of the edge, calculate the new state (total_beauty + 1, new_path) and add it to the priority queue.
+
+3. Priority Queue:
+   - Use a priority queue to store states sorted by their total beauty in descending order.
+   - This will allow you to efficiently find the maximum beauty in the future.
+
+4. Main Loop:
+   - Start with an empty state (0, []).
+   - Add this initial state to the priority queue.
+
+5. While There Are States Left In The Queue:
+   - Extract the highest-rated state from the queue.
+   - If the current path has more than one vertex or if there are no more edges that can be added to it, consider a new spine by adding the edge.
+   - For each neighbor of the current path that is not yet part of the current path:
+     * Add this neighbor to the end of the current path and create a new state with updated total beauty and new_path.
+     * Insert this new state back into the priority queue.
+
+6. Return The Maximum Beauty Found So Far:
+   - This will be the maximum beauty found among all possible hedgehogs that can be formed using the given edges.

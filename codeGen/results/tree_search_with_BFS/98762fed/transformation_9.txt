@@ -1,0 +1,25 @@
+
+Top-down approach with memoization: This approach involves breaking the problem into smaller subproblems, storing the results of these subproblems to avoid redundant computations. It uses recursion and memoization to store intermediate results. Time complexity: O(N*M), space complexity: O(N*M).
+
+State Expression: Let dp[i][j] represent the number of valid matrices of size i x j. This state will store the count of valid matrices up to the i-th row and j-th column.
+
+Base Case: Initialize dp[0][j] = 1 and dp[i][0] = 1 for all valid i and j, as a matrix with zero rows or zero columns is trivially valid.
+
+Tabulation: Iteratively fill the dp table by considering the state transitions from smaller subproblems to larger ones. This avoids recursion overhead and uses a bottom-up approach.
+
+Step-by-Step Plan:
+1. Initialize a 2D array dp of size (N+1) x (M+1) with all elements set to 0.
+2. Set dp[0][j] = 1 and dp[i][0] = 1 for all valid i and j.
+3. Iterate over each cell (i, j) in the dp table:
+   a. For each cell, compute the number of valid matrices by considering the state transitions from smaller subproblems.
+   b. Use the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} to ensure the matrix is valid.
+4. The value at dp[N][M] will give the number of valid matrices of size N x M.
+5. Return the result modulo 998244353.
+
+Edge Cases:
+1. N = 1 or M = 1: In this case, any matrix will be valid as there are no quadruples (a, b, c, d) that satisfy 1 ≤ a < c ≤ N and 1 ≤ b < d ≤ M.
+2. N = M = 1: The matrix is trivially valid.
+3. Large values of N and M: Ensure the solution handles the upper constraint efficiently.
+
+Note: The plan assumes that the given condition can be translated into a valid state transition for the dp table. If further analysis shows that the condition cannot be incorporated directly into the state transitions, the plan may need to be revised.
+

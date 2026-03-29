@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved by counting the number of invertible matrices for each possible trace value from 1 to N, and then selecting the ones with positive determinant.
+
+The state can be defined as just the trace value itself, since the problem only cares about counting the number of invertible matrices for each possible trace value from 1 to N. The base case would be the count of invertible matrices when the trace is 0 or 1, which is relatively easy to calculate.
+
+State: (trace_value,), Transition:
+For each new trace value t, consider all possible pairs of values a and b such that t = a + b, and update the count for the corresponding trace value.
+
+To make the plan more concrete, we can define a dynamic programming table dp where dp[i] represents the number of invertible matrices with trace i. The base case would be dp[0], which is 1 (the identity matrix), and dp[1], which is 2 (the two possible matrices with trace 1).
+
+For larger trace values, we can recursively build up the counts by considering all possible pairs of values a and b such that t = a + b. This is equivalent to saying that an invertible matrix with trace t exists if and only if there exist invertible matrices with traces a and b such that t = a + b.
+
+We can implement tabulation using a bottom-up approach, starting from the base case (counting invertible matrices when the trace is 0 or 1) and recursively building up the counts for larger trace values. The final answer would be dp[N], which represents the number of invertible matrices with trace N and positive determinant.
+
+===END PLAN===

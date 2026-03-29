@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Dynamic Programming Solution:
+Let dp[i][j] be the maximum length of a monotonic sequence that ends at index i and has the last element j.
+
+The base case is when there are no elements in the sequence, so dp[0][0] = 1. For any other cell, consider two cases: either the current element is part of the sequence or not.
+Case 1: The current element is part of the sequence
+In this case, we can extend the current subsequence by one if the next element is greater than the current element.
+dp[i][j] = 1 + max(dp[0..i-1][k]) where k < j and arr[k] <= arr[j]
+
+Case 2: The current element is not part of the sequence
+In this case, we cannot extend any subsequence from previous elements, so dp[i][j] remains the same as dp[i-1][j]
+dp[i][j] = dp[i-1][j]
+
+The overall solution can be written as:
+dp[i][j] = max(1 + max(dp[0..i-1][k]) where k < j and arr[k] <= arr[j], dp[i-1][j])
+
+To fill up the dp table, iterate over all elements in the sequence. For each element, calculate dp[i][j] for all possible values of j.
+
+Finally, the length of the longest increasing subsequence is stored at dp[n-1][m-1]
+
+===END PLAN===

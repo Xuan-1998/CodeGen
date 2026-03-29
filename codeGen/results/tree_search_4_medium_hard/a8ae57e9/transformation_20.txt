@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+Let dp[i][j] represent the maximum amount of money earned for i groups with a total table count j.
+dp[0][0] = 0 (base case)
+For each group size from n to 1:
+    For each table number from k to 0:
+        If the current group size is less than or equal to the table capacity and the maximum amount of money earned for groups up to i-1 with j tables is greater than dp[i][j], then update dp[i][j] = dp[i-1][j-1] + p[i]*c[j]
+        Else, update dp[i][j] = dp[i-1][j]
+
+Let d = {(i, j): k} be a dictionary that keeps track of the minimum number of tables required for each group size.
+
+For i from 2 to n:
+    For j from 0 to k:
+        if p[i]*c[j] > dp[i-1][j]:
+            d[(i, j)] = j+1
+            dp[i][j] = dp[i-1][j-1] + p[i]*c[j]
+        else:
+            d[(i, j)] = d[(i-1, j)]
+            dp[i][j] = dp[i-1][j]
+
+The maximum amount of money earned is the value of dp[n][k], and the number of accepted requests is the size of groups that can be accommodated with this maximum amount.
+
+===END PLAN===

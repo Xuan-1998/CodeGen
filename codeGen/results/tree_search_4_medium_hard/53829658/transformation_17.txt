@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identify that each city's shortest distance from capital can be found independently by performing DFS/BFS from the city, which leads to a bottom-up approach with tabulation.
+Define the state expression as a boolean array representing whether each city is reachable from the capital with 0 or more reversed edges.
+A bottom-up approach with tabulation could involve initializing a 2D array dp of size n x n, where dp[i][j] represents whether city j can be reached from city i by reversing at most k edges.
+
+Initialize an array dist to store the shortest distance from each city to the capital. Perform DFS/BFS from each city to fill in this array.
+For each city i, iterate over its neighbors and update dp[i][j] accordingly.
+Tabulate the reachable cities from each city by performing BFS/DFS again.
+
+Once the dp table is filled, initialize a set of possible capitals with all cities.
+Iterate over the dp table and mark as unreachable any city that cannot be reached from its neighbors. Update the set of possible capitals accordingly.
+
+The remaining cities in the set are the optimal capital choices.
+===END PLAN===

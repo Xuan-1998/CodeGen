@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 2D table where each cell represents the similarity score between two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 2D array dp[i][j] where dp[i][j] represents the similarity score between the substrings A[0..i-1] and B[0..j-1]. The transition is calculated as follows:
+
+State: (i, j)
+Transition:
+if i == 0 or j == 0:
+    dp[i][j] = min(i, j) - 4 * max(i, j)
+else:
+    k = min(i, j)
+    while k > 0 and A[i-1-k] == B[j-1-k]:
+        k -= 1
+    dp[i][j] = dp[i-1][j-1] + 4 * k - i - j
+
+memo = {(i, j): None for i in range(n+1) for j in range(m+1)}: Use a dictionary as a memoization table where each key represents a state (pair of integers), and its value is initially set to None.
+
+===END PLAN===

@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+State: (room, visited) => ((0 <= room <= n+1), (0 or 1)), 
+Transition: (next_room, next_visited) = 
+    if visited == 0:
+        (portal(room), not visited) if crosses % 2 != 0 else (portal(room), visited)
+    else:
+        (room + 1, 0) if room < n+1 else (n+1, 0)
+
+Use a dictionary to store the transition function and update the state accordingly.
+
+Initialize: State = (1, 0)
+Target: State == (n+1, 0)
+
+dp = {}
+def dfs(room, visited):
+    if (room, visited) in dp:
+        return dp[(room, visited)]
+    next_room, next_visited = Transition(room, visited)
+    res = 1 + dfs(next_room, next_visited)
+    dp[(room, visited)] = res
+    return res
+
+print(dfs(1, 0)) % (10**9 + 7)
+===END PLAN===

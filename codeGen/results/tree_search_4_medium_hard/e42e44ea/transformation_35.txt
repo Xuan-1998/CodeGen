@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up dynamic programming with tabulation. The state transition function will calculate the minimum points required to reach a cell from its top-left or left-top neighbor.
+
+Consider a state expression like dp[i][j] = minimum positive points in cells reachable from cell (i, j) with positive points. The base case could be dp[M-1][N-1] = positive points in the destination cell.
+
+dp[0][j] = grid[0][j]
+dp[i][0] = grid[i][0]
+
+for i from 1 to M-1:
+    for j from 1 to N-1:
+        dp[i][j] = max(0, min(dp[i-1][j], dp[i][j-1])) + grid[i][j]
+
+return dp[M-1][N-1]
+===END PLAN===

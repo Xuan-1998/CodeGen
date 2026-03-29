@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+State: dp[i] = whether subsequence ending at index i can be extended to include a[i]. Base case: If i == 0, then this state is False because there are no subsequences. If i > 1, then this state is the same as the previous one because there are no subsequences that can be extended.
+State: dp[i] = 1 if (i > 0 and a[i]%i == 0) or (dp[i-1] and a[i]%len(dp[i-1]) == 0). This is because we need to check divisibility by i for the current element, and also check if the previous subsequence can be extended.
+Transition relationship: For each index i, calculate dp[i] = whether subsequence ending at index i can be extended to include a[i]. Then, return sum of all valid subsequences modulo 10^9 + 7. This is because we want to count the number of good subsequences.
+Use dynamic programming by tabulating solutions for subproblems and combining them to solve the main problem.
+Edge cases: Check if the array is empty or has only one element. If so, return 1 because there is always at least one good subsequence (the entire array).
+===END PLAN===

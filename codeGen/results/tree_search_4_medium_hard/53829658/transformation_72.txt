@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = whether city i can be reached with at most k reversed roads, with base case being dp[k+1][n] = True. This choice explores the idea of finding a capital that requires the fewest reversed roads to reach any other city.
+
+dp[i] = whether city i is reachable from capital city j by reversing at most k edges, using a queue-based BFS approach.
+
+Use dynamic programming with a 2D array dp[][] of size (n+1) x (k+1) to store the reachability of each city given a maximum number of reversed roads. Initialize all values in dp[][] as False except for dp[0][0] = True, which represents that capital city can be reached without reversing any road.
+
+For each city i from 1 to n:
+    For each k from 0 to n-1:
+        If city i is reachable from the current capital city by reversing at most k roads (dp[j][k-1], where j is the parent of i), then set dp[i][k] = True.
+
+Finally, find the maximum value of k such that dp[n][k] = True, and print this value as the minimum number of roads to be reversed if the capital is chosen optimally.
+
+Print all possible ways to choose the capital — a sequence of indexes of cities in the increasing order.
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. 
+
+dp[i][j] = sum(dp[i-1][k-1]*a[ord(s[k-1])-97] for k in range(j, i)) if s[j:i].isalpha() and i-j+1<=max(a) else 0
+Use dynamic programming to avoid counting the same splits multiple times. 
+
+dp[i][j] = 1 if j==i and s[:i].isalpha() and i<=max(a)
+else dp[i][j] = sum(dp[k][j-1]*a[ord(s[j-1])-97] for k in range(j, i)) if s[j:i].isalpha() and i-j+1<=max(a) else 0
+
+A dynamic programming approach could be used to build up a table of possible splits based on the maximum number of consecutive occurrences for each character. 
+
+Implement memoization using a dictionary to store the intermediate results and avoid redundant computation.
+
+dp[i][j] = min(dp[i-1][k]+1 for k in range(j, i) if s[j:i].isalpha() and i-j+1<=max(a)) if dp[i-1][i-1]!=0 else 1000000000
+Keep track of the minimum number of splits.
+
+===END PLAN===

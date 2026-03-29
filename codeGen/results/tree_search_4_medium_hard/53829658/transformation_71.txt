@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i] = whether city i can be reached with at most k reversed roads, with base case being dp[k+1][n] = True. This choice explores the idea of finding a capital that requires the fewest reversed roads to reach any other city.
+
+dp[i] = whether city i can be reached with at most k reversed roads, considering all possible predecessors in the original tree order; dp[k+1][n] = True as the base case.
+
+Recursive approach: Define a function that takes a city index as input, checks if the current city can be reached from the capital in at most k steps, and recursively calls itself for predecessor cities.
+
+For each city i, initialize an array dp[i][k+1] of boolean values indicating whether it's possible to reach city i with at most k reversed roads. 
+
+Set dp[n][0] = True as all cities can be reached without reversing any roads. Then iterate over all cities and all numbers of reversed roads from 0 to k, 
+for each city i: 
+    if city i is reachable with at most k-1 reversed roads, update dp[i][k+1] = (dp[i][k+1] || canReach(i, k-1))
+    where canReach(i, k) checks whether it's possible to reach city i from the capital in at most k steps.
+This recursive approach will explore all possible choices of predecessor cities.
+
+Finally, find the city with maximum in-degree that has a reachable dp[i][k+1]. This city will be the optimal capital. Print its index and also print all possible ways to choose this capital as the answer.
+===END PLAN===

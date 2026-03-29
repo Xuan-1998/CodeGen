@@ -1,0 +1,15 @@
+1. Initialize a 2D array dp with size (n + 1) * (r - l + 1) filled with False. It will store whether a ladder is possible for each subsegment.
+
+2. Iterate over all queries and for each query, iterate over the subsegment from index l to r.
+
+3. Initialize three variables: inc, dec, and flag. inc and dec represent the longest increasing/decreasing sequence found so far in the subsegment. flag will be True if a ladder is possible for this subsegment.
+
+4. Iterate over the subsegment again and for each element, check if it's part of an increasing or decreasing sequence. If it's part of an increasing sequence (inc + 1), update inc and reset dec to 0. If it's part of a decreasing sequence (dec + 1), update dec and reset inc to 0.
+
+5. After iterating over the subsegment, check if either inc or dec is greater than 0. If so, set flag to True.
+
+6. Store the result in dp[i][j] based on the value of flag: dp[i][j] = flag.
+
+7. To answer queries efficiently, iterate over the array and for each element, update a 1D array seen with its index. Then, iterate over all queries and for each query, find the longest increasing/decreasing sequence ending at indices l to r by binary searching in seen.
+
+8. Finally, iterate over all queries again and print "Yes" if dp[i][j] is True, otherwise "No".

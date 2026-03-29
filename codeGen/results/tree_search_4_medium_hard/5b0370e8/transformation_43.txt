@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+A tuple (i, mask) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to mask, given that the last bit was set as 0.
+Let dp[i][mask] be the total count of arrays with i elements such that the result of the bitwise AND operation on all elements is at least mask. 
+For each i from 1 to n and each mask from 0 to (2^k)-1:
+    If i == 1, then there's only one way to form an array: by setting the last bit as mask.
+    For each j from 0 to k-1:
+        Calculate the count of arrays that end with a bit set as (mask >> j) & 1. This is dp[i-1][(mask >> j) & 1].
+        If this count is greater than or equal to k-j, then increment the total count by this count.
+    Store the total count in dp[i][mask].
+Use memoization with recursive function calls to store and reuse solutions for overlapping subproblems. 
+For each i from n to 1 and each mask from 0 to (2^k)-1:
+    If dp[i-1][0] is available, then calculate dp[i][mask] recursively.
+    Store the result in dp[i][mask].
+===END PLAN===

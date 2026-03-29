@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Identifying overlapping subproblems: The dynamic programming solution can be viewed as a 2D array, where each cell [i][j] represents the maximum joy that can be obtained by feeding the first i hares and having j hares full.
+
+The state expression could be dp[i][j] = max joy obtained by feeding first i hares, with j hares full.
+dp[i][j] = max(dp[i-1][0], dp[i-2][1] + a_i if i == 1 else dp[i-1][j-1] + (a_i if j == 1 else c_i)),
+The base case is when there's only one hare, the maximum joy would be a_1.
+The recursive case is to consider two scenarios: either we feed the current hare or not. If we don't feed it, the maximum joy would be dp[i-1][0]. If we do feed it, the maximum joy would be dp[i-2][1] + a_i if i == 1 else dp[i-1][j-1] + (a_i if j == 1 else c_i).
+
+Memoization: Store the values of dp[i][j] in an array to avoid recomputation.
+
+===END PLAN===

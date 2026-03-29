@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. We use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+
+The dynamic programming state can be defined as dp[i][j] which represents whether there exists a split at position i such that each substring from i+1 to j satisfies the condition.
+
+Let's iterate over all possible splits of the message. Initialize dp[0][n-1] = 1 because an empty split satisfies the condition.
+
+Then, for every position i from 0 to n-2 and every position j from i+1 to n-1:
+
+* If dp[i][j] is 1, then for each character k in s[i+1:j]:
+	+ Check if a[s[i+1]] <= a[k] and a[k] <= a[s[j-1]]
+	+ If the condition is satisfied, then dp[i][j-1] = 1
+* Initialize dp[n-1][n-1] = 1 because an empty split satisfies the condition
+
+Finally, we can calculate the number of ways to split the message by summing up all dp[0][i] for i from 0 to n-2 (inclusive). This is because a split at position i is considered valid if and only if there exists a split at some position j < i that satisfies the condition.
+
+To find the length of the longest substring, we can iterate over all possible splits again and keep track of the maximum length seen so far. The minimum number of substrings can be found by iterating over the same splits and keeping track of the smallest number of substrings seen so far.
+
+===END PLAN===

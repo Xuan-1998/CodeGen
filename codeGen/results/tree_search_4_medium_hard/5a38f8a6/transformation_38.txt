@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+
+The state expression is (i, k), where (i, k) represents the minimum number of perfect squares that sum up to i with the last square being k^2. This is because k could be any perfect square less than or equal to sqrt(i).
+
+The choice of k in the transition relationship would represent the last perfect square used in the sum.
+
+The base case would be when i is a perfect square, then the minimum number of squares is 1.
+
+Utilize memoization by storing the results of subproblems in a dictionary as you solve them, ensuring that each subproblem is solved only once.
+
+For edge cases, we should handle the case where n is a perfect square. In this case, the answer is simply 1.
+
+Here's how the dynamic programming algorithm would work:
+
+* Initialize a dictionary dp to store the results of subproblems.
+* Iterate through all numbers from 1 to n (inclusive).
+	+ For each number i, iterate through all perfect squares j^2 less than or equal to i.
+		- If i is equal to j^2, then the minimum number of squares is 1.
+		- Otherwise, calculate the minimum number of squares by considering two options: either include j^2 in the sum and recursively find the minimum number of squares for the remaining amount i - j^2, or don't include j^2 and recursively find the minimum number of squares for the entire amount i.
+			- If including j^2 results in a smaller number of squares, then update the result.
+* Return dp[n].
+===END PLAN===

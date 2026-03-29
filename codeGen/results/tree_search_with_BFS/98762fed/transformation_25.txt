@@ -1,0 +1,41 @@
+
+===BEGIN UPDATED PLAN===
+1. **Understanding the Condition**:
+   - For any quadruple (a, b, c, d) with 1 ≤ a < c ≤ N and 1 ≤ b < d ≤ M, the condition A_{a, b} × A_{c, d} ≤ A_{a, d} × A_{c, b} must hold.
+   - This condition implies that the product of elements in the "corners" of any submatrix must follow the given inequality.
+
+2. **State Representation**:
+   - Let dp[i][j] represent the number of valid matrices of size i x j that satisfy the given condition.
+
+3. **Initial State**:
+   - For a 1x1 matrix, dp[1][1] = 2 because a single element can be either 0 or 1.
+
+4. **Transition**:
+   - To build dp[i][j], consider the valid matrices of size (i-1)xj and ix(j-1) and ensure that adding a new row or column maintains the condition.
+   - However, the condition must be checked for all possible submatrices, which is complex to handle directly.
+
+5. **Simplification Insight**:
+   - The given condition resembles a transitive property that can be simplified by ensuring that rows and columns maintain a specific order.
+   - If we ensure that the rows and columns are non-decreasing, the condition will always be satisfied.
+   - Hence, the problem reduces to counting matrices where each row and each column are non-decreasing sequences of 0s and 1s.
+
+6. **Counting Non-Decreasing Matrices**:
+   - Use combinatorial methods to count the number of ways to fill an NxM matrix with non-decreasing sequences.
+   - For each row and column, the number of non-decreasing sequences of length M (or N) with 0s and 1s can be calculated using combinatorics.
+
+7. **Combinatorial Calculation**:
+   - The number of non-decreasing sequences of length M with 0s and 1s is given by C(M+1, 1) (binomial coefficient).
+   - The total number of valid matrices is the product of these counts for rows and columns.
+
+8. **Modulo Operation**:
+   - Since the number can be large, take the result modulo 998244353.
+
+9. **Final Formula**:
+   - The total number of valid matrices is (C(M+1, 1))^N % 998244353, where C(n, k) is the binomial coefficient.
+
+10. **Edge Cases**:
+   - Handle small values of N and M explicitly.
+   - Ensure that the combinatorial calculations do not overflow by using modular arithmetic.
+
+===END UPDATED PLAN===
+

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The dynamic programming problem seems to be related to a tree data structure, so consider using memoized DFS to explore the tree and optimize the solution.
+
+The state expression could be the maximum value that needs to be subtracted from all nodes in the subtree rooted at a given node, with the root node as the starting point. The base case would be when the current node has no children, and the solution is simply the range value of the node itself.
+
+Think about using a tree-like data structure (e.g., segment tree) to maintain information about the current maximum and minimum values in each subtree as you traverse the tree.
+
+To use a segment tree, consider initializing it with the initial ranges for each node. Then, for each child node, update the segment tree based on the range value of its parent node. This will allow us to efficiently query the maximum and minimum values in each subtree.
+
+When traversing the tree, maintain a variable for the total number of operations needed so far. For each node, calculate the difference between its range value and the maximum value that needs to be subtracted from all nodes in its subtree. If this difference is positive, add it to the total number of operations; otherwise, subtract it.
+
+At the end of the DFS traversal, return the total number of operations needed to adjust all vertices to their respective ranges.
+
+===END PLAN===

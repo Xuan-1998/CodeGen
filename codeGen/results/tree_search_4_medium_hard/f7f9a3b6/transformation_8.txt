@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming and two-dimensional arrays to represent the state.
+
+dp[i][j] = 1 if there exists a split at position i such that each substring from i+1 to j satisfies the condition; 0 otherwise
+
+The state transition relationship can be formulated as:
+
+dp[i][j] = (k == -1 or dp[k-1][i]) * ((j-k+1) <= a[ord(s[i].charAt(0))] and dp[k][j])
+
+where k is a split point satisfying the condition.
+
+Initialize an empty table dp of size n x n, where dp[i][j] is initialized as 0. Then fill it iteratively from left to right and top to bottom, using the state transition relationship.
+
+Finally, initialize three variables: ans1 for the number of ways to split s into substrings that fulfill the conditions mentioned in the problem, ans2 for the length of the longest substring over all the ways, and ans3 for the minimum number of substrings over all the ways.
+
+ans1 = dp[0][n-1]
+ans2 = max(j for i in range(n) for j in range(i, n) if dp[i][j])
+ans3 = min(j for i in range(n) for j in range(i, n) if dp[i][j])
+
+Print the results: ans1 % (10^9 + 7), ans2, and ans3.
+===END PLAN===

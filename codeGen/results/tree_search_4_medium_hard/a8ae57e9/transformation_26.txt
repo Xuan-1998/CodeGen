@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining two states that keep track of the maximum amount of money earned and the minimum number of tables required for each group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+Define two dictionaries dp1 and dp2:
+dp1[i] = max(c_i) represents the maximum amount of money earned for groups up to size i
+dp2[i] = min(k) represents the minimum number of tables required to accommodate all groups with sizes up to i
+
+Initialize dp1[0] = 0, dp2[0] = k (since no groups have been seated yet)
+
+Fill in the states in bottom-up manner:
+for i from 2 to n:
+    for j from 0 to i-1:
+        if c_j <= max_capacity and dp1[j] + c_i > dp1[i]:
+            dp1[i] = dp1[j] + c_i
+            dp2[i] = min(dp2[j], dp2[i])
+        else:
+            dp1[i] = dp1[i]
+            dp2[i] = dp2[i]
+
+The maximum amount of money earned is stored in dp1[n-1]. The minimum number of tables required to accommodate all groups with sizes up to n is stored in dp2[n-1].
+
+To generate the output, iterate over the accepted requests and assign each group to a table based on the minimum number of tables required.
+===END PLAN===

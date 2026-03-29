@@ -1,23 +1,16 @@
-# Read the number of days
-n = int(input())
+import heapq
 
-# Read the marks above the water level for each day
-marks_above = list(map(int, input().split()))
+def min_sum_of_counts(n, counts):
+    counts.reverse()
+    queue = []
+    for count in counts:
+        if not queue or count > -queue[0]:
+            heapq.heappush(queue, -count)
+        else:
+            heapq.heappushpop(queue, -count - 1)
+    return -sum(queue)
 
-# Initialize variables
-waterLevel = 0
-totalMarksBelow = 0
+n = int(input().strip())
+counts = list(map(int, input().strip().split()))
+print(min_sum_of_counts(n, counts))
 
-# Iterate through each day
-for i in range(n):
-    # Calculate the current water level
-    currentWaterLevel = i - marks_above[i]
-    
-    # Update the water level if the current is higher
-    waterLevel = max(waterLevel, currentWaterLevel)
-    
-    # Calculate marks below the water level for the day and add to total
-    totalMarksBelow += (i - waterLevel)
-
-# Print the result
-print(totalMarksBelow)

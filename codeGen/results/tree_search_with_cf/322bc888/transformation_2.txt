@@ -1,0 +1,28 @@
+
+1. Precomputation:
+   - Define all possible beautiful patterns of length up to 3 using the three characters 'a', 'b', and 'c'. There are 6 possible patterns for length 3: "abc", "acb", "bac", "bca", "cab", "cba".
+   - For each of these patterns, precompute the cost to transform any substring of s to match the pattern. This will help in efficiently answering the queries.
+
+2. Precompute Costs:
+   - For each beautiful pattern, create a cost matrix that stores the cumulative cost to transform the prefix of s to match the pattern. For example, for the pattern "abc", compute the cost to transform s[0:i] to match "abcabc...".
+
+3. Query Processing:
+   - For each query, extract the substring and use the precomputed cost matrices to determine the minimum cost to transform the substring into any of the beautiful patterns. This involves calculating the cost for each pattern and taking the minimum.
+
+4. Output:
+   - For each query, output the minimum cost.
+
+Steps:
+1. Generate all beautiful patterns of length 3.
+2. For each pattern, compute the cumulative transformation cost for each prefix of the string s.
+3. For each query, use the precomputed costs to determine the minimum transformation cost for the queried substring.
+4. Output the results for all queries.
+
+Time Complexity:
+- Precomputation: O(n) for each of the 6 patterns, total O(6n) = O(n).
+- Query Processing: O(1) per query using the precomputed data.
+- Total: O(n + m).
+
+Space Complexity:
+- O(n) for storing the cumulative costs for each pattern.
+

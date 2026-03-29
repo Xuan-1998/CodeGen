@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+The state expression is dp[i][j] = winner_index if we're considering i players with j people having coins.
+dp[i][j] = (j + M - 2) % X + 1 if i is 1, else 
+    min(range(1, i+1), key=lambda k: (k * ((j+M-2)) % X) + dp[i-k][((j+M-2))%X])
+
+The dynamic programming approach involves filling up this 2D table in bottom-up manner, starting from base cases and moving towards the solution.
+
+For each player, we need to calculate the winner. If there's only one player left, it's obvious that the last player is the winner. So, we start from i = X.
+For each i, we find the minimum index k such that (k * ((j+M-2)) % X) + dp[i-k][((j+M-2))%X] is minimized. This means that the person who gets the coin should be removed.
+
+We can calculate this by iterating over all possible k and finding the minimum. The base case is when i = 1, where we just need to find the winner based on M and X.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Determine the overlapping subproblems by recognizing that the minimum path sum for each cell depends on its neighbors. 
+Use tabulation to store and reuse these calculations.
+
+state expression: dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+dp[i][0] = dp[0][j] = grid[0][0] for all i, j
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j] for 1 <= i < m and 1 <= j < n
+
+Use a 2D array to store the minimum path sum for each cell, initializing it with the top-left corner's value.
+Store and return the minimum path sum at the bottom-right corner.
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Create a table dp where dp[i] represents the number of digit 1's in numbers less than i. Initialize dp[0] = 0, because there are no digit 1's in numbers less than 0.
+
+For each integer i from 1 to n:
+
+* Calculate the number of digit 1's in numbers less than or equal to i by considering two cases: 
+	+ The number ends with 1. In this case, we add the number of times '1' appears as a trailing digit for numbers ending with 1, which is dp[i-1] and subtract the number of times '1' appears as a leading digit for numbers starting with 0, which is i-1.
+	+ The number does not end with 1. In this case, we just add the number of times '1' appears as a trailing digit for numbers ending with 1, which is dp[i-1].
+* Update dp[i] accordingly.
+
+Finally, return dp[n].
+
+===END PLAN===

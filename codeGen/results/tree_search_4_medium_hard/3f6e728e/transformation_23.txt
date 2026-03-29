@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+dp = [0]*(C+1)
+for i in range(2,C+1):
+    dp[i] = 0
+    for j in range(i):
+        if U_count.get(j,0) > 0 and L_count.get(j,0) > 0:
+            dp[i] += dp[j]*binom(C_count[C_index].index(j), C_count[C_index][j])
+        elif U_count.get(j,0) > 0:
+            dp[i] += binom(U_count.get(j,0),1)*dp[j]
+    if i in L_count:
+        for j in range(i):
+            if L_count.get(j,0) == i and dp[j] != 0:
+                dp[i] = (dp[i]+dp[j])%mod
+    dp[i] %= mod
+for t in range(T):
+    N,M,C = map(int, input().split())
+    U_count = {}
+    for _ in range(N):
+        u = int(input())
+        if u not in U_count:
+            U_count[u] = 0
+        U_count[u] +=1
+    L_count = {}
+    for _ in range(M):
+        l = int(input())
+        if l not in L_count:
+            L_count[l] = 0
+        L_count[l] +=1
+    print(*[dp[i]%mod for i in range(1,C+1)], sep=' ')
+===END PLAN===

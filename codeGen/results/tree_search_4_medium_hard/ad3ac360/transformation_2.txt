@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider a recursive function that checks if a substring is a palindrome, then use memoization to store the results of expensive function calls.
+
+State: dp[i] represents whether the last cut at position i resulted in a palindrome partition.
+
+Consider the states dp[i][j] as a boolean indicating if the substring from index i to j is a palindrome.
+Use memoization to store the results of dp[i][j] for all possible pairs (i, j) and then use this table to update the dynamic programming table.
+
+Initialize an empty table of size n x n where n is the length of the string. Fill in the diagonal elements as true since single-character substrings are always palindromes.
+
+Then iterate over the string from left to right, considering each character as a potential cut point. For each cut point i:
+
+1. Check if the substring up to i is a palindrome (i.e., dp[0][i-1] is true).
+2. If it's not, then consider cutting at position i and recursively check if the rest of the string can be partitioned into palindromes.
+3. Update dp[i] as true if the recursive call returns true.
+
+Finally, return the minimum number of cuts needed by iterating over the table from left to right, incrementing a counter whenever dp[i] is false, indicating a cut point.
+
+===END PLAN===

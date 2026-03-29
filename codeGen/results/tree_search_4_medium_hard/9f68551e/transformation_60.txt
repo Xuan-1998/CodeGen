@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+dp = {}
+for i in range(len(k)):
+    for j in range(i+1):
+        if k[j] >= h[i]:
+            dp[k[i]] = max(dp.get(k[i], 0), h[i])
+        else:
+            dp[k[i]] = max(dp.get(k[i], 0), dp.get(k[j]-1, 0) + 1)
+===END PLAN===

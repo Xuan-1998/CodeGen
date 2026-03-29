@@ -24,12 +24,12 @@ def solution(input_str: str) -> str:
 l = input()
 print(solution(l))"""
 
-TEST_CASES = [ 
-    {"input": "10 20 30 40 50\n", "output": "12 22 32 42 52\n"}, 
-    {"input": "5 10 15\n", "output": "7 12 17\n"}, 
-    {"input": "2 4 6 8 10 12 14\n", "output": "4 6 8 10 12 14 16\n"}, 
-    {"input": "100 100\n", "output": "102 102\n"}, 
-    {"input": "25 50 75 100 25 50\n", "output": "27 52 77 102 27 52\n"} 
+TEST_CASES = [
+    {"input": "10 20 30 40 50\n", "output": "12 22 32 42 52\n"},
+    {"input": "5 10 15\n", "output": "7 12 17\n"},
+    {"input": "2 4 6 8 10 12 14\n", "output": "4 6 8 10 12 14 16\n"},
+    {"input": "100 100\n", "output": "102 102\n"},
+    {"input": "25 50 75 100 25 50\n", "output": "27 52 77 102 27 52\n"}
 ]
 
 PROBLEM = problems.Problem(
@@ -54,7 +54,7 @@ class TestOJInteractions(unittest.TestCase):
         pattern = r'^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
         self.assertIsNotNone(token)
         self.assertTrue(re.match(pattern, token))
-    
+
     def test_get_submission_online(self):
         token = oj_interactions.submit_code(TEST_CODE, TEST_CASES[0]["input"], TEST_CASES[0]["output"], 'online')
         time.sleep(5)
@@ -87,10 +87,6 @@ class TestChatbotAPI(unittest.TestCase):
         codeGen_logger.info(response.choices[0].message.content)
         self.assertIsNotNone(response.choices[0].message.content)
 
-    def test_embedding(self):
-        embedding = chatbot.EmbeddingAPI()
-        self.assertIsNotNone(embedding.embedding)
-
 @unittest.skip("Skip since it's going to be deprecated")
 class TestCodeRunner(unittest.TestCase):
     def test_code_runner(self):
@@ -101,7 +97,9 @@ class TestCodeRunner(unittest.TestCase):
 @unittest.skip("Skip since it's already tested")
 class TestCoding(unittest.TestCase):
     def test_transformation_algorithm_coder(self):
-        code, response = coding.transformation_algorithm_coder("Given a list of integers, add 2 to each element", "List", "Add 2 to each element")
+        chat = chatbot.OllamaAPI()
+        coder = coding.Coding("Given a list of integers, add 2 to each element", chat)
+        code, response = coder.transformation_algorithm_coder("List", "Add 2 to each element")
         codeGen_logger.info(response)
         self.assertIsNotNone(code)
         self.assertIsNotNone(response)
@@ -110,11 +108,11 @@ class TestOllama(unittest.TestCase):
     @unittest.skip("Skip since it's already tested")
     def test_chat(self):
         ollama = chatbot.OllamaAPI()
-        response = ollama.chat(messages=
+        response = ollama.create(messages=
             [
                 {
                     'role': 'system',
-                    'content': coding.ALGORITHM_SYSTEM,
+                    'content': prompts.ALGORITHM_SYSTEM,
                 },
                 {
                     'role': 'user',
@@ -129,7 +127,7 @@ class TestOllama(unittest.TestCase):
 
     def test_response_format(self):
         coder = chatbot.OllamaAPI(model="llama3")
-        code = chatbot.string_to_list(chatbot.parse_code_block(coder.chat(TEST_STATEMENT)))
+        code = chatbot.string_to_list(coder.create(TEST_STATEMENT))
         codeGen_logger.info(code)
         self.assertGreaterEqual(len(code), 1)
 
@@ -146,7 +144,7 @@ class TestProblem(unittest.TestCase):
         PROBLEM.append_to_jsonl('problems.jsonl')
         PROBLEM.append_to_jsonl('problems.jsonl')
         PROBLEM.append_to_jsonl('problems.jsonl')
-        
+
         problems_list = []
         with open('problems.jsonl', 'r') as file:
             for line in file:

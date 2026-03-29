@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Dynamic Programming:
+1. Create an array dp of size n+1 where dp[i] represents the length of the longest increasing subsequence ending at index i.
+
+2. Initialize the first element of dp as 1, since there's always a single-element increasing subsequence starting from any position.
+3. Iterate through the array from left to right:
+    * For each element x in the array:
+        + Find the maximum length of increasing subsequences that end before x using a variable max_ending_here.
+        + Update max_ending_here if it's greater than the current value of dp[i] and x is greater than the last element of the corresponding subsequence (i.e., x > dp[max_ending_here-1]).
+        + Update dp[i] as max_ending_here + 1.
+4. The length of the longest increasing subsequence is stored in the last element of the dp array, i.e., dp[n].
+===END PLAN===

@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+The state is an integer i representing the number of strings sorted so far, and the base case is when i == n
+
+To define a set of states S = {1, ..., n} and a set of transitions T such that for any state s in S, there exists a transition t in T from s to s+1 if it is possible to sort the first s strings into lexicographical order by reversing some of them, with the initial condition being dp[0] = 0
+
+Use a dictionary to store the minimum total cost required to sort the first i strings for each possible i.
+
+For each string, consider two cases: either the current string is smaller than all previously sorted strings, or it is not. If it is smaller, then it should be moved to its correct position by reversing some of the previously sorted strings. This can be done in O(n) time.
+
+If it is not smaller, then it will remain at its original position after sorting the remaining strings. This can also be done in O(n) time.
+
+So, the transition from state s to s+1 takes O(n) time and involves reversing some of the previously sorted strings. 
+
+The plan seems correct, but it may involve a lot of repeated work if not implemented carefully.
+
+To avoid this, we could use dynamic programming with memoization to store the minimum total cost required to sort the first i strings for each possible i.
+
+This way, once we have computed the minimum total cost for some string, we can simply look up that value instead of recomputing it.
+
+The plan includes edge cases such as when i == 0 (base case) and when n is very large.
+===END PLAN===

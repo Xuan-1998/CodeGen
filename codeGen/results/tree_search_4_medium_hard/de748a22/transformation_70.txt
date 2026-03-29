@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with prefix sums.
+Let dp[i][j] denote the minimum number of elements that need to be removed in order for the sign-variable sum up to i-th element in the range [l..r] to be 0.
+
+State transitions:
+1. If j is within the range [l..r], then dp[i][j] = min(dp[i-1][k]) + (sign of j-th element) for k ranging from l to r.
+2. If j is outside the range [l..r], then dp[i][j] = dp[i-1][j].
+
+Base case:
+dp[0][i] = 0 for all i, since there are no elements to be removed initially.
+
+Initialization:
+Create a prefix sum array ps of size n+1, where ps[i] is the sign-variable sum up to the i-th element.
+For each query [l..r], create an array of size r-l+1, where dp[j][j] = 0 for all j, since there are no elements to be removed initially.
+
+Query processing:
+For each query [l..r]:
+1. Calculate the prefix sum ps[r] - ps[l-1].
+2. For each j from l to r:
+   a. If ps[j] is positive or zero, update dp[j][j] = min(dp[i-1][k]) + (sign of j-th element) for k ranging from l to r.
+   b. If ps[j] is negative, update dp[j][j] = dp[i-1][j].
+3. The answer for the query is the minimum value in the range [l..r].
+
+Time complexity:
+O(nq) due to the need to process each query and each element once.
+
+Space complexity:
+O(n+q) for storing the prefix sum array and the dynamic programming arrays.
+===END PLAN===

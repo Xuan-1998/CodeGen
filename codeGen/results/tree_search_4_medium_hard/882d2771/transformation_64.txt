@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+base case: f(1) = 0
+The state is the current number of groups, and the transition is when we merge two groups into one.
+The recurrence relation would be f(n) = min(f(m) + f(n-m-1)) for m from 1 to n-2, where m represents the number of girls in the first group.
+
+Apply memoization to function f(n) by storing its results in a dictionary or cache and reusing them when necessary.
+The key is to memoize the subproblems correctly. We can create a dictionary dp where dp[i] stores the minimum total comparisons for i groups. Then, we update dp[i] based on the minimum total comparisons for smaller instances.
+
+We should also consider edge cases: f(0) and f(1). In this problem, there is no need to handle f(0) separately because f(n) = 0 when n is 1.
+The plan does not include edge cases. We should add an additional check before the main loop starts to ensure that l ≥ 2 and r ≤ 5 * 10^6.
+
+===END PLAN===

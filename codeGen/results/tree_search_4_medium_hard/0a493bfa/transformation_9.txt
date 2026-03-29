@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. 
+Use top-down approach with memoization to solve this problem.
+
+dp[i][j] = max(dp[k][l-1] * f(gcd(...)) for k from 0 to i and l from j down to 0) 
+Consider the array as a tree, where each node is a subset of numbers and each edge represents an operation (replacing elements with their GCD). Define states based on nodes in the tree and formulate transition relationships between them.
+
+Use a 2D array to store the dynamic programming table, where dp[i][j] represents the maximum beauty of the array after performing operations on the first i elements and skipping j bad prime numbers. 
+
+dp[0][0] = f(gcd(a[1], ..., a[n])) 
+dp[0][j] = -INF for j > 0 (since there are no operations to be performed)
+
+for i from 1 to n:
+    dp[i][0] = max(dp[k][0] * f(gcd(a[k+1], ..., a[i])) for k from 0 to i-1)
+    for j from 0 to m:
+        if b[j] <= i and b[j] > 0: 
+            dp[i][j] = max(dp[k][l-1] * f(gcd(...)) + (i-b[j]) * a[b[j]] for k from 0 to i-1 and l from j down to 0)
+
+return max(dp[n][m], -INF)
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Think about dynamic programming with a recursive function that checks if a number is prime and has k_perms permutations, updating the results as needed.
+
+A possible base case is when n_max is less than or equal to 2, as prime numbers below this value have no more than one permutation.
+To design a recursive function that checks if a number is prime and has k_perms permutations, and update the results accordingly, using memoization for optimization.
+
+The recursive function would take two parameters: n and k. It would first check if n is less than or equal to 2, returning [0, 0, 0] in this case.
+If not, it would generate all prime numbers less than or equal to n (this can be done using a Sieve of Eratosthenes), then count the number of these prime numbers that have k_perms permutations.
+To do this, for each prime p, generate all possible permutations of its digits and check if there are exactly k of them. If there are, increment the count.
+
+Once the count is calculated, store it in a memoization table with key (n, k) to avoid recomputation.
+
+The final result would be the minimum, maximum, and count of prime numbers that have k_perms permutations below n_max.
+This plan does not consider edge cases such as invalid inputs or very large values for n_max. It also assumes that it's feasible to generate all prime numbers less than or equal to n, which might not be the case for very large values.
+
+===END PLAN===

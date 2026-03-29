@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Define the state expression for each node i as the product of edge labels on the shortest path from i to the root, with base case being nodes that have only one child or are leaves.
+
+Let dp[i] denote the maximum possible distribution index for node i. For a leaf node i, set dp[i] = 0 since there's no contribution to the maximum possible distribution index.
+
+For an internal node i with children j1, ..., jm, recursively compute the maximum possible distribution indices for each child and update dp[i] as follows:
+
+dp[i] = min(dp[j1], ..., dp[jm]) + sum(f(i, ji) * (i != ji)) where f(i, v) is the product of edge labels on the simple path from node i to node v.
+
+Using a bottom-up approach with memoization by defining and updating a table of node states in order of increasing depth. Start with nodes at depth 0, then iteratively update the states for each node as you move up the tree.
+
+Compute the maximum possible distribution index for the root node (at depth 0) to be the maximum possible distribution index for the entire tree.
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using a bottom-up dynamic programming approach by initializing a 2D table to store the minimum height of the bookcase for each subproblem, where the rows represent the books and the columns represent the maximum shelf width.
+
+The state expression is dp[i][w] = min height of bookcase when i books are placed and w is the maximum shelf width. 
+
+For each book from 0 to i-1:
+    - For each possible shelf width w from max_thickness to w_shelf_width (from rightmost column to leftmost):
+        - Calculate the minimum height of bookcase dp[i][w] by considering two options: 
+            1) Place the current book on the top of the bookcase, and then try to place the remaining i-1 books on shelves with maximum width w.
+            2) Do not place the current book on the top of the bookcase. Instead, place it on a shelf with maximum width less than or equal to its thickness. Then, try to place the remaining i-1 books on shelves with maximum width w.
+
+Update dp[i][w] to be the minimum of these two options.
+Tabulation by solving the problem from the bottom-up, starting with the smallest subproblem and working your way up to the original problem.
+
+===END PLAN===

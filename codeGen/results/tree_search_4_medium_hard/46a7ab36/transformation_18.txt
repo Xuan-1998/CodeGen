@@ -1,0 +1,17 @@
+], [
+The state could be represented by (n, m) where n is the remaining size of the alphabet and m is the remaining length of the word. The base case would be when there are no more characters left to place in the word.
+
+dp[i][j] = (j == 0 ? 1 : 
+    (i % 2 == 0 && i/2 <= n ? dp[i/2][m-1] * (n - i/2) : 
+    min(i/2 + 1, n) - i/2) * dp[i][j-1]), 
+for 0 <= i < n, j >= 0
+
+Dynamically allocate memory for the tabulation array based on the input size. For each test case, calculate the number of possible words by iterating over all possible states and updating the dynamic programming table accordingly.
+
+Initialize dp with zeros.
+dp[i][j] = 1, for i = 0
+dp[0][j] = (n choose j) for 0 <= j <= m
+
+For each test case, calculate the number of possible words by iterating over all possible states and updating the dynamic programming table accordingly.
+
+Print the result modulo $10^8+7$.

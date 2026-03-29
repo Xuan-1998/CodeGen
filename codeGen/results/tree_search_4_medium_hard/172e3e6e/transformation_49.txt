@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+We will use dynamic programming with a 2D array dp of size (n+1) x (max(a[i]) + 1), where n is the length of the input array and max(a[i]) is the maximum value in the array.
+
+The state will be (dp_index, dp_value), where:
+    - dp_index represents the last element considered in the dynamic programming table
+    - dp_value is the value computed for this subproblem
+
+To fill the dp table:
+    1. Initialize all values to 0.
+    2. For each i from 1 to n:
+        - For each j from max(a[i]) down to 1:
+            - If a[i] % j == 0, update dp[i][j] = dp[i-1][j] + 1
+            - Else, dp[i][j] remains the same
+    3. The answer will be dp[n][max(a[i])] modulo (10^9 + 7)
+
+Note: We only consider subsequences that end at index i and have last element divisible by j.
+
+This plan should correctly solve the problem.

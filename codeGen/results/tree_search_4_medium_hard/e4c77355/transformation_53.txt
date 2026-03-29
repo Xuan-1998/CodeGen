@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+DP[i] represents the length of the longest increasing subsequence ending at index i, considering all previous elements.
+
+Dynamic Programming:
+Use a bottom-up approach by initializing a table with zeros, then iterating through the array to update longest increasing subsequences as you go.
+Let DP[i] represent the length of the longest increasing subsequence ending at index i.
+
+Transition relationship: If the current element is greater than the previous one,
+update DP[i] to be 1 plus the maximum length of increasing subsequences that end before this element. Otherwise, keep the same value.
+
+Corrected version:
+Use a single loop to iterate through the array and update longest increasing subsequences as you go.
+Let prev_max be the maximum length of increasing subsequences found so far.
+For each index i in the array,
+If DP[i-1] is not 0 (i.e., there is an increasing subsequence ending at index i-1),
+update DP[i] to be the maximum of its current value and DP[i-1] + 1.
+Otherwise, keep the same value.
+
+Initialize all elements in the DP array to 1, as a single element is always an increasing subsequence of length 1.
+
+Return the maximum value in the DP array, which represents the length of the longest increasing subsequence.
+
+===END PLAN===

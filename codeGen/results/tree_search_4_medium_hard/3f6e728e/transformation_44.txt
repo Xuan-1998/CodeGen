@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+dp[0][j] = 1 (no sphere) and dp[C+1][j] = 0 (sequences longer than C are not possible).
+
+dp[i][j] = sum(dp[k][i-1] * (1 if U_k <= j else 0) for k in range(N)) + 
+          sum(dp[k][i-1] * (1 if L_k <= j else 0) for k in range(M))
+
+Memoization can be implemented using a dictionary to store intermediate results.
+
+Initialize dp with zeros and calculate the values iteratively.
+Calculate the values from bottom-up, starting from dp[0][j], then dp[1][j], ..., dp[C+1][j].
+For each value of i and j, calculate dp[i][j] as described above.
+Finally, print the last row (dp[C][j]) to get the desired output.
+
+===END PLAN===

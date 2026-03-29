@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+We will use dynamic programming to calculate the probability that a randomly formed team will have at least one player from the department of interest.
+
+The base case is when there are no more players to choose from (k = n-1), in which case we just need to check if there are any players from the department of interest. If h (the number of basketball players in the department of interest) > 0, then P[k] = 1. Otherwise, P[k] = 0.
+
+The transition relationship is that P[k] is the sum of probabilities for all possible outcomes greater than or equal to k. This can be calculated as follows:
+
+For each possible number of players from the department of interest (i) such that i >= k, add the probability that exactly i players are chosen from the department of interest to the sum. The probability of choosing i players is the PMF of the binomial distribution with parameters h and n-k.
+
+The dynamic programming approach will iterate from k = n-1 down to k = 0. At each step, calculate P[k] as the sum of probabilities for all possible outcomes greater than or equal to k.
+
+Finally, return P[0], which is the probability that a randomly formed team will have at least one player from the department of interest.
+
+===END PLAN===

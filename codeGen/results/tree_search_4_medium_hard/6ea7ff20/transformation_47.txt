@@ -1,0 +1,20 @@
+dp[i][j] = 1 if (i == j or dp[i-1][j-1]) and the elements at indices i and j in p are swapped without changing the overall order.
+dp[i][j] = 0 otherwise.
+
+Initialize a dictionary memo to store the results of subproblems as you solve them, and look up solutions to subproblems before solving them again.
+
+Define dp[i][j] as the minimum number of swaps required to rearrange the elements at indices i and j in p into two arrays a and b, such that all elements in a are less than all elements in b. The state transitions would involve updating dp[i][j] based on whether the current element is less than or greater than its counterpart in the other array.
+
+For each pair of adjacent elements (p[i], p[j]) in the permutation, do the following:
+
+* If p[i] < p[j], update dp[i][j] as follows:
+    + If i == 0 and j == n-1, set dp[i][j] = 1 if p[i] < p[j].
+    + Else, set dp[i][j] = 1 + min(dp[i-1][j-1], dp[i-1][j]) if p[i] < p[j].
+* If p[i] > p[j], update dp[i][j] as follows:
+    + If i == 0 and j == n-1, set dp[i][j] = 1 if p[i] > p[j].
+    + Else, set dp[i][j] = 1 + min(dp[i-1][j-1], dp[i][j-1]) if p[i] > p[j].
+
+Finally, check if there exist two arrays a and b, each of length n and with no elements in common, so that p=merge(a,b) by iterating over the last row of the dp table.
+
+If the minimum number of swaps required to rearrange the elements at indices i and j is 0 for any pair (i, j), output "YES". Otherwise, output "NO".
+===END PLAN===

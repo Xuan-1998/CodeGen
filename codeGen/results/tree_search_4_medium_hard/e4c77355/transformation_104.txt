@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Dynamic Programming: Longest Increasing Subsequence
+State expression: dp[i][k] = maximum length of increasing subsequence ending at i considering last increase happened k steps ago
+Initialization:
+  - dp[0][k] = 1 for all k (base case: the longest increasing subsequence starting from the first element is always 1)
+  Transition equation:
+    - If nums[i] > nums[i-1], then dp[i][k] = dp[i-1][min(k, dp[i-1][0])]
+      - This means that if the current number is greater than the previous one, we can extend the increasing subsequence by 1
+      - The length of this subsequence depends on the last increase happened k steps ago (which is stored in dp[i-1][k])
+    - Else, dp[i][k] = max(dp[i-1][k], 1)
+      - This means that if the current number is not greater than the previous one, we can only extend the increasing subsequence by 1
+      - The length of this subsequence depends on the last increase happened k steps ago (which is stored in dp[i-1][k])
+Final answer: return max(dp[n-1][k] for k in range(max(dp)))

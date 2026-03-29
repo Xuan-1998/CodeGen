@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The optimal solution depends on the number of marks strictly above the water level on previous days, making it a natural fit for dynamic programming.
+
+The state expression could be 'dp[i]: minimum sum of marks below water level on day i', where dp[i] depends on dp[j] for all j < i.
+dp[j]: total marks above water level up to j, used to calculate dp[i] for all i > j
+
+Using bottom-up dynamic programming with a 1D table:
+Let dp[i] be the minimum sum of marks below water level on day i.
+
+Base case: dp[0] = 0 (no marks below water level initially)
+
+For i from 1 to n-1:
+    Let above_water[i] be the number of marks strictly above the water level on day i
+    Let below_water[i-1] be the minimum sum of marks below water level on day i-1
+    dp[i] = min(dp[i-1] + (i - 1) * above_water[i], dp[j] + (j - 1) * above_water[i] for j from 0 to i-1)
+
+Return dp[n-1]
+
+===END PLAN===

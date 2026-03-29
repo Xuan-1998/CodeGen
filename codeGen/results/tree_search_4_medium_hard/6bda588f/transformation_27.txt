@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[i][k] will store the minimum value that can be obtained with a sum k and i numbers left.
+The base case is when there are no more numbers left (i = 0), in which case dp[i][k] = 0
+For each number a in the sequence:
+- Try to put s into the current term: dp[i - 1][k + a - 2s]
+- Don't put s into the current term: dp[i - 1][k + a]
+
+The final answer will be dp[n][sum(a) - n*s]
+This way, we are considering all possible ways to distribute the numbers and s in the sequence
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+dp[i][j] = max(dp[i-1][j-1] + pi, dp[i][j-1]) for all 0 ≤ i < k, 0 ≤ j ≤ m
+
+Base cases:
+dp[0][j] = 0 for all j (base case: when there are no more tables)
+dp[i][0] = 0 for all i (base case: when there are no more money to spend)
+
+Then, use memoization to fill in the states in top-down manner.
+
+Finally, find the maximum amount of money earned by iterating over the dp table and return the number of accepted requests as k - len(getTableAssignments()), where getTableAssignments() is a function that returns the indices of the accepted requests and the corresponding tables they are seated at.
+===END PLAN===

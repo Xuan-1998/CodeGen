@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining dp[i][j] as the maximum score that can be achieved by the end of the ith element if we have made j moves so far, with no more than z moves to the left in a row and the current index is i.
+Initialize a 2D table with n rows and k+1 columns filled with -Infinity values. 
+Fill the first column (j=0) with the scores at each index, since no moves have been made yet. This would be the array itself.
+For j from 1 to k:
+    For i from 1 to n-1:
+        Calculate two possibilities: one where the last move was to the left and another where it was to the right.
+        If j-z >= 0, consider a move to the left by adding the value at index i-j+z. This would be dp[i-j+z][j-z] + array[i].
+        If i-j+1 <= n, consider a move to the right by adding the value at index i+1. This would be dp[0][j-1] + array[i+1]. 
+        Calculate the maximum score between these two possibilities and update dp[i][j] with this value.
+Return dp[n-1][k] as the maximum score that can be achieved.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp states can be defined as (i, j) where i is the current row index and j is the current column index. Memoization can be used to store intermediate results.
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j] if grid[i][j] > 0
+dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if grid[i][j] <= 0
+
+Store the minimum points required to reach each cell in a dictionary where the key is the cell's coordinates, and update it using the above recurrence relation.
+
+To handle edge cases:
+
+* Initialize the first row (i=0) with all values being the value of the top-left cell
+* Initialize the first column (j=0) with all values being the value of the top-left cell
+
+===END PLAN===

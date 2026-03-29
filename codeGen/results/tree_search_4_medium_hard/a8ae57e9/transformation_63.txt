@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Dynamic programming can solve this problem by defining a state that represents the maximum amount of money earned for each possible table configuration and total amount of money spent. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+dp[i][j] = max(dp[i-1][j], pi * min(k, ci)) for i in range(1, n+1), j in range(1, k+1)
+Transition: dp[i][j] = max(dp[i-1][j], pi * min(k, ci)) for each request
+
+Memoization with a recursive function can also be used to calculate the maximum amount of money earned for each possible configuration.
+The base case would be when there are no more tables or no more money to spend, then return 0.
+
+dp[0][j] = dp[j][0] = 0
+Transition: 
+dp[i][j] = max(dp[i-1][j], pi * min(k, ci)) if i <= k and j <= n
+dp[i][j] = max(dp[i-1][j], dp[i-1][k-j+1]) + pi * min(k, ci) if i > k or j > n
+
+Finally, the maximum amount of money earned would be the value in dp[n][k].
+===END PLAN===

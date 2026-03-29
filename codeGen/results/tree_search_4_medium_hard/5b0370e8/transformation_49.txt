@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use dynamic programming to fill up a table, where each entry represents the result of a subproblem.
+
+A tuple (i, s) representing the number of ways to form an array with i elements where all bitwise AND operations are greater than or equal to k-j, given that the last bit was set as s.
+Let dp[i][s] be the number of arrays for which the bitwise AND operation on all elements is greater than or equal to k-j.
+
+A tuple (i, j) representing the number of ways to form an array with i elements where all bitwise XOR operations are greater than or equal to j, given that the last k-j bits were set as 0.
+Let dp_xor[i][j] be the number of arrays for which the bitwise XOR operation on all elements is greater than or equal to j.
+
+Fill up a table, where each entry represents the result of a subproblem. 
+For i from 1 to n:
+    For s from 0 to k-1:
+        dp[i][s] = sum(dp[i-1][t] for t in range(s+1)) + sum(dp_xor[i-1][j] for j in range(k))
+    For j from 0 to k-1:
+        dp_xor[i][j] = sum(dp[i-1][s] for s in range(k-j))
+
+The total count is the sum of all entries in the table, modulo 10^9+7.
+
+===END PLAN===

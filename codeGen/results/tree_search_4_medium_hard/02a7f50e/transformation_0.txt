@@ -1,0 +1,6 @@
+Dynamic programming approach: Consider a 2D DP table where dp[i][j] represents the minimum number of beacons that could be destroyed if exactly one beacon is added at position i with power j.
+
+The state is (i, j) where i represents the current position and j represents the current power level of the beacon being added.
+Create a 2D DP table with dimensions n+1 x 1000000 to store the minimum number of beacons that could be destroyed for each position and power level.
+
+dp[i][j] = min(dp[k][min(b_i, j)] + |i-k| for k in range(i-1, -1, -1)) where i is the current position, j is the current power level, b_i is the power level of the beacon at position i, and k is a previously activated beacon.

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i] is the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+The base case is when i = 0, dp[0] = 0 as there's no decimal part to round.
+
+Top-down dynamic programming approach with memoization:
+For each digit after the decimal point, consider two options: 
+1. Rounding up (add 1) and subtracting 9 from t.
+2. Not rounding (keep the current value) and subtracting 1 from t.
+
+The state transition is dp[i] = max(dp[i-1], round_value + dp[i-1 - round_digits]), where round_value is the grade obtained by rounding up, and round_digits is the number of digits affected by rounding.
+Implementing a bottom-up dynamic programming approach with a table (tabulation):
+Create a table tab[i][t] where tab[i][t] represents the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Bottom-up dynamic programming can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j], dp[i][j-1] }) + grid[i][j]
+
+Use a priority queue to keep track of cells with the maximum positive points. Start from the top-left cell and explore all possible paths in a bottom-up manner, updating the minimum initial points required.
+
+Prioritize the cells with the highest positive points first, ensuring that we always choose the path with the most points whenever possible.
+
+In the end, return dp[N-1][M-1], which represents the minimum initial points required to reach the bottom-right cell.
+===END PLAN===

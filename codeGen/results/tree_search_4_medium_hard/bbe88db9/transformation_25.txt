@@ -1,0 +1,17 @@
+State: (room, visited, crosses)
+Transition: {
+    ((room + 1, False, 0),) if room < n+1,
+    ((p[i], True, crosses + 1) if p[i] <= i and crosses % 2 == 1 else (p[i], True, crosses),) for i in range(1, n+1)
+}
+Memo: {((room, visited, crosses)): min_moves for room in range(1, n+2)}
+Memo[(n+1, True, 0)] = 0
+for room in range(n, 0, -1):
+    for state in [(room, False, 0), (p[i], True, crosses) for i, p in enumerate(p_list) if p <= room and crosses % 2 == 1]:
+        min_moves = float('inf')
+        for next_state in Transition[state]:
+            if next_state[0] == n+1:
+                min_moves = min(min_moves, Memo[next_state] + 1)
+            else:
+                min_moves = min(min_moves, Memo[next_state])
+        Memo[(room, state[1], state[2])] = min_moves
+print(Memo[(1, False, 0)] % 1000000007)

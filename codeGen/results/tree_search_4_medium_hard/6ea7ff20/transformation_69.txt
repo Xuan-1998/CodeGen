@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+state dp[2001][2001] = { pair of arrays a and b such that merge(a,b) equals permutation, with array a having length j-i and array b having length n-j+i }; 
+dp[i][j] will represent whether there exist two arrays a and b, each of length j-i, so that p=merge(a,b). 
+state top = false; // to track if we have found the solution
+for i from 0 to n-1:
+    for j from 0 to n-1:
+        if i > j: // swap i and j because the condition a_1 < b_1 is not met when i > j
+            swap(i, j);
+        if (i == 0 || p[i-1] <= p[i]) && (j == 0 || p[j-1] >= p[j]):
+            dp[i][j] = true; // if the permutation is in non-decreasing order or non-increasing order, 
+                              // we can merge two arrays a and b such that p=merge(a,b)
+        else:
+            for k from i to j:
+                if !dp[i][k-1] && !dp[k+1][j]:
+                    dp[i][j] = true; // if we have found the solution in the subproblem, 
+                                       // then merge two arrays a and b such that p=merge(a,b)
+            top = false; // reset the flag to track the solution
+return "YES" if top == true else "NO";
+===END PLAN===

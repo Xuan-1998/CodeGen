@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The state could be defined as dp[i], representing the minimum number of roads that need to be inverted in order to reach city i from the capital. The base case would be dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+For a given city i, its shortest distance from the capital is the minimum of itself and one-edge shorter distances from all adjacent cities (city j) with reversed edge direction (i.e., from city j to city i). This can be expressed as:
+
+dp[i] = min(dp[i], 1 + dp[j])
+
+where j iterates over all adjacent cities of city i.
+
+The updated state dp[i] will store the minimum number of roads that need to be inverted in order to reach city i from the capital. The plan also needs a way to track which city is the capital, since we are trying to find the optimal choice for the capital. This can be done by initializing a separate array cap[1..n] where cap[i] = 1 if city i is the capital.
+
+The dynamic programming algorithm would iterate over all cities in top-down manner and update dp[i] based on its adjacent cities, considering both directions (i.e., from j to i and from i to j).
+
+To avoid recalculating previously computed values, we can use memoization by storing the updated states in an array dp[1..n].
+
+Finally, to find all possible ways to choose the capital, we can iterate over all cities and check if the number of roads that need to be inverted is minimized when choosing that city as the capital.
+
+===END PLAN===

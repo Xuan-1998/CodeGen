@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Partition the strings into overlapping subproblems by defining a state as (i, j) where i is the index of s1 and j is the index of s2, and check if they are scrambled strings up to those indices. 
+Use memoization to store the results of subproblems and avoid redundant computation.
+Define a 2D array dp of size (len(s1), len(s2)) to store the results of subproblems as (i, j) where i is the index of s1 and j is the index of s2.
+The base case: if s1[i] == s2[j], then return True because they match at this position.
+Recursively check if the remaining strings s1[:i+1] and s2[:j+1] are scrambled. If not, return False. 
+If i < len(s1) - 1, partition s1 into two substrings: left and right, where left is from index 0 to i-1 and right is from i to the end of s1.
+Similarly, partition s2 into two substrings: left and right, where left is from index 0 to j-1 and right is from j to the end of s2.
+Check if there exists a permutation such that the left part of s1 is scrambled with the left part of s2, and the right part of s1 is scrambled with the right part of s2. 
+Return True if all permutations satisfy the condition; otherwise, return False.
+===END PLAN===

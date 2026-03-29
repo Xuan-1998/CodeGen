@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+dp[i][j] is the maximum amount of money earned given the number of remaining tables and the total amount to spend, considering all possible requests
+
+State dp[i][j] represents the maximum money earned with i tables left and j total amount to spend. Transition relationship could be: 
+dp[i][j] = max(dp[i-1][j-ri], 0) + ci
+where ri is the size of the group and j-ri is the remaining amount to spend.
+
+However, this plan does not consider the constraint that each table can only accommodate a certain capacity. We need to modify the state transition to take into account the available space in each table.
+
+Let dp[i][j] represent the maximum money earned with i tables left and j total amount to spend, considering all possible requests.
+
+State dp[i][j] represents the maximum money earned with i tables left and j total amount to spend. Transition relationship could be: 
+dp[i][j] = max(dp[i-1][j-ri], 0) + min(ci, k*(k+1)/2)
+where ri is the size of the group, j-ri is the remaining amount to spend, ci is the money earned from the current request and k is the number of tables.
+
+Create a 3D table dp with dimensions n+1 by k+1 by k+1 (to store the available space in each table) and initialize all values to 0
+===END PLAN===

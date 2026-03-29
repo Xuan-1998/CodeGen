@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+
+Let's focus on calculating the number of permutations for a given prime number. We can treat each prime number as an integer, calculate its factorial, and then divide it by the product of its digits' factorials. This will give us the total number of permutations. Compare this value with k_perms.
+
+Use dynamic programming with a 1D array to keep track of the count of prime numbers with k_perms permutations.
+
+To improve the plan:
+
+* Generate all prime numbers up to n_max using an efficient algorithm like the Sieve of Eratosthenes.
+* Use a boolean array dp to keep track of whether each prime number has exactly k_perms permutations. Initialize dp[i] = false for i in range(2, n_max).
+* Iterate over each prime number p:
+	+ Calculate the total number of permutations using the formula you mentioned: product of (p!'s digits) / ((p!) * (product of p's digits)).
+	+ Check if this value equals k_perms. If true, set dp[p] = True.
+* Finally, iterate over dp to find the count of prime numbers with exactly k_perms permutations, and return the smallest and largest such prime numbers.
+
+Potential issues:
+
+* The plan assumes that all prime numbers have unique digits, which might not be the case. We need to handle this edge case by checking if a prime number has repeated digits before calculating its permutations.
+* Edge cases: What happens when k_perms is 0 or n_max is less than 2? How do we handle these cases?
+
+===END PLAN===

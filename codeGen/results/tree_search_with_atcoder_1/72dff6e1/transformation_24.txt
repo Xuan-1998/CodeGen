@@ -1,0 +1,21 @@
+
+1. Define the Problem: We need to find the number of valid sequences B of length N where each element of B is from 1 to N, and the number of occurrences of each integer i in B is at most A_i. The result should be given modulo 998244353.
+
+2. Dynamic Programming Approach: Use a bottom-up strategy with tabulation to solve the problem. This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems.
+
+3. State Definition: Let dp[i][j] be the number of valid sequences of length i where the last element is j, and the sequence is valid according to the given constraints.
+
+4. Initialization: Initialize dp[1][j] = 1 for all j from 1 to N, because a sequence of length 1 with element j is always valid.
+
+5. Transition: For each length i from 2 to N, and for each possible last element j from 1 to N:
+   - Compute the number of valid sequences of length i ending in j by summing up valid sequences of length i-1 ending in any element k (1 <= k <= N) where adding j does not violate the constraints.
+   - Specifically, dp[i][j] = sum(dp[i-1][k]) for all k from 1 to N, ensuring that the number of occurrences of j in the sequence does not exceed A_j.
+
+6. Counting Valid Sequences: After filling the dp table, the total number of valid sequences of length N is the sum of dp[N][j] for all j from 1 to N.
+
+7. Modulo Operation: Since the result can be large, take the result modulo 998244353 at each step of the computation.
+
+8. Edge Cases: Consider edge cases such as N=1, all A_i being 1, and maximum constraints where A_i = N for all i.
+
+9. Output the Result: Print the result of the total number of valid sequences modulo 998244353.
+

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is dp[i], where dp[i] represents the minimum number of perfect squares that sum up to i.
+The transition relationship would be:
+    1. Initialize dp[0] = 0
+    2. For each integer i from 1 to n (inclusive):
+        a. Calculate j, which is the largest integer such that j^2 <= i
+        b. Update dp[i] = min(dp[i], dp[i-j^2] + 1)
+    3. Return dp[n]
+Memoizing the function using a dictionary to store the intermediate results and avoid redundant computations
+===END PLAN===

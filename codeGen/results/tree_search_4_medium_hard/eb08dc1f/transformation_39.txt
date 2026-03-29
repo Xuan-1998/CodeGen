@@ -1,0 +1,31 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Consider all possible lengths of blocks l from 1 to n, and define dp[i][l] as the number of blocks ending at position i with exactly l digits.
+Define dp[i][l] as the number of blocks ending at position i with exactly l digits, and transition from state dp[i-1][l] when the current block is extended to the right by one digit.
+
+Let's first consider base cases. 
+For a block of length 1, there are 10 choices (0-9), so we set dp[0][1] = 10.
+For blocks of length greater than 1, we need to count the number of blocks ending at position i that can be extended from left to right.
+
+Define a helper function extend(i, l) as follows:
+extend(i, l) = (last_digit(i) == prev_last_digit(i-l)) + extend(i-1, l-1)
+where last_digit(i) is the last digit in the number i and prev_last_digit(x) is 9 if x has no trailing zeroes else 0.
+This function returns the number of blocks ending at position i that can be extended from left to right by one digit.
+
+Now we define dp[i][l] as follows:
+dp[i][1] = extend(i, 1)
+For l > 1, 
+let prev_blocks = dp[i-l][l-1]
+then dp[i][l] = (extend(i, l) - prev_blocks * 10 + (prev_blocks != 0)) % mod
+
+Finally, we use dynamic programming to fill the dp array.
+
+dp[0][1] = 10
+for i in range(1, n):
+    for l in range(2, n+1):
+        dp[i][l] = (extend(i, l) - dp[i-l][l-1] * 10 + (dp[i-l][l-1] != 0)) % mod
+
+The final answer is the sum of all dp[i][l] for 1 <= l <= n.
+
+===END PLAN===

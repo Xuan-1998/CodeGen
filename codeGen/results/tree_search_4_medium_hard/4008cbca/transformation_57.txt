@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+The state expression would be the current position in the board. The state expression is a tuple (i, prev_color) where i is the current position in the board and prev_color is the color of the ball to the left of the current position.
+
+State: (i, prev_color) where i is the current position in the board and prev_color is the color of the ball to the left of the current position
+
+Create a 2D table dp where each cell stores the minimum number of moves needed to remove all balls at that position, considering the previous color. The base case would be when there are less than or equal to two balls in hand.
+
+For each cell dp[i][prev_color], calculate the minimum number of moves by considering the following options:
+
+* If the current ball is the same color as prev_color, then try to remove it (dp[i-1][prev_color] + 1) and also consider inserting a ball of different color at this position.
+* If the current ball has a different color than prev_color, then only consider inserting a ball of the same color.
+
+If there are no more balls in hand and dp[-1][prev_color] is still greater than 0, it means that we cannot remove all balls, so return -1. Otherwise, return dp[-1][-1].
+
+===END PLAN===

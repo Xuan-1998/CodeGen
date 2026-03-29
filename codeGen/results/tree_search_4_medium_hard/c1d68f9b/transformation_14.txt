@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider a dynamic programming solution where you build up a table of valid polygon configurations from left to right, using the current knight's mood as input for each configuration.
+
+The state expression is the number of consecutive good moods, initialized with 0. Think of the state as a flag indicating whether the polygon configuration is still valid at the given position.
+
+The transition relationship is that when a good knight's mood (1) is encountered, the flag remains valid; if a bad knight's mood (0) is encountered, the flag becomes invalid. Initialize with 'valid' and update accordingly.
+
+Employing a 2D array for tabulation to keep track of the number of valid configurations ending at each position:
+
+* Create a 2D array dp[n][k] where n is the number of knights and k is the number of consecutive good moods.
+* Initialize all values in dp as 0, except dp[0][0] which is set to 1 (since one configuration always exists: an empty polygon).
+* Iterate through each knight from left to right:
+	+ For each knight's mood, update the state and transition accordingly:
+		- If the mood is good (1), increment the number of valid configurations by the previous value in dp.
+		- If the mood is bad (0), reset the state back to 0.
+	+ Update dp[i][k] as the maximum possible configuration ending at position i with k consecutive good moods.
+* Check if there exists a configuration with k = n, meaning all knights are in a good mood. If yes, return "YES", otherwise "NO".
+
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Memoization can be used with dynamic programming where we keep track of previously computed values and avoid redundant computation.
+
+state: dp[i] = min_cost_to_activate_after_trip_i
+Let state dp[i] be the minimum cost to activate tickets after trip i. We transition as follows:
+dp[i] = min(dp[j-1], dp[min(k | t_k <= t_j)]) + (i-t_j)*20, where the sum is over all trips k such that t_k <= t_i.
+
+Create an array of size 10^9+2 with initial value being the cost to activate after the first trip, then iterate over all trips, updating the state based on previous states and current trip time. Initialize dp[0] = 50 (cost for 90 minutes), dp[1] = 70 (cost for one day).
+
+===END PLAN===

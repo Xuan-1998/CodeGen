@@ -1,0 +1,25 @@
+python
+===BEGIN UPDATED PLAN===
+1. Dynamic Programming Approach:
+   - Use a 2D DP table, dp[i][j], where dp[i][j] represents the number of valid matrices of size i x j.
+   - Initialize dp[1][1] = 2 since a 1x1 matrix can either have a 0 or a 1.
+
+2. State Transition:
+   - For each i from 1 to N and each j from 1 to M, compute dp[i][j] based on previous states.
+   - Ensure that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is maintained when adding a new row or column.
+   - Iterate through all possible values for the elements in the new row or column and check the given condition to update dp[i][j].
+
+3. Modulo Operation:
+   - As the number of matrices can be very large, take modulo 998244353 at each step to avoid overflow and ensure the result fits within standard data types.
+
+4. Base Case:
+   - Initialize dp[1][1] = 2 since a 1x1 matrix can either have a 0 or a 1.
+
+5. Edge Cases:
+   - Consider edge cases where N or M is 1, which simplifies the problem to a single row or column matrix.
+   - Ensure the DP table is correctly initialized to handle these cases.
+
+6. Final Output:
+   - The final answer will be dp[N][M] % 998244353, representing the number of valid matrices of size NxM.
+===END UPDATED PLAN===
+

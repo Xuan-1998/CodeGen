@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming to find all possible splits of the message and then checking if each split satisfies the condition.
+
+Initialize a 2D array dp where dp[i][j] represents the number of valid splits for the substring s[i:j]. Then, fill up this array in a bottom-up manner using a loop that considers all possible cuts at each position. For each cut at position k, update dp[i][k] to be the sum of the valid splits ending at positions i-1 and k-1, multiplied by the maximum number of consecutive appearances of the character s[k-1], which is stored in a[ord(s[k-1])-97]. If s[i-1:j].isalpha() (i.e., the substring contains only alphabets) and j-i+1<=max(a), then update dp[i][k] to be the sum of these valid splits.
+
+To find the number of ways to split the message, initialize a variable ans to 0 and then iterate over all possible cuts. For each cut at position k, add dp[0][k] to ans, which represents the number of valid splits ending at position k.
+
+To find the length of the longest substring over all the ways, maintain a variable max_len to 0 and then iterate over all possible cuts. For each cut at position k, update max_len to be the maximum of max_len and j-i+1.
+
+To find the minimum number of substrings over all the ways, maintain a variable min_substrings to n and then iterate over all possible cuts. For each cut at position k, update min_substrings to be the minimum of min_substrings and i-k+1.
+
+Finally, print ans modulo 10^9 + 7 as the output for the number of ways to split the message, max_len as the length of the longest substring over all the ways, and min_substrings as the minimum number of substrings over all the ways.
+
+===END PLAN===

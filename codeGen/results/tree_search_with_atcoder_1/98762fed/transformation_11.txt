@@ -1,0 +1,10 @@
+
+1. Define the problem in terms of Dynamic Programming (DP) by using a 2D DP table.
+2. Base Case: The base case would be dp[1][1] = 2, as a 1x1 matrix can have either 0 or 1, both of which trivially satisfy the condition.
+3. State: Define dp[i][j] as the number of valid i x j matrices. Initialize dp[0][j] = 1 and dp[i][0] = 1 for all i, j.
+4. Transition: To derive dp[i][j], consider adding a row or column to a smaller valid matrix. For each new element added, ensure the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} is met for all quadruples (a, b, c, d).
+5. Iterate over all possible matrix sizes from 1x1 to NxM, updating the DP table based on the transition rule.
+6. Sum all dp[i][j] values to get the total number of valid matrices.
+7. Return the result modulo 998244353.
+8. Ensure to handle edge cases such as the smallest matrices (1x1) and matrices where N or M is 1.
+

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 3D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+There exists a base case when processing nodes that have no children, as there's only one way to distribute ones among their edges. 
+
+state is a 3D table where the first two dimensions represent node indices, and the third dimension represents the number of ones on the path from the root to that node; 
+the state transition happens when moving down the tree, incrementing the number of ones on each edge;
+
+Write an iterative solution using nested loops, initializing the base case by setting the states for nodes with no children equal to their own labels;
+fill up the rest of the states by considering each node as a subtree and calculating the minimum possible count of ones on its path.
+
+For each node, iterate over all its children, considering the minimum possible number of ones among the edges connecting it to its children. 
+This is done by iterating over the numbers that can be distributed on these edges such that their product equals the given number k.
+The maximum possible distribution index for the subtree rooted at this node is then calculated as the sum of the maximum possible distribution indices of its children and the minimum possible count of ones on its path.
+
+Finally, calculate the maximum possible distribution index of the tree by iterating over all nodes in a top-down manner, considering their subtrees rooted at them.
+The final answer is obtained by taking the maximum of these values modulo 10^9 + 7.
+===END PLAN===

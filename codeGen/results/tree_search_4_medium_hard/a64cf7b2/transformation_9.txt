@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by filling up a 2D table dp[][] where dp[i][t] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within t time units.
+
+'Base case: if i == 0, then the maximum number of vertices that can be visited is 0, because we start at vertex 1.'
+
+Formulate state as a tuple (i, t) where i represents the current vertex and t is the remaining time. The transition relationship can be formulated as:
+
+- If there are no edges from vertex i to its neighbors or if traversing all these edges takes more than T time units, then we cannot visit any vertices from i.
+- Otherwise, update dp[i][t] by considering two cases: 
+  - We don't visit vertex i and the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i-1 within t time units is k.
+  - We do visit vertex i and the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i-1 within T-weight(edge) time units is k. In this case, increment k by 1.
+
+Implement a top-down approach with memoization to solve this problem by recursively exploring all possible routes from vertex 1 to vertex n, and store the results in a memoized dictionary to avoid redundant calculations.
+
+===END PLAN===

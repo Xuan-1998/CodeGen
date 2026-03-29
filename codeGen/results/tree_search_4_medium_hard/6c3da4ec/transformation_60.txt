@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider implementing a tabulation approach by iterating over the binary string from left to right and calculating the maximum bitwise OR value for each suffix of the substring, storing these values in an array.
+
+Let dp[i] be the maximum bitwise OR value of all substrings ending at index i.
+
+Initially, consider two possibilities: either we don't take any bits from the current position (which would be dp[i-1]), or we take the current bit and the maximum bitwise OR value for all substrings ending one step to the right. 
+
+Initialize an array dp with n+1 elements, where dp[i] represents the maximum bitwise OR value for all substrings ending at index i.
+
+Iterate over the binary string from left to right:
+
+    For each index i:
+        Calculate dp[i] as the maximum of two possibilities: either we don't take any bits from the current position (which would be dp[i-1]), or we take the current bit and the maximum bitwise OR value for all substrings ending one step to the right.
+
+    Update dp[i] accordingly.
+
+At the end, return dp[n], which represents the maximum bitwise OR value of all possible substrings in the binary string.
+
+===END PLAN===

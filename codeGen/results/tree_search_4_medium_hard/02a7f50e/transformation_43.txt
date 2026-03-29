@@ -1,0 +1,10 @@
+Plan:
+Consider an iterative approach to find the minimum number of beacons that could be destroyed. Start from the rightmost beacon and iteratively try to add new beacons to the left. Keep track of the minimum number of beacons that could be destroyed in each step.
+
+dp[i][j]: The minimum number of beacons that could be destroyed after activating the j-th beacon and considering only the first i beacons.
+dp[i][j] is equal to min(dp[k][j-1] + 1 for k in range(i+1)) if the j-th beacon has no power to destroy any of the previous beacons.
+
+Create a dictionary memo to store the memoized values, where the key is a tuple containing the current position and power level, and the value is the minimum number of beacons that could be destroyed.
+memo[(i, j)] = min(dp[k][j-1] + 1 for k in range(i+1)) if no previous beacon is destroyed by the j-th beacon.
+
+dp[i][-1]: The minimum number of beacons that could be destroyed after considering all i beacons. This value is used as the initial value for dp[0][0].

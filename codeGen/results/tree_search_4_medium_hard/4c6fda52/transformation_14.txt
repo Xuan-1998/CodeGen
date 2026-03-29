@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering all possible substrings of length k in s, and checking if they appear in the infinite string 'RGBRGBRGB...'.
+The state expression is dp[i][j] = minimum number of characters changed to make the substring s[0:i+1] equal to a substring of 'RGBRGBRGB...' considering all possible substrings of length k ending at index j.
+dp[i][j] = min(dp[i-1][j-1] + (s[i] != 'RGB'[j%3]), dp[i-1][j] + 1) if i >= k, in which case the answer is the number of characters that need to be changed in the first i+1 characters of s.
+The base case is when i >= k, in which case the answer is the number of characters that need to be changed in the first i+1 characters of s.
+To fill up the dp table, we start from the bottom and work our way up. For each cell dp[i][j], we consider two options: either the current character matches the corresponding character in 'RGBRGBRGB...', or it doesn't. If it matches, then we don't need to change any characters; if it doesn't, then we need to change one character.
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+dp[i][j] = number of ways to fill the current row ith sum j such that the sum is less than or equal to M minus the sum of previous rows.
+dp[0][j] = 1 if j <= M, 0 otherwise
+dp[i][0] = dp[i-1][M] for all i and j
+
+To avoid recalculating the same subproblems multiple times, we can memoize the recursive function by storing the results of subproblems in a dictionary.
+dp[0][j] = 1 if j <= M, 0 otherwise
+dp[i][j] = dp[i-1][j] if j <= M - sum(0 to i-1)
+else: 
+    total_ways = 0
+    for k in range(j+1):
+        ways_left = dp[i-1][k]
+        total_ways += ways_left * (M-k) // (i+1)
+    return total_ways
+
+The final answer is the sum of dp[N-1][j] for j from 0 to M, modulo 1 000 000 000.
+===END PLAN===

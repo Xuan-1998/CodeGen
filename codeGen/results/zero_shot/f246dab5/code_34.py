@@ -1,0 +1,1 @@
+This code reads the number of trips and the start times for each trip from standard input. It then iterates over each trip, calculates the optimal ticket type at that time point, and updates the total fare accordingly. Finally, it prints the total fare as output.

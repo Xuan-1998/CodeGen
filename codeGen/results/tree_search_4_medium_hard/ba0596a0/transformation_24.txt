@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][k] = dp[j][l] and k == (stones[i]- stones[j-1]) % 3
+dp[0][0] = True, dp[0][1] = False, and dp[0][2] = False
+for i in range(1, n):
+    for k in range(3):
+        j = i - 1
+        while j >= 0:
+            if memo[k-1]:
+                break
+            j -= 1
+        dp[i][k] = dp[j][min(k-1,k,k+1)]
+memo[0] = True, memo[1] = False, and memo[2] = True
+dp[n-1][max(dp[0])] or dp[n-1][min(dp[0])]
+===END PLAN===

@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+Let dp[i][j] be the number of ways to choose k-bit integers for the first i elements, such that bitwise AND is greater than or equal to bitwise XOR and the result of the bitwise AND operation on all these numbers is j. Initialize dp[0][0] = 1 and fill it up in a bottom-up manner.
+State transition: For each possible bitwise AND result j, update dp[i+1][j] as the sum of dp[i][j-2^k], dp[i][j-2^(k-1)], ..., dp[i][j-(2^0 mod 2^k)] (where k is the number of bits). This represents all possible ways to choose the next integer that doesn't change the bitwise AND result.
+Base Case: dp[0][0] = 1
+State transition rule: Let a be the bitwise AND of i numbers, and x be the bitwise XOR. Then for each bit b in k-bit integers, dp[i+1][a|b] += dp[i][a] (where | denotes bitwise OR).
+Fill up the lookup table in a bottom-up manner.
+===END PLAN===

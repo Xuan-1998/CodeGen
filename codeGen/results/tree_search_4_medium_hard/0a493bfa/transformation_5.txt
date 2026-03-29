@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. 
+
+dp[i][j] = max( beauty(subset(a[:i]), subset(b[:j])) + f(gcd(...)) ) for all possible subsets of a[:i] and b[:j]
+
+where subset(x) returns the binary string where 1 represents a number in x, and 0 represents a number not in x
+
+Create a tabulation array dp[n][m] where dp[i][j] represents the maximum beauty of a[:i] and b[:j]
+
+for i from 0 to n-1:
+    for j from 0 to m-1:
+        if i == 0 or j == 0:
+            dp[i][j] = 0
+        else:
+            subset_a = subset(a[:i])
+            subset_b = subset(b[:j])
+            max_beauty = -inf
+            for k in range(i):
+                for p in range(j):
+                    if (subset_a[k] and subset_b[p]) or (not subset_a[k] and not subset_b[p]):
+                        new_subset_a = subset_a[:k] + subset_a[k+1:]
+                        new_subset_b = subset_b[:p] + subset_b[p+1:]
+                        max_beauty = max(max_beauty, dp[k][p] + f(gcd(...)))
+            dp[i][j] = max_beauty
+return dp[n-1][m-1]
+===END PLAN===

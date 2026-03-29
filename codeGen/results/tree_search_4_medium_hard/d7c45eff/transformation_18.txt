@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider the strings that can be obtained by deleting the last character of s, which are all substrings of s. The lexicographically smallest string among these is either the original string or the string obtained by deleting its last character.
+
+If k > n, then the optimal solution is to duplicate the string until we reach a length of k.
+
+The state expression could be:
+dp[i][j] = min({
+    dp[i-1][k] if i >= 0 and 0 <= k < j,
+    s[:i] if i >= 0 and j == 1
+})
+
+This is because the lexicographically smallest string that can be obtained from s[:i] with exactly j characters could either be the result of deleting the last character of some string in dp[i-1][k] or it could be s[:i] itself.
+
+Apply dynamic programming to fill the bottom-up DP table, where:
+dp[i][j] = min({
+    dp[i-1][k] if i >= 0 and 0 <= k < j,
+    s[:i] if i >= 0 and j == 1
+}) for all 0 <= i < n and 0 <= j <= k.
+
+Finally, return dp[n-1][k].
+===END PLAN===

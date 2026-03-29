@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Top-down approach with memoization:
+Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j, k) representing the current matrix being multiplied with k matrices on its right, and the base case is when i == 0 (first matrix) or k == 0 (no more matrices to multiply).
+
+State: (i, j, k), where:
+  - i is the starting index of the current subproblem
+  - j is the ending index of the current subproblem
+  - k is the number of matrices to multiply on the right side
+
+Transition:
+  - if k == 0, then the result is the product of the current matrix with all the matrices on its left
+  - else, consider two options: either include the current matrix in the multiplication chain or not
+    + Calculate the minimum cost of multiplying the first i matrices and k-1 matrices on their right using memoized values
+
+Use a 2D table to store the minimum number of scalar multiplications needed for each subproblem, with the state being the pair (i, j), where:
+  - i is the starting index
+  - j is the ending index
+
+===END PLAN===

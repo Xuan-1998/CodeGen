@@ -1,0 +1,8 @@
+1. Initialize dp = {(0, 0): y}
+2. Iterate over sequence: 
+    for x in range(1, n+1):
+        if a_x <= 0 or a_x > n:
+            break
+        (new_x, new_y) = (x + a_x, y + a_x)
+        dp[(new_x, new_y)] = dp.get((x, y), y) + a_x
+    return dp.get((n-1, 0), -1)

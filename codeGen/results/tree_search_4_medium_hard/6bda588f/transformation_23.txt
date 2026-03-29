@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state is a tuple (i, s) where i is the current index and s is the current sum.
+Initialize a 2D array dp with size n+1 * (s+1), filled with infinity.
+dp[i][s] will store the minimum possible value of F for each index i and sum s.
+
+Top-down recursive function:
+- Base case: when i reaches n, return 0
+- For each possible way to split a_i into x_i and y_i:
+  - If (x_i-s)*(y_i-s) >= 0
+    - Calculate the new sum dp[i+1][s+a_i-x_i]
+    - Update dp[i][s] with the minimum of its current value and F = a_i * x_i + y_i * x_i + dp[i+1][s+a_i-x_i]
+
+Update dp[0][s] to be the minimum possible value of F for each sum s.
+Return dp[0][sum(a)]
+===END PLAN===

@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider the graph as a tree-like structure and use the observation that if there is no path between u and v, then for any w such that (u & w) = w, there will be no path between w and v. This can help in identifying overlapping subproblems and optimal substructure.
+The state could be whether a path exists from vertex u to some intermediate vertex w, given that there is no edge between u and w. The base case would be when u equals v.
+
+Consider the bitwise AND operation between u and w, and use it as the state. The transition relationship would be: if there exists a path from w to v, then it's possible to extend the path to include an edge from u to w.
+
+Use 2D DP table where dp[i][j] represents whether there is an edge from vertex i to vertex j. Initialize all values in the DP table as FALSE (no edge). Then, iterate over all vertices and for each vertex, update its corresponding row in the DP table based on the bitwise AND operation with other vertices.
+
+===END PLAN===

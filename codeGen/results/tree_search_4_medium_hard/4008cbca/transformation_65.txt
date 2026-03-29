@@ -1,0 +1,14 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position.
+
+Define the state as dp[i] which represents the minimum number of moves needed to remove all balls up to position i. The base case would be when i is 0, and there are no balls to consider.
+
+The state could be a tuple containing two values: (1) the current minimum number of moves and (2) a flag indicating whether the current position is 'clean' or not.
+
+Use a bottom-up tabulation approach with a single array dp of length len(board), where dp[i] represents the minimum number of moves needed to remove all balls up to position i. The transition function could be:
+
+- If the current position has more than one ball of the same color, and it is 'clean', then the minimum number of moves would be 1 plus the minimum number of moves for the previous clean position.
+- If the current position has one or no ball(s) of the same color, and it is 'clean', then the minimum number of moves would be the same as the previous clean position.
+
+The final answer would be dp[-1], which represents the minimum number of moves needed to remove all balls on the board. If the final answer is greater than len(hand), then return -1, indicating that it's not possible to remove all balls.
+
+This approach considers edge cases by correctly handling the base case and transition functions.

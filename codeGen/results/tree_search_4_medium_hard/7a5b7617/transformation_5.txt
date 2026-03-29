@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, such as calculating the number of ways to fill a sub-table. This suggests using dynamic programming with top-down approach and memoization.
+
+The state is a tuple (n_rows, prev_row_sum), where n_rows is the number of rows filled and prev_row_sum is the sum of the last row. The base case is when all rows are filled (n_rows == N).
+
+If prev_row_sum is less than or equal to M and n_rows < N, then there are min(M, prev_row_sum + 1) ways to choose next row sum, and recursively call with updated state (n_rows + 1, new_row_sum).
+
+To use a recursive function with memoization to store and reuse previously computed results. Memoize the results of subproblems to avoid redundant computation.
+
+The final answer is the value stored in the memoization table for the initial state (0, 0).
+
+===END PLAN===

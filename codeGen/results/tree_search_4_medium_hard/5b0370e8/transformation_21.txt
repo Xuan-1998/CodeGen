@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State:
+    dp[i][j]: the number of arrays with bitwise AND equal to j up to index i,
+    last_bit: whether it's possible to change the ith element to increase bitwise AND without decreasing bitwise XOR;
+Base Case:
+    False when i < 0
+Transition:
+    update this state by considering each possible value of the ith element and counting the arrays that have this result.
+    For each p in range(2^k), calculate the new bitwise AND and XOR results if the ith element is set to p,
+    and recursively call dp(i+1, new_bitwise_and) or dp(i+1, new_bitwise_xor) depending on whether it's possible to increase bitwise AND without decreasing bitwise XOR;
+===END PLAN===

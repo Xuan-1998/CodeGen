@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Explore using top-down dynamic programming with memoization to solve this problem by creating a recursive function that uses memoization to avoid redundant calculations.
+
+Think of the state as a triple (left, right, covered), where:
+    - left is the remaining substring in the text
+    - right is the set of unused substrings
+    - covered is the number of characters in the text that are currently colored red
+
+Define a recursive function dp(left, right) that returns the minimum number of steps needed to color all letters of the text in red, given the current state (left, right, 0).
+    - If left is empty, return the number of strings in the set that have not been used
+    - For each string s in right:
+        - Check if left contains a substring equal to s
+        - If it does, update covered by adding the length of s and recursively call dp(left - s, right - {s})
+        - Otherwise, continue with the next string
+
+Use memoization to store and reuse the results of subproblems.
+    - Create a dictionary memo that maps each state (left, right, covered) to its corresponding minimum number of steps
+    - Before calling dp(left, right), check if the result is already stored in memo; if it is, return the cached value
+
+The final answer will be the result of dp(text, {s1, s2, ..., sn}, 0)
+
+===END PLAN===

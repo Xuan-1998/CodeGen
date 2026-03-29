@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the total brightness of stars within a rectangle can be broken down into smaller rectangles. Use dynamic programming with tabulation by iterating over all possible views and calculating the total brightness for each view.
+
+Let dp[i][j] represent the maximum brightness of stars in the i-th time slice, where 0 <= i < q. Initialize dp[0][j] to s_j * c (the initial brightness) for j = 0 to n-1.
+
+For each view and time t:
+    For each rectangle x1i <= x <= x2i and y1i <= y <= y2i within the viewed rectangle:
+        Calculate the total brightness of stars within this rectangle at time t as the sum of the initial brightness of stars with coordinates (x, y) that fall within the rectangle.
+        Update dp[t][j] to be the maximum of its current value and the total brightness calculated above for all j.
+
+The final answer is the last value in the dp array, which represents the maximum brightness at time t = q-1.
+
+===END PLAN===

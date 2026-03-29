@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems, such as calculating the number of ways to fill a sub-table. This suggests using dynamic programming with top-down approach and memoization.
+
+The state is a tuple (n_rows, max_sum), where n_rows represents the current number of rows filled and max_sum represents the maximum sum allowed for the remaining rows. The base case is when all rows are filled (n_rows == N) or the maximum sum exceeds M (max_sum > M).
+
+Use a dynamic programming approach by creating a 3D array dp where dp[n_rows][j][k] represents the number of ways to fill the n_rows x j sub-table with maximum sum k, then iterate over the array to build up the solution.
+
+Initialize dp[0][j][k] = 1 for all j and k, because there's only one way to fill an empty table (i.e., don't add any elements).
+
+For each n_rows from 1 to N:
+    For each max_sum from 0 to M:
+        For each j from 1 to min(n_rows, M):
+            dp[n_rows][j][max_sum] = sum(dp[i][j-1][k] for i in range(max(0, n_rows-j+1)) for k in range(min(max_sum, j))) modulo 1 000 000 000
+
+Return dp[N][M][M]
+===END PLAN===

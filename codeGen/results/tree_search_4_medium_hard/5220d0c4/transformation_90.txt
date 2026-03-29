@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use tabulation to fill a 2D table where each cell represents the beauty value of a subarray ending at that index. The state transition relationship is defined by considering the minimum prime divisor of the last element in the subarray and whether it's a good or bad prime.
+Create a 2D array with shape (n+1, m+1) to store the dynamic programming values, where n is the size of the array and m is the number of bad prime numbers. Initialize all cells to -∞.
+Fill the table from left to right, top to bottom:
+	* For each cell at position [i, j], consider two possibilities: either the last element in the subarray ending at index i-1 is a good prime or not.
+	* If it's a good prime, update the beauty value of the current cell by considering the minimum prime divisor of the last element and whether it's a bad prime. Update the maximum beauty seen so far accordingly.
+	* If it's not a good prime, consider two more possibilities: either the last element is a bad prime or not.
+		+ If it's a bad prime, update the beauty value of the current cell by considering the minimum prime divisor of the last element and whether it's a bad prime. Update the maximum beauty seen so far accordingly.
+		+ If it's not a bad prime, simply propagate the beauty value from the previous cell.
+Fill in all cells according to this logic. The maximum beauty value seen at the end is the solution.
+
+===END PLAN===

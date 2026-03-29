@@ -1,0 +1,25 @@
+
+===BEGIN PLAN===
+Bottom-up strategy with tabulation: This approach involves solving the problem by iteratively filling up a table based on the results of smaller subproblems. It avoids recursion and builds the solution in a tabular form. Time complexity: O(N*M), space complexity: O(N*M).
+
+1. Base Case: dp[1][1] = 1, since a 1x1 matrix with a single element (either 0 or 1) trivially satisfies the condition.
+
+2. State: Let dp[i][j] denote the count of valid matrices of size i x j.
+
+3. Transition: dp[i][j] can be computed by iterating over all possible values for the new row or column and ensuring the condition holds with all previous rows and columns.
+   - For each possible value of the matrix element at (i, j), check if it satisfies the condition with all previous elements.
+   - Update dp[i][j] based on the number of valid matrices formed by adding the new row or column.
+
+4. Iterate through all possible matrix sizes (i, j) from 1 to N and 1 to M, and fill the dp table accordingly.
+
+5. The final answer will be the value in dp[N][M], which gives the count of valid matrices of size N x M.
+
+6. Modulo the result by 998244353 as required by the problem statement.
+
+Edge Cases:
+- Smallest input sizes (N = 1, M = 1).
+- Matrices where all elements are 0 or all elements are 1.
+- Large values of N and M up to 400.
+
+===END PLAN===
+

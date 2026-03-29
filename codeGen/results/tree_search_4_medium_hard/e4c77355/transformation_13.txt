@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Let dp[i] be the length of the longest increasing subsequence ending at index i in the array. We can define the following recursive relation:
+
+dp[i] = max(dp[j]) + 1, where j < i and arr[i] > arr[j]
+
+This is because the longest increasing subsequence ending at index i must include the element at index i itself, and we need to find the maximum length of the longest increasing subsequences that end before index i and are strictly less than arr[i].
+
+Use a nested loop structure to tabulate the dynamic programming state transition:
+for i from 0 to n-1
+    for j from 0 to i-1
+        if arr[i] > arr[j]
+            dp[i] = max(dp[i], dp[j] + 1)
+===END PLAN===

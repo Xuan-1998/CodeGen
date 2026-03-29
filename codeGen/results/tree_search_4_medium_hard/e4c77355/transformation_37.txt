@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Dynamic Programming:
+  Define a recursive relation between subproblems,
+  then use memoization to store computed results.
+
+The maximum value seen so far in the array up to index i
+  Think about the last element added to each increasing subsequence,
+  and how it affects the lengths of subsequences that come before it.
+Create a memoization dictionary where keys are tuples representing indices
+  and values are the longest increasing subsequences ending at those indices.
+
+Let's consider the recursive relation: for any i, let L[i] be the length of the
+longest increasing subsequence ending at index i. Then, we have:
+
+L[i] = 1 if A[i] is the maximum value seen so far,
+= max(L[j]) + 1 for all j < i and A[j] < A[i]
+
+Memoization dictionary: store L[i] for each i
+
+This approach can be improved by using a bottom-up dynamic programming
+approach, instead of top-down recursive relation.
+
+Potential issues with the plan:
+- Edge cases: what happens when the array is empty or has only one element?
+  Handle these cases separately.
+- Optimization: how to efficiently store and look up memoized values?
+
+The updated version of the entire detailed plan:
+

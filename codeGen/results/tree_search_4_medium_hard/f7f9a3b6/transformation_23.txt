@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming to count the number of ways to split the message into substrings that satisfy the condition.
+
+dp[i][j] = 1 if it's possible to split the substring s[i:j] into substrings that satisfy the condition, 
+          and dp[k][j-1] for some k in range(i+1, j) such that s[i:k] satisfies the condition,
+          and dp[i][k-1] for some k in range(i+1, j) such that s[k:j] satisfies the condition.
+dp[0][n-1] = total number of ways to split the message.
+
+Use a 2D table dp to store whether it's possible to split the substring s[i:j] into substrings that satisfy the condition.
+Calculate the length of the longest substring over all the ways by tracking the maximum length of substrings in each way.
+Calculate the minimum number of substrings over all the ways by tracking the minimum number of substrings in each way.
+
+===END PLAN===

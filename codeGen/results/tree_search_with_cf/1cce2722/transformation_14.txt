@@ -1,0 +1,26 @@
+
+1. Frequency Count: Create an array `count` where `count[x]` represents the frequency of integer `x` in the sequence. This can be done in O(n) time by iterating through the sequence once.
+
+2. State Definition: Define `dp[x]` as the maximum points that can be obtained considering all integers from 1 to x.
+
+3. Base Cases: 
+   - Initialize `dp[0] = 0` because there are no points to be earned from an empty sequence.
+   - Initialize `dp[1] = count[1]` because if we only have integer 1, the maximum points we can get is `count[1] * 1`.
+
+4. State Transition: For each integer `x` from 2 to the maximum integer in the sequence (let's call it `max_val`), update `dp[x]` using the relation:
+   - `dp[x] = max(dp[x-1], dp[x-2] + count[x] * x)`
+   - Here, `dp[x-1]` represents the scenario where we do not take integer `x`, and `dp[x-2] + count[x] * x` represents the scenario where we take all instances of integer `x` (thus removing `x-1` and `x+1` as well).
+
+5. Result: The value of `dp[max_val]` will be the maximum points that can be obtained considering all integers in the sequence.
+
+6. Edge Cases:
+   - If the sequence contains only one integer, the result is simply the value of that integer.
+   - Ensure that the sequence length and integer values are within the given constraints (1 ≤ n ≤ 105 and 1 ≤ ai ≤ 105).
+
+Steps:
+1. Read the input values.
+2. Create and populate the `count` array.
+3. Initialize the `dp` array with base cases.
+4. Iterate from 2 to `max_val` to fill the `dp` array using the state transition relation.
+5. Output `dp[max_val]` as the result.
+

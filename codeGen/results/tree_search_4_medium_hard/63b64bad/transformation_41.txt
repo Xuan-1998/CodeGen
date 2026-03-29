@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x is the current index in the sequence, y is the final value of y after the program has terminated.
+
+Transition function: 
+
+1. If x <= 0 or x > n, return (-1, -1) as the program terminates.
+2. Calculate new values for x and y according to the rules of the problem:
+   - Increase both x and y by a_{x}.
+   - Decrease x by a_{x} and increase y by a_{x}.
+3. Return (x, y) as the next state.
+
+Use memoization to store all intermediate states and their corresponding final values of y. This way, you can avoid recalculating the same states multiple times.
+
+Edge cases: 
+- What if x is 0 or n? Should we include these states in our transition function?
+- What if y becomes negative? Should we consider it as termination?
+
+===END PLAN===

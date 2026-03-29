@@ -1,0 +1,26 @@
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = {
+    (i == 0) ? (grid[0][j]) : (dp[i-1][j]),
+    (j == 0) ? (grid[i][0]) : (dp[i][j-1])
+}
+
+Define the state as (i, j, points) where points is the current sum of points. The transition relation can be defined as: 
+if i > 0 and j > 0, then dp[i][j][points] = min(dp[i-1][j][points], dp[i][j-1][points]) + grid[i][j];
+
+Utilize memoization by storing the results of subproblems in a dictionary to avoid redundant calculations.
+
+Memoization dictionary: memo = {}
+for i in range(N):
+    for j in range(M):
+        if i == 0 and j == 0:
+            dp[0][0] = 0
+        else:
+            if i > 0 and j > 0:
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+            elif i > 0:
+                dp[i][j] = dp[i-1][j] + grid[i][j]
+            else:
+                dp[i][j] = dp[i][j-1] + grid[i][j]
+
+Return the minimum points required to reach the destination cell: min(dp[N-1][M-1])

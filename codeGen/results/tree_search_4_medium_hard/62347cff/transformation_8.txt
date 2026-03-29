@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+Create a 2D array dp with size m x n initialized to infinity for all cells except the top-left cell which is set to grid[0][0].
+
+For each cell (i, j), calculate its state as the minimum of the states of the cell above it (dp[i-1][j]) and the cell to its left (dp[i][j-1]), plus the value of the current cell grid[i][j]. 
+
+Store the result in dp[i][j] and update it if necessary.
+
+Fill up the first row by setting each cell's state as the value of the corresponding cell in the grid, since we can only move right from the top-left corner to the cells in this row.
+
+Fill up the first column by setting each cell's state as the value of the corresponding cell in the grid, since we can only move down from the top-left corner to the cells in this column.
+
+The minimum path sum is stored in dp[m-1][n-1], which is the state of the bottom-right cell.
+
+===END PLAN===

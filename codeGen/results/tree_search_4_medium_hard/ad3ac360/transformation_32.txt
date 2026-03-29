@@ -1,0 +1,15 @@
+dp = {}
+def min_cuts(s):
+    if len(s) <= 1: 
+        return 0
+    elif s in dp:
+        return dp[s]
+    else:
+        result = 0
+        for i in range(len(s)):
+            if is_palindrome(s[:i+1]):
+                left = min_cuts(s[:i])
+                right = min_cuts(s[i+1:])
+                result = min(result, left + right + 1)
+        dp[s] = result
+        return result

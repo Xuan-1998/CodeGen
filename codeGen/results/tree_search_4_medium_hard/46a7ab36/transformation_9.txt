@@ -1,0 +1,18 @@
+], [
+Think about the state as (k, l) where k represents the number of letters that can still appear at the beginning of the word, and l represents the current position in the alphabet. The base case would be when all letters have been placed or the alphabet is exhausted.
+
+transition: If 2l <= n, then the next letter must be greater than or equal to l. Otherwise, it can be any of the n letters.
+
+Try implementing a bottom-up dynamic programming approach by defining a recursive function that calculates the number of possible words given the current position and the number of letters remaining in the alphabet, then use memoization to store the intermediate results.
+
+Base case: When k = 0 or l = n, return 1 (base case for the recursion)
+
+Recursive case:
+    If 2l <= n:
+        dp[k][l] = sum(dp[k-1][i] for i in range(max(0, l), min(n, 2*l)))
+    else:
+        dp[k][l] = n * (dp[k][l+1] + dp[k-1][l])
+
+Memoization: Store the intermediate results in a dictionary to avoid redundant calculations.
+
+Return the value of dp[0][0] as the total number of possible words.

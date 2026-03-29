@@ -1,0 +1,9 @@
+Whether the scrambling operation can be decomposed into smaller subproblems, allowing for a dynamic programming solution.
+
+The state expression could be a boolean array dp of size (n+1) x (m+1), where n and m are the lengths of s1 and s2 respectively, indicating whether s2[0...i] can be obtained by scrambling s1[0...j]. The base case would be when i or j is 0.
+
+The number of distinct characters in s1 and s2 are the same.
+
+Dynamically fill up the dp table row by row using a bottom-up approach. For each cell dp[i][j], check if the character at index i in s2 matches the character at index j in s1, or if there is a child node (i-1) and (j-1) that can be scrambled.
+
+The final answer would be whether dp[n][m] is true.

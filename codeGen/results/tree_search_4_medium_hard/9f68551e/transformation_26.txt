@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+code dp[j] = minimum mana required to kill the monster that appears at time j, where 1 <= j <= k_n.
+
+base case: no more monsters, so dp[j] = infinity for all j >= k_n.
+
+dp[j] = min(dp[j-1] + 1, h_i) for all k_i <= j <= k_(i+1)
+
+calculate the minimum mana required to kill each monster using a loop that iterates over all possible damage levels.
+dp[k_1] = min(0, h_1)
+for i from 2 to n:
+    dp[k_i] = min(dp[k_(i-1)] + 1, h_i)
+
+return dp[k_n]
+
+===END PLAN===

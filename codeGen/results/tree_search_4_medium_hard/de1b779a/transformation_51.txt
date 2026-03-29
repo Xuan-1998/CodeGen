@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type or not. This would lead to a recursive formula which can then be memoized.
+Let's use (stuffing_type, dough_left) as the state expression.
+State: dp[i][j] = maximum_profit, Transition: decide whether to make a bun with the current stuff or not
+Use a 2D DP table where dp[i][j] represents the maximum profit that can be obtained with i-th stuffing and j grams of dough left.
+
+Transition:
+- If we don't use the current stuffing type (i), then we have two options: either we don't make any buns at all, or we make a bun without using this stuff. In both cases, the amount of dough left remains j - c0.
+- If we do use the current stuffing type (i), then we need to check if there's enough dough for it. If there is, then we can make one more bun with the i-th stuff and the remaining profit will be dp[i-1][j-ci] + di. If there isn't, then we simply don't make any buns.
+===END PLAN===

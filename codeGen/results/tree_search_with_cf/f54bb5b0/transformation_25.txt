@@ -1,0 +1,24 @@
+
+1. **Initialization**: 
+    - Read the input values for n and k.
+    - Construct the tree using an adjacency list representation.
+
+2. **Dynamic Programming Table (dp)**:
+    - Define a 2D list `dp` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`.
+    - Initialize the base case: `dp[u][0] = 1` for all vertices `u`, since each vertex is at distance 0 from itself.
+
+3. **Depth-First Search (DFS)**:
+    - Perform a DFS traversal of the tree to fill the `dp` table.
+    - For each vertex `u` and its child `v`, update the `dp` table using the transition relationship: 
+        - For each distance `d` from 1 to k, update `dp[u][d]` by adding `dp[v][d-1]`.
+    - Use a parent array to keep track of the parent of each node to avoid revisiting the parent during the DFS traversal.
+
+4. **Counting Valid Pairs**:
+    - Initialize a counter `count_pairs` to 0.
+    - During the DFS traversal, for each vertex `u` and its child `v`, calculate the number of valid pairs:
+        - For each distance `d` from 0 to k-1, add `dp[u][d] * dp[v][k-d-1]` to `count_pairs`.
+    - This ensures that we count pairs of vertices where the path length between them is exactly `k`.
+
+5. **Output the Result**:
+    - Print the value of `count_pairs` as the final result.
+

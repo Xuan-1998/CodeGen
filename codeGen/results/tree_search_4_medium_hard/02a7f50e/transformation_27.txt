@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+State: dp[i] represents the minimum number of beacons that would remain if all beacons with power levels less than or equal to b_i were added to the right of the i-th beacon.
+dp[i] can be calculated as 1 + the minimum number of beacons that would remain if all beacons with power levels greater than b_i were added to the right of the (i+1)-th beacon.
+The dp table is constructed in a bottom-up manner from right to left, starting from the last beacon.
+dp[0] = 1, as only one beacon can be added to the right of the first beacon.
+For each i from n-2 down to 1:
+    dp[i] = 1 + min(dp[j]) for j in range(i+1, n) such that b_j > b_i
+dp[0] is the answer: the minimum number of beacons that can be destroyed by activating the first beacon.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min(dp[i-1][j], dp[i][[j-1]]) + grid[i][j]
+The current minimum points required to reach the bottom-right cell is the minimum of the points required to reach any cell in the previous row and the points required to reach any cell in the same column, plus the points in the current cell.
+
+Base cases:
+- If (i == 0 || j == 0), return grid[i][j] as there are no more moves left.
+- If i < N && j < M, check if the current cell is within bounds. If not, return infinity or a very large number.
+
+Recursive function:
+- Explore all possible paths by recursively calling the function for each possible move (right and down).
+- Return the minimum points required to reach any cell in the previous row and the points required to reach any cell in the same column, plus the points in the current cell.
+- Base cases: If we have reached the bottom-right cell, return the current sum of points.
+
+===END PLAN===

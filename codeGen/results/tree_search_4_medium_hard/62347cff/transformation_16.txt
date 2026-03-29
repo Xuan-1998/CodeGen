@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+Let dp[i][j] be the minimum path sum up to cell (i, j). The base case is when i or j reaches 0.
+
+The state is the cell (i, j) and the transition relation is:
+    if i == 0 and j > 0: dp[i][j] = grid[0][j]
+    elif j == 0 and i > 0: dp[i][j] = grid[i][0]
+    else: dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+Apply memoization by using a dictionary to store and reuse previously computed values, avoiding redundant calculations.
+
+The final answer is dp[m-1][n-1].
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+Let the state be dp where dp[i] is true if there's a path from u to i for some u. The base case is that there are no vertices with an out-degree greater than 1.
+
+dp[i] indicates the existence of a path from i to any other vertex.
+
+Memoization can be applied by storing the results of subproblems in a dictionary.
+
+For each query (u, v), check if dp[v] is true. If it is, return "YES". If not, iterate over all vertices w and check if there's an edge from w to v, and dp[w] is true. If found, update dp[v] and return "YES". If no such edge or path exists, return "NO".
+
+This approach ensures that we don't recompute the same subproblem multiple times.
+
+===END PLAN===

@@ -1,0 +1,24 @@
+
+1. **Initialization**:
+   - Read the input values for n (number of vertices) and k (required path length).
+   - Read the n-1 edges and construct an adjacency list for the tree representation.
+   - Initialize a 2D list `dp` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`. Set `dp[u][0] = 1` for all vertices `u` since each vertex is at distance 0 from itself.
+
+2. **DFS for DP Calculation**:
+   - Perform a Depth-First Search (DFS) from an arbitrary root (e.g., vertex 1) to fill in the `dp` table.
+   - For each vertex `u`, propagate the distance information to its children. For each child `v` of `u`, update `dp[v][d+1]` using the values from `dp[u][d]`.
+
+3. **Count Pairs**:
+   - Initialize a counter to keep track of the number of valid pairs.
+   - For each vertex `u`, count the number of pairs `(u, v)` such that the path length between `u` and `v` is exactly `k`. This can be done by considering the combinations of distances from `u` to its descendants.
+   - Use a nested loop to iterate through all distances `d1` and `d2` such that `d1 + d2 = k`. For each valid pair of distances, multiply the counts `dp[u][d1]` and `dp[v][d2]` to get the number of pairs.
+
+4. **Avoid Double Counting**:
+   - Ensure that each pair is counted only once by considering pairs `(u, v)` where `u` is the ancestor of `v` or vice versa.
+   - Use a visited set or a similar mechanism to track the pairs that have already been counted.
+
+5. **Output the Result**:
+   - Print the final count of distinct pairs of vertices that have a path of length exactly `k`.
+
+Constraints: The input integers n and k satisfy 1 ≤ n ≤ 50000 and 1 ≤ k ≤ 500. For each edge, the vertices ai and bi satisfy 1 ≤ ai, bi ≤ n and ai ≠ bi. All edges are unique.
+

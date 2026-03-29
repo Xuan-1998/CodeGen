@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if (i == j or dp[i-1][j-1]) and the elements at indices i and j in p are swapped without changing the overall order, 
+dp[i][j] = 0 otherwise
+Define a helper function merge(a, b) to recursively merge two arrays:
+  * If one of the arrays is empty, return the other array.
+  * If both arrays are non-empty and a_1 < b_1, return [a_1] + merge([a_2,…,a_n],b).
+  * If both arrays are non-empty and a_1 > b_1, return [b_1] + merge(a,[b_2,…,b_m]).
+Define dp[0][j] = 0 for all j, and recursively update dp[i][j] based on whether the current element is less than or greater than its counterpart in the other array.
+Check if there exist two arrays a and b such that p = merge(a,b) by checking if dp[n-1][n-1] = 1. 
+If true, output "YES", otherwise output "NO".
+===END PLAN===

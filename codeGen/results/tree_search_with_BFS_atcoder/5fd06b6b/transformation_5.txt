@@ -1,0 +1,13 @@
+
+1. Create a priority queue to store the counts of elements strictly greater than the current element in the sequence. The priority queue will be max heap, so the highest element will always be at the top.
+
+2. Traverse the sequence in reverse order (from 'n'th day to the first day). For each day, add the current element to the priority queue.
+
+3. For each day, pop the top element from the priority queue and add it to the sum. This is because we are looking for the minimum possible sum, so we always choose the largest available count (which is the top of the max heap) to be the count of elements strictly less than the current element in the sequence.
+
+4. After popping the top element, we need to push it back to the priority queue, but decrement it by one. This is because the count of elements strictly greater than the current element in the sequence has decreased by one.
+
+5. Repeat step 3 and 4 until we have processed all the elements in the sequence.
+
+6. The final sum is the minimum possible sum of the counts of elements strictly less than the current element in the sequence over 'n' days.
+

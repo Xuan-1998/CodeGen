@@ -1,0 +1,14 @@
+{
+DP state: For each string of length i, define a boolean indicating whether it's possible to form a lexicographically smaller string by either deleting the last character or duplicating the original string up to length i-1. 
+The DP state can be represented as a 2D array where dp[i][j] is True if it's possible to form a lexicographically smaller string of length j by either deleting the last character or duplicating the original string up to length i.
+
+Initialization: Set all dp[0][i] to False, since we cannot form any lexicographically smaller strings of positive lengths from an empty string. 
+
+Transition function: For each string of length i and each possible substring of length j (1 <= j <= k), 
+    - If the last character of the string is less than or equal to the corresponding character in the substring, then dp[i][j] should be True if and only if dp[i-1][j-1] is True. This means that we can form a lexicographically smaller string by either deleting the last character or duplicating the original string up to length i-1.
+    - If the last character of the string is greater than the corresponding character in the substring, then dp[i][j] should be False, since duplicating the original string will not result in a lexicographically smaller string.
+
+Base case: Since we are trying to find the smallest possible string of length k, set dp[n][k] to True if and only if it's possible to form a lexicographically smaller string by either deleting the last character or duplicating the original string up to length n-1. If not, then set it to False.
+
+Finally, backtrack from the bottom-right corner of the DP array (dp[n][k]) to find the actual smallest string.
+}

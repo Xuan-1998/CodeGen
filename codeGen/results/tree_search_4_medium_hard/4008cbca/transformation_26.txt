@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The state expression could be the length of the current window being considered, and the dynamic programming table would store the minimum number of moves needed to remove all balls up to that point. A base case would be when the board is empty.
+
+The state expression could also be the last ball on the board, and the dynamic programming table storing the minimum number of moves needed to remove all balls given this last ball on the board.
+
+State: The current set of balls in hand, with transitions defined by considering each possible insertion and updating the minimum number of moves needed to remove all balls based on the current set of balls in hand.
+
+For each possible insertion:
+  * Insert the ball into the board at a position where it would be removed along with its neighbors.
+  * Update the state expression to reflect the new last ball on the board.
+  * Recursively update the dynamic programming table by considering all possible insertions from this updated state and taking the minimum number of moves.
+
+The plan should include edge cases, such as:
+  * When the board is initially empty, the base case would be to return 0, indicating that no moves are needed to remove all balls.
+  * When the hand is initially empty, the base case would be to return -1, indicating that it's not possible to remove all balls.
+
+===END PLAN===

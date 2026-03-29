@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, we can define a 2D array dp where dp[i][j] represents the total number of diamonds in the first i rows and the first j columns. The optimal substructure is that the total number of diamonds in the first i rows and the first j columns depends on the total number of diamonds in the first (i-1)th row and the first (j-1)th column, as well as the sum of even digits and odd digits in the current room number.
+
+To fill up the dp array from top to bottom and left to right, we can use a nested loop. The base cases are at the boundaries, where i or j is 0.
+
+dp[i][j] is calculated using the following steps:
+
+1. Calculate the sum of even digits (se) and sum of odd digits (so) in the current room number (i * (i + 1) / 2 + j + 1).
+2. Calculate the absolute difference between se and so.
+3. Add this value to the top-left diagonal cell dp[i-1][j-1] if it exists, or initialize with 0 if not.
+
+The final answer is stored in dp[N-1][N-1].
+
+===END PLAN===

@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. This observation leads us to consider a bitwise AND operation in our dynamic programming approach.
+
+Define the state as: dp[i] = whether there's a path from i to 0 (since all vertices are connected by edges). Base case: dp[0] is always true.
+
+To avoid redundant computation, we use memoization:
+
+dp[i] = 
+    | dp[u & v] if u & v != 0
+    | (u < v) AND dp[v - u]
+dp[0] = True
+
+Memoize the function to store intermediate results:
+@lru_cache(None)
+def dynamic_programming(u):
+    if u == 0:
+        return True
+    for i in range(30, -1, -1):
+        if (u >> i) & 1:
+            v = u ^ (1 << i)
+            if dp[v]:
+                return True
+    return False
+
+Now we can solve queries by calling the dynamic programming function:
+
+for _ in range(q):
+    u, v = map(int, input().split())
+    print("YES" if dynamic_programming(u) else "NO")

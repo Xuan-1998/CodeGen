@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+The base case occurs when x ≤ 0 or x > n, or when the program reaches a point where it does not terminate. You can initially set all cells in the table to -1 (indicating non-termination).
+
+Think about the possible values of x and y that can lead to termination, and model those as distinct states.
+
+You could use dynamic programming with a 3D table to store the maximum value of y for each possible state of x and y. The dimensions of the table would be n+1 (for x), 10^9+2 (for y), and 2 (for termination or non-termination).
+
+Start by initializing all cells in the table to -1, then iterate through the states of x, starting from x = 1.
+
+For each state of x, update the table by considering the possible next steps: either increase both x and y by a_{x}, or decrease x by a_{x} while increasing y by a_{x}. You can calculate these updates based on the current values of x and y.
+
+Repeat this process until you reach a termination case (i.e., x ≤ 0 or x > n, or when the program reaches a point where it does not terminate).
+
+The final value of y for each run of the program would be stored in the table. If the program does not terminate, output -1.
+===END PLAN===

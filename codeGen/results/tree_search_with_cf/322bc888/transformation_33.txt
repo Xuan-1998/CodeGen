@@ -1,0 +1,11 @@
+
+1. Define the problem as a dynamic programming problem.
+2. Use a bottom-up strategy with tabulation: This approach involves filling up a table iteratively based on the results of smaller subproblems. It ensures that all subproblems are solved in a structured manner. Time complexity: O(n * m), space complexity: O(n * m).
+3. State expression: Let dp[i][j] be the minimum cost to make the substring s[i:j] beautiful. Base case: dp[i][i] = 0 since a single character substring is inherently beautiful.
+4. Transition: 
+   - For each substring s[i:j], iterate over all possible split points k (i <= k < j) and calculate the cost to make both s[i:k] and s[k+1:j] beautiful.
+   - Add the cost of changing the character at position k if it forms a palindrome with the next character.
+5. Precompute the dp table for all possible substrings.
+6. For each query, directly retrieve the cost from the dp table.
+7. Handle edge cases such as single character substrings and substrings that are already beautiful.
+

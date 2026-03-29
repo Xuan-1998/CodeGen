@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+\
+
+The state can be defined as (t) where t is the time from the start of the level; The base case is when all monsters have been killed or the level has ended.
+
+dp[i][j] = min(dp[k-1][k-1]+(k-j)%2) for k in range(j+1,i+1)
+
+Implement memoization using recursion and a dictionary to store the results of subproblems. The function can be defined as:
+
+def dp(k, j):
+    if k >= len(h):
+        return 0
+    if dp[k][j] is not None:
+        return dp[k][j]
+    res = float('inf')
+    for i in range(j+1, min(k+1, len(h))+1):
+        res = min(res, dp[i-1][i-1]+(i-j)%2)
+    dp[k][j] = res
+    return res
+
+The final result is then the minimum value of dp[len(m)-1][0]
+===END PLAN===

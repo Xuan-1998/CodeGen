@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming with memoization.
+
+The state expression is dp[i] where i ranges from 0 to n, representing the minimum number of perfect squares that sum up to i.
+
+Create a memoized function using a dictionary where the key is the current value and the value is the minimum number of perfect squares that sum up to that value. The base case would be when i is a perfect square (e.g., 1, 4, 9), in which case dp[i] = 1.
+
+For non-perfect squares, we need to find the smallest perfect square that is greater than or equal to i and subtract it from i until we reach the base case. This can be done by iterating from √n down to 1 and checking if the current value is a perfect square that sums up to i. If found, update dp[i] accordingly.
+
+To avoid recomputation, use memoization to store previously computed values of dp[i].
+
+The final answer would be dp[n], which represents the minimum number of perfect squares that sum up to n.
+
+===END PLAN===

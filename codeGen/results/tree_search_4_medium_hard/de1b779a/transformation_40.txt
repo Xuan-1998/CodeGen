@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula which can then be memoized.
+
+The state is (dough_left, stuffings_used), where dough_left is the amount of dough left and stuffings_used is a boolean indicating whether any stuffing has been used yet.
+
+The subproblem could be to decide how many buns to make with the current stuffing type, considering the remaining dough and stuffings. The function would take in (dough_left, stuffings_used) as input and return the maximum profit that can be earned given those constraints.
+
+The base case would be when there is no more dough left or all the stuffings have been used up. In this case, the maximum profit would be 0 since we cannot make any more buns.
+
+To solve the problem recursively, we can consider two options:
+- Make a bun with the current stuffing type: If we have enough dough and stuffing for one bun, we can earn di amount of money by selling it.
+- Do not make a bun with the current stuffing type: In this case, we cannot earn any money from selling buns.
+
+We need to recursively call the function for both options and take the maximum profit. We also need to update the state accordingly (dough_left -= ci; stuffings_used = True if ai > 0 else False).
+
+To avoid repeating the same subproblem multiple times, we can use memoization by storing the results of subproblems in a table.
+
+The final solution would be the maximum value in this table for the initial state (n, False), where n is the amount of dough left initially and False indicates that no stuffing has been used yet.
+===END PLAN===

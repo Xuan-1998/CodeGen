@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment.
+
+For each query, iterate through the array from left (l) to right (r).
+dp[i][j] = (i == 1 or array[i-1] <= array[j]) and j == r - 1
+If not, consider two cases: 
+    Increasing sequence: dp[i-1][k] = True for all k such that i <= k <= j
+    Decreasing sequence: dp[i-1][k] = False for all k such that i <= k <= j
+
+Check if there exists an element in the subsegment which is not part of a valid ladder sequence.
+
+For each query, iterate through the array from left (l) to right (r).
+If any increasing or decreasing sequence is found, check if it forms a valid ladder.
+Print "Yes" if it does, and "No" otherwise.
+
+===END PLAN===

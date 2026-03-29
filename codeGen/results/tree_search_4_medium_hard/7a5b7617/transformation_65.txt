@@ -1,0 +1,12 @@
+===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+The state expression could be dp[i][j] representing the number of different steady tables of size i x j such that the sum of elements in the ith row is less than or equal to M minus the sum of elements in previous rows.
+State: dp[i][j]
+Transition function:
+    For j = 0, initialize dp[0][j] as 1
+    For i from 1 to N and for each j, calculate dp[i][j] = (M - dp[i-1][N]) + sum(dp[k][j] where k from 1 to i)
+Memoization: Store the intermediate results in a dictionary dp_dict and look up values as needed.
+Edge cases:
+    Handle N=0 or M=0 by returning 1
+    If N > M, return 0
+Return dp[N][M]

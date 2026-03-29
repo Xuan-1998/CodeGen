@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming (DP) instead of greedy algorithm.
+The state could be a pair (k, h), where k is the current team size and h is 1 if the current team has at least one player from the department of interest, otherwise it's 0.
+Create an array dp to store the probabilities for each team size. 
+dp[i] would represent the probability that a randomly formed team with i players will have at least one player from the department of interest.
+The base case is when k = n (the total number of players), in which case h = 1 if there are at least n-h players from other departments, otherwise it's 0. 
+Otherwise, consider the probability that a randomly formed team with i-1 players will have at least one player from the department of interest, and add to this the probability that a random player is from the current department (s_h / sum si), times the probability that the remaining i-1 players form a team without any players from the current department.
+The final answer would be dp[n].
+===END PLAN===

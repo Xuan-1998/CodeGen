@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary, then use the stored values to construct the optimal route.
+
+Define the state as a tuple (i, j), where i is the current vertex and j is the maximum time left; define the state expression as dp[i][j], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+Consider dp[i][j] as the maximum number of vertices that can be visited if we start at vertex i, have j time units left, and use all edges with weights up to t.
+
+Implementing memoization using a function with optional arguments, which allows us to store and reuse previously computed values.
+
+Initialize a dictionary dp with dimensions n+1 by T+1 to store the results of subproblems.
+
+For each state (i, j) in dp:
+  If i == n, return 1 if j >= 0 else 0 (base case: we've reached vertex n, and time left is positive, or negative).
+  Recursively explore all edges from vertex i with weight w <= j:
+    For each edge (u, v, t) such that u < i and t <= j:
+      Calculate dp[u][j-t] to determine the maximum number of vertices visited before reaching this edge.
+      Add 1 to the result if we can reach vertex i within time limit j-t (i.e., dp[u][j-t] > 0).
+    Update dp[i][j] as the maximum value among all possible routes.
+
+Return dp[n][T].
+
+===END PLAN===

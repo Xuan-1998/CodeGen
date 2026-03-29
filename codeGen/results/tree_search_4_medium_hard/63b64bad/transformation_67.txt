@@ -1,0 +1,19 @@
+// Initialize the DP table with base case values (x = 0)
+DP[0] = 0
+
+// Iterate through each state in the graph
+for x from 1 to n-1:
+    // Calculate the transition for this state
+    next_state_x = min(x + a_x, n-1) // ensure x doesn't exceed n-1
+    next_state_y = y + a_x // update y based on current x
+
+    // Check if the program terminates (x <= 0 or x > n)
+    if x <= 0 or x > n:
+        DP[x] = -1 // terminate and store -1
+    else:
+        // Store the transition in the DP table
+        DP[next_state_x] = next_state_y
+
+// Return the final value of y for each run of the program
+for i from 2 to n:
+    print(DP[i-1])

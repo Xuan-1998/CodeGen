@@ -1,0 +1,21 @@
+
+1. Frequency Calculation: Calculate the frequency of each integer in the sequence. Let freq[x] represent the frequency of integer x in the sequence. This step involves iterating through the sequence once, resulting in O(n) time complexity.
+
+2. State Definition: Define dp[x] as the maximum points achievable using integers up to x. This includes the possibility of taking or not taking the integer x.
+
+3. Base Cases: Initialize base cases for the dynamic programming array:
+   - dp[0] = 0 (no points can be obtained from zero elements)
+   - dp[1] = freq[1] (points obtained from integer 1 if it exists in the sequence)
+
+4. Transition Relationship: For each integer x from 2 to the maximum integer in the sequence (max_val), update dp[x] using the recurrence relation:
+   - dp[x] = max(dp[x-1], dp[x-2] + freq[x] * x)
+   This ensures that we either skip the current integer x (dp[x-1]) or take it and add its points (dp[x-2] + freq[x] * x).
+
+5. Result Extraction: The final result will be stored in dp[max_val], where max_val is the maximum integer present in the sequence. This value represents the maximum points that can be obtained.
+
+6. Edge Cases: Consider edge cases such as:
+   - The sequence containing only one element.
+   - All elements in the sequence being the same.
+   - The sequence containing elements in a strictly increasing or decreasing order.
+
+

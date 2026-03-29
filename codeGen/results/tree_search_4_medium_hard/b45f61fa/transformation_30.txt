@@ -1,0 +1,12 @@
+Bottom-up approach with tabulation:
+Define a table 'dp[i][j]' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+dp[i][j] is the minimum number of multiplications needed to multiply a sub-sequence of matrices.
+Consider dp[i][j] as the minimum number of multiplications needed to multiply all matrices from i to j, and compute it recursively as the minimum of the left and right child nodes, where:
+    - The left child node is the minimum number of multiplications for the sub-sequence (0 to k) 
+    - The right child node is the minimum number of multiplications for the sub-sequence (k+1 to n-1)
+    Update the value based on the product of the dimensions of the current matrix.
+
+Create a table dp[][] where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive.
+Iterate over the table to find the optimal parenthesization by selecting the minimum number of multiplications for each sub-sequence and multiplying the corresponding matrices together.
+Finally, construct the optimal parenthesization string based on the computed values in the dp[][] table.

@@ -1,0 +1,14 @@
+{
+DP state: For each string of length i, define two variables - dp[i][0] and dp[i][1]. 
+dp[i][0] stores whether it's possible to form a lexicographically smaller string by deleting the last character of the original string up to length i.
+dp[i][1] stores whether it's possible to form a lexicographically smaller string by duplicating the original string up to length i.
+
+Base case: dp[0][0] = True, because an empty string is always lexicographically smaller than any other string.
+For strings of non-zero length, initialize dp[0][1] = False and for all i > 0, dp[i][1] = dp[i-1][1].
+
+Memoization can be applied using a 2D array where memo[i][j] stores whether it's possible to form a lexicographically smaller string of length j by either deleting the last character or duplicating the original string up to length i.
+
+Main idea: Iterate from k down to 0. For each i, check if dp[i][1] = True and if so, update dp[k-i][0] to be False (because we cannot form a lexicographically smaller string by deleting the last character).
+
+Finally, return the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string. This can be done by iterating from 0 to k and returning the smallest string that corresponds to dp[i][0] = True.
+}

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Determine the maximum sum of a path by iterating through all possible paths in the tree using tabulation, and identify the optimal solution.
+
+The state expression is dp[i][j], representing the maximum sum of a path from node i to node j. The base case would be when both nodes are the same (i.e., the maximum sum of a path from a node to itself), in which case it's just the value of that node.
+
+To fill up the tabulation table, consider each node's value and the values in its left and right subtrees. If we know the maximum sums of paths ending at the child nodes (i.e., the maximum sums of paths ending at the left subtree and the right subtree), we can recursively add those sums to this node's value to get the maximum sum of a path ending at this node.
+
+The updated table should be filled up in a bottom-up manner, from the leaf nodes to the root. This is because we need to know the maximum sums of paths ending at child nodes before we can calculate the maximum sum of a path ending at their parent node.
+
+Once the tabulation table is complete, the maximum sum of a path in the entire tree would be the value at the top-right corner of the table (i.e., dp[0][n-1], where n is the number of nodes in the tree).
+
+===END PLAN===

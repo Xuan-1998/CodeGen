@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] represents the maximum damage that can be achieved at the i-th monster's appearance time considering the j-th monster's health.
+The base case is when the monster's health equals its appearance time. In this case, dp[i][i-1] = i.
+For other cases, we consider two options:
+  1. We cast a spell with damage equal to the previous damage (x) and use x mana. The maximum damage that can be achieved is max(dp[k][j-1], j).
+  2. We don't cast a spell at all in this second. In this case, we start from scratch and have a damage of 1. The maximum damage that can be achieved is dp[k-1][0] + 1.
+The final answer is the maximum value in the last row of the dp array (dp[n-1][]).
+===END PLAN===

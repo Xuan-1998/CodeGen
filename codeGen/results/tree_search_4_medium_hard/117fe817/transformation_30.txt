@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+Let the state be dp[i], where dp[i] represents the number of times 1 appears in all integers less than i. The base case is when i = 0, since there are no digits to count.
+
+To think about the numbers with the same last digit as i, and count how many times 1 appears in these numbers:
+    - For each integer j < i such that j % 10 == i % 10 (i.e., they have the same last digit), we can add dp[j] to dp[i], because this counts all integers less than i with the last digit i.
+    - However, note that some of these numbers (j) are also counted when considering the number (i - j) less than i. So, we need to subtract dp[i-1] from dp[i] to avoid double-counting.
+
+Tabulating the digit counts for each integer from 0 to n.
+
+===END PLAN===

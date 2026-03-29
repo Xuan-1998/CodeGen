@@ -1,0 +1,12 @@
+states = [(i, j) for i in range(n) for j in range(i, n)]
+for state in states:
+    i, j = state
+    good_primes = [num for num in array[i:j+1] if is_prime(num)]
+    bad_primes = [num for num in array[i:j+1] if not is_prime(num)]
+    # Transition relationships based on whether the current number is good or bad
+    if array[i] % 2 == 0:
+        dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1])
+        dp[i][j][1] = max(dp[i-1][j][0], dp[i-1][j][1])
+    else:
+        dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1])
+        dp[i][j][1] = max(dp[i-1][j][0], dp[i-1][j][1])

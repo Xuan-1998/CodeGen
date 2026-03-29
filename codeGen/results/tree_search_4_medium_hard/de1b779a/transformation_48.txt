@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+Let's use (remaining_dough, available_stuffs) as the state expression.
+State: (remaining_dough, available_stuffs), Transition: for each available stuff, decide whether to use it or not
+
+Create a 2D table with dimensions (n+1) x (m+1)
+
+Iterate over the table from bottom up:
+For each cell at position (i, j):
+    If remaining dough is enough to make a bun with the current stuffing type:
+        Calculate profit for making a bun with the current stuffing type
+        Add this profit to the maximum profit of not using the current stuffing type (i-1, j)
+    Else:
+        Do not use the current stuffing type and get the maximum profit from the previous row (i-1, j)
+
+The base case would be when there is no dough left or all stuffing types are exhausted
+Return the maximum value in the table
+
+===END PLAN===

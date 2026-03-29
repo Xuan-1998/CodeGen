@@ -1,0 +1,12 @@
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. Time complexity: O(N^3), space complexity: O(N^2) due to the table used for storing intermediate results.
+
+Base Case: Initialize dp[0][0] = 1, which represents an empty sequence. For all other dp[0][j] where j > 0, initialize dp[0][j] = 0.
+
+Transition: For each length l from 1 to N, and for each possible last element k from 1 to N, compute dp[l][k] as follows:
+- dp[l][k] = sum(dp[l-1][j] for all j from 1 to N if A[j-1] >= l and A[k-1] >= l) % 998244353
+
+Final Answer: The answer is the sum of dp[N][j] for all j from 1 to N.
+
+Edge Cases: Consider cases where N = 1 or A contains the maximum possible values. Ensure that the modulo operation is applied correctly to prevent overflow.
+

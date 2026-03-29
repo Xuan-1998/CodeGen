@@ -1,0 +1,11 @@
+
+1. Initialize a 2D DP table `dp` of size (N+1) x (N+1) where `dp[i][j]` represents the number of valid sequences of length `i` ending with number `j`.
+2. Base Case: Set `dp[0][j] = 1` for all `j` from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate over the length of the sequence from 1 to N:
+   a. For each length `i`, iterate over each possible ending number `j` from 1 to N:
+      i. Initialize `dp[i][j]` to 0.
+      ii. Iterate over each possible previous number `k` from 1 to N:
+          - If `k != j` and the number of occurrences of `k` and `j` in the sequence satisfy the given constraints (i.e., `count(k) <= A[k]` and `count(j) <= A[j]`), then add `dp[i-1][k]` to `dp[i][j]`.
+4. Sum up all values in `dp[N][j]` for `j` from 1 to N to get the total number of valid sequences of length N.
+5. Return the result modulo 998244353.
+

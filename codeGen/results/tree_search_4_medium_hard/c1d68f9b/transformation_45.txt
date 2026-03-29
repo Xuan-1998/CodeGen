@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+You can also think of a bottom-up tabulation solution where you build up the table row by row, considering the current polygon configuration and the next knight's mood.
+
+State: A boolean indicating whether a regular polygon can be formed with the given knights in good mood, considering the current configuration;
+Transition: If the next knight's mood is 1 (good), then it depends on the previous state; if the next knight's mood is 0 (bad), then the state becomes 'NO' regardless of the previous state.
+
+Let memo[i][j] represent whether a regular polygon can be formed with the given knights in good mood, considering the first i knights and the next j knights are in good mood. The base cases would be when there is only one knight (YES) or no knights (NO). 
+
+The recurrence relation would be:
+
+- If there's only 1 knight, it's YES.
+- If there are no knights, it's NO.
+- For i > 0 and j > 0: 
+    - If the last knight's mood is good (j == 1), then a regular polygon can be formed if and only if the previous configuration was also a regular polygon. So, memo[i][1] = memo[i-1][1].
+    - If the last knight's mood is bad (j == 0), then it doesn't matter what the previous configuration was; a regular polygon cannot be formed in this case. So, memo[i][0] = NO for all i.
+
+This way, you build up the table row by row and avoid recomputing subproblems using memoization.
+===END PLAN===

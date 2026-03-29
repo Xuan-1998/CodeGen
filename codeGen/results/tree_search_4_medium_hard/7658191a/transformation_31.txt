@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Think of a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Let dp[i][j] be the maximum score that can be achieved after processing i elements and performing j moves.
+
+For i from 1 to n, for j from 0 to min(i-1, k), consider the possible cases where either the previous element or the next element is taken. 
+
+If the current element is processed without a move, then it's like considering dp[i-1][j] as the maximum score.
+
+If a move to the left is performed, then consider dp[i-2][j-1] as the maximum score (since no two moves to the left in a row).
+
+If a move to the right is performed, then consider dp[i-1][j+1] as the maximum score.
+
+Update dp[i][j] with the maximum of these three possibilities and add the current element's value to it.
+
+Finally, return dp[n][k] as the maximum score that can be achieved.
+===END PLAN===

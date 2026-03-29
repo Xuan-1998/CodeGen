@@ -1,0 +1,19 @@
+Define two states:
+dp[i][j] = { maximum length of non-decreasing sequence seen so far in the current subsegment up to index i and including element at j,
+last_non_decreasing_element[i][j] = { last element of non-decreasing sequence seen so far in the current subsegment up to index i and including element at j }
+
+Use top-down approach with memoization:
+For each query (l, r), 
+    1. Initialize dp[r][r] = 0
+    2. For each i from l-1 down to 0,
+        a. Update last_non_decreasing_element[i][r] based on the previous state and current element
+        b. If current element is less than or equal to previous last non-decreasing element, update dp[r][r]
+    3. Return "Yes" if dp[r][r] > 0, otherwise return "No"
+
+Use bottom-up approach with tabulation:
+For each query (l, r),
+    1. Initialize dp[0][0] = 0
+    2. For each i from l to r,
+        a. Update last_non_decreasing_element[i][r] based on the previous state and current element
+        b. If current element is less than or equal to previous last non-decreasing element, update dp[r][r]
+    3. Return "Yes" if dp[r][r] > 0, otherwise return "No"

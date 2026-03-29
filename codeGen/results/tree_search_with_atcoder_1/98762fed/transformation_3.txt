@@ -1,0 +1,11 @@
+python
+===BEGIN UPDATED PLAN===
+1. Define the problem in terms of Dynamic Programming (DP). Let dp[i][j] represent the number of valid matrices of size i x j. The state transition will depend on the previous states, ensuring that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is satisfied.
+2. Initialize the DP table. Set dp[0][0] = 1 because there is only one valid matrix of size 0x0 (an empty matrix).
+3. Iterate through all possible sizes of matrices (i, j) from 1 to N and 1 to M. For each size, calculate the number of valid matrices by considering the addition of a new row or column while ensuring the condition is maintained.
+4. For each new element in the matrix, check the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} for all possible quadruples (a, b, c, d). If the condition is satisfied, update the dp[i][j] value.
+5. Use memoization to store the results of subproblems and avoid redundant calculations. This involves creating a memoization table to store the results of previously computed states.
+6. Handle edge cases, such as when N or M is 1, by ensuring the base cases are correctly initialized and the transitions are properly handled.
+7. Return the final result as dp[N][M] modulo 998244353.
+===END UPDATED PLAN===
+

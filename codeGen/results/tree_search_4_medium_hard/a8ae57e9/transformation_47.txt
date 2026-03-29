@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend.
+
+Let dp[i][j] represent the maximum amount of money earned given i remaining tables and j total amount of money to spend.
+dp[0][0] = 0 (base case: when there are no more tables or no more money to spend)
+
+For all i > 0, let c be the capacity of a table. For each request pi, consider two options:
+- If the current request can be seated at a table with enough capacity, then consider dp[i-1][pi-c*s] (where s is the size of the group).
+- Otherwise, consider dp[i][j-1]
+
+Use bottom-up dynamic programming to fill up the dp table.
+For j = 0 to total amount of money to spend:
+    For i = k to 1:
+        If pi <= ci (the current request can be seated at a table with enough capacity):
+            dp[i][j] = max(dp[i-1][pi-c*s], dp[i][j-1])
+        else:
+            dp[i][j] = dp[i][j-1]
+
+Finally, return dp[k][total amount of money to spend] as the maximum amount of money earned.
+
+Let m be the number of accepted requests and totalAmount be the total amount of money earned. For each request in increasing order of pi:
+    If pi <= ci and dp[k][pi] > 0, accept the request and increment m and totalAmount.
+    else, decline the request
+
+Print m and totalAmount as the output.
+
+===END PLAN===

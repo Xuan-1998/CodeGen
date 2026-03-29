@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 1D array to keep track of the cumulative sum of carries.
+state: dp[i] = expected number of non-zero carries when adding A and B with i digits in total.
+dp[i] = dp[i-1] * (10 - p) + p, where p is the probability that the last digit is not zero
+Create a 2D array to store the expected number of non-zero carries for each possible sum and digit count.
+state: dp[n][k] = expected number of non-zero carries when adding A and B with n digits in total and k as the most significant digit.
+dp[0][0] = 0 (base case)
+for i from 1 to N:
+    for j from 0 to 9:
+        if j > k: dp[n][k] += 1
+        else: dp[n][k] += (j == k) * (10 - j)
+Return the sum of all entries in the 2D array, divided by the total number of pairs.
+state: res = sum(dp[i][j]) / (N+1)^2
+===END PLAN===

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+A pair (k, c) representing the k-th string's cost to reverse and its current reversed or original status
+
+The state can be represented by a tuple (i, prev_str, rev) where i is the index of the current string, prev_str is the previously sorted string, and rev is a boolean indicating whether the string has been reversed or not.
+
+Create a bottom-up dynamic programming table to store the minimum cost for each prefix of the strings.
+
+If the previous string is already sorted, compare the current string with the previously sorted string. If they are in lexicographical order, append the current string to the sorted strings and increment the index i. Otherwise, reverse the current string at a cost equal to its original cost, and add it to the sorted strings as well.
+
+If the previous string is not already sorted, compare the reversed and original versions of the current string with the previously sorted string. If the reversed version comes first in lexicographical order, append it to the sorted strings and increment the index i. Otherwise, append the original version to the sorted strings and do nothing else.
+
+Fill up the dynamic programming table by iteratively applying the above steps for each prefix of the strings.
+
+The minimum total cost is stored at the last entry of the table.
+===END PLAN===

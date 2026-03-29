@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries called memo and dp where memo[(i, j)] stores whether it is possible to partition the subarray A[0..i-1] into j partitions with maximum difference M, and dp[(i, k)] stores whether it's possible to partition the subarray A[0..i] with k partitions.
+
+Initialize dp[(0, K)] = True because a single array can always be partitioned into K partitions with a difference of 0.
+
+For each i from 1 to N-1:
+    For each j from K to min(K, i+1):
+        If it's possible to partition the subarray A[0..i-1] into j partitions and the last element in this partition is not more than M away from the first element in this partition (i.e., dp[(i-1, j)] = True and A[i-1]-A[0] <= M), then set dp[(i, j)] = True.
+    If it's possible to partition the subarray A[0..i] into k partitions for some k < j, then set dp[(i, j)] = True.
+
+Finally, return dp[(N, K)] which tells whether it is possible to partition the array A[0..N-1] into K partitions with maximum difference M.
+===END PLAN===

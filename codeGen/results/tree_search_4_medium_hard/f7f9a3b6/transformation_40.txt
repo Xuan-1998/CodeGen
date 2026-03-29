@@ -1,0 +1,44 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: 
+dp[i][k] = maximum length of the k-th longest substring in all possible splits of s[0..i].
+dp[i][k] = number of ways to split the first i characters into k substrings with unique characters.
+
+Create a dictionary dp to store intermediate results and use it to avoid redundant calculations.
+
+Initialize dp: 
+for j in range(1, 27):
+    for i in range(j+1, n+1):
+        if s[i-1] == s[j-1]:
+            dp[(i, j)] = (dp.get((i-j, j), [0]) or [])[0]
+        else:
+            dp[(i, j)] = 0
+            for x in range(1, i//j+2):
+                if i%j < x*j:
+                    dp[(i, j)] += min(dp.get(((i-x*j)//x, x), [0]) or [])[0]
+
+Calculate the number of ways to split s into non-overlapping substrings: 
+for k in range(1, n//max(a) + 2):
+    res = 0
+    for i in range(k*n, -1, -k):
+        if dp.get((i, i+k), [0]) or [])[0]:
+            res += min(dp.get((i-k, i), [0]) or [))[0]
+    print(res % (10**9 + 7))
+
+Calculate the length of the longest substring over all ways: 
+res = 0
+for k in range(1, n//max(a) + 2):
+    for i in range(k*n, -1, -k):
+        if dp.get((i-k, i), [0]) or [))[0]:
+            res = max(res, min(dp.get((i-k, i), [0]) or [))[0])
+print(res)
+
+Calculate the minimum number of substrings over all ways: 
+res = n
+for k in range(1, n//max(a) + 2):
+    for i in range(k*n, -1, -k):
+        if dp.get((i-k, i), [0]) or [))[0]:
+            res = min(res, k)
+print(res)
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+state is an integer that represents the maximum possible distribution index for each node, initialized to 0; state transitions happen when processing edges between nodes, updating the maximum possible distribution index accordingly;
+
+Initialize a 2D table dp[node_size + 1][max_prime_factor + 1] with all values as 0;
+Set base case: for any leaf node (i.e., no children), there is only one way to distribute ones among its edges, so set state for that node to 1.
+
+For each edge between node u and node v:
+
+    Calculate the maximum possible distribution index by considering the number of prime factors in k; 
+    Update dp[u][number_of_prime_factors] with the maximum value;
+    For each child node w of node u:
+        Recursively update state for node w based on the maximum possible distribution index from node u to node w;
+        Add the updated state for node w to the total maximum possible distribution index for node u;
+
+Return dp[0][number_of_prime_factors] as the maximum possible distribution index for the entire tree.
+===END PLAN===

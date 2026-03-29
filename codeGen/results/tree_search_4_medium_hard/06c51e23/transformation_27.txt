@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+The state expression is 'dp[i][j]' where dp[i][j] represents the maximum possible grade that can be obtained by rounding the decimal fraction up to i digits after the decimal point within j seconds.
+
+Dynamic programming table can be filled by iterating over all possible combinations of rounding decisions for each digit of the decimal fraction.
+
+We will iterate through the decimal fraction from left to right, and at each position, we have two choices: round the current digit or not. This gives us 10^i possibilities for the i-digit suffix after the decimal point.
+
+Use a bottom-up dynamic programming approach where the DP table is filled from smaller subproblems to larger ones, considering all possible rounding decisions for each digit of the decimal fraction.
+
+The base case will be when j = 0, in which case dp[i][j] = 0 for all i. This means that if we run out of time, our maximum grade is 0.
+
+For larger values of j, we can fill up the DP table by considering all possible rounding decisions at each position and recursively calling ourselves with the remaining time and a shorter decimal fraction suffix.
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems that can be solved recursively.
+
+State: a and b as sets; Transition relationship: dp[i][j] = True if p[:i+j+1] is empty, meaning we've reached the end of both arrays. In this case, return true if p is empty.
+
+The base case is when i=0 or j=0, meaning one of the arrays has ended. In this case, return false, as it's not possible to merge arrays with different lengths.
+
+Transition relationship: 
+- dp[i][j] = True if p[:i+j+1] is empty
+- If p[i]=p[j], then dp[i][j] = dp[i-1][j-1]
+- If i<j and p[i]=a[n-1], then dp[i][j] = False
+- If j<i and p[j]=b[m-1], then dp[i][j] = False
+
+Use dynamic programming with bottom-up approach, where you fill up the table in a linear fashion. Initialize dp as a 2D array of size (n+1)*(n+1) filled with False.
+
+===END PLAN===

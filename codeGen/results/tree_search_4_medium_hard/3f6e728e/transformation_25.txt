@@ -1,0 +1,20 @@
+dp[0] = 1
+dp[C+1] = 0
+
+state dp[i] represents the number of ways to build sequences with i spheres
+define transitions using the number of upper and lower hemispheres with radii less than or equal to i
+using a bottom-up dynamic programming approach where dp[i] is calculated based on the previous state dp[j] for all j < i
+
+for i from 1 to C:
+    if i <= U[0]:
+        dp[i] = (dp[i-1] + L.count(i)) % MOD
+    else:
+        dp[i] = dp[i-1]
+
+initially, dp[0] = 1 and dp[C+1] = 0
+iterate from i = 1 to C
+for each i:
+    if the maximum radius of upper hemispheres is less than or equal to i:
+        calculate dp[i] based on the previous state dp[j] for all j < i
+    else:
+        set dp[i] to be the same as dp[i-1]

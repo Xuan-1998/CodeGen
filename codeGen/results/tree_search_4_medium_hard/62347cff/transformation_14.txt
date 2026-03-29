@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+Let dp[i][j] be the minimum path sum up to cell (i, j). The base case is when i or j reaches 0. In this case, dp[0][j] = grid[0][j] for all j, because we can only move right from the top row. Similarly, dp[i][0] = grid[i][0] for all i.
+
+Consider a bottom-up approach where:
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+
+This recurrence relation holds because we have two options to move from cell (i, j): either down from cell (i-1, j) or right from cell (i, j-1). The minimum path sum up to cell (i, j) is the sum of the minimum path sum up to one of these cells and the value at cell (i, j).
+
+Employing both tabulation and memoization techniques, where a 2D table dp is used to store intermediate results and updated accordingly.
+
+Initialize the dp table with zeros. Then, fill in the dp table row by row, starting from the top-left corner.
+
+Finally, return the value at the bottom-right corner of the dp table, which represents the minimum path sum up to that cell.
+
+===END PLAN===

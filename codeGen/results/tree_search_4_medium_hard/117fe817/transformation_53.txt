@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Let dp[i] be the number of times the digit 1 appears in all non-negative integers less than or equal to i.
+Consider an integer k. The last digit of k can be any integer from 0 to 9. If the last digit is 1, we can count this 1 separately, so it won't affect the total count. 
+If the last digit is not 1, then we have counted the digit 1 in all integers less than or equal to i-1.
+So, dp[k] = dp[k-1] if k % 10 != 1 else dp[k-1] + 1
+
+We can use a dictionary to store the memoized values.
+
+For edge cases: 
+n = 0 gives us an empty set so we return 0
+n > 9^9, consider all numbers from 0 to n. The number of times 1 appears in each number is either 0 or 1.
+So, dp[n] will be the total count.
+
+===END PLAN===

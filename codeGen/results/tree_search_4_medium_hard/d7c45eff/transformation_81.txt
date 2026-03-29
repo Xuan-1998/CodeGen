@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string. For each string of length i, consider all possible strings of length j (0 <= j < i) that can be formed by either deleting the last character or duplicating them.
+
+Let dp[i][j] represent the lexicographically smallest string of length j that can be formed by either deleting the last character of the strings of length i or duplicating them. Then, consider all possible strings of length i-1 and form strings of length i by either adding a character to the end of these strings or duplicating them.
+
+Update dp[i][j] based on the minimum lexicographically string among these newly formed strings. This way, you avoid re-computing the same subproblems multiple times.
+
+For the base case, when j is 0, dp[i][j] will always be an empty string, since there are no characters in a string of length 0.
+
+Finally, return dp[n][k], which represents the lexicographically smallest string of length k that can be formed by either deleting the last character or duplicating the original string.
+===END PLAN===

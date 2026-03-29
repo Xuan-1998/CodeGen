@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Combine bitwise operations with dynamic programming to efficiently count arrays.
+
+dp[i] = 1 if there exists an array such that bitwise AND operation on all elements is at least i, else dp[i] = 0;
+let dp[k][i] be the number of ways to make bitwise AND k and bitwise XOR i.
+Then, we can compute the transition relationship by adding 1 when bitwise AND is increased by one, 
+and subtracting 2 times the count when bitwise XOR is increased by one;
+
+dp[0][i] = 1 if i == 0, else dp[0][i] = 0;
+for (int k = 1; k <= log2(2^k - 1); k++) {
+    for (int j = k; j >= 0; j--) {
+        dp[k][j] = dp[k-1][j] + (dp[k-1][j-k]) * 2;
+    }
+}
+
+===END PLAN===

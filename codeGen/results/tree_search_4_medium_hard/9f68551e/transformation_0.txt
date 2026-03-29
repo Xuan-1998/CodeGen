@@ -1,0 +1,13 @@
+===
+BEGIN PLAN
+dp[i][t] represents the minimum mana required to kill the first i monsters at time t.
+The state can be defined as (i, t) where i is the current monster index and t is the time until the next monster appearance;
+Base case: when there are no more monsters to cast spells on.
+For each time t, calculate the minimum mana required to kill the first i monsters:
+    - If t < k_i, then dp[i][t] = dp[i-1][k_i-i], because we can't kill any monsters yet
+    - If t == k_i, then dp[i][t] = h_i + dp[i-1][0], because we just killed the i-th monster and need to calculate the minimum mana required for the remaining (i-1) monsters
+    - For t > k_i, consider two cases:
+        * If the spell was cast at time t-k_i, then dp[i][t] = dp[i-1][k_i-i] + h_i
+        * If the spell wasn't cast at time t-k_i, then dp[i][t] = 1 + dp[i-1][t-k_i]
+    Return dp[n][0] as the final answer
+===END PLAN

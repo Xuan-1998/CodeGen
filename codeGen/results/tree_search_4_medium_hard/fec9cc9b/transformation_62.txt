@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment, then use bottom-up approach with dynamic programming to update this state and determine if the current subsegment is a ladder.
+
+state[i][j] = max(state[k][j-1] for k in range(i, j+1) if a[k] >= a[k-1])
+
+state[i][0] = 1 if and only if a[i] is the maximum value seen so far in the array
+
+Transition relationship: state[i][j] = max(state[k][j-1] + 1 for k in range(i, j+1) if a[k] >= a[k-1])
+
+Initialize dynamic programming table with zeros
+
+Fill table by iterating over all subsegments and updating state accordingly
+
+Output answer as "Yes" if the final state at [n-1][m-1] is greater than 0, otherwise output "No"
+
+===END PLAN===

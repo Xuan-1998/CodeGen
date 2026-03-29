@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i]: the number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+
+dp[1] = 1 (base case)
+
+prefix_sum[i]: the cumulative sum of dp[j] for j in range(1, i)
+
+for i in range(2, C+1):
+    prefix_sum[i] = sum(binom(L_count[L_index].index(i), L_count[L_index][i]) * 
+                         (dp[j] - dp[j-1]) for j in range(1, i)) % (10**9 + 7)
+
+dp[i] = prefix_sum[i]
+
+Memoization can be used by defining a dictionary to store the results of subproblems and reusing them when needed.
+
+===END PLAN===

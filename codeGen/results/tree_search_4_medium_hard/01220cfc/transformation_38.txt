@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+dp[i][j] represents whether it's possible to reach the jth index from the ith index. Initialize dp[0][0] = True since we can always start at the first element.
+For each position i, consider two cases: either we can jump to the last element or not.
+If yes, then dp[i][len(arr)-1] = True; otherwise, False.
+Fill up the 2D table based on these observations:
+dp[i][j] = (arr[i] >= j-i) && (dp[i-1][max(0,j-arr[i])]? True : False)
+Return dp[len(arr)-1][len(arr)-1] as the answer.
+===END PLAN===

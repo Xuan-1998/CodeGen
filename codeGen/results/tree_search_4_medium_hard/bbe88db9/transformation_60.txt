@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i][j]: number of ways to reach room j from room i, considering whether Vasya has already used a portal in room i or not; dp[1]_[_]=1, since Vasya can always start the maze.
+
+Let f_i be the number of ways to reach room i. Then f_0 = 1 and for all i > 0: f_i = (f_{p_(i)} if ceiling contains odd crosses, f_{p_(i) - 1} if ceiling contains even crosses).
+
+Implement a dynamic programming table dp[][] where dp[i][j] stores the number of ways to reach room j from room i, considering whether Vasya has already used a portal in room i or not.
+
+For each room i, calculate dp[i][0] as follows: 
+- If i == 1, set dp[1][0] = 1 since there's only one way to start the maze.
+- For all i > 1, if ceiling contains even crosses, set dp[i][0] = dp[p_(i) - 1][0]; else, set dp[i][0] = dp[p_(i)][0].
+
+For each room i, calculate dp[i][j] for j != 0 as follows: 
+- If i == 1, set dp[1][j] = 1 since there's only one way to start the maze.
+- For all i > 1, if ceiling contains even crosses and j < p_(i), set dp[i][j] = dp[i - 1][p_(i) - 1]; else if ceiling contains odd crosses and j == p_(i), set dp[i][j] = dp[i - 1][0].
+
+The number of ways Vasya needs to get out of the maze is stored in dp[n][n + 1].
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Define the state as a dictionary dp[i][divisors] where i is the current element's index and divisors are the list of divisors of the previous elements up to the current element.
+
+The base case would be when there are no more elements in the array, then the number of good subsequences is 1 (the empty subsequence).
+
+To calculate dp[i][divisors], iterate over all numbers j from 1 to i, and for each j:
+
+* If j divides the current number a[i], then add 1 to the total count of good subsequences that include j.
+* If j does not divide the current number a[i], then skip this j.
+
+Then, update dp[i][divisors] with the sum of all counts from previous elements whose divisors include j (i.e., j is a divisor of any number in the array up to i).
+
+Finally, return dp[-1][[]] as the total count of good subsequences.
+
+The time complexity would be O(n * m), where n is the length of the array and m is the maximum number that appears in the array. The space complexity would be O(n * m) for storing the dynamic programming table.
+===END PLAN===

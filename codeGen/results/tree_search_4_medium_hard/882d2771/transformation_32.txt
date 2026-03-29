@@ -1,0 +1,7 @@
+dp[0][k] = 0; // base case when n = 2
+for (int n = 3; n <= r; n++) {
+    dp[n][1] = n;
+    for (int k = 2; k <= n; k++) {
+        dp[n][k] = min(dp[n/2][k-1] + k, dp[n-k][k]);
+    }
+}

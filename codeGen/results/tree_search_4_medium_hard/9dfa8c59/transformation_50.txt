@@ -1,0 +1,14 @@
+is_prime_perm(n, k, memo):
+    if n > n_max:
+        return [0, 0, 0]
+    if k == 0:
+        return [1, n, n]  # Single number with no permutations
+    if n in memo:
+        return [memo[n], min(memo[n], n), max(memo[n], n)]
+    count = 0
+    for i in range(len(str(n))):
+        num_permutations = 1
+        for j in range(i+1, len(str(n))):
+            num_permutations *= (9 - int(str(n)[j])) if str(n)[i] < str(n)[j] else (10 - int(str(n)[j]))
+        count += is_prime_perm(int(str(n)[:i] + str(n)[i+1:]) * 10 + int(str(n)[i]), k-1, memo) * num_permutations
+    return [count, min(n, memo[n]) if n in memo else n, max(n, memo.get(n, n))]

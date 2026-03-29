@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Let dp[i][k] be the count of blocks ending at digit position i with length k.
+
+The state is the count of blocks ending at each digit position up to length k.
+The state represents the number of blocks of length 1 to k that end at each digit position.
+
+Consider using a bottom-up dynamic programming approach, where you iterate over the range [0, 10^n - 1] and update the count for blocks of each length as you go. 
+
+For each number from 0 to 10^n - 1:
+    For each block ending at this position:
+        If the block is of length k:
+            Update dp[i][k]
+        For each possible block extension (by appending a digit):
+            If the extended block ends at this position and has length k+1:
+                Update dp[i][k+1]
+
+Let's calculate the number of blocks for each length. To do so, sum up all occurrences of blocks ending at each digit position with that length.
+
+For each length from 1 to n:
+    Calculate total_blocks[k] = Σ(dp[i][k]) (i in range [0, 10^n - 1])
+
+Return total_blocks[1], total_blocks[2], ..., total_blocks[n]
+
+The answer is the vector of counts modulo 998244353

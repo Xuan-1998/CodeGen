@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal solution is to use bottom-up dynamic programming with iteration and memoization, identifying the longest increasing subsequence first.
+
+Let dp[i] represent the minimum number of operations required to make the array strictly increasing up to index i. Let lis[i] represent the length of the longest increasing subsequence ending at index i.
+
+lis[0] = 1
+For each i from 1 to N-1:
+    if A[i] > A[i-1]: // A[i] can be appended to the longest increasing subsequence
+        lis[i] = lis[i-1] + 1
+    else: // A[i] cannot be appended, so reset the length of the longest increasing subsequence
+        lis[i] = 1
+
+dp[i] = sum(min(1, abs(A[i]-A[k])) for k in range(i)) - (lis[i] - 1)
+For each i from N-2 to 0:
+    dp[i] += min(dp[i+1], dp[N-1])
+
+===END PLAN===

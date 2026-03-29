@@ -1,0 +1,18 @@
+
+1. Define the state: Let dp[i][j] be a boolean that indicates whether the initial subsequence of length i can be transformed into the final subsequence of length j.
+2. Initialize the DP table: Create a 2D table dp of size (n+1) x (k+1) initialized to False. Set dp[0][0] to True since an empty initial sequence can be transformed into an empty final sequence.
+3. Populate the DP table:
+   a. Iterate over the initial sequence with index i from 1 to n.
+   b. Iterate over the final sequence with index j from 1 to k.
+   c. For each pair (i, j), check the following conditions:
+      i. If dp[i-1][j] is True, then dp[i][j] can also be True if the current element of the initial sequence can be merged or removed to match the current element of the final sequence.
+      ii. If dp[i][j-1] is True, then dp[i][j] can also be True if the current element of the final sequence can be obtained by merging or removing elements from the initial sequence.
+4. Check the result: If dp[n][k] is True, then it is possible to transform the initial sequence into the final sequence. Otherwise, print "NO".
+5. Trace back the operations: If the transformation is possible, trace back the operations from dp[n][k] to dp[0][0] to determine the sequence of operations.
+   a. Initialize an empty list to store the operations.
+   b. Start from dp[n][k] and move backwards, recording the operations that led to each state.
+   c. For each state (i, j), determine whether the operation was a merge or removal and record the position and direction.
+6. Output the result:
+   a. Print "YES".
+   b. Print the operations in the order they were recorded.
+

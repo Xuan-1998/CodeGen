@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming.
+
+The state could be a tuple (dp_interest, dp_total), where:
+  - dp_interest is true if we have seen the department of interest or false otherwise
+  - dp_total is the total number of departments that are already represented on the team
+
+The transition relationship would be:
+  - If we add a new department and it's not the department of interest: (false, dp_total + 1)
+  - If we add a new department and it's the department of interest: (true, dp_total + 1)
+
+Calculating the probability that a randomly formed team will have at least one player from the department of interest:
+  - Count the number of teams that satisfy this condition
+  - Divide it by the total number of possible teams
+
+The base case would be when we are adding the last department. We can calculate the probability in constant time based on the state.
+
+We need to add a check for edge cases, such as if there are not enough basketball players in the university to form a team.
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[0][j] = 0 for all j, because there's no dough to make any buns.
+dp[i][0] = 0 for all i, because with no stuffing types, we can't make any buns.
+
+The state could be the remaining amount of dough (i) and the number of stuffing types available (j). The transition relationship is that for each stuffing type, there are three options: make a bun with this stuffing type and use up some dough, or not make a bun at all and keep the dough and stuffing for later, or run out of the current stuffing type and move on to the next one.
+
+dp[i][j] = max(dp[i-1][j], dp[i-c[j]][j-1] + d[j]*p - c[j]) if i >= c[j] else 0
+===END PLAN===

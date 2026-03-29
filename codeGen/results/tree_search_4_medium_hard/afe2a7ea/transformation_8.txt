@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has an optimal substructure, as solving it for a larger instance of the problem can be solved by solving smaller instances. Therefore, a bottom-up approach with dynamic programming is suitable.
+
+Create a 2D array dp with n+1 rows and j columns where dp[i][j] represents whether it's possible to set signal powers for towns 0, 1, ..., i with exactly j radio towers built so far.
+
+For each town i from 1 to n:
+    For each number of radio towers k from 0 to min(j, i):
+        If the previous town i-1 can be served by at most k-1 radio towers (dp[i-1][k-1]) and either no tower was built in the current town or a tower was built but it serves only the current town (i % 2 != 0), then
+            dp[i][k] = True
+
+The probability of finding a way to set signal powers is the sum of dp[n][j] for all j from 1 to n.
+
+===END PLAN===

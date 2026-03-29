@@ -1,0 +1,10 @@
+
+1. Define a 2D array `dp[u][d]` where `dp[u][d]` represents the number of vertices at distance `d` from vertex `u`. Initialize this array with zeros.
+2. Set the base case: `dp[u][0] = 1` for all vertices `u`, since each vertex is at distance 0 from itself.
+3. Perform a Depth-First Search (DFS) traversal of the tree to populate the `dp` table.
+4. For each vertex `u` and its child `v`:
+   a. Recursively compute `dp[v][d]` for all distances `d` from 1 to `k`.
+   b. Update `dp[u][d]` using the values from `dp[v]` to account for the paths that pass through `v`.
+5. After computing the `dp` table, count the number of distinct pairs of vertices that have a path of exactly length `k` between them.
+6. Return the total count of such pairs as the result.
+

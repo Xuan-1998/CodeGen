@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+The state can be defined as dp[k][n], where k is the digit place (0-indexed) and n is the integer value. The base case is when n < 10^(k-1), since all integers less than that do not have a kth digit.
+dp[0][n] = 0
+dp[k][n] = dp[k-1][n//10] + (n%10 == 1)
+
+Employ top-down dynamic programming with recursion and memoization. Use a dictionary to store the results of subproblems.
+
+Initialize an empty dictionary, memo, to store the results.
+memo = {}
+
+A function, count_digit_ones, takes two parameters: k, the digit place, and n, the integer value. It returns the total number of times the digit 1 appears in all non-negative integers less than or equal to n.
+
+The base case is when n < 10^(k-1). In this case, return 0.
+If memo already contains the result for dp[k][n], return it from the dictionary.
+Otherwise, calculate the result recursively and store it in the dictionary before returning it.
+dp[k][n] = count_digit_ones(k-1, n//10) + (n%10 == 1)
+
+Call the function with the initial values k=9 and n.
+count_digit_ones(9, n)
+
+The final result is the value returned by the function.
+
+===END PLAN===

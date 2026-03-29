@@ -1,0 +1,14 @@
+python
+===BEGIN PLAN===
+1. Define a 2D DP table `dp` where `dp[i][j]` represents the number of valid sequences of length `i` where the maximum element is `j`.
+2. Initialize the DP table with base cases:
+    - `dp[0][0] = 1`, representing an empty sequence.
+3. Iterate over the length of the sequence from `1` to `N` (let's call this `i`).
+4. For each length `i`, iterate over the possible maximum elements from `1` to `N` (let's call this `j`).
+5. For each possible maximum element `j`, calculate the number of valid sequences by summing up the values from the previous length `i-1` for all possible elements `k` such that `1 ≤ k ≤ j` and the number of occurrences of `k` in the sequence is at most `A[k]`.
+6. Use a helper array `count` to keep track of the number of occurrences of each element in the sequence.
+7. If the number of occurrences of `j` in the sequence is at most `A[j]`, update `dp[i][j]` by summing up `dp[i-1][k]` for all valid `k`.
+8. After filling the DP table, the final answer will be the sum of all `dp[N][j]` for `1 ≤ j ≤ N`.
+9. Return the result modulo `998244353`.
+===END PLAN===
+

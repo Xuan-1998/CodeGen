@@ -1,0 +1,15 @@
+
+1. Define the problem in terms of dynamic programming. Let dp[i][j] represent the minimum cost to make the substring s[i:j+1] beautiful.
+2. Initialize the base cases. For any i, dp[i][i] = 0, as a single character is always beautiful.
+3. Define the transition relation:
+   - For substrings of length 2, if s[i] == s[i+1], then dp[i][i+1] = 1; otherwise dp[i][i+1] = 0.
+   - For longer substrings, iterate over the length of the substring from 3 to n. For each length, iterate over all possible substrings of that length. The state transition is:
+     dp[i][j] = min(dp[i+1][j], dp[i][j-1], dp[i+1][j-1] + (1 if s[i] == s[j] else 0)).
+4. Precompute the dp table for all substrings of s.
+5. For each query (l_i, r_i), output dp[l_i-1][r_i-1] as the result, adjusting for 1-based indexing.
+6. Consider edge cases:
+   - The entire string is already beautiful.
+   - The substring length is 1 or 2.
+   - Multiple queries with overlapping substrings.
+   - All characters in the string are the same.
+

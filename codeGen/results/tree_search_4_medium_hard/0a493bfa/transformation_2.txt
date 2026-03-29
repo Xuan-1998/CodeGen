@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Code a recursive function that calculates the maximum beauty for a given subset of numbers and bad prime numbers.
+
+dp[i][j] = max( beauty(a[:i], b[:j]) + f(gcd(...)) ) 
+    for all possible subsets of a[:i] and b[:j]
+
+Consider the current subset of good prime numbers and calculate the maximum beauty that can be achieved by performing operations on this subset.
+
+Create a 2D array and fill it up based on previously computed values
+
+for i from 1 to n:
+    for j from 0 to m:
+        if j == 0: 
+            dp[i][j] = f(a[i])
+        else:
+            max_beauty = -INF
+            for k in range(j+1):
+                good_primes = set(b[:k]) - set(b[j:])
+                subset_numbers = [num for num in a[:i] if num not in good_primes]
+                max_beauty = max(max_beauty, dp[i-len(subset_numbers)][j-k] + f(gcd(*subset_numbers)))
+            dp[i][j] = max_beauty
+
+Return the maximum beauty that can be achieved by performing operations on the entire array.
+
+===END PLAN===

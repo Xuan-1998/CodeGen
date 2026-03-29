@@ -1,0 +1,15 @@
+
+===BEGIN PLAN===
+1. Define the state dp[i][j] to represent the number of valid matrices of size i x j that satisfy the given condition.
+2. Initialize the base state: dp[1][1] = 2, since a 1x1 matrix can either be [0] or [1], and both satisfy the condition.
+3. Use a bottom-up approach to fill the dp table:
+   - Iterate over all possible sizes of matrices from 1x1 to NxM.
+   - For each size (i, j), calculate the number of valid matrices by considering the subproblems:
+     - If we add a row or a column, we need to ensure the new matrix still satisfies the condition.
+4. Use the transition relations to fill the dp table:
+   - dp[i][j] = (dp[i-1][j] * 2^j + dp[i][j-1] * 2^i - dp[i-1][j-1] * 2) % 998244353
+   - This relation ensures that we are considering all possible ways to add a row or a column while avoiding overcounting.
+5. After filling the dp table, the answer will be stored in dp[N][M].
+6. Print dp[N][M] % 998244353.
+===END PLAN===
+

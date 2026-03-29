@@ -1,0 +1,15 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position. The state expression would be the current position in the board.
+
+The state expression is a tuple (i, prev_color) where i is the current position in the board and prev_color is the color of the ball to the left of the current position.
+
+State: (i, min_moves[i]) where i is the current position in the board and min_moves[i] is the minimum number of moves needed to remove all balls up to that position
+
+To implement this dynamic programming, we can use a 2D array dp, where dp[i][j] represents the minimum number of moves needed to remove all balls up to position i with the last ball being of color j. The base case would be when i is equal to the length of the board, which means we've reached the end of the board and can't insert any more balls.
+
+The recursive formula for dp[i][j] would be:
+
+- If the current ball at position i matches the previous ball's color (j), then it can be removed along with the previous ball, so we add 1 to the minimum number of moves needed to remove all balls up to position i-1.
+- Otherwise, if there are more than one balls in hand that match the current ball's color j, then we can insert one of those balls and remove the current ball. The new state would be (i-1, new_color), where new_color is the color of the inserted ball. We add 1 to the minimum number of moves needed to remove all balls up to position i-1.
+- If there are no more than one balls in hand that match the current ball's color j, then we can't remove the current ball and have to keep it as is.
+
+The final answer would be dp[m][j], where m is the length of the board and j is the last ball's color. If the minimum number of moves needed to remove all balls up to position m with the last ball being of color j is greater than 0, then we can remove all the balls by inserting some, so we return that value. Otherwise, if it's equal to 0 or negative, then we can't remove all the balls and have to return -1.

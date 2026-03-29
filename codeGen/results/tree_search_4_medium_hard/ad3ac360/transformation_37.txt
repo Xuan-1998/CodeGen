@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Define a recursive function that checks if a substring is a palindrome. Since it has overlapping subproblems, consider using memoization to store the results of expensive function calls and avoid redundant computation.
+
+Is there a clear base case for determining if a single character is a palindrome? Yes, the answer is True since a single character is always palindromic.
+
+Define three states: 
+1) Whether the current substring is palindromic (dp)
+2) The dynamic programming table for the previous recursive call (prev_dp)
+3) The minimum number of cuts needed to partition the string into palindrome substrings (min_cuts)
+
+The transition relationship could be:
+- If the current substring is palindromic, then update dp accordingly. 
+- If not, backtrack to find the optimal partitioning by considering all possible cuts and updating min_cuts and prev_dp.
+- The base case would be when the length of the string becomes 1, in which case the minimum number of cuts needed is 0.
+
+Implement memoization using a decorator function that caches the results of expensive function calls and returns the cached result if the function is called again with the same arguments.
+
+===END PLAN===

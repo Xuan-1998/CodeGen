@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+dp[i][j] represents the index of the winner when there are i players, and j people have coins in their hands.
+
+Define state variables as dp[i][0], ..., dp[i][i-1]; transition relationship is based on which player wins this round and the remaining players left.
+
+Create a memoized function to store and reuse previously computed values, reducing redundant calculations. This can be achieved by using dynamic programming with 2D arrays where dp[i][j] represents the winner index when i people are playing and j people have coins in their hands.
+
+To further optimize the solution, consider applying mod operations on the indices while calculating the results to reduce the time complexity.
+
+Initialize the memoized function dp[][] with base cases for M = 1 (single player), then fill up the dp[][] array using a loop that considers each possible value of j from 0 to i-1. For each j, calculate and store the winner index in dp[i][j] based on which player wins this round and the remaining players left.
+
+Finally, for each test case, iterate over X from 1 to X, and for each X, find the winner index using the dynamic programming table dp[][] and print it as output.
+===END PLAN===

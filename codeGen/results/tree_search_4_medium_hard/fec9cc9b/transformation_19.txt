@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Identify the longest non-decreasing subsequence in the array as the base case.
+Then use bottom-up approach with dynamic programming (dp) to determine if a given subsegment is a ladder by checking if it's equal to the longest non-decreasing subsequence found so far.
+
+Define dp[i] as the length of the longest non-decreasing subsequence ending at index i. Transition: dp[i] = max(dp[j]) + 1 for all j such that 0 <= j < i and array[j] <= array[i].
+
+Employ bottom-up dynamic programming by initializing a 1D array dp of size n+1 with all values set to 1, then iteratively update the values using the transition function.
+
+Define a helper function is_ladder(i) that takes an integer as input and returns True if the subsegment from index 0 to i is a ladder, False otherwise. This function should be used to check each query.
+
+Employ memoization by storing the results of previous queries in a 2D array mem[m][n] such that mem[i][j] represents whether the subsegment from index 0 to j is a ladder for the ith query.
+
+===END PLAN===

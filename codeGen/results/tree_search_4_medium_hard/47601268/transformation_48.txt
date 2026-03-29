@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[0] = 1
+Let dp[i] be the count of numbers less than or equal to i that do not have consecutive ones.
+The transition relation can be formulated as:
+    if i has no consecutive ones, then dp[i+1] = sum(dp[j] for j in range(i)) + 1 (add 1 because we're considering i itself)
+    else dp[i+1] = 0
+Create a 2D array dp where dp[i] stores the count of numbers that do not have consecutive ones up to i.
+Fill in dp[0] initially and then fill in dp[i] based on whether i has consecutive ones or not.
+If i has no consecutive ones, calculate the sum of counts from all previous numbers (j < i) that also don't have consecutive ones and add 1 for the current number itself.
+Else set it to 0 because there are no such numbers.
+Finally, return dp[n]
+===END PLAN===

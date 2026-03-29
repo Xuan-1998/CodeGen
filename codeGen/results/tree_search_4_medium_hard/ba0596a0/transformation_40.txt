@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. Can we find a way to combine these subproblems to form the solution?
+
+The state expression could be defined as: dp[i] = True if there is a valid sequence of jumps that allows the frog to jump from the 0th stone (the starting point) to the ith stone.
+
+The base case would be dp[1] = True because the frog can simply stay on the first stone.
+
+Use a 1D DP table to store whether the frog can reach each stone from the starting point, then use this table to determine if the frog can reach the last stone. The transition rules could be: dp[i] = dp[j] and (stones[i-1] - stones[j-1]) % k in {k-1, k, k+1} for all 0 <= j < i.
+
+The final answer would be dp[n], where n is the total number of stones. If dp[n] is True, then the frog can reach the last stone; otherwise, it cannot.
+===END PLAN===

@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = minimum number of substrings required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+
+dp[i][j] = min(dp[i-1][k] + 1 for k in range(26) if sum(s[m] == chr(m+96) for m in range(i)) <= a[ord(s[i-1])-97])
+
+Use top-down dynamic programming with memoization instead of tabulation. This is because the problem has overlapping subproblems, and memoization can help avoid redundant computations.
+
+Define base cases: dp[0][j] = 0 for all j (base case for empty string)
+
+Iterate through the message:
+    Initialize a prefix sum array, ps[i], to keep track of the number of unique characters in s[0..i]
+    Iterate from i=1 to n-1
+        For each character c at index i:
+            Calculate the maximum allowed repeated occurrences of c, m = min(a[ord(c)-97], ps[i]-ps[i-1])
+            Update dp[i][j] for all j using memoization: 
+                dp[i][j] = min(dp[i-1][k] + 1 for k in range(26) if sum(s[m] == chr(m+96) for m in range(i)) <= m)
+    Calculate the final results:
+        Number of ways to split the message: prod(j=0..n-1, dp[n-1][j])
+        Length of the longest substring: max(dp[i][j] for i in range(n), j in range(26))
+        Minimum number of substrings: min(j=0..n-1, dp[n-1][j])
+
+===END PLAN===

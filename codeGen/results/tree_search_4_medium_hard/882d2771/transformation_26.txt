@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+f(2n) = f(n) + f(n)
+
+Let's use a bottom-up approach. Initialize an array dp[1...r] to store the minimum total number of pairwise comparisons needed to select the most beautiful participant from 1 girl to r girls in a beauty contest. The base case is that dp[i] = 0 for all i, since there are no participants left.
+
+For each participant n from l to r:
+    For each possible combination of t0, t1, ..., tr:
+        Calculate the value of the expression t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7.
+        Update dp[n] with the minimum total number of pairwise comparisons needed to select the most beautiful participant from n girls in a beauty contest.
+
+Finally, return dp[r] as the result.
+
+===END PLAN===

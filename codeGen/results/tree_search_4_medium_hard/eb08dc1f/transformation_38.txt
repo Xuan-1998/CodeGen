@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Consider all possible lengths of blocks l from 1 to n, and define dp[i][l] as the number of blocks ending at position i with exactly l digits.
+
+Define dp[i][l] as the number of blocks ending at position i with exactly l digits, and transition from state dp[i-1][l] when the current block is extended to the right by one digit.
+
+Use a 2D DP array with size (n+1) x (n+1) where dp[i][j] represents the number of blocks ending at position i with exactly j digits. For each transition, calculate the number of blocks that can be extended from left to right, considering all possible numbers in the range [0, 10^n - 1].
+
+Fill up the DP array from bottom-up by iterating over i and l.
+
+Finally, return dp[n][l] for each length l from 1 to n, which represents the number of blocks ending at position n with exactly l digits.
+
+===END PLAN===

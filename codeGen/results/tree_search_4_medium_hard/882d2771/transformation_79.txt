@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Consider a state (i, j) where i is the number of groups and j is the maximum number of girls per group. Define the state as a tuple (n, k) where n is the remaining number of girls and k is the current group size.
+Memoize function calls by storing previously computed values in a dictionary with key-value pairs (i, j) -> f(i, j).
+
+To calculate f(i, j), we can recursively call the function for i - 1 groups with j - 1 girls per group, and then add the comparison cost of selecting the most beautiful girl from the current group.
+
+Update memoized values in-place to avoid redundant calculations.
+
+Iterate over all possible states (i, j) within the given constraints, starting from the base case (1, 1), until reaching the target state (t, r).
+
+For each state, use the memoized value f(i - 1, j - 1) and add the comparison cost of selecting the most beautiful girl from the current group to compute the final value.
+
+Finally, calculate the expression t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7 using the memoized values.
+
+===END PLAN===

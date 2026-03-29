@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+base case: f(1) = 0
+The state is the current number of girls, and the transition is when we split a group into two.
+Use a bottom-up dynamic programming approach to fill up a table dp[n] where dp[n] represents the minimum total number of pairwise comparisons needed to select the most beautiful participant from n girls.
+
+We will initialize dp[1] = 0 as it takes no comparisons to choose the only girl. Then for each group size i from 2 to r, we calculate f(i) by considering all possible splits of the groups into two smaller groups of sizes j and k such that j + k = i. The minimum total number of comparisons is the minimum of the left and right parts plus one (for the comparison between the most beautiful girls in each part).
+
+This approach ensures we consider all possible ways to split the group into smaller groups, which is essential for this problem.
+===END PLAN===

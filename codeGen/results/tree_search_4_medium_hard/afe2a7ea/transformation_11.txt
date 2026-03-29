@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+dp[i][j] could represent the number of ways to select tower locations such that all towns get signal from exactly one tower and the total number of towers is j.
+
+Consider a subset of towns A with |A| = i and no town in A gets signal from more than one tower, then transition relationship could be:
+dp[i+1][j+1] = sum(dp[k][j] for k in range(k+1, min(i+2, j+1)));
+
+Let's assume the first tower is placed at town 0. Then we can have a recurrence relation: dp[i+1][j+1] = sum(dp[k-1][j-1] * (n-k) choose j-1 for k in range(1, i+2));
+
+Memoize the recursive function with a dictionary where keys are the current state (i, j) and values are the result of that state.
+
+The base case is when j = 0. In this case, dp[i][j] = 1 if i == 0, otherwise it's 0.
+
+dp[0][j] = 0 for all j in range(2, n+1)
+
+Initialize the dp table with zeros.
+For each state (i, j), calculate its value using the recurrence relation and memoization.
+Finally, return dp[n][n].
+
+Let's assume that we have a function solve(i, j) which calculates the number of ways to place towers for i towns and j towers. Then:
+
+dp[i][j] = 0 if j > i
+
+The time complexity is O(n^2 * (n + m)) where n is the number of towns, and m is the maximum number of towers that can be placed.
+
+===END PLAN===

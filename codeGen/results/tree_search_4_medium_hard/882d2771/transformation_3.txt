@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+
+Let dp[i] be the minimum number of comparisons needed to select the most beautiful participant from i girls. Then we have:
+- For even numbers n, f(n) = 0 (since all participants are paired up)
+- For odd numbers n, we use a recursive function that stores intermediate results in a dictionary to avoid redundant calculations:
+  - dp[n] = min(dp[i] + dp[n-i-1]) for all i from l to r
+  - This is because we can select the most beautiful participant from each group of i girls and then recursively select the most beautiful participant from the remaining n-i-1 girls
+
+To handle edge cases, we ensure that:
+- dp[0] = 0 (since no comparisons are needed for 0 participants)
+- dp[1] = 0 (since only one participant is left)
+
+We can use memoization to store and reuse previously calculated values of f(n) in the dictionary.
+===END PLAN===

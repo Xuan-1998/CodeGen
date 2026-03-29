@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+To model this problem as a cumulative distribution function (CDF), we can calculate the probability mass function (PMF) for each possible number of players from the department of interest. Then, we sum the probabilities for all outcomes greater than or equal to 1.
+
+Let dp[i][k] represent the probability that we get at least one player from the department of interest after choosing k players from i-1 departments. We can calculate this using the following recursive formula:
+
+dp[i][k] = (sum of probabilities for each possible number of players from the department of interest in the current and previous departments) / total number of players
+
+To avoid recalculating intermediate results, we use memoization to store dp[i][k] values as we go.
+
+Here's a step-by-step breakdown:
+
+1. Initialize an m x n dp array where m is the number of departments and n is the maximum number of players.
+2. For each department i (from 0 to h-1), calculate the probability that we get at least one player from the department of interest after choosing k players from the previous departments.
+3. Use memoization to store dp[i][k] values as we go.
+4. Calculate the final answer by summing up probabilities for all possible outcomes greater than or equal to 1.
+
+This plan seems correct, and it should handle edge cases correctly. However, we should make sure that our implementation handles invalid inputs (like m > n) and doesn't overflow when calculating large probabilities.
+
+===END PLAN===

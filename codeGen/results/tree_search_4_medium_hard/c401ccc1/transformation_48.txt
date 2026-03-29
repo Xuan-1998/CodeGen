@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+The state is a boolean array dp where dp[i] is true if there's a path from 0 to i, and false otherwise. The base case is that there's no path to any vertex with an in-degree of 1.
+
+The recurrence relation is:
+dp[i] = (u & i == i) and dp[u]
+
+Top-down memoization can be applied by defining a recursive function that calls itself with smaller subproblems and updates the memoization table accordingly.
+
+Base case: If there's no path to any vertex with an in-degree of 1, then set all dp values to false initially.
+
+Recurrence relation:
+dp[i] = (u & i == i) and dp[u]
+
+Apply top-down memoization by defining a recursive function that calls itself with smaller subproblems and updates the memoization table accordingly.
+===END PLAN===

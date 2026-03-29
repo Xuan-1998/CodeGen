@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Consider the graph as an AND-OR tree, where each node represents a vertex and its child nodes represent all vertices reachable by taking at most one edge from it. The state could be the maximum vertex ID reachable from vertex u with k edges. If the maximum vertex ID is greater than or equal to v, then there exists a path between u and v; otherwise, there isn't.
+Create a 2D table dp[k][u] representing the maximum vertex ID reachable from vertex u with k edges. The base case would be when k is 0 (i.e., no edges) or when all vertices are reachable up to that distance.
+For each query (u, v), if dp[k][u] >= v, then return "YES", otherwise return "NO".
+Initialize the table by setting dp[0][u] = u for all u and set dp[k][0] = 0 for all k. This represents that there is no path from any vertex to vertex 0 with k edges.
+For each query (u, v), find the maximum vertex ID reachable from vertex u with k edges using dynamic programming: 
+- If (u & v) != v, return "NO" since there can't be a path from u to v.
+- For each child node w of u such that (u & w) = w, update dp[k][w] based on the maximum reachable ID and whether it is reachable within k edges. 
+  If dp[i][w] > dp[k][u], then set dp[k][w] = dp[i][w]. Otherwise, set dp[k][w] = dp[k][u].
+- Return "YES" if dp[k][v] >= v; otherwise return "NO".
+===END PLAN===

@@ -1,0 +1,1 @@
+print(solve("board", "hand"))

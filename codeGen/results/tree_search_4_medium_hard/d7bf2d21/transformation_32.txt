@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp = [1] * len(arr)
+max_length = 1
+count = 0
+for i in range(len(arr)):
+    for j in range(i):
+        if arr[j] < arr[i]:
+            dp[i] = max(dp[i], dp[j] + 1)
+            if dp[i] == max_length:
+                count += 1
+            elif dp[i] > max_length:
+                max_length = dp[i]
+                count = 1
+print(count)
+===END PLAN===

@@ -1,0 +1,8 @@
+dp = {}
+def dp_calculator(i):
+    if i == 0:
+        return 20
+    elif i <= 90:
+        return dp.get(i-1, dp_calculator(i-1)) + 20
+    else:
+        return min(dp.get(i-2, dp_calculator(i-2)), dp.get(i-3, dp_calculator(i-3))) + 50 if i > 120 else 120

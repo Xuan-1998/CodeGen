@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+\
+The state can be defined as (t, j) where t is the time from the start of the level and j is the number of monsters remaining; The base case is when all monsters have been killed or the level has ended.
+
+dp[t][j] = min(dp[k][j-1] + k - h[j-1]) for k in range(h[0], t+1)
+
+Create a 3D table dp of size (t+1) x (n+1) x (n+1), where each cell dp[t][j][k] represents the minimum mana required to kill all monsters by time t with j monsters remaining, and the k-th monster's health has been reached.
+
+For the base case, if t is greater than or equal to the maximum appearance time of any monster, then return 0. If j is 0, then return infinity.
+
+===END PLAN===

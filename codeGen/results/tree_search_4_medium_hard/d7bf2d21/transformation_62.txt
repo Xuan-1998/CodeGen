@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Define the state as a dictionary dp[(i, j)] = k, where k is the length of the longest increasing subsequence ending at index j in the first i elements.
+
+Consider a state dp[i][j] to represent the length of the longest increasing subsequence ending at index j in the first i elements. Transition relationships can be defined as: if the current element is greater than the previous one, then it extends the existing subsequence; otherwise, it starts a new subsequence.
+
+Use dynamic programming to fill up the dp table in a bottom-up manner, starting from shorter subsequences and moving towards longer ones.
+
+For each cell dp[i][j], consider all possible predecessors (previous elements) that can extend the increasing subsequence. If the current element is greater than any predecessor, it means we found an extension of the existing subsequence; otherwise, it starts a new subsequence.
+
+To count the number of longest increasing subsequences, iterate through the dp table and keep track of the maximum length seen so far. When you encounter a cell with the same length as the current maximum, increment the count.
+
+Finally, return the count as the result.
+===END PLAN===

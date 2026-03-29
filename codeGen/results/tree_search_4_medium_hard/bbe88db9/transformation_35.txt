@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The transition relationship could be defined based on the portal rules: if the ceiling has an odd number of crosses, take the second portal; otherwise, take the first one. We can use this rule to define a recurrence relation that depends only on the current state.
+
+Define the state as dp[i] = minimum portal moves to reach room i
+
+Let dp[i][j] be the minimum number of moves from room 1 to room i using at most j portals.
+
+We can define a recurrence relation:
+
+dp[i][0] = if i is odd, then 1; otherwise, 0
+For k in range(i-1):
+    if (ceiling crosses) % 2 == 0:
+        dp[i][j] = min(dp[k][j] for k in range(i-1))
+    else:
+        dp[i][j] = min(dp[k][j-1] + 1 for k in range(i-1))
+
+dp[n+1][j] is the final answer
+
+===END PLAN===

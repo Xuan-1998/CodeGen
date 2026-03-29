@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider using dynamic programming approach where state represents number of players from department of interest and transitions represent addition of new players to team. This can be solved using top-down memoization or bottom-up tabulation.
+
+state = h, transitions = [any(si > state for si in s)]
+
+Consider total number of players and number of players from department of interest as separate state variables. Formulate transitions as:
+dp1[i] = min(dp1[i-1], state1) if i-th player is from department of interest, otherwise dp1[i] = 0; 
+and similarly for dp2
+
+Use dynamic programming approach to calculate probability that randomly formed team will have at least one player from department of interest. 
+
+Consider using top-down memoization with recursive function where base case is when there are not enough players to form a team.
+
+Calculate probability as (sum of probabilities of having exactly k players from department of interest) / C(n, k)
+
+where C(n, k) = n! / (k!(n-k)!)
+
+===END PLAN===

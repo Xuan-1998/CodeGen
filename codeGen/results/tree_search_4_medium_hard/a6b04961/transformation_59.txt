@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+State: Consider using a tuple (tail_length, last_node_in_tail) as the state expression, where tail_length is the current length of the hedgehog's tail and last_node_in_tail is the most recent node added to the tail. The base case would be when the tail has reached its maximum length or when there are no more nodes that can be connected to the tail.
+
+Dynamic Programming: Implement a memoization function that takes the current tail and last node in the tail as input, returns the maximum beauty for this subproblem, and stores the result in a lookup table. This allows you to avoid recomputing the same subproblems multiple times.
+
+Memoized Function:
+- If the tail has reached its maximum length, return 0 (since there are no more edges to color).
+- If there are no more nodes that can be connected to the tail, return 0 (since there are no more spines to add).
+- Otherwise, try to connect each node to the tail and recursively calculate the maximum beauty for this subproblem. Choose the node that results in the highest beauty.
+- Store the result in a lookup table with key (tail_length, last_node_in_tail) to avoid recomputing the same subproblems.
+
+State: Consider using a tuple (spine_count, node) as the state expression, where spine_count is the current number of spines and node is the most recent node added to the hedgehog. The base case would be when there are no more nodes that can be connected to the spines or when all edges have been colored.
+
+Dynamic Programming: Implement a memoization function that takes the current state as input, returns the maximum beauty for this subproblem, and stores the result in a lookup table. This allows you to avoid recomputing the same subproblems multiple times.
+
+Memoized Function:
+- If there are no more nodes that can be connected to the spines or all edges have been colored, return 0 (since there are no more spines to add).
+- Otherwise, try to connect each node to a spine and recursively calculate the maximum beauty for this subproblem. Choose the node that results in the highest beauty.
+- Store the result in a lookup table with key (spine_count, node) to avoid recomputing the same subproblems.
+
+===END PLAN===

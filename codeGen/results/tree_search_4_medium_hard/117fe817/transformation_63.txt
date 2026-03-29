@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Consider the last digit of each integer as the state, where the state is an integer from 0 to 9. Then, calculate the total number of times 1 appears in all integers that end with this state.
+
+Initialize a list dp of size 10, where dp[i] represents the total number of times 1 appears in all integers that end with i.
+
+For each state i from 0 to 9:
+    If i is 1, set dp[i] = 1
+    Else if i is not 1, calculate dp[i] as the sum of:
+        - The number of times 1 appears in all integers that end with i-1 (dp[i-1])
+        - The number of times 1 appears in all integers that end with 0
+
+For each state i from 2 to 9:
+    Calculate dp[i] as the sum of:
+        - The number of times 1 appears in all integers that end with i-1 (dp[i-1])
+        - The number of times 1 appears in all integers that end with i-2 (dp[i-2])
+
+Finally, return the total count of 1's from dp[9] and add n to it.
+
+===END PLAN===

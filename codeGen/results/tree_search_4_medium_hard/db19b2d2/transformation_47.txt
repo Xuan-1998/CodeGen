@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using Dynamic Programming instead of a greedy algorithm. This is because the order in which we select departments and players does not matter, as long as we have at least one player from the department of interest.
+
+Consider a state as a tuple (n, k), where n is the total number of basketball players already selected and k is the number of these players that are from the department of interest. The goal is to calculate the probability that at least one player from the department of interest is selected given that we have already selected n players.
+
+Use dynamic programming to store the results of subproblems in a 1D array dp, where dp[i] represents the probability that at least one player from the department of interest is selected given that we have already selected i players. The base case is when i is less than or equal to the number of basketball players in the department of interest, in which case we know that there will be at least one player from the department of interest.
+
+For each i, calculate dp[i] as follows: if i is greater than or equal to the total number of basketball players, return -1. Otherwise, calculate the probability that at least one player from the department of interest is selected given that we have already selected i-1 players and add this probability to the probability that no players from the department of interest are selected given that we have already selected i-1 players.
+
+Finally, return dp[n] as the answer.
+===END PLAN===

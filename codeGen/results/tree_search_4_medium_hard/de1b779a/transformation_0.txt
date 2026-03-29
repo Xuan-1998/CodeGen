@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Consider a table dp[n][m] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types remaining.
+
+The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0). In this case, the maximum profit would be 0 since no buns can be made.
+
+dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types remaining when making buns with different stuffings or without any stuffing. This value depends on whether using the current stuffing type (with cost ci and profit di) makes more sense than not using it (cost c0 and no profit).
+
+The transition relationship could be a recursive function that calculates the maximum profit by either:
+
+* Using the current stuffing type: Calculate the maximum profit if we use the current stuffing type, which would be dp[i-ci][j-1] + di. If this value is greater than not using it (dp[i][j-1]), update dp[i][j] with this value.
+* Not using the current stuffing type: Calculate the maximum profit if we don't use the current stuffing type, which would be dp[i][j-1]. Update dp[i][j] with this value.
+
+Dynamic programming with nested loops:
+For i from 0 to n:
+    For j from 0 to m:
+        If i == 0 or j == 0: // base case
+            dp[i][j] = 0
+        Else:
+            Use the current stuffing type or not, and update dp[i][j]
+===END PLAN===

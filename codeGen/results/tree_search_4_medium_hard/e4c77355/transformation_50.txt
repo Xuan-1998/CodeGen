@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Tabulation: Use a bottom-up approach by iterating through the array and updating longest increasing subsequences as you go.
+
+DP := zeros(len(arr))
+For i from 0 to len(arr) - 1:
+    If i == 0:
+        DP[i] := 1
+    Else:
+        For j from 0 to i - 1:
+            If arr[i] > arr[j]:
+                DP[i] = max(DP[i], 1 + DP[j])
+    Return max(DP)
+===END PLAN===

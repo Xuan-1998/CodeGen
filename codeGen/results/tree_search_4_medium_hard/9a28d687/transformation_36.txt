@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 2D array dp[n][m] where n is the number of strings and m is the maximum length of each string. The cell dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order, with the jth character of the current string not yet considered.
+
+State: For the initial state, set dp[0][j] = 0 for all j because it takes no effort to sort an empty sequence. Then, iterate over each string from left to right and update the state accordingly:
+
+For each string s[i]:
+    If s[i-1].reverse() < s[i], then:
+        For every prefix p of s[i]:
+            Calculate the minimum cost to reverse p and dp[i-1][j] (where j is the length of p).
+            Update dp[i][j] with the minimum cost.
+    Otherwise, set dp[i][j] = dp[i-1][j].
+
+Final Answer: The minimum total cost required to sort all strings in lexicographical order is stored in cell dp[n-1][m].
+===END PLAN===

@@ -1,0 +1,12 @@
+Bottom-up approach with tabulation: Define a table 'dp[i][j]' where dp[i][j] is the minimum number of multiplications needed to multiply matrices from 0 to i, inclusive, and store the results in the table.
+
+Initialize memo dictionary as an empty dictionary.
+
+For each i from 1 to n-1:
+    For each j from i+1 to n:
+        Calculate the minimum number of multiplications for the current sub-sequence using dynamic programming:
+            Let k be the optimal split point such that dp[i][k] + dp[k+1][j] is minimized
+            Compute dp[i][j] as the sum of dp[i][k] and dp[k+1][j]
+        Store the result in memo dictionary with key (i, j)
+
+Return the minimum number of multiplications needed to multiply all matrices from 0 to n-1 by looking up the value for (0, n-1) in memo dictionary

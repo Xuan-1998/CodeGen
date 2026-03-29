@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The sequence values are used in the transitions, so we should focus on identifying the relationships between the state space (sequence length) and the transition rules.
+
+The state is just y, as we only care about the final value of y.
+Consider the current state y and the next sequence element a_x to be the key for transitions.
+Use a hashmap to store the transition values as a function of (y, a_x) and update y accordingly.
+
+Initialize an empty hashmap dp.
+For each possible value of y from 0 to n-1:
+    For each possible value of x from 2 to n:
+        Calculate a_x. If x > n, break the loop.
+        Update dp[(y, a_x)] = y + a_x if x == 1; otherwise, update dp[(y, a_x)] = dp[(y+a_x-a_{x+1}, a_{x+1})].
+    For each possible value of i from 2 to n:
+        Calculate the transition value t = dp[(i-1, a_i)]. If t ≤ 0 or t > n, return -1.
+        Update y = y + a_i. If x == 1, return y; otherwise, update x = x + a_i and y = y + a_i.
+Return y.
+===END PLAN===

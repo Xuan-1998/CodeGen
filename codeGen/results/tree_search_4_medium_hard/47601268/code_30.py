@@ -1,0 +1,14 @@
+from sys import stdin
+
+n = int(stdin.readline())
+
+dp = [0] * (n + 1)
+dp[0] = 1
+
+for i in range(1, n + 1):
+    if bin(i)[2:] != ''.join('0' + str(int(b) == '1') for b in (bin(i - 1)[2:]).zfill(len(bin(i)) - 2)):
+        dp[i] = dp[i - 1] + 1
+    else:
+        dp[i] = dp[i - 1]
+
+print(dp[n])

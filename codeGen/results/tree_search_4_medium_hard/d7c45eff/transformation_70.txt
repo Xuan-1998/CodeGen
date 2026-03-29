@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+DP state representation: A tuple (s, deleted) where s is the current string and deleted is a boolean indicating whether the last character was deleted.
+
+Initialization:
+- Create a dictionary memo initialized with default values for states representing empty strings (s = "", deleted = False)
+- Initialize an array dp of length k + 1 with default values
+
+Transition function:
+- For each state (s, deleted), consider two options: 
+    - Delete the last character if s has more than one character and deleted is True
+    - Duplicate the original string if s has exactly k characters or it's the first step
+- Calculate the lexicographically smallest string for each option and update memo[(s, deleted)] accordingly
+
+Final answer:
+- Return the lexicographically smallest string in memo that corresponds to a state where s has exactly k characters and deleted is False
+
+Edge cases:
+- Handle the case where s is an empty string by returning the default value
+- Handle the case where k is 0 or less by returning an empty string
+
+===END PLAN===

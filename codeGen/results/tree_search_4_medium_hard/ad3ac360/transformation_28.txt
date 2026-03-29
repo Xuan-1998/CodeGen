@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Define a 2D table dp where each entry dp[i][j] represents whether the substring from index i to j is a palindrome or not.
+
+The state expression can be defined as (i, j) representing the left and right boundaries of the current substring being considered.
+
+The transition relationships can be formulated based on checking if the characters at the center of the substring are equal to themselves (ignoring case) for even-length substrings, or checking if the characters at both ends are equal to themselves (ignoring case) for odd-length substrings.
+
+Implement dynamic programming using a 1D table where each entry represents the minimum number of cuts required for palindrome partitioning up to that point in the string. Start by initializing dp[0][n-1] = 0, as there is no need for cuts if the entire string is a palindrome.
+
+For each pair (i, j) such that i <= j and 0 <= i < n and 0 <= j < n:
+
+* If the substring from index i to j is a palindrome, then dp[i][j] = 0.
+* Otherwise, consider cutting at every position k in the range [i, j]. The minimum number of cuts required for palindrome partitioning up to that point in the string would be the minimum of:
+	+ 1 + dp[i][k-1] + dp[k+1][j], if the substring from index i to k is a palindrome and the substring from index k+1 to j is also a palindrome.
+	+ 1 + min(dp[i][k-1]) for all k in [i, j], where we cut at position k.
+
+Finally, return dp[0][n-1] as the minimum number of cuts required for palindrome partitioning of the given string.
+===END PLAN===

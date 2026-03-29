@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+Let the state be dp where dp[i] is true if there's a path from u to i for some u. The base case is that there are no vertices with an out-degree greater than 1.
+
+The state dp[u] is true if and only if there exists v such that u & v = v. This can be determined by iterating over all vertices and checking if the condition holds. If it does, then dp[u] should be set to True.
+
+Design a memoized function that recursively checks for the existence of edges and updates the memoization table accordingly.
+
+The updated plan is as follows:
+
+* Initialize a hashmap, memo, with default value False.
+* For each query (u, v), check if there's an edge from u to v by checking if u & v = v. If it does, return "YES".
+* Otherwise, iterate over all vertices and for each vertex w:
+	+ Check if there's a path from w to u. If there is, set dp[u] to True.
+	+ If dp[u] is already True or the above condition doesn't hold, move on to the next vertex.
+* Return "NO" if no path is found.
+
+===END PLAN===

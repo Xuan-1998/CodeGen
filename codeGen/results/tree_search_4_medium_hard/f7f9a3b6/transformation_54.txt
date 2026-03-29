@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = minimum number of substrings required to split s[0..i] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character. The base case is when i=0, in which case we need 1 substring.
+
+dp[i][j] = 
+    if i==0: dp[0][1]
+    else:
+        total_a = sum(a[ord(c)-97] for c in s[:i])
+        min_j = min(j, total_a)
+        dp[i][j] = min(dp[i-1][k] + (total_a-k+1) for k in range(min_j+1))
+    
+Use top-down dynamic programming with memoization to avoid redundant computations.
+
+To find the longest substring, iterate through all possible ways to split the message and keep track of the maximum length. The minimum number of substrings can be found by iterating through all possible ways to split the message and keeping track of the minimum count.
+
+===END PLAN===

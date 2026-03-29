@@ -1,0 +1,18 @@
+
+1. Precompute the minimum cost to make any substring of length 1 to n "beautiful" for different patterns (abc, bca, cab).
+2. Generate three possible "beautiful" patterns of the same length as the input string s:
+   - Pattern 1: "abcabcabc..."
+   - Pattern 2: "bcabca..."
+   - Pattern 3: "cabca..."
+3. Compute the cost to transform the input string s into each of these patterns for every prefix of s:
+   - Let cost1[i] be the cost to transform the first i characters of s into the first i characters of Pattern 1.
+   - Let cost2[i] be the cost to transform the first i characters of s into the first i characters of Pattern 2.
+   - Let cost3[i] be the cost to transform the first i characters of s into the first i characters of Pattern 3.
+4. Use prefix sums to efficiently compute the cost for any substring [l, r] of s:
+   - The cost to transform the substring s[l-1:r] into a beautiful string can be computed as:
+     - cost1[r] - cost1[l-1] (for Pattern 1)
+     - cost2[r] - cost2[l-1] (for Pattern 2)
+     - cost3[r] - cost3[l-1] (for Pattern 3)
+5. For each query, compute the minimum cost among the three patterns for the given substring [l, r].
+6. Output the minimum cost for each query.
+

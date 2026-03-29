@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+dp[0][j] = 0, for all j (base case: no dough left)
+dp[i][0] = 0, for all i (base case: no stuffing types left)
+
+For i > 0 and j > 0:
+- If there's enough dough to make a bun with the current stuffing type (i >= ci), then consider two options:
+    - Use this stuffing type and get profit di
+    - Don't use this stuffing type and try another option
+
+The transition relationship would then depend on whether it's more profitable to use a new stuffing type or not, considering the price of the buns with different stuffing types.
+
+Maintain a dictionary where the key is the remaining dough and the value is the maximum profit that can be achieved with that amount of dough.
+
+dp[i][j] = max(dp[i-ci][j-1] + di, dp[i][j-1])
+
+===END PLAN===

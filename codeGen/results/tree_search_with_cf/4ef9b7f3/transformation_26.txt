@@ -1,0 +1,21 @@
+
+1. State: Let dp[i][j] be True if the first i elements of the initial sequence can be transformed into the first j elements of the final sequence. Otherwise, dp[i][j] is False.
+
+2. Base case: 
+   - dp[0][0] = True, since an empty initial sequence can be transformed into an empty final sequence.
+   - For all dp[i][0] where i > 0, dp[i][0] = False, since a non-empty initial sequence cannot be transformed into an empty final sequence.
+   - For all dp[0][j] where j > 0, dp[0][j] = False, since an empty initial sequence cannot be transformed into a non-empty final sequence.
+
+3. Transition: 
+   - If dp[i-1][j-1] is True and the sum of the first i elements of the initial sequence is equal to the sum of the first j elements of the final sequence, then dp[i][j] = True.
+   - Additionally, we need to ensure that the transformation is valid. This means that for each valid dp[i][j], we should be able to find a sequence of operations that transforms the first i elements of the initial sequence into the first j elements of the final sequence.
+
+4. Bottom-Up Strategy with Tabulation: 
+   - This approach involves solving the problem iteratively by building up a table from the smallest subproblems to the largest.
+   - Iterate over the initial sequence and the final sequence to fill the dp table based on the transition rules.
+   - Time complexity: O(n*k), space complexity: O(n*k).
+
+5. Output:
+   - If dp[n][k] is True, print "YES" and provide the sequence of operations.
+   - If dp[n][k] is False, print "NO".
+

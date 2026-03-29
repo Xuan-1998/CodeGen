@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+dp[i] = True if i == 0 or (minJump >= 1 and dp[minJump-1] or (j < minJump && dp[j] and d-j+1 <= k)) for j in range(i)
+Base case: dp[0] = True
+Recursive function with memoization:
+    def canCross(stones, index, memo):
+        if index == len(stones) - 1:
+            return True
+        if (index, stones[index]) in memo:
+            return memo[(index, stones[index])]
+        minJump = float('inf')
+        for j in range(index+1, len(stones)):
+            if abs(stones[j] - stones[index]) <= k:
+                minJump = min(minJump, j - index)
+        if minJump == 0 or canCross(stones, minJump, memo):
+            return True
+        memo[(index, stones[index])] = False
+        return False
+    dp[0] = True
+    for i in range(1, len(stones)):
+        dp[i] = canCross(stones, i-1, {})
+    return dp[-1]
+===END PLAN===

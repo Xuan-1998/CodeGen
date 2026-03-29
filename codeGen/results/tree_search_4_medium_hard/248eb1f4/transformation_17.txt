@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+dp[i][j] represents the index of the winner when there are i players, and j people have coins in their hands.
+dp[0][0] = 1 (base case)
+for i from 1 to X:
+    for j from 0 to M-1:
+        if j == M-1: dp[i][j] = (j+1)%i (since the last person gets eliminated after M-1 rounds)
+        else:
+            winner = (dp[i-1][(j+M-2)%i]+1)%i
+            dp[i][j] = winner
+return dp[X][0]
+===END PLAN===

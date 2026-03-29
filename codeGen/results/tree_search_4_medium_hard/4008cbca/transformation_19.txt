@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The state expression could be the last ball on the board, and the dynamic programming table storing the minimum number of moves needed to remove all balls given this last ball.
+
+State: The current color of the last ball on the board, with transitions defined by considering each possible move (inserting a new ball) and updating the minimum number of moves needed to remove all balls up to that point.
+
+Base case: When the board is empty, the minimum number of moves needed to remove all balls is 0.
+
+Transition: For each possible last ball color in the board, consider all possible moves (inserting a new ball). Update the dynamic programming table with the minimum number of moves needed to remove all balls given this last ball. This can be done by iterating over the "hand" string and updating the table for each possible move.
+
+Memoization: Store the results of subproblems in a dictionary and reuse them when the same subproblem is encountered again.
+
+Edge cases:
+* If the board is empty, return 0.
+* If there are no balls left in the hand, return -1 if not all balls have been removed or the current length of the window being considered (i.e., the index of the board) is greater than the maximum possible length. Otherwise, return the current length.
+
+===END PLAN===

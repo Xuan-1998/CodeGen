@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+Choose a state for each digit position, i.e., the number of blocks that end at that position with length 1 to n.
+
+For each block length l from 1 to n:
+    Initialize dp[l-1] = 0
+    For each digit d from 0 to 9:
+        Calculate the number of blocks ending at the current digit position with length l, considering all possible extensions to the left or right that maintain the same block structure
+            If l is 1: 
+                Add the count of single-digit numbers ending in d and padded with leading zeroes up to length l
+            Else:
+                For each previous block length i from 1 to l-1:
+                    Update dp[l-1] by adding the number of blocks that end at the current digit position with length l, considering all possible extensions to the left or right that maintain the same block structure, and have a prefix of length i
+            Increment dp[l-1]
+
+To calculate the total count for each block length:
+    Initialize result[n] = 0
+    For each block length l from 1 to n:
+        Update result[l-1] by adding the number of blocks that end at the current digit position with length l
+
+Output: The result array modulo 998244353
+===END PLAN===

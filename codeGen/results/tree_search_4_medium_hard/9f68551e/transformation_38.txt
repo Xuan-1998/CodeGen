@@ -1,0 +1,11 @@
+Let's define the state as dp[i] = maximum health of i-th and (i+1)-th monster, where 1 <= i < n. The base case is when i == n-1, so dp[n-1] = h_n.
+
+Define state dp[i][j] as the minimum mana required to kill all monsters that appear before time i at most j seconds after their appearance. Then, we have dp[i][j] = min(dp[i-1][max(0, j-1)], h_i) + (j > 0)
+
+To implement both tabulation and memoization simultaneously, define a 2D array dp of size n * max(k) and a dictionary memo that maps tuples (i, j) to the minimum mana required. Initialize all values in dp to infinity and memo to None, then iterate over each monster and update both dp[i][k_i] and memo[(i, k_i)] with the minimum mana required.
+
+Let's correct the base case: since we need to consider the last monster too, set dp[0] = 0. Then we can use this value as the initial value for dp[1].
+
+We also need to handle edge cases where j < k_i or i == n-1.
+
+Finally, instead of updating memo[(i, k_i)] directly, update memo[(i-1, max(0, j-1))] first and then calculate dp[i][j] based on this updated value. This ensures that we use the correct minimum mana required for previous monsters when calculating the minimum mana required for current monster.

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+state dp[i][j] = { 1 if there exist arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j; else 0 };
+State: dp[i][j] = { 1 if the permutation from index 0 to i can be split into two non-empty arrays of lengths j and n-j, such that both arrays have no common elements; else 0 }.
+To implement a bottom-up dynamic programming approach using a 2D table where each cell dp[i][j] represents whether there exist arrays a and b such that merge(a,b) equals the permutation up to index i, with array a having length j.
+
+state:
+dp[0][j] = { 1 if p[0:j-1] can be split into two non-empty arrays of lengths j and n-j with no common elements; else 0 }
+for i from 1 to 2n
+    for j from 0 to min(i,n)
+        dp[i][j] = {
+            1 if there exist arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j;
+            else 0
+        }
+state:
+output "YES" if dp[2n][n] is 1; otherwise output "NO"
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+A recursive function with memoization can be used to solve this problem. The state is the current partition of the string, and the base case is when the partition is an empty list, indicating that the entire input string has been processed.
+
+Let the state be a tuple containing the last character of the current palindromic partition and the remaining part of the input string.
+The transitions are:
+	* If the last character of the partition is the same as the first character of the remaining string, add the new character to the partition and move to the next recursive call with the updated state.
+	* Otherwise, remove the last character from the partition and move to the next recursive call with the updated state.
+
+To implement memoization, use a dictionary where the key is the state and the value is the solution. Update the solutions based on the transitions by checking if the state has been processed before and returning the cached result if it has.
+Finally, construct the list of palindromic partitions by iterating over all possible states and appending the corresponding solution to the result.
+
+===END PLAN===

@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+We can use memoization to store and reuse solutions for overlapping subproblems, which would be rooms with already visited portals.
+
+Define the state expression as dp[i]: number of ways to reach room i from room 1; dp[0] = 1, since Vasya can always exit the maze from room n+1.
+
+dp[i]: minimum number of portal moves required to reach room i; dp[0] = 1, since Vasya starts at room 1.
+
+Using a dictionary memo to store and reuse solutions for overlapping subproblems:
+
+    For each room i:
+        If i is the starting room (i.e., room 1), then dp[i] = 1
+        Otherwise:
+            Let p be the portal leading out of room i
+            Let j be the room that can be reached by using this portal
+            dp[i] = min(dp[i-1], dp[j]) + 1 if p is even, or dp[i-1] otherwise
+
+    The final answer is dp[n]
+
+===END PLAN===

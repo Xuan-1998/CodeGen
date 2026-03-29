@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+dp[i] = total number of ones in all numbers up to i
+f(i) is the number of ones in all numbers from 0 to i
+transition relationship: dp[i] = sum(f(j) for j in range(10))
+memoize f(i) results and reuse them when needed, avoiding redundant computations
+
+dp[0] = 1 (since there's one 1 in number 0)
+f(i) = count of ones in all numbers from 0 to i
+loop through each digit position (k):
+    if k is 0:
+        dp[i] += f(9) for i in range(k,10)
+    else:
+        dp[i] += sum(f(j) for j in range(k-1,k)) for i in range(k,10)
+return sum(dp[:])
+
+===END PLAN===

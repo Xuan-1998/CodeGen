@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Transition relationship:
+	* If prev_val = 0, then we can append any number to the end of the sequence, so set the result to YES
+	* If prev_val > 0, then check if there exists a segment in $a$ whose length equals prev_val. If yes, append this segment to the end of the sequence and update prev_val to be the length of this segment. Otherwise, set the result to NO
+
+Use a dictionary to store the memoized values, mapping each state (n, prev_val) to its corresponding result.
+
+===END PLAN===

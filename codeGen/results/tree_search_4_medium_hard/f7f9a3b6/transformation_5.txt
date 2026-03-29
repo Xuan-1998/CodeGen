@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+Let's define dp[i][j] as true if there exists a split at position i such that each substring from i+1 to j satisfies the condition, and false otherwise.
+
+The base case for the dynamic programming can be defined as:
+dp[0][n-1] = True (since we don't need any splits for an empty string)
+
+Then, we can fill up the dp array based on the following recursive formula:
+For i from 0 to n-2
+    For j from i+1 to n-1
+        dp[i][j] = (dp[i-1][i] && countChars(s.substr(i+1,j-i),a) <= a[alphabetIndex(s[i])])
+            || (dp[i-1][i-1] && dp[i][j])
+
+where alphabetIndex(c) returns the index of character c in the English alphabet (0-indexed).
+
+Finally, we can answer the queries as follows:
+Number of ways to split: sum(dp[i][n-1] for i from 0 to n-2)
+Longest substring: max(length(s.substr(i+1,j-i)) for i from 0 to n-2 and dp[i][j])
+Minimum number of substrings: min(length(s.substr(i+1,j-i)) for i from 0 to n-2 and dp[i][j])
+
+===END PLAN===

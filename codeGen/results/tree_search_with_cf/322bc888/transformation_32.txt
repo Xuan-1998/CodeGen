@@ -1,0 +1,23 @@
+
+1. Problem Understanding: We need to transform substrings of a given string into "beautiful" strings, where a "beautiful" string does not contain any palindrome substrings of length 2 or more. The cost is the minimum number of operations required to achieve this transformation, where an operation is defined as changing any character to one of the first three lowercase Latin alphabets.
+
+2. Dynamic Programming Approach:
+   a. Define a dp table: Let dp[i][k] be the minimum cost to make the substring s[i:i+k] beautiful.
+   b. Base Case: dp[i][0] = 0 since a single character substring is inherently beautiful.
+   c. Recurrence Relation: 
+      - For each substring of length k+1, check and update the dp table based on the previous results.
+      - Ensure that no palindromes of length 2 or more are formed.
+
+3. Precompute Costs: Precompute the cost to make every possible substring of length up to 3 beautiful since these are the only lengths that can contain palindromes of length 2 or 3.
+
+4. Query Processing:
+   a. For each query, use the precomputed dp table to get the minimum cost for the given substring.
+   b. Adjust the indices based on the query to extract the correct cost from the dp table.
+
+5. Edge Cases: 
+   a. Single character substrings are always beautiful.
+   b. Substrings that are already beautiful should have a cost of 0.
+   c. Maximum length substrings should be handled efficiently to avoid time complexity issues.
+
+6. Final Result: Output the cost for each query substring based on the dp table and precomputed values.
+

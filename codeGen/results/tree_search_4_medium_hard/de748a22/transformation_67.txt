@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming with a 2D array dp where dp[i][j] represents the minimum number of elements that need to be removed from the range [1..i] such that the sum of signs is zero.
+
+The state expression is dp[i][j] = dp[i-1][k-1] + (signs[k] == 0 ? 0 : 1) where k is the maximum index in the range [l..j] for which the sum of signs is zero. If no such k exists, then we initialize dp[i][j] to i - l + 1.
+
+To fill up the dp array, we iterate over all elements and calculate the cumulative sum of signs. Then we iterate over all queries and for each query, find the maximum cumulative sum within the range that is closest to zero.
+
+===END PLAN===

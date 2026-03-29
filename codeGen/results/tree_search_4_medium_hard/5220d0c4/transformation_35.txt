@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. Use memoization to store the beauty values for previously computed subproblems.
+
+State expression: dp[i][j] representing the range [i, j] in the array, where i <= j and Beauty[i][j] represents the maximum beauty value for this range.
+
+State:
+dp[i][j] is true if the array [A[i], ..., A[j]] is good; otherwise, it's false.
+
+Tabulate Beauty values in a 2D list using nested loops to calculate each value as you fill up the table. Start from the base case (i.e., calculating the maximum beauty for single-element arrays) and then iteratively fill up the rest of the table.
+
+Base Case:
+dp[i][i] = 1 if A[i] is a good prime; otherwise, it's -1
+
+Recurrence Relation:
+Beauty[i][j] = max(Beauty[i][k-1] + (A[k] is good ? 1 : -1)) for k from i+1 to j
+dp[i][j] = dp[i][k] && dp[k+1][j] if Beauty[i][j] > 0
+
+Tabulation:
+Beauty[0][n-1] contains the maximum beauty value for the entire array
+
+===END PLAN===

@@ -1,0 +1,28 @@
+Define states as follows:
+dp[i][j] = True if and only if the subsegment from index l to r is a ladder.
+base case: dp[1][j] = True for all j, since each element in an array of length 1 is always a ladder.
+
+Recurrence relation:
+dp[i][j] = (a[j-1] <= a[j] and dp[i-1][k-1]) or (not dp[i-1][k-1] and not exists k' in [l, j) such that a[k'] > a[k'])
+Use memoization to store the results of subproblems.
+Top-down approach:
+for i from 2 to n
+    for j from l to r
+        if a[j-1] <= a[j]
+            dp[i][j] = True or dp[i-1][k-1] for some k in [l, j)
+        else
+            dp[i][j] = False or not exists k' in [l, j) such that a[k'] > a[k'])
+bottom-up approach:
+for i from 2 to n
+    for j from l to r
+        if a[j-1] <= a[j]
+            dp[i][j] = True or dp[i-1][k-1] for some k in [l, j)
+        else
+            dp[i][j] = False or not exists k' in [l, j) such that a[k'] > a[k'])
+Final answer:
+for i from 2 to n
+    for j from l to r
+        if dp[i][j]
+            print "Yes"
+        else
+            print "No"

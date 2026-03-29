@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+Consider the maximum score achieved after processing i elements, with j moves performed in total (0 <= j <= k), where j <= z if i < n - 1.
+Consider a state as the sum of scores of all elements seen so far. Formulate a relation between the current maximum score and the maximum scores of previous states based on whether to move left or right. For example, dp[i][j] = max(dp[i-1][j-1] + arr[i], dp[i-1][j] - arr[i]), where i is the number of elements processed, j is the total number of moves performed.
+Use a 2D array to store the maximum score for each subproblem with dimensions (n+1) by (k+1), where dp[i][j] represents the maximum score that can be achieved after processing i elements, with j moves performed in total. Initialize the first column of the table with the values from the input array, and then fill up the rest of the table using the relation between states.
+Consider initializing the first row of the 2D array to all zeros or -infinity to handle cases where no moves are made.
+===END PLAN===

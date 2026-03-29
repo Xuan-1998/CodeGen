@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The dynamic programming problem requires building up the solution from smaller subproblems to larger ones. Tabulation is more applicable.
+
+The state can be represented as (left, right, sign_sum), where left and right are the indices of the leftmost and rightmost elements in the subarray, respectively, and sign_sum is the sum of signs in this subarray. The base case would be when the query range contains only one element.
+
+Transition relationship: For a given state, we can transition to two new states by either removing the leftmost or the rightmost element from the current subarray.
+
+To handle edge cases, we should also consider initializing the dynamic programming table with the base case. This could be done by iterating through the array and for each element, updating the dynamic programming table with the sign of that element.
+
+We can use a priority queue to efficiently find the minimum number of elements to remove for each query. To do this, we would maintain a priority queue where the priority is the sign sum of the subarray. Then, when processing a query, we pop all elements in the priority queue until the left and right indices match the query range.
+
+===END PLAN===

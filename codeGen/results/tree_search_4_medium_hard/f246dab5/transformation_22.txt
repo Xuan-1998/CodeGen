@@ -1,0 +1,14 @@
+state: dp[i] = min_cost_to_activate_after_trip_i
+dp[i] represents the minimum cost to activate tickets after trip i.
+
+state update:
+    if t_i < 90:
+        dp[i] = dp[i-1] + 20
+    elif t_i < 1440:
+        dp[i] = min(dp[i-1] + 50, dp[i-2] + 50)
+    else:
+        dp[i] = min(dp[i-1] + 120, dp[i-2] + 120)
+
+Use a dictionary to store the memoized values, with the key being the current trip number and the value being the minimum cost to activate tickets after that trip.
+
+Initialization: dp[0] = 0

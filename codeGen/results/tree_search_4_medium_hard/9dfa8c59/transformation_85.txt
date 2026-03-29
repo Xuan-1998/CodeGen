@@ -1,0 +1,25 @@
+1. Develop an iterative solution by generating all prime numbers up to n_max:
+    - Create a boolean array is_prime of size n_max+1 with all values initially set to true.
+    - Iterate from 2 to sqrt(n_max):
+        - For each number i, if is_prime[i] is true and i <= n_max/i, then mark as false all the multiples of i from i*i to n_max.
+    - Find all prime numbers in the range [2, n_max) by iterating over the array is_prime.
+
+2. Generate permutations for each prime number:
+    - Define a recursive function generate_permutations(s, k, current):
+        - If k == 0, return {1}.
+        - Initialize an empty set permutations.
+        - For each digit d from 0 to s-1:
+            - Add the string concatenation of s and str(d) to permutations.
+            - Recursively call generate_permutations(s-1, k-1, str(d)) and add its result to permutations.
+        - Return permutations.
+
+3. Check if a prime number has exactly k_perms permutations:
+    - For each prime number p in the range [2, n_max), calculate its number of permutations by calling generate_permutations(len(str(p)), k, "").
+    - If the calculated count is equal to k_perms, increment the count of primes with k_perms permutations.
+
+4. Find the smallest and largest prime numbers:
+    - Initialize min_prime and max_prime to 0.
+    - For each prime number p in the range [2, n_max), if p has exactly k_perms permutations, update min_prime and max_prime accordingly.
+
+5. Return the count, min_prime, and max_prime:
+    - Return a list of [count_of_primes_with_k_perms, min_prime, max_prime].

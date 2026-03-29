@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Let dp[i][j] be a boolean indicating whether the substring S[i..j] is palindromic.
+
+Initialize dp[0][0] to True and set all other cells in the first row and column to False, since an empty string or a single-character string is always considered palindromic.
+
+For each character c at index i in the input string:
+    Initialize a variable prev_i to -1.
+    For each possible partition of S[0..i] into two non-empty substrings (left, right):
+        Check if left and right are both palindromes. If they are, update dp[i][j] to True.
+        Update prev_i to be the index of the last character in the previous partition's right substring.
+
+Return a list of all partitions that have dp[i][i] equal to True, indicating they are palindromic.
+
+===END PLAN===

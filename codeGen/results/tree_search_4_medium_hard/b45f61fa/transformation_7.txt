@@ -1,0 +1,14 @@
+Top-down approach with memoization:
+
+1.. Define the state expression as a tuple (i, j) representing the range of matrices to multiply.
+
+2. Identify the base case: when i == 0 or j == n-1 (single matrix remaining), and define its value (the number of multiplications for this single matrix).
+
+3. Formulate state and transition relationships by considering all possible ways to divide the matrix chain into two parts: from i to k and from k+1 to j, and choose the combination that minimizes the total number of multiplications.
+
+    - Calculate the minimum number of multiplications for each way (i.e., min(multiply_matrices(i, k) + multiply_matrices(k+1, j))).
+    - Update memoization dictionary with the calculated value.
+    
+4. Determine the optimal way to divide the matrix chain into two parts by considering all possible ways and selecting the combination that minimizes the total number of multiplications.
+
+5. Store the solution in a 2D DP table (n x n), where dp[i][j] represents the minimum number of multiplications for matrices i to j, and update memoization dictionary accordingly.

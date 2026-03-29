@@ -1,0 +1,32 @@
+===BEGIN PLAN===
+The problem can be solved using bottom-up tabulation by building up the solution from the base case of single characters and gradually constructing longer palindromic partitions.
+
+// Base case: when the length of the string is 1, since a single character is always a palindrome.
+When len(s) == 1:
+    return [[s]]
+
+// View the problem as finding all possible ways to partition the input string into palindromes, and then use memoization to store and reuse previously computed results.
+
+// Tabulate the dynamic programming table using a 2D array
+dp = [[[] for _ in range(len(s) + 1)] for _ in range(len(s) + 1)]
+
+// Initialize base case: single characters are always palindromes.
+for i in range(len(s)):
+    dp[i][i] = [[s[i]]]
+
+// Iterate over the string, building up longer palindromic partitions from shorter ones.
+for length in range(2, len(s) + 1):
+    for start in range(len(s) - length + 1):
+        end = start + length
+        for i in range(length // 2):
+            if s[start + i] == s[end - i - 1]:
+                for partition in dp[i][start + i]:
+                    for right_partition in dp[length - i - 1][end - i - 1]:
+                        yield [partition, right_partition]
+        if length % 2 != 0:
+            # For odd-length palindromes, we only need to check the center character.
+            if s[start + length // 2] == s[end - length // 2]:
+                dp[start][end].extend(dp[length // 2][start + length // 2])
+
+// Return all possible palindromic partitions
+return [partition for partition in dp[-1][-1]]

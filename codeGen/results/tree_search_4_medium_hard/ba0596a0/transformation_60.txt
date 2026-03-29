@@ -1,0 +1,5 @@
+===BEGIN PLAN===
+dp = {(0, d): True for d in range(k+1) if k >= 0} # base case for i=0
+for i in range(1, len(stones)):
+    dp[(i, d)] = any(dp.get((j, d-k-1)) or dp.get((j, d-k)) or dp.get((j, d-k+1)) for j in range(i) if stones[j] <= i - k)
+===END PLAN===

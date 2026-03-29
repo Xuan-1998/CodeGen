@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+let dp[i] be the count of numbers k such that 0 <= k < i and the binary representation of k + 1 does not contain consecutive ones.
+Let's break down the problem into smaller subproblems:
+- For each number x, check if its binary representation contains consecutive ones. If it doesn't, increment a counter.
+- Create an array dp where dp[i] is the count of numbers less than or equal to i that do not have consecutive ones in their binary representation.
+The final answer will be dp[n].
+To solve this problem efficiently, we can use dynamic programming with memoization.
+
+let f(x) be a function that returns True if x's binary representation does not have consecutive ones, False otherwise. Then dp[i] = sum(f(j) for j in range(i))
+This approach has a time complexity of O(n*bin(n)), where n is the input number and bin(n) is the length of the binary representation of n.
+This is because for each number x from 0 to n-1, we need to check all its predecessors y such that y < x.
+
+dp[i] = sum(1 for k in range(i) if not any(f(int(str(int(k/2**j)&int((k%2**j)/2**(j-1)))) and int(k/2**j)&1) for j in range(bin(i).index('1')+1))
+This part of the plan is correct, but we can optimize it by using a more efficient way to check if a number's binary representation has consecutive ones.
+
+The main issue with this plan is that it does not handle edge cases properly. For example, what happens when n is 0? What about negative numbers?
+To fix these issues, we need to add checks for these edge cases at the beginning of our code.
+===END PLAN===

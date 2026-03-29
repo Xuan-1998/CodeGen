@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Is there a way to partition the strings into overlapping subproblems, making memoization more effective.
+
+To define the state as (i, j) where i is the index of s1 and j is the index of s2 and check if they are scrambled strings up to those indices.
+The state can be defined as a tuple containing the sorted characters of the substring of s1 up to the current position, and the same for s2. The transition relationship would be to move to the next character in both strings.
+
+Let's define the state dp[i][j] = (sorted(s1[:i]), sorted(s2[:j])) where i is the length of the substring in s1 and j is the length of the substring in s2.
+The base case is when either string has been fully traversed, we can simply check if they are equal.
+
+For the recursive step, for each character c in both strings, we need to check if the remaining part of the strings (s1[i+1:] and s2[j+1:]) are scrambled. If this condition holds true, then dp[i][j] is True; otherwise False.
+
+The updated plan:

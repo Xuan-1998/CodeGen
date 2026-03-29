@@ -1,0 +1,17 @@
+State expression: dp[j] is a boolean array where dp[j] = True if the lexicographically smallest string of length j can be obtained by duplicating s[:i], and False otherwise.
+
+dp[j] = any s[:i] such that len(s[:i]) == j-1, and s[j-1] <= s[-1], dp[j-1]
+
+dp = {}  # dictionary to store the lexicographically smallest string of length j
+for i in range(k+1):
+    if i == 0:
+        dp[i] = ''
+    elif i == 1:
+        dp[i] = s[0]
+    else:
+        for j in range(i-2, -1, -1):  # iterate from i-2 to 0
+            if (dp[j] and s[j] <= s[-1]):
+                dp[i] = dp[j] + s[-1]  # duplicate the last character of dp[j]
+                break
+
+print(dp[k])

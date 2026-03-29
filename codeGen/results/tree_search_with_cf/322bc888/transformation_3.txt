@@ -1,0 +1,20 @@
+
+1. Precompute all possible "beautiful" strings of length up to 3 using the first three lowercase Latin alphabets. These strings are "abc", "acb", "bac", "bca", "cab", and "cba".
+
+2. Create three prefix sum arrays corresponding to the cost of transforming any prefix of the input string into each of the three "beautiful" patterns starting from different positions. Let these arrays be `cost1`, `cost2`, and `cost3`.
+
+3. For each prefix sum array, calculate the cost to transform the input string into the corresponding "beautiful" pattern. For example, `cost1[i]` will store the cost to transform the first `i` characters of the input string into the pattern "abc", `cost2[i]` for "acb", and `cost3[i]` for "bac".
+
+4. For each query, calculate the cost to transform the substring into a "beautiful" string using the precomputed prefix sum arrays. Specifically, for a query with start and end positions `l_i` and `r_i`, compute the cost for each of the three patterns and take the minimum cost among them.
+
+5. Output the minimum cost for each query.
+
+Steps:
+1. Precompute the six possible "beautiful" patterns of length up to 3.
+2. Initialize three prefix sum arrays `cost1`, `cost2`, and `cost3` with size `n+1` (to handle 1-based indexing).
+3. Populate the prefix sum arrays by iterating through the input string and calculating the transformation costs.
+4. For each query, use the prefix sum arrays to compute the cost of transforming the substring into each of the three patterns and output the minimum cost.
+
+Time complexity: O(n + m), where n is the length of the string and m is the number of queries.
+Space complexity: O(n) for storing the prefix sum arrays.
+

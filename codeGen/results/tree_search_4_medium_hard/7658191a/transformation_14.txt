@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a dynamic programming approach with two nested loops, where the outer loop represents the indices of the array and the inner loop represents the number of moves made so far.
+
+Define dp[i][j] as the maximum score that can be achieved by making j moves from the start to the i-th index. The base case would be when i or j reaches zero.
+
+The recurrence relation could be:
+
+dp[i][j] = max(dp[i-1][j-1] + arr[i-1], dp[i-1][j] + arr[i]) if i > 0 and j <= k
+
+This is because we have two options: either move to the left (i-1) and make j-1 moves, or stay at the current index and make j moves.
+
+Apply memoization to avoid redundant calculations by storing previously computed values in a dp table.
+
+The final answer would be dp[n][k].
+
+===END PLAN===

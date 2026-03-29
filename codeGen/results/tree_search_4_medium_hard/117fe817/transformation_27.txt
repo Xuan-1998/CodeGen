@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem can be broken down into counting the number of 1's in each digit position from 0 to n, then summing up these counts.
+
+Let dp[i] represent the count of ones in the ith digit position (from 0 to 9) for numbers less than or equal to n.
+State expression: dp[i]
+Base case: When i = 0, the base case is considering only single-digit numbers. Since there can be at most one '1' in a single-digit number, dp[0] = 1.
+
+Transition relationship: For i > 0, consider all numbers from 10^i to n (inclusive). There are two types of such numbers:
+- Numbers where the ith digit is 1: These numbers start with 1. The remaining digits can be any combination of '0's and '9's.
+- Numbers where the ith digit is not 1: The leading '1' has already been counted in dp[i - 1]. The remaining digits are the same as before.
+
+We know that all single-digit numbers have been considered when i = 0. When we consider two-digit numbers, the first digit can be either '1' or any of '0', '2', ..., '9'. Similarly, for three-digit numbers, the first two digits can be any combination of the above. This pattern continues until we reach the ith digit position.
+
+Therefore, dp[i] = dp[0] + 10^(i - 1) * dp[i - 1].
+Since there are 10^i numbers with the ith digit equal to '1', and these numbers can appear anywhere in the range from 10^(i - 1) to n (inclusive), we add this count to the total.
+
+Finally, the answer is sum(dp).
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a bottom-up dynamic programming approach with a 2D dp array where dp[i][j] represents whether the substring from index i to j is a palindrome.
+
+State:
+- For each position i in the string, we consider two cases: (1) making i as the last cut, and (2) not making i as the last cut.
+- In case (1), we check if the substring from i to n-1 is a palindrome. If it's not, we set dp[i][n-1] to False. If it's a palindrome, we recursively check if there are any cuts in the remaining substring (from 0 to i-1) that would result in a palindrome partition.
+- In case (2), we simply copy the value from dp[i-1][j] because we're not considering i as the last cut.
+
+Rolling Hash:
+- Use a rolling hash function to efficiently determine if two substrings are palindromes. The rolling hash function takes O(1) time and is used to check if the substring from i to j is a palindrome.
+- Initialize the rolling hash value for the first character in the string, then update it as we move along the string.
+
+Edge Cases:
+- Handle edge cases such as when i or j is out of bounds (i.e., less than 0 or greater than n).
+- Handle edge case where the entire string is a palindrome and no cuts are needed.
+===END PLAN===

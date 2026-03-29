@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Code a bottom-up dynamic programming function dp that calculates the minimum possible value of F for each index i:
+dp[i] = min(F for (x_i, y_i) in all possible combinations of x_i + y_i = a_i and (x_i - s) * (y_i - s) >= 0)
+The transition relationship can be formulated by updating the minimum possible value of F for each index:
+dp[i] = min(dp[i-1] + x_i*y_i, dp[i-2] + x_i*a_{i-1} + y_i*a_i)
+This is because the minimum value of F at index i depends on the minimum values of F at indices i-1 and i-2
+Code the base case when the sequence is empty:
+dp[0] = 0
+The final answer is dp[n-1]
+Consider using a prefix sum array to speed up the computation
+Implement edge cases for n=3, s=0
+===END PLAN===

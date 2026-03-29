@@ -1,0 +1,15 @@
+
+1. Parse the input to get the number of vertices N and the out-degree sequence d.
+2. Verify the constraints: d_1 >= 1 and sum(d) = N-1. If these constraints are not met, the input is invalid.
+3. Create a Dynamic Programming (DP) table dp[i][k] where dp[i][k] represents the number of ways to form a subtree rooted at vertex i with exactly k good vertices.
+4. Initialize the DP table: dp[i][0] = 1 for all i, since there is exactly one way to form a subtree with zero good vertices (an empty subtree).
+5. Construct the tree using the out-degree sequence d:
+   a. Start with vertex 1 as the root.
+   b. For each vertex i, assign its children based on the out-degree d_i.
+6. For each vertex v, compute the DP values by iterating over its children:
+   a. For each child u of vertex v, update dp[v][k] using the values of dp[u][j] for all possible j.
+   b. Specifically, dp[v][k] += dp[v][k-j] * dp[u][j] for all valid j.
+7. For each vertex v, determine if it is a good vertex: A vertex v is good if f(v) = v, where f(v) is the minimum vertex number in the subtree rooted at v.
+8. Sum the number of good vertices for all good trees.
+9. Print the result modulo 998244353.
+

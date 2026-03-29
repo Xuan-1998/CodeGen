@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up dynamic programming approach with tabulation:
+Define dp[i] as the minimum number of operations required to make the length of decimal representation of x equal to i.
+
+For each state dp[i], consider all possible last digits that can be achieved by multiplying x by 1-9. Let's denote these possible last digits as {0, 1, ..., 9}. For each possible last digit y, calculate the minimum number of operations required to make the length of decimal representation of x equal to i minus 1.
+
+If dp[i-1] + 1 is the minimum number of operations required to make the length of decimal representation of x equal to i minus 1, then it's possible to achieve the last digit y by multiplying x by a digit that has a non-zero unit's place. In this case, dp[i] = dp[i-1] + 1.
+
+If there exists a y such that the last i-1 digits of x multiplied by y will be equal to 0, then we can achieve the last digit y by multiplying x by 10, and the length of decimal representation of x will decrease by 1. In this case, dp[i] = dp[i-1].
+
+If none of the above conditions are met, it's impossible to make the length of decimal representation of x equal to i, so we return -1.
+
+===END PLAN===

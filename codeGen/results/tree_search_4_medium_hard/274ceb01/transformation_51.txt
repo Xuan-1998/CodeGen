@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem's structure lends itself well to memoization, where we store and reuse previously computed values to avoid redundant computation.
+
+dp[i][k] = min(dp[j][0] + (i-j)*k for j in range(j+1)) if k > 0 else None
+Use a bottom-up dynamic programming approach where dp[i][k] depends only on the values of dp[j][l] where j<i and l<k.
+We can use dynamic programming to build up a table dp[i][k] where dp[i][k] represents the minimum sum of marks strictly below the water level on day i with k marks strictly above the water level, and then use this table to find the answer.
+
+For example, consider what we need to know for dp[3][2]. We would have already computed dp[1][0], dp[1][1], dp[2][0], dp[2][1], and dp[2][2] before reaching this point. So, we can use these values to compute dp[3][2]. The minimum sum is the minimum of adding 3 marks strictly below water to all previously computed sums with less than 2 marks strictly above water.
+
+This approach will also handle edge cases correctly.
+===END PLAN===

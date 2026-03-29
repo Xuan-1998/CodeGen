@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Define the state dp[i] as the minimum number of edges that need to be reversed in order to reach city i from the capital.
+The base case is all values of visited initially being False, since we are starting at the capital and have not yet reached any other cities.
+
+Top-down approach with memoization:
+- Define a recursive function to calculate the shortest distance to reach a given city from the capital. 
+- Store the results in a dictionary for later reuse.
+- The state dp[i] can be updated by choosing the minimum between itself and one-edge shorter distances from all adjacent cities.
+
+Correctness: Yes, the plan is correct as it identifies the key elements of the problem and proposes an effective approach to solve it.
+
+Improvement:
+- Consider using bottom-up dynamic programming instead of top-down approach with memoization. This might be more efficient for large inputs.
+- To further optimize the solution, consider a more advanced data structure such as a priority queue or a heap to keep track of the cities that have been reached and their corresponding shortest distances.
+
+Potential issues:
+- The plan does not explicitly handle edge cases, but it can be easily modified to do so. For example, if there are multiple possible choices for the capital city, the solution should return all of them.
+- The plan assumes that the input is a valid directed tree. It may need additional logic to handle invalid inputs.
+
+Edge cases:
+- If there's only one city in the tree (n=1), the problem statement doesn't specify what should be returned as the minimum number of roads to be inverted if the capital is chosen optimally.
+- The plan can easily be modified to handle this case by returning 0 and the single city.
+
+===END PLAN===

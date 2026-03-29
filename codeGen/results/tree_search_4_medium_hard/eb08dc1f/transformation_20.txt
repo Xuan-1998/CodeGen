@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+The state is the count of blocks with exactly k consecutive equal digits in them.
+
+Let the state be a list of length 10 representing the number of blocks ending at each digit position, from 0 to 9. Let's denote this list as dp[i], where i represents the number of consecutive equal digits.
+
+Base case: There is only one way to form a block with 1 consecutive equal digit (the digit itself). So, dp[1] = [10]^(n-1).
+
+Transition state: To get the count of blocks ending at each digit position for k consecutive equal digits, consider all possible cases:
+    - If the first k-1 digits are not equal to each other, then there is only one way to form a block with k consecutive equal digits (the current digit and all previous k-1 digits). This case contributes 10^(n-k) to dp[k].
+    - If the first k-1 digits are equal to each other, then there are two ways to form a block with k consecutive equal digits:
+        + The current digit is not equal to the first k-1 digits. This case contributes dp[k-1][d] * 10^(n-k) to dp[k], where d is the number of blocks ending at the digit position d in dp[k-1].
+        + The current digit is equal to the first k-1 digits. This case contributes dp[k-2][0] * 10^(n-k+1) to dp[k].
+
+Memoization can be applied by using a dictionary to store the intermediate results and avoid redundant computation.
+
+===END PLAN===

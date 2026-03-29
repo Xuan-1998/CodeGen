@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i][j]: the number of ways to build a sequence with exactly j spheres having radii up to i, where 1 ≤ i ≤ C and 0 ≤ j ≤ min(N, M).
+
+dp[0][0] = 1 (base case)
+For each i from 1 to C:
+    For each j from 0 to min(N, M):
+        dp[i][j] = sum(dp[max(0, i-k)][min(j, m+k)] for k in range(1, min(i, C)+1))
+Use memoization to avoid redundant computations by storing the solutions of subproblems and reusing them when needed.
+
+===END PLAN===

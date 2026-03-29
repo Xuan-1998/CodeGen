@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using a greedy algorithm, where you start by selecting the most promising department and then iteratively add players until the team is complete. This might involve some form of sorting or priority queue.
+
+The state could be a pair (i, k) representing the current department i and the number of players from that department already selected k.
+
+The transition relationship could be formulated based on the idea of choosing the next player from the current department or moving to the next department.
+
+Using a dynamic programming table to store the number of teams that can be formed given the current state (i, k)
+
+For each department i and the number of players k:
+    If k < n: 
+        Calculate the probability p1 that the team will have at least one player from the department i when selecting only players from this department.
+        Calculate the probability p2 that the team will not have any players from this department.
+        Store the maximum of (p1, p2) in the table.
+
+    Else:
+        Set the probability to -1 as there are not enough basketball players to form a team.
+
+The final answer is the maximum probability stored in the dynamic programming table.
+===END PLAN===

@@ -1,0 +1,12 @@
+
+1. Define the state dp[i][mask] as the set of possible maximum values achievable after processing the first i bits of the binary string s, given the bitmask mask.
+2. Initialize the base case: For i = 0, dp[0][mask] is initialized to the values directly determined by the initial elements in the sequence as per the bitmask. Specifically, dp[0][mask] = {mask + 1}, since the sequence initially contains all integers from 1 to 2^n.
+3. Transition: For each bit i in the string s, update dp[i][mask] based on the previous state dp[i-1][mask']:
+   - If the bit is 0, dp[i][mask] is derived from the smaller values of the pairs in dp[i-1][mask'].
+   - If the bit is 1, dp[i][mask] is derived from the larger values of the pairs in dp[i-1][mask'].
+4. Iterate through each bit of the binary string s and update the dp table accordingly:
+   - For each mask, determine the pairs of elements based on the current bit.
+   - Update the dp table by comparing the pairs and keeping the appropriate values (smaller or larger) based on the current bit.
+5. After processing all bits, the set of possible maximum values is given by dp[n][0], where n is the length of the binary string.
+6. Output the possible maximum values in ascending order.
+

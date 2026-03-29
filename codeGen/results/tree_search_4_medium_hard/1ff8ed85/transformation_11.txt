@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Transition relationship
+Create a 2D table to store the dynamic programming state, where each cell dp[i][j] represents whether the first i elements of sequence b can be obtained from the first j elements of sequence a.
+  * If the current element of sequence b (i.e., prev_val) is equal to the length of the current segment in sequence a (j), then we can add this element to the segment and continue processing the rest of the sequences.
+  * Otherwise, we cannot process this element with the current segment and need to consider splitting the current segment or creating a new segment.
+
+Initialization
+dp[0][0] = True, as an empty sequence b can be obtained from an empty sequence a. (edge case)
+
+Main loop
+For each length n of sequence b:
+  For each possible previous value prev_val in sequence b up to n:
+    Initialize dp[n][prev_val] to False.
+    For j from 1 to n:
+      If the current element of sequence b is equal to the length of the current segment in sequence a (j), then:
+        Set dp[n][prev_val] to True if it was previously set to False, indicating that we can process this element with the current segment and continue processing the rest of the sequences.
+      Otherwise:
+        Set dp[n][prev_val] to True only if it was previously set to False, indicating that we cannot process this element with the current segment and need to consider splitting the current segment or creating a new segment.
+
+Answer
+For each length n of sequence b:
+  For each possible previous value prev_val in sequence b up to n:
+    If dp[n][prev_val] is True, then print "YES" for the corresponding test case.
+    Otherwise, print "NO".
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+The transition relation will be dp[n][total] = 1 if there exists a previous total' such that total - total' is a value in sequence b and n-1 is the last segment's length, otherwise it'll be 0.
+
+Utilize memoization by creating a dictionary where the keys are the state expressions and the values are the corresponding boolean values. Initialize dp with all False values.
+
+For each test case:
+    For each possible total from 1 to n:
+        If there exists prev_total such that total - prev_total is in sequence b, then mark dp[n][total] as True.
+    Print "YES" if any value of dp[n][n] is True. Otherwise, print "NO".
+
+===END PLAN===

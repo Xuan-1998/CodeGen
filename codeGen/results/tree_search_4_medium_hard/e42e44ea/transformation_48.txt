@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = { (i == 0) ? (grid[0][j]) : (dp[i-1][j]), (j == 0) ? (grid[i][0]) : (dp[i][j-1]) }
+
+Choose state as (points, i, j) and define the DP relation recursively:
+if (i > 0 && j > 0) {
+    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+} else if (i > 0) {
+    dp[i][j] = dp[i-1][j] + grid[i][j];
+} else if (j > 0) {
+    dp[i][j] = dp[i][j-1] + grid[i][j];
+}
+
+Define a 2D table dp of size (N+1) x (M+1), where dp[i][j] represents the minimum points required to reach cell (i, j). Initialize all values in dp as infinity except for dp[0][0]. Then, fill up the table by iterating through each cell and calculating the minimum points required based on the rules of the problem.
+===END PLAN===

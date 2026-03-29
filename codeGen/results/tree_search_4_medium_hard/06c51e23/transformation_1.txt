@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+Since we need to maximize the grade, consider using a bottom-up dynamic programming approach with memoization. We can define a state as dp[i][j] = maximum possible grade that can be obtained for a given decimal fraction of length i, within time limit t and considering the first j digits.
+The base case is dp[0][0] = 0, since there are no digits to round.
+
+dp[i][j] represents the maximum possible grade that can be obtained for a given decimal fraction of length i, within time limit t, considering all possible rounding choices at the ith digit and the first j digits.
+Use dynamic programming with memoization and recursive function calls to store and reuse intermediate results.
+
+The recurrence relation would be:
+
+dp[i][j] = max(dp[i-1][j], round(dp[i-1][j]) + 1)
+
+where dp[i-1][j] represents the maximum possible grade that can be obtained for a given decimal fraction of length i-1, within time limit t and considering the first j digits.
+
+The function to calculate the maximum possible grade would be:
+
+max_grade(n, t) {
+    int memo[n+1][t+1];
+    memset(memo, 0, sizeof(memo));
+    for(int i = 0; i <= n; i++) {
+        for(int j = 0; j <= t; j++) {
+            if(i == 0 || j == 0) continue;
+            memo[i][j] = max(memo[i-1][j], round(memo[i-1][j]) + 1);
+        }
+    }
+    return memo[n][t];
+}
+
+===END PLAN===

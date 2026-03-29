@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+state dp[n][n] = { pair of arrays a and b such that merge(a,b) equals permutation, with array a having the same length as array b };
+dp[i][j] will represent whether there exist two arrays a and b, each of length j-i, so that p=merge(a,b).
+To implement tabulation by initializing dp table with all False values and updating it iteratively based on the recurrence relation.
+Let's divide the problem into subproblems: 
+- For i = 0 to n:
+    - Initialize dp[i][i] to True (base case: if both arrays are empty, p is empty too)
+    - For j from i+1 to n:
+        - If pi < pj, then there are two cases: a_1 < b_1 or a_1 > b_1
+            - In the first case, we can merge [a_2,...,a_n] with [b_1,...,bj-1] and then add a_1 to the beginning; in the second case, we can merge [a_1,...,ai-1] with [b_2,...,bj] and then add b_1 to the beginning
+            - We recursively check if these two arrays can be merged into p by checking dp[i+1][j-1]
+        - If pi > pj, then we can merge [a_1,...,ai-1] with [b_2,...,bj] and then add pj to the beginning; we recursively check if this array can be merged into p by checking dp[i][j-1]
+    - For k from i+1 to n:
+        - If pi == pk, then there are two cases: a_1 < b_1 or a_1 > b_1
+            - In the first case, we can merge [a_2,...,a_n] with [b_1,...,bk-1] and then add a_1 to the beginning; in the second case, we can merge [a_1,...,ai-1] with [b_2,...,bj] and then add b_1 to the beginning
+            - We recursively check if these two arrays can be merged into p by checking dp[i+1][k-1]
+        - If pi < pk, then we can merge [a_1,...,ai-1] with [b_2,...,bk] and then add pk to the beginning; we recursively check if this array can be merged into p by checking dp[i][k-1]
+        - If pi > pk, then we can merge [a_1,...,ai-1] with [b_2,...,bj] and then add pj to the beginning; we recursively check if this array can be merged into p by checking dp[i][j-1]
+===END PLAN===

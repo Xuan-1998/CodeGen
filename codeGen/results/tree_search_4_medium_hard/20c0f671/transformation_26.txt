@@ -1,0 +1,9 @@
+dp = [[float('inf')] * (max_shelf_width + 1)]
+for i in range(len(books)):
+    for j in range(max_shelf_width + 1):
+        dp[i][j] = float('inf')
+        for k in range(i+1):
+            if books[k][0] <= j:
+                shelf_height = max(shelf_height, books[k][1])
+                if shelf_height <= j and (k == i or dp[k][j-books[k][0]] + books[k][1] < dp[i][j]):
+                    dp[i][j] = dp[k][j-books[k][0]] + books[k][1]

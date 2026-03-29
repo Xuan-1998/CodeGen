@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+The state expression could be dp[i] = number of ways to build an i-sequence, where 1 ≤ i ≤ C.
+dp[i] is equal to the sum of dp[j] for all j such that j <= i and there exists an upper hemisphere with radius j and a lower hemisphere with radius i-j.
+
+The dynamic programming approach can be improved by initializing the table as follows:
+
+dp[0] = 1 (base case: there's one way to build a 0-sequence)
+
+Then, fill up the rest of the table row by row from top to bottom. For each row dp[i], we need to iterate over all j such that j <= i and calculate dp[i] as the sum of dp[j] for all valid j.
+
+The plan includes edge cases: when C is 1, there's only one way to build a sequence with radius 1 (i.e., no hemispheres), so dp[C] should be initialized to 1. When N or M is 0, there are no upper or lower hemispheres respectively, so dp[i] can be directly calculated without considering the presence of hemispheres.
+
+===END PLAN===

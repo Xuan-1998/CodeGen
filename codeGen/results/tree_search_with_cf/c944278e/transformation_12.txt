@@ -1,0 +1,11 @@
+
+1. Define the state: Let dp[i][j] represent the possible values that can be obtained from the subarray of length 2^i starting at index j.
+2. Initialize the base case: For i = 0, dp[0][j] = {j+1} for all j from 0 to 2^n - 1, because each subarray of length 1 contains only one element.
+3. Iterate over the length of subarrays from 1 to n:
+    a. For each subarray length i (from 1 to n):
+        b. For each starting index j (from 0 to 2^(n-i) - 1):
+            c. Determine the possible values for dp[i][j] based on the value of s[n-i]:
+                i. If s[n-i] == '0', dp[i][j] = {min(x, y) for x in dp[i-1][2*j] and y in dp[i-1][2*j+1]}
+                ii. If s[n-i] == '1', dp[i][j] = {max(x, y) for x in dp[i-1][2*j] and y in dp[i-1][2*j+1]}
+4. The final answer will be the sorted list of values in dp[n][0].
+

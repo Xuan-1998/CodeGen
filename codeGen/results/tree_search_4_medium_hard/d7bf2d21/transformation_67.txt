@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Define the state as a dictionary dp[(i, j)] = k, where k is the length of the longest increasing subsequence ending at index j in the first i elements.
+
+Let's initialize dp[(0, 0)] to 1 because an empty sequence has a length of 0. Then for all other (i, j), if arr[j] > arr[j-1], update dp[(i, j)] = min(dp[(i-1, j)], dp[(i, j-1)]) + 1.
+
+If arr[j] <= arr[j-1], then there is no increasing subsequence ending at j in the first i elements. So, dp[(i, j)] = max(0, dp[(i-1, j)]) or dp[(i, j)] = max(0, dp[(i, j-1)]) depending on whether (i-1, j) or (i, j-1) is a valid state.
+
+Finally, to count the number of longest increasing subsequences, iterate over all possible ending indices and check if the length equals the maximum length. If it does, increment a counter variable.
+
+===END PLAN===

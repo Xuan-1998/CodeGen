@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+Create a 2D array dp where dp[i][j] represents the maximum amount of money that can be earned with j tables for groups of size i.
+dp[0][k] = 0 for all k (base case)
+
+For each group size i from 1 to n:
+    For each table number j from 0 to k:
+        If j == 0, dp[i][j] = 0
+        Else:
+            Consider two options: accept the current request and decline it.
+            dp[i][j] = max(dp[i-1][j-1] * c[j], dp[i-1][j])
+
+Return dp[n][k]
+===END PLAN===

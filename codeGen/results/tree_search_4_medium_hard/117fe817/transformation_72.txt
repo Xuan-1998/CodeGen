@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Create a 2D array dp where dp[i][j] represents the number of times '1' appears as the jth digit (0-indexed) in numbers from 0 to i-1.
+Initialize dp[0][j] for all j to 0, because there are no leading digits in single-digit numbers.
+
+For each i from 1 to n:
+    For each j from 0 to log10(i):
+        If j == 0 (i.e., considering the leading digit), then the number of times '1' appears is equal to the sum of '1's appearing as the leading digit in all numbers less than i, plus the number of trailing '1's in numbers less than i.
+        Else (j > 0), then consider '1' as the jth digit and add the count of '1's appearing in numbers with j-1 trailing digits to dp[i][j].
+    Add this count to dp[i][0] for considering leading '1's.
+
+Finally, return dp[n][0] which represents the total number of times '1' appears in all non-negative integers less than or equal to n.
+===END PLAN===

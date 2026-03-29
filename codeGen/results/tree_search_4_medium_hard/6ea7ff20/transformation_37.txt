@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Think about how you can use memoization to avoid solving the same subproblem multiple times and store the results in a table for later reference.
+
+dp[i][j] = 1 if p[2*i-1] < p[2*j-1] and there exist a, b such that merge(a,b) = p[:2*i]+p[2*i:2*j], dp[i][j] = 0 otherwise
+dp[i][j] = 1 if exists k such that p[2*(i-1)+1:2*i] and p[2*(j-1)+1:2*j] can be merged into a single array and all elements in the arrays are less than p[2*k], dp[i][j] = 0 otherwise
+
+Use a bottom-up approach to fill up the dynamic programming table, where each cell represents whether it's possible to merge two subarrays into one.
+
+Let i and j increase from 1 to n. Initialize dp[1][n] = 1 as it is always possible to split an empty array. Then for all other i and j:
+
+- If p[2*i-1] < p[2*j-1], update dp[i][j] based on the previous row and column values.
+- If p[2*i-1] >= p[2*j-1], update dp[i][j] based on the previous diagonal value.
+
+If dp[n][n] = 1, it is possible to split the permutation into two non-empty arrays with no common elements. Otherwise, it is not possible.
+
+===END PLAN===

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+dp = [0] * (C + 2)
+dp[0] = 1
+for i in range(1, C + 1):
+    dp[i] = (dp[i - 1] if U := sum(u <= i for u in upper) else 0) * (dp[i - 1] if L := sum(l <= i for l in lower) else 0)
+memo = {}
+def dfs(i):
+    if i > C:
+        return 0
+    if i < 0:
+        return 1
+    if i not in memo:
+        memo[i] = (dfs(i - 1) if U and L else 0) * min(U, L)
+    return memo[i]
+result = [dfs(C)]
+for _ in range(T):
+    N, M, C = map(int, input().split())
+    upper = list(map(int, input().split()))
+    lower = list(map(int, input().split()))
+    print(*[int(dfs(i)) for i in range(C)], sep=' ')
+===END PLAN===

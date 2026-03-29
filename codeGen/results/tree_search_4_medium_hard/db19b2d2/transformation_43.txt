@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To model this problem as a cumulative distribution function (CDF), we can calculate the probability mass function (PMF) for each possible outcome and then sum the probabilities for all outcomes greater than or equal to 1.
+
+Let dp[i][j] be the probability that at least j players from the department of interest are chosen in a random team of i players. The state transition equations would be:
+
+dp[i][0] = (s_h / s) * (1 - (1 - (s_h / s)) ** (n-i-1))
+for i > 0, dp[i][j] = dp[i-1][j] + dp[i-1][j-1] * (s_h / s) * (1 - (1 - (s_h / s)) ** (n-i))
+where s is the total number of players and s_h is the number of players from the department of interest.
+
+To calculate the cumulative distribution function (CDF), we can sum up the probabilities for all outcomes greater than or equal to 1. This would give us the probability that at least one player from the department of interest is chosen in a random team of n players.
+
+We would need to initialize dp[0][j] = 0 for j > 0 and dp[i][0] = (s_h / s) * (1 - (1 - (s_h / s)) ** (n-i-1)) for i > 0. Then we can fill up the rest of the dp array using the state transition equations.
+
+Finally, we would sum up dp[n-1][j] for j >= 1 to get the desired probability.
+
+===END PLAN===

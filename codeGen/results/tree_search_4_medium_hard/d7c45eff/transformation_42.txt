@@ -1,0 +1,13 @@
+{
+DP state: For each string of length i, consider all possible strings that can be formed by either deleting the last character or duplicating the original string up to length i-1, and find the lexicographically smallest one among them.
+
+To make this more efficient, we can initialize a 2D array dp of size (n+1) x (k+1), where dp[i][j] represents the lexicographically smallest string of length j that can be formed by either deleting the last character or duplicating the original string up to length i.
+
+For each cell dp[i][j], consider two possibilities:
+  - The last character of the original string is not included in this substring. In this case, we have two options: either delete the last character of the original string (dp[i-1][j-1]) or duplicate the entire original string up to length i-1 (dp[i-1][j]). We choose the lexicographically smallest one among these two options.
+  - The last character of the original string is included in this substring. In this case, we have only one option: simply add the last character to the lexicographically smallest string obtained by considering all possible strings that can be formed by either deleting the last character or duplicating the original string up to length i-1 (dp[i-1][j]).
+
+By doing so, we can ensure that dp[i][j] always represents the lexicographically smallest string of length j that can be formed by either deleting the last character or duplicating the original string up to length i.
+
+Finally, return dp[n][k].
+}

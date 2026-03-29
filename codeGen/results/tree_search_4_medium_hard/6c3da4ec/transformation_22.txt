@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using a 1D DP table to store the maximum bitwise OR value for each prefix of s, with dimension n+1.
+
+The base case would be when i is 0, where dp[0] represents the maximum bitwise OR value for the empty string (0).
+
+For each character at index i in s, calculate the maximum bitwise OR value by considering all possible pairs of non-empty substrings that end at position i. This can be done by looking up the previous values in the DP table and performing a bitwise OR operation.
+
+The DP update rule would be:
+
+dp[i] = max(dp[j-1] | (s[j:i+1]))
+
+This plan takes into account all possible pairs of non-empty substrings of s, considering only those pairs where the second substring is at most i characters long.
+
+To find the maximum possible value in binary representation without leading zeroes, simply return dp[n].
+
+===END PLAN===

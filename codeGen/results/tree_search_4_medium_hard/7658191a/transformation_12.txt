@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining two arrays: dp and prev. dp[i] would store the maximum score that can be achieved after i moves, and prev[i] would store the previous index used to calculate this score.
+
+Define dp as an array of size n+1, where dp[i] represents the maximum score that can be achieved in i moves, and initialize it with zeros. Set dp[0] = 0, since no moves have been made yet.
+
+For each move j from 1 to k:
+    For each index i from j to n:
+        Calculate the maximum score by considering two options: 
+            - Move left (add arr[i-1]) and then continue with the remaining moves
+            - Move right (add arr[i]) and then continue with the remaining moves
+
+        If j <= z, consider moving left. In this case, dp[i][j] = max(dp[i-1][j-1] + arr[i-1], dp[i-1][j] + arr[i])
+        Else, consider moving right. In this case, dp[i][j] = max(dp[i-1][j-1] + arr[i], dp[i-1][j] + arr[i-1])
+
+    Set prev[i] to the previous index used to calculate the maximum score.
+
+Finally, return dp[k] as the maximum score that can be achieved in k moves.
+===END PLAN===

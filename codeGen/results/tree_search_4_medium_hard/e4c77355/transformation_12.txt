@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+The length of the longest increasing subsequence ending at index i in the array is the maximum length of:
+	- The longest increasing subsequence ending at any previous index j where arr[i] > arr[j]
+	- 1 (since we can always include the current element)
+
+Use a nested loop structure to tabulate the dynamic programming state transition:
+
+let dp = new Array(arr.length).fill(1);
+
+for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j <= i; j++) {
+        if (arr[i] > arr[j]) {
+            dp[i] = Math.max(dp[i], dp[j] + 1);
+        }
+    }
+}
+
+Return the maximum value in the dp array.
+
+===END PLAN===

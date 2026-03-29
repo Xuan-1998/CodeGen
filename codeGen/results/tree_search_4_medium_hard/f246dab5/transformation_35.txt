@@ -1,0 +1,11 @@
+A bottom-up approach with tabulation can be used where we fill up a 2D table in which each cell represents the minimum cost for a given timestamp, considering all possible ticket combinations from the start till now.
+
+The state expression could be dp[i][j] representing the minimum cost for a passenger to reach time t_i using j 90-minute tickets.
+dp[i][k] would represent the minimum cost for a passenger to reach time t_i using k 1-trip tickets, considering all possible ticket combinations from the start till now.
+
+The transition function could be dp[i][j] = min(dp[i-1][m] + 50*j, dp[i-1][n-1] + (i - t_m) for m from 0 to j and n-1 from 0 to i-t_m), where the minimum cost is calculated by considering all possible combinations of tickets used up to time t_i.
+The base case could be dp[0][j] = 50*j, which represents the minimum cost if no trips have been made yet.
+
+Tabulate and use three nested loops to fill up the table, where the outer loop iterates over each trip time t_i, the middle loop iterates over each possible number of tickets used for that trip (from 0 to j), and the innermost loop iterates over all previous timestamps to determine which ticket combinations can be used.
+
+Finally, we iterate over each trip time t_i and print out dp[i][j] as the minimum cost charged after the i-th trip.

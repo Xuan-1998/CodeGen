@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+DP can be solved by identifying that we need to find the minimum cost for a given time stamp, considering all possible ticket combinations from the start till now. This subproblem will have overlapping instances as we move forward in time.
+
+The state is a tuple of (minutes_left_until_ticket_expires, total_cost_so_far): This choice captures both the information about when the ticket expires and the cumulative cost of all previously used tickets.
+
+State: ((m1, c1), (m2, c2)); Transition relationship: For each valid ticket type:
+  - If the time left until it expires is greater than or equal to the time remaining for the current trip, use a ticket. Update state by subtracting the time used from minutes_left_until_ticket_expires and adding the cost of the used ticket to total_cost_so_far.
+  
+Dynamic programming can be implemented using a tabulation approach, where we create a 2D table with dimensions (time_left_for_trip, minutes_left_until_ticket_expires) and fill it up based on the transition relationship.
+
+For each trip:
+  - Initialize a variable cost_with_tickets as 0
+  - Iterate through all valid ticket types in descending order of time left until expiration:
+    - If there are at least minutes_left_until_ticket_expires minutes remaining for the current trip, use the ticket. Update state by subtracting the time used from minutes_left_until_ticket_expires and adding the cost of the used ticket to total_cost_so_far.
+    - Update cost_with_tickets with the minimum between cost_with_tickets and (cost_of_current_trip + cost_of_used_ticket).
+  - Print cost_with_tickets as the sum the passenger is charged after the trip.
+
+===END PLAN===

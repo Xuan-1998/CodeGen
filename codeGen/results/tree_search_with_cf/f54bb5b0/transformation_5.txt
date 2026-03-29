@@ -1,0 +1,19 @@
+
+1. Initialize a 2D array `dp` where `dp[u][d]` represents the number of vertices that are at a distance `d` from vertex `u`. Set `dp[u][0] = 1` for all vertices `u` since each vertex is at distance 0 from itself.
+
+2. Use Depth-First Search (DFS) to traverse the tree. For each vertex `u`, update the `dp` table for all its children.
+
+3. For each vertex `u`, after processing all its children, combine the results from the subtrees to update the count of pairs of vertices with a path length exactly `k`:
+   - For each child `v` of `u`, combine the `dp` values from `u` and `v` to count the number of valid pairs.
+   - Specifically, for each distance `d` from `u`, count pairs where one vertex is at distance `d` from `u` and the other is at distance `k-d-1` from the child `v`.
+
+4. Maintain a global counter to keep track of the total number of valid pairs.
+
+5. After processing all vertices, the global counter will contain the number of distinct pairs of vertices with a path length exactly `k`.
+
+6. Return the value of the global counter as the result.
+
+Edge cases to consider:
+- When `n = 1`, there are no pairs of vertices.
+- When `k > n-1`, no such pairs can exist since the maximum path length in a tree with `n` vertices is `n-1`.
+

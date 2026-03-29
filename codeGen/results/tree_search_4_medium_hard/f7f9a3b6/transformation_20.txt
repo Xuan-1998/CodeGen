@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible splits of the message and checking if each split satisfies the condition. Use dynamic programming to avoid counting the same splits multiple times.
+
+dp[i][j] = (s[i:j].isalpha() and all(c <= max(a) for c in set(s[i:j])))
+Consider the number of ways each character can appear consecutively within a substring, dp[i][j] = min(dp[k-1][i-1] + 1 for k in range(i+1, j+1) | c <= max(a) for c in set(s[i:j])), where i and j are the start and end indices of the current substring.
+
+dp[i][j] = dp[i-1][j] if j == i
+else:
+    min_ways = float('inf')
+    for k in range(i+1, j+1):
+        ways = 0
+        for c in set(s[i:k]):
+            if c <= max(a):
+                ways += dp[i][k-1]
+        min_ways = min(min_ways, ways)
+    dp[i][j] = min_ways
+
+Use a 2D table to store the dynamic programming state, where dp[i][j] represents the number of ways to split the message into substrings of length i to j that satisfy the condition.
+
+Output:
+- The first line should contain the number of ways to split the message into substrings that fulfill the conditions mentioned in the problem, modulo 10^9 + 7.
+- The second line should contain the length of the longest substring over all the ways. 
+- The third line should contain the minimum number of substrings over all the ways.
+
+===END PLAN===

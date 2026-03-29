@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use memoization by defining a recursive function that stores the results of subproblems in a dictionary, or we could use tabulation by creating a 1D array where each cell dp[i] represents the maximum joy for i hares.
+The state could be dp[i] representing the maximum joy for i hares, with the base case being when i == 1, where dp[1] is either b[0] or c[0] depending on whether the hare was fed first or last.
+State: dp[i]: maximum joy for i hares, where dp[1] is either b[0] or c[0]; Transition:
+    if i == 1:
+        return max(b[0], c[0])
+    elif i % 2 == 0:  # both adjacent hares are full
+        return a[i//2 - 1] + dp[(i-2)//2]
+    else:  # exactly one adjacent hare is full
+        return b[(i-1)//2] + dp[(i-3)//2]
+Maintain a dictionary memo where each key is a tuple representing the state (i) and its corresponding value is the maximum joy for that state.
+The plan seems to be correct, and it covers most edge cases. However, we should ensure that we handle the case where i < 1 correctly.
+===END PLAN===

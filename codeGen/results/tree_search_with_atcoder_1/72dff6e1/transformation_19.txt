@@ -1,0 +1,12 @@
+python
+===BEGIN PLAN===
+1. Define the problem using Dynamic Programming with a Bottom-Up Strategy. This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. The time complexity is O(N^2), and the space complexity is O(N^2) due to the table used for storing intermediate results.
+2. State Expression: Let dp[i][j] be the number of valid sequences of length i where the number of occurrences of each integer k (1 <= k <= i) is at most A_k and the last element of the sequence is j.
+3. Initialization: For i = 1, initialize dp[1][j] = 1 for all j where 1 <= j <= N, because any single element sequence is valid as long as it does not exceed A[j].
+4. Transition: For each i from 2 to N, update dp[i][j] as follows:
+   - dp[i][j] = sum(dp[i-1][k]) for all k such that the sequence remains valid after adding j.
+   - To ensure the sequence remains valid, check that the number of occurrences of j in the sequence does not exceed A[j].
+5. Calculate the final result by summing up dp[N][j] for all j from 1 to N, and take the result modulo 998244353.
+6. Edge Cases: Consider cases where N = 1, and all A_i are 1.
+===END PLAN===
+

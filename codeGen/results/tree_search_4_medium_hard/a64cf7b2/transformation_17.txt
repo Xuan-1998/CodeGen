@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Use a bottom-up approach with memoization to solve this problem by iteratively calculating the results for smaller subproblems and storing them in a memoized dictionary.
+Define the state expression as (i, v), where i is the current vertex and v is the maximum number of vertices that can be visited up to this point. The base case is when i == n, in which case the maximum number of vertices that can be visited is v + 1.
+Memoize the results by storing the maximum number of vertices that can be visited for each subproblem (i, v) in a dictionary dp.
+For each edge (u, v, t), calculate the maximum number of vertices that can be visited starting from vertex u and ending at vertex n within time limit T - t. This is done by iterating through all vertices i such that 1 <= i < u and calculating the maximum number of vertices that can be visited for subproblem (i, v). The maximum value found in this iteration is updated to dp[(u, v)].
+Finally, return dp[(n, 0)], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within time limit T.
+===END PLAN===

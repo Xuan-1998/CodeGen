@@ -1,0 +1,17 @@
+Top-down approach with memoization:
+Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, j) representing the range of matrices to multiply, 
+and the base case is when i == 0 or j == n-1 (single matrix remaining).
+
+Define a dynamic programming table dp[][] with dimensions O(n^2), where 
+dp[i][j] represents the minimum number of multiplications needed to multiply matrices from i to j.
+
+Implement a recursive function that takes two indices i and j as input, computes 
+the minimum number of multiplications recursively using smaller subproblems, 
+and memoizes the results in a table.
+
+The plan is correct. To improve it, consider initializing dp[i][j] = 0 for all (i, j) to simplify the base case check.
+Potential issues with the plan:
+- Make sure to handle edge cases correctly, such as when i == 0 or j == n-1.
+- Implement proper memoization to store and reuse previously computed results. 

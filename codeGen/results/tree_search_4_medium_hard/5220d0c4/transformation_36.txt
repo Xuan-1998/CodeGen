@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. Use memoization to store the beauty values for previously computed subproblems.
+
+The state expression is a tuple (i, j) representing the range [i, j] in the array, where i <= j and Beauty[i][j] represents the maximum beauty value for this range.
+
+Transition: 
+- Initialize dp table with base case value (0 or 1)
+- For each element A[i], find its minimum prime divisor using Sieve of Eratosthenes
+- If the prime is good, set dp[i+1][j] = max(dp[i+1][j], Beauty[i][j])
+- Else, set dp[i+1][j] = 0 for i <= j
+Use a 2D dynamic programming table where Beauty[i][j] is the maximum beauty value for the range [i, j], with initialization of Beauty[0][n-1] to some base case value.
+===END PLAN===

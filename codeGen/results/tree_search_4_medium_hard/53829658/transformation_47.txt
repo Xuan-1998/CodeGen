@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The state could be defined as distance[i], which is the minimum number of edges that need to be reversed in order to reach city i from the capital. The base case would be all values of distance initially being infinity, since we are starting at the capital and have not yet reached any other cities.
+
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a top-down approach with memoization. The base case would be all values of visited initially being False, since we are starting at the capital and have not yet reached any other cities.
+
+Implement a combination of tabulation and memoization by initializing a 1D array with all values set to infinity, then iteratively updating each cell based on the minimum number of edges needed to reach that city from its adjacent cities. The state can be updated by choosing the minimum between itself and one-edge shorter distances from all adjacent cities.
+
+Define the state as visited[i], which is a boolean indicating whether or not city i has been reached before. The base case would be all values of visited initially being False, since we are starting at the capital and have not yet reached any other cities.
+
+The plan includes edge cases by considering that if the graph contains cycles (i.e., a path from some city to itself), then the distance to that city will remain infinity for the entire duration. This is because even if you reverse all edges, you still won't be able to reach the city directly.
+===END PLAN===

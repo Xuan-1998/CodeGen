@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+Define the state expression as a tuple (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+The dynamic programming state will be a dictionary dp with keys of type (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b. We'll also need to keep track of whether we've seen each number before using another dictionary seen.
+
+Use two dictionaries: one for memoization (dp) and one for tracking seen values (seen).
+
+Fill dp with base cases, where n is 1 or 2. If seen[n][prev_val] is False, add a new state to dp and set its value to True.
+
+For each test case, iterate from n = 1 to the length of sequence b. For each position i:
+
+    * Calculate the current segment length as the difference between the value at position i in sequence b and the previous value.
+    * Check if there's a state (n - seg_len, prev_val) in dp where seg_len is the calculated segment length. If yes, update prev_val to be the value at position i in sequence b.
+
+If we've reached the end of the sequence without finding a match for the last segment, print NO. Otherwise, print YES.

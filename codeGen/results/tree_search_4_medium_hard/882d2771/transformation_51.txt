@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n. We can observe that f(2n) = f(n).
+Next, we try to find a recursive relation between f(l) and f(r), or more specifically, f(l + 1) and f(r). 
+f(r) = f(r - 1) + r
+We can break down the problem into smaller instances: t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r).
+Implement memoization using a recursive function that stores and reuses previously computed values.
+Store the intermediate results in an array, dp[n], where dp[i] = f(i).
+The base cases are when l or r is 2. The result is 0 in these cases.
+Use dynamic programming to fill up the dp[] array from left to right (or right to left). 
+Finally, calculate t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) using the precomputed values in the dp[] array.
+===END PLAN===

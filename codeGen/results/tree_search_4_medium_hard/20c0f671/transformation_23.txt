@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved using a bottom-up dynamic programming approach by initializing a 3D table to store the minimum height of the bookcase for each subproblem, where the dimensions represent the number of books, the maximum shelf width, and the maximum number of books on a shelf.
+
+State expression is dp[i][j][k] = the minimum possible height of the bookcase after placing the first i books, where each shelf has a maximum width j and can hold at most k books.
+The transition equation would be:
+dp[i][j][k] = min(dp[i-1][j][min(k-1, books[i].thickness/j)], dp[i-1][j-int(books[i].thickness), min(k, books[i].thickness)])
+This represents the minimum possible height of the bookcase after placing the first i books. The two cases are:
+- If the current book can fit on the same shelf as the previous one, then we consider placing it there.
+- If not, then we consider creating a new shelf for this book.
+
+The base case would be dp[0][j][k] = 0, since there is no bookcase height when there are no books.
+
+We fill up the table in row-major order. For each row i, we start from j=0 and fill up the column j to maxShelfWidth.
+For each cell dp[i][j][k], we consider both options: placing the current book on the same shelf or creating a new shelf for this book.
+We take the minimum of these two options and update the table.
+
+The answer is then dp[n-1][maxShelfWidth][-1], where n is the number of books. The [-1] in the last dimension is because we don't care about the maximum number of books on a shelf anymore, since we have already placed all the books.
+===END PLAN===

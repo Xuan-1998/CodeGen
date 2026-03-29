@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Since there is a tree structure, one possible choice for identifying overlapping subproblems could be to use DFS (Depth-First Search) to traverse the graph, where each node represents the maximum amount of gasoline that Nut can have at the end of the path. This approach would allow us to identify and store intermediate results to avoid redundant computation.
+
+State: dp[i][j] represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+To use a top-down approach with memoization, consider defining dp(i) as the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i. The state transition relationship could be based on recursively exploring all possible paths from city 0 to city i and storing the results in a memo dictionary to avoid redundant computation.
+
+Use a bottom-up approach by filling up a 2D array dp[i][j] in a row-by-row or column-by-column manner, where each cell represents the maximum amount of gasoline that Nut can have at the end of the path from city 0 to city i with j units of gasoline.
+
+The state transition relationship could be: 
+dp[i][j] = max(dp[i-1][k] + min(w_i - c, w_i) for k in range(min(w_i,c)+1))
+
+===END PLAN===

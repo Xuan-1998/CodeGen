@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use tabulation to fill a 2D table where each cell represents the beauty value of a subarray ending at that index. The state transition relationship is defined by considering the minimum prime divisor of the last element in the subarray and whether it's a good or bad prime.
+
+Fill the table from left to right, top to bottom, using the previously computed values.
+
+Consider two possibilities: either the last element in the subarray is a good prime or not.
+
+State transition:
+- If the last element is a good prime, its minimum prime divisor will not affect the beauty value. The beauty value of the current subarray is then equal to the beauty value of the previous subarray.
+- If the last element is not a good prime, its minimum prime divisor can be either 2 (if it's a bad prime) or the smallest prime greater than 1 that divides it (if it's not a bad prime). In this case, the beauty value of the current subarray is then equal to the minimum beauty value between the previous subarray and the one with the last element's minimum prime divisor added.
+
+Use memoization to store the minimum prime divisors of array elements in a separate 1D table, then use this information to fill the tabulation table.
+===END PLAN===

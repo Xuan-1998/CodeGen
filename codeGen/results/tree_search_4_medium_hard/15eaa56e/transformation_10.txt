@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To identify if a row is sorted, check if all elements in the row are the same. If not, iterate through the row to find the first pair of adjacent elements that violate the sorting order. This will help you determine which column to focus on for further optimization.
+
+The state expression is a dictionary mapping each column index to a boolean indicating whether the subtable up to the current row is sorted in that column. The base case is when the subtable has only one row, where all columns are considered sorted.
+
+For each task (l, r), iterate through columns from left to right:
+    Initialize a set of unsorted columns for this task
+    For each column i:
+        If the subtable up to the current row in column i is not sorted, 
+            Add i to the set of unsorted columns
+        Else if all elements in the current row are the same and the previous row had different values in that column,
+            Add i to the set of unsorted columns
+    If the set of unsorted columns is empty, return "Yes" for this task
+    Else, return "No" for this task
+
+Implement memoization by storing the results of previously computed subproblems in a dictionary, where each key is a tuple containing the column index and row number.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+The state expression is the length of the current window being considered, and the dynamic programming table stores the minimum number of moves needed to remove all balls up to that point.
+
+A base case is when the board is empty. In this case, no moves are needed, so the value in the DP table would be 0.
+
+To fill the DP table, for each possible window size from 1 to len(board), calculate the minimum number of moves needed to remove all balls up to that point.
+This can be done by considering two cases: either the last ball added is from the hand or it's already on the board.
+If the last ball added is from the hand, then one move was made. If the last ball added is already on the board, then no move was made.
+The minimum number of moves needed to remove all balls up to that point would be the minimum of these two cases.
+
+Use memoization with a dictionary where key is a tuple (board, hand) and value is the minimum number of moves needed to remove all balls. This way, if the same state has been reached before during the calculation, it won't be calculated again.
+===END PLAN===

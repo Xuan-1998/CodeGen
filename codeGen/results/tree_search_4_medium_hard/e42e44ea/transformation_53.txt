@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively. Top-down memoization with DFS can be used to explore all possible paths.
+
+dp[i][j] = min({ dp[i-1][j] + grid[i][j], dp[i][j-1] + grid[i][j] } if i > 0 and j > 0 else { (i == 0) ? (grid[0][j]) : (dp[i-1][j]), (j == 0) ? (grid[i][0]) : (dp[i][j-1]) })
+
+The state can be defined as (i, j) and the transition relation is based on whether we move down or right. If we move down, dp[i][j] = dp[i-1][j] + grid[i][j]. If we move right, dp[i][j] = dp[i][j-1] + grid[i][j].
+
+Use a priority queue to keep track of cells to visit, with their corresponding points values. Start from the top-left cell and maintain the priority queue as you explore the grid.
+
+===END PLAN===

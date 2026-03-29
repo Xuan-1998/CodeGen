@@ -1,0 +1,29 @@
+python
+===BEGIN PLAN===
+1. Problem Understanding: We need to count the number of valid N x M matrices where each element is either 0 or 1, and the condition A[a, b] * A[c, d] <= A[a, d] * A[c, b] holds for all 1 <= a < c <= N and 1 <= b < d <= M.
+
+2. Constraints and Observations:
+    - For N, M up to 400, a brute-force approach is infeasible due to the large number of possible matrices.
+    - The condition implies a kind of monotonicity or order in the matrix elements.
+
+3. Dynamic Programming Approach:
+    - Define dp[i][j] as the number of valid matrices of size i x j.
+    - The base case is dp[0][0] = 1, representing an empty matrix.
+    - For each cell (i, j), we need to consider the placement of 0 or 1 and ensure the condition holds.
+
+4. Recursive State Transition:
+    - For each cell (i, j), consider placing either 0 or 1.
+    - Ensure that placing 1 in (i, j) does not violate the condition with respect to previously placed elements.
+    - Use memoization to store results of subproblems to avoid redundant calculations.
+
+5. Implementation:
+    - Initialize dp array with dimensions (N+1)x(M+1) to store the number of valid matrices for each subproblem.
+    - Iterate through each cell and update the dp array based on the possible placements of 0 or 1.
+    - Return dp[N][M] % 998244353 as the final result.
+
+6. Edge Cases:
+    - Smallest values of N and M (e.g., 1x1 matrix).
+    - Ensure the solution handles the modulo operation correctly to avoid overflow.
+
+===END PLAN===
+

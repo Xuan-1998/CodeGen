@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+The tree structure makes me think of a recursive approach with memoization. This is because we need to consider all possible combinations of edge deletions and their resulting connected components.
+
+state: a dictionary representing the subtree rooted at node i, mapping each node to its value
+transition by updating this dictionary when adding or removing nodes from the subtree
+
+function dp(i):
+    if i has only one child:
+        return True
+    else:
+        for j in i's children:
+            if j is not root(j) and root(j) is not None:
+                if root(j) is not None:
+                    return False
+        return True
+
+memo = {}
+def solve(n, k):
+    memo[(0, 0)] = True
+    for i in range(1, n+1):
+        for j in range(i+1, n+1):
+            if dp(i):
+                if dp(j):
+                    result = (i, j)
+                    return result

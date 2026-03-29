@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The state of the frog is defined by its current position and previous jump length. How can we express this in a mathematical formula?
+dp[i][j] = True if the frog can reach the i-th stone with the previous jump of j units, False otherwise.
+
+Create a 2D DP table where dp[i][j] represents whether it is possible to reach the i-th stone with the previous jump of j units.
+For each stone at position stones[i], check all possible previous jumps:
+- If the frog can't reach this stone from any previous position, set dp[i][k] = False for k in {0, 1, 2}.
+- Otherwise, if the frog can reach this stone with a jump of j units and the previous jump was k, update dp[i][j] = True.
+
+Let's consider edge cases:
+- The first stone: dp[0][k] = True for any k (since we're starting from scratch).
+- The last stone: dp[n-1][j] = True if and only if the frog can reach it with a jump of j units.
+===END PLAN===

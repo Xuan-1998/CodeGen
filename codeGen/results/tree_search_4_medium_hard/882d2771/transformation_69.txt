@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+The state is (l, r), where f(l) + f(l+1) + ... + f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from l girls to r girls.
+
+Define a dictionary memo to store previously computed values. Initialize it with default values for f(0), ..., f(l-1) and f(r+1), ..., f(t-1).
+
+For each possible pair (i, j) in range(l, r+1), compute the value of f(i) + f(i+1) + ... + f(j) by considering two cases:
+
+* If i == l, then the minimum total number of comparisons is simply f(i).
+* Otherwise, consider selecting the most beautiful participant from group i. This requires a minimum of 1 comparison (to select the participant). Add this to the minimum total number of comparisons for participants from groups i+1 to j.
+
+Memoize the computed value and update the dictionary accordingly.
+
+Finally, calculate the result by summing up the values memoized in step 4 and subtracting l·f(r) modulo 109 + 7.
+
+===END PLAN===

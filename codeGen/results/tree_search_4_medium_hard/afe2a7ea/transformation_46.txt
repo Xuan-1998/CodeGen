@@ -1,0 +1,17 @@
+dp[i][k] = 1 if the kth tower in towns 1 to i can be used to send signal to town i
+    AND 
+    for each j from 0 to i-1:
+        dp[j][k-1] is true
+    ELSE
+    dp[i][k] = 0
+
+dp[0][0] = 1 // base case, no towers needed
+
+for i from 1 to n:
+    for k from 1 to i:
+        if i % k == 0 or (i+2) % k != 0: // check if the tower can be used
+            dp[i][k] = 1
+            for j from 0 to i-1:
+                if !dp[j][k-1]:
+                    dp[i][k] = 0
+                    break

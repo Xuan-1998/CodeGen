@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Consider using a 2D DP table to store the number of non-zero carries for each pair of digits in A and B.
+
+State expression: dp[i][j] = (A[i], B[j]), where i is the current digit index of A, j is the current digit index of B, and the state represents whether the current pair of digits has been added before.
+
+Base case: When adding two single-digit numbers, there are no carries if both numbers are 0 or 9. For all other cases, a carry occurs when the sum of the digits is greater than or equal to 10.
+
+Transition relationship:
+
+* If A[i] + B[j] < 10, then dp[i][j] = 1 (no carry)
+* If A[i] + B[j] >= 10, then
+    * If A[i-1] + B[j-1] >= 10 and i > 0 and j > 0, then dp[i][j] = dp[i-1][j-1] + 1 (carry propagated from previous pair)
+    * Else, dp[i][j] = 1 (new carry)
+
+Edge cases:
+* When A or B is a single-digit number, there are no carries.
+* When A and B are both single-digit numbers with a sum of 0, there are no carries.
+
+===END PLAN===

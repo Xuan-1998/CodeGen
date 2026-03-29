@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Represent the state using a 2D array dp where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The transition relationship could be formulated as: 
+dp[i][j] = max(dp[i-1][0], dp[i-ci[j]][j-1]) + di[j].
+
+dp[i][0] is the base case when there are no more stuffing types to consider, and it's equal to the maximum profit that can be achieved with i grams of dough without any stuffing. 
+
+Use dynamic programming to fill up the dp array row by row from top to bottom, considering the base cases when there are no more stuffing types or dough left.
+
+For each cell in the dp array, calculate the maximum profit that can be achieved with i grams of dough and j stuffing types. If j is 0, it means we have run out of all stuffing types, so we should use the previous row's maximum profit for cells with i-1 grams of dough. If i-ci[j] > 0, it means we still have enough dough to make buns using the current stuffing type, so we should calculate the maximum profit that can be achieved with i-ci[j] grams of dough and j-1 stuffing types.
+
+The base case for dp[i][j] is when either i or j is 0. In this case, dp[i][j] is equal to the maximum profit that can be achieved with i grams of dough without any stuffing (dp[i][0]) or the maximum profit that can be achieved with 1 gram of dough and j-1 stuffing types (dp[ci[j]][j-1]), respectively.
+
+Finally, return dp[n][m] as the maximum profit that can be achieved with n grams of dough and m stuffing types.
+===END PLAN===

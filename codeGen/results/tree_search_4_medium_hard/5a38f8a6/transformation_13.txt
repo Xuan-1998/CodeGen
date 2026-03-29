@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+The state could be defined as dp[i], where i is an integer from 1 to n, representing the minimum number of perfect squares that sum up to i.
+dp[i] represents the minimum number of perfect squares that sum up to i, and the transition relationship is:
+    dp[i] = min(dp[j] + 1) for all j in {j^2 | j^2 <= i}
+    (or equivalently: for all j such that j^2 * 1.5 <= i)
+Use a bottom-up dynamic programming approach by creating an array to store the minimum number of perfect squares that sum up to each value from 1 to n.
+The base case would be dp[0] = 0, since it takes zero perfect squares to sum up to 0.
+The final answer would be dp[n].
+===END PLAN===

@@ -1,0 +1,14 @@
+state: (k, v) where k is the index of the last considered element in the array, and v is its beauty value;
+base case: when k = n-1; 
+
+state transition:
+    - if current number is good prime: update state as (k+1, v + min_prime);
+    - if it's bad prime: update state as (k+1, max(0, v - 2));
+
+recursive function with memoization to store previously computed maximum beauty values.
+
+state update rule:
+
+- for each element in the array:
+    - if element is good prime, add its minimum prime divisor to current maximum beauty value;
+    - else, subtract 2 from current maximum beauty value (since bad prime number cannot be part of a subarray);

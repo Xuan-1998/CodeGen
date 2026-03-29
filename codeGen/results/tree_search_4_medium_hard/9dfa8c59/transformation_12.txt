@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider using a hash set to store prime numbers below n_max. This can be done efficiently using a Sieve of Eratosthenes algorithm.
+Iterate over each prime number in the hash set. For each prime number, count its permutations by generating all possible rearrangements of its digits and checking if they are also prime numbers. Use a dictionary to map each prime number to its corresponding permutations count.
+Create a dynamic programming table dp to store the count of permutations for each prime number. Initialize it with 0s.
+For the base case, set dp[2] = 1, as there's only one permutation for the smallest prime number, which is itself.
+Iterate over each prime number in the hash set. For each prime number num, calculate its permutations count by iterating from num to n_max and counting how many of these numbers have exactly k_perms prime permutations below them (including num).
+For the dynamic programming table, update dp[num] with the calculated permutations count.
+Finally, iterate over the dynamic programming table to find the smallest and largest prime numbers among those with k_perms prime permutations. Return a list containing the count of such prime numbers, the smallest one, and the largest one.
+===END PLAN===

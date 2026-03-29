@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider dynamic programming with a recursive function that checks if a number is prime and has k_perms permutations, updating the results as needed.
+A possible base case is when n_max is less than or equal to 2, as prime numbers below this value have no more than one permutation.
+To use a bottom-up dynamic programming approach by initializing a table with all possible values of n_max up to the given limit, then iteratively update the table based on whether each number has k_perms prime permutations.
+Implement bottom-up dynamic programming with a 2D table:
+    - Initialize dp[i][j] as False for all i and j
+    - For each number p in range(1, n_max+1):
+        - If p is prime:
+            - Calculate the number of permutations p has using its digits
+            - Update dp[p][p.get_permutations_count()] to True
+        - For each number q from 2 to sqrt(p):
+            - If p is divisible by q and q*p > n_max:
+                - Set dp[p][j] to False for all j, breaking the loop
+    - Calculate the count of prime numbers with k_perms permutations below n_max as the sum of dp[i][k_perms] for i in range(1, n_max+1)
+    - Find the smallest and largest such prime numbers
+===END PLAN===

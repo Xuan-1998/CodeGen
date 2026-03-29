@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider the state of the current number as a pair (len, val), where len is the length of the decimal representation of the current number and val is its value.
+
+State expression: Define the base case as when the decimal representation has no more than one digit. Initialize an empty dictionary memo to store the results for each operation.
+
+Consider the state as a vector representing the digits of the current number, and use memoization to store the results for each operation. Using a dynamic programming table with vectors as rows and columns, where dp[i][j] represents the length of the decimal representation after i operations on the number j.
+
+dp[i][0] = 1 (base case), because one operation always results in a single-digit number.
+For larger values j, consider the last digit d of j. If d > 5, then replacing it with d + 1 will result in a two-digit number, so dp[i][j] = dp[i-1][d*10 + (d+1)%10]. Otherwise, dp[i][j] = dp[i-1][j/10].
+
+Edge cases: Handle the case when j has no more than one digit separately. If len <= 1, return the value of val modulo 10^9+7.
+
+===END PLAN===

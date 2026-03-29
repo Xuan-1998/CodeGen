@@ -1,0 +1,8 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+1. State Expression: Let dp[i][j] represent the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[0][0] = 1, meaning there's one way to form an empty subtree with zero vertices and zero good vertices.
+3. Transition: For each vertex i, consider its out-degree d_i. We need to distribute the remaining vertices among its children. If vertex i has k children, then we can iterate over all possible distributions of the remaining vertices among its k children and update the dp table accordingly.
+4. Sum up the results: The final answer will be the sum of dp[N][j] for all j from 1 to N, since we need to count the number of good vertices in all good trees.
+5. Modulo operation: Since the result can be large, take the result modulo 998244353.
+6. Edge cases: Consider edge cases like when all d_i are zero except d_1, or when d_1 is maximum and all other d_i are zero.
+

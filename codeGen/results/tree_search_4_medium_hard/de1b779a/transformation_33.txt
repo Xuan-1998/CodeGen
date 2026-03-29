@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The subproblem structure could be to decide whether to make a bun with the current stuffing type, or not. This would lead to a recursive formula, which can then be memoized.
+
+The state is (i, j), where i represents the current stuffing type, and j represents the remaining dough grams.
+
+State
+DP with bottom-up approach: Create a 2D table with dimensions m+1 by n+1, where dp[i][j] represents the maximum profit Lavrenty can earn using at most i-1 stuffing types and j dough grams. 
+
+Let's consider the base case when we have no dough left or no more stuffing types. In this case, we cannot make any more buns, so our maximum profit is 0.
+
+Now let's write a recursive formula for dp[i][j]. If there are not enough dough grams to make a bun with the current stuffing type, then we can only consider not making a bun at all, which means dp[i][j] = dp[i-1][j].
+
+If there are enough dough grams, then we have two options: either make a bun with the current stuffing type or do not make one. Let's calculate the maximum profit for each option.
+
+The first option is to make a bun and sell it. This will give us di profit, but we need to spend ci grams of dough and ai grams of the current stuffing type. So, our remaining resources are j-ci and j-ai.
+
+The second option is not to make a bun. In this case, our maximum profit is dp[i-1][j]. 
+
+So, our recursive formula becomes:
+
+dp[i][j] = max(dp[i-1][j], di + dp[i-1][j-ci-ai])
+
+Now that we have the recursive formula, let's use memoization to store and reuse previously computed values.
+
+Finally, we can compute the maximum profit using the top-down approach by starting with the base case (i=0 or j=0) and working our way up.
+
+The final answer will be dp[m][n].

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Define dp as a 2D array of size n x T, where dp[i][j] represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of j.
+
+For each edge (u, v, t) in the graph:
+    - Recursively call dp[v][T-t] to get the maximum number of vertices that can be visited starting from vertex v and ending at vertex n within a time limit of T-t.
+    - If this recursive call returns k, then we can visit k+1 vertices by including edge (u, v) in the route.
+    - Update dp[u][j] with the maximum value between its current value and k+1.
+
+Use memoization to store the results of recursive calls in a dictionary memo = {(i, j): value} where state is a tuple (i, j) and value is the result of the recursive function call.
+
+Finally, return dp[0][T] as the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T.
+===END PLAN===

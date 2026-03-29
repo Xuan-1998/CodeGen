@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 2D table where each cell represents the LCS length between two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 2D array dp[i][j] where dp[i][j] represents the LCS length between substrings A[0..i] and B[0..j]. The base case is when one or both strings are empty, in which case the LCS length is calculated as the minimum of i and j.
+
+Update the table by iterating over all possible pairs of substrings. For each pair, update dp[i][j] as the maximum LCS length between:
+
+* A[0..i-1] and B[0..j-1]
+* A[0..i-1] and B[0..j]
+* A[0..i] and B[0..j-1]
+
+The final answer is the maximum similarity score over all pairs of substrings, calculated as 4 times the LCS length minus the sum of lengths.
+
+===END PLAN===

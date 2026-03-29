@@ -1,0 +1,16 @@
+], [
+dp[0][j] := 1;
+for i from 1 to n-1 do:
+    dp[i][0] := 1;
+    for j from 1 to m-1 do:
+        if i < k then 
+            dp[i][j] := 1; 
+        elif 2*i > n || j == m-1 then
+            dp[i][j] := 1; 
+        else 
+            dp[i][j] := sum(dp[2*i % k][j-1]) * n;
+        end
+    end
+end
+print(dp[n-1][m-1]);
+]

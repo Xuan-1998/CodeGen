@@ -1,0 +1,17 @@
+
+===BEGIN PLAN===
+1. Define a DP table dp[i][j] where dp[i][j] represents the number of valid matrices of size i x j that satisfy the given condition.
+2. Initialize the base cases:
+   - dp[0][0] = 1, as an empty matrix is trivially valid.
+   - dp[i][0] = 1 for all i, since a matrix with zero columns is trivially valid.
+   - dp[0][j] = 1 for all j, since a matrix with zero rows is trivially valid.
+3. Use a bottom-up strategy to fill the DP table iteratively:
+   - For each i from 1 to N:
+     - For each j from 1 to M:
+       - Use the transition relation to compute dp[i][j] based on previously computed values:
+         - dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % 998244353
+4. The final answer is dp[N][M], the number of valid matrices of size N x M.
+5. Print the result.
+6. Ensure that the solution handles edge cases such as the smallest possible values for N and M (i.e., N = 1, M = 1).
+===END PLAN===
+

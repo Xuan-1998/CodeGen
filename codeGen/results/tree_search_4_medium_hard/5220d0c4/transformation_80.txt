@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Use tabulation to fill a 2D table where each cell represents the beauty value of a subarray ending at that index. The state transition relationship is defined by considering the minimum prime divisor of the last element in the subarray and whether it's a good or bad prime.
+
+Consider two possibilities: either the last element in the subarray is a good prime or not.
+  - If the last element is a good prime, then for each previous element, consider its minimum prime divisor. If this prime number is also a good prime, increment the beauty value by 1. Otherwise, decrement it by 1.
+  - If the last element is not a good prime, consider only the minimum prime divisor of the last element. Increment or decrement the beauty value based on whether this prime number is a good or bad prime.
+
+Fill the table from left to right, top to bottom, using the previously computed values.
+
+The base case for the beauty value of an empty subarray should be 0.
+The final answer would be the maximum beauty value in any row (or column) at the bottom-right corner.

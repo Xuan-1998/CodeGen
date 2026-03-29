@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be broken down into subproblems of finding the minimum number of marks strictly below the water level for each prefix of days, with overlapping subproblems.
+
+Define dp[i] as the minimum number of marks strictly below the water level at the end of day i.
+dp[i] is the minimum of the current number of marks strictly above the water and the minimum number of marks strictly below the water for all previous days.
+
+For day 1, the minimum number of marks strictly below the water level is simply the difference between the marks on day 1 and the total marks so far (which is just the mark on day 1).
+
+Then, for each subsequent day i > 1:
+    - Calculate the current number of marks strictly above the water as max(0, m_i - m_{i-1}) where m_i is the mark on day i.
+    - Update dp[i] to be the minimum of this current number and the minimum number of marks strictly below the water for the previous day (dp[i-1]).
+
+Implementing a list dp with initial length n, then iterating through each day and updating the corresponding value based on the previous day's result.
+
+===END PLAN===

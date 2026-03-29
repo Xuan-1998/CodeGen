@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Define the state expression for each node i as the product of edge labels on the shortest path from i to the root, with base case being nodes that have only one child or are leaves.
+
+Let dp[i][j] be the product of edge labels on the shortest path from node i to its parent j. 
+
+For a leaf node i (i.e., it has no children), set dp[i][0] = 1. 
+For any other node i, let p be the minimum number such that p is not one of the previously chosen numbers and k/p is in the list of prime factors. If k/p is already used, then find the next smallest unused prime factor. If all are used, set p as 1.
+
+Now, consider a non-leaf node i with children c1, c2, ..., ck. For each child ci, calculate dp[i][ci] using memoization and the base cases. 
+
+For leaf nodes, recursively call the function to compute the product of edge labels on the shortest path from the root to that leaf node.
+
+Finally, return the sum of all products of edge labels on the shortest paths from a node to its parent.
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, consider counting the number of blocks ending at each digit position.
+
+Choose a state for each digit position, i.e., the number of blocks that end at that position with length 1 to n.
+
+The state for each digit position is the number of blocks that end at that position with length 1 to n. Let's denote this state as dp[i]. We can calculate dp[i] by considering all possible lengths from 1 to n, and update it based on the previous states (dp[j]) where j < i.
+
+The key insight here is that a block ending at position i of length k can be extended or not, depending on whether the digit at position i-k+1 is the same as the one at position i. If they are the same, we can extend the block to have length k+1; otherwise, we cannot.
+
+Implement a bottom-up dynamic programming approach by iterating from n to 1 and updating the state dp[i] based on the previous states (dp[j]) where j < i. The recurrence relation for dp[i] is as follows:
+
+- If the digit at position i is the same as the one at position i-n, then we can extend all blocks ending at position i of length from 1 to n-1, so dp[i] += dp[i-n]
+- Otherwise, we only consider blocks of length 1 because they cannot be extended
+dp[i] = (the number of blocks ending at position i of length 1)
+
+The final answer is the sum of all states dp[i] for i ranging from 1 to n.
+
+===END PLAN===

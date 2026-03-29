@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The optimal substructure lies in the fact that the total brightness of stars within a rectangle can be broken down into smaller rectangles. This can be achieved by iterating over all possible views and calculating the total brightness for each view.
+
+The state expression could be the time t, representing the current moment of interest.
+The state represents a snapshot in time for the x-coordinate of the viewed rectangle. The transition relationships can be defined by updating the total brightness as new rectangles are considered.
+
+To implement memoization, define a function f(t, x1, x2, y1, y2) that calculates the total brightness at time t for the rectangle with coordinates (x1, y1) and (x2, y2). 
+
+The recursive relationship can be defined as follows:
+f(t, x1, x2, y1, y2) = sum of brightnesses of stars within the current rectangle + f(t-1, x1, min(x2, x_i), y1, min(y2, y_i)) for all i such that (min(x2, x_i), min(y2, y_i)) is within the previous rectangle.
+
+Use memoization to store previously computed values and avoid redundant calculations. This way, we can efficiently calculate the total brightness of stars in a given rectangular view at a given time.
+
+===END PLAN===

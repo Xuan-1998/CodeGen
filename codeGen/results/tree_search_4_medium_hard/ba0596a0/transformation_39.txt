@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+We can model each possible sequence of jumps as a separate subproblem. Can we find a way to combine these subproblems to form the solution?
+
+The state expression could be defined as: dp[i] = True if there is a valid sequence of jumps that allows the frog to jump from the 0th stone (the starting point) to the ith stone.
+
+The base case would be dp[1] = True because the frog can simply stay on the first stone.
+
+Define a recursive function that calculates the solution for each subproblem, using previously calculated solutions to avoid redundant computations. The recurrence relation could be:
+
+dp[i] = or (j == i-1) and dp[j]
+
+This means that the frog can jump from the ith stone if it can jump from any of the previous stones (i-1) to ith stone.
+
+The optimized version of the plan would be a bottom-up dynamic programming approach, where we fill up the dp array in a bottom-up manner. This would avoid redundant computations and reduce the time complexity.
+
+===END PLAN===

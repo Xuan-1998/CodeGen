@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Determine optimal substructure by observing that the problem can be broken down into smaller instances: for each pair of adjacent matrices (i to j), find the minimum number of multiplications needed to multiply all matrices up to j-1, then add the cost of multiplying i-th matrix with the result.
+The state expression could be dp[i][j] = minimum number of multiplications to multiply matrices from i to j, with dp[0][k] being the base case (matrix 1 times matrix k for all k).
+dp[i][j] = minimum number of multiplications to multiply matrices from i to j, considering the possibility of multiplying i-th matrix with the result of dp[i-1][k] for all k < i.
+Use a bottom-up dynamic programming approach: initialize a table dp[][] of size (n+1) * (n+1), where dp[i][j] stores the minimum number of multiplications needed to multiply matrices from i to j.
+Fill in the table using the following recurrence relation:
+dp[i][j] = min{ dp[i-1][k] + p[i-1]*p[i]*p[k] for k from 0 to i-1 } + (if j > i, add p[i]*p[j]*cost of multiplying i-th matrix with the result)
+Start filling in the table from dp[1][1], and use previously computed values to fill in later entries.
+Finally, return dp[n-1][n-2] as the minimum number of multiplications needed to multiply all matrices.
+===END PLAN===

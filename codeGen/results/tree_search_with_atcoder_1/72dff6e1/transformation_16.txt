@@ -1,0 +1,9 @@
+
+1. Define a 2D DP table `dp` where `dp[i][j]` represents the number of valid sequences of length `i` ending with number `j`.
+2. Initialize the base case: `dp[0][j] = 1` for all `j` from 1 to N, representing that there is exactly one way to form an empty sequence.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length `i`, iterate over each possible ending number `j` from 1 to N.
+5. For each `j`, calculate `dp[i][j]` as the sum of `dp[i-1][k]` for all `k` such that `k != j` and the number of occurrences of `k` in the sequence is within the limit specified by `A[k-1]`.
+6. Use a memoization table to store the results of subproblems to avoid redundant calculations.
+7. The final answer will be the sum of `dp[N][j]` for all `j` from 1 to N, modulo 998244353.
+

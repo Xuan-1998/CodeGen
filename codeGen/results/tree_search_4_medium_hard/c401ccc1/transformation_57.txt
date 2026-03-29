@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+There are two types of vertices - ones with outgoing edges and those without. The problem can be viewed as finding the shortest path from each vertex to all others. This insight can guide the choice of dynamic programming approach.
+
+The state is the set of all vertices reachable from v, and the base case is when v has no outgoing edges.
+
+State: The current vertex v
+Transition: If there's no outgoing edge from v, the state remains unchanged; otherwise, it becomes the set of all vertices reachable from the adjacent vertex
+
+Tabulation using a 2D array to store the shortest distances between each pair of vertices
+
+Initialization:
+- Create a 2D array dp[][] of size 10^5 x 10^5 with all values initialized as false (representing no path)
+
+Main Loop:
+- For each query u, v
+	+ Start from vertex v and try to reach vertex u
+	+ If the state for v is reachable from the previous state (i.e., there's an outgoing edge), update dp[u][v] = true
+
+Final Answer:
+- For each query, check if dp[u][v] = true. If yes, output "YES", else output "NO"
+===END PLAN===

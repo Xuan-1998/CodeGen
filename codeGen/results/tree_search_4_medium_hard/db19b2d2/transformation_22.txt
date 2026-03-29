@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+We can use dynamic programming to solve this problem by modeling it as a recursive formula.
+
+Let's define P[k] as the probability that a randomly formed team with k players will have at least one player from the department of interest. We'll use a 2D array dp to store the probabilities for each number of players and each cumulative sum.
+
+The base case is when there are no more players to choose from (k = n-1), in which case we just need to check if there are any players from the department of interest.
+
+We can model the problem as a recursive formula:
+
+P[k] = Σ (P[i-1] * (si / (n-i+1))) where i ranges from h to min(h+k-1, n)
+
+The idea is that we're choosing a player from the department of interest with probability si / (n-i+1) for each possible outcome i, and then recursively calculating the probability P[i-1] for the remaining players.
+
+To avoid redundant calculations, we can store the intermediate results in the dp array. The dynamic programming formula would be:
+
+dp[k][cumulative_sum] = Σ (P[i-1] * (si / (n-i+1))) where i ranges from h to min(h+k-1, n) and cumulative_sum is the sum of players chosen so far.
+
+The final answer would be the probability P[n-1], which represents the probability that a randomly formed team with n players will have at least one player from the department of interest.
+
+We'll also need to handle edge cases where there are not enough basketball players in the university to form a team, and return -1 in such cases.
+===END PLAN===

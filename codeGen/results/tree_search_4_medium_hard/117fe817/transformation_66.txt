@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to count the total number of digit 1's in all non-negative integers less than or equal to n.
+
+Create an array dp where dp[i] represents the total number of times the digit 1 appears in all non-negative integers less than i.
+The transition relationship is that if we add 10^k to an integer, where k > 0, the number of trailing zeros increases by k. This means that for any integer j, there are floor(j / 10^k) * dp[k-1] integers that end with a trailing zero and have a count of digit 1's equal to the value in dp[k-1].
+Create an array where dp[0] = 0, because there is no trailing zero in the integer 0. Then for k > 0, calculate dp[k] as the sum of floor(j / 10^k) * dp[k-1] for j from 0 to 9.
+The final answer will be the sum of all values in the array dp.
+
+===END PLAN===

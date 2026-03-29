@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+To solve this problem, consider counting the number of blocks ending at each digit position. 
+Choose a state for each digit position, i.e., the number of blocks that end at that position with length 1 to n. 
+The state for each digit position is the number of blocks that end at that position with length 1 to n.
+Consider using dynamic programming, where dp[i][j] represents the number of blocks ending at the ith position with length j.
+For the base case (i.e., when i is equal to 0), set dp[0][j] as 1 for all lengths j from 1 to n, because there's only one way to form a block of length j starting at position 0.
+Use the following recurrence relation:
+dp[i][j] = sum(dp[k][1] * (i - k) choose j - 1) for all k from i - j + 1 to i - 1
+This means that for each block ending at position i with length j, you can form it by taking a block of any length from positions i - j + 1 to i - 1 and extending it to the left.
+Use memoization to store the intermediate results and avoid redundant calculations.
+Finally, calculate the total number of blocks by summing up dp[i][j] for all i and j from 1 to n.
+===END PLAN===

@@ -1,0 +1,11 @@
+{
+DP state: For each string of length i, define a boolean dp[i] indicating whether it's possible to form a lexicographically smaller string by either deleting the last character or duplicating the original string up to length i-1. This can be done by checking if there exists a string of length i-1 that is lexicographically smaller than the current string and then adding one more character to make it equal in length to the current string.
+
+Base case: dp[0] = True, since an empty string can always be made lexicographically smaller by duplicating it.
+
+Transition relation: If dp[i-1] is True for some i > 1, then dp[i] is also True if and only if the last character of the string of length i is either the smallest possible or equal to the first character of a string that makes dp[i-1] True. This is because we can always make a string lexicographically smaller by deleting the last character or duplicating it, as long as there exists a smaller or equal-sized string.
+
+Main idea: Start from i = k and work backwards until i = 0. For each i, check if dp[i] is True, and if so, try to find the smallest possible lexicographically string of length i by either deleting the last character or duplicating the original string up to length i-1.
+
+Key insight: We don't need to consider all possible strings that can be formed by either deleting the last character or duplicating the original string. Instead, we only need to consider the ones that make dp[i] True.
+}

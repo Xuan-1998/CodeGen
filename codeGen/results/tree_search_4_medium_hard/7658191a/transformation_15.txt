@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D array dp[i][j] where dp[i][j] represents the maximum score that can be achieved in i moves and j remaining moves. The base case would be when i or j reaches zero.
+A state expression could be dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if i > 0 and j > 0, where the maximum score is either from moving to the right (dp[i-1][j]) or moving to the left (dp[i][j-1]).
+However, this expression does not consider the constraint that no more than z moves to the left can be made in a row. To incorporate this constraint, we can maintain an additional 2D array moves[i][j] where moves[i][j] represents the number of moves to the left that have been made so far.
+A state expression could be dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if i > 0 and j > 0, and moves[i-1][j-1] < z. If moving to the right would exceed the maximum number of moves allowed (k), we can return -∞ as there is no possible move.
+The base case would be when i or j reaches zero. The final answer would be dp[n][k].
+===END PLAN===

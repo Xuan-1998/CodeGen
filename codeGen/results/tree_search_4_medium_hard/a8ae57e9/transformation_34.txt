@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Then, use memoization to fill in the states in top-down manner.
+
+dp[i][j] is the maximum amount of money earned given the number of remaining tables and the total amount to spend, considering all possible requests
+dp[i][j] represents the maximum amount of money earned with i tables left and j amount to spend. 
+
+Transition relationship could be: 
+    if j >= c*i:
+        dp[i][j] = max(dp[i-1][j-c*i], 0) + c*i
+    else:
+        dp[i][j] = dp[i][j]
+
+Apply memoization by defining a dictionary memo to store the intermediate results and then fill in the states in top-down manner.
+
+Finally, return dp[k][total_amount_to_spend] as the maximum amount of money earned.
+If there are no more requests or tables left, return 0.
+
+===END PLAN===

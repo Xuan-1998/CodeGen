@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The state could be defined as dp[i][j] representing the minimum total cost to sort the first i strings in lexicographical order, with j being the maximum length of all the strings seen so far.
+dp[i][j] is the minimum total cost required to sort the first i strings in lexicographical order with a maximum length of j characters.
+
+Create a 2D array dp where:
+    - dp[0][j] = 0 for all j, since no strings are sorted
+    - dp[i][0] = c_i * (i-1) for all i > 0, since the first i-1 strings have to be reversed in order to make room for the ith string
+
+For i from 1 to n:
+    For j from 1 to max_length:
+        If the ith string has a length of j or less, then dp[i][j] = min(dp[i-1][k] + c_i * (j-k) for k from 0 to j)
+        Else, dp[i][j] = dp[i-1][max_length]
+
+Return dp[n][max_length]
+===END PLAN===

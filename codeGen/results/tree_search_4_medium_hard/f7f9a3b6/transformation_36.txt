@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem. Split the message into two parts, one containing only unique characters and another part with at most a[i] repeated occurrences of the same character. Count the number of ways to split the message in each part separately and then combine them.
+
+Define the state as: dp[i][j] = number of ways to split the string s[0..i-1] into j substrings such that each substring has at most a[s[i-1]-1] repeated occurrences of the same character.
+
+dp[i][j] = (sum(dp[k][j-1] for k in range(j)) if i == 0 else sum((k==0 and 1 or dp[i-k][j-1]) * math.comb(i-k-1, a[ord(s[i-k-1])-97]-1) for k in range(1, i+1)))
+Use top-down dynamic programming with memoization to store the results of subproblems and avoid redundant calculations.
+
+Find the number of ways to split the message into non-overlapping substrings by iterating over all possible lengths of substrings and updating dp[i][j] accordingly.
+
+Find the length of the longest substring over all the ways by keeping track of the maximum length seen so far.
+
+Find the minimum number of substrings over all the ways by finding the minimum j such that dp[n][j] is non-zero.
+
+Output the results modulo 10^9 + 7.
+===END PLAN===

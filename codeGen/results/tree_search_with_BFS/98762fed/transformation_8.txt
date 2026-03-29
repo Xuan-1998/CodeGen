@@ -1,0 +1,15 @@
+markdown
+===BEGIN PLAN===
+1. Define the problem using Dynamic Programming (DP) to count valid matrices.
+2. Define the state expression: Let dp[i][j] represent the number of valid matrices of size i x j.
+3. Initialize the base cases:
+   - dp[0][j] = 1 for all 0 <= j <= M, as a matrix with zero rows is trivially valid.
+   - dp[i][0] = 1 for all 0 <= i <= N, as a matrix with zero columns is trivially valid.
+4. Transition: For each cell (i, j) in the matrix:
+   - Calculate dp[i][j] by considering the possible values of the current cell and ensuring the condition A_{a, b} * A_{c, d} <= A_{a, d} * A_{c, b} holds for all quadruples (a, b, c, d).
+   - Use the results of smaller subproblems (previous rows and columns) to build up the solution for larger matrices.
+5. Ensure the results are computed modulo 998244353 to avoid overflow and meet problem requirements.
+6. Iterate through all possible matrix sizes from 1x1 up to NxM, using the DP table to compute the number of valid matrices.
+7. Output the final result, which is the value of dp[N][M].
+===END PLAN===
+

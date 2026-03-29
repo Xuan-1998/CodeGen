@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][j] represents the minimum mana required to kill all monsters as of second i, considering the previous seconds' mana usage and j seconds left before the next monster appears.
+
+The state transitions are:
+
+1. If there is no monster at this second (i.e., j > 0), then dp[i][j] = min(dp[i-1][k] + k for k in range(j+1)) where dp[i-1][k] represents the minimum mana required to kill all monsters as of second i-1, considering the previous seconds' mana usage and k seconds left before the next monster appears.
+2. If there is a monster at this second (i.e., j == 0), then dp[i][j] = min(dp[i-1][k] + h for k in range(min(h, i+1))) where h represents the health of the current monster and dp[i-1][k] represents the minimum mana required to kill all monsters as of second i-1, considering the previous seconds' mana usage and k seconds left before the next monster appears.
+
+The base case is when there are no more monsters to kill (i.e., j == 0 and i >= n), in which case dp[i][j] = 0.
+
+The final answer is dp[-1][k] for some k, which represents the minimum mana required to kill all monsters as of the first second.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using dynamic programming to solve this problem by breaking it down into smaller subproblems and storing the results of subproblems to avoid redundant computation.
+
+The state can be defined as dp[k][n], where k is the digit place (0-indexed) and n is the integer value. The base case is when n < 10^(k-1), since all integers less than that do not have a kth digit.
+
+dp[k][n] = (n % 10 == 1) + sum(dp[k-1][m] for m in range(0, n//10+1))
+
+Use bottom-up dynamic programming with two nested loops: one loop iterates over the integer values from 0 to n, and another loop iterates over the digit places from 0 to k.
+
+Initialize dp[0][n] for all n to 0, since there are no ones in single-digit numbers.
+
+===END PLAN===

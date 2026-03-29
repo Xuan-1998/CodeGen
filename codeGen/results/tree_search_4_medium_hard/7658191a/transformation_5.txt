@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D table dp[i][j] where i is the array index and j is the number of moves made, with no more than z moves to the left in a row.
+
+Define dp[i][0] as the maximum score that can be achieved up to the ith element if we have made 0 moves so far. Initialize it as the value at the ith index.
+
+For each move from 1 to k:
+
+* Calculate dp[i-1][j-1] as the maximum score achievable by moving left and making j-1 moves, considering no more than z moves to the left in a row.
+* Calculate dp[i+1][j-1] as the maximum score achievable by moving right and making j-1 moves, considering no more than z moves to the left in a row.
+* Update dp[i][j] as the maximum of these two scores plus the value at the ith index.
+
+Return dp[n-1][k] as the maximum score that can be achieved for the entire array.
+
+===END PLAN===

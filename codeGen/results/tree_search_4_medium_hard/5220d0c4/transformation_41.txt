@@ -1,0 +1,36 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. 
+Use memoization to store the beauty values for previously computed subproblems.
+
+State: maxBeauty[i][j] representing the maximum beauty value for the subarray from index i to j, where i <= j.
+maxBeauty[i][j] = max(maxBeauty[i][k-1] + Beauty[k][j], maxBeauty[i][k] + Beauty[k+1][j])
+
+Apply a recursive approach with memoization, defining a function that calculates the beauty value for a given subarray and stores it in a dictionary.
+
+function calculateBeauty(i, j):
+    if (i, j) in memo:
+        return memo[(i, j)]
+    
+    if i > j:
+        return 0
+    
+    max_val = 0
+    for k in range(i, j+1):
+        prime_divisor = get_min_prime_divisor(k)
+        beauty_value = 1 if is_good_prime(prime_divisor) else -1
+        val = calculateBeauty(i, k-1) + beauty_value
+        max_val = max(max_val, val)
+    
+    memo[(i, j)] = max_val
+    return max_val
+
+function get_min_prime_divisor(n):
+    # implement this function to find the minimum prime divisor of a number n
+    
+function is_good_prime(n):
+    # implement this function to check if a prime number n is good or bad
+    
+memo = {}
+
+maxBeauty[0][n-1] = calculateBeauty(0, n-1)
+return maxBeauty[0][n-1]

@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i] = (dp[i-1] or (exists j such that 0 <= j < i and dp[j] and d-j+1 <= k))
+
+Base case: dp[0] = True
+DP table with solutions to smaller subproblems:
+Create a 2D array where the first dimension represents the stone index and the second dimension represents the jump distance (k-1, k, or k+1).
+Fill up the table by checking if it's possible for the frog to reach the current stone from the previous stones.
+
+Updated version: 
+dp[i][j] = (i == 0) || ((i > 0) && (dp[i-1][j] || (exists j' such that 0 <= j' < i and dp[j'][j'-1] and d-j'+2 <= k)))
+
+Base case: dp[0][j] = True
+DP table with solutions to smaller subproblems:
+Create a 3D array where the first dimension represents the stone index, the second dimension represents the current jump distance, and the third dimension represents the previous jump distance.
+Fill up the table by checking if it's possible for the frog to reach the current stone from the previous stones.
+
+===END PLAN===

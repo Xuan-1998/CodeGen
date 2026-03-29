@@ -1,0 +1,36 @@
+
+1. Problem Analysis: The problem is about maximizing the points earned by selectively removing integers from a sequence along with their adjacent values. This can be approached using Dynamic Programming.
+2. State Expression: Let dp[x] be the maximum points that can be obtained considering all integers from 1 to x.
+
+3. Transition Relationship:
+   - If we take all instances of x, we gain x * count[x] points, and we cannot take x-1, so we add this to dp[x-2].
+   - If we skip x, we just take the result of dp[x-1].
+   - Therefore, the relation is: dp[x] = max(dp[x-1], dp[x-2] + x * count[x]).
+
+4. Initialization:
+   - dp[0] = 0 (no points can be earned from an empty sequence).
+   - dp[1] = count[1] (points earned by taking all instances of 1).
+
+5. Iteration:
+   - Iterate from 2 to the maximum value in the sequence (let's call it max_val).
+   - For each value x, update dp[x] using the transition relationship.
+
+6. Result:
+   - The result will be dp[max_val], which gives the maximum points that can be obtained.
+
+7. Edge Cases:
+   - If n = 1, the result is simply the value of the single element in the sequence.
+   - If all elements are the same, the result is the value of that element times its count.
+   - If elements are consecutive, the algorithm should correctly handle the removal of adjacent values.
+
+8. Complexity:
+   - Time Complexity: O(n + max_val), where max_val is the maximum value in the sequence.
+   - Space Complexity: O(max_val), for storing the dp array and count array.
+
+Steps:
+1. Read the input values.
+2. Count the frequency of each integer in the sequence.
+3. Initialize the dp array.
+4. Apply the transition relationship to fill the dp array.
+5. Output the result from dp[max_val].
+

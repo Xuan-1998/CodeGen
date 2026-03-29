@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+dp[i][j] represents the index of the winner when there are i players, and j people have coins in their hands.
+State: dp[i][j] = 1 if jth person survives after M rounds with i people; Transition: update dp[i+1][k] for k∈[0,i]
+
+To improve performance, sort the array of indices beforehand to minimize the number of comparisons needed during memoization. This can be done in O(X log X) time.
+
+Potential issues with the plan:
+- What if M is large? The function might need to handle a large range of values for j.
+- What if i is large? The function might need to handle a large range of values for i.
+- How do we ensure that the memoization works correctly?
+
+Edge cases:
+- What if M = 1? (Answer: It's still the same)
+- What if X = 1? (Answer: It's still the same)
+
+This plan should work well, but it might need some adjustments to handle edge cases and large values of M or i.
+===END PLAN===

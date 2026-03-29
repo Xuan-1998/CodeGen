@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+state: (s, p) where s is the remaining substring to be processed and p is the current partition, base case: if s == '', then return [[p]]
+Consider a state (s, p) where s is the remaining substring to be processed, p is the current partition, and memo is the dictionary storing all possible partitions for each substring; 
+Transition: if s can be split into two non-empty substrings t and u such that t is a palindrome and either u is a palindrome or empty, then update memo with (t, [p + [u]]) and recursively call the function on both t and the remaining part of s
+Use a 2D array to represent the dynamic programming table, where the first dimension represents the remaining substring length and the second dimension represents the current partition
+
+Transition: if s is a palindrome itself, then update memo with (s, [p + [s]]) and return [[p + [s]]]
+Initialize the dynamic programming table dp with all entries set to None
+Set up base cases for the empty string '', where dp[0][i] represents the list of palindromic partitions for the empty string
+dp[0][i] = [[[]]] if i == 0, otherwise None
+
+For each remaining substring length i and current partition j:
+    if dp[i-1][j] is not None, then recursively call the function on the first half of s and append the result to dp[i-1][j]
+    else, return None
+Return memo as a list of lists representing all possible palindromic partitions for the input string
+
+===END PLAN===

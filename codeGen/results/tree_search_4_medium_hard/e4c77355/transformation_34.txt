@@ -1,0 +1,12 @@
+Dynamic Programming:
+Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Consider the length of the longest increasing subsequence ending at each position in the array.
+Create a 1D table dp of size n+1 where each cell dp[i] represents the length of the longest increasing subsequence ending at index i.
+For the base case, initialize dp[0] to 0 since there is no longest increasing subsequence for an empty array.
+
+For each element in the array (from left to right), consider the maximum value seen so far in the array up to this index. If this value is greater than or equal to the current element, it means we can extend our current longest increasing subsequence by adding this new element.
+So, dp[i] = 1 + max(dp[j]) where j < i and arr[i] > arr[j].
+This way, we ensure that all possible subsequences ending at each position are considered.
+
+To handle edge cases, make sure to initialize the table with zeros or some other suitable value for empty subarrays.

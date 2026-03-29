@@ -1,0 +1,27 @@
+===BEGIN PLAN===
+The problem can be solved by using dynamic programming with a bottom-up approach, where we fill up a table in a systematic way.
+
+State expression could be dp[i][j] = number of ways to build an i-sequence using j upper and M-lower hemispheres.
+dp[i][j] = number of ways to build a sequence with i-1 spheres in total, using exactly j upper hemispheres and the current sphere is an upper hemisphere.
+
+We can initialize dp[0][0] as 1, since there's only one way to build an empty sequence. For all other cells, we'll calculate it based on previously computed values.
+
+Function to memoize: int dfs(int u, int m) {
+    if (u > C || m > M) return 0;
+    if (dp[u][m] != -1) return dp[u][m];
+    // logic to update dp[u][m]
+    int res = ...; // compute ways to build an i-sequence using u upper and m lower hemispheres
+    dp[u][m] = res;
+    return res;
+}
+
+For the base case, we can calculate the number of ways to build an X-sequence for the first C+1 values (0 to C).
+We then iterate over each test case:
+- Read N and M.
+- Initialize a 2D array dp with size C+1 by M+1 and fill it with -1 initially.
+- For each i from 1 to N, read U_i and update dp[U_i][M].
+- For each i from 1 to M, read L_i and update dp[C][i].
+
+Print the results in a single line for each test case.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be viewed as a 2D DP table where each cell represents the similarity score between two substrings. The optimal substructure is the longest common subsequence of two strings, which can be calculated using a 1D DP table.
+
+The state expression is dp[i][j] = 4 * len(lcs(A[0..i], B[0..j])) - (i + j), and the base case is when one of i or j is 0.
+
+dp[i][j] = max(dp[i-1][j-1] + (A[i-1] == B[j-1]), dp[i-1][j], dp[i][j-1])
+
+To implement memoization, use a dictionary to store and reuse previously computed values of the 2D DP table.
+
+For each pair of substrings, compute their LCS using the same 1D DP approach. Then calculate the similarity score based on the length of the LCS.
+
+Finally, iterate over all pairs of substrings, calculate their similarity scores, and keep track of the maximum score seen so far.
+
+===END PLAN===

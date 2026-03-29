@@ -1,0 +1,9 @@
+DP states can be defined as (i, j) where i is the current row index and j is the current column index. Memoization can be used to store intermediate results.
+
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+Create a 2D table dp of size (N+1) x (M+1), where dp[i][j] represents the minimum initial points required to reach cell (i, j). Initialize the first row and column with all zeros.
+
+for i in range(1, N+1):
+    for j in range(1, M+1):
+        if grid[i][j] > 0:
+            dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]

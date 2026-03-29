@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Top-down approach with memoization: Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a tuple (i, k) representing the current matrix being multiplied with k-1 matrices on its right, and the base case is when k == 1 (no more matrices to multiply).
+
+State: dp[i][k] representing the minimum number of multiplications needed to multiply all matrices from index i to k. Transition: consider two options: either include the current matrix in the multiplication chain or not. The minimum cost can be calculated using the memoized values and previously computed dp[i][k-1] values.
+
+dp[0][k] = 0; for k in range(1, n): 
+    dp[i][k] = float('inf'); 
+    for j in range(i+1, k+1):
+        dp[i][j] = min(dp[i][j], dp[i][j-1] + p[j-1]*p[j]*p[k]) 
+
+===END PLAN===

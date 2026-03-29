@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Dynamic programming table dp[][] where each cell represents whether a given substring is palindromic
+dp[i][j] = 1 if s[i..j] can be partitioned into two palindromes and one separator character (max 1 cut), 0 otherwise
+Initialize dp[][] with all False values, except for base cases: dp[i][i] = True for single characters and dp[0][n-1] = True for the whole string if it's a palindrome
+Fill in the table bottom-up:
+For each cell [i][j]:
+    Check if s[i..j] is palindromic (same characters when read forwards and backwards, ignoring separators)
+        If true, set dp[i][j] to 1
+        Else:
+            For each possible separator position k from i+1 to j-1:
+                Check if s[i..k] and s[k+1..j] are both palindromic
+                    If true, set dp[i][j] = 1 (found a cut)
+    Use memoization to store the results of expensive function calls and recompute only when necessary
+===END PLAN===

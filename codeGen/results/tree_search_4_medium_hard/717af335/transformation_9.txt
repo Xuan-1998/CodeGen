@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+We start by observing that X xor Y = B and X + Y = A. Since XOR is commutative (i.e., X xor Y = Y xor X), we can rewrite the equations as: 
+Y = A - X and X = (A - B) ^ 2
+
+Define a dynamic programming table dp[A+1][B+1] where dp[i][j] represents the smallest possible value of X such that i = X + Y and j = X xor Y. 
+
+Base case: when i = 0, we have i = X + Y = 0, which means X = 0. So, dp[0][j] = 0 for all j.
+
+For each cell dp[i][j], if i < j, then there's no solution because the sum of X and Y can't be less than the XOR of X and Y. If i >= j, we can consider two cases: 
+1) X is even: in this case, X = 2k for some integer k, so Y = A - 2k. Since j = X xor Y = 2k xor (A - 2k), if k is a solution then 2k is also a solution because the XOR operation is commutative and associative.
+2) X is odd: in this case, X = 2k + 1 for some integer k. So, Y = A - 2k - 1. Since j = X xor Y = (2k+1) xor (A-2k-1), if k is a solution then 2k+1 is also a solution.
+
+We fill the table dp[i][j] with the smallest possible value of X such that i = X + Y and j = X xor Y. Finally, we can return dp[A][B] as the result.
+===END PLAN===

@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+code block {
+  state dp[i][j] = (i == 0) ? (true if j == 0 || p[0] in a && p[0] not in b; false otherwise);
+  
+  for n from 1 to 2*000:
+    read permutation p of length 2n
+    initialize dp as 2D array where dp[i][j] represents whether there exist two arrays a and b such that merge(a, b) equals the permutation up to index i, with array a having length j
+    for i from 0 to 2n-1:
+      for j from 0 to n-1:
+        if i == 0:
+          dp[i][j] = (p[0] in [a_1, …, a_n] && p[0] not in [b_1, …, b_n]) || (j == 0)
+        else:
+          dp[i][j] = false
+          for k from j to n-1:
+            if p[i] in [a_1, …, a_k]:
+              dp[i][j] = or(dp[i-1][k], true) && p[i] not in [b_1, …, b_n]
+            else:
+              dp[i][j] = or(dp[i-1][k], false)
+          for k from j to n-1:
+            if p[i] in [b_1, …, b_k]:
+              dp[i][j] = and(dp[i-1][k], true) || p[i] not in [a_1, …, a_n]
+            else:
+              dp[i][j] = and(dp[i-1][k], false)
+    for i from 0 to 2n-1:
+      if not dp[i][n]:
+        print "NO"
+      else:
+        print "YES"
+}
+===END PLAN===

@@ -1,0 +1,17 @@
+
+===BEGIN PLAN===
+1. Define a 2D DP array `dp` where `dp[i][j]` represents the number of valid sequences of length `i` ending with the number `j`.
+2. Initialize the base case: `dp[0][j] = 1` for all `j` from 1 to N, as there is exactly one valid sequence of length 0 (the empty sequence).
+3. Iterate over the length of the sequence `i` from 1 to N.
+    a. For each length `i`, iterate over each possible ending number `j` from 1 to N.
+    b. Calculate `dp[i][j]` as the sum of `dp[i-1][k]` for all `k` from 1 to N such that:
+       - `k != j`
+       - The number of occurrences of `k` in the sequence up to length `i-1` is less than or equal to `A[k]`
+       - The number of occurrences of `j` in the sequence up to length `i` is less than or equal to `A[j]`
+4. Use a helper function to count the occurrences of each number in the sequence dynamically.
+5. The final answer is the sum of `dp[N][j]` for all `j` from 1 to N, modulo 998244353.
+6. Ensure to handle edge cases:
+    a. When `N = 1`, the sequence has only one element.
+    b. When all `A_i` are equal to 1, each number can appear at most once.
+===END PLAN===
+

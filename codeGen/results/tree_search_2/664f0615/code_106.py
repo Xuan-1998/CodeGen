@@ -1,4 +1,3 @@
-python
 initial_speed = int(input())
 final_speed = int(input())
 time = int(input())

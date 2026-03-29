@@ -1,0 +1,9 @@
+
+2. Bottom-up strategy with tabulation: This approach builds up the solution by solving smaller subproblems first and using their results to solve larger subproblems, typically using a table to store intermediate results. Time complexity: O(N^2), space complexity: O(N^2).
+2. State Expression: Let dp[i][j] be the number of sequences of length i where the maximum element is j. Base Case: dp[0][0] = 1, representing an empty sequence.
+2. Transition relationship: dp[i][j] = sum(dp[i-1][k] * (A[k] - count of k in the sequence)) for all k such that 1 ≤ k ≤ j. Base Case: dp[0][0] = 1.
+3. Iterate over the length of the sequence from 1 to N.
+4. For each length i, iterate over the maximum element j from 1 to N.
+5. Update dp[i][j] using the transition relationship.
+6. The final answer is the sum of dp[N][j] for all j from 1 to N, modulo 998244353.
+

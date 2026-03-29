@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array and bad prime numbers. Define a recursive function with memoization that calculates the maximum beauty achievable by performing operations on a subset of good prime numbers.
+
+Let dp[i][j] be the maximum beauty achieved using the first i elements of the array and the first j bad prime numbers. Then,
+
+dp[i][j] = max(dp[k][l-1] + f(gcd(a[k:i], b[l:j])) for k from 0 to i and l from 0 to j)
+
+This recursive function should be wrapped in a memoization decorator to avoid recalculating the same subproblems multiple times.
+
+Consider the current subset of good prime numbers and calculate the maximum beauty that can be achieved by performing operations on this subset. This is done by iterating over all possible subsets of the array and bad prime numbers, and for each subset, calculating the maximum beauty achievable by performing operations on that subset.
+
+Define a base case for the recursive function, where dp[0][j] = 0 for any j, since there are no elements in the array to process initially. Also, define a base case for dp[i][0], which is the same as the input array without any bad prime numbers, and we can calculate its beauty directly.
+
+===END PLAN===

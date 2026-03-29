@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The problem involves finding the number of good subsequences, which seems to be a function of the current element and the previous subsequence lengths. This suggests that memoization could be effective.
+
+State: Whether or not the subsequence ending at index i can be extended to include a[i]. 
+Base case: If i > 1, then this state is the same as the previous one because there are no subsequences that can be extended.
+
+dp[i][j] = whether subsequence of length j ending at index i can be extended to include a[i]. 
+Transition relationship: dp[i][j] = (i > 0 and a[i]%j == 0) or (dp[i-1][j-1] and a[i]%j == 0).
+
+State dp[i][k] for k from 2 to j:
+- Initialize dp[i][k] = false
+- If a[i]%k == 0, then dp[i][k] = true
+
+Memoize the state dp[i][j].
+
+The number of good subsequences ending at index i is the sum of dp[i][k] over all k from 1 to n.
+
+Calculate and return the total number of good subsequences modulo 10^9 + 7.
+===END PLAN===

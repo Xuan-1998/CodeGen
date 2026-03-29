@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+Identify that each subproblem (sequence length) has overlapping subproblems, so we can use dynamic programming to solve this problem efficiently.
+
+state: (x, y, prev_a), where prev_a is the last element in the sequence
+
+Design a recursive function with memoization by passing the current state as an argument:
+
+dp((x, y, prev_a)) = 
+    if x <= 0 or x > n:
+        return -1
+    elif prev_a == a_{n}:
+        # sequence becomes repetitive
+        return dp((1, 0, a_{n}))
+    else:
+        new_x = x + prev_a
+        new_y = y + prev_a
+        if new_x <= 0 or new_x > n:
+            return -1
+        return dp((new_x, new_y, prev_a))
+
+The base case is when the sequence becomes repetitive.
+
+Store and update memoization table accordingly:
+
+memo = {}
+
+Initialize the recursive function with initial state (1, 0, a_{2}):
+return dp((1, 0, a_{2}))
+
+===END PLAN===

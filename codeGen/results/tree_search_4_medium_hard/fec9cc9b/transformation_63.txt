@@ -1,0 +1,6 @@
+state[i][j] = max(state[i-1][k] for k in range(l, r+1) if state[i-1][k-1] > 0 or (state[i-1][k-1] == 0 and a[k-1] >= a[k]))
+
+state[0][i] = 0
+
+if query[i][0] <= j <= query[i][1]:
+    return "Yes" if state[num_queries][query[i][1]] > state[num_queries][query[i][0]] else "No"

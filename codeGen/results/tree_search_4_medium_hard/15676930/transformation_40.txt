@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use memoization by defining a recursive function that stores the results of subproblems in a dictionary, but it would be more efficient to use tabulation with a 2D array where each cell [i][j] represents the maximum joy for i hares and j full hares.
+
+The state could be a tuple (n, j) representing the number of remaining hares and full hares respectively, with the base case being when n == 0. The transition relationship would be defined as dp[n][j] = max(dp[n-1][k-1] + b_n if k == 0 else c_n if k+1 == j else a_n), where dp[n][j] represents the maximum joy for n hares and j full hares.
+
+To handle edge cases, we would initialize dp[0][j] = 0 for all j, since there are no remaining hares when n == 0. Then, we would fill up the 2D array in a bottom-up manner starting from the base case, using the transition relationship to calculate each cell.
+
+Finally, the maximum possible total joy would be dp[n][n], which represents the maximum joy for all hares and full hares.
+
+===END PLAN===

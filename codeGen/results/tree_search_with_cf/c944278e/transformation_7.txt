@@ -1,0 +1,11 @@
+
+1. Define a function to generate the initial sequence of integers from 1 to 2^n.
+2. Initialize a memoization table dp where dp[i][mask] represents the set of possible maximum values after processing the first i bits of the binary string s, given the bitmask mask.
+3. Base Case: For i = 0, initialize dp[0][mask] to the values directly determined by the initial elements in the sequence as per the bitmask.
+4. For each bit i in the binary string s:
+   a. If s[i] is '0', update dp[i][mask] by taking the minimum of each pair of elements from dp[i-1][mask].
+   b. If s[i] is '1', update dp[i][mask] by taking the maximum of each pair of elements from dp[i-1][mask].
+5. Iterate through all possible masks (subsets of elements) and update the dp table accordingly.
+6. After processing all bits, collect the possible maximum values from the dp table.
+7. Return the collected maximum values in ascending order as the final result.
+

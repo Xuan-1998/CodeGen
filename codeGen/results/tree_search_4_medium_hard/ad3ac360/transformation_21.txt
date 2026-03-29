@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Define a 2D array dp where dp[i][j] represents whether the substring from index i to j is palindromic.
+
+Create a function is_palindrome(s, i, j) that checks if the substring s[i...j] is palindromic.
+	* Base case: If the length of the substring is 1 or less, it's palindromic.
+	* Recursive case: Check if the first and last characters are equal. 
+		+ If they're not, it's not a palindrome.
+		+ If they are, recursively check the middle substring (i+1...j-1) for being palindromic.
+
+Create a function min_cuts(s) that calculates the minimum number of cuts required to partition the string into palindromic substrings.
+	* Initialize dp with all False values.
+	* Fill in dp in a bottom-up manner:
+		+ For each substring s[i...j]:
+			- If it's palindromic (according to is_palindrome), mark dp[i][j] as True.
+			- Otherwise, calculate the minimum number of cuts required for the substrings s[i+k...k+j-1] for k from 0 to j-i-1 and add 1.
+
+Return min_cuts(s) - 1 (because we don't count the last partition).
+===END PLAN===

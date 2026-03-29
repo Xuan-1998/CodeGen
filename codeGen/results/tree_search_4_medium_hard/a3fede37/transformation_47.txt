@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+Formulate a dynamic programming approach where you calculate the maximum sum of a path for each node, taking into account its children.
+
+Let dp[i] be the maximum sum of a path ending at the ith node. The base case is that the maximum sum of a path ending at an empty tree is 0.
+The transition function can be defined as follows: 
+- If both children are not part of a path, then the maximum sum of a path ending at this node is the value of the node itself.
+- If one or both children are part of a path, then the maximum sum of a path ending at this node is the maximum of:
+    - The value of the current node plus the maximum sum of a path ending at its left child and the right child (if they exist).
+    - The maximum sum of a path ending at the left child, or the right child.
+
+This base case and transition function can be implemented as follows:
+
+state dp: array[0..n-1]
+dp[0] = tree[0]
+
+for i from 1 to n-1
+    if 2*i+1 < n then
+        dp[i] = max(dp[2*i+1], dp[2*i+2]) + tree[i]
+    else if 2*i+2 < n then
+        dp[i] = dp[2*i+2] + tree[i]
+    else
+        dp[i] = tree[i]
+
+return max(dp)
+
+===END PLAN===

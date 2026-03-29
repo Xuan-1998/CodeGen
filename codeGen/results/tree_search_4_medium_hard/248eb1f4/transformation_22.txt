@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Memoization is more suitable as the function calls itself recursively in each step, and the value of each step only depends on the previous steps. Memoizing intermediate results would significantly improve performance by avoiding redundant computation.
+
+dp[i][j] represents the index of the winner when there are i players, and j people have coins in their hands.
+Define state variables as dp[0], ..., dp[X-1]; transition relationship is based on which player wins this round and the remaining players left.
+
+Memoize the winner index using a dictionary where keys are (M, i) tuples and values are the corresponding winner indices. The function would recursively calculate the winner for each number of players from 1 to X.
+
+The base case is when there's only one player left, which is trivially himself.
+
+To optimize the memoization process, we could pre-compute the winners for all possible M values up to a certain limit and store them in another dictionary. This way, when calculating the winner for a given M value, we can directly look it up instead of recalculating it.
+
+===END PLAN===

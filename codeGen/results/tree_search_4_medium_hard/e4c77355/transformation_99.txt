@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Dynamic Programming-based solution:
+Initialize dp array with size equal to the input array length, where dp[i] represents the length of the longest increasing subsequence ending at index i.
+
+Base case: If the array is empty (i.e., dp[0] = 0), return 0.
+Iterate through the array from left to right. For each element at position j:
+  1. Initialize max_length as 1, representing a single-element subsequence.
+  2. Iterate from i=0 to j-1; for each element at position i:
+    a. If the current element is greater than or equal to the previous one (i.e., a valid increasing sequence), update max_length to be the maximum of its current value and dp[i] + 1.
+    b. Otherwise, reset max_length to 1.
+  3. Update dp[j] as max_length.
+
+Memoization-based solution:
+Pre-compute and store the results of subproblems in a dictionary called memo, where memo[(i, j)] represents the length of the longest increasing subsequence from index i to j (inclusive).
+During calculation, retrieve previously computed values from memo as needed.
+This can help reduce the time complexity.
+
+Edge cases:
+  - Handle the case when the input array is empty. Return 0 in this scenario.
+  - Handle the case when the input array contains only one element. Return 1 in this scenario.
+
+===END PLAN===

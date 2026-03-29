@@ -1,0 +1,9 @@
+Dynamic programming: The problem can be solved using dynamic programming by defining a state that keeps track of the maximum amount of money earned for each group size and the minimum number of tables required to accommodate all groups with sizes up to the current group size. Then, use tabulation or memoization to fill in the states in bottom-up manner.
+
+The state expression is a 1D array dp[i] where dp[i] represents the maximum amount of money earned by accepting the first i booking requests.
+We will iterate over each booking request and for each request, we will update the maximum amount of money earned considering two options: either accept this request or reject it. If we accept the request, the maximum amount of money earned is the sum of the current amount and the amount from previous accepted requests with sizes less than or equal to the size of the current request. If we reject the request, the maximum amount of money earned remains the same as in the previous state.
+
+After filling up the dp array, we will iterate over the array in reverse order to find the optimal sequence of requests that maximizes the total amount of money earned.
+For each accepted request, we will also keep track of the table index where this group should be seated. This can be done by maintaining a 1D array seat[i] where seat[i] represents the table index for the i-th accepted request.
+
+The time complexity is O(nk) and the space complexity is O(k), where n is the number of booking requests and k is the maximum group size.

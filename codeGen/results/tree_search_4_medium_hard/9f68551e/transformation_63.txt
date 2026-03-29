@@ -1,0 +1,20 @@
+===
+DP Plan:
+\
+
+The state represents the minimum mana required to kill all monsters up until each monster's appearance time, considering the current monster's health and the previous damage.
+
+Base Case: When the monster's health equals its appearance time, no further action is needed. The base case value for this cell would be 0.
+
+Recurrence Relation:
+
+* If the current monster's health is greater than or equal to its appearance time, the minimum mana required is the same as the previous monster.
+* If the current monster's health is less than its appearance time, consider two options:
+	+ Cast a spell with damage equal to the previous monster's damage (previous damage + 1) and use that damage to kill the current monster. The minimum mana required would be the previous monster's value plus the current monster's health minus the current monster's appearance time.
+	+ Cast a spell with damage 1 and use that damage to kill the current monster. The minimum mana required would be the same as the previous monster.
+
+Initialize the DP table with 0s for all cells representing the base case (monster's health equals its appearance time).
+
+Fill in the DP table row by row, considering each monster's appearance time and health. For each cell, calculate the minimum mana required based on the recurrence relation.
+===
+

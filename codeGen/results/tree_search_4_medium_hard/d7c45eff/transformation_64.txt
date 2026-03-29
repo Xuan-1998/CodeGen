@@ -1,0 +1,10 @@
+{
+    Define states as tuples (prefix_length, last_char), where prefix_length is the length of the current prefix and last_char is the last character of the current prefix.
+    Initialize a dynamic programming table dp with dimensions (n+1) x 26 (for lowercase English letters), where dp[i][j] will store the lexicographically smallest string of length i that can be formed by either deleting the last character or duplicating the string, given that the last character is j.
+    Fill in the dynamic programming table accordingly:
+        - If prefix_length < k, consider all strings that can be formed by either deleting the last character (if it's equal to j) or duplicating the string. For each possibility, recursively fill in the dp table and take the lexicographically smallest one.
+        - If prefix_length == k, return the current prefix as the answer.
+    Implement memoization using a dictionary to store and retrieve previously computed values for subproblems.
+    Handle edge cases:
+        - When dealing with the last character of the original string, consider whether it's equal to the last character of the current prefix or not.
+}

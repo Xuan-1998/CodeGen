@@ -1,0 +1,12 @@
+
+1. Define a 2D DP table `dp[i][j]` where `dp[i][j]` represents the number of valid sequences of length `i` where the last element is `j`.
+2. Initialize the DP table: `dp[1][j]` should be 1 if `A[j-1] >= 1` (since each element can appear as the first element if it satisfies the condition).
+3. Iterate over the length of the sequence from 2 to N.
+4. For each length `i`, iterate over all possible last elements `j` from 1 to N.
+5. For each `j`, iterate over all possible previous elements `k` from 1 to N.
+6. Check if adding `j` to the sequence ending in `k` is valid by ensuring that the number of occurrences of `j` and `k` do not exceed `A[j-1]` and `A[k-1]` respectively.
+7. Use a memoization table to store the count of occurrences of each element in the sequence.
+8. Transition: `dp[i][j] += dp[i-1][k]` if the sequence remains valid.
+9. Sum up all values of `dp[N][j]` for `j` from 1 to N to get the final answer.
+10. Return the final answer modulo 998244353.
+

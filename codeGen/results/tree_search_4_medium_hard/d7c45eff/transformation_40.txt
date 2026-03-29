@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j] represents the lexicographically smallest string that can be formed by either deleting the last character of the original string s[:i] or duplicating the original string s[:i-1].
+Initially, dp[0][k] is equal to the kth character repeated k times.
+For i > 0 and j <= i, dp[i][j] is equal to the minimum between:
+    - Deleting the last character of s[:i] (dp[i-1][j]) if the last character of s[:i] is not less than the first j-1 characters of s[:i-1].
+    - Duplicating s[:i-1] (dp[i-1][j]) if the last character of s[:i] is less than or equal to the first j-1 characters of s[:i-1].
+If i > 0 and j > i, then dp[i][j] is equal to duplicating the smallest string that can be formed by either deleting the last character or duplicating s[:i-1], which is dp[i-1][i].
+The lexicographically smallest string of length k that can be formed by either deleting the last character or duplicating s is dp[n][k].
+
+Memoization can be used to avoid re-computing the same subproblems multiple times.
+
+===END PLAN===

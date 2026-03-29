@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+State: dp[i][j] is the maximum amount of gasoline that Nut can have at node i with j gas left.
+Base case: dp[0][w_i] = w_i for each city i, where w_i is the initial amount of gas available in city i.
+
+Recursive relation: For each road (u, v, c) connecting cities u and v, update dp[v][k] for k in range(dp[u][c], 0]:
+    - If there's enough gas to drive from node u to node v (i.e., k >= c), then Nut can reach city v with k - c gas left.
+    - Otherwise, the maximum amount of gasoline that Nut can have at city v is dp[u][k-c].
+Store the updated values in a 2D array dp.
+
+Edge cases: Handle special cases where Nut starts from city i and there are no roads connecting city i to any other cities. In this case, return w_i.
+
+Return the maximum value in dp[n-1][] as the answer.
+===END PLAN===

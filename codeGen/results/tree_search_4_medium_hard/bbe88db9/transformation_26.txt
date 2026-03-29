@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+The transition relationship could be defined based on the portal rules: if the ceiling has an odd number of crosses, take the second portal; otherwise, take the first one. We can use this rule to define a recurrence relation that depends only on the current state.
+
+The state expression could be a triple (i, x, y), where i is the room number, x is the number of crosses on the ceiling, and y is 0 or 1 representing which portal was taken last time. This captures all the necessary information to make the decision for the next step.
+
+Transition: If crosses % 2 == 1, use second portal; otherwise, use first one. This rule determines the next room Vasya will be in based on the current room and the number of crosses on the ceiling.
+Dynamic Programming with a 3D table to store (i, x, y) states and compute dp[i][x][y] for each state.
+
+The base case would be when i == n+1, return 0 because Vasya is already out of the maze.
+
+The recurrence relation would be: 
+dp[i][x][1] = min(dp[p][x-1][0], dp[p][x][1]) + 1 (if second portal was taken last time)
+dp[i][x][0] = min(dp[p][x-2][1], dp[p][x][0]) + 1 (if first portal was taken last time)
+
+The main function would be: 
+res = 0
+for x in range(n+1):
+    for y in [0, 1]:
+        if i == n+1:
+            res = min(res, dp[i][x][y])
+        else:
+            dp[i][x][0] = min(dp[p][x-2][1], dp[p][x][0]) + 1
+            dp[i][x][1] = min(dp[p][x-1][0], dp[p][x][1]) + 1
+return res % (10^9 + 7)

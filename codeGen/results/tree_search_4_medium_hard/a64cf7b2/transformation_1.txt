@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Use a bottom-up approach with dynamic programming to solve this problem by building up a solution from vertex 1 to vertex n.
+
+Define the state expression as (i, j), where i is the current vertex and j is the maximum number of vertices that can be visited starting from vertex i and ending at vertex n within time limit j.
+
+Initialize an array dp with n+1 rows, each row having T+1 columns. Initialize all values in dp to 0.
+
+For each edge (u, v, t) in the graph:
+    If it's possible to traverse the edge from vertex u to vertex v within the remaining time t, update dp[v][t] as max(dp[v][t], dp[u][t-t]) + 1.
+    Else, keep dp[v][t] unchanged.
+
+Return dp[n][T].
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+\
+
+dp = {}  # dynamic programming dictionary
+n = int(input())  # number of monsters
+for _ in range(n):
+    k, h = map(int, input().split())  # monster appearance time and health
+    for i in range(k+1):
+        if i not in dp:
+            dp[i] = min(dp.get(i-1, float('inf')), max(h - (i-h), 0)) + 1
+        else:
+            dp[i] += 1
+
+print(max(dp.values()))  # maximum mana required to kill all monsters
+===END PLAN===

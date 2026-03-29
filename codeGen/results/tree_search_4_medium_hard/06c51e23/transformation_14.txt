@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Since we need to maximize the grade, consider using a top-down dynamic programming approach with memoization. We can define a state as the maximum possible grade that can be obtained for a given decimal fraction of length i within time limit t.
+
+Let dp[i] be the maximum possible grade that can be obtained for a decimal fraction of length i within time limit t. Then, we have:
+
+dp[0] = 0
+For i > 0:
+    dp[i] = max(dp[i-1], dp[i-1] + max(0, 10 - (t % 10)))
+
+This approach ensures that the maximum possible grade is computed efficiently.
+
+Transition relationship: dp[i] = max(dp[i-1], dp[i-1] + max(0, 10 - (t % 10)))
+where t % 10 is the remaining time in seconds after processing the current digit. If the remaining time is less than or equal to 9 seconds, we can round the current digit without exceeding the time limit.
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The state expression is a tuple (i, j) representing the current index i in the board string and the number of balls of the same color as the last ball inserted at position j.
+
+The dynamic programming table stores the minimum number of moves needed to remove all balls starting from that position. 
+
+We initialize a dictionary dp with default value -1 for each cell (i, j), where 0 ≤ i < len(board) and 0 ≤ j < 6 (assuming max 5 colors). This is because we don't know the minimum number of moves yet.
+
+For the base case, if the current ball in the board string matches the color of the last ball inserted (j > 0), then dp[i][j] = dp[i-1][k], where k is the index of the last ball inserted. This is because we can remove all balls by not inserting any more.
+
+For the recursive case, if the current ball in the board string does not match the color of the last ball inserted (j == 0), then we try to insert a ball at this position and calculate dp[i-1][k] for each possible k. We update dp[i][0] as the minimum of these values plus 1.
+
+To find the minimum number of moves needed to remove all balls, we start from the last index i = len(board) - 1 and j = 5. If the value is still -1, it means it's impossible to remove all balls, so we return -1. Otherwise, we update dp[i][j] as the minimum number of moves needed.
+
+===END PLAN===

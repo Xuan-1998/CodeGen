@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+Define the state expression as dp[u][v][p][s] = minimum possible product of integers on path from node u to node v when the sum of integers equals p and number of 1s is at most s.
+
+To initialize dp array, set dp[i][j][k][l] = ∞ for all i, j, k, l. For each edge (u, v), update dp[u][v][f(u, v)][count(1's)] by considering the minimum product of numbers on path from u to v when sum equals f(u, v) and number of 1s is at most count(1's).
+
+For each node i, iterate over its neighbors j, and calculate the number of 1s and the product of numbers on the path from i to j. Update dp[i][j] using the minimum possible product.
+
+To get the maximum distribution index, sum up all values in dp array and print it modulo 10^9 + 7.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+dp[i][j] = 0 for i in range(n+1), j in range(k+1)
+for i in range(1, n+1):
+    for j in range(min(i, k)+1):
+        dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + min(pi * ri, ci * min(k, ri))
+result = 0
+accepted_requests = 0
+total_money_earned = 0
+for i in range(n, 0, -1):
+    for j in range(min(i, k)+1):
+        if dp[i][j] > total_money_earned:
+            accepted_requests = i
+            total_money_earned = dp[i][j]
+print(accepted_requests, total_money_earned)
+for i in range(accepted_requests, 0, -1):
+    for j in range(min(i, k)+1):
+        if dp[i][j] == total_money_earned:
+            print(i, j)

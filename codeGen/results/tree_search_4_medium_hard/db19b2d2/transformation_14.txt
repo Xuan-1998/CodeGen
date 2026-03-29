@@ -1,0 +1,22 @@
+===BEGIN PLAN===
+Consider using a dynamic programming approach where the state represents the number of players from the department of interest, and the transitions represent the addition of new players to the team. This could be solved using bottom-up tabulation.
+
+Let dp1[i] be the probability that the i-th player in the randomly formed team is from the department of interest, and let dp2[i] be the probability that the i-th player in the randomly formed team has at least one player from the department of interest. Then use the following recurrence relations:
+
+dp1[0] = 0
+for i > 0:
+    if s[i-1] <= h:
+        dp1[i] = dp1[i-1] + (s[i-1] == h) * (1 - sum(dp1[j] for j in range(i)))
+    else:
+        dp1[i] = dp1[i-1]
+dp2[0] = 0
+for i > 0:
+    if s[i-1] <= h:
+        dp2[i] = max(dp2[i-1], dp1[i])
+    else:
+        dp2[i] = dp2[i-1]
+
+The probability that a randomly formed team will have at least one player from the department of interest is then given by 1 - dp2[n].
+
+This plan includes all edge cases. For example, if there are not enough basketball players in the university to form a team, the output will be -1 because no team can be formed.
+===END PLAN===

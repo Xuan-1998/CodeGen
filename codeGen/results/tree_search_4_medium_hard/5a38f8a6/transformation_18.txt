@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The problem has optimal substructure because the solution to the larger problem (n) is constructed from the solutions of smaller problems (i.e., the perfect squares that sum up to n).
+
+Consider a base case: dp[0] = 1, not 0, because there's one way to represent 0 as the sum of perfect squares - namely, 0 itself.
+
+dp[i] represents the minimum number of perfect squares that sum up to i. To compute this, we iterate from j=1 to sqrt(i) and consider the cases where i is a perfect square or not:
+
+- If i is a perfect square, dp[i] = 1
+- Otherwise, dp[i] = min(dp[j] + 1) for j in range(sqrt(i)) such that j*j <= i. This is because we can represent i as the sum of one perfect square (j*j) and some smaller number k, where k < i.
+
+Use memoization with top-down approach to store the results of subproblems and avoid redundant computation.
+
+===END PLAN===

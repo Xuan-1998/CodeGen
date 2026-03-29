@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+
+State:
+    dp[i]: the number of arrays with bitwise AND less than bitwise XOR up to index i
+    and whether it's possible to change the ith element to increase bitwise AND without decreasing bitwise XOR; 
+    Base Case: False when i < 0
+
+State:
+    store the count of arrays satisfying the condition up to index i;
+Transition:
+    update this state by considering each possible value of the ith element and counting the arrays that satisfy the condition after its inclusion.
+Determine the maximum bitwise AND for all elements less than 2^k and store it in a variable max_and, 
+then calculate the number of ways to achieve this max_and using dynamic programming.
+
+    for i from k-1 down to 0:
+        if (1 << i) & max_and > 0:
+            max_and = max_and ^ (1 << i)
+            dp[i] = sum(dp[j] for j in range(i)) + 1
+        else:
+            max_and = max_and & ((1 << i) - 1)
+            dp[i] = sum(dp[j] for j in range(i))
+    return dp[0] % (10**9+7)
+
+===END PLAN===

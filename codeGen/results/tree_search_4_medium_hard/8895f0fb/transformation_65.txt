@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 1D array to keep track of the cumulative sum of carries.
+
+state: dp[i] = expected number of non-zero carries when adding A and B both having i digits.
+
+dp[0] = 0 (base case)
+
+for i from 1 to N:
+    for j from 0 to i:
+        if j == 0 or j == i:
+            dp[i] += carry_prob * 10^(N-i)
+        else:
+            dp[i] += dp[j-1][i-j] + (carry_prob * 10^(N-i))
+
+Use a 1D array dp of size N+1 to keep track of the cumulative sum of carries at each digit position, then calculate the expected value based on this array.
+
+Expected value = Σ(dp[i] / (2^N)) for i from 0 to N
+
+===END PLAN===

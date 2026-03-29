@@ -1,0 +1,11 @@
+
+1. Define a 2D list dp where dp[n][i] represents the number of ways to pass the ball exactly n times such that the i-th player has the ball at the end.
+2. Initialize the base case: dp[0][0] = 1, which means that with 0 passes, the only way for the 0-th player to have the ball is the initial state. For all other players, dp[0][j] = 0 for j > 0, since no passes have been made yet.
+3. Use a nested loop to fill the dp table:
+   - Outer loop for the number of passes n from 1 to N.
+   - Inner loop for the current player i from 0 to K.
+   - For each dp[n][i], calculate the sum of dp[n-1][j] for all j != i. This means that the number of ways to end up with the ball at player i after n passes is the sum of all the ways to end up with the ball at any other player j after n-1 passes.
+4. Since the result can be large, take modulo 1000000007 at each step to ensure that the values do not overflow.
+5. After filling the dp table, the final answer for each test case is dp[N][P], where P is the particular player who should receive the ball last.
+6. Read input values for T, N, and K. For each test case, initialize the dp table and compute the result using the above steps. Print the result for each test case.
+

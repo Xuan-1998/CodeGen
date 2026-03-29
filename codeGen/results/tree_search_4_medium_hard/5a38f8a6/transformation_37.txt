@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is (i, j), where (i, j) represents the minimum number of perfect squares that sum up to i with the last square being j^2. However, this approach doesn't seem necessary as we can use a 1D array and avoid unnecessary computation.
+
+Instead, use a 1D array dp to store the minimum number of perfect squares that sum up to each value from 0 to n.
+The transition relationship is: dp[i] = min(dp[i], dp[i-j^2] + 1) for j from 0 to sqrt(i), where j^2 <= i.
+
+Initialize dp with all values as infinity except dp[0] = 0, since it takes 0 perfect squares to sum up to 0.
+Fill up the dp array in a bottom-up manner, and finally return dp[n].
+===END PLAN===

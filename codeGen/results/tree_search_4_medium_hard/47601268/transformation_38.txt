@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+dp_base_case
+Recognize that the problem can be solved by iterating over all numbers less than or equal to n, checking if their binary representation contains consecutive ones, and incrementing a counter for each number that does not contain consecutive ones. This approach is similar to memoization but uses iteration instead of recursion.
+
+Create a 2D table dp where dp[i][j] is True if the binary representation of i up to j bits does not have consecutive ones. Then, fill up the table using bottom-up dynamic programming as follows:
+
+* Initialize dp[0][0] = True because there are no consecutive ones in the binary representation of 0 with 0 bits.
+* For each number i from 1 to n:
+	+ Iterate over all j from 0 to ceil(log2(i)) (where ceil is the ceiling function):
+		- If the jth bit of i's binary representation is 0, then dp[i][j] = True because there are no consecutive ones.
+		- If the jth bit of i's binary representation is 1 and it does not have a consecutive 1 in its previous bits, then dp[i][j] = True.
+		- Otherwise, dp[i][j] = False.
+* Count the numbers whose binary representation does not contain consecutive ones by summing up all dp[i][ceil(log2(i))] where i ranges from 0 to n.
+
+===END PLAN===

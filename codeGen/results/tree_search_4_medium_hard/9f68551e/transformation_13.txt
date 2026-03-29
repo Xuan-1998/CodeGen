@@ -1,0 +1,7 @@
+\ 
+The state can be defined as dp[i][j] = minimum mana required to kill i monsters with j seconds left, where 1 <= i <= n and 0 <= j <= k_n. The base case is when i == n, meaning all monsters are killed, so dp[i][j] = 0 for all j.
+
+dp[0][j] = j + 1 if j > 0 else 0 (initialization of the first row)
+
+for i from 1 to n:
+    dp[i][j] = min(dp[i-1][max(0, j-k_i)+1] + h_i, dp[i][j]) if j >= k_i else dp[i][j]

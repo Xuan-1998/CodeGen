@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array, where each subproblem is defined by a subset of numbers and a set of bad prime numbers. Use top-down approach with memoization to solve this problem.
+
+Define dp[i][j] as the maximum beauty that can be achieved for an array of size i and including j elements. The base case is when there are no more operations left, in which case the beauty is the sum of all remaining integers.
+
+dp[i][j] = max( 
+    (dp[k][l-1] + f(gcd(...))) 
+    for k from 0 to i and l from j down to 0 
+) where gcd(...) represents the greatest common divisor of all numbers in the subset.
+
+Represent the array as a sequence of bit strings, where each bit corresponds to whether an element is included in the current subset or not. Define states based on these bit strings and formulate transition relationships between them.
+
+Implement a recursive function with memoization using a dictionary or array. The base case is when there are no more operations left, in which case return the sum of all remaining integers.
+
+Store intermediate results in dp[i][j] to avoid redundant computations. This can be done by initializing a 2D array dp of size (i+1) x (j+1), and filling it up as you go along.
+
+===END PLAN===

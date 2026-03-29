@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+dp[i][j] = min(dp[i-1][j], dp[i-1][j-1]) if i > 0 and j <= n
+    - If deleting the last character of s[:i] results in a string with exactly j characters, 
+      then the lexicographically smallest string is either dp[i-1][j] (which is the lexicographically 
+      smallest string that can be obtained from s[:i-1] with exactly j characters) or 
+      dp[i-1][j-1] (which is the lexicographically smallest string that can be obtained from 
+      s[:i-2] with exactly j-1 characters). We take the minimum of these two strings.
+dp[i][j] = s[:i] if i == n and k <= n
+    - If the original string s has been fully processed (i.e., i == n), then we simply consider 
+      strings that can be obtained by duplicating s. Since this is a lexicographically smallest 
+      string, it will always be the optimal choice.
+dp[i][j] = s[:i-1] + s[-1] if i > 0 and j == k
+    - If we have processed all of the original string (i.e., i == n), then we only consider 
+      strings that can be obtained by duplicating or deleting characters. Since we are trying 
+      to find a lexicographically smallest string with exactly k characters, we take the last 
+      character of s and add it to the string that would have been formed if we had not deleted 
+      this character. This is because adding the last character will always result in a larger 
+      string.
+use a bottom-up dynamic programming approach to fill up the dp table in reverse order
+    - Start by initializing dp[n][k] = s. Then, for each i from n-1 down to 0 and for each j 
+      from k-1 down to 0, calculate dp[i][j] based on the values of dp[i-1][j], dp[i-1][j-1], 
+      and s[:i]. This will give us the lexicographically smallest string that can be obtained 
+      by either deleting or duplicating characters.
+fill up the dp table in reverse order
+    - Start with j = k. For each i from 0 to n, calculate dp[i][j] based on the values of 
+      dp[i-1][j], dp[i-1][j-1], and s[:i].
+return dp[0][k]
+    - This will be the lexicographically smallest string that can be obtained by either deleting 
+      or duplicating characters from the original string.
+===END PLAN===

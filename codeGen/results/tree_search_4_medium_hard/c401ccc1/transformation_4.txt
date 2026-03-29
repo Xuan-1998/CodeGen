@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The graph can be viewed as a sequence of bits, where each bit represents whether there's an edge from one vertex to another. Use this insight to formulate the dynamic programming problem.
+
+Define the state as: dp[i] = whether there is a path from i to 0 (since all vertices are connected by edges). Base case: dp[0] is always true.
+
+dp[i] = i == 0 || any(dp[u] for u in range(i.bit_length()) if not (i & (1 << u)));
+
+Create a 2D array where dp[i][j] represents whether there's a path from i to j, and update it using bitwise operations. Update the state as:
+
+dp[i][j] = i == j || any(dp[k][j] for k in range(i.bit_length()) if not (i & (1 << k)));
+
+Return "YES" if dp[u][v] is true for any query (u, v), and "NO" otherwise.
+===END PLAN===

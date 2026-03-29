@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is (i, j), where (i, j) represents the minimum number of perfect squares that sum up to i with the last square being j^2.
+The transition relationship would be: dp[i] = min(dp[j] + 1, j in range(1, int(i**0.5) + 1))
+dp[0] is set as 0 since there's no need for any perfect squares to sum up to 0
+Applying dynamic programming by initializing dp with all values equal to infinity, then iteratively updating the values based on the transition relationship
+For each i from 1 to n: 
+    For j from 1 to int(i**0.5) + 1:
+        if i >= j^2:
+            dp[i] = min(dp[i], dp[i - j^2] + 1)
+===END PLAN===

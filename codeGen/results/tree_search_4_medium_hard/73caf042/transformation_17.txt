@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, we can define a 2D array dp where dp[i][j] represents the total number of diamonds in the first i rows and the first j columns. The optimal substructure is that the total number of diamonds in the first i rows and the first j columns depends on the total number of diamonds in the first (i-1)th row and the first (j-1)th column, as well as the sum of even digits and odd digits in the current room number. We can use tabulation to fill up the dp array from top to bottom and left to right.
+
+dp[i][j] is the sum of the absolute differences between the sums of even digits and odd digits in all room numbers from (1, 1) to (i, j).
+
+The state dp[i][j] depends on the states dp[i-1][j] and dp[i][j-1], as well as the number of diamonds in the current room.
+
+Use a function that takes two parameters (i and j) and returns the total number of diamonds in the first i rows and the first j columns. We can then calculate this function by considering all possible values of i and j.
+
+The time complexity is O(n^2), where n is the size of the grid, because we need to fill up the dp array.
+
+The space complexity is also O(n^2) for the same reason.
+
+===END PLAN===

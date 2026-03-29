@@ -1,0 +1,22 @@
+Initialize dp = {}
+For i from 0 to len(S) - 1:
+    For j from 0 to i:
+        If S[j] == S[i]:
+            dp[(j, i)] = True
+        Else:
+            dp[(j, i)] = False
+
+Function get_palindromic_partitions(S):
+    partitions = []
+    for i in range(len(S)):
+        for j in range(i + 1):
+            if dp.get((j, i), False):
+                partition = [S[j:i+1]]
+                for k in range(i - 1, -1, -1):
+                    if S[k] == S[i]:
+                        partition.insert(0, S[k:i+1])
+                    else:
+                        break
+                partitions.append(partition)
+    return partitions
+

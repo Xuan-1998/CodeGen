@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem has optimal substructure: The minimum total cost required to sort the strings in lexicographical order can be decomposed into solving smaller instances of the same problem, with the solution to each instance used as a step towards the solution of the larger instance. This property makes top-down approach with memoization suitable for this problem.
+
+The state is an integer i representing the number of strings sorted so far, and the base case is when i == n
+
+To define a DP array dp where each entry dp[i] represents the minimum total cost to sort the first i strings in lexicographical order, with the initial condition being dp[0] = 0
+
+The recursive function should take two parameters: i and prev, representing the current number of strings sorted and the previous string (to decide whether to reverse or not), respectively. The base case is when i == n.
+
+Implement a recursive function without memoization and optimize it using iterative approach.
+
+To fill up dp array iteratively, start from i = 1 and for each i, calculate dp[i] as min(dp[i-1], cost_to_reverse[i-1] + dp[prev]) where cost_to_reverse[i-1] is the cost to reverse the string at index i-1, and prev is the previous string that is already sorted.
+
+For edge cases: If n == 0 or any string's length exceeds 100000, return -1
+
+===END PLAN===

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Observe that the optimal capital city would be the one with the maximum in-degree, which can be found by simply iterating through each city and keeping track of its in-degree.
+
+The state expression is dp[i][j] = minimum number of reversed roads needed to reach city j from city i, with base case being dp[1][i] = 0 for all i. This choice focuses on finding the minimum number of reversed roads for each pair of cities.
+
+dp[i][j] is updated as min(dp[k][j] + 1) where k is such that there's an edge from city i to city k.
+
+To improve the plan, we can use a bottom-up dynamic programming approach. Initialize dp with n rows and n columns, filled with infinity values except for the base case. Then, update each cell in a top-down manner according to the transition function.
+
+We can also optimize the plan by using a more efficient data structure than a dictionary memo. Since the number of cities is bounded by 2^20, we can use a 2D array instead.
+
+The plan does not explicitly mention edge cases, but it seems to be robust enough for this problem.
+
+Here's the updated version:
+===END PLAN===

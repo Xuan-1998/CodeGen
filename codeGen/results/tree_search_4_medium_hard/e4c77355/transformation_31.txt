@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Dynamic Programming: Define a recursive relation between subproblems, then use memoization to store computed results.
+
+Define a 2D table dp[i][j] where i is the index and j is the length of the longest increasing subsequence ending at that position. Initialize it with all values being 1 because the shortest possible increasing subsequence is always one element long.
+
+For each index i, iterate over all elements less than or equal to arr[i]. For each such element x, update dp[i][j] if j+1 is greater than dp[k][j-1] where k is the index of x. This ensures that we consider all possible increasing subsequences ending at position i.
+
+Use memoization to store computed results in the table and avoid redundant computation.
+
+Finally, return the maximum value in the last column of the table which represents the length of the longest increasing subsequence.
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Define a state as the maximum length of non-increasing sequence seen so far in the current subsegment. Initialize dp[0][j] = 0 for all j.
+
+Top-down approach with memoization:
+1. For each query (l, r):
+    - Iterate through the array from l to r.
+    - Update dp[i][j] as follows: 
+        if a[i-1] <= a[i]:
+            dp[i][j] = max(dp[i-1][k-1] for k in range(l, i+1) if a[k-1] <= a[k]) + 1
+        else:
+            dp[i][j] = max(0, dp[i-1][j])
+    - Check if the current subsegment is a ladder: 
+        s = last index where a[i-1] <= a[i]
+        t = first index where a[t] >= a[t+1]
+        If s+1 to t-1 has a non-decreasing sequence, return "Yes". Otherwise, return "No".
+===END PLAN===

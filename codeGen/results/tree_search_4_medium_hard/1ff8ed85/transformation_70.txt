@@ -1,0 +1,13 @@
+def can_send_b(i, p):
+    if i >= n:
+        return True
+    if (i, p) in dp:
+        return dp[(i, p)]
+    ans = False
+    for a_len in range(1, min(p + 1, n - i)):
+        for val in range(min(b[i], a_len), max(b[i] + 1, a_len) + 1):
+            if (i + a_len, p + [val]) and can_send_b(i + a_len, p + [val]):
+                ans = True
+                break
+    dp[(i, p)] = ans
+    return ans

@@ -1,0 +1,7 @@
+A bottom-up tabulation approach could work by iterating through the board from left to right and keeping track of the minimum number of moves needed to remove all balls at each position. The state expression would be (i, hand) where i is the current position in the board and hand is the list of available ball colors in hand.
+
+The transition relationships would be defined based on whether it's possible to remove all the balls by inserting a ball of the same color or not. For example, if there are three or more balls of the same color touching, they can be removed. If there are less than three balls of the same color touching, a ball of that color cannot be inserted.
+
+The base case would be when there are no more balls to remove or you have used up all your available balls. In this case, if there are still balls remaining on the board, it's not possible to remove them and we return -1 as the minimum number of moves needed.
+
+To memoize this function, we could use a dictionary where the key is the current state (i, hand) and the value is the minimum number of moves needed to remove all balls at that position. This would allow us to avoid recalculating the same states multiple times and significantly improve the efficiency of the function.

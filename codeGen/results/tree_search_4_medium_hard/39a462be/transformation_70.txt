@@ -1,0 +1,25 @@
+state_expression = (i, j, k) where i is the current index for string A, 
+                          j is the current index for string B, and 
+                          k is the number of common characters found so far; 
+
+The base case is when there are no more common characters to find, at which point 
+the maximum similarity score is 4 times the length of the common characters minus 
+the total lengths of the strings.
+
+i, j
+Use memoization to cache the results of expensive function calls and avoid 
+redundant computations.
+
+Build a suffix tree for both strings A and B using Ukkonen's algorithm or 
+the Suffix Tree Construction Algorithm by Weiner. This will help in efficiently 
+finding common substrings between the two strings.
+
+Calculate the similarity score based on the number of nodes at the same level 
+in the suffix trees. This can be done by iterating through the levels of the 
+suffix trees and comparing the nodes at each level. For each pair of nodes, if 
+they are the same then increment a counter for that level.
+
+The maximum similarity score will be 4 times the length of the longest common 
+subsequence minus the total lengths of the strings.
+
+Return the maximum similarity score as the final answer.

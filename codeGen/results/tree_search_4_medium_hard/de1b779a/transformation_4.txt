@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types.
+
+dp[0][j] = 0 for all j (base case when there's no dough left)
+dp[i][0] = d0 for all i (base case when there are no stuffing types left)
+
+The state could be dp[i][j] = (profit, i-remaining_dough, j-stuffing_types) where the profit is the maximum value we can get with i dough and j stuffing types.
+
+Transition relationships:
+1. Make a bun without any stuffing: dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + d0
+2. Make a bun with the current stuffing type: if ai > 0, dp[i][j] = max(dp[i-ci][j-1], dp[i-ci][j]) + di
+
+Memoization using a dictionary to store previously computed results.
+
+dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types when making buns with different stuffings or without any stuffing.
+
+===END PLAN===

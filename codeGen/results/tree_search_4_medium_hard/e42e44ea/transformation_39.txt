@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+DP states can be defined as (points, i, j) where points is the current sum of points and i, j are the current row and column indices respectively.
+
+The state transition function can be written as:
+
+dp[i][j] = min(dp.get((i-1, j), 0) + grid[i][j], dp.get((i, j-1), 0) + grid[i][j])
+
+This calculates the minimum points required to reach the cell at row i, column j by considering the points required to reach the cell above it (i-1, j) plus the points in that cell and the points required to reach the cell to its left (i, j-1) plus the points in that cell.
+
+The base case is when i or j is 0, in which case dp[i][j] = 0 because there are no cells above or to the left to consider.
+
+Use a 2D array for memoization where each cell dp[i][j] represents the minimum points required to reach the cell at row i, column j.
+
+The final answer can be calculated as dp[N-1][M-1], which is the minimum points required to reach the bottom-right cell.
+===END PLAN===

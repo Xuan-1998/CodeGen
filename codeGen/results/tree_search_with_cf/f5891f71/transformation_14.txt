@@ -1,0 +1,19 @@
+
+1. Define the problem in terms of Dynamic Programming. Let dp[i] be the maximum possible value of the remaining element when considering the subarray from the start up to the i-th element.
+
+2. Initialize the dp array. Set dp[0] = arr[0] since the first element has no previous element to combine with.
+
+3. Iterate through the array from the second element to the last element (i.e., from i = 1 to n-1).
+
+4. For each element arr[i], update dp[i] using the transition relationship:
+   dp[i] = max(dp[i-1] - arr[i], dp[i-1])
+
+5. The final answer will be the last element in the dp array, dp[n-1], which represents the maximum possible value of the remaining element after performing all operations.
+
+6. Consider edge cases:
+   - If the array has only one element (n = 1), the result is the element itself.
+   - Handle cases with negative and positive numbers to ensure the maximum value is correctly calculated.
+   
+Time Complexity: O(n)
+Space Complexity: O(n)
+

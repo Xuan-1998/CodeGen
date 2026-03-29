@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Consider the sequences where the length of each segment in sequence $a$ is strictly increasing.
+
+State: (n, prev_val) where n is the current length of sequence b and prev_val is the previous value in sequence b.
+
+Memoization:
+Maintain a 1D memoization dictionary memo to store the values of the dynamic programming table, and update it accordingly as you fill up the table.
+
+Memoization rules:
+- If (n, 0) exists in memo, return True
+- If (n, prev_val) exists in memo and prev_val is valid for sequence b, return memo[(n, prev_val)]
+- Calculate dp_value based on previous values in memo and check if it's a valid combination to get sequence b
+- Store dp_value in memo and update the result
+
+Base case:
+If n == 0, return True (empty sequence can be obtained)
+
+Main function:
+For each test case:
+    For each value in sequence b:
+        Initialize dp_value = 1 and prev_val = 0
+        Perform dynamic programming until n reaches 0
+        If final dp_value is valid for sequence b, print YES; otherwise, print NO
+
+===END PLAN===

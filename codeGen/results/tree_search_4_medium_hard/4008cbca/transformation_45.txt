@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Another approach could be to use a bottom-up DP where the state expression is the current board configuration, and the dynamic programming table stores the minimum number of moves needed to remove all balls starting from that configuration.
+
+The state expression is a tuple (board_state, hand_state) where board_state is the current state of the board and hand_state is the remaining number of balls in hand. The base case is when there are no more balls left on the board or in hand.
+
+Consider each possible next move: insert a ball at an empty space, remove three consecutive same-colored balls from the board if possible, or end the game if all balls have been removed.
+
+Memoization can be used by defining a function that takes in the current state and returns the minimum number of moves needed to remove all balls. This function recursively calls itself for each possible next move until it reaches the base case.
+
+To handle edge cases, check if there are any empty spaces left on the board or remaining balls in hand at the end. If not, return -1 because it's impossible to remove all balls.
+
+===END PLAN===

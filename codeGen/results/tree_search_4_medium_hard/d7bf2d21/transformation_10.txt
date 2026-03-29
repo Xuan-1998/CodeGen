@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively build up solutions for smaller subproblems and store previously computed results in a memo dictionary to avoid redundant computations.
+
+memo: dictionary storing the lengths of longest increasing subsequences ending at each index
+DP[i]: length of the longest increasing subsequence ending at index i
+
+Initialization:
+  - For each element i in the array, set DP[i] = 1 (since the longest increasing subsequence ending at i is just i itself)
+
+Transition:
+  - For each pair (i, j) where 0 <= i < len(array) and 0 <= j <= i,
+    - If array[j] > array[i], update DP[i] = max(DP[i], DP[j] + 1)
+    - Store the updated value in memo
+
+Final answer:
+  - Return the maximum value in memo (which represents the number of longest increasing subsequences)
+
+===END PLAN===

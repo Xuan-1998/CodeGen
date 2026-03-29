@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The dynamic programming problem involves finding the longest common prefix or suffix between two strings. Bottom-up approach can be applied.
+
+Let dp[i][j] denote the minimal number of elements that need to be removed in order for the sign-variable sum up to i-th element to be 0, given the signs of elements from l-th index to j-th index are +1 or -1.
+
+The state transitions would be:
+dp[0][j] = 0
+for i from 1 to n-1:
+    dp[i][j] = min(dp[i-1][k]) for k in range(l, r+1) + (sign of j-th element)
+dp[n-1][j] = min(dp[n-2][k]) for k in range(l, r+1) + (sign of n-th element)
+
+Let sign[j] denote the sign of j-th element.
+
+The final answer would be:
+min(dp[i][r]) for i from l to r
+===END PLAN===

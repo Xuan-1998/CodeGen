@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+The optimal substructure of this problem could be broken down into smaller instances of itself, making a recursive function a suitable choice.
+
+Let the state expression be (n, s, prefix_sum) where n is the remaining number of integers to process, s is the current value of s, and prefix_sum is the sum of the first i integers in the sequence.
+
+The goal is to minimize F = Σ (x_i * y_{i+1}) where x_i and y_i are non-negative integers that satisfy the conditions x_i + y_i = a_i and (x_i - s) * (y_i - s) ≥ 0.
+
+Maintain a dictionary-based memoization system where the key is the tuple (n, s, prefix_sum) and the value is the minimum possible value of F.
+
+Base case: If n == 0, return 0 as there are no more integers to process. If s > prefix_sum, return infinity as it's not possible to satisfy the conditions.
+
+Recursive case:
+- Calculate the optimal value for x_i = (a_i - s) and y_i = max(0, a_i - s)
+- Calculate the optimal value for y_i = min(prefix_sum + a_i, 2*s) and x_i = max(0, prefix_sum - a_i)
+- Return the minimum of these two cases plus F(n-1, s, a_i)
+
+===END PLAN===

@@ -1,0 +1,20 @@
+Tabulate the solution using a 2D array dp[i][j] where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions.
+
+dp[i][j] equals 1 if and only if there exists a partition point p such that all elements from 0 to p are less than or equal to M away from each other, and the remaining elements (from p+1 to i-1) can be partitioned into j-1 partitions of size at least K.
+
+dp[i][j] equals dp[k][j-1] * (the number of ways to partition A[0..k-1] into j-1 partitions) + dp[i-k][j-1] for some 0 ≤ k < i, if and only if the elements from 0 to k are all less than or equal to M away from each other.
+
+Create a dp array where dp[i][j] represents whether it is possible to partition the subarray A[0..i-1] into j partitions, and initialize dp with base cases.
+
+dp[0][0] = 1
+for i in range(1, N):
+    for j in range(min(i//K + 1, j+1), -1, -1):
+        for k in range(j):
+            if all(abs(A[p] - A[q]) <= M for p in range(k) for q in range(k, min(i, k+K))):
+                dp[i][j] = max(dp[i][j], min(1, dp[k][j-1] * (i-k+1)//K))
+        if dp[i][j]:
+            break
+    else:
+        dp[i][j] = 0
+
+return dp[N-1][max(j for j in range(N)) + 1]

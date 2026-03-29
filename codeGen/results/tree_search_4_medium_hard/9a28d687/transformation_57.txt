@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Both optimal substructure and overlapping subproblems exist in the problem: The minimum total cost required to sort the strings in lexicographical order has both properties, making it suitable for either top-down approach with memoization or bottom-up approach with tabulation.
+
+Let dp[i][j] denote the minimum total cost required to sort the first i strings, and let len_s be the length of string s. Then, dp[i][j] could be defined as min(dp[k][j-1] + c[j-1] + (k==i)) for k from 0 to i, where c is the cost array.
+
+Let len_s be the length of the longest string in the input. Initialize a 2D array dp with dimensions n+1 by len_s, and set all values to infinity, except dp[0][j] which is 0 for all j (base case).
+
+For each i from 1 to n:
+    For each j from len_s-1 downto 0:
+        If the first i strings are sorted in lexicographical order when string s at index j is appended to them, then dp[i][j] = min(dp[k][j-1] + c[j-1] + (k==i)) for k from 0 to i.
+
+Return dp[n][len_s-1]
+
+===END PLAN===

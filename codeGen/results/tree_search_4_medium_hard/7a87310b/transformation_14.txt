@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved by counting the number of invertible matrices for each possible trace value from 1 to N, and then selecting the ones with positive determinant.
+
+We will use dynamic programming to count the number of invertible matrices. The state will be (trace_value, first_element) where the first element is the possible value for one of the elements in the 2x2 matrix.
+
+The base case would be the count of invertible matrices when trace equals 0 or 1 and all matrix elements are less than or equal to N. This can be calculated using a brute-force approach by trying out different values for the first element and checking if they form an invertible matrix with the remaining two elements that satisfy the trace constraint.
+
+For larger trace values, we can build up the solutions from smaller subproblems. Specifically, given a trace value t, let's consider the number of invertible matrices with trace t and determinant d. We know that the trace of the matrix is equal to the sum of its diagonal elements, so one of the off-diagonal elements must be (t - 2 * first_element) / 2.
+
+We can then use this information to recursively count the number of invertible matrices for smaller trace values. For example, if t = 4 and d = 1, we know that one of the off-diagonal elements is -1, so we can count the number of invertible matrices with trace 3 and determinant 1, which is a smaller subproblem.
+
+This approach allows us to build up the solutions for larger trace values in O(N^2) time. We then need to select the ones with positive determinant, which takes constant time.
+
+The plan includes edge cases by considering the base case of trace equals 0 or 1.
+===END PLAN===

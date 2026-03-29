@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with tabulation by building up solutions to smaller subproblems and combining them to solve the original problem.
+
+Think of a 2D DP table where each cell represents the maximum score that can be achieved after processing i elements, with j moves performed in total. Formulate a relation between adjacent cells in the table to capture the idea of moving either to the right or to the left. 
+
+For example, dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + arr[i]) where i is the number of elements processed, j is the total number of moves performed.
+
+To improve this plan, it would be better to first sort the array in descending order because we want to choose the maximum score each time. 
+
+Then apply the recurrence relation dp[i][j] = max(dp[i-1][j], dp[i-1][j-1] + arr[i]) in a bottom-up manner, starting from base cases where i=0 or j=0.
+
+The base case would be when there is no element processed (i=0) or when there are no more moves left to perform (j=0).
+
+===END PLAN===

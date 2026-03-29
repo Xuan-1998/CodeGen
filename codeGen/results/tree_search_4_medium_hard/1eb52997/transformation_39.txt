@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A top-down approach using memoization could be implemented by defining a function that takes the current cell and direction (East) as inputs.
+
+The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East. State relationships can be defined as the number of empty cells to the East with no rocks blocking the line of sight.
+
+Define the state as dp[(i, j)], which stores whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight. The base case is when i or j reaches N - 1, meaning we've reached the edge of the grid.
+
+View the problem as a grid where each cell has two states: it's either an empty cell that can be seen by a mirror or a rock that cannot. Then formulate the state and transition relationships based on these states:
+
+For a given cell (i, j), if it is an empty cell and there are no rocks to its East, then dp[(i, j)] = 1 because we can place a mirror here.
+If it's not an empty cell or there are rocks to its East, then dp[(i, j)] = 0.
+
+Memoize the function by decorating it with functools.lru_cache decorator. This would allow you to reuse previously computed values in your recursive function, which could greatly speed up computation.
+
+The final step is to use this dynamic programming approach to solve the problem and count the number of empty cells where a mirror can be placed at 45 degrees to see what's happening on the East side without any rocks blocking the line of sight.
+===END PLAN===

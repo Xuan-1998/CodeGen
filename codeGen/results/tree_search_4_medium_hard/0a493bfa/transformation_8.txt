@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Find overlapping subproblems in the array and bad prime numbers. Use top-down approach with memoization to solve this problem.
+
+dp[i][j] = max( 
+    dp[k][l-1] + f(gcd(a[0:k], b[l-k:l])) 
+  for k in range(i+1) 
+  for l in range(j+1)
+)
+
+Represent each state as a pair (i, j), where i is the index of the current element in the array and j is the index of the current bad prime number.
+
+Transition from state (i-1, j) to state (i, j+1) by considering whether or not the current element should be included in the subset.
+Implement a recursive function with memoization using a global cache or dictionary.
+
+Edge cases:
+    - Handle array length 0 and number of bad prime numbers 0
+    - Check if the current element is divisible by any bad prime number before including it in the subset
+
+===END PLAN===

@@ -1,0 +1,30 @@
+===BEGIN PLAN===
+Determine if there are any increasing or decreasing elements within the subsegment, and use bottom-up approach with tabulation to generate all possible combinations of such elements and check if they form a valid ladder.
+
+dp[i][j] = (i == 1 or array[i-1] <= array[j]) and j == r - 1: 
+    If the condition is met, set dp[i][j] to True. Otherwise, set it to False.
+For each query, iterate over the subsegment from l to r:
+    Initialize a flag as False
+    For each element in the subsegment:
+        If the element is increasing and the previous element was decreasing or there were no previous elements that were decreasing: 
+            Set flag to True and break out of the loop
+        elif the element is decreasing and the previous element was increasing or there were no previous elements that were increasing: 
+            Set flag to True and break out of the loop
+    If flag remains False after checking all elements in the subsegment, set dp[i][j] to False
+
+Determine the minimum and maximum values in the subsegment and check if they are increasing/decreasing within that range.
+If the minimum value is increasing and the maximum value is decreasing, then the entire subsegment forms a ladder.
+
+Use dynamic programming to create a 2D table where each cell [i][j] represents whether the subsegment from i to j forms a ladder, and fill the table in bottom-up manner.
+
+For each query, iterate over the subsegment from l to r:
+    Initialize a flag as False
+    For each element in the subsegment:
+        If the element is increasing and the previous element was decreasing or there were no previous elements that were decreasing: 
+            Set flag to True and break out of the loop
+        elif the element is decreasing and the previous element was increasing or there were no previous elements that were increasing: 
+            Set flag to True and break out of the loop
+    If flag remains False after checking all elements in the subsegment, set dp[i][j] to False
+
+Finally, for each query, print "Yes" if dp[i][j] is True, otherwise print "No"
+===END PLAN===

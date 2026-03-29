@@ -1,0 +1,26 @@
+State:
+    Initialize dp array with size n+1 to store minimum removals for each prefix.
+
+State Transition Function:
+    Let's define dp[i][j] as the minimum number of elements that need to be removed from the subarray A[i..j] to make the sign sum zero, considering all possible removals.
+    We can calculate dp[i][j] by iterating over each element in the subarray A[i..j] and deciding whether to remove it or not.
+    For a given element at index k within the range [i,j], if its sign is equal to the total sign of elements from i to j, then we don't need to remove this element.
+    If the sign is opposite, then we can either keep the current sign and move on to the next element or remove this element.
+
+Base Case:
+    dp[0][j] = 0 for all j because there are no elements to remove at the beginning of the array.
+    dp[i][n-1] = 0 for all i because there are no elements to remove at the end of the array.
+
+Query Answering:
+    For a query (l,r), we can find the minimum number of elements that need to be removed within the given range [l,r] by using the previously computed dp values.
+    We can calculate this value as follows: 
+        If l = 0, then the answer is dp[0][r].
+        If r = n-1, then the answer is dp[l][n-1].
+        For any other query (l,r), we need to find the minimum number of elements that need to be removed from A[l..m] where m is the smallest index such that dp[l][m-1] + 1 = dp[m][r].
+
+Overall Plan:
+    Initialize a 2D array dp with size n+1 and fill it up in a bottom-up manner.
+    For each query (l,r), find the minimum number of elements that need to be removed within the given range [l,r] by using the previously computed dp values.
+
+Potential Issues with the Plan:
+    The plan assumes that there are no duplicate sign variables, if there can be duplicates then we might not get the correct answer.

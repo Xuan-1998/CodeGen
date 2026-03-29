@@ -1,0 +1,8 @@
+===BEGIN PLAN===
+Determine whether this problem can be solved using a greedy algorithm, where you start by selecting the most promising department and then iteratively add players until the team is complete. This might involve some form of sorting or priority queue. However, this approach does not take into account the randomness of forming a team.
+Base case: If h = 1, then the probability is either 0 (if s1 < n) or 1 (if s1 >= n). This base case captures the edge case where there's only one department and we know whether it has enough players to form a team.
+The state is the total number of players from the desired department so far, with transitions based on adding one more player from this department. For example, if we have k players from the desired department already and s more players in total in that department, we could add the (k+1)-th player to our team if s-(n-k-1) >= 0.
+Implement a bottom-up dynamic programming approach using iteration, building up the solution from the base case. Initialize an array dp of size n+1 with all values set to 0. Then, for each i from h to m, calculate the probability that a randomly formed team will have at least one player from the department i.
+For the transition from state k to state k+1, we add the probability that the (k+1)-th player is from the desired department. This probability is s_i-(n-k-1) / (m-k) if s_i >= n-k-1, or 0 otherwise.
+Finally, return dp[n] as the answer. If there are not enough basketball players in the university to form a team, output -1 instead.
+===END PLAN===

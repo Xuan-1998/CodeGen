@@ -1,0 +1,15 @@
+Plan:
+(define (solve n m)
+  (define (dp l v op)
+    (if (= l 1) 1 (+ (* 10 (dp (- l 1) (apply add-map (map (lambda x (+ x 1)) (string->list (number->string v)))))) (mod (dp (- l 1) (apply add-map (map (lambda x (+ x 1)) (string->list (number->string v))))) 1000000007)))
+  (define (add-map lst)
+    (foldr cons '() (map (lambda x (+ x 1)) lst)))
+  (dp (length (number->string n)) n m))
+
+Plan:
+(define (solve n m)
+  (define (dp l r op)
+    (if (= l 1) 1 (+ (* 10 (dp (- l 1) (apply add-map (map (lambda x (+ x 1)) (string->list (number->string r)))))) (mod (dp (- l 1) (apply add-map (map (lambda x (+ x 1)) (string->list (number->string r))))) 1000000007)))
+  (define (add-map lst)
+    (foldr cons '() (map (lambda x (+ x 1)) lst)))
+  (dp (log10 n) n m))

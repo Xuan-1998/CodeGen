@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+dp[i] = (exists two sequences a1 and a2 such that their concatenation forms b[:i] 
+         and the lengths of a1, a2 are either all even or all odd) for i from 0 to n-1
+if i == 0:
+    return True if b[0] is even else False
+else:
+    dp[i] = (dp[j] and exists a sequence a3 such that 
+             a1+a3+b[j:i] forms b[:i]) for i from j+1 to n-1
+    for last_even in range(0, i, 2):
+        if dp[last_even]:
+            return True
+    for last_odd in range(1, i, 2):
+        if dp[last_odd]:
+            return True
+return False
+
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+Consider a state (i, j) where i is the number of groups and j is the maximum number of girls per group. Define the state as a tuple (i, j).
+
+State: (n, k, g) where n is the remaining number of girls, k is the current group size, and g is the current girl's beauty.
+
+Memoizing f(n) values for given l
+Calculate f(1) = 0, since only one girl remains.
+For i from 2 to r:
+    For each possible group size j in [l, r]:
+        Calculate f(i) as the minimum of the maximum number of comparisons needed to select the most beautiful participant from each group of girls with k-1 girls and g+1 beauty for all k in [1, j] and the sum of comparisons needed to select the most beautiful participant from one girl and the remaining girls.
+        Store f(i) in memo array.
+
+Calculate t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r) modulo 109 + 7
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Use memoization by maintaining two dictionaries called memo and dp where 
+memo[(i, j)] stores whether it is possible to partition the subarray A[0..i-1] into j partitions.
+dp[(i, j)] is true if it's possible to partition the subarray A[0..i] into j partitions.
+
+Define the state as (i, j, prev) where i is the current index, j is the number of partitions so far, and prev is the previous element in the array, and the state represents whether it's possible to partition A[0..i] into j partitions with elements up to i-1 having difference at most prev.
+
+Maintain a dictionary dp where dp[(i, j)] is true if it's possible to partition the subarray A[0..i] into j partitions.
+Store the recurrence relation in the state and update the dictionary accordingly: 
+dp[(i, j)] = (or) { 
+    dp[(i-1, j-1)] and (A[i] - prev <= M), 
+    False
+}
+
+For the base case, set dp[(0, 1)] to True because it's always possible to partition a single element into one partition.
+
+Initialize all values in dp with False.
+Finally, return dp[(N, K)]

@@ -1,0 +1,10 @@
+
+1. Define the state dp[i][j] to represent the number of valid matrices of size i x j.
+2. Initialize dp[1][1] to 2, as there are two possible 1x1 matrices: [0] and [1], both of which trivially satisfy the condition.
+3. Iterate over the dimensions of the matrix from 1 to N for rows and 1 to M for columns.
+4. For each subproblem defined by (i, j), calculate the number of valid matrices by considering the addition of a new row or column to the previously computed subproblems.
+5. Ensure that the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} is satisfied for all quadruples (a, b, c, d) by verifying the condition for each possible value of the new elements added.
+6. Use memoization to store the results of subproblems to avoid redundant calculations.
+7. After filling the dp table, the value dp[N][M] will be the answer to the problem.
+8. Return dp[N][M] modulo 998244353.
+

@@ -1,0 +1,14 @@
+===
+Think about modeling this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest. This could involve calculating the probability mass function (PMF) and then taking the sum of the probabilities for all possible outcomes greater than or equal to 1.
+
+The state expression could be dp[i][k] representing the probability that we get at least one player from the department of interest after choosing k players from i-1 departments.
+
+dp[i][0] = 1 - (sum of s1 to si-1) / n, since there are no players yet and we need to make sure we don't choose anyone from other departments
+dp[i][k] = dp[i-1][k-1] * s_h / (n-k+1), where s_h is the number of players in department h. This represents the probability that after choosing k-1 players, we get at least one player from the department of interest
+
+Tabulate the cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest.
+
+Let's calculate dp[i][n] for all i and n such that 0 ≤ n ≤ n. This will give us the probability that we get at least one player from the department of interest after choosing n players.
+After calculating all probabilities, find the maximum value in the last row of the table to get our answer.
+
+The plan seems correct but it might be more efficient to calculate dp[i][k] for all k and i such that 1 ≤ k ≤ min(h-1, i) first, then use these values to calculate dp[i][0]. This way we avoid redundant calculations.

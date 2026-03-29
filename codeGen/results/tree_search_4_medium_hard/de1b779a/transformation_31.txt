@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Consider a table dp[n][m] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types remaining.
+
+Base case: 
+- When there's no dough left (i = 0), dp[i][j] is the maximum profit that can be achieved by making buns with the available stuffing types, or not making any buns at all.
+- When there are no stuffing types left (j = 0), dp[i][j] is 0 because no more buns can be made.
+
+Fill in the table using dynamic programming:
+- For each cell dp[i][j], consider two options: 
+    1. Make a bun with the j-th stuffing type and update dp[i][j] to the maximum profit that can be achieved by making this bun (ai - bi, ci) and adding it to the maximum profit achievable with i-ci grams of dough and j-1 stuffing types.
+    2. Do not make a bun with the j-th stuffing type and update dp[i][j] to the maximum profit that can be achieved without using this stuffing type.
+
+Use memoization by storing computed values in a dictionary and looking up results for subproblems instead of recomputing them.
+
+Return the value at dp[n][m], which represents the maximum profit that can be earned.
+===END PLAN===

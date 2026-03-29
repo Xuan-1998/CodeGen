@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. Use memoization to store the beauty values for previously computed subproblems.
+
+The state expression is a 4-tuple (i, j, f, g) representing the current window [i, j] with flags f indicating whether to consider bad primes or not and g indicating whether the last element is good or bad. This allows us to correctly handle edge cases where the maximum beauty value depends on the last element being good or bad.
+
+The maximum beauty value is the sum of the beauty values from overlapping subarrays, where each subarray's beauty value depends on its minimum prime divisor.
+
+Define a recursive function with memoization to compute the maximum beauty value for each subarray, considering both good and bad primes. The base case should be when i > j or the array size is 1. In this case, return 0 as there are no elements to consider. Otherwise, consider the current element and recursively call the function on the left and right halves of the array.
+
+If f is true, consider both good and bad primes for the maximum beauty value. If f is false, only consider good primes.
+For each subarray, compute the minimum prime divisor using a helper function that iterates from 2 to sqrt(n) to find the first prime number that divides n. Then, calculate the beauty value based on this minimum prime divisor.
+
+Store the computed beauty values in a memoization table and return the value if it is already computed.
+
+Finally, return the maximum beauty value for the entire array by recursively calling the function with i = 0 and j being the size of the array.
+===END PLAN===

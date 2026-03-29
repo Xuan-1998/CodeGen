@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Determine if the problem can be solved by tabulating the bottom-up approach, where you fill up an array with the values of longest increasing subsequence and then count the number of maximum length subsequences
+dp[i] = max(dp[j] + 1 for j in range(i) if arr[j] < arr[i]), where i is the index of the array element
+Consider using a dynamic programming table to store the length of the longest increasing subsequence ending at each position in the array.
+Use memoization to store the lengths of longest increasing subsequences seen so far, and then update the memoization table as you iterate through the array
+
+Create an empty dictionary dp to serve as the dynamic programming table
+Initialize a variable max_length to 0, which will hold the maximum length of the longest increasing subsequences
+
+Iterate over each element in the given array
+For each element i, check if it's greater than any previously seen elements. If so, increment the count for that length
+Update dp with the length of the current longest increasing subsequence ending at index i
+If a new maximum length is found, update max_length
+
+After iterating over the entire array, return max_length as the number of longest increasing subsequences
+===END PLAN===

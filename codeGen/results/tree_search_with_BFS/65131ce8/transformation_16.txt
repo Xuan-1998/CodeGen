@@ -1,0 +1,11 @@
+
+===BEGIN PLAN===
+1. Define State Expression: Let dp[i][j] be the number of ways to form a good tree with i vertices and j good vertices. This table will help us keep track of the number of ways to form good trees with varying numbers of vertices and good vertices.
+2. Base Case: Initialize the base case where dp[1][1] = 1, since a single vertex tree with vertex 1 as the root is trivially a good tree with one good vertex.
+3. Transition Relationship: For each vertex count i (from 2 to N), and for each possible count of good vertices j (from 1 to i), compute dp[i][j] by considering how adding a new vertex affects the number of good vertices. This involves summing over all possible ways to distribute the out-degrees among the subtrees rooted at the children of the root, ensuring the out-degree constraints are satisfied.
+4. Iterate through all vertices: Iterate through all vertex counts from 2 to N and all possible counts of good vertices from 1 to i, updating the dp table based on the transition relationship.
+5. Sum the results: The final answer will be the sum of dp[N][j] for all j from 1 to N, representing the total number of good vertices for all good trees.
+6. Modulo Operation: Since the result needs to be modulo 998244353, ensure all operations involving dp values are taken modulo 998244353.
+7. Handle Edge Cases: Consider edge cases such as when N is at its minimum value (2), when all d_i values are zero except for d_1, and when d_1 is at its maximum possible value (N-1).
+===END PLAN===
+

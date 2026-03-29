@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To solve this problem, we can use dynamic programming with memoization.
+
+1. Define the state expression as dp[i][j] = min(X) where X + Y = i and B = X ^ Y = j.
+
+2. Initialize a 2D array dp of size (A+1) x (B+1) filled with infinity.
+
+3. Set dp[0][0] to 0, because the minimum value of X that satisfies X + Y = 0 and B = 0 is 0.
+
+4. For each i from 1 to A, and for each j from 0 to B:
+   - Iterate over all possible values of X that satisfy X + Y = i and B = X ^ Y = j.
+   - Update dp[i][j] with the minimum value of X found so far.
+
+5. Return dp[A][B] as the minimum value of X that satisfies A = X + Y and B = X ^ Y.
+
+6. If no solution is found, return -1.
+
+===END PLAN===

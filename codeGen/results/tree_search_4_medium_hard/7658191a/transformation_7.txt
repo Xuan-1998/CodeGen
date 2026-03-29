@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider a bottom-up approach with dynamic programming by defining a 2D table dp[i][j] as the maximum score that can be achieved by the end of the ith element if we have made j moves so far, with no more than z moves to the left in a row.
+Define the base case: dp[0][0] = arr[0], since there are 0 moves and we start at index 1.
+Fill up the table using the following transition relationship:
+    dp[i][j] = max(dp[i-1][j-1] + arr[i], dp[i-1][j-1] - arr[i-1]) if j <= z
+    dp[i][j] = dp[i-1][j-1] + arr[i] if j > z
+Implement a recursive function to calculate the maximum score for each subproblem, and apply memoization using this 2D table.
+Fill up the table row by row, starting from the base case.
+Finally, return dp[n-1][k] as the maximum score that can be achieved in k moves.
+===END PLAN===

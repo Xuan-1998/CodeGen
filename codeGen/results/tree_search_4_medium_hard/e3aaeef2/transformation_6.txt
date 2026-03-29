@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Consider the state of the current number as a tuple of its value and length, use memoization to store the results for each operation.
+
+State expression: (value, length)
+Base case: when m is 0, return the initial number's length
+
+Consider the increment operation applied to all digits in the number
+Each digit can be either the original value or incremented by 1
+
+Create a dictionary-based memoization approach using a custom function as the key and the result as the value
+
+Function key: (n, m) -> calculate the next state after applying an operation
+Memoized values:
+
+* base case: when m is 0, return the initial number's length
+* recursive case:
+	+ if n is single digit, apply increment to all digits and return new length
+	+ else, split into two parts, apply increment to each part separately, 
+		   and combine results
+
+Edge cases: handle inputs where n or m are extreme values (10^9, 2⋅10^5)
+
+===END PLAN===

@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+State: 
+    dp[i][j]: number of arrays with bitwise AND less than bitwise XOR up to index i, where j is possible values for ith element;
+    prev_and, prev_xor: previous bitwise AND and XOR respectively; 
+Base Case: False when i < 0
+State:
+    dp[0][j]: count of arrays satisfying the condition after considering each possible value of the 0th element;
+Transition: update this state by considering each possible value for the ith element and counting the arrays that satisfy the condition after its inclusion.
+Memoize the function calls based on the current array indices and store intermediate results in a dictionary to avoid redundant calculations.
+
+for i in range(n):
+    dp[i][j] = 0
+    for j in (0...(2**k) - 1):
+        if bitwise_and(arr[:i], arr[i]) >= bitwise_xor(arr[:i], arr[i]):
+            dp[i][j] += 1
+        else:
+            prev_and, prev_xor = bitwise_and(arr[:i], arr[i]), bitwise_xor(arr[:i], arr[i])
+            for j in (0...(2**k) - 1):
+                if bitwise_and([prev_and, j]) >= bitwise_xor([prev_and, j]):
+                    dp[i][j] += 1
+    return sum(dp[n-1])
+
+===END PLAN===

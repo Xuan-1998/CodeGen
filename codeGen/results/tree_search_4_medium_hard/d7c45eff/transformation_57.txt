@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+To use dynamic programming effectively, let's consider all possible strings that can be formed by either deleting the last character or duplicating the original string.
+
+Let dp[i] denote the lexicographically smallest string of length i that can be obtained from the original string s. We can define a recursive formula as follows:
+
+dp[0] = ""
+dp[i] = min( // Consider all possible strings
+  dp[i-1], // Delete the last character
+  dp[i-1] + s[n-i+1], // Duplicate the string
+) for i > 0
+
+To avoid re-computing subproblems, we can use memoization. We define a function dp(i) that returns the lexicographically smallest string of length i.
+
+dp(i):
+  if i == 0:
+    return ""
+  if i < n: // If i is less than the original string length
+    if s[n-i+1] <= s[n-i]: // Consider deleting the last character
+      return dp(i-1)
+    else: // Duplicate the string
+      return dp(i-1) + s[n-i+1]
+  else:
+    // Since i >= n, we can only duplicate the original string
+    return dp(n) * (i-n+1)
+
+This approach ensures that each subproblem is computed at most once.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Let dp[i][j] denote the cumulative sum of blocks ending at position i with length j.
+The base case would be that for any i, there is only one block ending at position i with 1 digit (which is just the digit itself), so dp[i][1] = 1 for all i.
+
+Think about extending a block from left to right. A block of length k can be extended by appending another block of length k-1 if the last k-1 digits are the same.
+We store the cumulative sum of blocks ending at each position in a hashmap, cum_sum. Initialize it with dp[0][1] = 1.
+
+For each i and j from 2 to n:
+	* For each possible value of the current digit (0 to 9):
+		+ If the last j-1 digits are the same as the previous j-1 digits, extend the block by 1.
+		+ Otherwise, start a new block of length 1.
+	* Update cum_sum[i][j] = cum_sum[i-1][k] + (dp[i-1][k-1] if the last k-1 digits are the same as the previous k-1 digits, otherwise dp[i-1][1]) for all k from j to 1.
+
+Finally, use these cumulative sums to calculate the number of blocks of each length. The total number of blocks of length j is cum_sum[n][j] - cum_sum[n][j-1].
+
+===END PLAN===

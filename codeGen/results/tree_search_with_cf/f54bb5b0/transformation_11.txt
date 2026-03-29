@@ -1,0 +1,24 @@
+
+1. Represent the tree using an adjacency list. This will allow efficient traversal of the tree.
+
+2. Define a 2D list `dp` where `dp[u][d]` represents the number of paths of length `d` that start from vertex `u`.
+
+3. Initialize the base case: `dp[u][0] = 1` for all vertices `u`, because there is exactly one path of length 0 from any vertex to itself.
+
+4. Perform a Depth-First Search (DFS) to compute the `dp` values:
+   - For each vertex `u`, recursively compute the values of `dp[v][d-1]` for all neighbors `v` of `u`.
+   - Use these values to compute `dp[u][d]` as the sum of `dp[v][d-1]` for all neighbors `v` of `u`.
+
+5. During the DFS traversal, keep track of the number of valid paths of length `k`:
+   - For each vertex `u`, before moving to its children, calculate the number of valid paths of length `k` that pass through `u` using the `dp` values of its neighbors.
+   - Sum these counts to get the total number of valid paths of length `k`.
+
+6. Return the total count of valid paths of length `k`.
+
+Edge Cases:
+- If `n = 1`, there are no edges, hence no paths of length `k` for any `k >= 1`.
+- If `k > n-1`, it's impossible to have a path of length `k` in the tree.
+
+Time Complexity: O(n*k) due to the DFS traversal and computation of `dp` values.
+Space Complexity: O(n*k) for storing the `dp` values.
+

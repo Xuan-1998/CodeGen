@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+Consider a bottom-up approach using dynamic programming with memoization, where you iteratively build up solutions for smaller subproblems and store previously computed results in a memo dictionary to avoid redundant computations.
+
+Memo: {i: longest_increasing_subsequence[i]: length of the longest increasing subsequence ending at index i}
+
+The key insight lies in recognizing that each element can be either part of the longest increasing subsequence or not, so focus on finding the longest increasing subsequences that end at each index i.
+
+Create a 1D table dp where dp[i] represents the length of the longest increasing subsequence ending at index i. 
+
+Iterate over the array:
+    For each element arr[i], consider two possibilities: 
+        1. arr[i] is part of the longest increasing subsequence (LIS) ending at index j, for some j < i.
+        2. arr[i] starts a new LIS.
+
+In the first case, update dp[i] to be the maximum of its current value and dp[j] + 1. This represents the length of the LIS that ends at index i by appending arr[i] to the LIS ending at index j.
+
+In the second case, set dp[i] to 1 because arr[i] starts a new LIS with length 1.
+
+Finally, return the maximum value in dp as the number of longest increasing subsequences.
+
+===END PLAN===

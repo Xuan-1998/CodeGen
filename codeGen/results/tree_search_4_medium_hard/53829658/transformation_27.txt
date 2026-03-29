@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Recognize that for a given city, its shortest distance from capital is the minimum of itself and one-edge shorter distances from all adjacent cities, leading to a top-down approach with memoization.
+
+The state could be defined as dp[i], representing the minimum number of roads that need to be inverted in order to reach city i from the capital. The base case would be dp[0] = 0, since there are no roads that need to be inverted when starting at the capital.
+
+Use a dictionary to store and update the dynamic programming states as you traverse the tree.
+
+Initialize an empty dictionary memo to store the dp[i]'s and parent[i]'s for each city i.
+
+Define a function dfs(i) that returns the minimum number of roads that need to be inverted in order to reach city i from the capital. The base case would be if i is 0, return 0. If the result is already stored in memo, return memo[i]. Otherwise, update memo[i] and return it.
+
+The transition relationship could be formulated as: dp[i] = min(dfs(j) + 1 for j in adjacent Cities(i)) if i is not the root, else dp[0].
+
+To find all possible ways to choose the capital, use a set to store all the cities that can be the capital. Then iterate through each city i and check if dp[i] is equal to dp[0]. If it is, add i to the set of capitals.
+
+Finally, return the minimum number of roads that need to be inverted in order to reach any other city from the capital as the first line, and the set of possible ways to choose the capital as the second line.
+
+===END PLAN===

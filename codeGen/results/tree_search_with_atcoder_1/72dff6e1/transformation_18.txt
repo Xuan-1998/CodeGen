@@ -1,0 +1,10 @@
+
+2. Bottom-Up Strategy with Tabulation: This approach builds up the solution by solving all subproblems starting from the smallest ones and combining their solutions to solve larger problems. It uses a table to store the results of subproblems. Time complexity: O(N^2), space complexity: O(N^2) due to the table used for storing intermediate results.
+State Expression: Let dp[i][j] be the number of valid sequences of length i where the number of occurrences of each integer k (1 <= k <= i) is at most A_k and the last element of the sequence is j.
+1. Initialize dp table: Create a 2D dp table where dp[i][j] will store the number of valid sequences of length i ending with j.
+2. Base Case: For i = 1, dp[1][j] = 1 for all j from 1 to N, as each element can be a valid sequence of length 1.
+3. Transition: For i > 1, calculate dp[i][j] as the sum of dp[i-1][k] for all k from 1 to N, provided that adding j to the sequence does not violate the constraints. Specifically, ensure that the number of occurrences of j in the sequence remains within the limit A_j.
+4. Use a count array to keep track of the occurrences of each number in the current sequence.
+5. Iterate through each length from 2 to N and update the dp table accordingly.
+6. The final answer is the sum of dp[N][j] for all j from 1 to N, taken modulo 998244353.
+

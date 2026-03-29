@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider using a bottom-up approach with tabulation to build up a table of maximum vertices that can be visited within a time limit for each subproblem, starting from the end vertex n.
+
+The base case is when t = 0, in which case we return 1 because we can always visit at least the start vertex. Alternatively, if there are no edges connected to vertex i, then we also return 1 since we cannot move further.
+
+State: dp[i][t] represents the maximum number of vertices that can be visited from vertex i to the end vertex n within t time units, considering all possible edges.
+
+Use a 2D table where dp[i][t] represents the maximum number of vertices that can be visited from vertex i to the end vertex n within t time units.
+
+For each edge (u, v, w), consider visiting vertex u and then vertex v. This would add w time units to our total time. If we have enough time left (t - w >= 0), then we can visit one more vertex. Otherwise, we cannot move further.
+
+Update the table values accordingly: dp[u][t-w] + 1 if t - w >= 0, else dp[u][t].
+
+Finally, return dp[1][T], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex n within a time limit of T.
+===END PLAN===

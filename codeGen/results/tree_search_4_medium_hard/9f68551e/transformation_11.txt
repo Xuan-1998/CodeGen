@@ -1,0 +1,13 @@
+===
+Let's define dp[i][j] as the minimum mana required to kill the first i monsters by time j; The base case is when there are no more monsters to cast spells on.
+
+Let dp[i][j] be the minimum mana required to kill i monsters by time j. Then for each monster, we can either cast a spell at its appearance time or not. If we don't cast a spell, then the state remains the same as before; if we do cast a spell, then we need to recalculate the minimum mana required to kill the remaining monsters by the remaining time.
+
+Let's initialize dp[0][j] = 0 for all j because there are no monsters left to be killed. Then for each monster and its corresponding time k, consider two options: 
+1) don't cast a spell at this moment; in that case, we just copy the previous minimum mana required.
+2) cast a spell with damage x, where x is either 1 or the minimum mana used so far + 1. In this case, we need to add the current time minus the appearance time of the monster k as additional mana.
+
+To implement memoization, consider using a dictionary to store the results of subproblems and reuse them when needed.
+The final answer will be dp[n][max(k)], where n is the total number of monsters. We can iterate over all test cases, update the state for each monster's appearance time, and finally return the minimum mana required.
+
+This plan seems correct and includes edge cases. It also takes into account that we need to consider two options for each monster: either cast a spell or not.

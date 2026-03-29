@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved by considering all possible lengths of subsequences and using dynamic programming to count the number of good subsequences for each length.
+
+dp[i] = 0
+for i in range(n+1):
+    if i == 0:
+        dp[i] = 1
+    else:
+        dp[i] = sum(dp[j] * (is_divisible(a[j:i+1], j) ? 1 : 0) for j in range(i))
+memo = {}
+def is_divisible(sub, k):
+    return all(x % k == 0 for x in sub)
+dp[0] = 1
+for i in range(1, n+1):
+    dp[i] = sum(dp[j] * (is_divisible(a[j:i+1], j) ? 1 : 0) for j in range(i))
+print((dp[n]) % (10**9 + 7))
+
+===END PLAN===

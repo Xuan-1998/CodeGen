@@ -1,0 +1,19 @@
+def get_partitions(s):
+    n = len(s)
+    partitions = []
+
+    # Base case: empty string or single-character string
+    if n == 0 or n == 1:
+        return [[]]
+
+    # Process each character in the string
+    for i in range(n):
+        remaining_chars = s[i+1:]
+        existing_partitions = get_partitions(remaining_chars)
+
+        # Check if the current character can be appended to the right side of an existing partition
+        for j, partition in enumerate(existing_partitions):
+            new_partition = [s[:i+1]] + partition
+            partitions.append(new_partition)
+
+    return partitions

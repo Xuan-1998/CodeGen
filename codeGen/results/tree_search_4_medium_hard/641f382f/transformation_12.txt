@@ -1,0 +1,9 @@
+Identify the minimum operations needed for each subarray to become 1, and use dynamic programming with memoization to store the results of subproblems.
+dp[i] represents the minimum number of operations required to reduce the first i elements to 1, with the base case dp[0] = 0.
+To compute dp[i], iterate over all possible j such that 0 <= j < i, and if the GCD of the subarray elements from index j+1 to i is 1, then dp[i] can be updated as dp[i] = min(dp[i], dp[j] + 1).
+The transition is dp[i] = min(dp[i], dp[j] + 1) for all j from 0 to i-1, if the GCD of elements from j+1 to i is 1.
+Implement tabulation by iteratively filling a table where each cell represents the minimum operations for a subarray, starting from the base case and moving towards the larger subarrays.
+Edge cases to consider:
+- If at any point the GCD of the entire array (from index 1 to n) is greater than 1, it is impossible to make all elements equal to 1, so return -1.
+- Ensure that the GCD function operates in O(log(ai)) time to maintain efficiency.
+- The algorithm should return the value of dp[n] if it's finite, or -1 if dp[n] is still at its initialized high value (indicating that it's impossible to make all elements equal to 1).

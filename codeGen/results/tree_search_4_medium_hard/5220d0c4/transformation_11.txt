@@ -1,0 +1,24 @@
+===BEGIN PLAN===
+State: The minimum prime divisor of each element in the subset, and whether it is a bad prime or not.
+
+Identifying overlapping subproblems:
+For each element in the array, consider the minimum prime divisor of that element. If two elements have the same minimum prime divisor, they can be combined into a single subproblem.
+The base case could be the beauty value for an empty array or when all elements in the array are bad primes. In this case, the beauty value would be 0 because there are no good primes.
+
+To calculate the maximum beauty of the array, we need to consider two cases:
+- Case 1: The first element is a good prime.
+In this case, we can combine it with all elements that have the same minimum prime divisor. This will increase the beauty value by 1.
+- Case 2: The first element is a bad prime.
+In this case, we need to consider the maximum beauty of the subarray excluding the first element.
+
+Create a table dp[i][j] where:
+dp[i][j] = Maximum beauty that can be obtained considering the first i elements and the last j elements are good primes.
+The base cases would be:
+- For an empty array (i=0), the beauty value is 0 for any number of bad primes.
+- For all bad primes in the array, the beauty value is equal to the number of good primes.
+
+Then, iterate over the array and fill up the table. The maximum beauty can be found by considering all possible cases at each step:
+- If the current element is a good prime, we need to consider two cases: including it or not.
+- If the current element is a bad prime, we can only ignore it.
+
+===END PLAN===

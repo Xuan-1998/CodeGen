@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+Identify the minimum path sum as the optimal substructure, and use memoization to avoid redundant calculations.
+
+The state for a cell i, j is the minimum sum of all numbers along the path from the top left corner to this cell. The transition relationship is that it depends on the states of the cells above it (i-1, j) or to its left (i, j-1), plus the value of the current cell grid[i][j].
+
+Implement memoization by defining a function that takes i and j as arguments, and uses if statements to check if dp[i][j] is already calculated before calculating it.
+
+For each cell in the grid, calculate the minimum path sum using the previously calculated values.
+
+Return the minimum path sum for the bottom right cell (i, j) as the result.
+
+Initialize a 2D array dp with the same size as the input grid and fill all elements with infinite value or some impossible value like INT_MAX.
+
+Fill in base cases: dp[0][j] = grid[0][j], dp[i][0] = grid[i][0]. This is because the path sum to the top left corner is always 0, since we start from there.
+
+For each cell (i, j), calculate dp[i][j] as min(dp[i-1][j], dp[i][j-1]) + grid[i][j].
+
+Finally, return dp[m-1][n-1] as the minimum path sum for the bottom right cell.
+===END PLAN===

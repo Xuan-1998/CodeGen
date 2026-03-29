@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+dp[i][j] = sum(dp[k][max(0, j-m)] for k in range(C+1) if k <= i)
+    • Initialize dp array with zeros
+    • For each pair (i, j), calculate the number of ways to build a sequence with exactly j spheres having radii up to i
+    • Use memoization to store and reuse results of subproblems
+dp[i][j] = sum(dp[k][max(0, j-m)] for k in range(C+1) if k <= i)
+    • Iterate over all possible radii k from C to 1
+    • For each k, check if the number of lower hemispheres with radius less than or equal to k is at least m
+    • If true, add dp[k][max(0, j-m)] to the total count
+dp[i][j] = sum(dp[k][max(0, j-m)] for k in range(C+1) if k <= i and find_lower_hemisphere(k) >= m)
+    • Initialize the dictionary memo with zeros
+    • For each (i, j), calculate dp[i][j]
+    • Store results of subproblems in memo dictionary
+===END PLAN===

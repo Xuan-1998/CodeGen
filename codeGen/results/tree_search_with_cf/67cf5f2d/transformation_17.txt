@@ -1,0 +1,9 @@
+
+1. Sort the points based on their positions in ascending order.
+2. Define the state expression: Let dp[i] represent the minimum number of points removed up to the i-th point when considering the activation from right to left.
+3. Initialize the dp array: dp[n] = 0, where n is the total number of points, since adding a point to the right of all points initially removes none.
+4. Iterate from the second-to-last point to the first point (i from n-1 to 0):
+   a. Find the farthest point j to the left of the i-th point that is not within the bi distance of the i-th point.
+   b. Transition relationship: dp[i] = min(dp[i+1], dp[j+1] + (j - i)), where j is the farthest point to the left that is not within the bi distance of the i-th point.
+5. The result will be stored in dp[0], which represents the minimum number of points removed considering all points.
+

@@ -1,0 +1,21 @@
+===BEGIN PLAN===
+To identify overlapping subproblems, we can define a function dp(i, j) that returns the total number of diamonds in the i-th row and j-th column. The optimal substructure is that the total number of diamonds in the i-th row and j-th column depends on the sum of even digits and odd digits in the current room number, as well as the total number of diamonds in the (i-1)-th row and (j-1)-th column.
+Let dp(i, j) be the number of diamonds in the i-th row and j-th column. The base case is when i or j equals 1.
+
+transition: dp(i, j) depends on dp(i-1, j), dp(i-1, j-1), and dp(i, j-1).
+
+Create a 2D list tabulated_dp with the same dimensions as dp, where tabulated_dp[i][j] stores the total number of diamonds in the i-th row and j-th column.
+
+fill up tabulated_dp from bottom-up manner:
+for N = 1 to T:
+    for i = 1 to N:
+        for j = 1 to N:
+            if i == 1 or j == 1:
+                dp(i, j) = 0
+            else:
+                even_sum = sum of even digits in (i-1)*N+j room number
+                odd_sum = sum of odd digits in (i-1)*N+j room number
+                dp(i, j) = |even_sum - odd_sum|
+
+finally, return the value stored at tabulated_dp[1][1]
+===END PLAN===

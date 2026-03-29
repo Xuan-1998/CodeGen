@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Consider grouping rows together based on their common columns. If two rows have the same values for a certain set of columns, then you can sort these rows independently without considering other columns.
+
+State: a tuple (rows, cols) representing the current subtable where rows is a list of lists and cols is the set of column indices that have not been fully processed yet.
+Transition: update the state by incrementing the index of the last row in 'rows' if it has been fully processed.
+
+Apply memoization using a dictionary where the key is the state (rows, cols) and the value is a boolean indicating whether the subtable is sorted. For each task (l, r), check if there exists at least one column that has all rows from l to r in non-decreasing order by checking the memoized result for the previous row. If it does, return "Yes". Otherwise, continue processing the remaining rows and columns.
+
+===END PLAN===

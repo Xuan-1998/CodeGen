@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+The problem can be viewed as a 2D DP table where each cell represents the similarity score between two substrings. The optimal substructure is the longest common subsequence of two strings, which can be calculated using a 1D DP table.
+
+Let state dp[i][j] represent the similarity score between substrings A[0..i-1] and B[0..j-1]. The base case is when either i or j is 0, in which case the similarity score is 0.
+
+The recursive formula for dp[i][j] can be written as:
+
+dp[i][j] = max(dp[i-1][j-1] + (min(i-1, j-1) == 0 ? 4 : 4 - min(i-1, j-1)) if A[i-1] == B[j-1] else dp[i-1][j] or dp[i][j-1])
+
+The maximum similarity score can be found by iterating over the DP table and returning the maximum value.
+
+To use memoization to store the results of costly function calls involving longest common subsequences, you can create a dictionary that maps tuples of indices i and j to their corresponding similarity scores.
+
+===END PLAN===

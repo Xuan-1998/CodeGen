@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string, and then try to find the lexicographically smallest one among them. This way, you can avoid re-computing the same subproblems multiple times.
+
+State: The last k characters of the string s; Transition: If k is less than the length of the original string, consider deleting the last character of s. Otherwise, consider duplicating the original string.
+
+Use a 2D table to store the lexicographically smallest string for each prefix and suffix of length k.
+
+Fill the table in a bottom-up manner. For strings of length 0 or 1, the answer is simply the empty string or an arbitrary character respectively. For strings of length 2 or more:
+
+* If the last character is smaller than the second last character, consider deleting the last character and move to the previous substring.
+* Otherwise, consider duplicating the original string.
+
+Continue this process until you reach the target length k. The lexicographically smallest string at that position is the answer.
+
+===END PLAN===

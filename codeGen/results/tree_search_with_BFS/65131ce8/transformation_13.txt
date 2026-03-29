@@ -1,0 +1,13 @@
+
+1. Parse the input to get the number of vertices N and the list d of out-degrees.
+2. Initialize a memoization table dp where dp[i][j] represents the number of ways to form a subtree with i nodes and j good vertices.
+3. Set base cases:
+   - dp[1][1] = 1 (a single node is trivially a good vertex).
+   - dp[1][0] = 0 (a single node tree cannot have zero good vertices).
+4. Iterate through the number of nodes from 2 to N:
+   - For each number of nodes i, iterate through the number of good vertices from 1 to i:
+     - For each possible root degree k (from 0 to d[i-1]):
+       - Compute the number of ways to distribute the remaining nodes and good vertices among the children of the current node.
+5. Sum the number of good vertices for all valid trees and take the result modulo 998244353.
+6. Print the result.
+

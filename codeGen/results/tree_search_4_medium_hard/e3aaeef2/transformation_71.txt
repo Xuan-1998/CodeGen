@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+Use dynamic programming with a bottom-up approach by tabulating the intermediate results for each length and number of operations.
+
+State: Define dp[i][j] as the maximum possible length of the resulting number when applying j operations on a number with i digits.
+
+Transition relationship:
+For 0 ≤ k < m, if j = km and n has k digits, then apply operation to each digit d to get (d + 1)_{k+1}...{(d+1)}_{10^(k-1)-1}(d+2).
+
+dp[i][j] = min(dp[i][j-1] + log2(10), i * m)
+
+State: Define l as the length of the initial number n.
+
+Transition relationship:
+For 0 ≤ k < l, if j = km and n has k digits, then apply operation to each digit d to get (d + 1)_{k+1}...{(d+1)}_{10^(k-1)-1}(d+2).
+
+dp[l][j] = min(dp[l][j-1] + l, l * m)
+
+State: Define res as the length of the resulting number after applying j operations on n.
+
+Transition relationship:
+For 0 ≤ k < m, if j = km and n has k digits, then apply operation to each digit d to get (d + 1)_{k+1}...{(d+1)}_{10^(k-1)-1}(d+2).
+
+res = min(res, dp[l][j] % (10^9 + 7))
+
+===END PLAN===

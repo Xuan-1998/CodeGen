@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider the maximum score that can be achieved by processing i elements (1 ≤ i ≤ n) with j moves performed (0 ≤ j ≤ k).
+Let dp[i][j] be the maximum score that can be achieved by processing i elements and performing j moves.
+Base case: If j is 0, then we are not allowed to make any moves. In this case, the maximum score is just the sum of scores from indices 1 to i.
+dp[0][0] = 0
+For each i (1 ≤ i ≤ n), calculate dp[i][j] based on previous values:
+- If j is less than k, then we can make a move to the left. The maximum score will be either the maximum score when j is equal to 0 or the maximum score when j is equal to z.
+dp[i][j] = max(dp[i-1][0], dp[i-z][z])
+- If j is equal to k, then we cannot make any more moves. In this case, the maximum score will be just the sum of scores from indices 1 to i.
+dp[i][k] = sum(scores[1:i+1])
+Return dp[n][k]
+===END PLAN===

@@ -1,0 +1,25 @@
+===BEGIN PLAN===
+State: dp[i] represents whether the binary representation of i contains consecutive ones.
+
+Create a dynamic programming table with size n+1, where dp[i] is initially set to False for all i in range(n+1).
+
+for i in range(n+1):
+    if bin(i)[2:].count('1') == 0:
+        dp[i] = True
+    else:
+        one_count = 0
+        prev_one = -1
+        for j in range(len(bin(i)[2:])):
+            if bin(i)[2:][j] == '1':
+                one_count += 1
+                if one_count > 1 and prev_one + 1 == j:
+                    dp[i] = False
+                    break
+                prev_one = j
+        else:
+            dp[i] = True
+
+Count the number of non-negative integers less than or equal to n whose binary representation does not contain consecutive ones.
+
+result = sum(1 for i in range(n+1) if dp[i])
+===END PLAN===

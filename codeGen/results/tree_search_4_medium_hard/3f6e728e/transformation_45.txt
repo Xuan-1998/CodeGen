@@ -1,0 +1,13 @@
+// Initialize memoization array dp with size C+1 by N+M
+dp[0][j] = 1 (no sphere)
+dp[C+1][j] = 0 (sequences longer than C are not possible)
+
+for r from 1 to C:
+    for j from 0 to min(N, M):
+        // Transition relationship: either add a new sphere with its radius
+        dp[r][j] += (j > 0) * dp[r-1][j-1]
+        // or reuse an existing sphere with a smaller radius
+        if r <= U_i:
+            dp[r][j] += dp[U_i][j-1]
+        if r <= L_i:
+            dp[r][L_i] = dp[L_i][j-1]

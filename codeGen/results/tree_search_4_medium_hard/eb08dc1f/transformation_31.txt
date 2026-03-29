@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+To decide on optimal substructure, think about how blocks can be extended from left to right.
+
+Let dp[i][j] represent the number of blocks ending at position i with j digits.
+dp[i][j] = sum(dp[k-1][min(j, d)] for k in range(i) for d in range(10)) + 1
+Tabulate dp arrays using nested loops, initializing each cell with its recursive value.
+
+for n in range(1, N+1):
+    for i in range(n*(10**n)):
+        for j in range(1, n+1):
+            if i < (10**j)-1:
+                dp[i][j] = sum(dp[k-1][min(j, d)] for k in range(i) for d in range(10)) + 1
+            else:
+                dp[i][j] = 1
+    print(sum(dp[i][n] for i in range((10**n)-1)) % 998244353)
+===END PLAN===

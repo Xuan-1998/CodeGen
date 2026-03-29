@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Use a dynamic programming with bottom-up approach to solve this problem by iterating over all vertices and edges.
+
+Define the state expression as (i, j), where i is the current vertex and j is the maximum number of visited vertices from vertex 1 to vertex i within the time limit j.
+
+The state can be formulated as dp[i][j], which represents the maximum number of visited vertices ending at vertex i with a remaining time of j.
+
+Transition relationship: For each edge (u, v, t) and for each vertex i in the range [1, n-1]:
+  - If it's possible to traverse the edge from vertex u to vertex v within the remaining time dp[u][j-t], then update dp[v][j] as max(dp[v][j], dp[u][j-t] + 1).
+  - Otherwise, just set dp[v][j] as the maximum number of visited vertices ending at vertex v with a remaining time of j.
+
+Initialize the state dp[0][T] as 1 and dp[i][j] for all i in [1, n-1] and j in [1, T] to 0.
+
+Fill up the dynamic programming table in a bottom-up manner by iterating over all vertices and edges.
+
+The maximum number of visited vertices can be found at the last state dp[n-1][T].
+
+Output the maximum number of visited vertices and the indices of vertices that can be visited on the route from vertex 1 to vertex n, in the order of encountering them.
+===END PLAN===

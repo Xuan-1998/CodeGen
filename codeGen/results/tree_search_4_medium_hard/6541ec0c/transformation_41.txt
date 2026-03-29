@@ -1,0 +1,12 @@
+State: dp[node_val][edge_count] = 1 if it is possible to make all connected components in the tree with edge_count edges and node_val as the value of every node in those components have the same XOR, else 0.
+
+dp[node_val][edge_count] = [[[[1 for _ in range(edge_count + 1)] for _ in range(2 ** k + 1)]] for _ in range(2 ** k + 1)]
+
+Initially, set dp[0][0] to 1 as the base case (no edges and no nodes).
+
+Iterate over all possible node values from 0 to 10^9.
+For each node value, iterate over all possible edge counts from 0 to min(k, n).
+For each edge count, for each possible XOR value, calculate the number of connected components that can be formed with this XOR value and edge count by recursively calling dp[node_val - (1 << i)][edge_count - 1] for i = 0 to k-1.
+
+Update dp[node_val][edge_count] as the maximum value among all possible connected components.
+Return "YES" if there exists at least one combination where dp[node_val][edge_count] is 1, else return "NO".

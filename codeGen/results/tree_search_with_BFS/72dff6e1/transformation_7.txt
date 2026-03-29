@@ -1,0 +1,13 @@
+
+1. Define a 2D DP array `dp` where `dp[i][j]` represents the number of valid sequences of length `i` with the last number being `j`.
+2. Initialize the DP array: For the first element, any single element sequence is valid if it satisfies the given conditions, thus `dp[1][j] = 1` for all `j` from 1 to N.
+3. Iterate over the sequence length from 2 to N:
+   a. For each length `i`, iterate over each possible last element `j` from 1 to N.
+   b. For each `j`, iterate over each possible second last element `k` from 1 to N.
+   c. Check if adding `j` to a sequence ending in `k` maintains the constraints:
+      - The number of occurrences of `j` in the sequence should be at most `A[j]`.
+      - The number of occurrences of `i` in the sequence should be at most `A[i]`.
+   d. If the constraints are satisfied, update `dp[i][j]` by adding `dp[i-1][k]` to it.
+4. Calculate the final answer by summing up `dp[N][j]` for all `j` from 1 to N.
+5. Return the result modulo 998244353.
+

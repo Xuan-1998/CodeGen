@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The idea is correct that we can model this problem as a cumulative distribution function (CDF) of the random variable representing the number of players from the department of interest.
+
+To calculate the CDF, we can use dynamic programming. Initialize a 2D array dp where dp[i][j] represents the probability that a randomly formed team will have at least i+1 players from the department of interest given that we have chosen j basketball players in total.
+
+The base case is when j=0, and there are no players to form a team. In this case, the CDF is 0.
+
+For other values of j, calculate the probability of having at least i+1 players from the department of interest given that we have chosen j basketball players in total by iterating over the possible outcomes and using dynamic programming to avoid redundant calculations.
+
+The recurrence relation is dp[i][j] = (s_i / (n + m - 1)) * (dp[i-1][j-1] + dp[i-1][j]) where si represents the number of basketball players in the i-th department.
+
+Finally, return the value of dp[n-1][n], which is the probability that a randomly formed team will have at least one player from the department of interest given that we have chosen n basketball players in total.
+
+If there are not enough basketball players in the university to form a team, output -1 instead.
+===END PLAN===

@@ -1,0 +1,7 @@
+Determine if there's a way to use tabulation with a 2D array to keep track of the cumulative sum of carries.
+
+state: dp[i][k] = expected number of non-zero carries when adding A with k digits and B with i-k digits, both with less than or equal to i digits.
+dp[i][k] = 1/(i+1) * (sum of expected number of non-zero carries when adding A and B, each with k-1 digits respectively, plus sum of expected number of non-zero carries when adding A and B, each with k and i-k-1 digits respectively) if k > 0.
+Otherwise, dp[i][k] = 0.
+
+Determine if there's a base case for memoization (e.g., when one or both numbers have only one digit). If so, calculate the expected number of non-zero carries for this base case and store it in dp[i][k].

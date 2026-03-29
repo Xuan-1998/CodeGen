@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+dp[i][move_type] = 0 for i = 1
+for k from 1 to n:
+    for move_type in (0, 1, 2):
+        if move_type == 0:
+            dp[k][move_type] = max(dp[k-1][0], a[k])
+        elif move_type == 1 and k > z+1:
+            dp[k][move_type] = max(dp[k-1][1], a[k-1])
+        else:
+            dp[k][move_type] = -INF
+        if move_type == 2 and k < n-z:
+            dp[k][move_type] = max(dp[k+1][2], a[k+1])
+        else:
+            dp[k][move_type] = -INF
+return max(dp[n-1][0], dp[n-1][1], dp[n-1][2])
+===END PLAN===

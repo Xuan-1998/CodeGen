@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+The state expression could be the last character seen on the board, and the dynamic programming table would store the minimum number of moves needed to remove all balls up to that point.
+
+Let dp[i] represent the minimum number of moves needed to remove all balls up to index i. The base case is when the board is empty (i.e., i = -1), in which case the answer is 0.
+
+To fill up the dp table, for each index i from left to right, we need to consider three cases: 
+1) If the current ball at index i has the same color as the last seen ball, then the minimum number of moves needed to remove all balls up to that point is the same as the one computed previously (dp[i-1]).
+2) If the current ball at index i does not have the same color as the last seen ball, then we need to consider inserting a new ball at position i. This would require 1 move.
+3) If there are more than two balls of the same color touching each other, then we can remove them all with one move.
+
+The dynamic programming equation could be written as:
+dp[i] = min(dp[i-1], dp[j-1] + 1, j-i+2)
+
+where j is the index where the current ball at i has the same color as the last seen ball.
+
+To implement memoization by storing the computed values of the function in a separate dictionary, we could use a dictionary called memo to store the results of solving each subproblem.
+The final answer would be dp[-1].
+
+===END PLAN===

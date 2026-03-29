@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Develop a recursive approach to determine if it's possible to send sequence $b$, given constraints on the length and value of each segment in sequence $a$. 
+Define the state as a pair (i, p) where i is the current index in sequence b and p is the prefix of the corresponding sequence a. 
+State can be represented by (b_index, a_prefix) where b_index is the current index in sequence b and a_prefix is the prefix of the corresponding sequence a.
+Use a 2D array dp where dp[i][j] represents whether it's possible to send the first i elements of sequence b by splitting sequence a into segments and writing their lengths in sequence a.
+
+1. Initialize the base case: dp[0][0] = True (it is possible to send an empty sequence)
+
+2. For each index i from 1 to n:
+   - For each prefix p of length j from 1 to i:
+       - If b[i-1] equals the sum of lengths of segments in p, then it's possible to send the first i elements of sequence b by splitting sequence a into segments and writing their lengths in sequence a.
+       - dp[i][j] = (dp[i-1][j-1]) or (dp[i-1][j-1] and dp[i-1][j-2])
+   - If it's not possible to send the first i elements of sequence b by splitting sequence a into segments and writing their lengths in sequence a, then dp[i][j] = False
+
+3. For each test case:
+   - Check if dp[n][n] is True
+   - If dp[n][n] is True, print "YES"
+   - Otherwise, print "NO"
+
+===END PLAN===

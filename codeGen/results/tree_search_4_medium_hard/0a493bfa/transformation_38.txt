@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider each number in the array as a 'pivot'. For each pivot, calculate its greatest common divisor (GCD) with all other numbers in the array. This will create new subproblems that can be solved recursively or iteratively.
+
+The base case would be when the array contains only one element, in which case the beauty is 0.
+
+Then we use dynamic programming to fill up the table:
+
+Let dp[i] be the maximum beauty of the array after performing operations on a[1], ..., a[i]. 
+
+For each i from 2 to n:
+    For each j from 1 to i-1:
+        Calculate the GCD of a[j] and all numbers in [j+1, i]
+        Let s be the sum of these GCDs
+        Update dp[i] = max(dp[i], f(s) + dp[j-1])
+
+The final answer would be dp[n]
+
+===END PLAN===

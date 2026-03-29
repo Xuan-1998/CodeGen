@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+dp[i][j] is defined as the length of the longest increasing subsequence ending at i, considering the last increase happened j steps ago.
+
+Base case: dp[0][j] = 1 for all j (the first element is always part of an increasing sequence)
+
+For each i from 1 to n:
+    For each j from 0 to k:
+        If a[i] > a[i - j], then the last increase happened j steps ago
+            Update dp[i][j] to be 1 + dp[i - j][k - j]
+        Else (no increase), then the last increase happened k steps ago
+            Update dp[i][k] = max(dp[i][k], dp[i - 1][k])
+===END PLAN===

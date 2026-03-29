@@ -1,0 +1,13 @@
+
+1. Sort the points based on their positions in ascending order. This helps in processing the points from right to left.
+2. Define an array dp where dp[i] represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point.
+3. Initialize dp[n] = 0 because there are no points to the right of the newly added point.
+4. Iterate through the points from right to left (from n-1 to 0):
+   a. Use binary search to find the next point j such that ai + bi < aj. This can be done efficiently using the sorted order.
+   b. If such a point j is found, set dp[i] = dp[j] + 1. Otherwise, set dp[i] = 1.
+   c. Update dp[i] to be the minimum value considering all possible transitions.
+5. The final answer will be dp[0], which represents the minimum number of points removed starting from the leftmost point.
+6. Edge cases to consider:
+   a. If there's only one point, adding a new point will result in removing only that point.
+   b. If all points have ranges that do not overlap, the result should be n.
+

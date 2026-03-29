@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Determine if there's a way to use tabulation with a 1D array to keep track of the cumulative sum of carries.
+
+state: dp[i] = expected number of non-zero carries when adding A and B, both with less than or equal to i digits.
+dp[i] = (sum of expected number of non-zero carries when adding A and B, each with i-1 digits respectively) / (i+1)
+
+Use a loop to fill up the 1D array. For each i, use the recurrence relation provided in your problem statement to update the value of dp[i].
+
+for i from N down to 1:
+    if i == 0:
+        dp[i] = 0
+    else:
+        dp[i] = (dp[i-1] + 2 * dp[i-1]) / (i+1)
+
+Use the calculated values in the array to find the expected number of non-zero carries when adding A and B, both with less than or equal to N digits.
+The final answer is simply dp[N].
+
+===END PLAN===

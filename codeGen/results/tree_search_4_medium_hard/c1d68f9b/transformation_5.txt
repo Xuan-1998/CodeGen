@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider a dynamic programming solution where you build up a table of valid polygon configurations from left to right, using the current knight's mood as input for each configuration.
+
+The state expression is a tuple (mood_sum, k_count), where mood_sum is the sum of all knights' moods seen so far and k_count is the count of good moods.
+State: (n-k_count, sum(mood[i] for i in range(n))%2)
+Transition: If state[0] > 0 and state[1] == 0, then YES; else NO.
+
+Implement a bottom-up dynamic programming approach by iterating from left to right and updating the table with the correct information. This is more efficient than a top-down approach as it avoids redundant calculations.
+
+For each subproblem, check if the current knight's mood matches the remainder of the sum when divided by 2 (i.e., whether the polygon configuration is valid given the current knight's mood). If it does and there are at least three good moods seen so far, then YES; else NO. Otherwise, continue with the next subproblem.
+
+Memoize the results of each subproblem to avoid redundant calculations.
+===END PLAN===

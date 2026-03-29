@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+The state is a boolean indicating whether the current prime number has exactly k_perms permutations, with no additional information.
+
+View each prime number as a string and generate all its permutations using recursion or iteration. Then, check if the number of permutations is equal to k_perms.
+Maintain an array dp of size n_max+1 where each element at index i stores the count of permutations of all prime numbers less than or equal to i.
+Initialize dp with zeros.
+
+For each prime p in the range [2, n_max]:
+    Convert p to a string str_p.
+    Generate all permutations of str_p using recursion or iteration. Let count be the number of unique permutations.
+    Check if count equals k_perms. If true, increment the value at dp[p] by 1.
+
+The answer is stored in the array dp: 
+    The count of prime numbers with exactly k_perms permutations below n_max is dp[n_max].
+    The smallest and largest such prime numbers are the first and last indices of non-zero elements in the array dp, respectively.
+If no such prime numbers are found, return [0, 0, 0].
+
+===END PLAN===

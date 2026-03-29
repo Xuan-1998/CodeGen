@@ -1,0 +1,17 @@
+
+1. Define the dynamic programming table `dp[i][j]` where `dp[i][j]` represents the number of ways to pass the ball `i` times such that the `j-th` player has the ball.
+2. Initialize the base case:
+    - `dp[0][0] = 1`: With 0 passes, the only way for the 0-th player to have the ball is the initial state.
+    - For all other players `j > 0`, `dp[0][j] = 0` since no passes have been made yet.
+3. Fill the DP table using the following transition:
+    - For each pass `i` from 1 to `N`:
+        - For each player `j` from 0 to `K`:
+            - `dp[i][j] = sum(dp[i-1][m] for all m != j) % 1000000007`
+            - This means the number of ways for player `j` to have the ball after `i` passes is the sum of ways for all other players to have the ball after `i-1` passes.
+4. The final answer for each test case is `dp[N][P]`, where `P` is the target player who should receive the ball last. Since `P` is fixed and can be any player, we will consider `P` to be player `0` as per the problem description.
+5. Read the input values and process each test case to compute the result using the above DP approach.
+6. Output the result for each test case.
+
+Time complexity: O(N * K^2) per test case
+Space complexity: O(N * K)
+

@@ -1,0 +1,9 @@
+
+1. Sort the points based on their coordinates in ascending order. This will help in processing the points from right to left easily.
+2. Define a dynamic programming array dp where dp[i] represents the minimum number of points removed if we start activating points from the i-th point to the rightmost point.
+3. Initialize dp[n] = 0, as there are no points to the right of the newly added point.
+4. Iterate from the (n-1)-th point to the 0-th point:
+    a. For each point i, find the farthest point j that will be removed when point i is activated. This can be done using binary search or a linear scan.
+    b. Set dp[i] to be the minimum of dp[i+1] (if we do not activate point i) and dp[j+1] + (j - i) (if we activate point i and remove points from i+1 to j).
+5. The answer will be the minimum value in the dp array, as it represents the minimum number of points removed when activating points from any starting point.
+

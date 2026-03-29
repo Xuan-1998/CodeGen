@@ -1,0 +1,11 @@
+
+1. Define the problem using dynamic programming (DP) approach to count the number of good vertices in all good trees.
+2. Define the DP state: Let dp[i][j] be the number of ways to form a subtree with i vertices and j good vertices.
+3. Base Case: Initialize dp[1][1] = 1, since a single vertex tree with vertex 1 as the root is trivially a good tree with one good vertex.
+4. Transition: For each subtree size i (from 2 to N) and each possible number of good vertices j (from 1 to i):
+   - Iterate over all possible out-degrees k (from 0 to d[i-1]) for the current vertex.
+   - Calculate the number of ways to form subtrees with the remaining vertices (i-1) and distribute the good vertices accordingly.
+5. Use a nested loop to iterate over all possible subtree sizes and good vertex counts, updating the DP table based on the transitions.
+6. Sum up the dp[N][j] values for all j (from 1 to N) to get the total number of good vertices in all good trees.
+7. Return the result modulo 998244353.
+

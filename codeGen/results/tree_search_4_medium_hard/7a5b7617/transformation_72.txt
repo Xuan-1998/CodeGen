@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems, which can be solved by using a bottom-up approach with tabulation.
+
+Let dp[i][j] represent the number of ways to fill the first i rows and j columns such that the sum of each row is not less than the sum of previous rows. The base case is when i = 0 or j = 0, in which case there is only one way to fill the table.
+
+The state transition equation can be expressed as:
+
+dp[i][j] = Σ(dp[k][m]) for all k < i and m ≤ j where the sum of elements from (k, 1) to (i, j) does not exceed M
+
+This equation represents the number of ways to fill the first i rows and last j columns such that the sum of each row is not less than the sum of previous rows.
+
+dp[i][0] = 1 for all i and j = M minus the previous row sum. This ensures that the total sum does not exceed M.
+
+To use a 2D table where dp[i][j] represents the number of ways to fill the first i rows and last j columns such that the sum of each row is not less than the sum of previous rows. The base case is when i = 0 or j = 0, in which case there is only one way to fill the table.
+
+The final answer can be calculated by summing up all dp[i][M] for i from 1 to N, and taking the modulus with 1 000 000 000. This represents the total number of different steady tables modulo 1 000 000 000.
+
+===END PLAN===

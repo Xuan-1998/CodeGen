@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+You could model the problem as a graph where nodes represent states and edges represent transitions; then use memoization to avoid repeating calculations.
+
+State: (x, y), where x is the current index in the sequence and y is the final value of y after the program has terminated.
+
+Create an array dp[1..n] where dp[i] represents the final value of y for a sequence up to length i. Initialize all values in the array to -1 (denoting that the program did not terminate).
+
+For each index i from 2 to n:
+    Calculate the initial state as (x, y) = (1, 0)
+    While x is still within the bounds of the sequence and x > 0:
+        Update the state according to the rules: x += a[x]; y += a[x]; then x -= a[x]; y += a[x]
+    If x becomes 0 or negative, set dp[i] = y
+    Otherwise, dp[i] remains -1 (denoting that the program did not terminate)
+
+===END PLAN===

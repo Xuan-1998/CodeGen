@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be solved using dynamic programming by defining a state that represents the maximum amount of money earned given the remaining tables and the total amount of money to spend. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Let dp[i][j] represent the maximum amount of money earned given i remaining tables and j total amount of money to spend. Initialize dp[0][j] = 0 for all j (base case: when there are no more tables) and dp[i][0] = 0 for all i (base case: when there are no more money to spend).
+
+Use memoization to fill in the states in top-down manner. For each request, consider two options:
+- Accept the request and reduce the remaining tables by 1 and the total amount of money to spend by ci.
+- Decline the request and keep the remaining tables and total amount of money to spend unchanged.
+
+If accepting the request would not exceed the maximum capacity of any table or the total amount of money to spend, then update dp[i][j] = max(dp[i][j], ci + dp[i-1][j-ci]).
+
+Fill in the states in top-down manner using memoization.
+The final answer is dp[n][k].
+
+===END PLAN===

@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoization can be used to solve the problem by storing the results of subproblems and reusing them when needed.
+
+The state expression is dp[i]: the number of ways to build a sequence with exactly i spheres having radii up to i, where 1 ≤ i ≤ C.
+dp[i] = sum(dp[j] * binomial(N-j+M-i-1, M-i) for j in range(i)), 
+    where N-j+M-i is the remaining number of spheres that can be used to form an i-sequence
+
+Tabulation can also be used by creating a 1D array dp[] where dp[i] represents the number of ways to build a sequence with exactly i spheres having radii up to i.
+
+Initialize dp[0] = 1, since there is only one way to build an empty sequence.
+For each i from 1 to C:
+    Calculate dp[i] as the sum of dp[j] * binomial(N-j+M-i-1, M-i) for j in range(i)
+Return dp[C]
+===END PLAN===

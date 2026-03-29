@@ -1,0 +1,11 @@
+
+1. Define a 2D array dp where dp[i][j] represents the number of ways to form a sequence of length i using the first j numbers.
+2. Initialize the base case: dp[0][j] = 1 for all j from 0 to N, representing that there is exactly one way to form an empty sequence.
+3. Iterate over the length of the sequence i from 1 to N.
+4. For each i, iterate over the first j numbers from 1 to N.
+5. For each dp[i][j], calculate the value as follows:
+   a. dp[i][j] = dp[i][j-1] (ways to form a sequence of length i without using the j-th number).
+   b. If j > 0 and A[j-1] >= i, add dp[i-1][j-1] to dp[i][j] (ways to form a sequence of length i by using the j-th number, considering the constraints).
+6. Apply modulo 998244353 to each dp[i][j] to ensure the values do not overflow.
+7. The final answer will be dp[N][N], representing the number of ways to form a sequence of length N using the first N numbers.
+

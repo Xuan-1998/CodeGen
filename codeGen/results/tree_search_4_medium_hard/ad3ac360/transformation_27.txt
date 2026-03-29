@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Define a 2D table dp where dp[i][j] is True if the substring s[i..j] is a palindrome and False otherwise. The state expression can be defined as (i, j) representing the start and end indices of the current palindromic substring being considered.
+Create base cases for the recurrence: 
+- If i > j, dp[i][j] = True since an empty string or a single character is always a palindrome.
+- For even-length substrings, consider the case where the characters at the center of the substring are equal to themselves (ignoring case). If they are, then the substring is palindromic. Otherwise, it's not.
+- For odd-length substrings, check if the characters at both ends are equal to themselves (ignoring case) and if the middle character is equal to itself. If all these conditions are met, then the substring is palindromic.
+
+Create a recursive function that fills up the dp table in bottom-up manner:
+- Base cases first: fill up the diagonal elements of the table as per the base cases.
+- For each cell (i, j), consider two possibilities:
+  - The characters at the center of the substring are equal to themselves. If they are, then the substring is palindromic and we can set dp[i][j] = True. Otherwise, it's not.
+  - The characters at both ends are equal to themselves and the middle character is equal to itself. If all these conditions are met, then the substring is palindromic and we can set dp[i][j] = True. Otherwise, it's not.
+
+Finally, for each cell (i, j), count the minimum number of cuts needed by considering two possibilities:
+- The characters at the center of the substring are equal to themselves. If they are, then we don't need any cut.
+- The characters at both ends are equal to themselves and the middle character is equal to itself. If all these conditions are met, then we don't need any cut.
+
+The minimum number of cuts can be found by iterating through the dp table from left to right and finding the maximum number of consecutive elements where dp[i][j] = True.
+===END PLAN===

@@ -1,0 +1,18 @@
+
+===BEGIN PLAN===
+1. Define the problem in terms of Dynamic Programming (DP). Use a 2D DP table where dp[i][j] represents the number of valid sequences of length i where the last element is j.
+2. Initialize the DP table:
+   - dp[0][0] = 1 (An empty sequence is considered valid)
+   - For other dp[0][j], initialize to 0 as there are no sequences of length 0 with a last element.
+3. Fill the DP table using the following transitions:
+   - For each length i from 1 to N:
+     - For each element j from 1 to N:
+       - dp[i][j] will be the sum of dp[i-1][k] for all k from 1 to N, provided that adding j to the sequence ending in k forms a valid sequence.
+       - Ensure the conditions are met: The number of occurrences of any integer in the sequence must not exceed its corresponding value in A.
+4. Use a helper function to count occurrences of each integer in the sequence so far to ensure the conditions are met.
+5. Compute the final answer by summing dp[N][j] for all j from 1 to N, modulo 998244353.
+6. Edge cases:
+   - If N = 1, the result should be 1 if A[1] >= 1, else 0.
+   - Ensure to handle cases where A[i] = 1 for all i, which means each number can only appear once.
+===END PLAN===
+

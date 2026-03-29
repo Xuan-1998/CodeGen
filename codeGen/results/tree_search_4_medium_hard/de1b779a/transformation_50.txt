@@ -1,0 +1,16 @@
+def dp(dough_left, available_stuffs):
+  if (dough_left, available_stuffs) in memo:
+    return memo[(dough_left, available_stuffs)]
+  
+  max_profit = 0
+  
+  for stuff in available_stuffs:
+    ai, bi, ci, di = stuff
+    if dough_left >= ci: 
+      # use the current stuffing type
+      profit = di - (bi + ci)
+      max_profit = max(max_profit, dp(dough_left-ci, [stuff]))
+  
+  return max_profit
+  
+memo = {}

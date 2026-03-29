@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems by considering the maximum possible grade for a shorter decimal fraction and then extending it to longer lengths, allowing us to use memoization to store and reuse previously computed values.
+
+Let's define a state expression: 'state[i][j]' where state[i][j] represents whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point. We can set the base case as state[0][j] = True for all j since it's always possible to get 0.0 within any time limit.
+
+We'll implement memoization using a dictionary where the key is a tuple of (i, j) and the value is True or False indicating whether it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point.
+
+To determine whether 'state[i][j]' is True, we can consider two options:
+1. Round the current digit: In this case, we'll decrement t by 1 (since rounding takes one second) and add the value of the current digit to the previous rounded grade.
+2. Don't round the current digit: In this case, we simply copy the previous rounded grade.
+
+We'll recursively compute 'state[i][j]' based on these two options and store the result in the dictionary. If it's possible to obtain a certain grade within j seconds when rounding the first i digits after the decimal point, then state[i][j] will be True; otherwise, it will be False.
+
+Finally, we can find the maximum possible grade by iterating through the values of 'state[n-1][t]' where n is the length of the decimal fraction and t is the time limit. The maximum value that satisfies 'state[n-1][t]' will be our answer.
+
+===END PLAN===

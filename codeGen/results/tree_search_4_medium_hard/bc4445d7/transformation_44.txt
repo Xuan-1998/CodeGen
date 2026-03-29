@@ -1,0 +1,17 @@
+===
+state = 0;
+memoization = new Dictionary<node, int>();
+function dfs(node):
+    if memoization.ContainsKey(node):
+        return memoization[node];
+    state = 0;
+    foreach child in node.children:
+        state += dfs(child);
+    // calculate the maximum possible distribution index for the current node
+    memoization.Add(node, state);
+    return state;
+function solve():
+    for each node in tree.nodes:
+        state = dfs(node);
+    return state modulo 10^9 + 7;
+

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Memoization vs Tabulation: We could use memoization by defining a recursive function that stores the results of subproblems in a dictionary, or we could use tabulation by creating a 1D array where each cell dp[i] represents the maximum joy for i hares.
+
+The state could be dp[i] representing the maximum joy for i hares, with the base case being when i == 1, where dp[1] is either b[0] or c[0] depending on whether the hare was fed first or last.
+
+State: dp[i]: maximum joy for i hares
+Base Case: dp[1] = max(b[0], c[0])
+
+Transition:
+dp[i] = max(dp[i-1], dp[i-2] if i > 1 else a[i-1]) + (dp[j-1] if j > 0 else b[i-1])
+Memoize the base case values in a dictionary and use a recursive function to build up the solution.
+
+Transition Function: 
+if i == 1, return max(b[0], c[0])
+else
+    dp[i] = max(dp[i-1], dp[i-2] if i > 1 else a[i-1]) + (dp[j-1] if j > 0 else b[i-1])
+
+Return dp[n]
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Design a recursive function that explores all possible routes from vertex 1 to vertex n, and uses memoization to store the results in a dictionary.
+Define the state as a tuple (i, prev), where i is the current vertex and prev is the previous vertex visited; define the state expression as dp[i][prev], which represents the maximum number of vertices that can be visited starting from vertex 1 and ending at vertex i within a time limit of T.
+Formulate state as (i, prev): dp[i][prev] = max({dp[u][v] + 1 for u in range(1, i) if (u, v) is a valid edge and t < T} | {1}) if i == n else dp[i-1][u] for u in range(1, i) if (i-1, u) is a valid edge), where i is the current vertex and prev is the previous vertex visited.
+Dynamically build the DP table using nested loops: 
+    for each vertex i from 2 to n:
+        iterate over its outgoing edges:
+            calculate the maximum number of vertices that can be visited by traversing the edge and updating the current vertex's value in the dp table:
+                if i == n, return 1
+                else, recursively call the function with the updated state.
+===END PLAN===

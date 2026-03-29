@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+Decide on a bottom-up approach with tabulation by initializing a 2D table and filling it up in a bottom-to-top manner, exploiting the optimal substructure.
+
+The state is defined as dp[i][j] = minimum possible number of ones in the labels for nodes i to j, considering all edges between them.
+dp[i][j] could be the maximum product that can be achieved by multiplying all labels on the path from node i to j
+
+DP using a 2D table with O(n*m) space complexity, where n is the number of nodes and m is the maximum possible product.
+
+Initialize dp[][] table with size (n,n), and fill it up in bottom-to-top manner:
+For each edge (u,v):
+    Calculate minimum possible ones for edges from u to v
+    Update dp[u][v] with this value
+
+Finally, calculate sum(f(i,j)) over all i <= j pairs, which represents the maximum possible distribution index.
+
+===END PLAN===

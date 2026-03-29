@@ -1,0 +1,9 @@
+
+2. Bottom-up strategy with tabulation: This method involves solving smaller subproblems first and using their solutions to build up the solution to the original problem. It is typically implemented using iterative loops and a table to store intermediate results.
+3. State Expression: Define dp[i][j] as the number of ways to form a subtree with i vertices and j good vertices. Base Case: dp[1][1] = 1, indicating there's one way to form a subtree with one vertex (the root itself) which is also a good vertex.
+4. Recurrence Relation: dp[i][j] = sum(dp[k][l] * dp[i-1-k][j-l] for all valid k, l), where k and l represent the number of vertices and good vertices in one of the subtrees.
+5. Transition: For each node, iterate through all possible sizes of the left and right subtrees and update the dp table accordingly.
+6. Memoization: This method involves storing the results of expensive function calls and reusing them when the same inputs occur again, thus avoiding the need to recompute the results.
+7. Edge Cases: Consider edge cases such as when all d_i are zero except for d_1, or when d_i are distributed in a way that forces the tree to be highly unbalanced.
+8. Output: Sum up the number of good vertices for all possible trees and return the result modulo 998244353.
+

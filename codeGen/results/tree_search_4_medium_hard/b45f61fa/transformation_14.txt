@@ -1,0 +1,19 @@
+===BEGIN PLAN===
+Top-down approach with memoization: Identify subproblems as 'multiply matrices from i to j' and memoize solutions for overlapping subproblems.
+
+Define the state expression as a 2D array dp[i][j] storing the minimum number of multiplications for matrices from i to j, and the base case is when i == 0 (no matrices left) or j == n-1 (no more matrices to multiply).
+
+Consider the state dp[i][j] as the minimum number of multiplications needed when multiplying matrices from i to j, and define a transition function f(i, j) = min(f(i, k) + f(k+1, j) + p[i]*p[k+1]*p[j]) for k from i to j-1.
+
+Create a bottom-up dynamic programming table with nested loops as follows:
+
+    for int i from 0 to n-1:
+        for int j from i to n-1:
+            if i == 0 or j == n-1:
+                dp[i][j] = 0
+            else:
+                dp[i][j] = min(f(i, k) + f(k+1, j) + p[i]*p[k+1]*p[j]) for k from i to j-1
+
+    return the minimum value in dp[0][n-1]
+
+===END PLAN===

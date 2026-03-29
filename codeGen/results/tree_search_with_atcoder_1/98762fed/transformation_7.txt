@@ -1,0 +1,15 @@
+
+1. Define the problem in terms of dynamic programming where dp[i][j] represents the number of valid matrices of size i x j.
+
+2. Base Case: The base case would be dp[1][1] = 2, as a 1x1 matrix can have either 0 or 1, both trivially satisfying the condition.
+
+3. State Transition: To fill dp[i][j], consider extending smaller matrices by adding a new row or column and ensuring the condition A_{a, b} \times A_{c, d} \leq A_{a, d} \times A_{c, b} holds for the new elements added. This involves iterating over all possible positions of the new row or column and checking the condition for all relevant quadruples.
+
+4. Iterate through all possible sizes of matrices from 1x1 to NxM, using the state transition to fill the dp table.
+
+5. Use modulo 998244353 to ensure the results do not overflow and fit within the required constraints.
+
+6. The final answer will be stored in dp[N][M], representing the number of valid matrices of size NxM.
+
+7. Edge Cases: Ensure the solution handles the smallest input sizes (N=1, M=1) correctly and efficiently.
+

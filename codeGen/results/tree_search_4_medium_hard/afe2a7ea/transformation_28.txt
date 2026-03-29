@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+The problem can be broken down into smaller subproblems that are mutually independent. This suggests that a bottom-up approach with tabulation could be effective.
+
+Let dp[i][j] represent the probability that i-1 towers are used and there is signal power set for towns 1 to j. The base case is when all towers are unused, which has a probability of 2^-n.
+
+The transition relationship is as follows:
+    - If the current tower is not used (0), then the next state dp[i][j] = dp[i-1][j]
+    - If the current tower is used (1) and there is no signal power set for town j, then the next state dp[i][j] = 2^(i-1-j) * dp[i-1][j-1]
+    - If the current tower is used (1) and there is signal power set for town j, then the next state dp[i][j] = dp[i-1][j]
+
+The final answer will be dp[n][n+1].
+
+Applying memoization to prune the search space by keeping track of previously computed probabilities.
+
+===END PLAN===

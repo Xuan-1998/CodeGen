@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The problem has overlapping subproblems: The minimum total cost required to sort the strings in lexicographical order can be broken down into solving smaller instances of the same problem, where some solutions are reused across different instances. This property makes bottom-up approach with tabulation suitable for this problem.
+
+The state expression can be a 2D array dp where dp[i][j] represents the minimum total cost required to sort the first i strings in lexicographical order using at most j reversals.
+State: 
+    - Initialize dp[0][j] = 0 for all j, since no reversals are needed for an empty sequence of strings.
+    - For each string s_i:
+        - If s_i is less than or equal to the previous string in lexicographical order (dp[i-1][k]), then we can either use this string as it is or reverse it. In the first case, the minimum total cost remains dp[i-1][k]. In the second case, the minimum total cost becomes dp[i-1][k] + c_i, where c_i is the cost of reversing s_i.
+        - If s_i is greater than the previous string in lexicographical order (dp[i-1][k]), then we need to reverse it to make it less than or equal to the previous string. The minimum total cost becomes dp[i-1][k] + c_i, where c_i is the cost of reversing s_i.
+    - Finally, the minimum total cost required to sort all strings in lexicographical order using at most j reversals is dp[n-1][j].
+===END PLAN===

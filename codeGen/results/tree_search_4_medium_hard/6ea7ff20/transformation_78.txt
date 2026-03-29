@@ -1,0 +1,26 @@
+===BEGIN PLAN===
+state dp[i][j] = { 1 if there exist arrays a and b such that merge(a,b) equals permutation up to index i, with array a having length j; else 0 };
+state: dp[i][j] = { 
+  1 if there exist two non-empty arrays a and b, each of length min(i+1,j), 
+  such that merge(a,b) equals permutation from index 0 to i, 
+  with array a having length j; 
+  else 0 };
+state dp[0][j] = { 1 for all j } // base case: empty arrays
+for i from 1 to n-1:
+  for j from 1 to min(i+1,n):
+    if pi == p[i-1]:
+      // a_1 > b_1, or vice versa, so we merge the remaining arrays
+      dp[i][j] = (dp[i-1][k] || k==0) && dp[i-1][j-k]
+    else:
+      // both arrays are non-empty and a_1 <= b_1, so we can't merge yet
+      dp[i][j] = 0
+for i from n to 2n-1:
+  for j from 1 to min(i-n+1,n):
+    if pi == p[i-1]:
+      // a_1 > b_1, or vice versa, so we merge the remaining arrays
+      dp[i][j] = (dp[i-1][k] || k==0) && dp[i-1][j-k]
+    else:
+      // both arrays are non-empty and a_1 <= b_1, so we can't merge yet
+      dp[i][j] = 0
+return dp[n-1][n] === 1 ? "YES" : "NO"
+===END PLAN===

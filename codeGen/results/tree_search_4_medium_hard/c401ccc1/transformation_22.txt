@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Define dp[i] = number of vertices reachable by i.
+Base case: 1 for all vertices (since every vertex can reach itself).
+dp[i] is 1 if i is reachable, else it's 0; transitively reachable vertices have dp values added.
+
+For each query pair (u, v), check:
+    - If u & v = v, there's an edge from u to v. Add the number of vertices reachable by v to dp[u].
+    - Recursively calculate dp[v] as the sum of all dp[i] where i is reachable from v.
+    - Return "YES" if dp[v] > 0; otherwise, return "NO".
+
+===END PLAN===

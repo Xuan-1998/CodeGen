@@ -1,0 +1,9 @@
+===BEGIN PLAN===
+Define states dp[i][j] as the maximum length of non-increasing sequence seen so far in the current subsegment [0, i) ending at index j.
+
+state[0][0] = 1
+For each query [l, r], iterate from l to r:
+    If a[j-1] ≥ a[j] (non-decreasing), update state[i][j] = max(state[i-1][k] for k in range(l-1, j) if state[i-1][k-1] > 0 or (state[i-1][k-1] == 0 and a[k-1] ≥ a[k])) + 1
+    Else (non-increasing), update state[i][j] = max(state[i-1][k] for k in range(l, j) if state[i-1][k-1] > 0 or (state[i-1][k-1] == 0 and a[k-1] ≥ a[k]))
+If the subsegment [l, r] is a ladder, print "Yes", else print "No"
+===END PLAN===

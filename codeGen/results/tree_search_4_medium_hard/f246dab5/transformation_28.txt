@@ -1,0 +1,13 @@
+state: dp[i] = min_cost_to_activate_after_trip_i
+State dp[i] represents the minimum cost to activate tickets after trip i. The transition relationship is:
+    1. If there are no tickets activated yet, dp[i] = 0
+    2. If a ticket for one trip is activated, dp[i] = dp[i-1] + 20
+    3. If a ticket for 90 minutes is activated, 
+        dp[i] = min(dp[i-1], dp[min(j | t_j <= t_i)]) + (i-t_min)*50 if i-t_min >= 90
+        where t_min is the time of the trip that starts ticket activation
+    4. If a ticket for one day is activated, 
+        dp[i] = min(dp[i-1], dp[min(j | t_j <= t_i)]) + (i-t_min)*120 if i-t_min >= 14*40
+
+Implement a bottom-up dynamic programming approach by initializing dp[0] to 0 and then updating dp[i] based on dp[i-1] and other previously computed values.
+
+Note: The edge case where there are no trips can be handled in step 1.

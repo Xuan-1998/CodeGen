@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Combine bitwise operations with dynamic programming to efficiently count arrays.
+
+dp[i] = 1 if all numbers less than or equal to 2^k have a bitwise AND of at least i, else dp[i] = 0;
+
+dp[i][j] represents the number of arrays that have bitwise AND equal to i and bitwise XOR equal to j;
+Maintain two arrays: dp_and[] and dp_xor[], where dp_and[i] represents the number of arrays that have bitwise AND equal to i and dp_xor[j] represents the number of arrays that have bitwise XOR equal to j.
+
+For each test case, iterate through all possible bitwise AND values from 0 to 2^k - 1. For each value i, calculate the corresponding bitwise XOR value by doing XOR operation on all numbers less than or equal to 2^k. Then update dp_and[i] and dp_xor[bitwise_xor_value].
+
+Finally, for each test case, iterate through all possible bitwise AND values from 0 to 2^k - 1 again. For each value i, calculate the number of arrays that satisfy the condition by doing dp_and[i] * (n choose k) where n is the total number of numbers and k is the count of i in the array.
+
+Print the sum modulo 10^9+7 for each test case.
+===END PLAN===

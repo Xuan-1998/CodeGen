@@ -1,0 +1,17 @@
+===BEGIN PLAN===
+We can use dynamic programming with memoization to solve this problem. The state can be represented as a tuple (upper, lower) where upper is a set of upper hemisphere radii and lower is a set of lower hemisphere radii.
+
+The base case is when the number of upper hemispheres N or M is 0.
+
+The transition relationship can be formulated as follows:
+- If the current state has no upper hemispheres (N == 0), then dp[upper, lower] = 1 if all lower hemispheres have a radius less than C and 0 otherwise.
+- If the current state has no lower hemispheres (M == 0), then dp[upper, lower] = 1 if all upper hemispheres have a radius less than C and 0 otherwise.
+- Otherwise, dp[upper, lower] = sum(dp[(upper.remove(u), lower)]) for each possible combination of removing one upper or lower hemisphere from the current state.
+
+We can use a dictionary memo where memo[(upper, lower)] stores the number of ways to build sequences with all possible upper and lower hemispheres. The value of dp[upper, lower] is calculated as follows:
+- If (upper, lower) is not in memo, then dp[upper, lower] = sum(dp[(upper.remove(u), lower)]) for each possible combination of removing one upper or lower hemisphere from the current state.
+- Otherwise, return memo[(upper, lower)].
+
+The final answer is the value of dp[(), ()], which represents the number of ways to build sequences with all possible upper and lower hemispheres.
+
+===END PLAN===

@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+The optimal substructure is that f(n) can be calculated by combining the results of smaller instances, specifically f(m) for m < n.
+f(2n) = f(n) + 1 (since we need one more comparison to select the most beautiful participant from 2n girls)
+
+Try to find a recursive relation between f(l) and f(r), or more specifically, f(l + 1) and f(r)
+f(l + 1) = f(l) + 1 (since we add one more girl to group l and need one more comparison to select the most beautiful participant from l + 1 girls)
+
+Apply top-down dynamic programming by solving subproblems from left to right and storing intermediate results.
+For each subproblem, calculate f(r) as f(l) = t0·f(l) + t1·f(l + 1) + ... + tr - l·f(r)
+Store the intermediate result of f(l) in a memoization table
+Repeat this process for all subproblems and calculate the final answer as f(r)
+
+===END PLAN===

@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. We can solve this problem using dynamic programming.
+
+State: (i, j) representing the subarray from index i to j, with Beauty[i][j] being the maximum beauty value for this subarray.
+Memoize the state of Beauty array using a dictionary where keys are tuples (i, j) and values are the computed beauty values.
+
+Initialization:
+    For each cell in the Beauty array, initialize it as -1. This indicates that we haven't computed the beauty value yet.
+
+Transition Function:
+    For the subarray from index i to j,
+        If all numbers in this subarray are good primes (i.e., no bad prime), then its beauty is simply the number of good primes.
+        Otherwise, try to remove each bad prime and calculate the maximum beauty for the remaining subarray. Choose the maximum one.
+
+Memoization:
+    When calculating the beauty value for a subarray, store it in the memoized dictionary. Before doing so, check if the beauty value has already been computed. If it has, return the stored result instead of recalculating it.
+
+Backtracking:
+    Start from the end of the array and work backwards. For each cell in the Beauty array, calculate its beauty using the transition function and store the result in the memoized dictionary.
+===END PLAN===

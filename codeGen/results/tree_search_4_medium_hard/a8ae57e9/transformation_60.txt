@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Dynamic programming can solve this problem by defining a state that represents the maximum amount of money earned for each possible table configuration and total amount of money spent. The base case would be when there are no more tables or no more money to spend, then return 0.
+
+Let's define dp[i][j] as the maximum amount of money earned with i requests and j tables available.
+dp[0][k] = 0 for any k (no requests)
+dp[n][0] = 0 for any n (no tables)
+
+Then, use tabulation to fill in the states in bottom-up manner:
+for n in range(1, n+1):
+    for k in range(1, k+1):
+        if ri > ci: 
+            dp[n][k] = max(dp[n-1][k], dp[n][k-1]) + pi
+        else:
+            dp[n][k] = max(dp[n-1][k], dp[n][k-1])
+
+Dynamically update the states by considering the current request's group size and total amount of money spent
+
+===END PLAN===

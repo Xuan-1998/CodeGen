@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes.
+
+State expression is a 4-tuple (i, j, f, p) representing the current window [0, i] with flag f indicating whether to consider bad primes or not, and p being the last considered prime number.
+Consider all possible combinations of good and bad primes for each subarray. The beauty value is determined by whether it contains a bad prime.
+
+Memoization function takes a tuple state = (i, j, f, p) and returns the maximum beauty value for the current window [0, i] considering bad primes up to the jth bad prime, with last considered prime number p.
+Use a dictionary memo to store previously computed beauty values.
+
+Base case: The maximum beauty value is 0 when no elements are present in the array.
+
+Recurrence relation:
+- If f is true and j is less than or equal to m (number of bad primes), consider the bad prime at index i. Then, for all p from 2 to j, calculate max_beauty(i - 1, j - 1, not(f), p) + 1.
+- If f is false, consider a good prime at index i. Then, for all p from 2 to m, calculate max_beauty(i - 1, m, false, p) + 1.
+
+Initialize memo dictionary with base case: memo[(0, 0, True, 0)] = 0
+Fill up the memo dictionary using the recurrence relation.
+Finally, return memo[(n, m, False, 0)]
+
+===END PLAN===

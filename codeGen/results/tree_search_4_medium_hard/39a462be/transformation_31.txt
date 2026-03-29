@@ -1,0 +1,16 @@
+state_expression = (i, j) where i is the current index for string A and j is the current index for string B; 
+The state represents the similarity score up to the current indices.
+
+Let state be a dictionary d where key is the pair of substrings and value is their similarity score.
+The transition relationship would be: 
+for each substring of A and B, calculate the LCS using dynamic programming (DP) and update the dictionary with the new similarity score. 
+
+state_transition = (
+  for i in range(len(A)):
+    for j in range(len(B)):
+      current_state = state.get((i, j), 0)
+      lcs_length = len(lcs(A[i:], B[j:]))
+      next_state = (4 * lcs_length) - (len(A[i:]) + len(B[j:]))
+      state[(i, j)] = max(current_state, next_state)
+
+return max(state.values())

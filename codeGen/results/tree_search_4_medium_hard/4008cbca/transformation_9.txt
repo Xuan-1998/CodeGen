@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The state expression could be the current row index on the board and the number of balls from the hand that can be used to remove all balls up to that point. 
+DP table can be a 2D array where each cell [i][k] represents the minimum number of moves needed to remove all balls up to index i on the board, considering k balls from the hand.
+Base case would be when the board is empty, in which case it's not possible to remove any more balls and so the minimal number of moves needed would be 0.
+For each cell [i][k], consider two cases: 
+1. The ball at index i on the board matches one of the k available balls from the hand. In this case, we can use the matching ball and recursively call the function to remove all balls up to index i-1 with (k-1) balls left.
+2. The ball at index i on the board doesn't match any of the k available balls from the hand. In this case, we'll need to add a new ball to the row to make it possible to remove the current ball and then recursively call the function to remove all balls up to index i-1 with (k+1) balls left.
+The transition relationship would be: 
+DP[i][k] = min(DP[i-1][k-1] + 1, DP[i-1][k]+1)
+where DP[i][k] is the minimum number of moves needed to remove all balls up to index i on the board, considering k balls from the hand.
+===END PLAN===

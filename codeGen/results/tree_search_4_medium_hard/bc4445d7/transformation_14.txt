@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+Define the state expression as dp[i][j] = minimum possible product of integers on path from node i to node j when the sum of integers equals k. This is because the problem statement only asks us to find the maximum distribution index for the tree, which can be achieved by minimizing the product of integers along a path.
+
+dp[i][j] represents the minimum possible product of integers on the simple path from node i to node j. To achieve this, we maintain a memoization table with dimensions dp[n][n-1], where dp[i][j] represents the minimum possible product of integers on the simple path from node i to node j.
+
+To fill up the dp table, for each edge (u,v) in the tree, calculate the product of integers on the simple path from u to v and update the dp table accordingly. The sum of integers can be calculated as the difference between k and all prime factors of k that appear along the path.
+
+Maintain another 2D array, say mp[n][n-1], where mp[i][j] represents the number of 1s among all numbers on the simple path from node i to node j. Update this table simultaneously with dp.
+
+Finally, for each test case, iterate over all edges in the tree and update the maximum distribution index by taking the minimum product along the path and adding it to the sum of products computed so far, modulo 10^9 + 7.
+===END PLAN===

@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+A top-down approach using memoization can be implemented by defining a function that takes the current cell and direction (East) as inputs. The base case would be when the current cell is at the edge of the grid or has no visible rocks to its East.
+
+State relationships can be defined as the number of empty cells to the East with no rocks blocking the line of sight. The state expression is dp[i][j], where dp[i][j] represents the number of ways to place a mirror at cell (i, j) such that it sees no rocks on the East side.
+
+Use dp[i-1][j] as the initial state value for the current cell (i, j) to ensure that the mirror at this cell does not see any rocks on its East side. This is because the visibility of rocks from the previous row affects the current cell's visibility.
+
+Using a dictionary to store and reuse previously computed values can significantly improve performance by avoiding redundant computations.
+
+Additionally, consider the following edge cases:
+* When N=1, there is only one possible mirror placement.
+* When N=2, there are two possible mirror placements (at the left or right border).
+
+Consider also handling the case where a cell has rocks both above and below it. This can be done by recursively calling the function for the top and bottom cells.
+
+===END PLAN===

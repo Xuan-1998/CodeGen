@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Determine the overlapping subproblems by recognizing that the minimum path sum for each cell depends on its neighbors. Use tabulation to store and reuse these calculations.
+
+The state expression is dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j].
+
+dp[i][j] = dp[i-1][j] if i > 0 else dp[0][j] if j > 0 else grid[0][0]
+Store and reuse the calculations by filling up the dp array from top to bottom and left to right.
+
+Fill in edge cases: 
+- The base case is when i or j equals 0, then return the value at (0,0).
+- Initialize all values in dp array as infinity except for the first element which is set to grid[0][0].
+
+Verify that the plan does not include any redundant calculations.
+===END PLAN===

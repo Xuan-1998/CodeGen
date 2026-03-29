@@ -1,0 +1,16 @@
+===BEGIN PLAN===
+The optimal substructure: We can break down the problem of finding the maximum joy into smaller subproblems of feeding one hare or not, and then combining these solutions to find the overall maximum. This is an example of optimal substructure because the solution to the larger problem depends on the solutions to smaller instances of the same problem.
+
+The state for each hare i is a tuple (left_hungry, right_hungry) where left_hungry indicates whether hare i-1 was hungry and right_hungry indicates whether hare i+1 was hungry. The state can be further reduced to just the sum of the two values, as both hungry and not hungry are symmetric.
+
+The state is (f_i, f_{i+1}) where f_i = 1 if hare i is fed and 0 otherwise, and f_{i+1} is similarly defined for the next hare. We can use dynamic programming to fill a table dp[i][left_hungry][right_hungry] that stores the maximum joy value at each step.
+
+Memoize the function that calculates the maximum joy value based on the previous hares' states and feed decisions.
+
+The base case would be when there's only one hare, in which case we simply take the maximum of feeding or not feeding it, depending on its state.
+
+To calculate the maximum joy for a given subproblem, we consider all possible ways to feed or not feed the current hare. For each possibility, we recursively call the function with the updated states and add the corresponding joy value. The maximum of these values is stored in the table.
+
+Finally, we return the value from the last state as the overall maximum joy.
+
+===END PLAN===

@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Incorporate optimal substructure: Think about how the solution to one subproblem can be used to solve another related subproblem.
+
+dp[i] depends on the maximum reachable index from the previous position. If there are no elements that can be reached, then dp[i] = False; otherwise, it's possible to reach dp[i].
+
+dp[i] is True if i+1 <= len(arr) and arr[i] >= 1, else False.
+
+Use a bottom-up dynamic programming approach by initializing a table with all False values and then iteratively update the table based on the maximum reachable index from the previous position.
+
+For each index i:
+    Initialize dp[i] = False
+    For each j in range(i-arr[i], i+1):
+        If arr[j] >= 1 and dp[j]:
+            dp[i] = True
+            Break
+
+Return dp[-1]
+===END PLAN===

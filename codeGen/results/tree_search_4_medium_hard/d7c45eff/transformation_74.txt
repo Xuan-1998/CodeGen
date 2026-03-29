@@ -1,0 +1,29 @@
+===BEGIN PLAN===
+Consider all possible strings that can be formed by either deleting the last character or duplicating the original string.
+
+: Define the state as a tuple (s, duplication), where s is the current string and duplication is a boolean indicating whether the string was duplicated. This allows us to consider all possible strings of length up to k, including those that are duplicates of previous strings.
+
+To use a recursive function with memoization, define a function dp(s, i, dup) where:
+
+* s is the original string
+* i is the current index (0-based)
+* dup is a boolean indicating whether the string was duplicated
+
+The base case for the recursion would be when i >= k. In this case, return the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string.
+
+Recursively consider two options:
+
+1. If the current index i is less than n-1 (where n is the length of the original string), then there are two possibilities: 
+   - Either delete the last character of the string, resulting in a new string s' with length i
+   - Or duplicate the original string to get a new string s'' with length i+1
+
+2. If the current index i is equal to n-1 (i.e., we've reached the end of the original string), then there's only one possibility: 
+   - Duplicating the original string results in a new string s'' with length k
+
+
+Memoize the function by storing the result for each unique state (s, i, dup) in a dictionary dp. This way, we avoid re-computing the same subproblems multiple times.
+
+Finally, call the function with the initial parameters dp(s, 0, False) and return the lexicographically smallest string that can be formed by either deleting the last character or duplicating the original string.
+
+
+===END PLAN===

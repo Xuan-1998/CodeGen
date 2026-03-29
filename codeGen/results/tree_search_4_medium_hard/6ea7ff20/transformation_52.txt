@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][j] = 1 if (p[2*i]+p[2*i+1]) <= (p[2*j]+p[2*j+1]), dp[i][j] = 0 otherwise,
+for i from 0 to n-1, j from 0 to floor((n-i)/2)
+dp[i][j] = True if sum(p[2k] for k in range(i,i+n)) <= sum(p[2k+1] for k in range(i,i+n)), False otherwise
+for i from 0 to n-1, j from 0 to floor((n-i)/2)
+Let the prefix sums be p_sum_even[i], p_sum_odd[i]
+p_sum_even[i] = sum(p[2*k] for k in range(0,i+1))
+p_sum_odd[i] = sum(p[2*k+1] for k in range(0,i+1))
+for i from 0 to n-1
+Check if there exists j such that dp[i][j] is True, and p_sum_even[j]+p_sum_odd[j] <= p_sum_even[n-1]+p_sum_odd[n-1]
+If found, then it's possible to construct a pair of arrays (a,b) where merge(a,b)=p
+Otherwise, not possible
+===END PLAN===

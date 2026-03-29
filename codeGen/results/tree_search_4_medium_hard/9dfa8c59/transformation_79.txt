@@ -1,0 +1,20 @@
+Develop an iterative solution by generating all prime numbers up to n_max, then checking the number of permutations for each one.
+
+The base case is when n exceeds n_max. The state then becomes None.
+
+Represent the state as a tuple containing three values: 
+    - A boolean indicating whether the current prime number has k_perms permutations
+    - The smallest prime number with k_perms permutations
+    - The largest prime number with k_perms permutations
+
+The transition relationship is updating this state by:
+    1. Checking if the current prime number has k_perms permutations
+    2. If it does, update the tuple with the current prime number as the new smallest and largest primes
+    3. Otherwise, do nothing
+
+A dynamic programming approach that generates all prime numbers up to n_max and then calculates the count of prime permutations for each one.
+
+Edge cases:
+- When k_perms is 0 or less, return [0, 0, 0] because there are no prime numbers with exactly 0 permutations
+- When n_max is less than 2, return [0, 0, 0] because there are no prime numbers below n_max
+

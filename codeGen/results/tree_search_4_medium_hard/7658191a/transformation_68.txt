@@ -1,0 +1,7 @@
+===BEGIN PLAN===
+Explore an iterative dynamic programming solution by using a loop to fill in a 2D table dp where dp[i][j] represents the maximum score for i steps and j moves being made, with at most z moves being to the left. Initialize the base case when k = 0 as dp[0][j] = sum of all values in the array.
+Consider the recursive relation: dp[i][j] = max(dp[i-1][j-1], dp[i-z][j+z]) + score[i] where j-1 and j+z are within valid bounds. This captures the idea that you can either make a move to the right (dp[i-1][j-1]) or to the left (dp[i-z][j+z]).
+Implement memoization by creating a dictionary memo to store the computed values of subproblems, and use this dictionary to avoid recomputing the same value multiple times. Fill in the dp table using the recursive relation.
+Return dp[k][0] as the maximum score that can be achieved after exactly k moves.
+
+===END PLAN===

@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+Incorporate optimal substructure: Think about how the solution to one subproblem can be used to solve another related subproblem.
+
+The state is dp[i], which represents whether the i-th element can be reached. The base case is dp[0] = True, since we start at the beginning and the maximum reachable index from there is always 0.
+
+dp[i] = any dp[j] where j + 1 <= i and j <= min(i - arr[j], j)
+
+Use dynamic programming to fill up a table where each cell represents the maximum reachable index from that position.
+
+For each element in the array, we check if it can be reached by looking at previous elements. If an element is within the jump length of the current position, then we can reach it.
+===END PLAN===

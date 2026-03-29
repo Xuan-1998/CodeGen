@@ -1,0 +1,33 @@
+===BEGIN PLAN===
+The dynamic programming problem has overlapping subproblems, but not a clear optimal substructure. Memoization would be suitable.
+
+The base case could be when i = 0 or j = 0, in which case there are no more elements to consider and thus no elements need to be removed.
+dp[0][j] = dp[i][0] = 0
+
+The transition relationships could be defined as:
+dp[i][j] = min(
+    dp[i-1][j-1] + 1 if s[i] != s[j], 
+    dp[i-1][j] if l <= i and i <= r, 
+    dp[i][j-1] if l <= j and j <= r
+)
+
+Memoize the dp array using a dictionary to store the intermediate results.
+dp_table = {}
+
+for i in range(n+1):
+    for j in range(m+1):
+        if (i == 0 or j == 0) and s[i-1] != s[j-1]:
+            dp[i][j] = 0
+        elif l <= i and i <= r:
+            dp[i][j] = min(dp[i-1][j], dp[i][j-1])
+        else:
+            if s[i-1] == s[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            else:
+                dp[i][j] = dp[i-1][j-1] + 1
+        dp_table[(i, j)] = dp[i][j]
+
+for _ in range(q):
+    l_i, r_i = map(int, input().split())
+    print(dp_table((r_i, r_i)) - dp_table((l_i-1 if l_i > 0 else n, l_i-1 if l_i > 0 else n)))
+===END PLAN===

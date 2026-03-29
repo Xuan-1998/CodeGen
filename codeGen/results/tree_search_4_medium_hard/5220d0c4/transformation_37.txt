@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The optimal substructure is defined by combining the beauty values of non-overlapping subarrays. Consider the maximum beauty value for all possible combinations of good and bad primes. Use memoization to store the beauty values for previously computed subproblems.
+
+State expression: A tuple (i, j) representing the range [i, j] in the array, where i <= j and Beauty[i][j] represents the maximum beauty value for this range.
+
+Transition: 
+dp[i+1][j] = max((isGood(primeFactors[A[i]]) ? dp[i][j] : not dp[i][j]), (isGood(primeFactors[A[j]]) ? dp[i][j+1] : not dp[i][j+1])) 
+for i <= j
+
+Implement memoization using a dictionary where dp[(i, j)] is the maximum beauty value for the range [i, j].
+
+Transition correction: The transition rule should only apply when the entire subarray [i, j] contains only good or bad primes.
+
+Edge cases:
+- Handle edge case where i = 0 (initial state)
+- Handle edge case where j = n - 1 (final state)
+
+===END PLAN===

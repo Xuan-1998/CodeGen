@@ -1,0 +1,11 @@
+===BEGIN PLAN===
+The key insight is that the optimal solution for a given length j can be computed from the optimal solutions for lengths j-1 and j-2. Specifically, if s[:k] is the optimal string of length k, then either s[:k+1] (by adding one more character) or s[:k-1] (by removing the last character) could be the optimal solution for length k+1.
+
+State expression: dp[j] is a boolean array where dp[j] = True if the lexicographically smallest string of length j can be obtained by duplicating s[:i], and False otherwise.
+dp[i] = ((s[i-1] <= s[0]) or (dp[i-1])) if i > 0; else dp[0] = True
+
+Utilizing a greedy strategy by always duplicating the string when possible, and deleting the last character only when necessary
+When j = k, return s[:k]
+
+Pre-compute dp array up to length k and then return the lexicographically smallest string of length k that satisfies dp[k]
+===END PLAN===

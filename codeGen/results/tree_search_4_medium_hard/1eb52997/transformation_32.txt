@@ -1,0 +1,7 @@
+A bottom-up approach using dynamic programming could be implemented by defining a 2D array dp where dp[i][j] stores whether a mirror can be placed at position (i, j) and see all the way to the right without any rocks blocking the line of sight.
+
+The base case is when i or j reaches N - 1, meaning we've reached the edge of the grid. The state relationship can be defined as dp[i][j] = 0 if there is a rock at position (i, j) or if there are rocks to the East at cells (i, j-1), (i, j-2), ..., (i, 0). Otherwise, dp[i][j] = 1.
+
+The answer for each cell can be calculated by iterating over all possible positions in the grid and updating the dp array based on the state relationships. Finally, the number of empty cells where a mirror can be placed at 45 degrees to see what is happening on the East side without any rocks blocking the line of sight is equal to the sum of all values in the last row of the dp array.
+
+===END PLAN===

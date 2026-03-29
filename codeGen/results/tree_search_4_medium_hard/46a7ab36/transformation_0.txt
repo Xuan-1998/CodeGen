@@ -1,0 +1,14 @@
+], [
+Consider the state as (i, j) where i is the current position in the alphabet (1-indexed), and j is the current index of the word. The base case would be when we have reached the end of the word.
+
+The state as dp[i][j] where i represents the number of letters that have been placed before the current position, and j is the current index of the word. The base case would be when we have reached the end of the word, i.e., j=m.
+
+We can transition to a new state by either placing any of the n letters at position j or by not placing anything. This will result in two transitions for each cell: one where we place a letter and one where we don't. We will need to consider these two cases separately when calculating the value of dp[i][j].
+
+Dynamic programming with a 2D array dp where dp[i][j] represents the number of possible words ending at index j using the first i characters of the alphabet.
+
+For the base case, dp[n][m] will be the total number of possible words. To calculate this, we can sum up the number of possible words for each position in the word and add it to the total count.
+
+For each cell (i, j), we will have two transitions: one where we place a letter from the i-th character of the alphabet and one where we don't. The value of dp[i][j] will be the sum of these two values.
+
+This plan considers all edge cases, including when i or j is 0.

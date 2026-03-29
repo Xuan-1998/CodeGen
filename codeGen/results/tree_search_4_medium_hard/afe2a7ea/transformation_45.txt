@@ -1,0 +1,13 @@
+===BEGIN PLAN===
+dp[i][k] = whether the kth tower in towns 1 to i can be used to send signal to town i.
+
+Create a 2D DP array with dimensions n+1 by (n*(n-1))//2, where dp[i][j] is the jth state of the system after placing towers in towns 0 to i.
+The states are represented as follows:
+    - If the kth tower sends signal to town i, then it's a valid configuration.
+    - If not, then it's not possible to send signal from any tower to town i.
+
+For each town i and each state j, calculate dp[i][j] based on previous states. 
+Let's say we have i-1 towns already processed (i.e., previously visited). For each of these i-1 towns, calculate the number of valid configurations that can be extended to town i.
+Then, for each k in {1,...,(n-1)}, dp[i][j] is the sum over all valid configurations from previous states that can send signal from the kth tower to town i.
+
+===END PLAN===

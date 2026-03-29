@@ -1,0 +1,23 @@
+===BEGIN PLAN===
+Memoize recursive function calls by storing intermediate results in a dictionary.
+
+State:
+    - num_and: the number of arrays with bitwise AND less than bitwise XOR up to index i;
+    - can_increase_bitwise_and: whether it's possible to change the ith element to increase bitwise AND without decreasing bitwise XOR;
+Base Case: False when i < 0
+
+State: keep track of the maximum bitwise AND result seen so far, as well as the number of arrays with this result;
+Transition:
+    - update this state by considering each possible value of the ith element and counting the arrays that have this result;
+
+Create a dictionary to store the intermediate results and use it to avoid redundant computations.
+
+State Transition Function (STF):
+    1. If i < 0, return False
+    2. Initialize num_and = 0 and can_increase_bitwise_and = True
+    3. For each possible value v of ith element:
+        - Calculate bitwise AND and bitwise XOR results for the subarray ending at index i with ith element equal to v
+        - If bitwise AND result is less than bitwise XOR result, update num_and and can_increase_bitwise_and accordingly
+    4. Return (num_and, can_increase_bitwise_and)
+
+===END PLAN===

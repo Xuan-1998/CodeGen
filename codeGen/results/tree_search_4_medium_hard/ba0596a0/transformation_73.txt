@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+dp[0] = True
+For each stone position i in the input list:
+    If i is 0, dp[i] = True (since we can always reach the first stone)
+    Else: 
+        For each previous stone position j such that 0 <= j < i:
+            Check if it's possible to reach the current stone from the previous stone with a jump of k-1, k, or k+1
+            If yes, dp[i] = True
+        dp[i] = min(dp[i-k-1], dp[i-k], dp[i-k+1]) if i > 0
+===END PLAN===

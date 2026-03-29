@@ -1,0 +1,21 @@
+
+1. Define the problem using a more efficient approach based on predefined patterns:
+   - There are only 3 characters ('a', 'b', 'c'), so there are only 6 possible "beautiful" strings of any length: "abc", "acb", "bac", "bca", "cab", "cba".
+   - For any given length, we can generate these 6 patterns and precompute the cost to transform any substring into each of these patterns.
+
+2. Precompute the cost for each of the 6 patterns for all substrings:
+   - For each pattern, maintain a cumulative cost array where cost[i] represents the cost of transforming the substring s[0:i+1] to match the pattern up to index i.
+   - This allows us to quickly compute the cost for any substring s[l:r+1] by subtracting the cumulative costs.
+
+3. Process each query efficiently:
+   - For each query, calculate the cost for transforming the substring s[l:r+1] into each of the 6 patterns using the precomputed cumulative cost arrays.
+   - Return the minimum cost among these 6 values.
+
+Steps:
+1. Generate the 6 possible "beautiful" patterns for the given length.
+2. Compute the cumulative cost arrays for each of the 6 patterns.
+3. For each query, use the cumulative cost arrays to determine the minimum cost to transform the substring into a "beautiful" string.
+
+Time complexity: O(n + m), where n is the length of the string and m is the number of queries.
+Space complexity: O(n) for storing cumulative cost arrays.
+

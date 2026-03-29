@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+The problem can be solved by using Dynamic Programming with memoization.
+
+State: (i, j), where i is the sum of the main diagonal and j is the sum of the anti-diagonal
+Transition:
+	+ If i = j = 0, there is only one invertible matrix (identity matrix)
+	+ For each trace value t from 1 to N, consider all possible values k such that i - k >= 0, j - k >= 0, and t - k >= 0
+	+ Update the state by considering all possible values of k such that i - k and j - k are valid sums
+	+ For each trace value t, update the count of invertible matrices with positive determinant
+
+Table: Create a 2D table where the rows represent the trace value and the columns represent whether the matrix is invertible, initialized with all zeros.
+
+Edge cases:
+	+ Handle edge case when N = 1 or 2
+	+ Handle edge case when trace value t is less than or equal to 0
+
+Memoization: Use a dictionary to store the counts of invertible matrices for each trace value and update it accordingly.
+===END PLAN===

@@ -1,0 +1,28 @@
+===BEGIN PLAN===
+The key insight is that the optimal solution for a given length j can be computed from the optimal solutions for lengths j-1 and j-2. Specifically, if s[:k] is the optimal string of length k, then either s[:k+1] (by adding one more character) or s[:k-1] (by removing the last character) could be the optimal solution for length k+1.
+
+State expression: dp[i][j] represents the lexicographically smallest string of length j that can be obtained by doing operations on the first i characters of s.
+dp[i][j] is 1 if and only if the following two conditions are met:
+    1. The last character of s[:i-1] is not equal to the (j+1)-th character of s
+    2. j+1 > k, or dp[i-1][k] = 0
+
+To create a bottom-up dynamic programming approach by defining a recursive function that calls itself with smaller sub-problems.
+
+Initialization:
+dp[0][0] = 1 (base case)
+
+Transition relation:
+for i from 1 to n and j from 0 to k, 
+    dp[i][j] is 1 if and only if the following two conditions are met:
+        1. The last character of s[:i-1] is not equal to the (j+1)-th character of s
+        2. j+1 > k, or dp[i-1][k] = 0
+
+Top-down approach:
+for i from n to 1 and j from 0 to k,
+    if j < k,
+        return min(duplicating(s[:i-1]) + 1, deleting_last_char(s[:i-1]))
+    else
+        return duplicating(s[:i-1])
+
+Return the lexicographically smallest string of length k by tracing back dp[i][k] for i from n to 1.
+===END PLAN===

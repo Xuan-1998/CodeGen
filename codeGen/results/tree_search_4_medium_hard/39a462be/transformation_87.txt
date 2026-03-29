@@ -1,0 +1,20 @@
+===BEGIN PLAN===
+Use dynamic programming to build a 2D table where each cell represents the LCS (Longest Common Subsequence) of two substrings. The state expression is the pair of substrings, and the base case is when one or both strings are empty.
+
+The state expression is a 2D array dp[i][j] where:
+
+* dp[i][0] = i, representing the LCS of substring A[0..i-1] and an empty string
+* dp[0][j] = j, representing the LCS of an empty string and substring B[0..j-1]
+* dp[i][j] = 4 * length(LCS) - (i + j), if there's a common character between substrings A[0..i-1] and B[0..j-1]
+
+The transition relationship is:
+
+* dp[i][j] = max(dp[i-1][j], dp[i][j-1]) if A[i-1] == B[j-1]
+* else, dp[i][j] = dp[i-1][j-1]
+
+Create a 2D table with dimensions (n+1) x (m+1), where n and m are the lengths of strings A and B respectively, to store the dynamic programming state values.
+
+Compute the maximum similarity score over all pairs of substrings by iterating through the 2D table and updating the maximum score as needed.
+
+The final answer is the maximum similarity score found.
+===END PLAN===

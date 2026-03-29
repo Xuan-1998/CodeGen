@@ -1,0 +1,14 @@
+===BEGIN PLAN===
+Memoize values computed during recursion to avoid redundant calculations and accelerate computation.
+
+The state is (r, k), where f(r) represents the minimum total number of comparisons needed to select the most beautiful participant from r girls with at most k pairs of identical clothes.
+
+f(l, r) = 
+    if l == 1: 
+        min(1, r - 1)
+    else:
+        min(f(l-1, min(r, l-1)) + (r - (l-1)), f(min(r, l-2), l-1)) + 1
+
+Employ bottom-up approach, initializing an array with base cases and iteratively calculating larger values.
+
+===END PLAN===

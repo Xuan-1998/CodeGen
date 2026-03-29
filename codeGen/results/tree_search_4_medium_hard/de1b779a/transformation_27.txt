@@ -1,0 +1,18 @@
+===BEGIN PLAN===
+Consider a table dp[i][j] where dp[i][j] is the maximum profit that can be achieved with i grams of dough and j stuffing types. The base case could be when there's no dough left (i = 0) or no stuffing types left (j = 0).
+
+dp[0][j] represents the maximum profit that can be achieved without using any dough, but still having j stuffing types. This value is simply the sum of the prices of the remaining buns that can be made with the current amount of each stuffing type.
+
+i > 0 and j > 0:
+For each gram of dough from 1 to i, calculate the maximum profit that can be achieved by either:
+- Not using this gram of dough (dp[i - 1][j] + sum of prices of buns made with current amount of each stuffing type)
+- Using this gram of dough to make a bun with one of the j stuffing types. This case is more profitable if there's enough dough and stuffing left, so consider all j stuffing types and calculate the maximum profit that can be achieved by using this gram of dough.
+
+The base case for i > 0 and j > 0 could be when there's no dough left (i = 0) or no stuffing types left (j = 0). In this case, dp[i][j] is simply the sum of the prices of the remaining buns that can be made with the current amount of each stuffing type.
+
+Initialize dp[0][0] to d0 as it's the maximum profit that can be achieved without using any dough or stuffing.
+Fill up the table from bottom-up, considering all possible combinations of using and not using grams of dough and stuffing types.
+
+The maximum profit Lavrenty can earn is stored in dp[n][m].
+
+===END PLAN===

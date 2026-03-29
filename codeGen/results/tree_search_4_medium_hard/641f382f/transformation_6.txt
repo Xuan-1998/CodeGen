@@ -1,0 +1,8 @@
+Identify the minimum operations needed for each subarray to become 1, and use dynamic programming with memoization to store the results of subproblems.
+dp[i] represents the minimum number of operations required to make all elements from the 1st to the i-th (inclusive) equal to 1.
+Initialize dp[i] with a large value for all i except for dp[0] which should be 0 as the base case.
+Iterate over each element in the array, and for each element at position i, iterate over all previous positions j (where j < i), and do the following:
+  - Compute the greatest common divisor (GCD) of the elements at positions i and j.
+  - If the GCD is 1, then update dp[i] to the minimum of its current value and dp[j] + i - j - 1. This represents taking the minimum operations to make elements from 1 to j equal to 1, and then performing (i - j - 1) operations to make elements from j+1 to i equal to 1.
+After filling the dp array, the answer will be the value at dp[n] if it's not the large initial value; otherwise, return -1 if it's not possible to make all elements equal to 1.
+Consider edge cases where the array already has a 1, in which case no operations are needed, or cases where it's impossible to achieve all 1s due to the lack of pairs with GCD equal to 1.

@@ -1,0 +1,15 @@
+===BEGIN PLAN===
+It's more efficient to use a bottom-up approach with tabulation since we need to iterate through all possible combinations of perfect squares to find the minimum number.
+The state expression is s, where s represents the set of possible summands for n.
+Let the state be dp[i] which stores the least number of perfect squares that add up to i, for all 1 <= i <= n.
+Create a table dp of size (n+1) where dp[i] represents the minimum number of perfect squares that sum up to i.
+
+Initialization: Set dp[0] = 0 since it takes no perfect squares to get 0.
+
+For each integer i from 1 to n:
+    Let j be the largest perfect square less than or equal to i.
+    For each possible j:
+        If i is equal to j, then dp[i] = 1 (it only needs one j).
+        Otherwise, update dp[i] by taking the minimum of dp[i-j^2] + 1 and dp[i].
+Return dp[n]. 
+===END PLAN===

@@ -1,0 +1,10 @@
+===BEGIN PLAN===
+Consider using memoization for a dynamic programming solution where you maintain an array to store previously computed values, allowing you to avoid redundant computation.
+
+The state expression is dp[i][j][k] = 1 if there exists an edge between nodes i and j such that their labels add up to k, otherwise 0, where dp[i][j][k] represents whether the edge (i, j) has label k or not.
+
+dp[i][j][k] = dp[i][u][p] + dp[u][v][q] for all u, v in the subtree rooted at i such that p * q = k, where p is the product of prime factors in the subtree rooted at i and q is the product of prime factors in the remaining tree.
+
+Use a 4D DP table with dimensions n x n x m x m, where n is the number of nodes, m is the maximum possible value of k, and initialize all values to False. Initialize dp[i][j][k][0] = True for all edges (i, j) in the tree.
+
+===END PLAN===

@@ -1,0 +1,12 @@
+===BEGIN PLAN===
+Consider using a 1D DP table to store the maximum bitwise OR value for each prefix of s, with dimension n where each cell dp[i] represents the maximum bitwise OR value for the substring s[0:i]. The base case would be when i is 0. 
+
+Let dp[i] be the maximum bitwise OR value that can be obtained by taking two non-empty substrings of s that end at index i and start at least 0. 
+
+The transition relation would be dp[i] = max(OR(dp[k-1],s[k:i]) for k in range(1,i+1))
+
+Implement a tabulation-based approach by iterating over the 1D DP table and filling it up from left to right, where each cell dp[i] is computed based on its previous value.
+
+For edge cases, handle when i is 0 separately, since there's only one possible pair of substrings in this case. Also, ensure that the maximum bitwise OR value does not exceed the maximum possible value (which would be 2^(n-1)-1).
+
+===END PLAN===
